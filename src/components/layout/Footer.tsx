@@ -26,7 +26,7 @@ const Footer = () => {
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 <Linkedin size={20} />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="mailto:matt@nomoreenabling.com" className="text-muted-foreground hover:text-primary transition-colors">
                 <Mail size={20} />
               </a>
             </div>
@@ -47,9 +47,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="mailto:matt@nomoreenabling.com" className="text-muted-foreground hover:text-foreground transition-colors">
                   Contact
-                </Link>
+                </a>
               </li>
               <li>
                 <Link to="/advertise" className="text-muted-foreground hover:text-foreground transition-colors">

@@ -13,7 +13,6 @@ const Header = () => {
     { name: "Home", href: "/" },
     { name: "Articles", href: "/articles" },
     { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
   ];
 
   const scrollToNewsletter = () => {
@@ -46,6 +45,12 @@ const Header = () => {
                 {link.name}
               </Link>
             ))}
+            <a
+              href="mailto:matt@nomoreenabling.com"
+              className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
+            >
+              Contact
+            </a>
           </nav>
 
           {/* CTA Button */}
@@ -79,6 +84,13 @@ const Header = () => {
                   {link.name}
                 </Link>
               ))}
+              <a
+                href="mailto:matt@nomoreenabling.com"
+                className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Contact
+              </a>
               <Button variant="hero" size="default" className="mt-2" onClick={scrollToNewsletter}>
                 Subscribe
               </Button>
