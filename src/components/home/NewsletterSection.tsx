@@ -17,20 +17,26 @@ const NewsletterSection = () => {
     setIsSubmitting(true);
     
     try {
-      const { error } = await supabase
-        .from('subscribers')
-        .insert({ email, first_name: firstName || null });
+      const { data, error } = await supabase.functions.invoke('newsletter-signup', {
+        body: { email, first_name: firstName || null }
+      });
 
       if (error) {
-        if (error.code === '23505') {
-          toast({
-            title: "Already subscribed!",
-            description: "This email is already on our list.",
-            variant: "destructive",
-          });
-        } else {
-          throw error;
-        }
+        throw error;
+      }
+
+      if (data?.error === 'already_subscribed') {
+        toast({
+          title: "Already subscribed!",
+          description: "This email is already on our list.",
+          variant: "destructive",
+        });
+      } else if (data?.error) {
+        toast({
+          title: "Validation error",
+          description: data.error,
+          variant: "destructive",
+        });
       } else {
         toast({
           title: "Welcome aboard!",
