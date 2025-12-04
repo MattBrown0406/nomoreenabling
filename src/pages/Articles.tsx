@@ -1,13 +1,23 @@
 import { useState, useMemo, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BlogCard from "@/components/blog/BlogCard";
 import AdSpace from "@/components/ads/AdSpace";
 import { Input } from "@/components/ui/input";
 import { blogPosts } from "@/data/blogPosts";
-import { Search } from "lucide-react";
+import { Search, ArrowRight } from "lucide-react";
 
-const categories = ["All", "Boundaries", "Self-Worth", "Relationships", "Recovery", "Personal Growth"];
+const categories = ["All", "Boundaries", "Self-Worth", "Relationships", "Recovery", "Personal Growth", "Addiction"];
+
+// Sort posts by date (newest first)
+const sortByDate = (posts: typeof blogPosts) => {
+  return [...posts].sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return dateB.getTime() - dateA.getTime();
+  });
+};
 
 const Articles = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -17,8 +27,11 @@ const Articles = () => {
     document.title = "Articles - No More Enabling";
   }, []);
 
+  const sortedPosts = useMemo(() => sortByDate(blogPosts), []);
+  const newestPost = sortedPosts[0];
+
   const filteredPosts = useMemo(() => {
-    return blogPosts.filter((post) => {
+    return sortedPosts.filter((post) => {
       const matchesSearch =
         post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
@@ -26,23 +39,45 @@ const Articles = () => {
         selectedCategory === "All" || post.category === selectedCategory;
       return matchesSearch && matchesCategory;
     });
-  }, [searchQuery, selectedCategory]);
+  }, [searchQuery, selectedCategory, sortedPosts]);
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
 
       <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="py-12 md:py-16 bg-gradient-to-br from-brick-light/50 to-transparent">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground">
-                Articles
+        {/* Featured Article Hero */}
+        <section className="relative py-16 md:py-24 overflow-hidden">
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${newestPost.image})` }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/70" />
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-2xl">
+              <span className="inline-block px-3 py-1 bg-primary text-primary-foreground text-sm font-medium rounded-full mb-4">
+                Latest Article
+              </span>
+              <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
+                {newestPost.title}
               </h1>
-              <p className="mt-4 text-lg text-muted-foreground">
-                Explore our collection of articles on boundaries, self-worth, and healthy relationships.
+              <p className="mt-4 text-lg text-muted-foreground line-clamp-3">
+                {newestPost.excerpt}
               </p>
+              <div className="mt-4 flex items-center gap-4 text-sm text-muted-foreground">
+                <span>{newestPost.category}</span>
+                <span>•</span>
+                <span>{newestPost.date}</span>
+                <span>•</span>
+                <span>{newestPost.readTime}</span>
+              </div>
+              <Link 
+                to={`/articles/${newestPost.slug}`}
+                className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors"
+              >
+                Read Article
+                <ArrowRight size={18} />
+              </Link>
             </div>
           </div>
         </section>
