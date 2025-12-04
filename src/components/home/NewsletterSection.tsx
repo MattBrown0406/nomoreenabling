@@ -51,7 +51,7 @@ const NewsletterSection = () => {
   };
 
   return (
-    <section className="py-16 bg-primary text-primary-foreground">
+    <section id="newsletter" className="py-16 bg-primary text-primary-foreground">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto text-center">
           <div className="inline-flex items-center justify-center w-14 h-14 bg-primary-foreground/10 rounded-full mb-6">
