@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Twitter, Instagram, Linkedin } from "lucide-react";
+import logo from "@/assets/logo.jpg";
 
 const Footer = () => {
   return (
@@ -9,9 +10,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-2">
             <Link to="/" className="inline-block">
-              <span className="font-serif text-2xl font-bold text-foreground">
-                No More <span className="text-primary">Enabling</span>
-              </span>
+              <img src={logo} alt="No More Enabling" className="h-16 w-auto rounded" />
             </Link>
             <p className="mt-4 text-muted-foreground max-w-md">
               Empowering you to break free from unhealthy patterns and build stronger, 

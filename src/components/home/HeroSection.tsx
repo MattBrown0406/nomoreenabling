@@ -5,7 +5,7 @@ const HeroSection = () => {
   return (
     <section className="relative py-16 md:py-24 overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-br from-sage-light/50 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-brick-light/50 to-transparent pointer-events-none" />
       
       <div className="container mx-auto px-4 relative">
         <div className="max-w-3xl mx-auto text-center">
@@ -22,7 +22,6 @@ const HeroSection = () => {
             Discover insights, strategies, and support for setting healthy boundaries, 
             building self-worth, and creating relationships that nurture your growth.
           </p>
-          
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10 animate-fade-up" style={{ animationDelay: "0.3s" }}>
             <Button variant="hero" size="lg">
               Start Reading
