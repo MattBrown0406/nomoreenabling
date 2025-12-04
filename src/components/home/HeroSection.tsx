@@ -1,7 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
+  const scrollToNewsletter = () => {
+    const element = document.getElementById('newsletter');
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section className="relative py-16 md:py-24 overflow-hidden">
       {/* Background decoration */}
@@ -23,11 +29,13 @@ const HeroSection = () => {
             building self-worth, and creating relationships that nurture your growth.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10 animate-fade-up" style={{ animationDelay: "0.3s" }}>
-            <Button variant="hero" size="lg">
-              Start Reading
-              <ArrowRight size={18} />
+            <Button variant="hero" size="lg" asChild>
+              <Link to="/articles">
+                Start Reading
+                <ArrowRight size={18} />
+              </Link>
             </Button>
-            <Button variant="hero-outline" size="lg">
+            <Button variant="hero-outline" size="lg" onClick={scrollToNewsletter}>
               Join Newsletter
             </Button>
           </div>
