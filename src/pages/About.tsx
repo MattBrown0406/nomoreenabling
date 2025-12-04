@@ -17,8 +17,8 @@ const About = () => {
                 About <span className="text-primary">No More Enabling</span>
               </h1>
               <p className="mt-6 text-lg text-muted-foreground">
-                We're here to help you break free from unhealthy patterns and build 
-                stronger, healthier relationships with yourself and others.
+                We're here to help you break free from unhealthy patterns, find hope, and build 
+                stronger, healthier relationships with yourself and others...without fear and without guilt.
               </p>
             </div>
           </div>
