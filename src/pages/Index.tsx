@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from "react";
+import { useLocation } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/home/HeroSection";
@@ -18,6 +19,7 @@ const sortByDate = (posts: typeof blogPosts) => {
 };
 
 const Index = () => {
+  const location = useLocation();
   const sortedPosts = useMemo(() => sortByDate(blogPosts), []);
   const featuredPost = sortedPosts[0];
   const recentPosts = sortedPosts.slice(1);
@@ -25,6 +27,15 @@ const Index = () => {
   useEffect(() => {
     document.title = "No More Enabling - Break Free from Unhealthy Patterns";
   }, []);
+
+  useEffect(() => {
+    if (location.state?.scrollToNewsletter) {
+      setTimeout(() => {
+        const element = document.getElementById('newsletter');
+        element?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }, [location.state]);
 
   return (
     <>
