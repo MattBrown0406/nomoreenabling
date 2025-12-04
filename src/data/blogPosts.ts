@@ -344,7 +344,7 @@ The discomfort of a hard conversation is temporary. The connection built through
     category: "Addiction",
     readTime: "7 min read",
     date: "Jul 18, 2025",
-    image: "https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=800&auto=format&fit=crop",
     slug: "sports-betting-gambling-addiction",
     content: `Legal online sports betting has made gambling easier than ever—and for many people, it's quietly turning into a serious addiction. Learn the warning signs, how it affects families, and what real help looks like today.
 
