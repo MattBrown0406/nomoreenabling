@@ -1,15 +1,23 @@
 import { useParams, Link } from "react-router-dom";
-import { useEffect } from "react";
-import { ArrowLeft, Clock, Calendar, Tag } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowLeft, Clock, Calendar, Tag, Facebook, Mail, Link2, Check } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { blogPosts } from "@/data/blogPosts";
 import AdSpace from "@/components/ads/AdSpace";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/hooks/use-toast";
+
+const XIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
 
 const ArticlePage = () => {
   const { slug } = useParams<{ slug: string }>();
   const article = blogPosts.find((post) => post.slug === slug);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (article) {
@@ -17,6 +25,47 @@ const ArticlePage = () => {
     }
     window.scrollTo(0, 0);
   }, [article]);
+
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const shareTitle = article?.title || '';
+
+  const shareOnFacebook = () => {
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
+      '_blank',
+      'width=600,height=400'
+    );
+  };
+
+  const shareOnX = () => {
+    window.open(
+      `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`,
+      '_blank',
+      'width=600,height=400'
+    );
+  };
+
+  const shareViaEmail = () => {
+    window.location.href = `mailto:?subject=${encodeURIComponent(shareTitle)}&body=${encodeURIComponent(`Check out this article: ${shareUrl}`)}`;
+  };
+
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopied(true);
+      toast({
+        title: "Link copied!",
+        description: "The article link has been copied to your clipboard.",
+      });
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      toast({
+        title: "Failed to copy",
+        description: "Please copy the URL from your browser's address bar.",
+        variant: "destructive",
+      });
+    }
+  };
 
   if (!article) {
     return (
@@ -84,6 +133,39 @@ const ArticlePage = () => {
               <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-6 leading-tight">
                 {article.title}
               </h1>
+
+              {/* Social Share Buttons */}
+              <div className="flex items-center gap-2 mb-8 pb-6 border-b border-border">
+                <span className="text-sm text-muted-foreground mr-2">Share:</span>
+                <button
+                  onClick={shareOnFacebook}
+                  className="p-2 rounded-full bg-[#1877F2] text-white hover:bg-[#1877F2]/90 transition-colors"
+                  aria-label="Share on Facebook"
+                >
+                  <Facebook className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={shareOnX}
+                  className="p-2 rounded-full bg-foreground text-background hover:bg-foreground/90 transition-colors"
+                  aria-label="Share on X"
+                >
+                  <XIcon className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={shareViaEmail}
+                  className="p-2 rounded-full bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground transition-colors"
+                  aria-label="Share via Email"
+                >
+                  <Mail className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={copyLink}
+                  className="p-2 rounded-full bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground transition-colors"
+                  aria-label="Copy link"
+                >
+                  {copied ? <Check className="w-4 h-4 text-green-500" /> : <Link2 className="w-4 h-4" />}
+                </button>
+              </div>
 
               {/* Ad Space */}
               <div className="mb-8">
