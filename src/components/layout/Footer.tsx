@@ -1,6 +1,21 @@
 import { Link } from "react-router-dom";
-import { Mail, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Instagram, Facebook, Youtube } from "lucide-react";
 import logo from "@/assets/logo.jpg";
+
+const TikTokIcon = ({ size = 20 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+);
 
 const Footer = () => {
   return (
@@ -17,17 +32,17 @@ const Footer = () => {
               healthier relationships with yourself and others.
             </p>
             <div className="flex gap-4 mt-6">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Twitter size={20} />
+              <a href="https://www.tiktok.com/@mattbrowninterventionist" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                <TikTokIcon size={20} />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://www.instagram.com/mattbrowninterventionist/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Linkedin size={20} />
+              <a href="https://www.facebook.com/mbrownsober" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                <Facebook size={20} />
               </a>
-              <a href="mailto:matt@nomoreenabling.com" className="text-muted-foreground hover:text-primary transition-colors">
-                <Mail size={20} />
+              <a href="https://www.youtube.com/@ThePartyWreckers" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                <Youtube size={20} />
               </a>
             </div>
           </div>
