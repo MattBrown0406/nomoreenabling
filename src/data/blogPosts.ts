@@ -17,7 +17,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Learn to recognize the signs of codependent behavior and discover how self-awareness can be your greatest tool for change.",
     category: "Self-Worth",
     readTime: "8 min read",
-    date: "Dec 1, 2024",
+    date: "Jan 15, 2025",
     image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&auto=format&fit=crop",
     slug: "understanding-codependency",
     content: `Codependency is a word that gets thrown around a lot, but what does it really mean? At its core, codependency is a behavioral pattern where a person becomes so focused on another person's needs, problems, and well-being that they neglect their own. It's more than just being helpful or caring—it's when your entire sense of identity and self-worth becomes wrapped up in someone else.
@@ -52,7 +52,7 @@ Remember, becoming aware of codependency isn't a failure—it's a breakthrough. 
     excerpt: "Boundaries aren't walls—they're bridges to healthier relationships. Here's how to establish them with compassion.",
     category: "Boundaries",
     readTime: "6 min read",
-    date: "Nov 28, 2024",
+    date: "Feb 3, 2025",
     image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&auto=format&fit=crop",
     slug: "healthy-boundaries-without-guilt",
     content: `For many of us, the word "boundary" feels harsh, even selfish. We've been taught that loving someone means being available whenever they need us, that good people don't say no, that our needs should always come second. But here's the truth: boundaries aren't walls designed to shut people out—they're bridges that make genuine connection possible.
@@ -99,7 +99,7 @@ The guilt you feel when setting boundaries will likely diminish with practice. E
     excerpt: "There's a fine line between support and enabling. Learn to distinguish between the two and how to truly help.",
     category: "Relationships",
     readTime: "7 min read",
-    date: "Nov 25, 2024",
+    date: "Mar 12, 2025",
     image: "https://images.unsplash.com/photo-1516534775068-ba3e7458af70?w=800&auto=format&fit=crop",
     slug: "breaking-the-cycle",
     content: `We want to help the people we love. When they're struggling, our instinct is to step in, to fix, to rescue. But what happens when our help isn't actually helping? What happens when our well-intentioned support becomes a barrier to someone else's growth?
@@ -156,7 +156,7 @@ Remember: loving someone doesn't mean protecting them from all pain. Sometimes, 
     excerpt: "You can't pour from an empty cup. Discover why taking care of yourself first is essential for healthy relationships.",
     category: "Personal Growth",
     readTime: "5 min read",
-    date: "Nov 22, 2024",
+    date: "Apr 8, 2025",
     image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&auto=format&fit=crop",
     slug: "self-care-isnt-selfish",
     content: `"You can't pour from an empty cup." We've all heard this phrase, perhaps so often that it's lost its impact. But let's pause and really consider what it means: if you're running on empty, you have nothing genuine to give. The care you offer from a depleted state isn't sustainable—it's survival mode dressed up as generosity.
@@ -207,7 +207,7 @@ Offer yourself that same compassion. You deserve the care you so readily give to
     excerpt: "Recovery from enabling behaviors is a process. Here are the stages you might experience and how to navigate them.",
     category: "Recovery",
     readTime: "10 min read",
-    date: "Nov 18, 2024",
+    date: "May 22, 2025",
     image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop",
     slug: "navigating-recovery",
     content: `Recovery from codependency and enabling behaviors isn't a straight line. It's a winding path with unexpected turns, moments of clarity followed by confusion, steps forward and steps back. Understanding what this journey typically looks like can help you navigate it with more compassion for yourself and realistic expectations about the process.
@@ -276,7 +276,7 @@ Recovery is, ultimately, a journey home to yourself. It's hard work. It takes co
     excerpt: "Learn effective communication techniques that help you express your needs while maintaining respect and connection.",
     category: "Relationships",
     readTime: "6 min read",
-    date: "Nov 15, 2024",
+    date: "Jun 5, 2025",
     image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&auto=format&fit=crop",
     slug: "communication-strategies",
     content: `Difficult conversations are inevitable. Whether you're setting a boundary, expressing a need, or addressing a conflict, there will be moments when you need to say hard things to people you care about. For those recovering from codependency, these conversations can feel especially daunting. But with the right strategies, you can communicate authentically while maintaining connection and respect.
