@@ -41,7 +41,7 @@ const Advertise = () => {
       
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="py-16 md:py-24 bg-gradient-to-br from-sage-light/50 to-transparent">
+        <section className="py-16 md:py-24 bg-gradient-to-br from-brick-light/50 to-transparent">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground">

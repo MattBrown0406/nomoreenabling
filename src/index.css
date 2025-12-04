@@ -6,52 +6,51 @@
 
 @layer base {
   :root {
-    --background: 40 20% 98%;
-    --foreground: 200 25% 15%;
+    --background: 40 25% 97%;
+    --foreground: 0 45% 25%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 200 25% 15%;
+    --card: 40 30% 96%;
+    --card-foreground: 0 45% 25%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 200 25% 15%;
+    --popover: 40 30% 96%;
+    --popover-foreground: 0 45% 25%;
 
-    --primary: 168 45% 32%;
-    --primary-foreground: 40 20% 98%;
+    --primary: 0 55% 37%;
+    --primary-foreground: 40 30% 96%;
 
-    --secondary: 40 30% 94%;
-    --secondary-foreground: 200 25% 15%;
+    --secondary: 40 25% 92%;
+    --secondary-foreground: 0 45% 25%;
 
-    --muted: 40 20% 92%;
-    --muted-foreground: 200 15% 45%;
+    --muted: 40 20% 90%;
+    --muted-foreground: 0 20% 45%;
 
-    --accent: 12 76% 61%;
-    --accent-foreground: 40 20% 98%;
+    --accent: 0 65% 45%;
+    --accent-foreground: 40 30% 96%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 40 20% 88%;
-    --input: 40 20% 88%;
-    --ring: 168 45% 32%;
+    --border: 40 20% 85%;
+    --input: 40 20% 85%;
+    --ring: 0 55% 37%;
 
     --radius: 0.5rem;
 
     /* Custom tokens */
-    --sage: 168 35% 45%;
-    --sage-light: 168 25% 90%;
-    --coral: 12 76% 61%;
-    --coral-light: 12 60% 95%;
+    --brick: 0 55% 37%;
+    --brick-light: 0 40% 92%;
     --cream: 40 30% 96%;
-    --charcoal: 200 25% 15%;
+    --cream-dark: 40 25% 90%;
+    --maroon: 0 45% 25%;
 
     /* Typography */
     --font-serif: 'Playfair Display', Georgia, serif;
     --font-sans: 'Inter', system-ui, sans-serif;
 
     /* Shadows */
-    --shadow-soft: 0 4px 20px -4px hsl(200 25% 15% / 0.08);
-    --shadow-card: 0 2px 12px -2px hsl(200 25% 15% / 0.06);
-    --shadow-hover: 0 8px 30px -6px hsl(200 25% 15% / 0.12);
+    --shadow-soft: 0 4px 20px -4px hsl(0 45% 25% / 0.1);
+    --shadow-card: 0 2px 12px -2px hsl(0 45% 25% / 0.08);
+    --shadow-hover: 0 8px 30px -6px hsl(0 45% 25% / 0.15);
 
     /* Ad spaces */
     --ad-bg: 40 20% 94%;
