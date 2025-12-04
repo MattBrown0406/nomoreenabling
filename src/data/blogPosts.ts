@@ -337,4 +337,60 @@ Difficult conversations aren't obstacles to good relationships—they're often t
 
 The discomfort of a hard conversation is temporary. The connection built through authentic communication can last a lifetime.`
   },
+  {
+    id: "7",
+    title: "When Sports Betting Stops Being Fun: Recognizing the New Wave of Gambling Addiction",
+    excerpt: "Legal online sports betting has made gambling easier than ever—and for many people, it's quietly turning into a serious addiction.",
+    category: "Addiction",
+    readTime: "7 min read",
+    date: "Jul 18, 2025",
+    image: "https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?w=800&auto=format&fit=crop",
+    slug: "sports-betting-gambling-addiction",
+    content: `Legal online sports betting has made gambling easier than ever—and for many people, it's quietly turning into a serious addiction. Learn the warning signs, how it affects families, and what real help looks like today.
+
+**Why Sports Betting Is Exploding**
+
+Since sports betting became legal in more states, online sportsbooks have turned into a multibillion-dollar industry, promoted heavily during games and across social media. The convenience of placing bets from a phone has removed many old barriers, making it easier for casual betting to slide into harmful, secretive behavior.
+
+Recent research shows online searches for help with gambling addiction have climbed sharply in the years following expanded sports betting laws, reflecting a growing number of people who worry their gambling is out of control. Public health experts now describe this as an emerging crisis that many communities are not yet equipped to handle.
+
+**When "Just One Bet" Becomes a Problem**
+
+Gambling addiction often starts quietly, with someone chasing the rush of a win or trying to "make back" what was lost. Over time, the person may increase bet sizes, place more frequent wagers, or gamble on more events than they ever intended.
+
+Warning signs can include:
+
+- Hiding or lying about gambling and spending
+- Using rent, bill, or savings money to place bets
+- Feeling restless, irritable, or low when not gambling
+- Repeated failed attempts to cut back or stop
+
+Many people tell themselves they just have a "money problem" or a "discipline problem," but gambling addiction is a recognized behavioral health condition that can affect the brain's reward system in ways similar to substance use disorders.
+
+**The Hidden Impact on Families**
+
+Loved ones often notice mood swings, financial chaos, or emotional distance long before they learn about the gambling itself. Bank accounts may be drained, credit cards maxed out, or paychecks gone within days, leaving families scrambling to cover basics and feeling confused or betrayed.
+
+Partners and parents may start checking bank statements, monitoring phone activity, or loaning money to "fix" emergencies that keep happening. Over time, this can create a cycle where family members unintentionally shield the person from consequences, while their own anxiety, anger, and burnout grow. Family support is crucial, but so are clear boundaries that protect everyone's safety and stability.
+
+**What Real Help Can Look Like**
+
+The good news is that gambling addiction is treatable, and people do recover—often with better financial, emotional, and relationship health than they thought possible. Many states now fund problem gambling services, including helplines, counseling, and support groups that specifically address sports betting and online gambling.
+
+Evidence-based care may include:
+
+- Individual therapy focused on triggers, urges, and coping skills
+- Financial counseling and planning to address debt and rebuild stability
+- Support groups (in-person or online) for people with gambling addiction and their families
+
+Some programs now integrate telehealth, making it easier to access help confidentially from home.
+
+**Taking the First Step Today**
+
+If you recognize yourself or someone you love in this description, you are not alone—and it does not have to get worse before it gets better. Reaching out early can prevent deeper financial damage, legal issues, and relationship breakdowns.
+
+Consider contacting a specialized gambling helpline at (800) 522-4700, a licensed counselor who understands problem gambling, or a trusted interventionist or recovery support service in your area. A confidential conversation with a trained professional can help you assess the situation, explore treatment options, and create a plan that protects both the individual and the family.
+
+Recovery is possible. The first step is simply reaching out.`
+  },
 ];
