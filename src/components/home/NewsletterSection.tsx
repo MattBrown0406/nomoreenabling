@@ -1,20 +1,52 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Mail } from "lucide-react";
+import { Mail, Lock } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const NewsletterSection = () => {
   const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    if (!email) return;
+
+    setIsSubmitting(true);
+    
+    try {
+      const { error } = await supabase
+        .from('subscribers')
+        .insert({ email, first_name: firstName || null });
+
+      if (error) {
+        if (error.code === '23505') {
+          toast({
+            title: "Already subscribed!",
+            description: "This email is already on our list.",
+            variant: "destructive",
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        toast({
+          title: "Welcome aboard!",
+          description: "You've successfully subscribed to our newsletter.",
+        });
+        setEmail("");
+        setFirstName("");
+      }
+    } catch (error) {
       toast({
-        title: "Welcome aboard!",
-        description: "You've successfully subscribed to our newsletter.",
+        title: "Something went wrong",
+        description: "Please try again later.",
+        variant: "destructive",
       });
-      setEmail("");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -35,21 +67,41 @@ const NewsletterSection = () => {
             delivered straight to your inbox.
           </p>
           
-          <form onSubmit={handleSubmit} className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-3 max-w-md mx-auto">
             <Input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              placeholder="First name (optional)"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
               className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:border-primary-foreground"
-              required
             />
-            <Button type="submit" variant="coral" size="default" className="whitespace-nowrap">
-              Subscribe
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:border-primary-foreground flex-1"
+                required
+              />
+              <Button 
+                type="submit" 
+                variant="coral" 
+                size="default" 
+                className="whitespace-nowrap"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Subscribing..." : "Subscribe"}
+              </Button>
+            </div>
           </form>
           
-          <p className="mt-4 text-xs text-primary-foreground/60">
+          <div className="mt-6 flex items-center justify-center gap-2 text-sm text-primary-foreground/70">
+            <Lock size={14} />
+            <p>Your information is kept strictly confidential and will never be shared with third parties.</p>
+          </div>
+          
+          <p className="mt-2 text-xs text-primary-foreground/60">
             No spam, ever. Unsubscribe anytime.
           </p>
         </div>
