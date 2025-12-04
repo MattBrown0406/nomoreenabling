@@ -15,7 +15,7 @@ interface BlogCardProps {
 const BlogCard = ({ title, excerpt, category, readTime, date, image, slug, featured = false }: BlogCardProps) => {
   if (featured) {
     return (
-      <Link to={`/article/${slug}`} className="group block">
+      <Link to={`/articles/${slug}`} className="group block">
         <article className="blog-card grid md:grid-cols-2 gap-6">
           <div className="aspect-[4/3] md:aspect-auto overflow-hidden">
             <img
@@ -51,7 +51,7 @@ const BlogCard = ({ title, excerpt, category, readTime, date, image, slug, featu
   }
 
   return (
-    <Link to={`/article/${slug}`} className="group block">
+    <Link to={`/articles/${slug}`} className="group block">
       <article className="blog-card h-full flex flex-col">
         <div className="aspect-[16/10] overflow-hidden">
           <img
