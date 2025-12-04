@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/home/HeroSection";
@@ -8,9 +8,19 @@ import Sidebar from "@/components/home/Sidebar";
 import AdSpace from "@/components/ads/AdSpace";
 import { blogPosts } from "@/data/blogPosts";
 
+// Sort posts by date (newest first)
+const sortByDate = (posts: typeof blogPosts) => {
+  return [...posts].sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return dateB.getTime() - dateA.getTime();
+  });
+};
+
 const Index = () => {
-  const featuredPost = blogPosts[0];
-  const recentPosts = blogPosts.slice(1);
+  const sortedPosts = useMemo(() => sortByDate(blogPosts), []);
+  const featuredPost = sortedPosts[0];
+  const recentPosts = sortedPosts.slice(1);
 
   useEffect(() => {
     document.title = "No More Enabling - Break Free from Unhealthy Patterns";
