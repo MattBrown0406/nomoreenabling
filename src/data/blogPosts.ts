@@ -18,7 +18,7 @@ export const blogPosts: BlogPost[] = [
     category: "Self-Worth",
     readTime: "8 min read",
     date: "Jan 15, 2025",
-    image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop",
     slug: "understanding-codependency",
     content: `Codependency is a word that gets thrown around a lot, but what does it really mean? At its core, codependency is a behavioral pattern where a person becomes so focused on another person's needs, problems, and well-being that they neglect their own. It's more than just being helpful or caring—it's when your entire sense of identity and self-worth becomes wrapped up in someone else.
 
@@ -53,7 +53,7 @@ Remember, becoming aware of codependency isn't a failure—it's a breakthrough. 
     category: "Boundaries",
     readTime: "6 min read",
     date: "Feb 3, 2025",
-    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1573497019236-17f8177b81e8?w=800&auto=format&fit=crop",
     slug: "healthy-boundaries-without-guilt",
     content: `For many of us, the word "boundary" feels harsh, even selfish. We've been taught that loving someone means being available whenever they need us, that good people don't say no, that our needs should always come second. But here's the truth: boundaries aren't walls designed to shut people out—they're bridges that make genuine connection possible.
 
@@ -100,7 +100,7 @@ The guilt you feel when setting boundaries will likely diminish with practice. E
     category: "Relationships",
     readTime: "7 min read",
     date: "Mar 12, 2025",
-    image: "https://images.unsplash.com/photo-1516534775068-ba3e7458af70?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&auto=format&fit=crop",
     slug: "breaking-the-cycle",
     content: `We want to help the people we love. When they're struggling, our instinct is to step in, to fix, to rescue. But what happens when our help isn't actually helping? What happens when our well-intentioned support becomes a barrier to someone else's growth?
 
@@ -157,7 +157,7 @@ Remember: loving someone doesn't mean protecting them from all pain. Sometimes, 
     category: "Personal Growth",
     readTime: "5 min read",
     date: "Apr 8, 2025",
-    image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&auto=format&fit=crop",
     slug: "self-care-isnt-selfish",
     content: `"You can't pour from an empty cup." We've all heard this phrase, perhaps so often that it's lost its impact. But let's pause and really consider what it means: if you're running on empty, you have nothing genuine to give. The care you offer from a depleted state isn't sustainable—it's survival mode dressed up as generosity.
 
@@ -277,7 +277,7 @@ Recovery is, ultimately, a journey home to yourself. It's hard work. It takes co
     category: "Relationships",
     readTime: "6 min read",
     date: "Jun 5, 2025",
-    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&auto=format&fit=crop",
     slug: "communication-strategies",
     content: `Difficult conversations are inevitable. Whether you're setting a boundary, expressing a need, or addressing a conflict, there will be moments when you need to say hard things to people you care about. For those recovering from codependency, these conversations can feel especially daunting. But with the right strategies, you can communicate authentically while maintaining connection and respect.
 
@@ -344,7 +344,7 @@ The discomfort of a hard conversation is temporary. The connection built through
     category: "Addiction",
     readTime: "7 min read",
     date: "Jul 18, 2025",
-    image: "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=800&auto=format&fit=crop",
     slug: "sports-betting-gambling-addiction",
     content: `Legal online sports betting has made gambling easier than ever—and for many people, it's quietly turning into a serious addiction. Learn the warning signs, how it affects families, and what real help looks like today.
 
@@ -400,7 +400,7 @@ Recovery is possible. The first step is simply reaching out.`
     category: "Relationships",
     readTime: "8 min read",
     date: "Dec 4, 2025",
-    image: "https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&auto=format&fit=crop",
     slug: "why-good-parents-enable",
     content: `You're a parent who's stayed up nights worrying about your adult child's next relapse. You've covered their rent again, called in sick for them to their boss, or driven them to the ER after another binge—actions born from a fierce love and terror of losing them. These aren't signs of weakness or failure; they're human responses to unimaginable fear. Good parents enable because protecting feels like the only way to keep their family intact, even when it traps everyone in a painful cycle.
 
