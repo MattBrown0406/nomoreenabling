@@ -400,7 +400,7 @@ Recovery is possible. The first step is simply reaching out.`
     category: "Relationships",
     readTime: "8 min read",
     date: "Dec 4, 2025",
-    image: "https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=800&auto=format&fit=crop",
     slug: "why-good-parents-enable",
     content: `You're a parent who's stayed up nights worrying about your adult child's next relapse. You've covered their rent again, called in sick for them to their boss, or driven them to the ER after another binge—actions born from a fierce love and terror of losing them. These aren't signs of weakness or failure; they're human responses to unimaginable fear. Good parents enable because protecting feels like the only way to keep their family intact, even when it traps everyone in a painful cycle.
 
