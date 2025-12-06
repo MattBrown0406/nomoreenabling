@@ -1,4 +1,5 @@
 import boundariesEmotionalFatigueImage from "@/assets/boundaries-emotional-fatigue.jpg";
+import thcPsychosisImage from "@/assets/thc-psychosis-young-adults.jpg";
 
 export interface BlogPost {
   id: string;
@@ -13,6 +14,62 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "11",
+    title: "THC-Induced Psychosis in Young Adults: What Parents and Families Need to Know",
+    excerpt: "THC-induced psychosis is emerging as one of the most serious—and least understood—risks of high-potency cannabis use among adolescents and young adults, especially as legalization and vaping have made THC more accessible and potent than ever.",
+    category: "Substance Abuse",
+    readTime: "12 min read",
+    date: "Dec 6, 2025",
+    image: thcPsychosisImage,
+    slug: "thc-induced-psychosis-young-adults",
+    content: `THC-induced psychosis is emerging as one of the most serious—and least understood—risks of high-potency cannabis use among adolescents and young adults, especially as legalization and vaping have made THC more accessible and potent than ever. While most young people who use cannabis will never experience full-blown psychosis, the data show that heavy, early, and frequent use can sharply increase the odds of terrifying breaks from reality, with young men at significantly higher risk than young women.
+
+**What is THC-induced psychosis?**
+
+THC-induced psychosis refers to episodes of hallucinations, delusions, paranoia, and disorganized thinking that occur in close connection with cannabis use, particularly products high in THC. These episodes can be temporary, resolving when the drug leaves the system, or they can unmask or accelerate a longer-term psychotic disorder such as schizophrenia in vulnerable individuals.
+
+Large cohort and case-control studies have found a strong dose-response relationship: the more often a young person uses cannabis, and the higher the THC potency, the greater the risk of psychotic symptoms and later psychotic disorders. Teen users, especially those who use weekly or daily, have been estimated to be several times more likely to develop a psychotic disorder than non-using peers, even when controlling for other risk factors.
+
+**Why young adults are uniquely at risk**
+
+The teenage and young adult brain is still undergoing crucial development in areas responsible for judgment, emotional regulation, and reality testing, making it more vulnerable to psychoactive drugs. THC acts on the endocannabinoid system, which helps regulate mood, perception, and cognition; flooding this system with high-dose THC during development can disrupt normal signaling in ways that may increase vulnerability to psychosis in some individuals.
+
+Modern cannabis is not the same as in past decades: concentrates, vape oils, and certain flower strains can contain THC levels several times higher than older products. Studies of first-episode psychosis have shown that daily use of high-potency cannabis is associated with a several-fold increase in risk of psychotic illness compared with people who never use cannabis.
+
+**Men vs. women: who is more affected?**
+
+Gender makes a real difference. Across psychiatric research, men are more likely to develop psychotic disorders in general, while women are more likely to experience depression and anxiety. This pattern extends to cannabis-related psychosis, where males are consistently over-represented at every step: from heavy use to hospital admission.
+
+Epidemiological data from England and other cohorts show that men are roughly twice as likely as women to use cannabis, yet they are about four times more likely to be diagnosed with cannabis-related psychosis. Researchers suggest that a mix of factors may be at play, including higher average consumption and potency exposure among men, differences in how men and women cope with stress, and potential biological protection from female hormones such as estrogen.
+
+**What psychosis looks like in real life**
+
+For families, THC-induced psychosis rarely looks like a neat textbook case; it often begins with subtle changes in mood, behavior, and thinking. Warning signs can include increasing paranoia ("people are watching me"), unusual beliefs or conspiracy thinking, hearing or seeing things others do not, extreme social withdrawal, and a sharp decline in school or work performance.
+
+Emergency departments across North America and Europe are reporting rising visits for psychosis and related crises in youth after the expansion of legal recreational cannabis. Many of these patients have a history of frequent or daily cannabis use, often involving vaping or concentrates, and some go on to receive diagnoses of schizophrenia or other chronic psychotic disorders.
+
+**Cannabinoid Hyperemesis Syndrome: the other hidden danger**
+
+Alongside psychosis, clinicians are sounding the alarm about another severe cannabis-related condition in young people: cannabinoid hyperemesis syndrome (CHS). CHS is characterized by cycles of intense nausea, repeated vomiting, and abdominal pain in people who use cannabis heavily and chronically, sometimes for years.
+
+A hallmark of CHS is that sufferers often discover that hot showers or baths temporarily relieve symptoms, leading to compulsive bathing during flare-ups. In adolescents, CHS can lead to multiple emergency visits, dehydration, dangerous electrolyte imbalances, and even kidney injury or esophageal damage from repeated vomiting—and symptoms typically resolve only when cannabis use stops.
+
+**Key points for parents and young adults**
+
+For readers searching terms like "THC-induced psychosis in young adults," "cannabis psychosis male vs female," or "cannabinoid hyperemesis syndrome from weed," a few patterns stand out clearly in the current research:
+
+• Early, frequent, and high-potency THC use raises the risk of psychosis, especially when cannabis use begins in the teen years.
+• Young men are substantially more likely than young women to be diagnosed with cannabis-associated psychosis, with male-to-female ratios reported as high as 4:1 in some hospital datasets.
+• Cannabinoid hyperemesis syndrome is a serious but often overlooked cause of persistent vomiting and abdominal pain in chronic cannabis users, including teens and college-age adults.
+• Stopping cannabis is the critical step in reducing risk and treating both THC-induced psychosis and CHS, though some patients with psychosis may need long-term psychiatric care and medication.
+
+**Getting Help**
+
+If you or a loved one is experiencing frightening changes in thinking, paranoia, hallucinations, or unexplained cycles of severe vomiting linked to cannabis use, it is important to treat these as urgent medical and mental health issues, not just "bad highs" or "sensitive stomachs."
+
+Reach out immediately to a local emergency department, trusted treatment provider, national helpline such as SAMHSA's 1-800-662-HELP (in the U.S.), or a qualified intervention professional to discuss next steps, including medical evaluation, detox planning, and appropriate levels of care for both substance use and mental health.`
+  },
   {
     id: "10",
     title: "How Strong Boundaries Reduce Emotional Fatigue (Without Controlling Others)",
