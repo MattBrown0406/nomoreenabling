@@ -1,6 +1,7 @@
 import boundariesEmotionalFatigueImage from "@/assets/boundaries-emotional-fatigue.jpg";
 import thcPsychosisImage from "@/assets/thc-psychosis-young-adults.jpg";
 import fentanylRecoveryImage from "@/assets/fentanyl-recovery-hope.jpg";
+import cocaineFamilyCrisisImage from "@/assets/cocaine-family-crisis.jpg";
 
 export interface BlogPost {
   id: string;
@@ -15,6 +16,65 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "13",
+    title: "The Silent Surge: Cocaine's Deadly Resurgence in American Families",
+    excerpt: "Cocaine addiction is experiencing a sharp rise across the United States, fueled by record overdose deaths and widespread fentanyl contamination, turning a once-familiar stimulant into a lethal gamble.",
+    category: "Substance Abuse",
+    readTime: "12 min read",
+    date: "Dec 8, 2025",
+    image: cocaineFamilyCrisisImage,
+    slug: "cocaine-deadly-resurgence-american-families",
+    content: `Cocaine addiction is experiencing a sharp rise across the United States, fueled by record overdose deaths and widespread fentanyl contamination, turning a once-familiar stimulant into a lethal gamble. In 2023 alone, cocaine-involved overdose deaths reached 29,449, up dramatically from 4,681 in 2011, with rates climbing from 4.5 to 8.6 per 100,000 population between 2018 and 2023. Families face a hidden crisis as this epidemic infiltrates homes, workplaces, and communities, often catching loved ones off guard until tragedy strikes.
+
+**Overdose Trends and Hidden Dangers**
+
+Cocaine now factors into nearly 60% of all overdose deaths from 2021 to mid-2024, with 73% of these cases co-involving opioids like fentanyl, which dealers lace into supplies without users' knowledge. Provisional data hint at declines in 2024, yet numbers remain far above historical lows, disproportionately hitting Black Americans (cocaine death rates rose from 9.1 to 24.3 per 100,000) and American Indian/Alaska Native populations. Victims skew male, urban, and middle-aged (35-44), but non-opioid cocaine deaths—often tied to heart issues—affect older users with cardiovascular histories (38.7% of cases).
+
+This resurgence echoes the 1980s crack era but with a toxic twist: fentanyl boosts potency unpredictably, spiking heart attacks, strokes, and psychosis. Past-year use hovers around 2% nationally (about 5.5-6 million people), highest among 18-25-year-olds at 5.3%, yet addiction rates climb as contaminated product evades casual users.
+
+**Why Now? Drivers of the Epidemic**
+
+Economic pressures, mental health strains, and a post-pandemic party culture contribute, but supply chains dominate: cheap, potent cocaine floods markets from South America, often cut with fentanyl to maximize profits. Young professionals and middle-class users, once stereotyped as low-risk, now face emergencies as "party drugs" turn fatal—over 50% of 2022 cocaine overdoses involved opioids. Process addictions compound risks, with cocaine fueling gambling or sex compulsions in secretive cycles.
+
+Disparities amplify harm: Black communities see higher-frequency use and deaths, while rural areas lag in testing and treatment access. No approved medications exist for cocaine use disorder, leaving behavioral therapies like contingency management underutilized amid overwhelmed systems.
+
+**Spotting Addiction in Loved Ones**
+
+Families often miss early signs, mistaking cocaine's grip for "high-functioning" stress relief. Watch for these red flags:
+
+• Erratic energy swings: euphoria followed by crashes, irritability, or paranoia.
+
+• Physical toll: nosebleeds, weight loss, dilated pupils, or heart palpitations.
+
+• Behavioral shifts: secretive finances, job instability, or risky decisions like gambling binges.
+
+• Health crises: frequent "colds," chest pains, or ER visits dismissed as anxiety.
+
+Process overlaps intensify: a cocaine user might chase highs through compulsive shopping or gaming, draining family resources. Enabling creeps in—covering debts or calling in sick—delaying intervention.
+
+**How Families Can Intervene Without Enabling**
+
+Love demands boundaries, not bailouts. Start by educating yourself via Al-Anon or Nar-Anon, where parents and spouses learn to detach with compassion. Key steps include:
+
+• Open, non-judgmental talks: Use "I" statements like, "I worry when I see these changes," avoiding accusations.
+
+• Refuse rescues: No more paying debts or lying to employers—let natural consequences spark change.
+
+• Push professional help: Insist on assessments at addiction centers; contingency management rewards sobriety effectively.
+
+• Protect your health: Therapy for codependency prevents burnout; carry naloxone for overdoses, even cocaine-related.
+
+• Monitor co-use: Fentanyl test strips detect contaminants, buying time for recovery.
+
+Success stories abound: one mother halted enabling after her son's overdose, leading him to rehab where behavioral therapy broke his cycle. Recovery rates improve with family involvement—up to 50-60% sustained remission via structured support.
+
+**Hope Amid the Crisis: Paths Forward**
+
+While deaths peaked, declines signal progress through awareness and naloxone access. Families hold power: by rejecting enabling, you model accountability, disrupting addiction's hold. Resources like SAMHSA's helpline (1-800-662-HELP) connect to local treatment, emphasizing behavioral interventions over unavailable meds.
+
+This epidemic tests families, but informed action saves lives. Prioritize boundaries, seek groups, and remember: true help empowers, never excuses. Your loved one's recovery—and your family's peace—starts with one firm step today.`
+  },
   {
     id: "12",
     title: "Fentanyl Addiction: Understanding the Danger and the Hope for Recovery",
