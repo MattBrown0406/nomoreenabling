@@ -1,0 +1,103 @@
+import { useParams, Link } from "react-router-dom";
+import { useMemo, useEffect } from "react";
+import { blogPosts } from "@/data/blogPosts";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import BlogCard from "@/components/blog/BlogCard";
+import Sidebar from "@/components/home/Sidebar";
+import { ArrowLeft } from "lucide-react";
+
+const Category = () => {
+  const { slug } = useParams<{ slug: string }>();
+  
+  const categoryName = useMemo(() => {
+    if (!slug) return "";
+    return slug
+      .split("-")
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  }, [slug]);
+
+  const filteredPosts = useMemo(() => {
+    if (!slug) return [];
+    return blogPosts.filter(post => 
+      post.categories.some(cat => 
+        cat.toLowerCase().replace(/\s+/g, "-") === slug.toLowerCase()
+      )
+    );
+  }, [slug]);
+
+  useEffect(() => {
+    document.title = `${categoryName} Articles | No More Enabling`;
+    window.scrollTo(0, 0);
+  }, [categoryName]);
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Header />
+      
+      <main className="container mx-auto px-4 py-12">
+        <Link 
+          to="/articles" 
+          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to All Articles
+        </Link>
+
+        <div className="mb-12">
+          <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">
+            {categoryName}
+          </h1>
+          <p className="text-muted-foreground text-lg">
+            {filteredPosts.length} {filteredPosts.length === 1 ? "article" : "articles"} in this category
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2">
+            {filteredPosts.length > 0 ? (
+              <div className="grid md:grid-cols-2 gap-6">
+                {filteredPosts.map((post) => (
+                  <BlogCard
+                    key={post.id}
+                    title={post.title}
+                    excerpt={post.excerpt}
+                    category={post.category}
+                    readTime={post.readTime}
+                    date={post.date}
+                    image={post.image}
+                    slug={post.slug}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-16 bg-card rounded-xl">
+                <h2 className="font-serif text-2xl font-bold text-foreground mb-4">
+                  No articles found
+                </h2>
+                <p className="text-muted-foreground mb-6">
+                  There are no articles in this category yet.
+                </p>
+                <Link 
+                  to="/articles" 
+                  className="text-primary hover:underline"
+                >
+                  Browse all articles
+                </Link>
+              </div>
+            )}
+          </div>
+
+          <div className="lg:col-span-1">
+            <Sidebar />
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default Category;
