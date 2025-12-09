@@ -3,6 +3,7 @@ import thcPsychosisImage from "@/assets/thc-psychosis-young-adults.jpg";
 import fentanylRecoveryImage from "@/assets/fentanyl-recovery-hope.jpg";
 import cocaineFamilyCrisisImage from "@/assets/cocaine-family-crisis.jpg";
 import selfEsteemParentingImage from "@/assets/self-esteem-parenting.jpg";
+import socialMediaAddictionImage from "@/assets/social-media-addiction-2025.jpg";
 
 export interface BlogPost {
   id: string;
@@ -18,6 +19,46 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "15",
+    title: "How Social Media Fuels Drinking, Gambling, and Recovery in 2025",
+    excerpt: "Social media in 2025 does more than share memes and trends – it actively shapes alcohol use, gambling, and recovery. Learn how online content affects cravings, relapse risk, and help-seeking, and what you can do to protect yourself or someone you love.",
+    category: "Addiction",
+    categories: ["Addiction", "Recovery", "Mental Health"],
+    readTime: "8 min read",
+    date: "Dec 9, 2025",
+    image: socialMediaAddictionImage,
+    slug: "social-media-fuels-drinking-gambling-recovery-2025",
+    content: `Social media in 2025 does more than share memes and trends – it actively shapes alcohol use, gambling, and recovery. Learn how online content affects cravings, relapse risk, and help-seeking, and what you can do to protect yourself or someone you love.
+
+**The new "culture of intoxication" online**
+
+Research shows alcohol-related content is now pervasive across social media, with a large share of users regularly exposed to posts that portray drinking in a positive, normalized way. In one diary study, seeing alcohol posts was linked to a higher chance of drinking that same day, suggesting these posts can nudge people toward real-life use, not just casual scrolling.
+
+Youth and young adults are especially vulnerable, as digital culture increasingly treats heavy drinking as entertainment and a social identity. For someone already struggling with alcohol use disorder, a single night of scrolling through party content can trigger cravings, reduce coping, and chip away at motivation to stay sober.
+
+**When social feeds trigger relapse**
+
+Recent work highlights that alcohol images and videos can trigger cravings and weaken a person's ability to resist drinking, particularly in those with alcohol use disorder. This means that even after treatment, the phone in a pocket can act like a nonstop "bar ad," especially when algorithms keep serving drinking content.
+
+Similar patterns appear with gambling: frequent use of gambling communities and certain platforms is associated with higher rates of problem gambling and hazardous drinking. For people in recovery from gambling, constant exposure to betting tips, big win screenshots, and sports-betting chatter can make staying away from the next wager much harder.
+
+**Not all platforms – or content – are equal**
+
+Studies suggest different platforms relate to risk in different ways; for example, weekly Facebook use has been associated with higher hazardous drinking, while weekly Instagram use has shown a negative relationship with hazardous alcohol use in one national sample. Platforms built around short, highly stimulating video content and gambling communities appear more tightly linked to both heavy drinking and problem gambling.
+
+At the same time, many people now see others sharing mental health and recovery experiences online, which can reduce stigma and encourage help-seeking. Telehealth, digital recovery apps, and virtual support groups are expanding access to care and giving people 24/7 ways to connect with sober communities, tools, and accountability.
+
+**How to protect recovery in a digital world**
+
+If you or someone you love is in recovery, treating the digital environment as part of the treatment plan is now non-negotiable. Helpful steps include reviewing privacy settings, muting or unfollowing alcohol and gambling accounts, and curating feeds to highlight recovery content, mental health education, and supportive communities instead.
+
+Families can play a key role by asking gentle, nonjudgmental questions about what their loved one is seeing online and how it makes them feel, rather than focusing only on their offline behavior. For many, combining professional support with digital tools – such as telehealth sessions, app-based tracking, and online meetings – creates a stronger, more flexible safety net around recovery.
+
+**Call to action**
+
+If social media, alcohol, gambling, or other compulsive behaviors are starting to feel out of control – or you are worried about someone in your family – you do not have to figure it out alone. Reaching out to a trusted helpline, interventionist, or recovery support service today can help you sort through what is happening, explore treatment options, and build a plan to keep you and your loved ones safe.`
+  },
   {
     id: "14",
     title: "The Truth About Self-Esteem: Why Parents Can't Give It, Only Help Build It",
