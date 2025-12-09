@@ -1,21 +1,31 @@
 import { Link } from "react-router-dom";
+import { useMemo } from "react";
 import AdSpace from "@/components/ads/AdSpace";
-
-const categories = [
-  { name: "Boundaries", count: 12 },
-  { name: "Self-Worth", count: 8 },
-  { name: "Relationships", count: 15 },
-  { name: "Recovery", count: 10 },
-  { name: "Personal Growth", count: 7 },
-];
-
-const popularPosts = [
-  { title: "5 Signs You're Enabling Someone", slug: "signs-enabling" },
-  { title: "How to Say No Without Guilt", slug: "say-no-without-guilt" },
-  { title: "Setting Boundaries with Family", slug: "boundaries-with-family" },
-];
+import { blogPosts } from "@/data/blogPosts";
 
 const Sidebar = () => {
+  const categories = useMemo(() => {
+    const categoryCount: Record<string, number> = {};
+    
+    blogPosts.forEach(post => {
+      post.categories.forEach(category => {
+        categoryCount[category] = (categoryCount[category] || 0) + 1;
+      });
+    });
+
+    return Object.entries(categoryCount)
+      .map(([name, count]) => ({ name, count }))
+      .sort((a, b) => b.count - a.count);
+  }, []);
+
+  const popularPosts = useMemo(() => {
+    return blogPosts
+      .slice()
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, 3)
+      .map(post => ({ title: post.title, slug: post.slug }));
+  }, []);
+
   return (
     <aside className="space-y-8">
       {/* Ad Space */}
@@ -32,7 +42,7 @@ const Sidebar = () => {
           {categories.map((category) => (
             <li key={category.name}>
               <Link
-                to={`/category/${category.name.toLowerCase().replace(" ", "-")}`}
+                to={`/category/${category.name.toLowerCase().replace(/\s+/g, "-")}`}
                 className="flex items-center justify-between text-muted-foreground hover:text-foreground transition-colors"
               >
                 <span>{category.name}</span>
@@ -48,13 +58,13 @@ const Sidebar = () => {
       {/* Popular Posts */}
       <div className="bg-card rounded-xl p-6 shadow-card">
         <h3 className="font-serif text-xl font-bold text-foreground mb-4">
-          Popular Posts
+          Recent Posts
         </h3>
         <ul className="space-y-4">
           {popularPosts.map((post, index) => (
             <li key={post.slug}>
               <Link
-                to={`/article/${post.slug}`}
+                to={`/articles/${post.slug}`}
                 className="flex gap-3 group"
               >
                 <span className="text-2xl font-serif font-bold text-primary/30 group-hover:text-primary transition-colors">

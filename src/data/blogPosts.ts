@@ -8,6 +8,7 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   category: string;
+  categories: string[];
   readTime: string;
   date: string;
   image: string;
@@ -21,6 +22,7 @@ export const blogPosts: BlogPost[] = [
     title: "The Silent Surge: Cocaine's Deadly Resurgence in American Families",
     excerpt: "Cocaine addiction is experiencing a sharp rise across the United States, fueled by record overdose deaths and widespread fentanyl contamination, turning a once-familiar stimulant into a lethal gamble.",
     category: "Substance Abuse",
+    categories: ["Substance Abuse", "Addiction", "Relationships"],
     readTime: "12 min read",
     date: "Dec 8, 2025",
     image: cocaineFamilyCrisisImage,
@@ -80,6 +82,7 @@ This epidemic tests families, but informed action saves lives. Prioritize bounda
     title: "Fentanyl Addiction: Understanding the Danger and the Hope for Recovery",
     excerpt: "Fentanyl addiction is devastatingly powerful, but long-term recovery is absolutely possible when someone has the right support and is willing to do the work. Families can play a crucial role by understanding both the real dangers of fentanyl and the real hope of sustained sobriety.",
     category: "Substance Abuse",
+    categories: ["Substance Abuse", "Addiction", "Recovery"],
     readTime: "10 min read",
     date: "Dec 7, 2025",
     image: fentanylRecoveryImage,
@@ -135,6 +138,7 @@ Fentanyl is a deadly drug, but it does not get the final word in someone's story
     title: "THC-Induced Psychosis in Young Adults: What Parents and Families Need to Know",
     excerpt: "THC-induced psychosis is emerging as one of the most serious—and least understood—risks of high-potency cannabis use among adolescents and young adults, especially as legalization and vaping have made THC more accessible and potent than ever.",
     category: "Substance Abuse",
+    categories: ["Substance Abuse", "Addiction", "Relationships"],
     readTime: "12 min read",
     date: "Dec 6, 2025",
     image: thcPsychosisImage,
@@ -191,6 +195,7 @@ Reach out immediately to a local emergency department, trusted treatment provide
     title: "How Strong Boundaries Reduce Emotional Fatigue (Without Controlling Others)",
     excerpt: "In families facing addiction or relational stress, the urge to control loved ones often stems from love but leads to burnout. Strong emotional boundaries shift this dynamic by clarifying personal responsibility, conserving energy, and fostering peace without manipulation.",
     category: "Boundaries",
+    categories: ["Boundaries", "Self-Worth", "Relationships"],
     readTime: "8 min read",
     date: "Dec 4, 2025",
     image: boundariesEmotionalFatigueImage,
@@ -247,6 +252,7 @@ Contact today for confidential help tailored to your needs.`
     title: "Understanding Codependency: The First Step to Freedom",
     excerpt: "Learn to recognize the signs of codependent behavior and discover how self-awareness can be your greatest tool for change.",
     category: "Self-Worth",
+    categories: ["Self-Worth", "Recovery", "Relationships"],
     readTime: "8 min read",
     date: "Jan 15, 2025",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop",
@@ -282,6 +288,7 @@ Remember, becoming aware of codependency isn't a failure—it's a breakthrough. 
     title: "How to Set Healthy Boundaries Without Feeling Guilty",
     excerpt: "Boundaries aren't walls—they're bridges to healthier relationships. Here's how to establish them with compassion.",
     category: "Boundaries",
+    categories: ["Boundaries", "Self-Worth", "Relationships"],
     readTime: "6 min read",
     date: "Feb 3, 2025",
     image: "https://images.unsplash.com/photo-1573497019236-17f8177b81e8?w=800&auto=format&fit=crop",
@@ -329,6 +336,7 @@ The guilt you feel when setting boundaries will likely diminish with practice. E
     title: "Breaking the Cycle: When Helping Becomes Hurting",
     excerpt: "There's a fine line between support and enabling. Learn to distinguish between the two and how to truly help.",
     category: "Relationships",
+    categories: ["Relationships", "Boundaries", "Recovery"],
     readTime: "7 min read",
     date: "Mar 12, 2025",
     image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&auto=format&fit=crop",
@@ -386,6 +394,7 @@ Remember: loving someone doesn't mean protecting them from all pain. Sometimes, 
     title: "Self-Care Isn't Selfish: Prioritizing Your Well-Being",
     excerpt: "You can't pour from an empty cup. Discover why taking care of yourself first is essential for healthy relationships.",
     category: "Personal Growth",
+    categories: ["Personal Growth", "Self-Worth", "Recovery"],
     readTime: "5 min read",
     date: "Apr 8, 2025",
     image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&auto=format&fit=crop",
@@ -437,6 +446,7 @@ Offer yourself that same compassion. You deserve the care you so readily give to
     title: "Navigating Recovery: A Journey to Self-Discovery",
     excerpt: "Recovery from enabling behaviors is a process. Here are the stages you might experience and how to navigate them.",
     category: "Recovery",
+    categories: ["Recovery", "Personal Growth", "Self-Worth"],
     readTime: "10 min read",
     date: "May 22, 2025",
     image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop",
@@ -506,6 +516,7 @@ Recovery is, ultimately, a journey home to yourself. It's hard work. It takes co
     title: "Communication Strategies for Difficult Conversations",
     excerpt: "Learn effective communication techniques that help you express your needs while maintaining respect and connection.",
     category: "Relationships",
+    categories: ["Relationships", "Boundaries", "Personal Growth"],
     readTime: "6 min read",
     date: "Jun 5, 2025",
     image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&auto=format&fit=crop",
@@ -573,6 +584,7 @@ The discomfort of a hard conversation is temporary. The connection built through
     title: "When Sports Betting Stops Being Fun: Recognizing the New Wave of Gambling Addiction",
     excerpt: "Legal online sports betting has made gambling easier than ever—and for many people, it's quietly turning into a serious addiction.",
     category: "Addiction",
+    categories: ["Addiction", "Relationships", "Recovery"],
     readTime: "7 min read",
     date: "Jul 18, 2025",
     image: "https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=800&auto=format&fit=crop",
@@ -625,10 +637,11 @@ Consider contacting a specialized gambling helpline at (800) 522-4700, a license
 Recovery is possible. The first step is simply reaching out.`
   },
   {
-    id: "7",
+    id: "8",
     title: "You're Not Crazy, You're Scared: Why Good Parents Enable",
     excerpt: "Good parents enable because protecting feels like the only way to keep their family intact, even when it traps everyone in a painful cycle.",
     category: "Relationships",
+    categories: ["Relationships", "Boundaries", "Addiction"],
     readTime: "8 min read",
     date: "Dec 4, 2025",
     image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&auto=format&fit=crop",
