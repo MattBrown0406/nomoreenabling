@@ -17,6 +17,43 @@ const sanitizeString = (str: string | null | undefined, maxLength: number): stri
   return str.trim().slice(0, maxLength);
 };
 
+// Sync contact to Constant Contact
+const syncToConstantContact = async (email: string, firstName: string | null): Promise<void> => {
+  const accessToken = Deno.env.get('CONSTANT_CONTACT_ACCESS_TOKEN');
+  
+  if (!accessToken) {
+    console.log('Constant Contact access token not configured, skipping sync');
+    return;
+  }
+
+  try {
+    // Create or update contact in Constant Contact
+    const response = await fetch('https://api.cc.email/v3/contacts/sign_up_form', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email_address: email,
+        first_name: firstName || undefined,
+        create_source: 'Account',
+        list_memberships: [], // Will use default list
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Constant Contact sync error:', response.status, errorText);
+    } else {
+      console.log('Successfully synced to Constant Contact:', email);
+    }
+  } catch (error) {
+    console.error('Error syncing to Constant Contact:', error);
+    // Don't throw - we don't want CC sync failures to break signups
+  }
+};
+
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -73,6 +110,11 @@ serve(async (req) => {
       console.error('Database error:', error.message);
       throw error;
     }
+
+    // Sync to Constant Contact (fire and forget)
+    syncToConstantContact(sanitizedEmail, sanitizedFirstName).catch(e => 
+      console.error('Background CC sync error:', e)
+    );
 
     console.log('Successfully subscribed:', sanitizedEmail);
     return new Response(
