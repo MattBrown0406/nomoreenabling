@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ArrowLeft, Clock, Calendar, Tag, Facebook, Mail, Link2, Check } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -7,6 +7,7 @@ import { blogPosts } from "@/data/blogPosts";
 import AdSpace from "@/components/ads/AdSpace";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const XIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -18,6 +19,7 @@ const ArticlePage = () => {
   const { slug } = useParams<{ slug: string }>();
   const article = blogPosts.find((post) => post.slug === slug);
   const [copied, setCopied] = useState(false);
+  const viewRecorded = useRef(false);
 
   useEffect(() => {
     if (article) {
@@ -25,6 +27,19 @@ const ArticlePage = () => {
     }
     window.scrollTo(0, 0);
   }, [article]);
+
+  // Record article view
+  useEffect(() => {
+    if (slug && !viewRecorded.current) {
+      viewRecorded.current = true;
+      supabase
+        .from("article_views")
+        .insert({ article_slug: slug })
+        .then(() => {
+          // View recorded silently
+        });
+    }
+  }, [slug]);
 
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
   const shareTitle = article?.title || '';

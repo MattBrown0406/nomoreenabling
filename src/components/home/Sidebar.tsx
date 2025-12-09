@@ -1,9 +1,17 @@
 import { Link } from "react-router-dom";
-import { useMemo } from "react";
+import { useMemo, useEffect, useState } from "react";
 import AdSpace from "@/components/ads/AdSpace";
 import { blogPosts } from "@/data/blogPosts";
+import { supabase } from "@/integrations/supabase/client";
+
+interface PopularPost {
+  title: string;
+  slug: string;
+}
 
 const Sidebar = () => {
+  const [popularPosts, setPopularPosts] = useState<PopularPost[]>([]);
+
   const categories = useMemo(() => {
     const categoryCount: Record<string, number> = {};
     
@@ -18,13 +26,57 @@ const Sidebar = () => {
       .sort((a, b) => b.count - a.count);
   }, []);
 
-  const popularPosts = useMemo(() => {
+  const newestPosts = useMemo(() => {
     return blogPosts
       .slice()
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       .slice(0, 3)
       .map(post => ({ title: post.title, slug: post.slug }));
   }, []);
+
+  useEffect(() => {
+    const fetchPopularPosts = async () => {
+      const { data, error } = await supabase
+        .from("article_views")
+        .select("article_slug")
+        .order("viewed_at", { ascending: false });
+
+      if (error || !data || data.length === 0) {
+        setPopularPosts(newestPosts);
+        return;
+      }
+
+      // Count views per article
+      const viewCounts: Record<string, number> = {};
+      data.forEach(view => {
+        viewCounts[view.article_slug] = (viewCounts[view.article_slug] || 0) + 1;
+      });
+
+      // Sort by view count and get top 3
+      const sortedSlugs = Object.entries(viewCounts)
+        .sort(([, a], [, b]) => b - a)
+        .slice(0, 3)
+        .map(([slug]) => slug);
+
+      // Map to posts
+      const topPosts = sortedSlugs
+        .map(slug => blogPosts.find(post => post.slug === slug))
+        .filter(Boolean)
+        .map(post => ({ title: post!.title, slug: post!.slug }));
+
+      if (topPosts.length < 3) {
+        // Fill with newest posts if not enough popular posts
+        const remaining = newestPosts.filter(
+          np => !topPosts.some(tp => tp.slug === np.slug)
+        );
+        setPopularPosts([...topPosts, ...remaining].slice(0, 3));
+      } else {
+        setPopularPosts(topPosts);
+      }
+    };
+
+    fetchPopularPosts();
+  }, [newestPosts]);
 
   return (
     <aside className="space-y-8">
@@ -58,7 +110,7 @@ const Sidebar = () => {
       {/* Popular Posts */}
       <div className="bg-card rounded-xl p-6 shadow-card">
         <h3 className="font-serif text-xl font-bold text-foreground mb-4">
-          Recent Posts
+          Popular Posts
         </h3>
         <ul className="space-y-4">
           {popularPosts.map((post, index) => (
