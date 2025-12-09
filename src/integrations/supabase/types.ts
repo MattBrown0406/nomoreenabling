@@ -14,6 +14,24 @@ export type Database = {
   }
   public: {
     Tables: {
+      article_views: {
+        Row: {
+          article_slug: string
+          id: string
+          viewed_at: string
+        }
+        Insert: {
+          article_slug: string
+          id?: string
+          viewed_at?: string
+        }
+        Update: {
+          article_slug?: string
+          id?: string
+          viewed_at?: string
+        }
+        Relationships: []
+      }
       subscribers: {
         Row: {
           email: string
