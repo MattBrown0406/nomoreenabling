@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useMemo, useEffect, useState } from "react";
 import AdSpace from "@/components/ads/AdSpace";
+import FreedomInterventionsBanner from "@/components/ads/FreedomInterventionsBanner";
 import { blogPosts } from "@/data/blogPosts";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -80,9 +81,9 @@ const Sidebar = () => {
 
   return (
     <aside className="space-y-8">
-      {/* Ad Space */}
+      {/* Freedom Interventions Sponsor Banner */}
       <div>
-        <AdSpace size="sidebar" />
+        <FreedomInterventionsBanner size="sidebar" />
       </div>
 
       {/* Categories */}
