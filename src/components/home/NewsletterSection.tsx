@@ -8,11 +8,22 @@ import { supabase } from "@/integrations/supabase/client";
 const NewsletterSection = () => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+
+    // Honeypot check - if filled, it's a bot
+    if (honeypot) {
+      // Silently reject but show success to bot
+      toast({
+        title: "Welcome aboard!",
+        description: "You've successfully subscribed to our newsletter.",
+      });
+      return;
+    }
 
     setIsSubmitting(true);
     
@@ -74,6 +85,18 @@ const NewsletterSection = () => {
           </p>
           
           <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-3 max-w-md mx-auto">
+            {/* Honeypot field - hidden from humans, visible to bots */}
+            <div className="absolute left-[-9999px]" aria-hidden="true">
+              <Input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+              />
+            </div>
+            
             <Input
               type="text"
               placeholder="First name (optional)"
