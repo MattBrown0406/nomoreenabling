@@ -23,6 +23,9 @@ serve(async (req) => {
       );
     }
 
+    // Log token prefix for debugging (safe - just first few chars)
+    console.log('Using access token starting with:', accessToken.substring(0, 20) + '...');
+
     // Create Supabase client
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
@@ -52,30 +55,39 @@ serve(async (req) => {
     let syncedCount = 0;
     let errorCount = 0;
 
-    // Sync each subscriber
+    // Sync each subscriber using the /v3/contacts endpoint
     for (const subscriber of subscribers) {
       try {
-        const response = await fetch('https://api.cc.email/v3/contacts/sign_up_form', {
+        const contactData = {
+          email_address: {
+            address: subscriber.email,
+            permission_to_send: "implicit"
+          },
+          first_name: subscriber.first_name || undefined,
+          create_source: "Account",
+          list_memberships: []
+        };
+
+        console.log(`Syncing contact: ${subscriber.email}`);
+
+        const response = await fetch('https://api.cc.email/v3/contacts', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${accessToken}`,
             'Content-Type': 'application/json',
+            'Accept': 'application/json',
           },
-          body: JSON.stringify({
-            email_address: subscriber.email,
-            first_name: subscriber.first_name || undefined,
-            create_source: 'Account',
-            list_memberships: [],
-          }),
+          body: JSON.stringify(contactData),
         });
 
+        const responseText = await response.text();
+
         if (response.ok || response.status === 409) {
-          // 409 means contact already exists, which is fine
+          // 201 = created, 409 = contact already exists
           syncedCount++;
-          console.log(`Synced: ${subscriber.email}`);
+          console.log(`Synced: ${subscriber.email} (status: ${response.status})`);
         } else {
-          const errorText = await response.text();
-          console.error(`Failed to sync ${subscriber.email}:`, response.status, errorText);
+          console.error(`Failed to sync ${subscriber.email}: ${response.status} ${responseText}`);
           errorCount++;
         }
 
