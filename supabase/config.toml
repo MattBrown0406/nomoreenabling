@@ -8,3 +8,6 @@ verify_jwt = false
 
 [functions.mailchimp-subscribe]
 verify_jwt = false
+
+[functions.sync-mailchimp]
+verify_jwt = false
