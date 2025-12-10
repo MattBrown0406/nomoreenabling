@@ -17,40 +17,53 @@ const sanitizeString = (str: string | null | undefined, maxLength: number): stri
   return str.trim().slice(0, maxLength);
 };
 
-// Sync contact to Constant Contact
-const syncToConstantContact = async (email: string, firstName: string | null): Promise<void> => {
-  const accessToken = Deno.env.get('CONSTANT_CONTACT_ACCESS_TOKEN');
+// Sync contact to Mailchimp
+const syncToMailchimp = async (email: string, firstName: string | null): Promise<void> => {
+  const apiKey = Deno.env.get('MAILCHIMP_API_KEY');
+  const audienceId = Deno.env.get('MAILCHIMP_AUDIENCE_ID');
   
-  if (!accessToken) {
-    console.log('Constant Contact access token not configured, skipping sync');
+  if (!apiKey || !audienceId) {
+    console.log('Mailchimp credentials not configured, skipping sync');
     return;
   }
 
   try {
-    // Create or update contact in Constant Contact
-    const response = await fetch('https://api.cc.email/v3/contacts/sign_up_form', {
+    // Extract datacenter from API key (format: xxxxx-us21)
+    const datacenter = apiKey.split('-').pop();
+    const url = `https://${datacenter}.api.mailchimp.com/3.0/lists/${audienceId}/members`;
+
+    const subscriberData: Record<string, unknown> = {
+      email_address: email,
+      status: 'subscribed',
+    };
+
+    if (firstName) {
+      subscriberData.merge_fields = {
+        FNAME: firstName,
+      };
+    }
+
+    const response = await fetch(url, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${accessToken}`,
+        'Authorization': `Basic ${btoa(`anystring:${apiKey}`)}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        email_address: email,
-        first_name: firstName || undefined,
-        create_source: 'Account',
-        list_memberships: [], // Will use default list
-      }),
+      body: JSON.stringify(subscriberData),
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Constant Contact sync error:', response.status, errorText);
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log('Successfully synced to Mailchimp:', email);
+    } else if (response.status === 400 && data.title === 'Member Exists') {
+      console.log('Contact already exists in Mailchimp:', email);
     } else {
-      console.log('Successfully synced to Constant Contact:', email);
+      console.error('Mailchimp sync error:', response.status, data);
     }
   } catch (error) {
-    console.error('Error syncing to Constant Contact:', error);
-    // Don't throw - we don't want CC sync failures to break signups
+    console.error('Error syncing to Mailchimp:', error);
+    // Don't throw - we don't want Mailchimp sync failures to break signups
   }
 };
 
@@ -111,9 +124,9 @@ serve(async (req) => {
       throw error;
     }
 
-    // Sync to Constant Contact (fire and forget)
-    syncToConstantContact(sanitizedEmail, sanitizedFirstName).catch(e => 
-      console.error('Background CC sync error:', e)
+    // Sync to Mailchimp (fire and forget)
+    syncToMailchimp(sanitizedEmail, sanitizedFirstName).catch(e => 
+      console.error('Background Mailchimp sync error:', e)
     );
 
     console.log('Successfully subscribed:', sanitizedEmail);
