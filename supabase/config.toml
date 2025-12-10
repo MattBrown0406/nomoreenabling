@@ -6,11 +6,5 @@ verify_jwt = false
 [functions.send-newsletter]
 verify_jwt = false
 
-[functions.sync-constant-contact]
-verify_jwt = false
-
-[functions.exchange-cc-token]
-verify_jwt = false
-
 [functions.mailchimp-subscribe]
 verify_jwt = false
