@@ -24,6 +24,38 @@ const ArticlePage = () => {
   useEffect(() => {
     if (article) {
       document.title = `${article.title} | No More Enabling`;
+      
+      // Update Open Graph meta tags for social sharing
+      const url = window.location.href;
+      const imageUrl = article.image.startsWith('http') 
+        ? article.image 
+        : `${window.location.origin}${article.image}`;
+      
+      // Helper to set or create meta tag
+      const setMetaTag = (property: string, content: string, isName = false) => {
+        const attr = isName ? 'name' : 'property';
+        let meta = document.querySelector(`meta[${attr}="${property}"]`) as HTMLMetaElement;
+        if (!meta) {
+          meta = document.createElement('meta');
+          meta.setAttribute(attr, property);
+          document.head.appendChild(meta);
+        }
+        meta.setAttribute('content', content);
+      };
+      
+      // Open Graph tags
+      setMetaTag('og:title', article.title);
+      setMetaTag('og:description', article.excerpt);
+      setMetaTag('og:image', imageUrl);
+      setMetaTag('og:url', url);
+      setMetaTag('og:type', 'article');
+      setMetaTag('og:site_name', 'No More Enabling');
+      
+      // Twitter Card tags
+      setMetaTag('twitter:card', 'summary_large_image', true);
+      setMetaTag('twitter:title', article.title, true);
+      setMetaTag('twitter:description', article.excerpt, true);
+      setMetaTag('twitter:image', imageUrl, true);
     }
     window.scrollTo(0, 0);
   }, [article]);
