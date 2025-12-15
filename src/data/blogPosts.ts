@@ -8,6 +8,7 @@ import addictionResponseToPainImage from "@/assets/addiction-response-to-pain.jp
 import delta8ThcParentsGuideImage from "@/assets/delta-8-thc-parents-guide.jpg";
 import emotionalSobrietyFamiliesImage from "@/assets/emotional-sobriety-families.jpg";
 import choosingTreatmentCenterImage from "@/assets/choosing-treatment-center-families.jpg";
+import addictionNotAChoiceImage from "@/assets/addiction-not-a-choice.jpg";
 
 export interface BlogPost {
   id: string;
@@ -23,6 +24,52 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "20",
+    title: "Addiction Is Not a Choice—Why Willpower Alone Is Not Enough",
+    excerpt: "One of the most persistent myths about addiction is that people could stop if they truly wanted to. This belief causes immense harm—to individuals struggling with addiction and to the families trying to help them.",
+    category: "Addiction",
+    categories: ["Addiction", "Recovery", "Relationships"],
+    readTime: "5 min read",
+    date: "Dec 15, 2025",
+    image: addictionNotAChoiceImage,
+    slug: "addiction-not-a-choice-willpower-not-enough",
+    content: `One of the most persistent myths about addiction is that people could stop if they truly wanted to. This belief causes immense harm—to individuals struggling with addiction and to the families trying to help them.
+
+Addiction is not a failure of character. It is a condition that alters brain function, decision-making, and stress regulation.
+
+**How Addiction Changes the Brain**
+
+Repeated substance use affects areas of the brain responsible for reward, impulse control, and judgment. Over time, the brain becomes wired to prioritize substances over basic needs, relationships, and long-term consequences.
+
+This explains why people continue using despite devastating outcomes. It is not because they do not care—it is because their brain has learned to equate the substance with survival.
+
+**Why Consequences Alone Rarely Work**
+
+Families often hope that "hitting bottom" will motivate change. While consequences matter, addiction often blunts the ability to respond to them rationally. Shame, fear, and desperation can actually intensify substance use.
+
+Effective recovery requires more than pressure. It requires treatment that addresses behavior, thinking patterns, emotional regulation, and accountability.
+
+**Addiction Affects the Whole Family**
+
+As addiction progresses, families adapt. Roles shift. Communication erodes. Trust breaks down. Even when the individual enters recovery, these patterns often remain unless they are addressed.
+
+Understanding addiction as a systemic issue—not just an individual one—helps families move out of blame and into more constructive action.
+
+**Recovery Requires Structure and Support**
+
+People recover when they have:
+
+Clear expectations and boundaries
+
+Professional guidance
+
+Ongoing accountability
+
+Skills to manage discomfort
+
+Addiction is not cured by wanting sobriety badly enough. It is managed through sustained effort and appropriate care.`
+  },
   {
     id: "19",
     title: "Choosing the Right Addiction Treatment Center: What Families Need to Know Before Making a Decision",
