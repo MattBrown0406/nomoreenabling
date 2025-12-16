@@ -10,6 +10,7 @@ import emotionalSobrietyFamiliesImage from "@/assets/emotional-sobriety-families
 import choosingTreatmentCenterImage from "@/assets/choosing-treatment-center-families.jpg";
 import addictionNotAChoiceImage from "@/assets/addiction-not-a-choice.jpg";
 import majorDepressiveDisorderImage from "@/assets/major-depressive-disorder-families.jpg";
+import hiddenRoleEnablingImage from "@/assets/hidden-role-enabling.jpg";
 
 export interface BlogPost {
   id: string;
@@ -25,6 +26,90 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "22",
+    title: "The Hidden Role of Enabling — How Helping Can Sometimes Make Addiction Worse",
+    excerpt: "Most families affected by addiction are acting from love, fear, and desperation. They want to protect their loved one from harm, consequences, or discomfort. Unfortunately, many well-intentioned actions actually allow addiction to continue.",
+    category: "Enabling",
+    categories: ["Enabling", "Addiction", "Boundaries", "Relationships"],
+    readTime: "7 min read",
+    date: "Dec 16, 2025",
+    image: hiddenRoleEnablingImage,
+    slug: "hidden-role-enabling-addiction",
+    content: `Most families affected by addiction are acting from love, fear, and desperation. They want to protect their loved one from harm, consequences, or discomfort. Unfortunately, many well-intentioned actions actually allow addiction to continue. This pattern is known as enabling, and it is one of the most misunderstood aspects of addiction.
+
+Understanding enabling is not about assigning blame; it is about recognizing patterns that keep everyone stuck.
+
+**What Is Enabling?**
+
+Enabling occurs when actions—intentional or not—reduce the natural consequences of substance use. These behaviors make it easier for the person to continue using while avoiding accountability.
+
+Common enabling behaviors include:
+
+Paying bills or covering financial losses
+
+Making excuses to employers, schools, or family
+
+Allowing substance use in the home
+
+Repeatedly rescuing from legal or relational consequences
+
+Avoiding difficult conversations to "keep the peace"
+
+These actions often come from fear: fear of conflict, fear of homelessness, fear of losing the relationship, or fear of what might happen if boundaries are enforced.
+
+**Why Consequences Matter**
+
+Consequences are often the only feedback mechanism addiction responds to. When consequences are removed, the urgency to change disappears. Addiction thrives in comfort and avoidance.
+
+Families sometimes worry that allowing consequences is cruel. In reality, shielding someone from consequences can prolong their suffering and increase long-term harm.
+
+**Enabling vs. Supporting**
+
+Support and enabling are not the same. Support encourages responsibility and recovery. Enabling protects the addiction.
+
+Supportive behaviors include:
+
+Setting clear and consistent boundaries
+
+Refusing to lie or cover up
+
+Encouraging professional help
+
+Participating in family education or counseling
+
+Offering emotional support without financial or logistical rescue
+
+Healthy support empowers change rather than preventing discomfort.
+
+**The Emotional Toll on Families**
+
+Enabling often leads to resentment, burnout, and emotional exhaustion. Family members may feel trapped in cycles of crisis management, constantly reacting rather than living their own lives. Over time, relationships deteriorate, trust erodes, and emotional distance grows.
+
+Learning to stop enabling is not easy, but it is often the turning point for both the family and the individual struggling with addiction.
+
+**Boundaries Are an Act of Love**
+
+Boundaries communicate self-respect and clarity. They define what behavior is acceptable and what is not. Boundaries are not punishments; they are guidelines for healthy interaction.
+
+Effective boundaries are:
+
+Clear
+
+Consistent
+
+Enforced without anger or threats
+
+Focused on behavior, not character
+
+When boundaries are maintained, families often experience relief—even before their loved one enters recovery.
+
+**Change Begins with the Family**
+
+Addiction recovery often starts when families change their responses. When enabling stops and accountability begins, individuals are more likely to recognize the need for help.
+
+Families deserve support, education, and guidance. Breaking enabling patterns is habitual, difficult, and deeply emotional—but it is also one of the most powerful interventions available.`
+  },
   {
     id: "21",
     title: "Major Depressive Disorder: What Families Need to Know",
