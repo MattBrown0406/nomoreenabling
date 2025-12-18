@@ -11,6 +11,7 @@ import choosingTreatmentCenterImage from "@/assets/choosing-treatment-center-fam
 import addictionNotAChoiceImage from "@/assets/addiction-not-a-choice.jpg";
 import majorDepressiveDisorderImage from "@/assets/major-depressive-disorder-families.jpg";
 import hiddenRoleEnablingImage from "@/assets/hidden-role-enabling.jpg";
+import alcoholWithdrawalTimelineImage from "@/assets/alcohol-withdrawal-timeline.jpg";
 
 export interface BlogPost {
   id: string;
@@ -23,9 +24,179 @@ export interface BlogPost {
   image: string;
   slug: string;
   content: string;
+  metaTitle?: string;
+  metaDescription?: string;
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "23",
+    title: "Alcohol Withdrawal—Why Quitting \"Cold Turkey\" Can Be Dangerous (What Families Should Do)",
+    excerpt: "Alcohol withdrawal is a recognized medical condition that can occur when someone reduces or stops heavy, prolonged drinking. For some people, stopping suddenly can trigger serious withdrawal symptoms.",
+    category: "Addiction",
+    categories: ["Addiction", "Relationships"],
+    readTime: "8 min read",
+    date: "Dec 18, 2025",
+    image: alcoholWithdrawalTimelineImage,
+    slug: "alcohol-withdrawal-timeline-symptoms",
+    metaTitle: "Alcohol Withdrawal Timeline: Symptoms, Dangers, and When to Get Help",
+    metaDescription: "Alcohol withdrawal can be dangerous. Learn common symptoms, a general timeline, red flags like delirium tremens, and how families can respond safely.",
+    content: `**The Myth: "If They Really Wanted It, They'd Just Stop"**
+
+Families often say, "Why can't you just quit?" It's an understandable question—especially after months or years of broken promises. But alcohol dependence is not simply a willpower issue. For some people, stopping suddenly can trigger serious withdrawal symptoms.
+
+Alcohol withdrawal is a recognized medical condition that can occur when someone reduces or stops heavy, prolonged drinking.
+
+This doesn't mean your loved one is helpless. It means the safest path forward may require medical guidance, not a sudden stop at home.
+
+**What Alcohol Withdrawal Can Look Like**
+
+Withdrawal symptoms vary depending on how long and how heavily someone drank, their overall health, and whether they've had withdrawal before.
+
+Common symptoms can include:
+
+Tremors (shaking), sweating
+
+Anxiety, irritability, agitation
+
+Nausea, vomiting
+
+Headache
+
+Trouble sleeping
+
+Increased heart rate
+
+More severe symptoms can include:
+
+Confusion or disorientation
+
+Hallucinations
+
+Seizures
+
+Delirium tremens (DTs), a severe form of withdrawal involving sudden and severe mental or nervous system changes
+
+**A General Alcohol Withdrawal Timeline (Big Picture)**
+
+Different medical sources describe slightly different windows, but the overall pattern is consistent: symptoms often begin within the first day, can intensify over the next couple of days, and may include severe complications in higher-risk cases.
+
+A practical way for families to think about it:
+
+**0–24 hours after last drink**
+
+Early symptoms may begin (anxiety, tremor, nausea, insomnia)
+
+**24–72 hours**
+
+Symptoms may intensify
+
+Risk increases for severe complications in dependent individuals
+
+**Beyond 72 hours**
+
+Many people improve, but some complications can persist and require monitoring
+
+Important: This is not a home-diagnosis chart. If your loved one has a history of seizures, DTs, or severe withdrawal—or if they're medically fragile—do not attempt home detox.
+
+**When Alcohol Withdrawal Is a Medical Emergency**
+
+Call emergency services immediately if you notice:
+
+Seizure activity
+
+Severe confusion, disorientation, or inability to stay awake
+
+Hallucinations (seeing/hearing things that aren't there)
+
+High fever
+
+Chest pain, fainting, severe dehydration
+
+Uncontrolled vomiting
+
+Threats of self-harm or suicide
+
+Delirium tremens is a medical emergency.
+
+**Why "Tapering" at Home Can Still Be Risky**
+
+Families sometimes try to manage withdrawal by controlling alcohol intake ("just enough to keep symptoms down"). This approach can backfire:
+
+It's hard to measure safely
+
+It can reinforce dependence
+
+It can delay professional care
+
+It can create a false sense of stability right before a crash
+
+If someone is physically dependent, the safest next step is typically a medical evaluation to assess withdrawal risk.
+
+**What Families Can Do Instead (A Safer Path)**
+
+**1) Shift the goal from "Quit today" to "Get assessed today"**
+
+You're not "letting them off the hook." You're moving toward the safest plan.
+
+Script:
+
+"I want you sober—and I want you safe. We're getting medical guidance for this."
+
+**2) Watch for the high-risk indicators**
+
+High risk may include:
+
+Long-term heavy use
+
+Prior withdrawal complications
+
+Serious medical issues
+
+Mixing alcohol with other substances
+
+Older age or frailty
+
+If these apply, don't gamble with home detox.
+
+**3) Prepare for the rebound of emotions**
+
+Even mild withdrawal can create anxiety, irritability, and insomnia. Families often interpret this as "attitude" or "manipulation." Sometimes it's simply a nervous system trying to stabilize.
+
+You can still hold boundaries while acknowledging distress:
+
+"I hear you're miserable. We're still not going back to drinking in the house."
+
+**4) Make the home safer (without taking over)**
+
+If they're reducing use under professional direction:
+
+Remove driving keys if intoxicated is likely
+
+Don't leave them alone if severe symptoms appear
+
+Keep emergency numbers visible
+
+Prioritize hydration and monitoring—not arguments
+
+**What Comes After Withdrawal?**
+
+Withdrawal management is only the beginning. Recovery is built with:
+
+Ongoing counseling and support
+
+Structured routines
+
+Relapse prevention planning
+
+Family boundary work
+
+Repairing trust gradually over time
+
+Recovery is a process supported by multiple dimensions—health, home, purpose, and community.
+
+If you're unsure whether your loved one is at withdrawal risk, reach out to a sober helpline for guidance on next steps and safety planning.`
+  },
   {
     id: "22",
     title: "The Hidden Role of Enabling — How Helping Can Sometimes Make Addiction Worse",
