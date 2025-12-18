@@ -66,7 +66,12 @@
 
   <!-- Article Pages -->
   <url>
-    <loc>https://nomoreenabling.com/articles/hidden-role-enabling-addiction</loc>
+    <loc>https://nomoreenabling.com/article/alcohol-withdrawal-timeline-symptoms</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/article/hidden-role-enabling-addiction</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
