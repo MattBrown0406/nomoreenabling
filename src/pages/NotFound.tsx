@@ -6,6 +6,20 @@ const NotFound = () => {
 
   useEffect(() => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
+    
+    // Add noindex meta tag to prevent Google from indexing 404 pages (fixes Soft 404 issue)
+    const metaRobots = document.createElement('meta');
+    metaRobots.name = 'robots';
+    metaRobots.content = 'noindex, nofollow';
+    document.head.appendChild(metaRobots);
+    
+    // Set appropriate page title
+    document.title = '404 - Page Not Found | No More Enabling';
+    
+    return () => {
+      // Cleanup meta tag when leaving the page
+      document.head.removeChild(metaRobots);
+    };
   }, [location.pathname]);
 
   return (
