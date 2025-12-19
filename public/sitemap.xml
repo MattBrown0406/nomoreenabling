@@ -66,6 +66,11 @@
 
   <!-- Article Pages -->
   <url>
+    <loc>https://nomoreenabling.com/article/family-trauma-after-addiction</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://nomoreenabling.com/article/consequences-vs-lectures-addiction</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

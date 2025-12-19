@@ -13,6 +13,7 @@ import majorDepressiveDisorderImage from "@/assets/major-depressive-disorder-fam
 import hiddenRoleEnablingImage from "@/assets/hidden-role-enabling.jpg";
 import alcoholWithdrawalTimelineImage from "@/assets/alcohol-withdrawal-timeline.jpg";
 import consequencesVsLecturesImage from "@/assets/consequences-vs-lectures-addiction.jpg";
+import familyTraumaAfterAddictionImage from "@/assets/family-trauma-after-addiction.jpg";
 
 export interface BlogPost {
   id: string;
@@ -30,6 +31,102 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "25",
+    title: "The Emotional Hangover of Addiction: Why Families Struggle Even After Things Improve",
+    excerpt: "Even after substance use improves, families may struggle emotionally. Learn why trauma lingers and how healing actually happens.",
+    category: "Recovery",
+    categories: ["Recovery", "Mental Health", "Relationships", "Boundaries"],
+    readTime: "6 min read",
+    date: "Dec 19, 2025",
+    image: familyTraumaAfterAddictionImage,
+    slug: "family-trauma-after-addiction",
+    metaTitle: "Emotional Trauma in Families After Addiction",
+    metaDescription: "Even after substance use improves, families may struggle emotionally. Learn why trauma lingers and how healing actually happens.",
+    content: `**"Why Can't I Relax Now That It's Better?"**
+
+Families are often shocked to discover that even when substance use decreases—or stops—their anxiety doesn't.
+
+You may still:
+
+Startle at noises
+
+Check phones obsessively
+
+Feel uneasy during calm moments
+
+Expect bad news
+
+Struggle to trust good days
+
+This is not overreaction. It's trauma.
+
+**Addiction as Chronic Trauma**
+
+Living with addiction often involves:
+
+Repeated broken promises
+
+Financial instability
+
+Emotional volatility
+
+Fear of overdose or arrest
+
+Unpredictable crises
+
+Over time, the nervous system adapts by staying in a constant state of alert.
+
+When the chaos finally slows, the body doesn't automatically reset.
+
+**Why Families Feel "Stuck"**
+
+Trauma is stored emotionally and physically—not just cognitively. Knowing things are "better" doesn't convince a nervous system conditioned for danger.
+
+This explains why families may:
+
+Sabotage calm with conflict
+
+Feel numb instead of relieved
+
+Experience delayed grief
+
+Have trouble sleeping
+
+Feel disconnected from joy
+
+**Healing Is Not Instant Relief**
+
+Families often think:
+
+"I should be grateful."
+
+"Others have it worse."
+
+"I shouldn't still feel this way."
+
+But trauma recovery is a process, not a switch.
+
+**What Helps Families Heal**
+
+Learning how trauma affects the body
+
+Creating predictable routines
+
+Setting boundaries that restore safety
+
+Processing grief and anger
+
+Rebuilding trust slowly
+
+Getting support focused on you, not just them
+
+Family healing deserves the same seriousness as individual recovery.
+
+**You Are Not Broken**
+
+If calm feels unfamiliar, it's because your system learned to survive chaos. Healing means teaching it something new.`
+  },
   {
     id: "24",
     title: "Why Consequences Matter More Than Lectures in Addiction Recovery",
