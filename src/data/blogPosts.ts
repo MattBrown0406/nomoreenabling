@@ -14,6 +14,7 @@ import hiddenRoleEnablingImage from "@/assets/hidden-role-enabling.jpg";
 import alcoholWithdrawalTimelineImage from "@/assets/alcohol-withdrawal-timeline.jpg";
 import consequencesVsLecturesImage from "@/assets/consequences-vs-lectures-addiction.jpg";
 import familyTraumaAfterAddictionImage from "@/assets/family-trauma-after-addiction.jpg";
+import addictionDepressionFamilyImage from "@/assets/addiction-depression-family.jpg";
 
 export interface BlogPost {
   id: string;
@@ -31,6 +32,98 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "26",
+    title: "Addiction and Depression: What Families Need to Understand",
+    excerpt: "Addiction and depression often coexist. Learn how they interact and what families should watch for.",
+    category: "Mental Health",
+    categories: ["Mental Health", "Addiction", "Recovery", "Relationships"],
+    readTime: "5 min read",
+    date: "Dec 20, 2025",
+    image: addictionDepressionFamilyImage,
+    slug: "addiction-depression-family",
+    metaTitle: "Addiction and Depression: What Families Need to Understand",
+    metaDescription: "Addiction and depression often coexist. Learn how they interact and what families should watch for.",
+    content: `**The Double Burden Families Carry**
+
+Many families sense that something more than addiction is present. Their loved one isn't just using substances—they're withdrawn, hopeless, or emotionally flat.
+
+Depression and addiction frequently coexist, each reinforcing the other.
+
+**How Depression Fuels Substance Use**
+
+Depression can drive substance use by:
+
+Numbing emotional pain
+
+Temporarily boosting energy or mood
+
+Reducing inhibitions
+
+Offering escape from hopelessness
+
+Over time, substance use worsens depressive symptoms, creating a cycle that's hard to break.
+
+**Signs Families Often Overlook**
+
+Depression in addiction doesn't always look like sadness.
+
+Warning signs include:
+
+Irritability or anger
+
+Emotional numbness
+
+Loss of interest in previously enjoyed activities
+
+Sleep disruption
+
+Low motivation
+
+Withdrawal from relationships
+
+Families may mistake these signs for laziness or defiance.
+
+**Why This Matters for Families**
+
+When depression is unaddressed:
+
+Recovery feels pointless to the addicted person
+
+Relapse risk increases
+
+Family frustration intensifies
+
+Communication breaks down
+
+Understanding the emotional landscape helps families respond more effectively—without excusing harmful behavior.
+
+**What Families Can Do**
+
+Families cannot treat depression, but they can:
+
+Encourage professional evaluation
+
+Avoid minimizing emotional pain
+
+Maintain boundaries around behavior
+
+Separate empathy from permission
+
+Seek support for themselves
+
+Acknowledging emotional suffering does not mean tolerating chaos.
+
+**Holding Compassion and Accountability Together**
+
+It is possible to say:
+
+"I care about how much you're hurting"
+
+"And this behavior still isn't okay"
+
+Both statements can be true.`
+  },
   {
     id: "25",
     title: "The Emotional Hangover of Addiction: Why Families Struggle Even After Things Improve",
