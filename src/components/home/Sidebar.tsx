@@ -138,7 +138,17 @@ const Sidebar = () => {
         <SoberHelplineBanner />
       </div>
 
-      {/* Second Ad Space */}
+      {/* Google Ad Space 1 */}
+      <div>
+        <AdSpace size="sidebar" />
+      </div>
+
+      {/* Google Ad Space 2 */}
+      <div>
+        <AdSpace size="sidebar" />
+      </div>
+
+      {/* Google Ad Space 3 */}
       <div>
         <AdSpace size="sidebar" />
       </div>
