@@ -15,6 +15,7 @@ import alcoholWithdrawalTimelineImage from "@/assets/alcohol-withdrawal-timeline
 import consequencesVsLecturesImage from "@/assets/consequences-vs-lectures-addiction.jpg";
 import familyTraumaAfterAddictionImage from "@/assets/family-trauma-after-addiction.jpg";
 import addictionDepressionFamilyImage from "@/assets/addiction-depression-family.jpg";
+import sobrietyFeelsWorseImage from "@/assets/sobriety-feels-worse-before-better.jpg";
 
 export interface BlogPost {
   id: string;
@@ -32,6 +33,106 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "27",
+    title: "Why Sobriety Feels Worse Before It Feels Better—and What Families Should Know",
+    excerpt: "Early sobriety can be emotionally turbulent. Learn why this happens and how families can respond with clarity rather than fear.",
+    category: "Recovery",
+    categories: ["Recovery", "Addiction", "Relationships", "Mental Health"],
+    readTime: "7 min read",
+    date: "Dec 21, 2025",
+    image: sobrietyFeelsWorseImage,
+    slug: "sobriety-feels-worse-before-better",
+    metaTitle: "Why Sobriety Feels Worse Before It Feels Better—and What Families Should Know",
+    metaDescription: "Early sobriety can be emotionally turbulent. Learn why this happens and how families can respond with clarity rather than fear.",
+    content: `For many families, the moment a loved one stops drinking or using drugs is supposed to mark the beginning of relief. Instead, what often follows is confusion and alarm. The substance use may have stopped, but the emotional chaos seems to intensify. Irritability increases. Anxiety spikes. Depression becomes more visible. Families may wonder whether sobriety is actually making things worse.
+
+This reaction is common—and deeply misunderstood. Early sobriety is often one of the most emotionally unstable phases of recovery. Understanding why this happens can help families respond with clarity rather than fear.
+
+**The Emotional Shock of Early Sobriety**
+
+Substances often serve as emotional regulators. They dull anxiety, numb sadness, and provide temporary relief from stress or trauma. When those substances are removed, the nervous system is suddenly forced to function without its primary coping tool.
+
+What emerges can include:
+
+Heightened anxiety or panic
+
+Mood swings and irritability
+
+Difficulty sleeping
+
+Emotional numbness or overwhelm
+
+Restlessness and agitation
+
+This does not mean sobriety is failing. It means the body and brain are recalibrating after prolonged chemical suppression.
+
+**Why Families Misinterpret This Phase**
+
+Families often assume that stopping substance use should immediately result in:
+
+Improved mood
+
+Gratitude and cooperation
+
+Increased responsibility
+
+Emotional availability
+
+When this doesn't happen, disappointment sets in. Some families begin questioning whether their loved one truly wants recovery or whether sobriety is even worth the effort.
+
+In reality, sobriety removes the anesthetic before healing begins.
+
+**Emotional Pain Was There All Along**
+
+Substances rarely create emotional pain—they mask it. When the mask is removed, unresolved grief, trauma, depression, and anxiety surface. This can feel unbearable for the person in early recovery, especially if they lack coping skills or emotional literacy.
+
+Families may hear statements like:
+
+"I feel worse than when I was using."
+
+"Nothing feels good anymore."
+
+"What's the point of being sober?"
+
+These are not manipulative statements. They often reflect genuine distress.
+
+**The Danger of Rushing Relief**
+
+When families panic during early sobriety, they may unintentionally increase relapse risk by:
+
+Rescuing from discomfort
+
+Encouraging avoidance of emotions
+
+Relaxing boundaries prematurely
+
+Interpreting distress as failure
+
+Recovery requires learning how to tolerate discomfort without escape. When families intervene too quickly to "fix" the pain, they can unintentionally delay this learning process.
+
+**What Actually Helps During This Phase**
+
+Families can support early sobriety without enabling by:
+
+Maintaining clear boundaries
+
+Encouraging structure and routine
+
+Supporting therapy and counseling
+
+Avoiding pressure to "be better already"
+
+Allowing emotional discomfort without rescuing
+
+Progress during early sobriety is often uneven. Improvement looks less like happiness and more like staying engaged despite discomfort.
+
+**A Longer View of Healing**
+
+Sobriety is not the end of the journey—it is the beginning of emotional repair. Families who understand this phase are better able to remain steady when recovery feels fragile.
+
+Feeling worse before feeling better is often a sign that healing has begun.`
+  },
   {
     id: "26",
     title: "Addiction and Depression: What Families Need to Understand",
