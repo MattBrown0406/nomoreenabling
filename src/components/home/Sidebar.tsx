@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useMemo, useEffect, useState } from "react";
 import AdSpace from "@/components/ads/AdSpace";
 import FreedomInterventionsBanner from "@/components/ads/FreedomInterventionsBanner";
+import SoberHelplineBanner from "@/components/ads/SoberHelplineBanner";
 import { blogPosts } from "@/data/blogPosts";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -130,6 +131,11 @@ const Sidebar = () => {
             </li>
           ))}
         </ul>
+      </div>
+
+      {/* Sober Helpline Banner */}
+      <div>
+        <SoberHelplineBanner />
       </div>
 
       {/* Second Ad Space */}
