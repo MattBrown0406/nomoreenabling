@@ -11,18 +11,24 @@ const Advertise = () => {
       size: "728×90",
       location: "Homepage, below hero section",
       visibility: "High - Above the fold",
+      priceMonthly: "$500/month",
+      priceQuarterly: "$1,000/quarter",
     },
     {
       name: "Sidebar Ad",
       size: "300×250",
       location: "Article pages & homepage sidebar",
       visibility: "High - Persistent on scroll",
+      priceMonthly: "$400/month",
+      priceQuarterly: "$800/quarter",
     },
     {
       name: "Inline Content Ad",
       size: "728×90",
       location: "Within article content",
       visibility: "Medium - Contextual placement",
+      priceMonthly: "$250/month",
+      priceQuarterly: "$500/quarter",
     },
   ];
 
@@ -70,6 +76,10 @@ const Advertise = () => {
                   <h3 className="font-serif text-xl font-bold text-foreground mb-2">
                     {placement.name}
                   </h3>
+                  <div className="mb-4 p-3 bg-primary/10 rounded-lg">
+                    <p className="text-lg font-bold text-primary">{placement.priceMonthly}</p>
+                    <p className="text-sm text-muted-foreground">or {placement.priceQuarterly} <span className="text-primary font-medium">(Save!)</span></p>
+                  </div>
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li><strong>Size:</strong> {placement.size}</li>
                     <li><strong>Location:</strong> {placement.location}</li>
