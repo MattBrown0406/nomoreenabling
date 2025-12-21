@@ -113,17 +113,13 @@ const Advertise = () => {
                 Ready to reach our audience? Contact our advertising team to 
                 discuss packages and pricing.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex justify-center">
                 <a href="mailto:matt@nomoreenabling.com">
                   <Button variant="hero" size="lg">
                     <Mail size={18} />
                     matt@nomoreenabling.com
                   </Button>
                 </a>
-                <Button variant="hero-outline" size="lg">
-                  <MessageSquare size={18} />
-                  Request Media Kit
-                </Button>
               </div>
             </div>
           </div>
