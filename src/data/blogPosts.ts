@@ -1,3 +1,4 @@
+import enablingPeacekeepingImage from "@/assets/enabling-peacekeeping.jpg";
 import boundariesEmotionalFatigueImage from "@/assets/boundaries-emotional-fatigue.jpg";
 import thcPsychosisImage from "@/assets/thc-psychosis-young-adults.jpg";
 import fentanylRecoveryImage from "@/assets/fentanyl-recovery-hope.jpg";
@@ -33,6 +34,100 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "28",
+    title: "\"I'm Just Trying to Keep Things From Getting Worse\": How Enabling Masquerades as Peacekeeping",
+    excerpt: "Many families who struggle with codependency don't see themselves as enablers. They see themselves as peacekeepers. Learn why peacekeeping often comes at a steep cost.",
+    category: "Enabling",
+    categories: ["Enabling", "Codependency", "Boundaries", "Relationships"],
+    readTime: "5 min read",
+    date: "Dec 22, 2025",
+    image: enablingPeacekeepingImage,
+    slug: "enabling-masquerades-as-peacekeeping",
+    metaTitle: "How Enabling Masquerades as Peacekeeping | No More Enabling",
+    metaDescription: "Many families who struggle with codependency don't see themselves as enablers. They see themselves as peacekeepers. Learn why peacekeeping often comes at a steep cost.",
+    content: `Many families who struggle with codependency don't see themselves as enablers. They see themselves as peacekeepers. The ones who smooth things over, manage emotions, prevent explosions, and keep the family functioning.
+
+The problem is that peacekeeping often comes at a steep cost.
+
+**How Peacekeeping Turns Into Enabling**
+
+In addiction-affected families, peacekeeping may look like:
+
+Avoiding certain topics
+
+Giving in to prevent anger
+
+Softening boundaries to keep calm
+
+Handling responsibilities the addicted person drops
+
+Absorbing emotional fallout quietly
+
+These actions feel loving. They feel necessary. Over time, they become exhausting—and ineffective.
+
+**The Hidden Message Peacekeeping Sends**
+
+When families prioritize calm over clarity, addiction learns an important lesson: escalation works.
+
+If anger, tears, or threats lead to concessions, the behavior is reinforced. The family system quietly rearranges itself around the addiction.
+
+**Why Letting Go Feels Cruel**
+
+Families often fear that stopping peacekeeping will:
+
+Cause emotional collapse
+
+Lead to rejection
+
+Create chaos
+
+Make them "the bad guy"
+
+These fears are understandable. But constant peacekeeping often creates a deeper, more chronic chaos beneath the surface.
+
+**Boundaries Are Not Aggression**
+
+One of the biggest misconceptions in codependent families is that boundaries are confrontational. In reality, boundaries reduce conflict by removing ambiguity.
+
+Boundaries sound like:
+
+"I won't argue about this."
+
+"I'm not participating in that."
+
+"This is what I will do if it continues."
+
+They do not require persuasion. They require consistency.
+
+**Choosing Long-Term Stability Over Short-Term Calm**
+
+Peacekeeping focuses on today's mood. Boundaries focus on long-term health.
+
+Families who stop enabling often experience:
+
+Temporary pushback
+
+Emotional discomfort
+
+Guilt
+
+They also often experience:
+
+Increased clarity
+
+Reduced resentment
+
+Restored self-respect
+
+A calmer nervous system
+
+**You Are Allowed to Step Out of the Storm**
+
+You do not have to sacrifice your emotional health to keep someone else stable. Addiction thrives in systems that absorb chaos. It weakens in systems that refuse to reorganize around it.
+
+Choosing yourself is not abandonment. It is honesty.`
+  },
   {
     id: "27",
     title: "Why Sobriety Feels Worse Before It Feels Better—and What Families Should Know",
