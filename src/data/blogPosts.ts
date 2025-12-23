@@ -1,3 +1,4 @@
+import peacekeepingSelfSacrificeImage from "@/assets/peacekeeping-self-sacrifice.jpg";
 import enablingPeacekeepingImage from "@/assets/enabling-peacekeeping.jpg";
 import boundariesEmotionalFatigueImage from "@/assets/boundaries-emotional-fatigue.jpg";
 import thcPsychosisImage from "@/assets/thc-psychosis-young-adults.jpg";
@@ -34,6 +35,78 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "29",
+    title: "\"I'm Just Trying to Keep the Peace\": How Enabling Hides Behind Good Intentions",
+    excerpt: "Most families caught in enabling patterns don't see themselves as enablers. They see themselves as stabilizers. The cost of that role is often invisible—until it isn't.",
+    category: "Enabling",
+    categories: ["Enabling", "Codependency", "Boundaries", "Family Dynamics"],
+    readTime: "5 min read",
+    date: "Dec 23, 2025",
+    image: peacekeepingSelfSacrificeImage,
+    slug: "enabling-hides-behind-good-intentions",
+    metaTitle: "How Enabling Hides Behind Good Intentions | No More Enabling",
+    metaDescription: "Most families caught in enabling patterns don't see themselves as enablers. They see themselves as stabilizers. Learn why peacekeeping is a survival skill that doesn't create change.",
+    content: `Most families caught in enabling patterns don't see themselves as enablers. They see themselves as stabilizers. The ones who prevent blowups, calm emotions, and keep the family functioning.
+
+The cost of that role is often invisible—until it isn't.
+
+**Peacekeeping Is a Survival Skill**
+
+In chaotic environments, peacekeeping makes sense. Avoid conflict. Smooth things over. Take care of what others drop.
+
+These behaviors help families survive instability—but they don't create change.
+
+**How Peacekeeping Becomes Self-Sacrifice**
+
+Over time, peacekeepers:
+
+Stop expressing needs
+
+Lower expectations
+
+Absorb resentment
+
+Lose clarity
+
+Feel invisible
+
+Addiction thrives when one person carries the emotional load for everyone else.
+
+**Why Letting Go Feels Wrong**
+
+Families often fear:
+
+Everything will fall apart
+
+The addicted person will spiral
+
+They'll be blamed
+
+But constant peacekeeping already is a slow collapse.
+
+**Boundaries Don't Create Chaos—They Reveal It**
+
+Boundaries don't cause conflict. They expose what was already there.
+
+Calm boundaries sound like:
+
+"I'm not engaging in this conversation."
+
+"I won't fix that for you."
+
+"I'll help with recovery, not damage control."
+
+No anger. No explanation. Just consistency.
+
+**Choosing Long-Term Stability Over Short-Term Calm**
+
+Peacekeeping focuses on today's mood. Boundaries focus on tomorrow's health.
+
+Families who step out of enabling often feel guilt—but also relief. Clarity replaces confusion. Self-respect returns.
+
+You are not responsible for managing someone else's emotions. You are responsible for protecting your own life.`
+  },
   {
     id: "28",
     title: "\"I'm Just Trying to Keep Things From Getting Worse\": How Enabling Masquerades as Peacekeeping",
