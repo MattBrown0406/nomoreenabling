@@ -165,9 +165,9 @@ const SelfAssessment = () => {
 
   if (!isStarted) {
     return (
-      <section className="py-16 bg-muted/30">
+      <section className="py-16 bg-primary/10">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
+          <div className="max-w-3xl mx-auto text-center bg-card p-6 md:p-10 rounded-xl shadow-lg border-4 border-foreground/40 ring-1 ring-foreground/20">
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
               The Enabling & Codependency Self-Reflection
             </h2>
