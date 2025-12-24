@@ -4,6 +4,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { ChevronRight, ChevronLeft, RotateCcw } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const sections = [
   {
@@ -167,55 +173,63 @@ const SelfAssessment = () => {
     return (
       <section className="py-16 bg-primary/10">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center bg-card p-6 md:p-10 rounded-xl shadow-lg border-4 border-foreground/40 ring-1 ring-foreground/20">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
-              The Enabling & Codependency Self-Reflection
-            </h2>
-            <div className="space-y-6 text-muted-foreground text-left">
-              <div>
-                <h3 className="font-semibold text-foreground mb-2">Purpose</h3>
-                <p>
-                  This assessment is designed to help you understand patterns that may be
-                  keeping you stuck in exhaustion, resentment, or fear while trying to
-                  help someone you love.
-                </p>
-                <p className="mt-2">
-                  It does not label you as "codependent" or "an enabler." Instead, it
-                  highlights behaviors that often develop in long-term stress, trauma, or
-                  love mixed with fear.
-                </p>
-                <p className="mt-2 italic">
-                  There are no wrong answers. Answer based on what is mostly true for you
-                  right now.
-                </p>
-              </div>
-              <div>
-                <h3 className="font-semibold text-foreground mb-2">How to Respond</h3>
-                <p>For each statement, choose the response that best fits:</p>
-                <ul className="mt-2 space-y-1">
-                  <li>
-                    <span className="font-medium">0</span> – Not true for me
-                  </li>
-                  <li>
-                    <span className="font-medium">1</span> – Occasionally true
-                  </li>
-                  <li>
-                    <span className="font-medium">2</span> – Often true
-                  </li>
-                  <li>
-                    <span className="font-medium">3</span> – Almost always true
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <Button
-              onClick={() => setIsStarted(true)}
-              className="mt-8"
-              size="lg"
-            >
-              Begin Assessment
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </Button>
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="self-assessment" className="border-0">
+                <AccordionTrigger className="bg-card px-6 py-4 rounded-xl shadow-lg border-4 border-foreground/40 ring-1 ring-foreground/20 hover:no-underline">
+                  <h2 className="font-serif text-xl md:text-2xl font-bold text-foreground text-left">
+                    The Enabling & Codependency Self-Reflection
+                  </h2>
+                </AccordionTrigger>
+                <AccordionContent className="bg-card px-6 pb-6 rounded-b-xl shadow-lg border-4 border-t-0 border-foreground/40 ring-1 ring-foreground/20">
+                  <div className="space-y-6 text-muted-foreground text-left pt-4">
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-2">Purpose</h3>
+                      <p>
+                        This assessment is designed to help you understand patterns that may be
+                        keeping you stuck in exhaustion, resentment, or fear while trying to
+                        help someone you love.
+                      </p>
+                      <p className="mt-2">
+                        It does not label you as "codependent" or "an enabler." Instead, it
+                        highlights behaviors that often develop in long-term stress, trauma, or
+                        love mixed with fear.
+                      </p>
+                      <p className="mt-2 italic">
+                        There are no wrong answers. Answer based on what is mostly true for you
+                        right now.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-2">How to Respond</h3>
+                      <p>For each statement, choose the response that best fits:</p>
+                      <ul className="mt-2 space-y-1">
+                        <li>
+                          <span className="font-medium">0</span> – Not true for me
+                        </li>
+                        <li>
+                          <span className="font-medium">1</span> – Occasionally true
+                        </li>
+                        <li>
+                          <span className="font-medium">2</span> – Often true
+                        </li>
+                        <li>
+                          <span className="font-medium">3</span> – Almost always true
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <Button
+                    onClick={() => setIsStarted(true)}
+                    className="mt-6"
+                    size="lg"
+                  >
+                    Begin Assessment
+                    <ChevronRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </div>
       </section>
