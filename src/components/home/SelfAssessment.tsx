@@ -296,7 +296,7 @@ const SelfAssessment = () => {
   return (
     <section className="py-16 bg-primary/10">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto bg-card p-6 md:p-10 rounded-xl shadow-lg border-2 border-primary/30">
+        <div className="max-w-3xl mx-auto bg-card p-6 md:p-10 rounded-xl shadow-lg border-4 border-foreground/40 ring-1 ring-foreground/20">
           {/* Progress Bar */}
           <div className="mb-8">
             <div className="flex justify-between text-sm text-muted-foreground mb-2">
@@ -315,7 +315,7 @@ const SelfAssessment = () => {
             </div>
           </div>
 
-          <div className="bg-background rounded-lg p-4 md:p-6 border border-border">
+          <div className="bg-background rounded-lg p-4 md:p-6 border-2 border-foreground/20">
             <CardContent className="p-0">
               <h3 className="font-serif text-xl md:text-2xl font-bold text-foreground mb-6">
                 {sections[currentSection].title}
