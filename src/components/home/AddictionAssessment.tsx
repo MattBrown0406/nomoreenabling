@@ -268,7 +268,7 @@ const AddictionAssessment = () => {
 
   if (!isStarted) {
     return (
-      <section className="py-16 bg-primary/10">
+      <section className="pt-4 pb-16 bg-primary/10">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="w-full">
