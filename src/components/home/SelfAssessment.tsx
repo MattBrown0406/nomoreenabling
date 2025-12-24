@@ -315,7 +315,7 @@ const SelfAssessment = () => {
             </div>
           </div>
 
-          <Card className="border-0 shadow-lg">
+          <Card className="border-2 border-black shadow-lg">
             <CardContent className="p-6 md:p-8">
               <h3 className="font-serif text-xl md:text-2xl font-bold text-foreground mb-6">
                 {sections[currentSection].title}
