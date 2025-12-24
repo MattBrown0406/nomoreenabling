@@ -46,6 +46,14 @@ const Header = () => {
               </Link>
             ))}
             <a
+              href="https://interventiononcall.com/live-family-friends-zoom/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-primary/80 transition-colors duration-200 font-medium"
+            >
+              Free Family Support Meetings
+            </a>
+            <a
               href="mailto:matt@nomoreenabling.com"
               className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
             >
@@ -84,6 +92,15 @@ const Header = () => {
                   {link.name}
                 </Link>
               ))}
+              <a
+                href="https://interventiononcall.com/live-family-friends-zoom/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:text-primary/80 transition-colors duration-200 font-medium py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Free Family Support Meetings
+              </a>
               <a
                 href="mailto:matt@nomoreenabling.com"
                 className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium py-2"
