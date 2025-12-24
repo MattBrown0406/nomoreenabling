@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/home/HeroSection";
+import SelfAssessment from "@/components/home/SelfAssessment";
 import NewsletterSection from "@/components/home/NewsletterSection";
 import BlogCard from "@/components/blog/BlogCard";
 import Sidebar from "@/components/home/Sidebar";
@@ -45,6 +46,9 @@ const Index = () => {
 
         <main className="flex-grow">
           <HeroSection />
+
+          {/* Self-Assessment */}
+          <SelfAssessment />
 
           {/* Banner Ad */}
           <div className="container mx-auto px-4 py-6">
