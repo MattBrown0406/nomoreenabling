@@ -328,7 +328,7 @@ const SelfAssessment = () => {
                       {idx + 1}. {question}
                     </p>
                     <RadioGroup
-                      value={answers[`${currentSection}-${idx}`]?.toString()}
+                      value={answers[`${currentSection}-${idx}`] !== undefined ? answers[`${currentSection}-${idx}`].toString() : ""}
                       onValueChange={(value) => handleAnswer(idx, parseInt(value))}
                       className="grid grid-cols-2 md:grid-cols-4 gap-2"
                     >
