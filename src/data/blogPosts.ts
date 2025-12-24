@@ -1,3 +1,4 @@
+import keepingPeaceAddictionImage from "@/assets/keeping-peace-addiction.jpg";
 import peacekeepingSelfSacrificeImage from "@/assets/peacekeeping-self-sacrifice.jpg";
 import enablingPeacekeepingImage from "@/assets/enabling-peacekeeping.jpg";
 import boundariesEmotionalFatigueImage from "@/assets/boundaries-emotional-fatigue.jpg";
@@ -35,6 +36,46 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "30",
+    title: "How \"Keeping the Peace\" Slowly Teaches Addiction to Stay",
+    excerpt: "Peacekeeping feels loving and responsible. It also quietly teaches addiction that escalation works. Choosing clarity over calm is the first step out of codependency.",
+    category: "Enabling",
+    categories: ["Enabling", "Codependency", "Boundaries", "Family Dynamics"],
+    readTime: "4 min read",
+    date: "Dec 24, 2025",
+    image: keepingPeaceAddictionImage,
+    slug: "keeping-peace-teaches-addiction-to-stay",
+    metaTitle: "How Keeping the Peace Teaches Addiction to Stay | No More Enabling",
+    metaDescription: "Peacekeeping feels loving but quietly reinforces addiction. Learn why constant peacekeeping is a slow collapse and how boundaries restore clarity and self-respect.",
+    content: `Most families trapped in codependency don't describe themselves as enablers. They describe themselves as the ones holding everything together. The stabilizers. The peacekeepers. The people who smooth things over so life can keep moving.
+
+**Peacekeeping Makes Sense in Chaos**
+
+When addiction destabilizes a household, someone steps in to regulate emotions, prevent explosions, and manage fallout. Over time, that role becomes an identity.
+
+The problem is that peacekeeping often requires self-erasure. Needs are suppressed. Boundaries are softened. Truth is postponed. The family learns to live around the addiction instead of addressing it.
+
+**Why Peacekeeping Reinforces Addiction**
+
+Keeping the peace feels loving. It feels responsible. It also quietly teaches addiction that escalation works. If anger, silence, or emotional manipulation lead to concessions, the behavior is reinforced.
+
+Families often fear that stopping peacekeeping will cause everything to fall apart. In reality, constant peacekeeping is already a slow collapse. Resentment builds. Exhaustion deepens. Self-respect erodes.
+
+**Boundaries Are Not Aggression**
+
+Boundaries are often misunderstood as aggressive or punitive. In truth, they are clarifying. They remove ambiguity. They make it clear what the family will and will not participate in.
+
+Boundaries do not require anger or explanation. They require consistency. "I won't engage in this conversation." "I'm not fixing that for you." "I'll help with recovery, not damage control." Said calmly and held firmly, these statements shift the entire system.
+
+**Letting Go Feels Cruel—At First**
+
+Letting go of peacekeeping feels cruel at first because families have been taught that love means sacrifice. Over time, many discover that stepping out of enabling restores something they didn't realize they'd lost: themselves.
+
+**You Are Not Responsible for Managing Someone Else's Emotions**
+
+You are responsible for protecting your own life. Choosing clarity over calm is not abandonment. It is the first step out of codependency.`
+  },
   {
     id: "29",
     title: "\"I'm Just Trying to Keep the Peace\": How Enabling Hides Behind Good Intentions",
