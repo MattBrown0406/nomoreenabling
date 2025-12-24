@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/home/HeroSection";
 import SelfAssessment from "@/components/home/SelfAssessment";
+import AddictionAssessment from "@/components/home/AddictionAssessment";
 import NewsletterSection from "@/components/home/NewsletterSection";
 import BlogCard from "@/components/blog/BlogCard";
 import Sidebar from "@/components/home/Sidebar";
@@ -49,6 +50,9 @@ const Index = () => {
 
           {/* Self-Assessment */}
           <SelfAssessment />
+
+          {/* Addiction Assessment */}
+          <AddictionAssessment />
 
           {/* Banner Ad */}
           <div className="container mx-auto px-4 py-6">
