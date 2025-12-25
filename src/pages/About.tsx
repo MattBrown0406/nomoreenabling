@@ -24,29 +24,41 @@ const About = () => {
           </div>
         </section>
 
-        {/* Mission Section */}
+        {/* About Section */}
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <h2 className="font-serif text-3xl font-bold text-foreground mb-6">
-                Our Mission
+                About No More Enabling
               </h2>
               <div className="prose prose-lg text-muted-foreground space-y-4">
                 <p>
-                  No More Enabling was founded with a simple yet powerful mission: 
-                  to provide support, guidance, and resources for those who find 
-                  themselves caught in enabling patterns.
+                  No More Enabling is an educational and support resource for families affected by addiction, codependency, and enabling behaviors. The platform exists to help families understand how addiction impacts relationships—and how changes within the family system can support healthier outcomes.
                 </p>
                 <p>
-                  Whether you're supporting a loved one through addiction, dealing 
-                  with codependent relationships, or simply struggling to set healthy 
-                  boundaries, we're here to help you navigate these challenges.
+                  No More Enabling was founded by Matt Brown, a professional interventionist who has worked with families affected by substance use disorders for more than two decades. Since 2004, Matt has helped hundreds of families navigate addiction-related crises, boundary breakdowns, resistance to treatment, relapse, and recovery planning. His work has consistently focused on helping families shift from reactive, fear-based patterns to clear, structured, and sustainable responses.
                 </p>
                 <p>
-                  Our content is created by mental health professionals, recovery 
-                  specialists, and individuals who have walked this path themselves. 
-                  We believe in the power of shared experiences and evidence-based 
-                  approaches to healing.
+                  Through years of direct intervention work, Matt identified a critical gap: families are often overwhelmed, misinformed, or unintentionally enabling addiction—not because they lack care or intelligence, but because they lack clear, practical education. No More Enabling was created to meet that need.
+                </p>
+                <p>
+                  All content on No More Enabling is grounded in real-world intervention experience, evidence-informed family systems principles, and best practices in addiction recovery. The platform focuses on topics such as:
+                </p>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li>Enabling vs. helping</li>
+                  <li>Family boundaries and communication</li>
+                  <li>Codependency and family roles</li>
+                  <li>Preparing for intervention and treatment decisions</li>
+                  <li>Supporting recovery without losing oneself</li>
+                </ul>
+                <p>
+                  In addition to Matt's contributions, No More Enabling features articles, guides, and worksheets developed by licensed mental health professionals, experienced recovery specialists, and qualified educators. Contributors are selected for their clinical knowledge, ethical standards, and firsthand experience working with families affected by addiction. Many also bring lived experience as individuals in recovery or family members, ensuring content remains practical, compassionate, and grounded in reality.
+                </p>
+                <p>
+                  No More Enabling is not a treatment provider or crisis service. It is a trusted educational resource designed to help families make informed decisions, set healthier boundaries, and reduce the chaos and confusion that addiction often creates within families.
+                </p>
+                <p className="font-medium text-foreground">
+                  Our commitment is to clarity over shame, education over blame, and support that strengthens families—regardless of whether their loved one is ready for change.
                 </p>
               </div>
             </div>
