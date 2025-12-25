@@ -3,6 +3,7 @@ import { useMemo, useEffect, useState } from "react";
 import AdSpace from "@/components/ads/AdSpace";
 import FreedomInterventionsBanner from "@/components/ads/FreedomInterventionsBanner";
 import SoberHelplineBanner from "@/components/ads/SoberHelplineBanner";
+import InterventionOnCallBanner from "@/components/ads/InterventionOnCallBanner";
 import { blogPosts } from "@/data/blogPosts";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -136,6 +137,11 @@ const Sidebar = () => {
       {/* Sober Helpline Banner */}
       <div>
         <SoberHelplineBanner />
+      </div>
+
+      {/* Intervention On Call Banner */}
+      <div>
+        <InterventionOnCallBanner />
       </div>
 
       {/* Google Ad Space 1 */}
