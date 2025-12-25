@@ -20,7 +20,7 @@ const FreedomInterventionsBanner = ({ size = "sidebar" }: FreedomInterventionsBa
         <img
           src={freedomLogo}
           alt="Freedom Interventions"
-          className={isLeaderboard ? "h-20 w-auto" : "h-28 w-auto"}
+          className={`border-2 border-black rounded ${isLeaderboard ? "h-20 w-auto" : "h-28 w-auto"}`}
         />
         <div className={isLeaderboard ? "text-left" : "text-center"}>
           <p className="text-foreground font-medium text-sm md:text-base">
