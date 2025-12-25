@@ -80,6 +80,16 @@ const Header = () => {
                 ))}
                 <DropdownMenuItem asChild>
                   <a
+                    href="https://soberhelpline.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cursor-pointer text-primary"
+                  >
+                    Family Support Forum
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a
                     href="https://interventiononcall.com/live-family-friends-zoom/"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -141,6 +151,7 @@ const Header = () => {
                   <Link to="/grounding-reminder" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>A Grounding Reminder</Link>
                   <Link to="/family-system-notes" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Family System Notes</Link>
                   <Link to="/family-support-guide" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Family Support Guide</Link>
+                  <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Family Support Forum</a>
                 </div>
               </div>
               <Button variant="hero" size="default" className="mt-2" onClick={scrollToNewsletter}>
