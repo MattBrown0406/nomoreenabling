@@ -77,17 +77,18 @@ const Header = () => {
                     </Link>
                   </DropdownMenuItem>
                 ))}
+                <DropdownMenuItem asChild>
+                  <a
+                    href="https://interventiononcall.com/live-family-friends-zoom/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cursor-pointer text-primary"
+                  >
+                    Free Family Support Meetings
+                  </a>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-
-            <a
-              href="https://interventiononcall.com/live-family-friends-zoom/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:text-primary/80 transition-colors duration-200 font-medium"
-            >
-              Free Family Support Meetings
-            </a>
           </nav>
 
           {/* CTA Button */}
