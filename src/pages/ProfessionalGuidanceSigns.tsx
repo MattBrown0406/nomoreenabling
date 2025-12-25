@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Printer, AlertTriangle, Users, Heart, Shield, Brain, MessageCircle, HelpCircle, Clock, ArrowRight } from "lucide-react";
+import AdSpace from "@/components/ads/AdSpace";
 
 const ProfessionalGuidanceSigns = () => {
   const handlePrint = () => {
@@ -130,7 +131,16 @@ const ProfessionalGuidanceSigns = () => {
       <div className="min-h-screen bg-background print-content">
         <Header />
         
-        <main className="container mx-auto px-4 py-8 max-w-4xl">
+        <div className="container mx-auto px-4 py-8">
+          <div className="flex gap-8">
+            {/* Left Sidebar Ad - Desktop Only */}
+            <aside className="hidden xl:block w-[160px] flex-shrink-0 no-print">
+              <div className="sticky top-24 space-y-6">
+                <AdSpace size="sidebar" />
+              </div>
+            </aside>
+
+            <main className="flex-1 max-w-4xl mx-auto">
           {/* Print Button */}
           <div className="flex justify-end mb-6 no-print">
             <Button 
@@ -287,6 +297,15 @@ const ProfessionalGuidanceSigns = () => {
             This guide is educational and does not replace professional advice. It is designed to support families in recognizing when outside support may be beneficial.
           </p>
         </main>
+
+            {/* Right Sidebar Ad - Desktop Only */}
+            <aside className="hidden xl:block w-[160px] flex-shrink-0 no-print">
+              <div className="sticky top-24 space-y-6">
+                <AdSpace size="sidebar" />
+              </div>
+            </aside>
+          </div>
+        </div>
         
         <Footer />
       </div>
