@@ -20,8 +20,8 @@ const HeroSection = () => {
           </span>
           
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            Break Free from{" "}
-            <span className="text-primary">Unhealthy Patterns</span>
+            Support Without Enabling:{" "}
+            <span className="text-primary">Tools for Families Ready to Break the Cycle</span>
           </h1>
           
           <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: "0.2s" }}>
