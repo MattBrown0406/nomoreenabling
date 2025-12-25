@@ -11,6 +11,7 @@ import Category from "./pages/Category";
 import Advertise from "./pages/Advertise";
 import FamilySupportGuide from "./pages/FamilySupportGuide";
 import HelpingOrEnabling from "./pages/HelpingOrEnabling";
+import ProfessionalGuidanceSigns from "./pages/ProfessionalGuidanceSigns";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/advertise" element={<Advertise />} />
           <Route path="/family-support-guide" element={<FamilySupportGuide />} />
           <Route path="/helping-or-enabling" element={<HelpingOrEnabling />} />
+          <Route path="/professional-guidance-signs" element={<ProfessionalGuidanceSigns />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
