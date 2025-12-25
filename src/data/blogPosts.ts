@@ -1,3 +1,4 @@
+import lettingGoControlImage from "@/assets/letting-go-control-abandonment.jpg";
 import keepingPeaceAddictionImage from "@/assets/keeping-peace-addiction.jpg";
 import peacekeepingSelfSacrificeImage from "@/assets/peacekeeping-self-sacrifice.jpg";
 import enablingPeacekeepingImage from "@/assets/enabling-peacekeeping.jpg";
@@ -36,6 +37,52 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "31",
+    title: "Why Letting Go of Control Feels Like Abandonment—and Why It Isn't",
+    excerpt: "Families caught in codependency rarely see themselves as controlling. They see themselves as responsible. Letting go is not abandonment—it is an act of honesty.",
+    category: "Codependency",
+    categories: ["Codependency", "Enabling", "Boundaries", "Family Dynamics"],
+    readTime: "4 min read",
+    date: "Dec 25, 2025",
+    image: lettingGoControlImage,
+    slug: "letting-go-control-feels-like-abandonment",
+    metaTitle: "Why Letting Go of Control Feels Like Abandonment | No More Enabling",
+    metaDescription: "Families caught in codependency rarely see themselves as controlling. Learn why letting go is not abandonment but an act of honesty for yourself and your loved one.",
+    content: `Families caught in codependency rarely see themselves as controlling. They see themselves as responsible. As the ones who step in, smooth things over, and prevent everything from falling apart. In addiction-affected families, control often masquerades as care.
+
+**The Role Develops Slowly**
+
+This role usually develops slowly. Someone begins compensating for missed obligations, managing emotional fallout, or anticipating problems before they happen. Over time, this behavior becomes normalized. The family reorganizes itself around one person's instability.
+
+**The Fear of Letting Go**
+
+Letting go of this role feels terrifying. Families worry that if they stop managing everything, disaster will follow. They fear being blamed, rejected, or accused of not caring enough.
+
+What's rarely acknowledged is how much this constant management costs. Emotional exhaustion. Loss of identity. Chronic anxiety. Resentment that feels shameful to admit.
+
+**Enabling Is Not a Moral Failure**
+
+Enabling is not a moral failure. It is a survival strategy that has outlived its usefulness.
+
+Addiction teaches families that peace is fragile and must be protected at all costs. So conversations are avoided. Boundaries are softened. Truth is postponed. The family learns to live around the problem rather than address it.
+
+**Control Feels Safer Than Uncertainty**
+
+Control feels safer than uncertainty. But control is also unsustainable.
+
+Breaking codependent patterns does not require cruelty or confrontation. It requires clarity. Clarity about what you can live with. Clarity about what you will no longer fix. Clarity about where responsibility actually lies.
+
+**Boundaries Expose Chaos—They Don't Create It**
+
+Boundaries do not create chaos. They expose it. And exposure, while uncomfortable, is often the first step toward change.
+
+Families are allowed to step out of roles that are harming them. They are allowed to choose stability over sacrifice. They are allowed to stop confusing endurance with love.
+
+**Letting Go Is an Act of Honesty**
+
+Letting go is not abandonment. It is an act of honesty—for yourself and for the person you care about.`
+  },
   {
     id: "30",
     title: "How \"Keeping the Peace\" Slowly Teaches Addiction to Stay",
