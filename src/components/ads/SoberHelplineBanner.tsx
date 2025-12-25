@@ -12,7 +12,7 @@ const SoberHelplineBanner = () => {
         <img 
           src={soberHelplineLogo} 
           alt="Sober Helpline - Hope. Help. Recovery." 
-          className="w-40 h-auto"
+          className="w-full max-w-xs h-auto"
         />
         
         <p className="text-sm font-medium text-foreground">
