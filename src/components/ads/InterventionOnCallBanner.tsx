@@ -12,7 +12,7 @@ const InterventionOnCallBanner = () => {
         <img 
           src={interventionOnCallLogo} 
           alt="Intervention On Call" 
-          className="w-full max-w-xs h-auto"
+          className="w-full max-w-xs h-auto border-2 border-black rounded"
         />
         
         <p className="text-sm font-medium text-foreground">
