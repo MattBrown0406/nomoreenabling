@@ -23,11 +23,6 @@ const Header = () => {
 
   const familyResources = [
     { name: "Family Support Guide", href: "/family-support-guide" },
-    { name: "Enabling", href: "/category/enabling" },
-    { name: "Boundaries", href: "/category/boundaries" },
-    { name: "Codependency", href: "/category/codependency" },
-    { name: "Family Dynamics", href: "/category/family-dynamics" },
-    { name: "Recovery", href: "/category/recovery" },
   ];
 
   const scrollToNewsletter = () => {
@@ -136,11 +131,6 @@ const Header = () => {
                 <p className="text-muted-foreground font-medium mb-2">Family Education Resources</p>
                 <div className="flex flex-col gap-2 pl-4">
                   <Link to="/family-support-guide" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Family Support Guide</Link>
-                  <Link to="/category/enabling" className="text-muted-foreground hover:text-foreground transition-colors" onClick={() => setIsMenuOpen(false)}>Enabling</Link>
-                  <Link to="/category/boundaries" className="text-muted-foreground hover:text-foreground transition-colors" onClick={() => setIsMenuOpen(false)}>Boundaries</Link>
-                  <Link to="/category/codependency" className="text-muted-foreground hover:text-foreground transition-colors" onClick={() => setIsMenuOpen(false)}>Codependency</Link>
-                  <Link to="/category/family-dynamics" className="text-muted-foreground hover:text-foreground transition-colors" onClick={() => setIsMenuOpen(false)}>Family Dynamics</Link>
-                  <Link to="/category/recovery" className="text-muted-foreground hover:text-foreground transition-colors" onClick={() => setIsMenuOpen(false)}>Recovery</Link>
                 </div>
               </div>
               <Button variant="hero" size="default" className="mt-2" onClick={scrollToNewsletter}>
