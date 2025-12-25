@@ -11,8 +11,8 @@ const SoberHelplineBanner = () => {
       <div className="flex flex-col items-center text-center space-y-4">
         <img 
           src={soberHelplineLogo} 
-          alt="Sober Helpline" 
-          className="w-32 h-auto border-2 border-black rounded"
+          alt="Sober Helpline - Hope. Help. Recovery." 
+          className="w-40 h-auto"
         />
         
         <p className="text-sm font-medium text-foreground">
