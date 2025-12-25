@@ -22,6 +22,7 @@ const Header = () => {
   ];
 
   const familyResources = [
+    { name: "Helping or Enabling? Tool", href: "/helping-or-enabling" },
     { name: "Family Support Guide", href: "/family-support-guide" },
   ];
 
@@ -130,6 +131,7 @@ const Header = () => {
               <div className="py-2">
                 <p className="text-muted-foreground font-medium mb-2">Family Education Resources</p>
                 <div className="flex flex-col gap-2 pl-4">
+                  <Link to="/helping-or-enabling" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Helping or Enabling? Tool</Link>
                   <Link to="/family-support-guide" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Family Support Guide</Link>
                 </div>
               </div>
