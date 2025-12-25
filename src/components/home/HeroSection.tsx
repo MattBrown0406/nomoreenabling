@@ -25,8 +25,7 @@ const HeroSection = () => {
           </h1>
           
           <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: "0.2s" }}>
-            Discover insights, strategies, and support for setting healthy boundaries, 
-            building self-worth, and creating relationships that nurture your growth.
+            We empower families with proven communication strategies and support to stop enabling behaviors and promote recovery.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10 animate-fade-up" style={{ animationDelay: "0.3s" }}>
             <Button variant="hero" size="lg" asChild>
