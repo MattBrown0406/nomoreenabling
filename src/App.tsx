@@ -12,6 +12,7 @@ import Advertise from "./pages/Advertise";
 import FamilySupportGuide from "./pages/FamilySupportGuide";
 import HelpingOrEnabling from "./pages/HelpingOrEnabling";
 import ProfessionalGuidanceSigns from "./pages/ProfessionalGuidanceSigns";
+import WhyFamiliesNeedSupport from "./pages/WhyFamiliesNeedSupport";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/family-support-guide" element={<FamilySupportGuide />} />
           <Route path="/helping-or-enabling" element={<HelpingOrEnabling />} />
           <Route path="/professional-guidance-signs" element={<ProfessionalGuidanceSigns />} />
+          <Route path="/why-families-need-support" element={<WhyFamiliesNeedSupport />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
