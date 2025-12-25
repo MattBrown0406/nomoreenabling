@@ -25,6 +25,7 @@ const Header = () => {
     { name: "Helping or Enabling? Tool", href: "/helping-or-enabling" },
     { name: "Signs You Need Professional Help", href: "/professional-guidance-signs" },
     { name: "Why Families Need Support", href: "/why-families-need-support" },
+    { name: "A Grounding Reminder", href: "/grounding-reminder" },
     { name: "Family Support Guide", href: "/family-support-guide" },
   ];
 
@@ -136,6 +137,7 @@ const Header = () => {
                   <Link to="/helping-or-enabling" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Helping or Enabling? Tool</Link>
                   <Link to="/professional-guidance-signs" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Signs You Need Professional Help</Link>
                   <Link to="/why-families-need-support" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Why Families Need Support</Link>
+                  <Link to="/grounding-reminder" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>A Grounding Reminder</Link>
                   <Link to="/family-support-guide" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Family Support Guide</Link>
                 </div>
               </div>
