@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Link } from "react-router-dom";
+import AdSpace from "@/components/ads/AdSpace";
 
 const handlePrint = () => {
   window.print();
@@ -182,7 +183,15 @@ const HelpingOrEnabling = () => {
 
       <main className="min-h-screen bg-gradient-to-b from-background to-muted/20">
         <div className="container mx-auto px-4 py-12 md:py-16">
-          <div className="max-w-2xl mx-auto">
+          <div className="flex gap-8">
+            {/* Left Sidebar Ad - Desktop Only */}
+            <aside className="hidden xl:block w-[160px] flex-shrink-0 no-print">
+              <div className="sticky top-24 space-y-6">
+                <AdSpace size="sidebar" />
+              </div>
+            </aside>
+
+            <div className="flex-1 max-w-2xl mx-auto">
             
             {/* Progress indicator */}
             {currentStep !== "intro" && currentStep !== "result" && (
@@ -722,6 +731,14 @@ const HelpingOrEnabling = () => {
               </div>
             </div>
 
+          </div>
+
+            {/* Right Sidebar Ad - Desktop Only */}
+            <aside className="hidden xl:block w-[160px] flex-shrink-0 no-print">
+              <div className="sticky top-24 space-y-6">
+                <AdSpace size="sidebar" />
+              </div>
+            </aside>
           </div>
         </div>
       </main>

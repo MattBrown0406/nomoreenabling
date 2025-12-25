@@ -3,6 +3,7 @@ import { Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import AdSpace from "@/components/ads/AdSpace";
 
 const FamilySupportGuide = () => {
   const handlePrint = () => {
@@ -19,8 +20,17 @@ const FamilySupportGuide = () => {
         />
       </Helmet>
       <Header />
-      <main className="flex-1">
-        <article className="container mx-auto px-4 py-12 max-w-4xl print-content">
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex gap-8">
+          {/* Left Sidebar Ad - Desktop Only */}
+          <aside className="hidden xl:block w-[160px] flex-shrink-0 no-print">
+            <div className="sticky top-24 space-y-6">
+              <AdSpace size="sidebar" />
+            </div>
+          </aside>
+
+          <main className="flex-1">
+            <article className="max-w-4xl mx-auto print-content">
           {/* Print button */}
           <div className="flex justify-end mb-6 print:hidden">
             <Button variant="outline" onClick={handlePrint} className="gap-2">
@@ -343,6 +353,15 @@ const FamilySupportGuide = () => {
           </div>
         </article>
       </main>
+
+          {/* Right Sidebar Ad - Desktop Only */}
+          <aside className="hidden xl:block w-[160px] flex-shrink-0 no-print">
+            <div className="sticky top-24 space-y-6">
+              <AdSpace size="sidebar" />
+            </div>
+          </aside>
+        </div>
+      </div>
       <Footer />
     </div>
   );
