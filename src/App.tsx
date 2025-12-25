@@ -14,6 +14,7 @@ import HelpingOrEnabling from "./pages/HelpingOrEnabling";
 import ProfessionalGuidanceSigns from "./pages/ProfessionalGuidanceSigns";
 import WhyFamiliesNeedSupport from "./pages/WhyFamiliesNeedSupport";
 import GroundingReminder from "./pages/GroundingReminder";
+import FamilySystemNotes from "./pages/FamilySystemNotes";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/professional-guidance-signs" element={<ProfessionalGuidanceSigns />} />
           <Route path="/why-families-need-support" element={<WhyFamiliesNeedSupport />} />
           <Route path="/grounding-reminder" element={<GroundingReminder />} />
+          <Route path="/family-system-notes" element={<FamilySystemNotes />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
