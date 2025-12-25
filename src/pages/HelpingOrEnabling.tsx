@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
-import { ArrowLeft, ArrowRight, RotateCcw, CheckCircle, AlertTriangle, HelpCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, RotateCcw, CheckCircle, AlertTriangle, HelpCircle, Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
@@ -10,6 +10,10 @@ import { Textarea } from "@/components/ui/textarea";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Link } from "react-router-dom";
+
+const handlePrint = () => {
+  window.print();
+};
 
 type Step = "intro" | 1 | 2 | 3 | 4 | 5 | "5b" | 6 | 7 | 8 | "result";
 
@@ -521,7 +525,13 @@ const HelpingOrEnabling = () => {
 
               {/* RESULT SCREENS */}
               {currentStep === "result" && result && (
-                <div className="space-y-8 animate-fade-in">
+                <div className="space-y-8 animate-fade-in print-content">
+                  {/* Print header - only visible when printing */}
+                  <div className="hidden print:block print-header">
+                    <h1 className="text-2xl font-bold mb-2">Helping or Enabling?</h1>
+                    <p className="text-sm">Decision Tool Assessment Results</p>
+                    <p className="text-sm mt-2">Action evaluated: "{answers.action}"</p>
+                  </div>
                   {result === "helping" && (
                     <>
                       <div className="text-center">
@@ -664,8 +674,12 @@ const HelpingOrEnabling = () => {
                     />
                   </div>
 
-                  {/* Restart button */}
-                  <div className="text-center pt-4">
+                  {/* Print and Restart buttons */}
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 no-print">
+                    <Button variant="outline" onClick={handlePrint} className="gap-2">
+                      <Printer className="w-4 h-4" />
+                      Print Results
+                    </Button>
                     <Button variant="outline" onClick={handleRestart}>
                       <RotateCcw className="w-4 h-4 mr-2" />
                       Start Over with a New Situation

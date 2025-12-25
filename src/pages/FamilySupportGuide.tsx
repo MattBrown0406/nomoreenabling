@@ -1,8 +1,14 @@
 import { Helmet } from "react-helmet";
+import { Printer } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 const FamilySupportGuide = () => {
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet>
@@ -14,9 +20,17 @@ const FamilySupportGuide = () => {
       </Helmet>
       <Header />
       <main className="flex-1">
-        <article className="container mx-auto px-4 py-12 max-w-4xl">
-          <header className="mb-12 text-center">
-            <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6">
+        <article className="container mx-auto px-4 py-12 max-w-4xl print-content">
+          {/* Print button */}
+          <div className="flex justify-end mb-6 print:hidden">
+            <Button variant="outline" onClick={handlePrint} className="gap-2">
+              <Printer className="w-4 h-4" />
+              Print Guide
+            </Button>
+          </div>
+
+          <header className="mb-12 text-center print-header">
+            <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6 print:hidden">
               Family Support Guide
             </span>
             <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">
