@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import logo from "@/assets/logo.jpg";
 
 const Header = () => {
@@ -13,6 +19,14 @@ const Header = () => {
     { name: "Home", href: "/" },
     { name: "Articles", href: "/articles" },
     { name: "About", href: "/about" },
+  ];
+
+  const familyResources = [
+    { name: "Enabling", href: "/category/enabling" },
+    { name: "Boundaries", href: "/category/boundaries" },
+    { name: "Codependency", href: "/category/codependency" },
+    { name: "Family Dynamics", href: "/category/family-dynamics" },
+    { name: "Recovery", href: "/category/recovery" },
   ];
 
   const scrollToNewsletter = () => {
@@ -45,6 +59,27 @@ const Header = () => {
                 {link.name}
               </Link>
             ))}
+            
+            {/* Family Education Resources Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium">
+                Family Education Resources
+                <ChevronDown size={16} />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-background border border-border shadow-lg z-50">
+                {familyResources.map((resource) => (
+                  <DropdownMenuItem key={resource.name} asChild>
+                    <Link
+                      to={resource.href}
+                      className="cursor-pointer"
+                    >
+                      {resource.name}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <a
               href="https://interventiononcall.com/live-family-friends-zoom/"
               target="_blank"
@@ -52,12 +87,6 @@ const Header = () => {
               className="text-primary hover:text-primary/80 transition-colors duration-200 font-medium"
             >
               Free Family Support Meetings
-            </a>
-            <a
-              href="mailto:matt@nomoreenabling.com"
-              className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
-            >
-              Contact
             </a>
           </nav>
 
@@ -101,13 +130,16 @@ const Header = () => {
               >
                 Free Family Support Meetings
               </a>
-              <a
-                href="mailto:matt@nomoreenabling.com"
-                className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium py-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Contact
-              </a>
+              <div className="py-2">
+                <p className="text-muted-foreground font-medium mb-2">Family Education Resources</p>
+                <div className="flex flex-col gap-2 pl-4">
+                  <Link to="/category/enabling" className="text-muted-foreground hover:text-foreground transition-colors" onClick={() => setIsMenuOpen(false)}>Enabling</Link>
+                  <Link to="/category/boundaries" className="text-muted-foreground hover:text-foreground transition-colors" onClick={() => setIsMenuOpen(false)}>Boundaries</Link>
+                  <Link to="/category/codependency" className="text-muted-foreground hover:text-foreground transition-colors" onClick={() => setIsMenuOpen(false)}>Codependency</Link>
+                  <Link to="/category/family-dynamics" className="text-muted-foreground hover:text-foreground transition-colors" onClick={() => setIsMenuOpen(false)}>Family Dynamics</Link>
+                  <Link to="/category/recovery" className="text-muted-foreground hover:text-foreground transition-colors" onClick={() => setIsMenuOpen(false)}>Recovery</Link>
+                </div>
+              </div>
               <Button variant="hero" size="default" className="mt-2" onClick={scrollToNewsletter}>
                 Subscribe
               </Button>
