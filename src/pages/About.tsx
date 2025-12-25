@@ -28,8 +28,8 @@ const About = () => {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
-              <h2 className="font-serif text-3xl font-bold text-foreground mb-6">
-                About No More Enabling
+              <h2 className="font-serif text-3xl font-bold text-foreground mb-6 text-center">
+                Our Mission
               </h2>
               <div className="prose prose-lg text-muted-foreground space-y-4">
                 <p>
