@@ -173,7 +173,7 @@ const SelfAssessment = () => {
     return (
       <section className="pt-16 pb-4 bg-primary/10">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <div className="bg-card px-6 py-4 rounded-xl shadow-lg border-4 border-foreground/40 ring-1 ring-foreground/20 mb-4">
               <p className="text-foreground leading-relaxed">
                 <span className="font-semibold">Codependency</span>, in the context of addiction, is when your life becomes centered around the addicted person to the point that you stop taking care of yourself and start managing their life instead of your own. It often feels like "helping" or "loving," but it actually keeps you exhausted, anxious, and stuck while protecting your loved one from the real consequences of their behavior.
@@ -249,7 +249,7 @@ const SelfAssessment = () => {
     return (
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <Card className="border-0 shadow-lg">
               <CardContent className="p-8 md:p-12">
                 <div className="text-center mb-8">
@@ -315,7 +315,7 @@ const SelfAssessment = () => {
   return (
     <section className="py-16 bg-primary/10">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto bg-card p-6 md:p-10 rounded-xl shadow-lg border-4 border-foreground/40 ring-1 ring-foreground/20">
+        <div className="max-w-5xl mx-auto bg-card p-6 md:p-10 rounded-xl shadow-lg border-4 border-foreground/40 ring-1 ring-foreground/20">
           {/* Progress Bar */}
           <div className="mb-8">
             <div className="flex justify-between text-sm text-muted-foreground mb-2">
