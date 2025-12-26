@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import CrisisResourcesBanner from "@/components/home/CrisisResourcesBanner";
 import HeroSection from "@/components/home/HeroSection";
 import SelfAssessment from "@/components/home/SelfAssessment";
 import AddictionAssessment from "@/components/home/AddictionAssessment";
@@ -67,6 +68,7 @@ const Index = () => {
 
       <div className="min-h-screen flex flex-col">
         <Header />
+        <CrisisResourcesBanner />
 
         <main className="flex-grow">
           <HeroSection />
