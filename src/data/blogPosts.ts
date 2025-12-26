@@ -1,3 +1,4 @@
+import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
 import lettingGoControlImage from "@/assets/letting-go-control-abandonment.jpg";
 import keepingPeaceAddictionImage from "@/assets/keeping-peace-addiction.jpg";
 import peacekeepingSelfSacrificeImage from "@/assets/peacekeeping-self-sacrifice.jpg";
@@ -37,6 +38,44 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "32",
+    title: "Alcoholism and the Slow Disappearance of Emotional Safety at Home",
+    excerpt: "Alcoholism rarely announces itself by destroying everything at once. More often, it changes the emotional climate of a household so gradually that families adapt without realizing how much has been lost.",
+    category: "Addiction",
+    categories: ["Addiction", "Relationships", "Family Dynamics", "Mental Health"],
+    readTime: "5 min read",
+    date: "Dec 26, 2025",
+    image: alcoholismEmotionalSafetyImage,
+    slug: "alcoholism-emotional-safety-home",
+    metaTitle: "Alcoholism and the Slow Disappearance of Emotional Safety at Home | No More Enabling",
+    metaDescription: "Alcoholism changes the emotional climate of a household gradually. Learn how emotional safety erodes and why naming the loss is the first step toward reclaiming it.",
+    content: `Alcoholism rarely announces itself by destroying everything at once. More often, it changes the emotional climate of a household so gradually that families adapt without realizing how much has been lost. The house is still standing. Life is still moving. Yet something essential feels missing.
+
+Emotional safety is one of the first casualties. This safety is not about avoiding conflict entirely. It is about knowing that conversations can happen without fear of volatility, withdrawal, or ridicule. In homes affected by alcoholism, this safety often erodes quietly.
+
+**Alcohol Alters Emotional Regulation**
+
+Alcohol alters emotional regulation. Over time, it narrows tolerance for discomfort and amplifies irritability. Small frustrations provoke strong reactions. Serious conversations are deflected, minimized, or met with defensiveness. Families begin choosing silence over honesty because silence feels safer.
+
+Partners may feel unseen or dismissed. Children may sense tension they cannot name. Even during good moments, there is often an unspoken awareness that things could shift quickly. This unpredictability teaches family members to stay guarded.
+
+**The Struggle to Name the Problem**
+
+Because alcohol use is socially accepted, families often struggle to name the problem. They may focus on personality, stress, or circumstance instead. They wonder if they are overreacting or being unfair. The absence of obvious consequences makes it harder to trust their instincts.
+
+Over time, relationships become more transactional. Communication centers on logistics rather than connection. Emotional needs are postponed indefinitely. Families may function well on the outside while feeling increasingly disconnected within.
+
+**Long-Term Consequences**
+
+The loss of emotional safety has long-term consequences. Anxiety becomes chronic. Trust weakens. Intimacy fades. Family members may stop bringing their full selves into the relationship, believing it is safer to stay small.
+
+**Naming What Has Been Lost**
+
+Acknowledging this loss is painful, but necessary. Emotional safety is not a luxury. It is a foundation. When alcoholism consistently undermines it, the impact is real—even if no one is willing to call it a crisis.
+
+Families are allowed to want more than coexistence. They are allowed to want presence, accountability, and emotional reliability. Naming what has been lost is often the first step toward reclaiming it.`
+  },
   {
     id: "31",
     title: "Why Letting Go of Control Feels Like Abandonment—and Why It Isn't",
