@@ -20,7 +20,7 @@ const FreedomInterventionsBanner = ({ size = "sidebar" }: FreedomInterventionsBa
           <img
             src={freedomLogo}
             alt="Freedom Interventions"
-            className="h-20 w-auto rounded-lg border-2 border-white/20"
+            className="h-28 w-auto rounded-lg border-2 border-white/20"
           />
           <div className="flex-1">
             <h3 className="text-white font-serif text-xl font-bold mb-1">
@@ -50,11 +50,11 @@ const FreedomInterventionsBanner = ({ size = "sidebar" }: FreedomInterventionsBa
     >
       <div className="p-4">
         {/* Logo */}
-        <div className="flex justify-center mb-3">
+        <div className="flex justify-center mb-4">
           <img
             src={freedomLogo}
             alt="Freedom Interventions"
-            className="h-16 w-auto rounded-lg border-2 border-white/20"
+            className="h-24 w-auto rounded-lg border-2 border-white/20 shadow-lg"
           />
         </div>
 

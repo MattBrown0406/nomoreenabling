@@ -11,11 +11,11 @@ const SoberHelplineBanner = () => {
     >
       <div className="p-4">
         {/* Logo */}
-        <div className="flex justify-center mb-3">
+        <div className="flex justify-center mb-4">
           <img
             src={soberHelplineLogo}
             alt="Sober Helpline"
-            className="h-14 w-auto"
+            className="h-20 w-auto drop-shadow-md"
           />
         </div>
 

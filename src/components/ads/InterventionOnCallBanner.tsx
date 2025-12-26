@@ -11,11 +11,11 @@ const InterventionOnCallBanner = () => {
     >
       <div className="p-4">
         {/* Logo */}
-        <div className="flex justify-center mb-3">
+        <div className="flex justify-center mb-4">
           <img
             src={interventionOnCallLogo}
             alt="Intervention On Call"
-            className="h-14 w-auto rounded"
+            className="h-20 w-auto rounded shadow-md"
           />
         </div>
 
