@@ -174,6 +174,11 @@ const SelfAssessment = () => {
       <section className="pt-16 pb-4 bg-primary/10">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
+            <div className="bg-card px-6 py-4 rounded-xl shadow-lg border-4 border-foreground/40 ring-1 ring-foreground/20 mb-4">
+              <p className="text-foreground leading-relaxed">
+                <span className="font-semibold">Codependency</span>, in the context of addiction, is when your life becomes centered around the addicted person to the point that you stop taking care of yourself and start managing their life instead of your own. It often feels like "helping" or "loving," but it actually keeps you exhausted, anxious, and stuck while protecting your loved one from the real consequences of their behavior.
+              </p>
+            </div>
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="self-assessment" className="border-0">
                 <AccordionTrigger className="bg-card px-6 py-4 rounded-xl shadow-lg border-4 border-foreground/40 ring-1 ring-foreground/20 hover:no-underline">
