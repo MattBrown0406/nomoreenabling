@@ -32,6 +32,9 @@ const CrisisResourcesBanner = () => {
             </span>
           </div>
         </div>
+        <p className="text-center text-sm text-muted-foreground mt-2">
+          This site is for families and loved ones of people struggling with addiction who want to stop enabling and start healing.
+        </p>
       </div>
     </div>
   );
