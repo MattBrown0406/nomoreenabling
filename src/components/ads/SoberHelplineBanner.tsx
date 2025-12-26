@@ -1,4 +1,5 @@
 import soberHelplineLogo from "@/assets/sober-helpline-logo.png";
+import { Phone, Users, BookOpen, Video } from "lucide-react";
 
 const SoberHelplineBanner = () => {
   return (
@@ -6,41 +7,82 @@ const SoberHelplineBanner = () => {
       href="https://soberhelpline.com"
       target="_blank"
       rel="noopener noreferrer"
-      className="block bg-card rounded-xl p-6 shadow-card hover:shadow-lg transition-shadow border border-border/50"
+      className="block bg-gradient-to-br from-[#f5e6d3] to-[#e8d4bc] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 border border-[#c9a96e]/30"
     >
-      <div className="flex flex-col items-center text-center space-y-4">
-        <img 
-          src={soberHelplineLogo} 
-          alt="Sober Helpline - Hope. Help. Recovery." 
-          className="w-full max-w-xs h-auto border-2 border-black rounded"
-        />
-        
-        <p className="text-sm font-medium text-foreground">
-          Support for Families Facing Addiction
+      <div className="p-4">
+        {/* Logo */}
+        <div className="flex justify-center mb-3">
+          <img
+            src={soberHelplineLogo}
+            alt="Sober Helpline"
+            className="h-14 w-auto"
+          />
+        </div>
+
+        {/* Headline */}
+        <h3 className="text-[#2d5a3d] text-center font-serif text-lg font-bold mb-1">
+          Empowering Your
+        </h3>
+        <p className="text-[#c9a96e] text-center font-serif text-xl font-bold mb-3">
+          Recovery Journey
         </p>
-        
-        <ul className="text-sm text-muted-foreground space-y-2 text-left w-full">
-          <li className="flex items-start gap-2">
-            <span className="text-primary mt-0.5">✓</span>
-            <span>Find ethical, vetted treatment providers</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-primary mt-0.5">✓</span>
-            <span>Access educational videos and trusted resources</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-primary mt-0.5">✓</span>
-            <span>Book Zoom calls with experts to create a personalized treatment map</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-primary mt-0.5">✓</span>
-            <span>Join a supportive community of families navigating addiction together</span>
-          </li>
-        </ul>
-        
-        <span className="inline-block bg-primary text-primary-foreground text-sm font-medium px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
-          Learn More
-        </span>
+
+        {/* Description */}
+        <p className="text-[#4a4a4a] text-center text-sm leading-relaxed mb-4">
+          Find ethical, proven treatment and recovery resources for your family.
+        </p>
+
+        {/* Features Grid */}
+        <div className="grid grid-cols-2 gap-2 mb-4">
+          <div className="bg-white/60 rounded-lg p-2 text-center">
+            <Users className="w-4 h-4 mx-auto mb-1 text-[#2d5a3d]" />
+            <p className="text-[#4a4a4a] text-[10px] leading-tight">Family Discussion Forum</p>
+          </div>
+          <div className="bg-white/60 rounded-lg p-2 text-center">
+            <BookOpen className="w-4 h-4 mx-auto mb-1 text-[#2d5a3d]" />
+            <p className="text-[#4a4a4a] text-[10px] leading-tight">Free Assessments</p>
+          </div>
+          <div className="bg-white/60 rounded-lg p-2 text-center">
+            <Video className="w-4 h-4 mx-auto mb-1 text-[#2d5a3d]" />
+            <p className="text-[#4a4a4a] text-[10px] leading-tight">60+ Videos & Guides</p>
+          </div>
+          <div className="bg-white/60 rounded-lg p-2 text-center">
+            <Phone className="w-4 h-4 mx-auto mb-1 text-[#2d5a3d]" />
+            <p className="text-[#4a4a4a] text-[10px] leading-tight">Expert Zoom Calls</p>
+          </div>
+        </div>
+
+        {/* Services List */}
+        <div className="space-y-1.5 mb-4">
+          <div className="flex items-center gap-2 text-[#4a4a4a] text-xs">
+            <span className="w-1.5 h-1.5 bg-[#2d5a3d] rounded-full flex-shrink-0"></span>
+            <span>Vetted Treatment Providers</span>
+          </div>
+          <div className="flex items-center gap-2 text-[#4a4a4a] text-xs">
+            <span className="w-1.5 h-1.5 bg-[#2d5a3d] rounded-full flex-shrink-0"></span>
+            <span>DSM-5 Based Assessments</span>
+          </div>
+          <div className="flex items-center gap-2 text-[#4a4a4a] text-xs">
+            <span className="w-1.5 h-1.5 bg-[#2d5a3d] rounded-full flex-shrink-0"></span>
+            <span>Guided Meditations</span>
+          </div>
+        </div>
+
+        {/* CTA Button */}
+        <div className="bg-[#2d5a3d] hover:bg-[#234a31] text-white font-bold text-center py-2.5 px-4 rounded-lg transition-colors text-sm mb-3">
+          Explore Free Resources
+        </div>
+
+        {/* Phone */}
+        <div className="flex items-center justify-center gap-2 text-[#4a4a4a] text-xs">
+          <Phone className="w-3 h-3" />
+          <span>(541) 241-5886</span>
+        </div>
+
+        {/* Trust note */}
+        <p className="text-[#6b6b6b] text-center text-[10px] mt-2">
+          No commissions • Ethical providers only
+        </p>
       </div>
     </a>
   );
