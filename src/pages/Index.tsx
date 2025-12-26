@@ -10,6 +10,7 @@ import NewsletterSection from "@/components/home/NewsletterSection";
 import BlogCard from "@/components/blog/BlogCard";
 import Sidebar from "@/components/home/Sidebar";
 import AdSpace from "@/components/ads/AdSpace";
+import PartyWreckersBanner from "@/components/ads/PartyWreckersBanner";
 import { Button } from "@/components/ui/button";
 import { blogPosts } from "@/data/blogPosts";
 
@@ -79,9 +80,9 @@ const Index = () => {
           {/* Addiction Assessment */}
           <AddictionAssessment />
 
-          {/* Banner Ad */}
+          {/* Banner Ad - Party Wreckers Podcast */}
           <div className="container mx-auto px-4 py-6">
-            <AdSpace size="leaderboard" />
+            <PartyWreckersBanner size="leaderboard" />
           </div>
 
           {/* Main Content with Sidebar */}
