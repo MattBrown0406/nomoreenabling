@@ -267,7 +267,7 @@ const AddictionAssessment = () => {
     return (
       <section className="pt-4 pb-16 bg-primary/10">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="addiction-assessment" className="border-0">
                 <AccordionTrigger className="bg-card px-6 py-4 rounded-xl shadow-lg border-4 border-foreground/40 ring-1 ring-foreground/20 hover:no-underline">
@@ -347,7 +347,7 @@ const AddictionAssessment = () => {
     return (
       <section className="py-16 bg-primary/10">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto bg-card p-6 md:p-10 rounded-xl shadow-lg border-4 border-foreground/40 ring-1 ring-foreground/20">
+          <div className="max-w-5xl mx-auto bg-card p-6 md:p-10 rounded-xl shadow-lg border-4 border-foreground/40 ring-1 ring-foreground/20">
             <div className="text-center mb-8">
               <h2 className="font-serif text-3xl font-bold text-foreground mb-2">
                 Assessment Results
@@ -442,7 +442,7 @@ const AddictionAssessment = () => {
   return (
     <section className="py-16 bg-primary/10">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto bg-card p-6 md:p-10 rounded-xl shadow-lg border-4 border-foreground/40 ring-1 ring-foreground/20">
+        <div className="max-w-5xl mx-auto bg-card p-6 md:p-10 rounded-xl shadow-lg border-4 border-foreground/40 ring-1 ring-foreground/20">
           {/* Progress Bar */}
           <div className="mb-8">
             <div className="flex justify-between text-sm text-muted-foreground mb-2">
