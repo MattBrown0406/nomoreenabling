@@ -1,3 +1,4 @@
+import addictionFamilyCommunicationImage from "@/assets/addiction-family-communication.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
 import lettingGoControlImage from "@/assets/letting-go-control-abandonment.jpg";
@@ -39,6 +40,42 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "34",
+    title: "How Addiction Reshapes Family Communication Without Anyone Noticing",
+    excerpt: "One of the least discussed impacts of addiction is how it quietly rewires communication within families. Conversations become strategic rather than authentic.",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Communication", "Codependency", "Healing"],
+    readTime: "4 min read",
+    date: "Dec 28, 2025",
+    image: addictionFamilyCommunicationImage,
+    slug: "addiction-reshapes-family-communication",
+    metaTitle: "How Addiction Reshapes Family Communication Without Anyone Noticing | No More Enabling",
+    metaDescription: "Discover how addiction quietly rewires family communication patterns. Learn to restore authentic, honest conversations and reclaim emotional health.",
+    content: `One of the least discussed impacts of addiction is how it quietly rewires communication within families. Conversations become strategic rather than authentic. Words are chosen carefully. Topics are avoided. Silence becomes a tool.
+
+Families learn what can be said and what can't. They time conversations around moods. They soften truths to avoid defensiveness. Over time, honesty feels risky, and avoidance feels safer.
+
+**The Gradual Shift**
+
+This shift doesn't happen overnight. It develops gradually as families adapt to unpredictability. When reactions are inconsistent or volatile, people adjust. They become less direct. They prioritize peace over clarity.
+
+The cost of this adaptation is intimacy. Relationships become shallow, transactional, or tense. Family members may feel lonely even when they are together.
+
+**Impact on Children**
+
+Children often internalize these communication patterns. They learn to suppress needs, manage emotions, or read between the lines rather than speak openly. These habits can follow them into adulthood.
+
+**Restoring Authentic Communication**
+
+Restoring healthy communication requires more than better wording. It requires changing the conditions under which conversations happen. When families stop cushioning reality and start tolerating discomfort, honesty becomes possible again.
+
+This doesn't mean constant confrontation. It means allowing truth to exist without immediately fixing or minimizing it.
+
+**Moving Forward**
+
+Families deserve relationships that are real, not rehearsed. Reclaiming authentic communication is often one of the first steps toward restoring emotional health—regardless of whether the addicted person chooses change.`
+  },
   {
     id: "33",
     title: "How Families Slowly Lose Themselves While Trying to Help",
