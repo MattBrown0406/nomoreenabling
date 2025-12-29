@@ -18,22 +18,14 @@ const EagleCreekRanchBanner = () => {
       </div>
 
       <div className="p-5 -mt-8 relative">
-        {/* Logo */}
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-16 h-16 rounded-lg bg-white p-2 flex items-center justify-center shadow-md">
+        {/* Logo - centered and prominent */}
+        <div className="flex flex-col items-center mb-4">
+          <div className="w-full max-w-[200px] mb-2">
             <img
               src={eagleCreekLogo}
               alt="Eagle Creek Ranch Recovery"
-              className="w-full h-full object-contain"
+              className="w-full h-auto object-contain"
             />
-          </div>
-          <div>
-            <h3 className="text-white font-bold text-lg leading-tight">
-              Eagle Creek Ranch
-            </h3>
-            <p className="text-amber-300/80 text-xs font-medium">
-              Recovery Center
-            </p>
           </div>
         </div>
 
