@@ -50,7 +50,7 @@ const EagleCreekRanchBanner = () => {
           </div>
           <div className="flex items-center gap-1 text-white/60 text-xs bg-white/5 px-2 py-1 rounded-full">
             <Mountain className="w-3 h-3" />
-            <span>Inpatient & Outpatient</span>
+            <span>Detox & Residential</span>
           </div>
         </div>
 
