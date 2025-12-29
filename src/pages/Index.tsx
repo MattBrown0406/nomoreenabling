@@ -11,6 +11,7 @@ import BlogCard from "@/components/blog/BlogCard";
 import Sidebar from "@/components/home/Sidebar";
 import AdSpace from "@/components/ads/AdSpace";
 import PartyWreckersBanner from "@/components/ads/PartyWreckersBanner";
+import BetterHelpBanner from "@/components/ads/BetterHelpBanner";
 import { Button } from "@/components/ui/button";
 import { blogPosts } from "@/data/blogPosts";
 
@@ -122,8 +123,8 @@ const Index = () => {
                   <p className="text-muted-foreground">No articles found in this category.</p>
                 )}
 
-                {/* Inline Ad */}
-                <AdSpace size="inline" />
+                {/* Inline Ad - BetterHelp */}
+                <BetterHelpBanner />
 
                 {/* Recent Posts Grid */}
                 <div>
