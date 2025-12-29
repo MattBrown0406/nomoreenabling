@@ -57,7 +57,7 @@ const EagleCreekRanchBanner = () => {
         {/* Phone Number */}
         <div className="flex items-center gap-2 text-amber-300 text-sm font-semibold mb-3">
           <Phone className="w-4 h-4" />
-          <span>(986) 210-9864</span>
+          <span>(208) 907-3738</span>
         </div>
 
         {/* CTA */}
