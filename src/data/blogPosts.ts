@@ -24,6 +24,7 @@ import familyTraumaAfterAddictionImage from "@/assets/family-trauma-after-addict
 import addictionDepressionFamilyImage from "@/assets/addiction-depression-family.jpg";
 import sobrietyFeelsWorseImage from "@/assets/sobriety-feels-worse-before-better.jpg";
 import helpingTurnsOverfunctioningImage from "@/assets/helping-turns-overfunctioning.jpg";
+import addictionChangesCommunicationImage from "@/assets/addiction-changes-communication.jpg";
 
 export interface BlogPost {
   id: string;
@@ -41,6 +42,42 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "36",
+    title: "How Addiction Changes Family Communication Without Anyone Intending It To",
+    excerpt: "Addiction alters communication patterns long before anyone names it. Families adapt their language to avoid conflict. They soften truths. They avoid topics. Silence becomes safer than honesty.",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Communication", "Healing", "Relationships"],
+    readTime: "4 min read",
+    date: "Dec 31, 2025",
+    image: addictionChangesCommunicationImage,
+    slug: "addiction-changes-family-communication",
+    metaTitle: "How Addiction Changes Family Communication Without Anyone Intending It To | No More Enabling",
+    metaDescription: "Discover how addiction silently alters family communication patterns. Learn how restoring honesty and authenticity can be the first step toward healing.",
+    content: `Addiction alters communication patterns long before anyone names it. Families adapt their language to avoid conflict. They soften truths. They avoid topics. Silence becomes safer than honesty.
+
+These changes are survival strategies. When reactions are unpredictable, people learn to speak carefully. Over time, authenticity gives way to strategy.
+
+**Communication Becomes Transactional**
+
+Conversations become transactional. Family members discuss logistics but avoid emotions. Problems are hinted at but not addressed. Everyone senses tension, but no one names it.
+
+This erosion of communication leads to loneliness. People feel unseen even when they're together. Misunderstandings multiply. Resentment builds quietly.
+
+**The Impact on Children**
+
+Children often internalize these patterns. They learn to suppress needs or read between the lines. As adults, they may struggle with direct communication or boundary‑setting.
+
+**Restoring Healthy Communication**
+
+Restoring healthy communication requires more than better phrasing. It requires changing the environment that made honesty feel unsafe. When families stop managing reactions and start allowing truth to exist, conversations begin to shift.
+
+Honesty does not guarantee immediate change, but it restores dignity. Families deserve relationships where they don't have to rehearse every word.
+
+**The First Step Toward Healing**
+
+Reclaiming communication is often one of the first steps families take toward healing—regardless of whether the addicted person chooses recovery right away.`
+  },
   {
     id: "35",
     title: "How Helping Slowly Turns Into Overfunctioning—and How Families Find Their Way Back",
