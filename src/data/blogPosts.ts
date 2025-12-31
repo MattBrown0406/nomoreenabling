@@ -23,6 +23,7 @@ import consequencesVsLecturesImage from "@/assets/consequences-vs-lectures-addic
 import familyTraumaAfterAddictionImage from "@/assets/family-trauma-after-addiction.jpg";
 import addictionDepressionFamilyImage from "@/assets/addiction-depression-family.jpg";
 import sobrietyFeelsWorseImage from "@/assets/sobriety-feels-worse-before-better.jpg";
+import helpingTurnsOverfunctioningImage from "@/assets/helping-turns-overfunctioning.jpg";
 
 export interface BlogPost {
   id: string;
@@ -40,6 +41,46 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "35",
+    title: "How Helping Slowly Turns Into Overfunctioning—and How Families Find Their Way Back",
+    excerpt: "Most families don't recognize enabling as it's happening. It doesn't feel like sabotage. It feels like responsibility. Each action makes sense in isolation. Together, they create a system where addiction is buffered from consequence.",
+    category: "Codependency",
+    categories: ["Codependency", "Enabling", "Family Dynamics", "Boundaries", "Healing"],
+    readTime: "4 min read",
+    date: "Dec 31, 2025",
+    image: helpingTurnsOverfunctioningImage,
+    slug: "helping-turns-into-overfunctioning",
+    metaTitle: "How Helping Slowly Turns Into Overfunctioning—and How Families Find Their Way Back | No More Enabling",
+    metaDescription: "Discover how enabling develops gradually from care into obligation. Learn how families can restore balance, regain identity, and support recovery without overfunctioning.",
+    content: `Most families don't recognize enabling as it's happening. It doesn't feel like sabotage. It feels like responsibility. Someone misses work, so the family covers. Someone makes a mistake, so the family smooths it over. Someone is struggling emotionally, so the family absorbs the impact.
+
+Each action makes sense in isolation. Together, they create a system where addiction is buffered from consequence and families are slowly depleted.
+
+**How Overfunctioning Develops**
+
+Overfunctioning develops gradually. It begins as care and turns into obligation. Family members stop asking whether they should intervene and start assuming they must. Their own needs become secondary. Crisis management becomes the organizing principle of daily life.
+
+This pattern is reinforced by guilt. Families worry that stepping back will cause harm. They fear being blamed if things get worse. Addiction exploits this fear, framing boundaries as abandonment and responsibility as cruelty.
+
+What families rarely hear is that enabling is not a moral failure. It is a survival response that has outlived its usefulness.
+
+**The Cost of Overfunctioning**
+
+Over time, overfunctioning distorts relationships. Parents stop parenting and start managing. Partners stop relating and start supervising. Siblings stop being siblings and start mediating. Everyone loses something in the process.
+
+**Finding the Way Back**
+
+Breaking these patterns is not about withdrawing love. It is about restoring balance. It means allowing adults to manage adult responsibilities. It means letting discomfort exist without immediately rushing to fix it. It means tolerating uncertainty long enough for clarity to emerge.
+
+Families often discover that when they stop overfunctioning, their own anxiety decreases. They regain time, energy, and identity. They remember who they were before addiction consumed the system.
+
+**You Can Care Without Carrying**
+
+No More Enabling exists to help families disengage without shame. You can care deeply without carrying everything. You can support recovery without financing or sanitizing addiction.
+
+Stepping out of enabling is not abandonment. It is the moment families stop disappearing in the name of love.`
+  },
   {
     id: "34",
     title: "How Addiction Reshapes Family Communication Without Anyone Noticing",
