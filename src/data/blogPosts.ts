@@ -26,6 +26,7 @@ import sobrietyFeelsWorseImage from "@/assets/sobriety-feels-worse-before-better
 import helpingTurnsOverfunctioningImage from "@/assets/helping-turns-overfunctioning.jpg";
 import addictionChangesCommunicationImage from "@/assets/addiction-changes-communication.jpg";
 import emotionalDistanceFamiliesImage from "@/assets/emotional-distance-families-help.jpg";
+import codependencyEnduranceLoveImage from "@/assets/codependency-endurance-love.jpg";
 
 export interface BlogPost {
   id: string;
@@ -43,6 +44,52 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "38",
+    title: "Why Families Confuse Endurance With Love—and How Codependency Keeps Them Stuck",
+    excerpt: "Most families struggling with codependency would never describe themselves as controlling or enabling. They describe themselves as tired. Overwhelmed. Responsible. They are the ones holding things together while quietly falling apart.",
+    category: "Codependency",
+    categories: ["Codependency", "Family Dynamics", "Enabling", "Healing"],
+    readTime: "5 min read",
+    date: "Jan 3, 2026",
+    image: codependencyEnduranceLoveImage,
+    slug: "families-confuse-endurance-with-love-codependency",
+    metaTitle: "Why Families Confuse Endurance With Love—and How Codependency Keeps Them Stuck | No More Enabling",
+    metaDescription: "Discover why endurance is not the same as love and how codependency keeps families stuck in unhealthy patterns. Learn how to break free without shame.",
+    content: `Most families struggling with codependency would never describe themselves as controlling or enabling. They describe themselves as tired. Overwhelmed. Responsible. They are the ones holding things together while quietly falling apart.
+
+Codependency rarely begins as dysfunction. It begins as adaptation.
+
+**How Codependency Develops**
+
+Someone is struggling, so the family steps in. A crisis happens, so they fix it. Emotions run high, so they absorb them. Over time, helping becomes a full-time role, and family members stop asking whether what they're doing is sustainable.
+
+Endurance becomes the metric for love.
+
+**The Trap of Endurance**
+
+Families often believe that if they can just tolerate more, stay calmer, or give one more chance, things will eventually improve. What they don't see is how this endurance feeds the very patterns they're trying to escape.
+
+Addiction thrives when responsibility is shared unevenly. The more families manage, the less the addicted person has to. This imbalance becomes normalized. Everyone adapts around it.
+
+**Codependency Is Survival**
+
+Codependency is not about weakness. It is about survival in an unstable environment.
+
+The cost of this survival strategy is identity. Family members lose touch with their own needs, limits, and desires. Their lives shrink around the addiction. Anxiety becomes constant. Resentment builds quietly.
+
+**Breaking the Pattern**
+
+Breaking codependent patterns does not require cruelty. It requires clarity. It means allowing adults to manage adult responsibilities. It means tolerating discomfort without immediately fixing it. It means recognizing that protecting yourself is not the same as abandoning someone else.
+
+Families often fear that stepping back will cause collapse. In reality, stepping back often reveals what has been held together artificially for years.
+
+**Love Without Sacrifice**
+
+No More Enabling exists to help families disengage without shame. You can love someone deeply without carrying their consequences. You can care without controlling. You can stop sacrificing yourself in the name of hope.
+
+Endurance is not the same as love. And families deserve more than survival.`
+  },
   {
     id: "37",
     title: "Why Emotional Distance Often Increases Before Families Seek Help",
