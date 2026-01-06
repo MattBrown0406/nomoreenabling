@@ -28,6 +28,7 @@ import addictionChangesCommunicationImage from "@/assets/addiction-changes-commu
 import emotionalDistanceFamiliesImage from "@/assets/emotional-distance-families-help.jpg";
 import codependencyEnduranceLoveImage from "@/assets/codependency-endurance-love.jpg";
 import anxietyAddictionConversationsImage from "@/assets/anxiety-addiction-calm-conversations.jpg";
+import lettingGoAbandonmentImage from "@/assets/letting-go-control-abandonment.jpg";
 
 export interface BlogPost {
   id: string;
@@ -45,6 +46,50 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "40",
+    title: "Letting Go Without Abandoning: What Families Get Wrong About Enabling",
+    excerpt: "Families struggling with codependency often believe they face a cruel choice: keep helping and lose themselves, or let go and cause harm. This false binary keeps families trapped in cycles of guilt, exhaustion, and resentment.",
+    category: "Enabling",
+    categories: ["Enabling", "Codependency", "Family Dynamics", "Boundaries"],
+    readTime: "5 min read",
+    date: "Jan 6, 2026",
+    image: lettingGoAbandonmentImage,
+    slug: "letting-go-without-abandoning-enabling",
+    metaTitle: "Letting Go Without Abandoning: What Families Get Wrong About Enabling | No More Enabling",
+    metaDescription: "Learn the difference between enabling and healthy support. Discover how families can let go without abandoning their loved ones struggling with addiction.",
+    content: `Families struggling with codependency often believe they face a cruel choice: keep helping and lose themselves, or let go and cause harm. This false binary keeps families trapped in cycles of guilt, exhaustion, and resentment.
+
+Enabling doesn't begin as dysfunction. It begins as care.
+
+**How Enabling Develops**
+
+Someone misses work, so the family covers. Someone spirals emotionally, so the family absorbs it. Someone avoids responsibility, so the family compensates. Each action feels loving. Over time, however, love turns into obligation.
+
+What families get wrong is believing that helping always helps.
+
+**When Support Becomes Enabling**
+
+Enabling occurs when support consistently prevents someone from experiencing the impact of their choices. This delays accountability and shifts responsibility onto the family. Addiction thrives in this environment—not because families intend it, but because the system has become unbalanced.
+
+**What Letting Go Really Means**
+
+Letting go does not mean withdrawing love. It means withdrawing participation in patterns that harm everyone.
+
+Families often fear that if they stop enabling, things will fall apart. In reality, things may become uncomfortable—but discomfort is not damage. Sometimes discomfort is information that has been missing for years.
+
+**Intentional Disengagement**
+
+The key is intentional disengagement. This involves clarity about what you will and won't do, consistency in your responses, and support for yourself as you tolerate the anxiety that comes with change.
+
+Codependency is not a flaw. It is a survival response that has outlived its usefulness.
+
+**Finding Your Way Forward**
+
+No More Enabling exists to help families loosen their grip without cruelty or abandonment. Education helps families understand why letting go feels so hard and how to do it safely.
+
+You are allowed to care without carrying everything. Letting go in a healthy way doesn't harm your loved one—it gives everyone a chance to face reality.`
+  },
   {
     id: "39",
     title: "Anxiety and Addiction — Why Calm Conversations Rarely Stay Calm",
