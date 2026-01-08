@@ -30,6 +30,7 @@ import codependencyEnduranceLoveImage from "@/assets/codependency-endurance-love
 import anxietyAddictionConversationsImage from "@/assets/anxiety-addiction-calm-conversations.jpg";
 import lettingGoAbandonmentImage from "@/assets/letting-go-control-abandonment.jpg";
 import lettingGoNotAbandonmentImage from "@/assets/letting-go-not-abandonment.jpg";
+import codependencyFearSurvivalImage from "@/assets/codependency-fear-survival.jpg";
 
 export interface BlogPost {
   id: string;
@@ -47,6 +48,46 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "42",
+    title: "Codependency Isn't About Control—It's About Fear and Survival",
+    excerpt: "Families struggling with codependency often bristle at the label. They don't see themselves as controlling or manipulative. They see themselves as responsible, loyal, and exhausted. And they're right.",
+    category: "Codependency",
+    categories: ["Codependency", "Family Dynamics", "Enabling", "Boundaries"],
+    readTime: "5 min read",
+    date: "Jan 8, 2026",
+    image: codependencyFearSurvivalImage,
+    slug: "codependency-fear-survival",
+    metaTitle: "Codependency Isn't About Control—It's About Fear and Survival | No More Enabling",
+    metaDescription: "Understand why codependency develops as a survival response to chaos. Learn how families can unwind fear-based patterns and set healthy boundaries.",
+    content: `Families struggling with codependency often bristle at the label. They don't see themselves as controlling or manipulative. They see themselves as responsible, loyal, and exhausted. And they're right.
+
+Codependency rarely begins as dysfunction. It begins as adaptation to chaos.
+
+**When Chaos Becomes Normal**
+
+When addiction enters a family, predictability disappears. Emotions swing. Responsibilities are dropped. Someone has to step in. Over time, family members become hyper-responsible—not because they want power, but because instability feels dangerous.
+
+Fear drives these patterns. Fear of loss. Fear of conflict. Fear of what might happen if no one intervenes. Helping becomes a reflex. Letting go feels reckless.
+
+**The Problem with Fear-Based Helping**
+
+The problem is that fear-based helping often keeps everyone stuck. The addicted person remains insulated from consequences while the family absorbs increasing stress. Resentment grows alongside guilt. Relationships become transactional.
+
+**What Letting Go Really Means**
+
+Letting go does not mean withdrawing love. It means withdrawing participation in patterns that harm everyone involved. This is one of the hardest shifts families make because anxiety often spikes before it settles.
+
+**Boundaries Are Not Punishments**
+
+Education helps families understand why codependency feels necessary and how to unwind it safely. Boundaries are not punishments. They are protective structures that allow everyone to return to appropriate roles.
+
+**Learning to Tolerate Discomfort**
+
+No More Enabling focuses on helping families disengage without cruelty or abandonment. Learning to tolerate discomfort without fixing it is a skill—and one that changes family systems profoundly.
+
+You are allowed to care deeply without carrying everything. Letting go in a healthy way does not harm your loved one. It gives everyone the opportunity to face reality with dignity and clarity.`
+  },
   {
     id: "41",
     title: "Letting Go Is Not Abandonment—It's How Families Stop Disappearing",
