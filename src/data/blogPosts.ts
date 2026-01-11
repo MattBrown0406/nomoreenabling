@@ -33,6 +33,7 @@ import lettingGoNotAbandonmentImage from "@/assets/letting-go-not-abandonment.jp
 import codependencyFearSurvivalImage from "@/assets/codependency-fear-survival.jpg";
 import lettingGoWithoutCollapseImage from "@/assets/letting-go-without-collapse.jpg";
 import guiltVsResponsibilityImage from "@/assets/guilt-vs-responsibility-families.jpg";
+import strongOneCodependencyImage from "@/assets/strong-one-codependency.jpg";
 
 export interface BlogPost {
   id: string;
@@ -50,6 +51,52 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "45",
+    title: "Why 'Being the Strong One' Often Turns Into Codependency",
+    excerpt: "In many families, one person becomes 'the strong one.' The fixer. The organizer. The emotional stabilizer. At first, this role feels necessary. Over time, being the strong one becomes a trap.",
+    category: "Codependency",
+    categories: ["Codependency", "Family Dynamics", "Enabling", "Self-Care"],
+    readTime: "4 min read",
+    date: "Jan 11, 2026",
+    image: strongOneCodependencyImage,
+    slug: "strong-one-codependency",
+    metaTitle: "Why Being the Strong One Often Turns Into Codependency | No More Enabling",
+    metaDescription: "Discover how being the family's 'strong one' can trap you in codependency. Learn how to release this role without abandoning care for your loved ones.",
+    content: `In many families, one person becomes "the strong one." The fixer. The organizer. The emotional stabilizer. At first, this role feels necessary. Someone has to keep things together.
+
+Over time, being the strong one becomes a trap.
+
+**When Strength Becomes a Prison**
+
+Families struggling with codependency often don't recognize it because the behavior is praised. Being reliable. Being loyal. Being self-sacrificing. These traits are celebrated — until they quietly erase the person carrying the load.
+
+The strong one absorbs stress, fixes problems, and prevents consequences. Not because they want control, but because instability feels unsafe. Slowly, responsibility shifts away from the addicted person and onto the family member least able to stop.
+
+**The Hidden Cost of Carrying Everything**
+
+Resentment builds alongside guilt. The strong one feels exhausted and invisible, yet terrified of stepping back. If they stop, everything might fall apart.
+
+**What Letting Go Really Means**
+
+Letting go does not mean becoming weak. It means becoming honest about what is sustainable.
+
+Codependency is not about personality flaws. It is about survival strategies that no longer serve the family. Education helps families see where strength has turned into self-erasure.
+
+**Finding Balance Again**
+
+No More Enabling exists to help families release roles that are harming them without abandoning care. Letting go restores balance. It allows responsibility to return where it belongs.
+
+**Permission to Rest**
+
+You are allowed to stop being the strong one.
+
+You are allowed to rest.
+
+You are allowed to let go without causing harm.
+
+That shift doesn't just help you — it helps the entire family system begin to heal.`
+  },
   {
     id: "44",
     title: "Why Families Confuse Guilt With Responsibility—and How That Keeps Them Stuck",
