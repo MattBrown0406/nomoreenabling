@@ -2,10 +2,17 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Mail, ArrowRight } from "lucide-react";
+import SEOHead from "@/components/seo/SEOHead";
 
 const About = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title="About Us"
+        description="No More Enabling is an educational and support resource for families affected by addiction, codependency, and enabling behaviors. Founded by Matt Brown, a professional interventionist with over 20 years of experience."
+        canonicalUrl="https://nomoreenabling.com/about"
+        keywords="about no more enabling, addiction support, family education, Matt Brown interventionist"
+      />
       <Header />
       
       <main className="flex-grow">

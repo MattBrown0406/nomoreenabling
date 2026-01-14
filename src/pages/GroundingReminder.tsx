@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Printer, Pause, Heart, Shield, Sun, Users, ArrowRight } from "lucide-react";
 import AdSpace from "@/components/ads/AdSpace";
+import SEOHead from "@/components/seo/SEOHead";
 
 const GroundingReminder = () => {
   const handlePrint = () => {
@@ -14,10 +14,12 @@ const GroundingReminder = () => {
 
   return (
     <>
-      <Helmet>
-        <title>A Grounding Reminder for Families | No More Enabling</title>
-        <meta name="description" content="When addiction creates urgency and fear, pause here. A grounding reminder that you are not required to solve everything today." />
-      </Helmet>
+      <SEOHead
+        title="A Grounding Reminder for Families"
+        description="When addiction creates urgency and fear, pause here. A grounding reminder that you are not required to solve everything today."
+        canonicalUrl="https://nomoreenabling.com/grounding-reminder"
+        keywords="family grounding, addiction stress, coping with addiction, family support, pause and reflect"
+      />
       
       <div className="min-h-screen bg-background print-content">
         <Header />

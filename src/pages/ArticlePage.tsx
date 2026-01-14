@@ -9,6 +9,9 @@ import EagleCreekRanchBanner from "@/components/ads/EagleCreekRanchBanner";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import SEOHead from "@/components/seo/SEOHead";
+import ArticleJsonLd from "@/components/seo/ArticleJsonLd";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
 const XIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -22,42 +25,22 @@ const ArticlePage = () => {
   const [copied, setCopied] = useState(false);
   const viewRecorded = useRef(false);
 
-  useEffect(() => {
-    if (article) {
-      document.title = `${article.title} | No More Enabling`;
-      
-      // Update Open Graph meta tags for social sharing
-      const url = window.location.href;
-      const imageUrl = article.image.startsWith('http') 
-        ? article.image 
-        : `${window.location.origin}${article.image}`;
-      
-      // Helper to set or create meta tag
-      const setMetaTag = (property: string, content: string, isName = false) => {
-        const attr = isName ? 'name' : 'property';
-        let meta = document.querySelector(`meta[${attr}="${property}"]`) as HTMLMetaElement;
-        if (!meta) {
-          meta = document.createElement('meta');
-          meta.setAttribute(attr, property);
-          document.head.appendChild(meta);
-        }
-        meta.setAttribute('content', content);
-      };
-      
-      // Open Graph tags
-      setMetaTag('og:title', article.title);
-      setMetaTag('og:description', article.excerpt);
-      setMetaTag('og:image', imageUrl);
-      setMetaTag('og:url', url);
-      setMetaTag('og:type', 'article');
-      setMetaTag('og:site_name', 'No More Enabling');
-      
-      // Twitter Card tags
-      setMetaTag('twitter:card', 'summary_large_image', true);
-      setMetaTag('twitter:title', article.title, true);
-      setMetaTag('twitter:description', article.excerpt, true);
-      setMetaTag('twitter:image', imageUrl, true);
+  const articleUrl = `https://nomoreenabling.com/articles/${slug}`;
+  const imageUrl = article?.image?.startsWith('http') 
+    ? article.image 
+    : `https://nomoreenabling.com${article?.image}`;
+
+  // Convert date string to ISO format for structured data
+  const getISODate = (dateStr: string) => {
+    try {
+      const date = new Date(dateStr);
+      return date.toISOString();
+    } catch {
+      return new Date().toISOString();
     }
+  };
+
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, [article]);
 
@@ -137,6 +120,29 @@ const ArticlePage = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <SEOHead
+        title={article.title}
+        description={article.excerpt}
+        canonicalUrl={articleUrl}
+        ogType="article"
+        ogImage={imageUrl}
+        articlePublishedTime={getISODate(article.date)}
+        keywords={article.categories.join(", ")}
+      />
+      <ArticleJsonLd
+        title={article.title}
+        description={article.excerpt}
+        image={imageUrl}
+        datePublished={getISODate(article.date)}
+        url={articleUrl}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://nomoreenabling.com" },
+          { name: "Articles", url: "https://nomoreenabling.com/articles" },
+          { name: article.title, url: articleUrl },
+        ]}
+      />
       <Header />
       
       <main className="flex-1">

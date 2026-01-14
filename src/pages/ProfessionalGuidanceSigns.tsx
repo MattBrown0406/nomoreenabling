@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Printer, AlertTriangle, Users, Heart, Shield, Brain, MessageCircle, HelpCircle, Clock, ArrowRight } from "lucide-react";
 import AdSpace from "@/components/ads/AdSpace";
+import SEOHead from "@/components/seo/SEOHead";
 
 const ProfessionalGuidanceSigns = () => {
   const handlePrint = () => {
@@ -123,10 +123,12 @@ const ProfessionalGuidanceSigns = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Signs It May Be Time for Professional Guidance | No More Enabling</title>
-        <meta name="description" content="Learn the key indicators that suggest it's time to seek professional support for your family affected by addiction. Professional guidance is not a last resort—it's an appropriate next step." />
-      </Helmet>
+      <SEOHead
+        title="Signs It May Be Time for Professional Guidance"
+        description="Learn the key indicators that suggest it's time to seek professional support for your family affected by addiction. Professional guidance is not a last resort—it's an appropriate next step."
+        canonicalUrl="https://nomoreenabling.com/professional-guidance-signs"
+        keywords="professional addiction help, when to seek help, family intervention signs"
+      />
       
       <div className="min-h-screen bg-background print-content">
         <Header />

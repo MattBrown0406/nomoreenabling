@@ -1,9 +1,9 @@
-import { Helmet } from "react-helmet";
 import { Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AdSpace from "@/components/ads/AdSpace";
+import SEOHead from "@/components/seo/SEOHead";
 
 const FamilySupportGuide = () => {
   const handlePrint = () => {
@@ -12,13 +12,12 @@ const FamilySupportGuide = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
-        <title>Family Support Guide for Addiction | No More Enabling</title>
-        <meta
-          name="description"
-          content="Practical guidance for families who are exhausted, confused, and ready for change. Learn how to love someone struggling with addiction without enabling."
-        />
-      </Helmet>
+      <SEOHead
+        title="Family Support Guide for Addiction"
+        description="Practical guidance for families who are exhausted, confused, and ready for change. Learn how to love someone struggling with addiction without enabling."
+        canonicalUrl="https://nomoreenabling.com/family-support-guide"
+        keywords="family support guide, addiction help, family recovery, enabling behaviors"
+      />
       <Header />
       <div className="container mx-auto px-4 py-8">
         <div className="flex gap-8">

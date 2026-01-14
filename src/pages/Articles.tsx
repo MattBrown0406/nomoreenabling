@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -7,6 +7,7 @@ import AdSpace from "@/components/ads/AdSpace";
 import { Input } from "@/components/ui/input";
 import { blogPosts } from "@/data/blogPosts";
 import { Search, ArrowRight } from "lucide-react";
+import SEOHead from "@/components/seo/SEOHead";
 
 const categories = ["All", "Boundaries", "Self-Worth", "Relationships", "Recovery", "Personal Growth", "Addiction"];
 
@@ -22,10 +23,6 @@ const sortByDate = (posts: typeof blogPosts) => {
 const Articles = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
-
-  useEffect(() => {
-    document.title = "Articles - No More Enabling";
-  }, []);
 
   const sortedPosts = useMemo(() => sortByDate(blogPosts), []);
   const newestPost = sortedPosts[0];
@@ -43,6 +40,12 @@ const Articles = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title="Articles"
+        description="Browse our collection of articles on enabling, codependency, boundaries, and family recovery. Find insights and strategies for healthier relationships."
+        canonicalUrl="https://nomoreenabling.com/articles"
+        keywords="addiction articles, codependency resources, family recovery, enabling behaviors, healthy boundaries"
+      />
       <Header />
 
       <main className="flex-grow">
