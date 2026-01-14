@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Helmet } from "react-helmet";
 import { ArrowLeft, ArrowRight, RotateCcw, CheckCircle, AlertTriangle, HelpCircle, Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -11,6 +10,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Link } from "react-router-dom";
 import AdSpace from "@/components/ads/AdSpace";
+import SEOHead from "@/components/seo/SEOHead";
 
 const handlePrint = () => {
   window.print();
@@ -174,10 +174,12 @@ const HelpingOrEnabling = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Helping or Enabling? | Decision Tool for Families | No More Enabling</title>
-        <meta name="description" content="An interactive decision tool to help families affected by addiction understand whether their actions support recovery or unintentionally protect the addiction." />
-      </Helmet>
+      <SEOHead
+        title="Helping or Enabling? | Decision Tool for Families"
+        description="An interactive decision tool to help families affected by addiction understand whether their actions support recovery or unintentionally protect the addiction."
+        canonicalUrl="https://nomoreenabling.com/helping-or-enabling"
+        keywords="helping vs enabling, addiction decision tool, family boundaries, codependency quiz"
+      />
 
       <Header />
 

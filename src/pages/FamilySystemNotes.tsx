@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Printer, Eye, MessageCircle, Users, Scale, Brain, Thermometer, ArrowRight, Lightbulb } from "lucide-react";
 import AdSpace from "@/components/ads/AdSpace";
+import SEOHead from "@/components/seo/SEOHead";
 
 const FamilySystemNotes = () => {
   const handlePrint = () => {
@@ -101,10 +101,12 @@ const FamilySystemNotes = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Taking Notes From the Family System | No More Enabling</title>
-        <meta name="description" content="Learn to observe family patterns around addiction. Change rarely begins with the addicted individual alone—it begins when families start paying attention to patterns." />
-      </Helmet>
+      <SEOHead
+        title="Taking Notes From the Family System"
+        description="Learn to observe family patterns around addiction. Change rarely begins with the addicted individual alone—it begins when families start paying attention to patterns."
+        canonicalUrl="https://nomoreenabling.com/family-system-notes"
+        keywords="family system patterns, addiction observation, family dynamics"
+      />
       
       <div className="min-h-screen bg-background print-content">
         <Header />

@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import BlogCard from "@/components/blog/BlogCard";
 import Sidebar from "@/components/home/Sidebar";
 import { ArrowLeft } from "lucide-react";
+import SEOHead from "@/components/seo/SEOHead";
 
 const Category = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -28,12 +29,17 @@ const Category = () => {
   }, [slug]);
 
   useEffect(() => {
-    document.title = `${categoryName} Articles | No More Enabling`;
     window.scrollTo(0, 0);
   }, [categoryName]);
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title={`${categoryName} Articles`}
+        description={`Browse all articles about ${categoryName.toLowerCase()}. Find insights, strategies, and support for families dealing with addiction and codependency.`}
+        canonicalUrl={`https://nomoreenabling.com/category/${slug}`}
+        keywords={`${categoryName.toLowerCase()}, addiction articles, family support, codependency resources`}
+      />
       <Header />
       
       <main className="container mx-auto px-4 py-12">

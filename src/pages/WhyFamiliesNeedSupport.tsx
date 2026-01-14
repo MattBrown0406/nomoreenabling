@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Printer, Heart, Users, Shield, Brain, Eye, Compass, ArrowRight, HandHeart, Lock } from "lucide-react";
 import AdSpace from "@/components/ads/AdSpace";
+import SEOHead from "@/components/seo/SEOHead";
 
 const WhyFamiliesNeedSupport = () => {
   const handlePrint = () => {
@@ -94,10 +94,12 @@ const WhyFamiliesNeedSupport = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Why Families Need Support Too | No More Enabling</title>
-        <meta name="description" content="Addiction rarely affects just one person. Learn why family support is essential, not optional, and how it can change outcomes for everyone involved." />
-      </Helmet>
+      <SEOHead
+        title="Why Families Need Support Too"
+        description="Addiction rarely affects just one person. Learn why family support is essential, not optional, and how it can change outcomes for everyone involved."
+        canonicalUrl="https://nomoreenabling.com/why-families-need-support"
+        keywords="family support addiction, why families need help, addiction family resources, family recovery support"
+      />
       
       <div className="min-h-screen bg-background print-content">
         <Header />

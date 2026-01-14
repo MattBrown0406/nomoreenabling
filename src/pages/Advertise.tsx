@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import AdSpace from "@/components/ads/AdSpace";
 import { Check, Mail, Phone, MessageSquare } from "lucide-react";
+import SEOHead from "@/components/seo/SEOHead";
 
 const Advertise = () => {
   const adPlacements = [
@@ -43,6 +44,12 @@ const Advertise = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title="Advertise With Us"
+        description="Connect your brand with our engaged community of readers seeking personal growth, healthy relationships, and positive change. View our advertising packages."
+        canonicalUrl="https://nomoreenabling.com/advertise"
+        keywords="advertise, wellness advertising, addiction recovery marketing, mental health advertising"
+      />
       <Header />
       
       <main className="flex-grow">

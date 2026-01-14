@@ -21,6 +21,9 @@ const BlogCard = ({ title, excerpt, category, readTime, date, image, slug, featu
             <img
               src={image}
               alt={title}
+              loading="lazy"
+              width={800}
+              height={600}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
           </div>
@@ -57,6 +60,9 @@ const BlogCard = ({ title, excerpt, category, readTime, date, image, slug, featu
           <img
             src={image}
             alt={title}
+            loading="lazy"
+            width={640}
+            height={400}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
         </div>

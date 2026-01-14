@@ -14,6 +14,7 @@ import PartyWreckersBanner from "@/components/ads/PartyWreckersBanner";
 import BetterHelpBanner from "@/components/ads/BetterHelpBanner";
 import { Button } from "@/components/ui/button";
 import { blogPosts } from "@/data/blogPosts";
+import SEOHead from "@/components/seo/SEOHead";
 
 const categories = [
   "All",
@@ -53,10 +54,6 @@ const Index = () => {
   const recentPosts = filteredPosts.slice(1);
 
   useEffect(() => {
-    document.title = "No More Enabling - Break Free from Unhealthy Patterns";
-  }, []);
-
-  useEffect(() => {
     if (location.state?.scrollToNewsletter) {
       setTimeout(() => {
         const element = document.getElementById('newsletter');
@@ -67,6 +64,12 @@ const Index = () => {
 
   return (
     <>
+      <SEOHead
+        title="No More Enabling - Break Free from Unhealthy Patterns"
+        description="Discover insights, strategies, and support for setting healthy boundaries, building self-worth, and creating relationships that nurture your growth."
+        canonicalUrl="https://nomoreenabling.com/"
+        keywords="enabling addiction, codependency, family boundaries, addiction recovery, healthy relationships, family support"
+      />
 
       <div className="min-h-screen flex flex-col">
         <Header />
