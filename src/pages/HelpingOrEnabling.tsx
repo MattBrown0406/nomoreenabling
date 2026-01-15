@@ -183,7 +183,7 @@ const HelpingOrEnabling = () => {
 
       <Header />
 
-      <main className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+      <main className="min-h-screen bg-gradient-to-b from-background to-muted/20" role="main">
         <div className="container mx-auto px-4 py-12 md:py-16">
           <div className="flex gap-8">
             {/* Left Sidebar Ad - Desktop Only */}

@@ -19,7 +19,7 @@ const TikTokIcon = ({ size = 20 }: { size?: number }) => (
 
 const Footer = () => {
   return (
-    <footer className="bg-secondary border-t border-border">
+    <footer className="bg-secondary border-t border-border" role="contentinfo">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
@@ -31,24 +31,24 @@ const Footer = () => {
               Empowering you to break free from unhealthy patterns and build stronger, 
               healthier relationships with yourself and others.
             </p>
-            <div className="flex gap-4 mt-6">
-              <a href="https://www.tiktok.com/@mattbrowninterventionist" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+            <nav className="flex gap-4 mt-6" aria-label="Social media links">
+              <a href="https://www.tiktok.com/@mattbrowninterventionist" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Follow us on TikTok">
                 <TikTokIcon size={20} />
               </a>
-              <a href="https://www.instagram.com/mattbrowninterventionist/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://www.instagram.com/mattbrowninterventionist/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Follow us on Instagram">
                 <Instagram size={20} />
               </a>
-              <a href="https://www.facebook.com/mbrownsober" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://www.facebook.com/mbrownsober" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Follow us on Facebook">
                 <Facebook size={20} />
               </a>
-              <a href="https://www.youtube.com/@ThePartyWreckers" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://www.youtube.com/@ThePartyWreckers" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Subscribe to our YouTube channel">
                 <Youtube size={20} />
               </a>
-            </div>
+            </nav>
           </div>
 
           {/* Quick Links */}
-          <div>
+          <nav aria-label="Quick links">
             <h4 className="font-serif text-lg font-semibold text-foreground mb-4">Quick Links</h4>
             <ul className="space-y-3">
               <li>
@@ -72,10 +72,10 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
 
           {/* Legal */}
-          <div>
+          <nav aria-label="Legal links">
             <h4 className="font-serif text-lg font-semibold text-foreground mb-4">Legal</h4>
             <ul className="space-y-3">
               <li>
@@ -94,7 +94,7 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
         </div>
 
         <div className="border-t border-border mt-10 pt-8 text-center text-muted-foreground text-sm">

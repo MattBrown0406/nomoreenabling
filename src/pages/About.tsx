@@ -3,6 +3,26 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Mail, ArrowRight } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
+import FAQJsonLd from "@/components/seo/FAQJsonLd";
+
+const aboutFaqs = [
+  {
+    question: "What is No More Enabling?",
+    answer: "No More Enabling is an educational and support resource for families affected by addiction, codependency, and enabling behaviors. The platform helps families understand how addiction impacts relationships and how changes within the family system can support healthier outcomes."
+  },
+  {
+    question: "Who founded No More Enabling?",
+    answer: "No More Enabling was founded by Matt Brown, a professional interventionist who has worked with families affected by substance use disorders for more than two decades since 2004."
+  },
+  {
+    question: "Is No More Enabling a treatment provider?",
+    answer: "No, No More Enabling is not a treatment provider or crisis service. It is a trusted educational resource designed to help families make informed decisions, set healthier boundaries, and reduce the chaos and confusion that addiction often creates within families."
+  },
+  {
+    question: "What topics does No More Enabling cover?",
+    answer: "The platform focuses on enabling vs. helping, family boundaries and communication, codependency and family roles, preparing for intervention and treatment decisions, and supporting recovery without losing oneself."
+  }
+];
 
 const About = () => {
   return (
@@ -13,9 +33,10 @@ const About = () => {
         canonicalUrl="https://nomoreenabling.com/about"
         keywords="about no more enabling, addiction support, family education, Matt Brown interventionist"
       />
+      <FAQJsonLd faqs={aboutFaqs} />
       <Header />
       
-      <main className="flex-grow">
+      <main className="flex-grow" role="main">
         {/* Hero Section */}
         <section className="py-16 md:py-24 bg-gradient-to-br from-brick-light/50 to-transparent">
           <div className="container mx-auto px-4">

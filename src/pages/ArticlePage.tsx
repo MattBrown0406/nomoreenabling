@@ -145,13 +145,16 @@ const ArticlePage = () => {
       />
       <Header />
       
-      <main className="flex-1">
+      <main className="flex-1" role="main">
         {/* Hero Image */}
         <div className="relative h-[300px] md:h-[400px] overflow-hidden">
           <img
             src={article.image}
-            alt={article.title}
+            alt={`Featured image for article: ${article.title}`}
             className="w-full h-full object-cover"
+            loading="eager"
+            width={1200}
+            height={400}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
         </div>
@@ -281,8 +284,11 @@ const ArticlePage = () => {
                         <div className="aspect-video overflow-hidden">
                           <img
                             src={post.image}
-                            alt={post.title}
+                            alt={`Read more: ${post.title}`}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            loading="lazy"
+                            width={640}
+                            height={360}
                           />
                         </div>
                         <div className="p-4">
@@ -298,7 +304,7 @@ const ArticlePage = () => {
             </div>
 
             {/* Sidebar */}
-            <aside className="hidden lg:block w-80 flex-shrink-0">
+            <aside className="hidden lg:block w-80 flex-shrink-0" aria-label="Sponsored content">
               <div className="sticky top-24 space-y-6">
                 <EagleCreekRanchBanner />
               </div>

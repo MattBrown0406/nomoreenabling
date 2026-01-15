@@ -1,7 +1,18 @@
+# robots.txt for nomoreenabling.com
+
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+User-agent: DuckDuckBot
 Allow: /
 
 User-agent: Twitterbot
@@ -10,7 +21,17 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
+User-agent: LinkedInBot
 Allow: /
 
+User-agent: *
+Allow: /
+Crawl-delay: 2
+
+# Sitemaps
 Sitemap: https://nomoreenabling.com/sitemap.xml
+
+# Disallow admin and private paths (if any)
+Disallow: /api/
+Disallow: /_/
+Disallow: /admin/
