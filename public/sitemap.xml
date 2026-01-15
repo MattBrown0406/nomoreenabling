@@ -3,195 +3,385 @@
   <!-- Main Pages -->
   <url>
     <loc>https://nomoreenabling.com/</loc>
+    <lastmod>2026-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://nomoreenabling.com/articles</loc>
+    <lastmod>2026-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://nomoreenabling.com/about</loc>
+    <lastmod>2026-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://nomoreenabling.com/advertise</loc>
+    <lastmod>2026-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+  </url>
+
+  <!-- Family Education Resource Pages -->
+  <url>
+    <loc>https://nomoreenabling.com/helping-or-enabling</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/professional-guidance-signs</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/why-families-need-support</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/grounding-reminder</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/family-system-notes</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/family-support-guide</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- Category Pages -->
   <url>
     <loc>https://nomoreenabling.com/category/enabling</loc>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nomoreenabling.com/category/addiction</loc>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nomoreenabling.com/category/boundaries</loc>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nomoreenabling.com/category/relationships</loc>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nomoreenabling.com/category/mental-health</loc>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nomoreenabling.com/category/recovery</loc>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nomoreenabling.com/category/self-worth</loc>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nomoreenabling.com/category/personal-growth</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/category/codependency</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/category/family-dynamics</loc>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Article Pages -->
+  <!-- Article Pages (sorted by date, newest first) -->
   <url>
-    <loc>https://nomoreenabling.com/article/sobriety-feels-worse-before-better</loc>
+    <loc>https://nomoreenabling.com/articles/helping-starts-hurting-enabling-addiction</loc>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/article/addiction-depression-family</loc>
+    <loc>https://nomoreenabling.com/articles/strong-one-codependency</loc>
+    <lastmod>2026-01-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/article/family-trauma-after-addiction</loc>
+    <loc>https://nomoreenabling.com/articles/guilt-vs-responsibility-families</loc>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/article/consequences-vs-lectures-addiction</loc>
+    <loc>https://nomoreenabling.com/articles/letting-go-without-collapse</loc>
+    <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/article/alcohol-withdrawal-timeline-symptoms</loc>
+    <loc>https://nomoreenabling.com/articles/codependency-fear-survival</loc>
+    <lastmod>2026-01-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/article/hidden-role-enabling-addiction</loc>
+    <loc>https://nomoreenabling.com/articles/letting-go-not-abandonment</loc>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/articles/major-depressive-disorder-families-guide</loc>
+    <loc>https://nomoreenabling.com/articles/anxiety-addiction-calm-conversations</loc>
+    <lastmod>2026-01-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/articles/addiction-not-a-choice-willpower-not-enough</loc>
+    <loc>https://nomoreenabling.com/articles/codependency-endurance-love</loc>
+    <lastmod>2026-01-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/articles/choosing-right-addiction-treatment-center-families</loc>
+    <loc>https://nomoreenabling.com/articles/emotional-distance-families-help</loc>
+    <lastmod>2026-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/articles/emotional-sobriety-what-it-is-why-it-matters-families</loc>
+    <loc>https://nomoreenabling.com/articles/addiction-changes-communication</loc>
+    <lastmod>2026-01-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/articles/delta-8-synthetic-thc-parents-guide</loc>
+    <loc>https://nomoreenabling.com/articles/peacekeeping-self-sacrifice</loc>
+    <lastmod>2026-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/articles/addiction-response-to-pain-rethinking-substance-use</loc>
+    <loc>https://nomoreenabling.com/articles/keeping-peace-addiction</loc>
+    <lastmod>2026-01-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/articles/social-media-fuels-drinking-gambling-recovery-2025</loc>
+    <loc>https://nomoreenabling.com/articles/letting-go-control-abandonment</loc>
+    <lastmod>2026-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/articles/truth-about-self-esteem-parents</loc>
+    <loc>https://nomoreenabling.com/articles/alcoholism-emotional-safety-home</loc>
+    <lastmod>2025-12-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/articles/cocaine-deadly-resurgence-american-families</loc>
+    <loc>https://nomoreenabling.com/articles/families-lose-themselves-helping</loc>
+    <lastmod>2025-12-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/articles/fentanyl-addiction-recovery-hope</loc>
+    <loc>https://nomoreenabling.com/articles/addiction-family-communication</loc>
+    <lastmod>2025-12-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/articles/thc-induced-psychosis-young-adults</loc>
+    <loc>https://nomoreenabling.com/articles/enabling-peacekeeping</loc>
+    <lastmod>2025-12-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nomoreenabling.com/articles/boundaries-reduce-emotional-fatigue</loc>
+    <lastmod>2025-12-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/articles/understanding-codependency</loc>
+    <loc>https://nomoreenabling.com/articles/thc-induced-psychosis-young-adults</loc>
+    <lastmod>2025-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/articles/healthy-boundaries-without-guilt</loc>
+    <loc>https://nomoreenabling.com/articles/fentanyl-addiction-recovery-hope</loc>
+    <lastmod>2025-12-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/articles/breaking-the-cycle</loc>
+    <loc>https://nomoreenabling.com/articles/cocaine-deadly-resurgence-american-families</loc>
+    <lastmod>2025-12-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/articles/self-care-isnt-selfish</loc>
+    <loc>https://nomoreenabling.com/articles/truth-about-self-esteem-parents</loc>
+    <lastmod>2025-12-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/articles/navigating-recovery</loc>
+    <loc>https://nomoreenabling.com/articles/social-media-fuels-drinking-gambling-recovery-2025</loc>
+    <lastmod>2025-12-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/articles/communication-strategies</loc>
+    <loc>https://nomoreenabling.com/articles/addiction-response-to-pain-rethinking-substance-use</loc>
+    <lastmod>2025-12-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/articles/sports-betting-gambling-addiction</loc>
+    <loc>https://nomoreenabling.com/articles/delta-8-synthetic-thc-parents-guide</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/emotional-sobriety-what-it-is-why-it-matters-families</loc>
+    <lastmod>2025-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/choosing-right-addiction-treatment-center-families</loc>
+    <lastmod>2025-12-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/addiction-not-a-choice-willpower-not-enough</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/major-depressive-disorder-families-guide</loc>
+    <lastmod>2025-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/hidden-role-enabling-addiction</loc>
+    <lastmod>2025-12-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/alcohol-withdrawal-timeline-symptoms</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/consequences-vs-lectures-addiction</loc>
+    <lastmod>2025-12-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/family-trauma-after-addiction</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/addiction-depression-family</loc>
+    <lastmod>2025-12-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/sobriety-feels-worse-before-better</loc>
+    <lastmod>2025-12-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nomoreenabling.com/articles/why-good-parents-enable</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/sports-betting-gambling-addiction</loc>
+    <lastmod>2025-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/communication-strategies</loc>
+    <lastmod>2025-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/navigating-recovery</loc>
+    <lastmod>2025-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/self-care-isnt-selfish</loc>
+    <lastmod>2025-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/breaking-the-cycle</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/healthy-boundaries-without-guilt</loc>
+    <lastmod>2025-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/understanding-codependency</loc>
+    <lastmod>2025-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

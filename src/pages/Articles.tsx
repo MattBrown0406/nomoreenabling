@@ -48,7 +48,7 @@ const Articles = () => {
       />
       <Header />
 
-      <main className="flex-grow">
+      <main className="flex-grow" role="main">
         {/* Featured Article Hero */}
         <section className="relative py-16 md:py-24 overflow-hidden">
           <div 

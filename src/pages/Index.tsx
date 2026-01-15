@@ -15,6 +15,7 @@ import BetterHelpBanner from "@/components/ads/BetterHelpBanner";
 import { Button } from "@/components/ui/button";
 import { blogPosts } from "@/data/blogPosts";
 import SEOHead from "@/components/seo/SEOHead";
+import OrganizationJsonLd from "@/components/seo/OrganizationJsonLd";
 
 const categories = [
   "All",
@@ -70,12 +71,13 @@ const Index = () => {
         canonicalUrl="https://nomoreenabling.com/"
         keywords="enabling addiction, codependency, family boundaries, addiction recovery, healthy relationships, family support"
       />
+      <OrganizationJsonLd />
 
       <div className="min-h-screen flex flex-col">
         <Header />
         <CrisisResourcesBanner />
 
-        <main className="flex-grow">
+        <main className="flex-grow" role="main">
           <HeroSection />
 
           {/* Self-Assessment */}
@@ -147,9 +149,9 @@ const Index = () => {
               </div>
 
               {/* Sidebar */}
-              <div className="lg:col-span-1">
+              <aside className="lg:col-span-1" aria-label="Related resources">
                 <Sidebar />
-              </div>
+              </aside>
             </div>
           </section>
 
