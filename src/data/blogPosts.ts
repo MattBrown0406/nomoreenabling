@@ -34,7 +34,7 @@ import codependencyFearSurvivalImage from "@/assets/codependency-fear-survival.j
 import lettingGoWithoutCollapseImage from "@/assets/letting-go-without-collapse.jpg";
 import guiltVsResponsibilityImage from "@/assets/guilt-vs-responsibility-families.jpg";
 import strongOneCodependencyImage from "@/assets/strong-one-codependency.jpg";
-import helpingStartsHurtingImage from "@/assets/helping-turns-overfunctioning.jpg";
+import helpingStartsHurtingImage from "@/assets/helping-starts-hurting-addiction.jpg";
 import anxietyDisordersEnablingImage from "@/assets/anxiety-disorders-enabling-fear.jpg";
 import adhdEnablingFamilyImage from "@/assets/adhd-enabling-family-dynamics.jpg";
 
