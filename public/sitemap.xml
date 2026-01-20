@@ -3,9 +3,15 @@
   <!-- Main Pages -->
   <url>
     <loc>https://nomoreenabling.com/</loc>
-    <lastmod>2026-01-16</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/article/if-i-dont-step-in-everything-falls-apart</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nomoreenabling.com/article/adhd-enabling-helping-prevents-growth</loc>
