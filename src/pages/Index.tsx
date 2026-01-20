@@ -10,7 +10,7 @@ import NewsletterSection from "@/components/home/NewsletterSection";
 import BlogCard from "@/components/blog/BlogCard";
 import Sidebar from "@/components/home/Sidebar";
 import AdSpace from "@/components/ads/AdSpace";
-import PartyWreckersBanner from "@/components/ads/PartyWreckersBanner";
+import FamilyBridgeBanner from "@/components/ads/FamilyBridgeBanner";
 import BetterHelpBanner from "@/components/ads/BetterHelpBanner";
 import { Button } from "@/components/ui/button";
 import { blogPosts } from "@/data/blogPosts";
@@ -86,9 +86,9 @@ const Index = () => {
           {/* Addiction Assessment */}
           <AddictionAssessment />
 
-          {/* Banner Ad - Party Wreckers Podcast */}
+          {/* Banner Ad - FamilyBridge */}
           <div className="container mx-auto px-4 py-6">
-            <PartyWreckersBanner size="leaderboard" />
+            <FamilyBridgeBanner size="leaderboard" />
           </div>
 
           {/* Main Content with Sidebar */}
