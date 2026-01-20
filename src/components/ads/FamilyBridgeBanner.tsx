@@ -55,7 +55,7 @@ const FamilyBridgeBanner = ({ size = "leaderboard" }: FamilyBridgeBannerProps) =
 
           {/* CTA */}
           <div className="bg-[#2a9d8f] hover:bg-[#238b7e] text-white font-bold py-2.5 px-5 rounded-lg transition-colors text-sm whitespace-nowrap">
-            Start Free
+            Learn More
           </div>
         </div>
       </a>
@@ -111,7 +111,7 @@ const FamilyBridgeBanner = ({ size = "leaderboard" }: FamilyBridgeBannerProps) =
 
         {/* CTA Button */}
         <div className="bg-[#2a9d8f] hover:bg-[#238b7e] text-white font-bold text-center py-2.5 px-4 rounded-lg transition-colors text-sm">
-          Start Free
+          Learn More
         </div>
 
         {/* Tagline */}
