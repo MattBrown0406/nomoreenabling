@@ -6,6 +6,7 @@ import CrisisResourcesBanner from "@/components/home/CrisisResourcesBanner";
 import HeroSection from "@/components/home/HeroSection";
 import SelfAssessment from "@/components/home/SelfAssessment";
 import AddictionAssessment from "@/components/home/AddictionAssessment";
+import GuidedMeditation from "@/components/home/GuidedMeditation";
 import NewsletterSection from "@/components/home/NewsletterSection";
 import BlogCard from "@/components/blog/BlogCard";
 import Sidebar from "@/components/home/Sidebar";
@@ -85,6 +86,9 @@ const Index = () => {
 
           {/* Addiction Assessment */}
           <AddictionAssessment />
+
+          {/* Guided Meditation */}
+          <GuidedMeditation />
 
           {/* Banner Ad - FamilyBridge */}
           <div className="container mx-auto px-4 py-6">
