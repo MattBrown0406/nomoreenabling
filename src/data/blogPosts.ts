@@ -39,6 +39,7 @@ import anxietyDisordersEnablingImage from "@/assets/anxiety-disorders-enabling-f
 import adhdEnablingFamilyImage from "@/assets/adhd-enabling-family-dynamics.jpg";
 import familyEnablingFallsApartImage from "@/assets/family-enabling-everything-falls-apart.jpg";
 import supportVsSacrificeAddictionImage from "@/assets/support-vs-sacrifice-addiction.jpg";
+import keepingPeaceEnablingImage from "@/assets/keeping-peace-addiction-enabling.jpg";
 
 export interface BlogPost {
   id: string;
@@ -56,6 +57,172 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "51",
+    title: "Why \"Keeping the Peace\" Often Keeps Addiction in Place",
+    excerpt: "Many families believe that avoiding conflict helps stabilize a loved one struggling with addiction. In reality, \"keeping the peace\" often becomes a powerful form of enabling. Understanding how conflict avoidance works inside family systems helps families change their behavior without shame—and without escalating the situation.",
+    category: "Enabling",
+    categories: ["Enabling", "Codependency", "Boundaries", "Addiction", "Family Dynamics"],
+    readTime: "12 min read",
+    date: "Jan 21, 2026",
+    image: keepingPeaceEnablingImage,
+    slug: "keeping-peace-often-keeps-addiction-in-place",
+    metaTitle: "Enabling Addiction: How Keeping the Peace Protects Addiction | No More Enabling",
+    metaDescription: "Many families believe avoiding conflict stabilizes addiction. Learn how 'keeping the peace' enables addiction and how to set boundaries without escalating conflict.",
+    content: `Many families believe that avoiding conflict helps stabilize a loved one struggling with addiction. In reality, "keeping the peace" often becomes a powerful form of enabling. Understanding how conflict avoidance works inside family systems helps families change their behavior without shame—and without escalating the situation.
+
+**How Peacekeeping Becomes a Survival Strategy**
+
+Families don't avoid conflict because they're weak. They avoid it because conflict has felt costly.
+
+Past attempts may have led to:
+
+- Explosive arguments
+- Emotional withdrawal
+- Threats of leaving
+- Increased substance use
+
+Over time, families learn that silence feels safer than confrontation. Peacekeeping becomes a survival strategy designed to reduce immediate stress.
+
+The problem is that short-term calm often comes at the expense of long-term change.
+
+**Why Addiction Benefits From a Calm Surface**
+
+Addiction does not need approval. It needs space.
+
+When families avoid difficult conversations:
+
+- Expectations remain unclear
+- Accountability becomes inconsistent
+- Consequences are delayed or softened
+- Patterns continue without interruption
+
+A calm household can coexist with a worsening addiction. In fact, addiction often thrives when discomfort is minimized.
+
+Peace does not equal progress.
+
+**The Role of Family Roles in Avoiding Conflict**
+
+In many families, informal roles emerge to keep things stable.
+
+Common roles include:
+
+- The peacemaker who smooths tensions
+- The minimizer who reframes concerns
+- The caretaker who absorbs fallout
+- The avoider who disengages
+
+These roles reduce visible conflict—but they also distribute responsibility away from the person struggling with addiction.
+
+No one chooses these roles intentionally. They develop as a way to cope. Over time, they become part of the system addiction relies on.
+
+**Why "I Don't Want to Make Things Worse" Feels So Rational**
+
+Families often justify avoidance by telling themselves:
+
+- "Now isn't the right time"
+- "They're already under so much stress"
+- "I don't want to push them away"
+
+These thoughts are understandable. They are also how families end up carrying more and more responsibility while the addiction carries less.
+
+Avoiding conflict may prevent immediate blowups—but it often increases long-term instability.
+
+**How Conflict Avoidance Turns Into Enabling**
+
+Enabling doesn't always look like providing money or covering consequences.
+
+It often looks like:
+
+- Letting agreements slide to avoid tension
+- Ignoring broken boundaries
+- Accepting partial honesty
+- Reframing concerning behavior to keep peace
+
+These behaviors reduce pressure to change while increasing family exhaustion.
+
+Addiction doesn't need encouragement. It just needs reduced resistance.
+
+**Why Families Confuse Calm With Safety**
+
+Calm feels good—especially after chaos.
+
+But calm can be misleading when it's maintained by suppression rather than resolution.
+
+A system can look peaceful while:
+
+- Trust erodes
+- Resentment grows
+- Boundaries weaken
+- Risk increases
+
+Families who confuse calm with safety often feel blindsided when things suddenly escalate. In reality, escalation was building quietly beneath the surface.
+
+**Boundaries Create Clarity—Not Chaos**
+
+One of the biggest fears families have is that boundaries will create conflict.
+
+Boundaries do create discomfort.
+They do not create chaos.
+
+What boundaries do is reveal whether stability exists without constant accommodation.
+
+If everything falls apart when boundaries are introduced, that tells you something important about sustainability.
+
+**Responsibility Without Control**
+
+Families often believe they must choose between peace and control.
+
+That's a false choice.
+
+You can:
+
+- Stop avoiding conflict
+- Set clear expectations
+- Hold consistent boundaries
+
+without trying to control outcomes.
+
+Responsibility means managing your behavior—not orchestrating someone else's change.
+
+**Why Professional Perspective Helps Break This Pattern**
+
+Conflict avoidance is emotionally reinforced. It works—until it doesn't.
+
+Professionals who work with families understand:
+
+- How fear drives silence
+- How avoidance becomes normalized
+- How to introduce clarity without escalation
+- How to coordinate family responses
+
+Outside perspective helps families move from emotional reflex to intentional action.
+
+**A More Honest Definition of Peace**
+
+Real peace is not the absence of conflict.
+
+It is:
+
+- Clarity about expectations
+- Consistency in behavior
+- Reduced emotional volatility
+- Less guesswork and resentment
+
+That kind of peace often requires short-term discomfort to achieve long-term stability.
+
+**A Clearer Way Forward**
+
+You don't need to start a fight to stop enabling.
+
+You do need to stop organizing family life around avoiding discomfort.
+
+Keeping the peace may feel loving—but when it prevents clarity, it quietly protects addiction instead.
+
+Clarity is not cruelty.
+Boundaries are not abandonment.
+And conflict, when handled intentionally, is often the beginning of something healthier.`
+  },
   {
     id: "50",
     title: "Why Families Confuse Support With Sacrifice—and How Addiction Exploits the Difference",
