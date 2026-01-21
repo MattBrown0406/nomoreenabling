@@ -6,6 +6,7 @@ import SoberHelplineBanner from "@/components/ads/SoberHelplineBanner";
 import InterventionOnCallBanner from "@/components/ads/InterventionOnCallBanner";
 import JeffHatchCoachingBanner from "@/components/ads/JeffHatchCoachingBanner";
 import BrianOSheaBanner from "@/components/ads/BrianOSheaBanner";
+import KairosInterventionBanner from "@/components/ads/KairosInterventionBanner";
 import { blogPosts } from "@/data/blogPosts";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -154,6 +155,11 @@ const Sidebar = () => {
       {/* Brian O'Shea Banner */}
       <div>
         <BrianOSheaBanner />
+      </div>
+
+      {/* Kairos Intervention Banner */}
+      <div>
+        <KairosInterventionBanner />
       </div>
 
       {/* Google Ad Space 1 */}
