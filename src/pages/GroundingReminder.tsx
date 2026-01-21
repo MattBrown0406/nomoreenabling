@@ -4,7 +4,8 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Printer, Pause, Heart, Shield, Sun, Users, ArrowRight } from "lucide-react";
-import AdSpace from "@/components/ads/AdSpace";
+import FreedomInterventionsBanner from "@/components/ads/FreedomInterventionsBanner";
+import FamilyBridgeBanner from "@/components/ads/FamilyBridgeBanner";
 import SEOHead from "@/components/seo/SEOHead";
 
 const GroundingReminder = () => {
@@ -27,9 +28,9 @@ const GroundingReminder = () => {
         <div className="container mx-auto px-4 py-8">
           <div className="flex gap-8">
             {/* Left Sidebar Ad - Desktop Only */}
-            <aside className="hidden xl:block w-[160px] flex-shrink-0 no-print">
+            <aside className="hidden xl:block w-[200px] flex-shrink-0 no-print">
               <div className="sticky top-24 space-y-6">
-                <AdSpace size="sidebar" />
+                <FreedomInterventionsBanner size="sidebar" />
               </div>
             </aside>
 
@@ -288,9 +289,9 @@ const GroundingReminder = () => {
         </main>
 
             {/* Right Sidebar Ad - Desktop Only */}
-            <aside className="hidden xl:block w-[160px] flex-shrink-0 no-print">
+            <aside className="hidden xl:block w-[200px] flex-shrink-0 no-print">
               <div className="sticky top-24 space-y-6">
-                <AdSpace size="sidebar" />
+                <FamilyBridgeBanner size="sidebar" />
               </div>
             </aside>
           </div>
