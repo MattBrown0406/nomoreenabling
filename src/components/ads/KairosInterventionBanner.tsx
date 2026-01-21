@@ -14,7 +14,7 @@ const KairosInterventionBanner = ({ size = "sidebar" }: KairosInterventionBanner
         href="https://kairosintervention.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="block bg-gradient-to-r from-[#1a1a2e] via-[#16213e] to-[#1a1a2e] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 max-w-4xl mx-auto border border-[#e94560]/30"
+        className="block bg-gradient-to-r from-[#0d4a4a] via-[#0f5f5f] to-[#0d4a4a] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 max-w-4xl mx-auto border border-[#2a9d8f]/30"
       >
         <div className="flex flex-row items-center gap-6 p-4">
           <img
@@ -24,7 +24,7 @@ const KairosInterventionBanner = ({ size = "sidebar" }: KairosInterventionBanner
           />
           <div className="flex-1">
             <h3 className="text-white font-serif text-xl font-bold mb-1">
-              There Is Hope. <span className="text-[#e94560]">We'll Help You Find It.</span>
+              There Is Hope. <span className="text-[#a7d7c5]">We'll Help You Find It.</span>
             </h3>
             <p className="text-white/80 text-sm mb-1">
               Professional addiction intervention services guided by compassion and proven methods.
@@ -34,7 +34,7 @@ const KairosInterventionBanner = ({ size = "sidebar" }: KairosInterventionBanner
             </p>
           </div>
           <div className="text-center px-4">
-            <div className="bg-[#e94560] hover:bg-[#d63d56] text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm whitespace-nowrap">
+            <div className="bg-[#a7d7c5] hover:bg-[#8fcbb8] text-[#0d4a4a] font-bold py-2 px-4 rounded-lg transition-colors text-sm whitespace-nowrap">
               Free Assessment
             </div>
             <p className="text-white/60 text-xs mt-2">(267) 664-9590</p>
@@ -49,7 +49,7 @@ const KairosInterventionBanner = ({ size = "sidebar" }: KairosInterventionBanner
       href="https://kairosintervention.com"
       target="_blank"
       rel="noopener noreferrer"
-      className="block bg-gradient-to-br from-[#1a1a2e] to-[#16213e] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 border border-[#e94560]/30"
+      className="block bg-gradient-to-br from-[#0d4a4a] to-[#0f5f5f] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 border border-[#2a9d8f]/30"
     >
       <div className="p-4">
         {/* Logo */}
@@ -65,14 +65,14 @@ const KairosInterventionBanner = ({ size = "sidebar" }: KairosInterventionBanner
         <h3 className="text-white text-center font-serif text-lg font-bold mb-1">
           There Is Hope.
         </h3>
-        <p className="text-[#e94560] text-center font-serif text-base font-bold mb-2">
+        <p className="text-[#a7d7c5] text-center font-serif text-base font-bold mb-2">
           We'll Help You Find It.
         </p>
 
         {/* Definition */}
         <div className="bg-white/5 rounded-lg p-2 mb-3">
           <p className="text-white/70 text-center text-xs italic">
-            <span className="text-[#e94560] font-semibold">Kairos</span> · The right moment for action
+            <span className="text-[#a7d7c5] font-semibold">Kairos</span> · The right moment for action
           </p>
         </div>
 
@@ -84,21 +84,21 @@ const KairosInterventionBanner = ({ size = "sidebar" }: KairosInterventionBanner
         {/* Services List */}
         <div className="space-y-1.5 mb-4">
           <div className="flex items-center gap-2 text-white/80 text-xs">
-            <Heart className="w-3.5 h-3.5 text-[#e94560] flex-shrink-0" />
+            <Heart className="w-3.5 h-3.5 text-[#a7d7c5] flex-shrink-0" />
             <span>Compassionate Approach</span>
           </div>
           <div className="flex items-center gap-2 text-white/80 text-xs">
-            <ClipboardCheck className="w-3.5 h-3.5 text-[#e94560] flex-shrink-0" />
+            <ClipboardCheck className="w-3.5 h-3.5 text-[#a7d7c5] flex-shrink-0" />
             <span>Evidence-Based Methods</span>
           </div>
           <div className="flex items-center gap-2 text-white/80 text-xs">
-            <Users className="w-3.5 h-3.5 text-[#e94560] flex-shrink-0" />
+            <Users className="w-3.5 h-3.5 text-[#a7d7c5] flex-shrink-0" />
             <span>Whole Family Healing</span>
           </div>
         </div>
 
         {/* CTA Button */}
-        <div className="bg-[#e94560] hover:bg-[#d63d56] text-white font-bold text-center py-2.5 px-4 rounded-lg transition-colors text-sm mb-3">
+        <div className="bg-[#a7d7c5] hover:bg-[#8fcbb8] text-[#0d4a4a] font-bold text-center py-2.5 px-4 rounded-lg transition-colors text-sm mb-3">
           Start Clinical Assessment
         </div>
 
