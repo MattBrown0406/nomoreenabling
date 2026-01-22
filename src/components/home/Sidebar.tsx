@@ -7,6 +7,7 @@ import InterventionOnCallBanner from "@/components/ads/InterventionOnCallBanner"
 import JeffHatchCoachingBanner from "@/components/ads/JeffHatchCoachingBanner";
 import BrianOSheaBanner from "@/components/ads/BrianOSheaBanner";
 import KairosInterventionBanner from "@/components/ads/KairosInterventionBanner";
+import PersonalizedSuggestions from "@/components/suggestions/PersonalizedSuggestions";
 import { blogPosts } from "@/data/blogPosts";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -86,6 +87,9 @@ const Sidebar = () => {
 
   return (
     <aside className="space-y-8">
+      {/* Personalized Suggestions */}
+      <PersonalizedSuggestions />
+
       {/* Freedom Interventions Sponsor Banner */}
       <div>
         <FreedomInterventionsBanner size="sidebar" />
