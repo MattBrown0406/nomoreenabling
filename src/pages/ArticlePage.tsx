@@ -9,6 +9,7 @@ import EagleCreekRanchBanner from "@/components/ads/EagleCreekRanchBanner";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useReadingProgress } from "@/hooks/useReadingProgress";
 import SEOHead from "@/components/seo/SEOHead";
 import ArticleJsonLd from "@/components/seo/ArticleJsonLd";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
@@ -24,6 +25,7 @@ const ArticlePage = () => {
   const article = blogPosts.find((post) => post.slug === slug);
   const [copied, setCopied] = useState(false);
   const viewRecorded = useRef(false);
+  const { markAsRead } = useReadingProgress();
 
   const articleUrl = `https://nomoreenabling.com/articles/${slug}`;
   const imageUrl = article?.image?.startsWith('http') 
@@ -44,10 +46,13 @@ const ArticlePage = () => {
     window.scrollTo(0, 0);
   }, [article]);
 
-  // Record article view
+  // Record article view and mark as read
   useEffect(() => {
     if (slug && !viewRecorded.current) {
       viewRecorded.current = true;
+      // Mark as read in local storage
+      markAsRead(slug);
+      // Record view in database
       supabase
         .from("article_views")
         .insert({ article_slug: slug })
@@ -55,7 +60,7 @@ const ArticlePage = () => {
           // View recorded silently
         });
     }
-  }, [slug]);
+  }, [slug, markAsRead]);
 
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
   const shareTitle = article?.title || '';
