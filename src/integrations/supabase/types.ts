@@ -32,6 +32,45 @@ export type Database = {
         }
         Relationships: []
       }
+      course_enrollments: {
+        Row: {
+          completed_at: string | null
+          course_name: string
+          current_lesson: number
+          email: string
+          enrolled_at: string
+          first_name: string | null
+          id: string
+          is_active: boolean
+          last_email_sent_at: string | null
+          next_email_at: string | null
+        }
+        Insert: {
+          completed_at?: string | null
+          course_name?: string
+          current_lesson?: number
+          email: string
+          enrolled_at?: string
+          first_name?: string | null
+          id?: string
+          is_active?: boolean
+          last_email_sent_at?: string | null
+          next_email_at?: string | null
+        }
+        Update: {
+          completed_at?: string | null
+          course_name?: string
+          current_lesson?: number
+          email?: string
+          enrolled_at?: string
+          first_name?: string | null
+          id?: string
+          is_active?: boolean
+          last_email_sent_at?: string | null
+          next_email_at?: string | null
+        }
+        Relationships: []
+      }
       subscribers: {
         Row: {
           email: string
