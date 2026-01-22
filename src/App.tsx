@@ -15,6 +15,7 @@ import ProfessionalGuidanceSigns from "./pages/ProfessionalGuidanceSigns";
 import WhyFamiliesNeedSupport from "./pages/WhyFamiliesNeedSupport";
 import GroundingReminder from "./pages/GroundingReminder";
 import FamilySystemNotes from "./pages/FamilySystemNotes";
+import BoundariesCourse from "./pages/BoundariesCourse";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/why-families-need-support" element={<WhyFamiliesNeedSupport />} />
           <Route path="/grounding-reminder" element={<GroundingReminder />} />
           <Route path="/family-system-notes" element={<FamilySystemNotes />} />
+          <Route path="/boundaries-course" element={<BoundariesCourse />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

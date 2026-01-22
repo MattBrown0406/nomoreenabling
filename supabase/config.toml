@@ -11,3 +11,9 @@ verify_jwt = false
 
 [functions.sync-mailchimp]
 verify_jwt = false
+
+[functions.course-enroll]
+verify_jwt = false
+
+[functions.send-course-email]
+verify_jwt = true
