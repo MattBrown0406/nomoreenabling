@@ -22,6 +22,7 @@ const Header = () => {
   ];
 
   const familyResources = [
+    { name: "Free Boundaries Course", href: "/boundaries-course", highlight: true },
     { name: "Helping or Enabling? Tool", href: "/helping-or-enabling" },
     { name: "Signs You Need Professional Help", href: "/professional-guidance-signs" },
     { name: "Why Families Need Support", href: "/why-families-need-support" },
@@ -72,7 +73,7 @@ const Header = () => {
                   <DropdownMenuItem key={resource.name} asChild>
                     <Link
                       to={resource.href}
-                      className="cursor-pointer"
+                      className={`cursor-pointer ${resource.highlight ? 'text-primary font-semibold' : ''}`}
                     >
                       {resource.name}
                     </Link>
@@ -145,6 +146,7 @@ const Header = () => {
               <div className="py-2">
                 <p className="text-muted-foreground font-medium mb-2">Family Education Resources</p>
                 <div className="flex flex-col gap-2 pl-4">
+                  <Link to="/boundaries-course" className="text-primary hover:text-primary/80 transition-colors font-semibold" onClick={() => setIsMenuOpen(false)}>Free Boundaries Course</Link>
                   <Link to="/helping-or-enabling" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Helping or Enabling? Tool</Link>
                   <Link to="/professional-guidance-signs" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Signs You Need Professional Help</Link>
                   <Link to="/why-families-need-support" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Why Families Need Support</Link>
