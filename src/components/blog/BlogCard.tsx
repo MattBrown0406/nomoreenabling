@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Clock, ArrowRight } from "lucide-react";
+import { Clock, ArrowRight, CheckCircle } from "lucide-react";
+import { useReadingProgress } from "@/hooks/useReadingProgress";
 
 interface BlogCardProps {
   title: string;
@@ -13,10 +14,19 @@ interface BlogCardProps {
 }
 
 const BlogCard = ({ title, excerpt, category, readTime, date, image, slug, featured = false }: BlogCardProps) => {
+  const { isRead } = useReadingProgress();
+  const hasRead = isRead(slug);
+
   if (featured) {
     return (
       <Link to={`/articles/${slug}`} className="group block">
-        <article className="blog-card grid md:grid-cols-2 gap-6">
+        <article className="blog-card grid md:grid-cols-2 gap-6 relative">
+          {hasRead && (
+            <div className="absolute top-3 right-3 z-10 bg-primary/90 text-primary-foreground px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+              <CheckCircle size={12} />
+              Read
+            </div>
+          )}
           <div className="aspect-[4/3] md:aspect-auto overflow-hidden">
             <img
               src={image}
@@ -45,7 +55,7 @@ const BlogCard = ({ title, excerpt, category, readTime, date, image, slug, featu
               </span>
             </div>
             <span className="inline-flex items-center gap-2 mt-4 text-primary font-medium group-hover:gap-3 transition-all">
-              Read More <ArrowRight size={16} />
+              {hasRead ? "Read Again" : "Read More"} <ArrowRight size={16} />
             </span>
           </div>
         </article>
@@ -55,7 +65,13 @@ const BlogCard = ({ title, excerpt, category, readTime, date, image, slug, featu
 
   return (
     <Link to={`/articles/${slug}`} className="group block">
-      <article className="blog-card h-full flex flex-col">
+      <article className="blog-card h-full flex flex-col relative">
+        {hasRead && (
+          <div className="absolute top-2 right-2 z-10 bg-primary/90 text-primary-foreground px-2 py-0.5 rounded-full text-xs font-medium flex items-center gap-1">
+            <CheckCircle size={10} />
+            Read
+          </div>
+        )}
         <div className="aspect-[16/10] overflow-hidden">
           <img
             src={image}

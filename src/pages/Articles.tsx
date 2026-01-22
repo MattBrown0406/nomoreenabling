@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BlogCard from "@/components/blog/BlogCard";
+import ReadingProgressBar from "@/components/blog/ReadingProgressBar";
 import AdSpace from "@/components/ads/AdSpace";
 import { Input } from "@/components/ui/input";
 import { blogPosts } from "@/data/blogPosts";
@@ -121,8 +122,9 @@ const Articles = () => {
           </div>
         </section>
 
-        {/* Banner Ad */}
-        <div className="container mx-auto px-4 py-6">
+        {/* Reading Progress + Banner Ad */}
+        <div className="container mx-auto px-4 py-6 space-y-4">
+          <ReadingProgressBar />
           <AdSpace size="leaderboard" />
         </div>
 
