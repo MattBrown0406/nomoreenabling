@@ -3,12 +3,18 @@
   <!-- Main Pages -->
   <url>
     <loc>https://nomoreenabling.com/</loc>
-    <lastmod>2026-01-23</lastmod>
+    <lastmod>2026-01-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://nomoreenabling.com/article/emotional-enabling-family-regulator-burnout</loc>
+    <loc>https://nomoreenabling.com/articles/family-responsibility-addiction-control-outcomes</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/emotional-enabling-family-regulator-burnout</loc>
     <lastmod>2026-01-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
