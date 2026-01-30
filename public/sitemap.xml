@@ -3,9 +3,15 @@
   <!-- Main Pages -->
   <url>
     <loc>https://nomoreenabling.com/</loc>
-    <lastmod>2026-01-26</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/stopping-rescuing-addiction-guilt-boundaries</loc>
+    <lastmod>2026-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nomoreenabling.com/articles/helping-turns-overfunctioning-families-addiction</loc>
