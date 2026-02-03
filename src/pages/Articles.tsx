@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import BlogCard from "@/components/blog/BlogCard";
 import ReadingProgressBar from "@/components/blog/ReadingProgressBar";
 import AdSpace from "@/components/ads/AdSpace";
+import FamilyBridgeBanner from "@/components/ads/FamilyBridgeBanner";
 import { Input } from "@/components/ui/input";
 import { blogPosts } from "@/data/blogPosts";
 import { Search, ArrowRight } from "lucide-react";
@@ -125,7 +126,7 @@ const Articles = () => {
         {/* Reading Progress + Banner Ad */}
         <div className="container mx-auto px-4 py-6 space-y-4">
           <ReadingProgressBar />
-          <AdSpace size="leaderboard" />
+          <FamilyBridgeBanner size="leaderboard" />
         </div>
 
         {/* Articles Grid */}
