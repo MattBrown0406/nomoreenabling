@@ -3,9 +3,15 @@
   <!-- Main Pages -->
   <url>
     <loc>https://nomoreenabling.com/</loc>
-    <lastmod>2026-01-28</lastmod>
+    <lastmod>2026-02-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://nomoreenabling.com/articles/chronic-stress-families-addiction-burnout</loc>
+    <lastmod>2026-02-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nomoreenabling.com/articles/family-silence-addiction-loyalty-enabling</loc>
