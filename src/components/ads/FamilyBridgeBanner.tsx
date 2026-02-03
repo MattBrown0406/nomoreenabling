@@ -1,5 +1,5 @@
 import familyBridgeLogo from "@/assets/family-bridge-logo.png";
-import { Brain, Shield, MessageSquare } from "lucide-react";
+import { Brain, Shield, MessageSquare, TrendingUp, Pill, MapPin, DollarSign, FileText } from "lucide-react";
 
 interface FamilyBridgeBannerProps {
   size?: "sidebar" | "leaderboard";
@@ -21,7 +21,7 @@ const FamilyBridgeBanner = ({ size = "leaderboard" }: FamilyBridgeBannerProps) =
           <img
             src={familyBridgeLogo}
             alt="FamilyBridge App"
-            className="h-20 md:h-24 w-auto rounded-lg bg-white/95 p-2 shadow-lg"
+            className="h-20 md:h-24 w-auto rounded-lg bg-white/95 p-2 shadow-lg flex-shrink-0"
           />
           
           {/* Content */}
@@ -30,31 +30,43 @@ const FamilyBridgeBanner = ({ size = "leaderboard" }: FamilyBridgeBannerProps) =
               Family<span className="text-[#2a9d8f]">Bridge</span>
             </h3>
             <p className="text-white/90 text-sm md:text-base mb-2">
-              A safe space for families affected by addiction to communicate, set boundaries, and rebuild trust.
+              AI-powered clinical insights for families and providers across the recovery journey.
             </p>
             <p className="text-white/60 text-xs">
-              AI-powered insights help families catch warning signs early
+              Patent-pending FIIS technology surfaces recovery insights before crises occur
             </p>
           </div>
 
-          {/* Features */}
-          <div className="flex md:flex-col gap-4 md:gap-2 text-center px-4">
-            <div className="flex items-center gap-2">
-              <Brain className="w-4 h-4 text-[#2a9d8f]" />
-              <span className="text-white/80 text-xs">AI Pattern Detection</span>
+          {/* Features Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-2 text-center px-2">
+            <div className="flex items-center gap-1.5">
+              <Brain className="w-3.5 h-3.5 text-[#2a9d8f] flex-shrink-0" />
+              <span className="text-white/80 text-[10px] whitespace-nowrap">FIIS Recovery Intelligence</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Shield className="w-4 h-4 text-[#2a9d8f]" />
-              <span className="text-white/80 text-xs">100% Private & Secure</span>
+            <div className="flex items-center gap-1.5">
+              <TrendingUp className="w-3.5 h-3.5 text-[#2a9d8f] flex-shrink-0" />
+              <span className="text-white/80 text-[10px] whitespace-nowrap">Recovery Tracking</span>
             </div>
-            <div className="flex items-center gap-2">
-              <MessageSquare className="w-4 h-4 text-[#2a9d8f]" />
-              <span className="text-white/80 text-xs">Moderated Chat</span>
+            <div className="flex items-center gap-1.5">
+              <Pill className="w-3.5 h-3.5 text-[#2a9d8f] flex-shrink-0" />
+              <span className="text-white/80 text-[10px] whitespace-nowrap">Medication Compliance</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5 text-[#2a9d8f] flex-shrink-0" />
+              <span className="text-white/80 text-[10px] whitespace-nowrap">Meeting Check-Ins</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <DollarSign className="w-3.5 h-3.5 text-[#2a9d8f] flex-shrink-0" />
+              <span className="text-white/80 text-[10px] whitespace-nowrap">Financial Coordination</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <MessageSquare className="w-3.5 h-3.5 text-[#2a9d8f] flex-shrink-0" />
+              <span className="text-white/80 text-[10px] whitespace-nowrap">AI Chat Moderation</span>
             </div>
           </div>
 
           {/* CTA */}
-          <div className="bg-[#2a9d8f] hover:bg-[#238b7e] text-white font-bold py-2.5 px-5 rounded-lg transition-colors text-sm whitespace-nowrap">
+          <div className="bg-[#2a9d8f] hover:bg-[#238b7e] text-white font-bold py-2.5 px-5 rounded-lg transition-colors text-sm whitespace-nowrap flex-shrink-0">
             Learn More
           </div>
         </div>
@@ -85,26 +97,38 @@ const FamilyBridgeBanner = ({ size = "leaderboard" }: FamilyBridgeBannerProps) =
           Family<span className="text-[#2a9d8f]">Bridge</span>
         </h3>
         <p className="text-[#2a9d8f] text-center font-serif text-sm font-semibold mb-3">
-          Healing Starts with Connection
+          AI-Powered Recovery Platform
         </p>
 
         {/* Description */}
         <p className="text-white/80 text-center text-sm leading-relaxed mb-4">
-          A safe space for families to communicate, set boundaries, and rebuild trust through recovery.
+          Clinical insights for families and providers across the recovery journey.
         </p>
 
         {/* Features */}
         <div className="space-y-2 mb-4">
           <div className="flex items-center gap-2 justify-center">
-            <Brain className="w-3.5 h-3.5 text-[#2a9d8f]" />
-            <span className="text-white/80 text-xs">AI Pattern Intelligence</span>
+            <Brain className="w-3.5 h-3.5 text-[#2a9d8f] flex-shrink-0" />
+            <span className="text-white/80 text-xs">FIIS Recovery Intelligence</span>
           </div>
           <div className="flex items-center gap-2 justify-center">
-            <Shield className="w-3.5 h-3.5 text-[#2a9d8f]" />
-            <span className="text-white/80 text-xs">100% Private & Secure</span>
+            <TrendingUp className="w-3.5 h-3.5 text-[#2a9d8f] flex-shrink-0" />
+            <span className="text-white/80 text-xs">Recovery Trajectory Tracking</span>
           </div>
           <div className="flex items-center gap-2 justify-center">
-            <MessageSquare className="w-3.5 h-3.5 text-[#2a9d8f]" />
+            <Pill className="w-3.5 h-3.5 text-[#2a9d8f] flex-shrink-0" />
+            <span className="text-white/80 text-xs">Medication Compliance</span>
+          </div>
+          <div className="flex items-center gap-2 justify-center">
+            <MapPin className="w-3.5 h-3.5 text-[#2a9d8f] flex-shrink-0" />
+            <span className="text-white/80 text-xs">GPS Meeting Check-Ins</span>
+          </div>
+          <div className="flex items-center gap-2 justify-center">
+            <DollarSign className="w-3.5 h-3.5 text-[#2a9d8f] flex-shrink-0" />
+            <span className="text-white/80 text-xs">Financial Coordination</span>
+          </div>
+          <div className="flex items-center gap-2 justify-center">
+            <MessageSquare className="w-3.5 h-3.5 text-[#2a9d8f] flex-shrink-0" />
             <span className="text-white/80 text-xs">AI Chat Moderation</span>
           </div>
         </div>
@@ -116,7 +140,7 @@ const FamilyBridgeBanner = ({ size = "leaderboard" }: FamilyBridgeBannerProps) =
 
         {/* Tagline */}
         <p className="text-white/50 text-center text-[10px] mt-3">
-          AI-Powered Family Recovery Platform
+          Patent-Pending FIIS Technology
         </p>
       </div>
     </a>
