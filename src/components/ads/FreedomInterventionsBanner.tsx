@@ -1,5 +1,6 @@
 import freedomLogo from "@/assets/freedom-interventions-logo.jpg";
 import { Phone } from "lucide-react";
+import { trackAdClick } from "@/lib/trackAdClick";
 
 interface FreedomInterventionsBannerProps {
   size?: "sidebar" | "leaderboard";
@@ -13,7 +14,7 @@ const FreedomInterventionsBanner = ({ size = "sidebar" }: FreedomInterventionsBa
       <a
         href="https://freedominterventions.com"
         target="_blank"
-        rel="noopener noreferrer"
+        onClick={() => trackAdClick("Freedom Interventions")}
         className="block bg-gradient-to-r from-[#1a365d] via-[#2c5282] to-[#1a365d] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 max-w-4xl mx-auto border border-[#3182ce]/30"
       >
         <div className="flex flex-row items-center gap-6 p-4">
@@ -47,6 +48,7 @@ const FreedomInterventionsBanner = ({ size = "sidebar" }: FreedomInterventionsBa
       target="_blank"
       rel="noopener noreferrer"
       className="block bg-gradient-to-br from-[#1a365d] to-[#2c5282] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 border border-[#3182ce]/30"
+      onClick={() => trackAdClick("Freedom Interventions")}
     >
       <div className="p-4">
         {/* Logo */}

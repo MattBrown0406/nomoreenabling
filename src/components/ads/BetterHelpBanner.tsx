@@ -1,4 +1,5 @@
 import { ExternalLink, Heart, MessageCircle } from "lucide-react";
+import { trackAdClick } from "@/lib/trackAdClick";
 
 const BetterHelpBanner = () => {
   return (
@@ -7,6 +8,7 @@ const BetterHelpBanner = () => {
       target="_blank"
       rel="noopener noreferrer"
       className="block w-full bg-[hsl(153,30%,25%)] hover:bg-[hsl(153,30%,22%)] transition-all duration-300 rounded-lg overflow-hidden shadow-md hover:shadow-lg"
+      onClick={() => trackAdClick("BetterHelp")}
     >
       <div className="flex items-center justify-between px-4 py-3 md:px-6 md:py-4">
         {/* Left side - Logo and tagline */}

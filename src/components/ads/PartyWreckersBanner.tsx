@@ -1,5 +1,6 @@
 import partyWreckersLogo from "@/assets/party-wreckers-logo.png";
 import { Headphones, Star, Users } from "lucide-react";
+import { trackAdClick } from "@/lib/trackAdClick";
 
 interface PartyWreckersBannerProps {
   size?: "sidebar" | "leaderboard";
@@ -15,6 +16,7 @@ const PartyWreckersBanner = ({ size = "leaderboard" }: PartyWreckersBannerProps)
         target="_blank"
         rel="noopener noreferrer"
         className="block bg-gradient-to-r from-[#2d2a26] via-[#3d3832] to-[#2d2a26] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 max-w-4xl mx-auto border border-[#c4a77d]/30"
+        onClick={() => trackAdClick("Party Wreckers")}
       >
         <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 p-4 md:p-5">
           {/* Logo */}
@@ -67,6 +69,7 @@ const PartyWreckersBanner = ({ size = "leaderboard" }: PartyWreckersBannerProps)
       target="_blank"
       rel="noopener noreferrer"
       className="block bg-gradient-to-br from-[#2d2a26] to-[#3d3832] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 border border-[#c4a77d]/30"
+      onClick={() => trackAdClick("Party Wreckers")}
     >
       <div className="p-4">
         {/* Logo */}

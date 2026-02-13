@@ -1,4 +1,5 @@
 import brianOSheaLogo from "@/assets/brian-oshea-logo.jpg";
+import { trackAdClick } from "@/lib/trackAdClick";
 
 const BrianOSheaBanner = () => {
   return (
@@ -7,6 +8,7 @@ const BrianOSheaBanner = () => {
       target="_blank"
       rel="noopener noreferrer"
       className="block bg-gradient-to-br from-[#1a3a52] to-[#2d5a7b] rounded-xl overflow-hidden shadow-card hover:shadow-lg transition-shadow duration-300 border border-[#3d7a9b]/30"
+      onClick={() => trackAdClick("Brian O'Shea")}
     >
       <div className="p-4">
         {/* Logo */}

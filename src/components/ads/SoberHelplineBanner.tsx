@@ -1,5 +1,6 @@
 import soberHelplineLogo from "@/assets/sober-helpline-logo.png";
 import { Phone, Users, BookOpen, Video } from "lucide-react";
+import { trackAdClick } from "@/lib/trackAdClick";
 
 const SoberHelplineBanner = () => {
   return (
@@ -8,6 +9,7 @@ const SoberHelplineBanner = () => {
       target="_blank"
       rel="noopener noreferrer"
       className="block bg-gradient-to-br from-[#f5e6d3] to-[#e8d4bc] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 border border-[#c9a96e]/30"
+      onClick={() => trackAdClick("Sober Helpline")}
     >
       <div className="p-4">
         {/* Logo */}

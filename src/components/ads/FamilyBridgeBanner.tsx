@@ -1,5 +1,6 @@
 import familyBridgeLogo from "@/assets/family-bridge-logo.png";
 import { Brain, Shield, MessageSquare, TrendingUp, Pill, MapPin, DollarSign, FileText } from "lucide-react";
+import { trackAdClick } from "@/lib/trackAdClick";
 
 interface FamilyBridgeBannerProps {
   size?: "sidebar" | "leaderboard";
@@ -15,6 +16,7 @@ const FamilyBridgeBanner = ({ size = "leaderboard" }: FamilyBridgeBannerProps) =
         target="_blank"
         rel="noopener noreferrer"
         className="block bg-gradient-to-r from-[#0d4a4a] via-[#0f5f5f] to-[#0d4a4a] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 max-w-4xl mx-auto border border-[#2a9d8f]/30"
+        onClick={() => trackAdClick("FamilyBridge")}
       >
         <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 p-4 md:p-5">
           {/* Logo */}
@@ -81,6 +83,7 @@ const FamilyBridgeBanner = ({ size = "leaderboard" }: FamilyBridgeBannerProps) =
       target="_blank"
       rel="noopener noreferrer"
       className="block bg-gradient-to-br from-[#0d4a4a] to-[#0f5f5f] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 border border-[#2a9d8f]/30"
+      onClick={() => trackAdClick("FamilyBridge")}
     >
       <div className="p-4">
         {/* Logo */}
