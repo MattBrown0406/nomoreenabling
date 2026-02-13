@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart3, LogOut, TrendingUp, Eye, FileText, Calendar, ArrowUpDown } from "lucide-react";
+import { BarChart3, LogOut, TrendingUp, Eye, FileText, Calendar, ArrowUpDown, MousePointerClick } from "lucide-react";
 import { blogPosts } from "@/data/blogPosts";
 import { toast } from "@/hooks/use-toast";
 import SEOHead from "@/components/seo/SEOHead";
@@ -15,6 +15,11 @@ interface ArticleStat {
   views: number;
   category: string;
   date: string;
+}
+
+interface AdClickStat {
+  ad_name: string;
+  clicks: number;
 }
 
 type SortField = "views" | "title" | "date";
@@ -36,6 +41,8 @@ const AdminAnalytics = () => {
   const [timeRange, setTimeRange] = useState<TimeRange>("30d");
   const [subscriberCount, setSubscriberCount] = useState<number | null>(null);
   const [enrollmentCount, setEnrollmentCount] = useState<number | null>(null);
+  const [adClicks, setAdClicks] = useState<AdClickStat[]>([]);
+  const [totalAdClicks, setTotalAdClicks] = useState(0);
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -70,6 +77,7 @@ const AdminAnalytics = () => {
       setIsAdmin(true);
       fetchAnalytics();
       fetchCounts();
+      fetchAdClicks();
     } else {
       setIsAdmin(false);
       setLoading(false);
@@ -83,6 +91,37 @@ const AdminAnalytics = () => {
     ]);
     setSubscriberCount(subResult.count ?? 0);
     setEnrollmentCount(enrollResult.count ?? 0);
+  };
+
+  const fetchAdClicks = async () => {
+    let query = supabase.from('ad_clicks').select('ad_name, clicked_at');
+
+    if (timeRange !== 'all') {
+      const days = timeRange === '7d' ? 7 : timeRange === '30d' ? 30 : 90;
+      const since = new Date();
+      since.setDate(since.getDate() - days);
+      query = query.gte('clicked_at', since.toISOString());
+    }
+
+    const { data, error } = await query;
+
+    if (error || !data) {
+      setAdClicks([]);
+      setTotalAdClicks(0);
+      return;
+    }
+
+    const clickCounts: Record<string, number> = {};
+    data.forEach((click) => {
+      clickCounts[click.ad_name] = (clickCounts[click.ad_name] || 0) + 1;
+    });
+
+    const clickStats = Object.entries(clickCounts)
+      .map(([ad_name, clicks]) => ({ ad_name, clicks }))
+      .sort((a, b) => b.clicks - a.clicks);
+
+    setAdClicks(clickStats);
+    setTotalAdClicks(data.length);
   };
 
   const fetchAnalytics = async () => {
@@ -128,6 +167,7 @@ const AdminAnalytics = () => {
   useEffect(() => {
     if (isAdmin) {
       fetchAnalytics();
+      fetchAdClicks();
     }
   }, [timeRange, isAdmin]);
 
@@ -328,6 +368,46 @@ const AdminAnalytics = () => {
             </Card>
           </div>
 
+          {/* Ad Click Analytics */}
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="font-serif text-lg flex items-center gap-2">
+                <MousePointerClick className="w-5 h-5 text-primary" />
+                Ad Click Performance
+              </CardTitle>
+              <p className="text-muted-foreground text-sm">
+                {totalAdClicks.toLocaleString()} total clicks
+              </p>
+            </CardHeader>
+            <CardContent>
+              {adClicks.length === 0 ? (
+                <p className="text-muted-foreground text-sm">No ad clicks recorded yet for this time period.</p>
+              ) : (
+                <div className="space-y-3">
+                  {adClicks.map((ad) => {
+                    const percentage = totalAdClicks > 0 ? (ad.clicks / totalAdClicks) * 100 : 0;
+                    return (
+                      <div key={ad.ad_name} className="flex items-center gap-4">
+                        <div className="w-40 md:w-56 font-medium text-foreground text-sm truncate">
+                          {ad.ad_name}
+                        </div>
+                        <div className="flex-1 bg-muted rounded-full h-4 overflow-hidden">
+                          <div
+                            className="bg-primary h-full rounded-full transition-all duration-500"
+                            style={{ width: `${percentage}%` }}
+                          />
+                        </div>
+                        <div className="w-20 text-right">
+                          <span className="font-semibold text-foreground text-sm">{ad.clicks.toLocaleString()}</span>
+                          <span className="text-muted-foreground text-xs ml-1">({percentage.toFixed(0)}%)</span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </CardContent>
+          </Card>
           {/* Articles Table */}
           <Card>
             <CardHeader>

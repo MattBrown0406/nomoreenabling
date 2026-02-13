@@ -1,5 +1,6 @@
 import { ExternalLink, Award, Heart } from "lucide-react";
 import jeffHatchLogo from "@/assets/jeff-hatch-coaching-logo.png";
+import { trackAdClick } from "@/lib/trackAdClick";
 
 const JeffHatchCoachingBanner = () => {
   return (
@@ -8,6 +9,7 @@ const JeffHatchCoachingBanner = () => {
       target="_blank"
       rel="noopener noreferrer"
       className="block bg-gradient-to-br from-[hsl(220,40%,20%)] to-[hsl(220,50%,12%)] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.01]"
+      onClick={() => trackAdClick("Jeff Hatch Coaching")}
     >
       <div className="p-5">
         {/* Header with Logo */}

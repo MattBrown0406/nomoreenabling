@@ -1,5 +1,6 @@
 import { ExternalLink, Mountain, Phone, Shield } from "lucide-react";
 import eagleCreekLogo from "@/assets/eagle-creek-ranch-logo.png";
+import { trackAdClick } from "@/lib/trackAdClick";
 
 const EagleCreekRanchBanner = () => {
   return (
@@ -8,6 +9,7 @@ const EagleCreekRanchBanner = () => {
       target="_blank"
       rel="noopener noreferrer"
       className="block bg-gradient-to-br from-[hsl(38,35%,25%)] to-[hsl(38,40%,15%)] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.01]"
+      onClick={() => trackAdClick("Eagle Creek Ranch")}
     >
       {/* Mountain Header Image */}
       <div className="relative h-24 bg-gradient-to-b from-[hsl(200,30%,70%)] to-[hsl(38,35%,25%)] overflow-hidden">

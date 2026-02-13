@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      ad_clicks: {
+        Row: {
+          ad_name: string
+          clicked_at: string
+          id: string
+          page_path: string | null
+        }
+        Insert: {
+          ad_name: string
+          clicked_at?: string
+          id?: string
+          page_path?: string | null
+        }
+        Update: {
+          ad_name?: string
+          clicked_at?: string
+          id?: string
+          page_path?: string | null
+        }
+        Relationships: []
+      }
       article_views: {
         Row: {
           article_slug: string
