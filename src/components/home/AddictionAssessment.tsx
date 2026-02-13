@@ -185,7 +185,7 @@ const results: Record<SeverityLevel, ResultData> = {
       "Consider a professional intervention with a certified interventionist if they are resistant",
       "Call 911 if there are signs of overdose, seizures, or medical emergency",
       "Do not attempt to manage detox at home – it can be medically dangerous",
-      <>Connect with <a href="https://al-anon.org" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Al-Anon</a> or a family therapist for your own support. You can also join free family Zoom calls at <a href="https://interventiononcall.com/live-family-friends-zoom/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">InterventionOnCall.com</a></>,
+      <>Connect with <a href="https://al-anon.org" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Al-Anon</a> or a family therapist for your own support</>,
       "Remember: You cannot force recovery, but you can stop enabling and set boundaries",
     ],
     urgency: "Urgent – Immediate professional help is needed. This is a serious medical condition.",

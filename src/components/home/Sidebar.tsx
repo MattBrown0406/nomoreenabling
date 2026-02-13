@@ -3,7 +3,7 @@ import { useMemo, useEffect, useState } from "react";
 import AdSpace from "@/components/ads/AdSpace";
 import FreedomInterventionsBanner from "@/components/ads/FreedomInterventionsBanner";
 import SoberHelplineBanner from "@/components/ads/SoberHelplineBanner";
-import InterventionOnCallBanner from "@/components/ads/InterventionOnCallBanner";
+
 import JeffHatchCoachingBanner from "@/components/ads/JeffHatchCoachingBanner";
 import BrianOSheaBanner from "@/components/ads/BrianOSheaBanner";
 import KairosInterventionBanner from "@/components/ads/KairosInterventionBanner";
@@ -144,11 +144,6 @@ const Sidebar = () => {
       {/* Sober Helpline Banner */}
       <div>
         <SoberHelplineBanner />
-      </div>
-
-      {/* Intervention On Call Banner */}
-      <div>
-        <InterventionOnCallBanner />
       </div>
 
       {/* Jeff Hatch Coaching Banner */}

@@ -89,16 +89,6 @@ const Header = () => {
                     Family Support Forum
                   </a>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <a
-                    href="https://interventiononcall.com/live-family-friends-zoom/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="cursor-pointer text-primary"
-                  >
-                    Free Family Support Meetings
-                  </a>
-                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </nav>
@@ -134,15 +124,6 @@ const Header = () => {
                   {link.name}
                 </Link>
               ))}
-              <a
-                href="https://interventiononcall.com/live-family-friends-zoom/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:text-primary/80 transition-colors duration-200 font-medium py-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Free Family Support Meetings
-              </a>
               <div className="py-2">
                 <p className="text-muted-foreground font-medium mb-2">Family Education Resources</p>
                 <div className="flex flex-col gap-2 pl-4">

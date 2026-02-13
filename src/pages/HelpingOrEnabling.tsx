@@ -658,17 +658,6 @@ const HelpingOrEnabling = () => {
                           </li>
                         </ul>
                       </div>
-                      <div className="text-center pt-4">
-                        <a 
-                          href="https://interventiononcall.com/live-family-friends-zoom/" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                        >
-                          <Button variant="hero" size="lg">
-                            Get Guided Support
-                          </Button>
-                        </a>
-                      </div>
                     </>
                   )}
 
