@@ -16,6 +16,7 @@ import WhyFamiliesNeedSupport from "./pages/WhyFamiliesNeedSupport";
 import GroundingReminder from "./pages/GroundingReminder";
 import FamilySystemNotes from "./pages/FamilySystemNotes";
 import BoundariesCourse from "./pages/BoundariesCourse";
+import AdminAnalytics from "./pages/AdminAnalytics";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,7 +41,9 @@ const App = () => (
           <Route path="/grounding-reminder" element={<GroundingReminder />} />
           <Route path="/family-system-notes" element={<FamilySystemNotes />} />
           <Route path="/boundaries-course" element={<BoundariesCourse />} />
+          <Route path="/admin" element={<AdminAnalytics />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
