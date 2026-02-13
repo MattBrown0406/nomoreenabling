@@ -1,11 +1,12 @@
 import { useParams, Link } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import { ArrowLeft, Clock, Calendar, Tag, Facebook, Mail, Link2, Check } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { blogPosts } from "@/data/blogPosts";
 import AdSpace from "@/components/ads/AdSpace";
 import EagleCreekRanchBanner from "@/components/ads/EagleCreekRanchBanner";
+import RelatedArticleCallout from "@/components/blog/RelatedArticleCallout";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -26,6 +27,28 @@ const ArticlePage = () => {
   const [copied, setCopied] = useState(false);
   const viewRecorded = useRef(false);
   const { markAsRead } = useReadingProgress();
+
+  // Smart related articles: match by shared categories, then by recency
+  const relatedPosts = useMemo(() => {
+    if (!article) return [];
+    const others = blogPosts.filter((p) => p.slug !== slug);
+    const scored = others.map((post) => {
+      const sharedCategories = post.categories.filter((cat) =>
+        article.categories.includes(cat)
+      ).length;
+      return { post, score: sharedCategories };
+    });
+    scored.sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      return new Date(b.post.date).getTime() - new Date(a.post.date).getTime();
+    });
+    return scored.slice(0, 4).map((s) => s.post);
+  }, [article, slug]);
+
+  // Pick a mid-article suggestion (best related that isn't in bottom section top 2)
+  const midArticleSuggestion = useMemo(() => {
+    return relatedPosts.length > 2 ? relatedPosts[2] : relatedPosts[0] || null;
+  }, [relatedPosts]);
 
   const articleUrl = `https://nomoreenabling.com/articles/${slug}`;
   const imageUrl = article?.image?.startsWith('http') 
@@ -238,33 +261,54 @@ const ArticlePage = () => {
 
                 {/* Article Content */}
                 <div className="prose prose-lg max-w-none text-foreground/90">
-                  {article.content.split('\n\n').map((paragraph, index) => {
-                    if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
-                      return (
-                        <h2 key={index} className="text-xl font-bold text-foreground mt-8 mb-4">
-                          {paragraph.replace(/\*\*/g, '')}
-                        </h2>
-                      );
-                    }
-                    if (paragraph.includes('**')) {
-                      const parts = paragraph.split(/(\*\*[^*]+\*\*)/g);
-                      return (
-                        <p key={index} className="mb-4 leading-relaxed">
-                          {parts.map((part, i) => {
-                            if (part.startsWith('**') && part.endsWith('**')) {
-                              return <strong key={i} className="font-semibold text-foreground">{part.replace(/\*\*/g, '')}</strong>;
-                            }
-                            return part;
-                          })}
-                        </p>
-                      );
-                    }
-                    return (
-                      <p key={index} className="mb-4 leading-relaxed">
-                        {paragraph}
-                      </p>
-                    );
-                  })}
+                  {(() => {
+                    const paragraphs = article.content.split('\n\n');
+                    const midPoint = Math.floor(paragraphs.length / 2);
+                    
+                    return paragraphs.map((paragraph, index) => {
+                      const elements: React.ReactNode[] = [];
+                      
+                      // Insert mid-article callout at the midpoint
+                      if (index === midPoint && midArticleSuggestion) {
+                        elements.push(
+                          <RelatedArticleCallout
+                            key={`callout-${index}`}
+                            title={midArticleSuggestion.title}
+                            slug={midArticleSuggestion.slug}
+                            excerpt={midArticleSuggestion.excerpt}
+                          />
+                        );
+                      }
+
+                      if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
+                        elements.push(
+                          <h2 key={index} className="text-xl font-bold text-foreground mt-8 mb-4">
+                            {paragraph.replace(/\*\*/g, '')}
+                          </h2>
+                        );
+                      } else if (paragraph.includes('**')) {
+                        const parts = paragraph.split(/(\*\*[^*]+\*\*)/g);
+                        elements.push(
+                          <p key={index} className="mb-4 leading-relaxed">
+                            {parts.map((part, i) => {
+                              if (part.startsWith('**') && part.endsWith('**')) {
+                                return <strong key={i} className="font-semibold text-foreground">{part.replace(/\*\*/g, '')}</strong>;
+                              }
+                              return part;
+                            })}
+                          </p>
+                        );
+                      } else {
+                        elements.push(
+                          <p key={index} className="mb-4 leading-relaxed">
+                            {paragraph}
+                          </p>
+                        );
+                      }
+                      
+                      return elements;
+                    });
+                  })()}
                 </div>
 
                 {/* Bottom Ad Space */}
@@ -275,11 +319,11 @@ const ArticlePage = () => {
 
               {/* Related Articles */}
               <div className="mt-12 mb-16">
-                <h2 className="text-2xl font-bold mb-6">Continue Reading</h2>
+                <h2 className="font-serif text-2xl font-bold text-foreground mb-2">Continue Reading</h2>
+                <p className="text-muted-foreground text-sm mb-6">More articles on similar topics</p>
                 <div className="grid md:grid-cols-2 gap-6">
-                  {blogPosts
-                    .filter((post) => post.slug !== slug)
-                    .slice(0, 2)
+                  {relatedPosts
+                    .slice(0, 4)
                     .map((post) => (
                       <Link
                         key={post.id}
@@ -301,6 +345,7 @@ const ArticlePage = () => {
                           <h3 className="font-semibold text-foreground mt-1 group-hover:text-primary transition-colors line-clamp-2">
                             {post.title}
                           </h3>
+                          <p className="text-muted-foreground text-sm mt-1 line-clamp-2">{post.excerpt}</p>
                         </div>
                       </Link>
                     ))}
