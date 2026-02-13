@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart3, LogOut, TrendingUp, Eye, FileText, Calendar, ArrowUpDown, MousePointerClick } from "lucide-react";
+import { BarChart3, LogOut, TrendingUp, Eye, FileText, Calendar, ArrowUpDown, MousePointerClick, RefreshCw, Share2 } from "lucide-react";
 import { blogPosts } from "@/data/blogPosts";
 import { toast } from "@/hooks/use-toast";
 import SEOHead from "@/components/seo/SEOHead";
@@ -43,6 +43,8 @@ const AdminAnalytics = () => {
   const [enrollmentCount, setEnrollmentCount] = useState<number | null>(null);
   const [adClicks, setAdClicks] = useState<AdClickStat[]>([]);
   const [totalAdClicks, setTotalAdClicks] = useState(0);
+  const [syncing, setSyncing] = useState(false);
+  const [lastSyncCount, setLastSyncCount] = useState<number | null>(null);
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -199,6 +201,46 @@ const AdminAnalytics = () => {
     } else {
       setSortField(field);
       setSortDir("desc");
+    }
+  };
+
+  const syncArticleMetadata = async () => {
+    setSyncing(true);
+    try {
+      const siteOrigin = "https://nomoreenabling.com";
+      const records = blogPosts.map((post) => {
+        // Build absolute image URL from the resolved import
+        const imageUrl = post.image.startsWith("http")
+          ? post.image
+          : `${siteOrigin}${post.image}`;
+        return {
+          slug: post.slug,
+          title: post.metaTitle || post.title,
+          description: post.metaDescription || post.excerpt,
+          image_url: imageUrl,
+          updated_at: new Date().toISOString(),
+        };
+      });
+
+      const { error } = await supabase
+        .from("articles_metadata")
+        .upsert(records, { onConflict: "slug" });
+
+      if (error) throw error;
+
+      setLastSyncCount(records.length);
+      toast({
+        title: "Metadata synced!",
+        description: `${records.length} articles synced for social sharing.`,
+      });
+    } catch (err: any) {
+      toast({
+        title: "Sync failed",
+        description: err.message,
+        variant: "destructive",
+      });
+    } finally {
+      setSyncing(false);
     }
   };
 
@@ -406,6 +448,31 @@ const AdminAnalytics = () => {
                   })}
                 </div>
               )}
+            </CardContent>
+          </Card>
+          {/* Social Share Metadata Sync */}
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="font-serif text-lg flex items-center gap-2">
+                <Share2 className="w-5 h-5 text-primary" />
+                Social Media Link Previews
+              </CardTitle>
+              <p className="text-muted-foreground text-sm">
+                Sync article metadata so shared links display proper titles, descriptions, and images on social media.
+                {lastSyncCount !== null && ` Last sync: ${lastSyncCount} articles.`}
+              </p>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <Button onClick={syncArticleMetadata} disabled={syncing} size="sm">
+                <RefreshCw className={`w-4 h-4 mr-2 ${syncing ? "animate-spin" : ""}`} />
+                {syncing ? "Syncing..." : "Sync Article Metadata"}
+              </Button>
+              <p className="text-xs text-muted-foreground">
+                After syncing, share articles using this URL format for proper previews:<br />
+                <code className="bg-muted px-2 py-1 rounded text-xs mt-1 inline-block">
+                  {`https://${import.meta.env.VITE_SUPABASE_PROJECT_ID || "ctqbadyfhcoxhywrkorf"}.supabase.co/functions/v1/social-preview?slug=ARTICLE-SLUG`}
+                </code>
+              </p>
             </CardContent>
           </Card>
           {/* Articles Table */}
