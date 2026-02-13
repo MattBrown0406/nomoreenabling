@@ -53,6 +53,30 @@ export type Database = {
         }
         Relationships: []
       }
+      articles_metadata: {
+        Row: {
+          description: string
+          image_url: string
+          slug: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          description: string
+          image_url: string
+          slug: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          description?: string
+          image_url?: string
+          slug?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       course_enrollments: {
         Row: {
           completed_at: string | null
