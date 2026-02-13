@@ -14,6 +14,25 @@ const isValidEmail = (email: string): boolean => {
   return emailRegex.test(email) && email.length <= 255;
 };
 
+// Disposable email domains commonly used by bots
+const DISPOSABLE_DOMAINS = new Set([
+  'mailinator.com', 'guerrillamail.com', 'guerrillamail.de', 'grr.la', 'guerrillamailblock.com',
+  'tempmail.com', 'temp-mail.org', 'throwaway.email', 'fakeinbox.com', 'sharklasers.com',
+  'guerrillamail.info', 'guerrillamail.biz', 'guerrillamail.net', 'yopmail.com', 'yopmail.fr',
+  'trashmail.com', 'trashmail.me', 'trashmail.net', 'dispostable.com', 'maildrop.cc',
+  'mailnesia.com', 'tempail.com', 'tempr.email', 'discard.email', 'discardmail.com',
+  'getnada.com', 'getairmail.com', 'mailcatch.com', 'mailexpire.com', 'mailnull.com',
+  'mintemail.com', 'mohmal.com', 'mytemp.email', 'spambox.us', 'spamfree24.org',
+  'tempomail.fr', 'temporaryemail.net', 'temporaryinbox.com', 'throwawayemailaddress.com',
+  'tmpmail.net', 'tmpmail.org', 'trash-mail.at', 'trashymail.com', 'wegwerfmail.de',
+  '10minutemail.com', '20minutemail.com', 'dodgeit.com', 'dodgit.com', 'devnullmail.com',
+]);
+
+const isDisposableEmail = (email: string): boolean => {
+  const domain = email.split('@')[1]?.toLowerCase();
+  return domain ? DISPOSABLE_DOMAINS.has(domain) : false;
+};
+
 const sanitizeString = (str: string | null | undefined, maxLength: number): string | null => {
   if (!str) return null;
   return str.trim().slice(0, maxLength);
@@ -99,6 +118,14 @@ serve(async (req) => {
     if (!isValidEmail(sanitizedEmail)) {
       return new Response(
         JSON.stringify({ error: 'Please enter a valid email address' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    if (isDisposableEmail(sanitizedEmail)) {
+      console.log('Disposable email rejected for course enrollment');
+      return new Response(
+        JSON.stringify({ error: 'Please use a permanent email address' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }

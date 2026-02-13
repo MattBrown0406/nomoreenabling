@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mail, Lock } from "lucide-react";
@@ -10,14 +10,24 @@ const NewsletterSection = () => {
   const [firstName, setFirstName] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const loadedAt = useRef(Date.now());
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
 
-    // Honeypot check - if filled, it's a bot
+    // Honeypot check
     if (honeypot) {
-      // Silently reject but show success to bot
+      toast({
+        title: "Welcome aboard!",
+        description: "You've successfully subscribed to our newsletter.",
+      });
+      return;
+    }
+
+    // Time-based check — reject if submitted within 3 seconds of render
+    const elapsed = Date.now() - loadedAt.current;
+    if (elapsed < 3000) {
       toast({
         title: "Welcome aboard!",
         description: "You've successfully subscribed to our newsletter.",
@@ -29,7 +39,7 @@ const NewsletterSection = () => {
     
     try {
       const { data, error } = await supabase.functions.invoke('newsletter-signup', {
-        body: { email, first_name: firstName || null }
+        body: { email, first_name: firstName || null, _t: loadedAt.current }
       });
 
       if (error) {
