@@ -6,7 +6,6 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-// Simple validation functions
 const isValidEmail = (email: string): boolean => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email) && email.length <= 255;
@@ -15,6 +14,36 @@ const isValidEmail = (email: string): boolean => {
 const sanitizeString = (str: string | null | undefined, maxLength: number): string | null => {
   if (!str) return null;
   return str.trim().slice(0, maxLength);
+};
+
+// Disposable/temporary email domains commonly used by bots
+const DISPOSABLE_DOMAINS = new Set([
+  'mailinator.com', 'guerrillamail.com', 'guerrillamail.de', 'grr.la', 'guerrillamailblock.com',
+  'tempmail.com', 'temp-mail.org', 'throwaway.email', 'fakeinbox.com', 'sharklasers.com',
+  'guerrillamail.info', 'guerrillamail.biz', 'guerrillamail.net', 'yopmail.com', 'yopmail.fr',
+  'trashmail.com', 'trashmail.me', 'trashmail.net', 'dispostable.com', 'maildrop.cc',
+  'mailnesia.com', 'tempail.com', 'tempr.email', 'discard.email', 'discardmail.com',
+  'discardmail.de', 'disposableemailaddresses.emailmiser.com', 'drdrb.com', 'einrot.com',
+  'emailigo.de', 'emailisvalid.com', 'emailtemporario.com.br', 'ephemail.net', 'etranquil.com',
+  'getnada.com', 'getairmail.com', 'harakirimail.com', 'mailcatch.com', 'mailexpire.com',
+  'mailforspam.com', 'mailhazard.com', 'mailhz.me', 'mailimate.com', 'mailmoat.com',
+  'mailnull.com', 'mailscrap.com', 'mailshell.com', 'mailsiphon.com', 'mailslite.com',
+  'mailtemp.info', 'mailtothis.com', 'mintemail.com', 'mohmal.com', 'mvrht.com',
+  'mytemp.email', 'nomail.xl.cx', 'nospam.ze.tc', 'owlpic.com', 'proxymail.eu',
+  'rcpt.at', 'reallymymail.com', 'recode.me', 'regbypass.com', 'safetymail.info',
+  'spambox.us', 'spamfree24.org', 'spamgourmet.com', 'spamherelots.com', 'spaml.com',
+  'tempomail.fr', 'temporaryemail.net', 'temporaryforwarding.com', 'temporaryinbox.com',
+  'thankmother.com', 'thisisnotmyrealemail.com', 'throwawayemailaddress.com', 'tmail.ws',
+  'tmails.net', 'tmpmail.net', 'tmpmail.org', 'trash-mail.at', 'trashymail.com',
+  'trashymail.net', 'wegwerfmail.de', 'wegwerfmail.net', 'wh4f.org', 'zoemail.org',
+  '10minutemail.com', '20minutemail.com', 'mailnator.com', 'binkmail.com', 'bobmail.info',
+  'chammy.info', 'devnullmail.com', 'dodgeit.com', 'dodgit.com', 'donemail.ru',
+  'e4ward.com', 'emailx.at.hm', 'emz.net', 'enterto.com', 'fleckens.hu',
+]);
+
+const isDisposableEmail = (email: string): boolean => {
+  const domain = email.split('@')[1]?.toLowerCase();
+  return domain ? DISPOSABLE_DOMAINS.has(domain) : false;
 };
 
 // Sync contact to Mailchimp
@@ -28,7 +57,6 @@ const syncToMailchimp = async (email: string, firstName: string | null): Promise
   }
 
   try {
-    // Extract datacenter from API key (format: xxxxx-us21)
     const datacenter = apiKey.split('-').pop();
     const url = `https://${datacenter}.api.mailchimp.com/3.0/lists/${audienceId}/members`;
 
@@ -38,9 +66,7 @@ const syncToMailchimp = async (email: string, firstName: string | null): Promise
     };
 
     if (firstName) {
-      subscriberData.merge_fields = {
-        FNAME: firstName,
-      };
+      subscriberData.merge_fields = { FNAME: firstName };
     }
 
     const response = await fetch(url, {
@@ -55,30 +81,27 @@ const syncToMailchimp = async (email: string, firstName: string | null): Promise
     const data = await response.json();
 
     if (response.ok) {
-      console.log('Successfully synced to Mailchimp:', email);
+      console.log('Successfully synced to Mailchimp');
     } else if (response.status === 400 && data.title === 'Member Exists') {
-      console.log('Contact already exists in Mailchimp:', email);
+      console.log('Contact already exists in Mailchimp');
     } else {
       console.error('Mailchimp sync error:', response.status, data);
     }
   } catch (error) {
     console.error('Error syncing to Mailchimp:', error);
-    // Don't throw - we don't want Mailchimp sync failures to break signups
   }
 };
 
 serve(async (req) => {
-  // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const { email, first_name } = await req.json();
+    const { email, first_name, _t } = await req.json();
 
     // Validate email
     if (!email || typeof email !== 'string') {
-      console.log('Validation failed: Email is required');
       return new Response(
         JSON.stringify({ error: 'Email is required' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -88,22 +111,40 @@ serve(async (req) => {
     const sanitizedEmail = email.trim().toLowerCase();
     
     if (!isValidEmail(sanitizedEmail)) {
-      console.log('Validation failed: Invalid email format or too long');
       return new Response(
         JSON.stringify({ error: 'Please enter a valid email address' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
-    // Sanitize first_name (optional, max 100 chars)
+    // Disposable email check
+    if (isDisposableEmail(sanitizedEmail)) {
+      console.log('Disposable email rejected');
+      return new Response(
+        JSON.stringify({ error: 'Please use a permanent email address' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Time-based check: if timestamp missing or form submitted in under 2 seconds, reject silently
+    if (_t && typeof _t === 'number') {
+      const elapsed = Date.now() - _t;
+      if (elapsed < 2000) {
+        console.log('Bot detected: form submitted too quickly');
+        return new Response(
+          JSON.stringify({ success: true }),
+          { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
+    }
+
     const sanitizedFirstName = sanitizeString(first_name, 100);
 
-    // Create Supabase client with service role key for insert
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    console.log(`Processing newsletter signup for: ${sanitizedEmail}`);
+    console.log('Processing newsletter signup');
 
     const { error } = await supabase
       .from('subscribers')
@@ -114,7 +155,6 @@ serve(async (req) => {
 
     if (error) {
       if (error.code === '23505') {
-        console.log('Duplicate email attempted:', sanitizedEmail);
         return new Response(
           JSON.stringify({ error: 'already_subscribed' }),
           { status: 409, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -124,12 +164,10 @@ serve(async (req) => {
       throw error;
     }
 
-    // Sync to Mailchimp (fire and forget)
     syncToMailchimp(sanitizedEmail, sanitizedFirstName).catch(e => 
       console.error('Background Mailchimp sync error:', e)
     );
 
-    console.log('Successfully subscribed:', sanitizedEmail);
     return new Response(
       JSON.stringify({ success: true }),
       { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }

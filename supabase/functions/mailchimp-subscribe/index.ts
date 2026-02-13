@@ -51,12 +51,33 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MAX_EMAIL_LENGTH = 255;
 const MAX_NAME_LENGTH = 100;
 
+// Disposable email domains commonly used by bots
+const DISPOSABLE_DOMAINS = new Set([
+  'mailinator.com', 'guerrillamail.com', 'guerrillamail.de', 'grr.la', 'guerrillamailblock.com',
+  'tempmail.com', 'temp-mail.org', 'throwaway.email', 'fakeinbox.com', 'sharklasers.com',
+  'guerrillamail.info', 'guerrillamail.biz', 'guerrillamail.net', 'yopmail.com', 'yopmail.fr',
+  'trashmail.com', 'trashmail.me', 'trashmail.net', 'dispostable.com', 'maildrop.cc',
+  'mailnesia.com', 'tempail.com', 'tempr.email', 'discard.email', 'discardmail.com',
+  'discardmail.de', 'getnada.com', 'getairmail.com', 'mailcatch.com', 'mailexpire.com',
+  'mailforspam.com', 'mailnull.com', 'mailscrap.com', 'mailshell.com', 'mintemail.com',
+  'mohmal.com', 'mytemp.email', 'spambox.us', 'spamfree24.org', 'spamgourmet.com',
+  'tempomail.fr', 'temporaryemail.net', 'temporaryinbox.com', 'throwawayemailaddress.com',
+  'tmpmail.net', 'tmpmail.org', 'trash-mail.at', 'trashymail.com', 'wegwerfmail.de',
+  '10minutemail.com', '20minutemail.com', 'dodgeit.com', 'dodgit.com', 'devnullmail.com',
+]);
+
+const isDisposableEmail = (email: string): boolean => {
+  const domain = email.split('@')[1]?.toLowerCase();
+  return domain ? DISPOSABLE_DOMAINS.has(domain) : false;
+};
+
 const validateEmail = (email: unknown): string | null => {
   if (typeof email !== 'string') return 'Email must be a string';
   const trimmed = email.trim();
   if (!trimmed) return 'Email is required';
   if (trimmed.length > MAX_EMAIL_LENGTH) return 'Email is too long';
   if (!EMAIL_REGEX.test(trimmed)) return 'Invalid email format';
+  if (isDisposableEmail(trimmed.toLowerCase())) return 'Please use a permanent email address';
   return null;
 };
 
