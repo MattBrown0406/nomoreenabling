@@ -22,10 +22,22 @@ serve(async (req: Request) => {
 
   try {
     const url = new URL(req.url);
-    const slug = url.searchParams.get("slug");
+    let slug = url.searchParams.get("slug");
+
+    // Also support path-based: /sharepreview/SLUG
+    if (!slug) {
+      const pathParts = url.pathname.split("/");
+      const lastPart = pathParts[pathParts.length - 1];
+      if (lastPart && lastPart !== "sharepreview") {
+        slug = lastPart;
+      }
+    }
 
     if (!slug) {
-      return new Response("Missing slug parameter", { status: 400, headers: corsHeaders });
+      return new Response(JSON.stringify({ error: "Missing slug parameter" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
@@ -38,14 +50,15 @@ serve(async (req: Request) => {
       .eq("slug", slug)
       .maybeSingle();
 
+    const articleUrl = `https://nomoreenabling.com/articles/${slug}`;
+
     if (error || !data) {
       return new Response(null, {
         status: 302,
-        headers: { ...corsHeaders, Location: `https://nomoreenabling.com/articles/${slug}` },
+        headers: { ...corsHeaders, Location: articleUrl },
       });
     }
 
-    const articleUrl = `https://nomoreenabling.com/articles/${slug}`;
     const fullTitle = data.title.includes("No More Enabling")
       ? data.title
       : `${data.title} | No More Enabling`;
@@ -81,7 +94,10 @@ serve(async (req: Request) => {
       },
     });
   } catch (err) {
-    console.error("social-preview error:", err);
-    return new Response("Internal error", { status: 500, headers: corsHeaders });
+    console.error("sharepreview error:", err);
+    return new Response(JSON.stringify({ error: "Internal error" }), {
+      status: 500,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   }
 });
