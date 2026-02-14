@@ -69,7 +69,7 @@ const ArticlePage = () => {
     window.scrollTo(0, 0);
   }, [article]);
 
-  // Record article view and mark as read
+  // Record article view, mark as read, and sync metadata for social sharing
   useEffect(() => {
     if (slug && !viewRecorded.current) {
       viewRecorded.current = true;
@@ -82,10 +82,36 @@ const ArticlePage = () => {
         .then(() => {
           // View recorded silently
         });
+      // Sync article metadata for social sharing previews
+      if (article) {
+        const prodOrigin = "https://nomoreenabling.com";
+        // In production, Vite resolves image imports to /assets/name-hash.ext
+        // In dev, they resolve to /src/assets/name.ext — so use the production origin
+        const resolvedImage = article.image?.startsWith('http')
+          ? article.image
+          : `${prodOrigin}${article.image}`;
+        // Only sync with production-valid URLs (not /src/assets/ dev paths)
+        const imgUrl = resolvedImage.includes('/src/assets/')
+          ? `${prodOrigin}/favicon.jpg`
+          : resolvedImage;
+        supabase
+          .from("articles_metadata")
+          .upsert({
+            slug: slug,
+            title: article.metaTitle || article.title,
+            description: article.metaDescription || article.excerpt,
+            image_url: imgUrl,
+            updated_at: new Date().toISOString(),
+          }, { onConflict: "slug" })
+          .then(() => {
+            // Metadata synced silently
+          });
+      }
     }
-  }, [slug, markAsRead]);
+  }, [slug, markAsRead, article]);
 
-  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || `https://ctqbadyfhcoxhywrkorf.supabase.co`;
+  const shareUrl = `${supabaseUrl}/functions/v1/sharepreview?slug=${slug}`;
   const shareTitle = article?.title || '';
 
   const shareOnFacebook = () => {

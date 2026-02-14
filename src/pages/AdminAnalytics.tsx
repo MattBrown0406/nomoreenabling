@@ -210,9 +210,13 @@ const AdminAnalytics = () => {
       const siteOrigin = "https://nomoreenabling.com";
       const records = blogPosts.map((post) => {
         // Build absolute image URL from the resolved import
-        const imageUrl = post.image.startsWith("http")
+        const resolved = post.image.startsWith("http")
           ? post.image
           : `${siteOrigin}${post.image}`;
+        // In dev, images resolve to /src/assets/ which won't work in prod
+        const imageUrl = resolved.includes("/src/assets/")
+          ? `${siteOrigin}/favicon.jpg`
+          : resolved;
         return {
           slug: post.slug,
           title: post.metaTitle || post.title,
@@ -470,7 +474,7 @@ const AdminAnalytics = () => {
               <p className="text-xs text-muted-foreground">
                 After syncing, share articles using this URL format for proper previews:<br />
                 <code className="bg-muted px-2 py-1 rounded text-xs mt-1 inline-block">
-                  {`https://${import.meta.env.VITE_SUPABASE_PROJECT_ID || "ctqbadyfhcoxhywrkorf"}.supabase.co/functions/v1/social-preview?slug=ARTICLE-SLUG`}
+                  {`https://${import.meta.env.VITE_SUPABASE_PROJECT_ID || "ctqbadyfhcoxhywrkorf"}.supabase.co/functions/v1/sharepreview?slug=ARTICLE-SLUG`}
                 </code>
               </p>
             </CardContent>
