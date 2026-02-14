@@ -79,7 +79,7 @@ serve(async (req: Request) => {
   <meta name="twitter:title" content="${escapeHtml(fullTitle)}" />
   <meta name="twitter:description" content="${escapeHtml(data.description)}" />
   <meta name="twitter:image" content="${escapeHtml(data.image_url)}" />
-  <meta http-equiv="refresh" content="0;url=${articleUrl}" />
+  <script>window.location.replace("${articleUrl}");</script>
 </head>
 <body>
   <p>Redirecting to <a href="${escapeHtml(articleUrl)}">${escapeHtml(data.title)}</a>...</p>
