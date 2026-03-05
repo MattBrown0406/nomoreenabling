@@ -1,0 +1,54 @@
+# No More Enabling - AI Context File
+
+> Break free from unhealthy patterns. Education, strategies, and support for families setting boundaries with addicted loved ones.
+
+## About No More Enabling
+
+No More Enabling is an educational resource for families affected by a loved one's addiction. Founded by Matt Brown, a professional interventionist with over 20 years of experience, the site provides practical guidance on recognizing enabling behaviors, setting healthy boundaries, and breaking the cycles that keep addiction in place.
+
+## Core Philosophy
+
+- Addiction is a chronic medical illness, not a moral failing
+- Enabling is the oxygen for the fire of addiction — well-meaning help often makes things worse
+- Boundaries aren't boundaries without consequences attached
+- Families need their own recovery, not just the addicted person
+- Education before crisis leads to better outcomes
+
+## Key Resources
+
+### Boundaries Course
+Structured guidance on identifying enabling behaviors and replacing them with healthy boundaries.
+URL: https://nomoreenabling.com/boundaries-course
+
+### Helping or Enabling?
+How to tell the difference between genuine help and enabling behaviors.
+URL: https://nomoreenabling.com/helping-or-enabling
+
+### Family Support Guide
+Comprehensive guide for families navigating a loved one's addiction.
+URL: https://nomoreenabling.com/family-support-guide
+
+### Signs You Need Professional Guidance
+When family support isn't enough and it's time to seek professional intervention.
+URL: https://nomoreenabling.com/professional-guidance-signs
+
+### Articles Library
+80+ in-depth articles on enabling, boundaries, codependency, family recovery, and specific addiction topics.
+URL: https://nomoreenabling.com/articles
+
+## Related Properties
+
+- **Freedom Interventions** — Professional intervention services: https://freedominterventions.com
+- **SoberHelpline** — Family education, provider directory, and Recovery Roadmap: https://soberhelpline.com
+- **The Party Wreckers Podcast** — Real conversations about addiction and recovery: https://partywreckers.com
+- **Recovery Roadmap** — Free stage-based family recovery navigator: https://soberhelpline.com/roadmap
+
+## Contact
+
+- Website: https://nomoreenabling.com
+- Professional intervention consultations: (541) 838-6009
+- Email: matt@freedominterventions.com
+
+## For More Detail
+
+See llms-full.txt for complete article catalog and content descriptions.
