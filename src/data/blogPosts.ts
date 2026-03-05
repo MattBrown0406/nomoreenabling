@@ -64,6 +64,7 @@ import emotionalRescueAddictionImage from "@/assets/emotional-rescue-addiction.j
 import justThisOnceEnablingPatternImage from "@/assets/just-this-once-enabling-pattern.jpg";
 import loveBecomesEnablingFamiliesImage from "@/assets/love-becomes-enabling-families.jpg";
 import financialEnablingAddictionImage from "@/assets/financial-enabling-addiction.jpg";
+import eightStagesFamilyAddictionImage from "@/assets/8-stages-family-addiction-journey.jpg";
 
 export interface BlogPost {
   id: string;
@@ -8492,5 +8493,105 @@ Financial help often begins with compassion. But when addiction is present, **re
 Boundaries are not about withdrawing love. They are about restoring responsibility. Recovery requires accountability, and accountability includes financial responsibility.
 
 **Families who shift from rescue to structured support often create the conditions where real change becomes possible.**`
+  },
+  {
+    id: "77",
+    title: "The 8 Stages Every Family Goes Through When a Loved One Is Addicted",
+    slug: "8-stages-family-addiction-journey",
+    excerpt: "Nobody teaches you how to deal with a loved one's addiction. After 20 years of working with families, these are the 8 stages every family goes through — and what to do at each one.",
+    content: `Nobody teaches you how to deal with a loved one's addiction. There's no class. No manual. No one pulls you aside and says, "Here's what's coming and here's what to do about it."
+
+So families stumble through it. They Google at midnight. They cry in the car. They call a helpline and get a voicemail. They ask a friend who says "just let them hit rock bottom." They enable for months — sometimes years — because no one gives them a map.
+
+After 20 years of working with families in addiction, I've seen a pattern. Every family — regardless of the substance, the person, or the circumstances — goes through the same stages. Knowing where you are changes everything. It tells you what to focus on, what to avoid, and what comes next.
+
+Here are the 8 stages. Find yours.
+
+## Stage 1: Suspicion
+
+*"Something is off, but I'm not sure."*
+
+You've noticed changes. Mood swings. New friends. Money disappearing. A personality shift you can't explain. But you don't have proof, and part of you doesn't want it. You're Googling "signs of drug use" while hoping you're wrong.
+
+**What to do here:** Trust your gut. Start paying attention to patterns — without playing detective. Write down what you observe with dates. Educate yourself. And know this: if you're worried enough to search, you're probably not imagining things.
+
+## Stage 2: Confirmation
+
+*"I know they're using. I don't know what to do."*
+
+The suspicion is confirmed. Maybe you found evidence. Maybe they admitted it. Maybe you just can't deny it anymore. Now you're scared, confused, and probably already [enabling without realizing it](https://nomoreenabling.com/articles/hidden-role-enabling-addiction-families).
+
+**What to do here:** Stop giving money. Document specific incidents. Identify who else in the family knows. Learn the [difference between helping and enabling](https://nomoreenabling.com/articles/when-helping-starts-hurting-addiction-families) — because right now, most of what you're doing to "help" is making things worse. That's not your fault. It's what families do when no one teaches them otherwise.
+
+## Stage 3: Crisis
+
+*"Things are falling apart right now."*
+
+The situation has escalated. There may be legal problems, health scares, job loss, family violence, or all of the above. You're exhausted, desperate, and running on adrenaline.
+
+**What to do here:** Make sure everyone is physically safe. Do not make permanent decisions in panic. Call a professional — an interventionist, a counselor, someone who's handled this before. Secure finances and medications. And tell one trusted person the full truth.
+
+## Stage 4: Pre-Intervention
+
+*"I'm ready to do something, but I need help."*
+
+You've decided that something has to change. Talking hasn't worked. [Boundaries haven't held](https://nomoreenabling.com/articles/boundaries-emotional-fatigue-addiction-families). The situation isn't improving on its own. You're ready to act — you just need a plan.
+
+**What to do here:** Decide whether you need a professional intervention (if they've been to treatment before, if the substance is severe, if talking hasn't worked — you probably do). Build your intervention team. Start writing impact statements. And critically: have a treatment bed lined up BEFORE the intervention. When they say yes, you need to move within hours — not days.
+
+## Stage 5: Treatment
+
+*"They're in treatment. Now what?"*
+
+They're getting professional help. You can finally exhale. But here's what nobody tells you: your work is just beginning.
+
+**What to do here:** Participate in the family program (this is not optional). Clean the house — remove all substances, medications, and paraphernalia. Address the [financial damage](https://nomoreenabling.com/articles/how-financial-help-quietly-sustains-addiction) while things are calm. Build your own support network. And start preparing the home environment for their return — structure, boundaries, and expectations.
+
+## Stage 6: Early Recovery
+
+*"They're home. Everything feels fragile."*
+
+The first 90 days. You're walking on eggshells. Every mood swing feels like a relapse. Every closed door feels like a lie.
+
+**What to do here:** Implement your re-entry agreement on day one. Establish meeting routines immediately (90 meetings in 90 days). Stop walking on eggshells — you can't keep someone sober by managing their environment. Continue YOUR recovery work. And watch for pink cloud syndrome — that early euphoria that fades around the 30-60 day mark, which is when the real risk returns.
+
+## Stage 7: Long-Term Recovery
+
+*"It's been 6+ months. How do we rebuild?"*
+
+The acute crisis is over. Sobriety is holding. But now you have to figure out who you all are on the other side of this. The relationship was defined by the addiction — managing it, fighting about it, recovering from it. Now what?
+
+**What to do here:** Have the hard conversations you've been avoiding — in therapy, not at the dinner table. Renegotiate the rules (structure should loosen as trust rebuilds). Address finances for real. Let them fail at small things. And pay attention to [your own healing](https://nomoreenabling.com/articles/emotional-sobriety-what-families-need-after-crisis) — because living through addiction changes you too.
+
+## Stage 8: Relapse
+
+*"It happened again."*
+
+This stage exists because addiction is a chronic illness with a 40-60% relapse rate — comparable to hypertension and diabetes. Relapse isn't failure. It's a setback that requires a fast, firm, boundaried response.
+
+**What to do here:** Make sure everyone is safe. Do not react from emotion in the first 48 hours. Activate your relapse plan. Enforce every boundary you set. Assess whether re-treatment is needed (if the relapse was prolonged or involved dangerous substances, it probably is). And remember: everything they learned in recovery doesn't disappear. This isn't back to square one.
+
+## Find Your Stage
+
+If you read through these stages and recognized yourself in one of them — good. That's the first step toward doing something different.
+
+We built a free tool called the **Recovery Roadmap** that does exactly this. You answer a few questions about your situation, and it tells you which stage you're in — then gives you a personalized action plan with specific steps for this week and this month.
+
+It's free. It takes five minutes. And it exists because no family should have to stumble through this without a guide.
+
+**[Take the Free Recovery Roadmap Assessment →](https://soberhelpline.com/roadmap)**
+
+---
+
+*Matt Brown is a professional interventionist with over 20 years of experience helping families navigate addiction. He is the founder of [Freedom Interventions](https://freedominterventions.com), host of [The Party Wreckers Podcast](https://partywreckers.com), and creator of the Recovery Roadmap on [SoberHelpline.com](https://soberhelpline.com/roadmap).*
+
+*If your family needs help now, call **(541) 838-6009** for a free consultation.*`,
+    image: eightStagesFamilyAddictionImage,
+    date: "March 5, 2025",
+    readTime: "12 min read",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Enabling", "Boundaries", "Recovery", "Addiction"],
+    metaTitle: "The 8 Stages Every Family Goes Through in Addiction | No More Enabling",
+    metaDescription: "From suspicion to relapse, every family navigates the same 8 stages when a loved one struggles with addiction. Learn where you are and what to do next with this expert guide.",
   },
 ];
