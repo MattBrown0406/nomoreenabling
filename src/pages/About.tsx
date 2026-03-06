@@ -28,8 +28,8 @@ const About = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead
-        title="About Us"
-        description="No More Enabling is an educational and support resource for families affected by addiction, codependency, and enabling behaviors. Founded by Matt Brown, a professional interventionist with over 20 years of experience."
+        title="About No More Enabling — Our Mission & Story"
+        description="No More Enabling is an educational resource for families affected by addiction. Founded by Matt Brown, professional interventionist with 20+ years experience."
         canonicalUrl="https://nomoreenabling.com/about"
         keywords="about no more enabling, addiction support, family education, Matt Brown interventionist"
       />

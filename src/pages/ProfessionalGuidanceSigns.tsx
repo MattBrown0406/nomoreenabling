@@ -124,8 +124,8 @@ const ProfessionalGuidanceSigns = () => {
   return (
     <>
       <SEOHead
-        title="Signs It May Be Time for Professional Guidance"
-        description="Learn the key indicators that suggest it's time to seek professional support for your family affected by addiction. Professional guidance is not a last resort—it's an appropriate next step."
+        title="Signs You Need Professional Help for Addiction"
+        description="When is it time to call a professional? Recognize the signs that your family needs expert guidance to deal with addiction effectively."
         canonicalUrl="https://nomoreenabling.com/professional-guidance-signs"
         keywords="professional addiction help, when to seek help, family intervention signs"
       />

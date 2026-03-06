@@ -68,9 +68,9 @@ const Index = () => {
   return (
     <>
       <SEOHead
-        title="No More Enabling - Break Free from Unhealthy Patterns"
-        description="Discover insights, strategies, and support for setting healthy boundaries, building self-worth, and creating relationships that nurture your growth."
-        canonicalUrl="https://nomoreenabling.com/"
+        title="No More Enabling — Addiction, Boundaries & Family Recovery"
+        description="Education and support for families affected by addiction and enabling. Learn to set healthy boundaries, stop enabling, and start your own recovery. Free articles and resources."
+        canonicalUrl="https://nomoreenabling.com"
         keywords="enabling addiction, codependency, family boundaries, addiction recovery, healthy relationships, family support"
       />
       <OrganizationJsonLd />

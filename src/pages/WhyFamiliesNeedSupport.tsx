@@ -95,8 +95,8 @@ const WhyFamiliesNeedSupport = () => {
   return (
     <>
       <SEOHead
-        title="Why Families Need Support Too"
-        description="Addiction rarely affects just one person. Learn why family support is essential, not optional, and how it can change outcomes for everyone involved."
+        title="Why Families Need Support in Addiction Recovery"
+        description="Addiction is a family disease. Here's why families need their own support, education, and recovery — not just the person who's using."
         canonicalUrl="https://nomoreenabling.com/why-families-need-support"
         keywords="family support addiction, why families need help, addiction family resources, family recovery support"
       />

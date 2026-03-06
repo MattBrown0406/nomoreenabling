@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import { useLocation } from "react-router-dom";
 
 interface SEOHeadProps {
   title: string;
@@ -21,13 +22,27 @@ const SEOHead = ({
   ogImage = "https://nomoreenabling.com/favicon.jpg",
   articlePublishedTime,
   articleModifiedTime,
-  articleAuthor = "No More Enabling",
+  articleAuthor = "Matt Brown",
   keywords,
   noindex = false,
 }: SEOHeadProps) => {
-  const fullTitle = title.includes("No More Enabling") 
-    ? title 
-    : `${title} | No More Enabling`;
+  const location = useLocation();
+
+  // Build the full title, truncating if needed to stay under 60 chars
+  const buildTitle = () => {
+    const suffix = " | No More Enabling";
+    if (title.includes("No More Enabling")) return title;
+    const full = `${title}${suffix}`;
+    if (full.length <= 60) return full;
+    // Truncate the title portion
+    const maxTitleLen = 60 - suffix.length - 1; // -1 for ellipsis
+    return `${title.substring(0, maxTitleLen)}…${suffix}`;
+  };
+
+  const fullTitle = buildTitle();
+
+  // Auto-generate canonical from current route if not provided
+  const canonical = canonicalUrl || `https://nomoreenabling.com${location.pathname === '/' ? '' : location.pathname}`;
 
   return (
     <Helmet>
@@ -39,13 +54,13 @@ const SEOHead = ({
       ) : (
         <meta name="robots" content="index, follow" />
       )}
-      {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+      <link rel="canonical" href={canonical} />
 
       {/* Open Graph */}
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:type" content={ogType} />
-      {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+      <meta property="og:url" content={canonical} />
       <meta property="og:image" content={ogImage} />
       <meta property="og:site_name" content="No More Enabling" />
       <meta property="og:locale" content="en_US" />

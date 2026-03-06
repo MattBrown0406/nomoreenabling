@@ -16,8 +16,8 @@ const GroundingReminder = () => {
   return (
     <>
       <SEOHead
-        title="A Grounding Reminder for Families"
-        description="When addiction creates urgency and fear, pause here. A grounding reminder that you are not required to solve everything today."
+        title="Grounding Reminder — Stay Centered in Chaos"
+        description="A quick grounding exercise for when addiction chaos takes over. Breathe, refocus, and remember what you can and cannot control."
         canonicalUrl="https://nomoreenabling.com/grounding-reminder"
         keywords="family grounding, addiction stress, coping with addiction, family support, pause and reflect"
       />

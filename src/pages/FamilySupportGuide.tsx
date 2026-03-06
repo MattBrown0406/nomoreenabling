@@ -13,8 +13,8 @@ const FamilySupportGuide = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEOHead
-        title="Family Support Guide for Addiction"
-        description="Practical guidance for families who are exhausted, confused, and ready for change. Learn how to love someone struggling with addiction without enabling."
+        title="Family Support Guide — Help Without Enabling"
+        description="A practical guide for families of addicts: how to support your loved one without enabling their addiction. Boundaries, communication, and self-care."
         canonicalUrl="https://nomoreenabling.com/family-support-guide"
         keywords="family support guide, addiction help, family recovery, enabling behaviors"
       />
@@ -43,7 +43,7 @@ const FamilySupportGuide = () => {
               Family Support Guide
             </span>
             <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">
-              No More Enabling
+              Family Support Guide
             </h1>
             <p className="text-xl md:text-2xl text-primary font-medium mb-4">
               A Family Support Guide for Loving Someone Struggling With Addiction

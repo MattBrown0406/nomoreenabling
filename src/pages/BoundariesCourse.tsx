@@ -4,6 +4,7 @@ import { CheckCircle, Clock, Mail, ArrowRight, Flame } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SEOHead from "@/components/seo/SEOHead";
+import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -92,11 +93,26 @@ const BoundariesCourse = () => {
   return (
     <>
       <SEOHead
-        title="Free Email Course: Boundaries & Addiction | No More Enabling"
-        description="A 4-week email course helping families set and hold boundaries without guilt. Learn why boundaries aren't abandonment and how they can help everyone heal."
+        title="Boundaries Course — Learn to Set Healthy Limits"
+        description="A structured course on setting and maintaining healthy boundaries with an addicted loved one. Stop enabling, start recovering — even if they don't."
         canonicalUrl="https://nomoreenabling.com/boundaries-course"
         keywords="boundaries addiction, enabling family, codependency course, setting boundaries, addiction family support"
       />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Course",
+          "name": "Boundaries Course — Setting Healthy Limits in Addiction",
+          "description": "Learn to set and maintain healthy boundaries with an addicted loved one. A structured course for families ready to stop enabling.",
+          "provider": {
+            "@type": "Organization",
+            "name": "No More Enabling",
+            "url": "https://nomoreenabling.com"
+          },
+          "url": "https://nomoreenabling.com/boundaries-course",
+          "isAccessibleForFree": true
+        })}</script>
+      </Helmet>
 
       <div className="min-h-screen flex flex-col">
         <Header />
