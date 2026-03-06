@@ -65,6 +65,7 @@ import justThisOnceEnablingPatternImage from "@/assets/just-this-once-enabling-p
 import loveBecomesEnablingFamiliesImage from "@/assets/love-becomes-enabling-families.jpg";
 import financialEnablingAddictionImage from "@/assets/financial-enabling-addiction.jpg";
 import eightStagesFamilyAddictionImage from "@/assets/8-stages-family-addiction-journey.jpg";
+import roadToRecoveryAddictionImage from "@/assets/road-to-recovery-addiction.jpg";
 
 export interface BlogPost {
   id: string;
