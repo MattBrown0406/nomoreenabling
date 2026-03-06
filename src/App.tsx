@@ -1,4 +1,5 @@
 import { Toaster } from "@/components/ui/toaster";
+import OrganizationJsonLd from "@/components/seo/OrganizationJsonLd";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -31,6 +32,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <OrganizationJsonLd />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/articles" element={<Articles />} />

@@ -17,7 +17,6 @@ import BetterHelpBanner from "@/components/ads/BetterHelpBanner";
 import { Button } from "@/components/ui/button";
 import { blogPosts } from "@/data/blogPosts";
 import SEOHead from "@/components/seo/SEOHead";
-import OrganizationJsonLd from "@/components/seo/OrganizationJsonLd";
 
 const categories = [
   "All",
@@ -69,11 +68,11 @@ const Index = () => {
     <>
       <SEOHead
         title="No More Enabling — Addiction, Boundaries & Family Recovery"
-        description="Education and support for families affected by addiction and enabling. Learn to set healthy boundaries, stop enabling, and start your own recovery. Free articles and resources."
+        description="Education and support for families affected by addiction and enabling. 70+ free articles on boundaries, codependency, and recovery. Start your own healing."
         canonicalUrl="https://nomoreenabling.com"
         keywords="enabling addiction, codependency, family boundaries, addiction recovery, healthy relationships, family support"
       />
-      <OrganizationJsonLd />
+      
 
       <div className="min-h-screen flex flex-col">
         <Header />
