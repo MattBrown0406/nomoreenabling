@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Articles from "./pages/Articles";
@@ -53,6 +53,27 @@ const App = () => (
               <AdminAnalytics />
             </AuthGuard>
           } />
+
+          {/* Legacy WordPress 301 Redirects */}
+          <Route path="/are-you-an-enabler" element={<Navigate to="/helping-or-enabling" replace />} />
+          <Route path="/are-you-an-enabler/" element={<Navigate to="/helping-or-enabling" replace />} />
+          <Route path="/help-an-addict" element={<Navigate to="/family-support-guide" replace />} />
+          <Route path="/help-an-addict/" element={<Navigate to="/family-support-guide" replace />} />
+          <Route path="/enabling-after-treatment" element={<Navigate to="/articles/hidden-role-enabling-addiction" replace />} />
+          <Route path="/enabling-after-treatment/" element={<Navigate to="/articles/hidden-role-enabling-addiction" replace />} />
+          <Route path="/powerlessness" element={<Navigate to="/articles/letting-go-without-collapse" replace />} />
+          <Route path="/powerlessness/" element={<Navigate to="/articles/letting-go-without-collapse" replace />} />
+          <Route path="/forgiveness-in-addiction" element={<Navigate to="/articles/family-trauma-after-addiction" replace />} />
+          <Route path="/forgiveness-in-addiction/" element={<Navigate to="/articles/family-trauma-after-addiction" replace />} />
+          <Route path="/how-to-support-someone-in-drug-rehab" element={<Navigate to="/family-support-guide" replace />} />
+          <Route path="/how-to-support-someone-in-drug-rehab/" element={<Navigate to="/family-support-guide" replace />} />
+          <Route path="/author/rzimmers" element={<Navigate to="/about" replace />} />
+          <Route path="/author/rzimmers/" element={<Navigate to="/about" replace />} />
+          <Route path="/author/ericbutton" element={<Navigate to="/about" replace />} />
+          <Route path="/author/ericbutton/" element={<Navigate to="/about" replace />} />
+          <Route path="/providers" element={<Navigate to="/advertise" replace />} />
+          <Route path="/providers/" element={<Navigate to="/advertise" replace />} />
+
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

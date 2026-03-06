@@ -43,8 +43,8 @@ const Articles = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead
-        title="Articles"
-        description="Browse our collection of articles on enabling, codependency, boundaries, and family recovery. Find insights and strategies for healthier relationships."
+        title="Articles on Enabling, Boundaries & Family Addiction"
+        description="Browse 70+ articles on enabling behaviors, boundary setting, codependency, family roles in addiction, and how to stop helping in ways that hurt."
         canonicalUrl="https://nomoreenabling.com/articles"
         keywords="addiction articles, codependency resources, family recovery, enabling behaviors, healthy boundaries"
       />
@@ -63,9 +63,10 @@ const Articles = () => {
               <span className="inline-block px-3 py-1 bg-primary text-primary-foreground text-sm font-medium rounded-full mb-4">
                 Latest Article
               </span>
-              <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
+              <h1 className="sr-only">Articles on Enabling, Boundaries & Family Addiction</h1>
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
                 {newestPost.title}
-              </h1>
+              </h2>
               <p className="mt-4 text-lg text-muted-foreground line-clamp-3">
                 {newestPost.excerpt}
               </p>

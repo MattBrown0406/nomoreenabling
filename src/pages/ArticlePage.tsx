@@ -175,8 +175,8 @@ const ArticlePage = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEOHead
-        title={article.title}
-        description={article.excerpt}
+        title={article.metaTitle || article.title}
+        description={article.metaDescription || article.excerpt}
         canonicalUrl={articleUrl}
         ogType="article"
         ogImage={imageUrl}
@@ -184,11 +184,12 @@ const ArticlePage = () => {
         keywords={article.categories.join(", ")}
       />
       <ArticleJsonLd
-        title={article.title}
-        description={article.excerpt}
+        title={article.metaTitle || article.title}
+        description={article.metaDescription || article.excerpt}
         image={imageUrl}
         datePublished={getISODate(article.date)}
         url={articleUrl}
+        keywords={article.categories.join(", ")}
       />
       <BreadcrumbJsonLd
         items={[

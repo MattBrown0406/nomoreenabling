@@ -45,8 +45,8 @@ const Advertise = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead
-        title="Advertise With Us"
-        description="Connect your brand with our engaged community of readers seeking personal growth, healthy relationships, and positive change. View our advertising packages."
+        title="Advertise on No More Enabling — Reach Families & Providers"
+        description="Reach families and treatment providers through ethical advertising on NoMoreEnabling.com. High-intent audience actively seeking addiction and recovery resources."
         canonicalUrl="https://nomoreenabling.com/advertise"
         keywords="advertise, wellness advertising, addiction recovery marketing, mental health advertising"
       />

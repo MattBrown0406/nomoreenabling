@@ -102,8 +102,8 @@ const FamilySystemNotes = () => {
   return (
     <>
       <SEOHead
-        title="Taking Notes From the Family System"
-        description="Learn to observe family patterns around addiction. Change rarely begins with the addicted individual alone—it begins when families start paying attention to patterns."
+        title="Family System Notes — How Addiction Changes Families"
+        description="Understand how addiction restructures your entire family system. Roles shift, communication breaks down, and enabling becomes the norm. Here's what to know."
         canonicalUrl="https://nomoreenabling.com/family-system-notes"
         keywords="family system patterns, addiction observation, family dynamics"
       />
