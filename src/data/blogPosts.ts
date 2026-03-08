@@ -8773,7 +8773,7 @@ It's free. It takes five minutes. And it exists because no family should have to
     readTime: "12 min read",
     metaTitle: "How to Stop Enabling an Addict: Guide for Families",
     metaDescription: "Learn how to stop enabling addiction, recognize enabling behaviors, set healthy boundaries, and help a loved one get the treatment they need — without losing yourself in the process.",
-    keywords: "how to stop enabling an addict, enabling behaviors, signs of enabling, enabling addiction, codependency and addiction, how to set boundaries with an addict, family roles in addiction, intervention for addiction",
+    
     content: `
       <p>When someone you love is struggling with addiction, every instinct you have screams at you to help. You make excuses for them. You cover their bills. You stay silent to keep the peace. You tell yourself it's love. But there's a painful truth that many families eventually face: what feels like helping is often hurting.</p>
       <p>Enabling addiction is one of the most misunderstood dynamics in the recovery world — and it's one of the most important to understand if you want to see your loved one get well.</p>
