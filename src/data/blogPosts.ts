@@ -58,6 +58,7 @@ import guiltEnablingAddictionImage from "@/assets/guilt-enabling-addiction.jpg";
 import emotionalShockAbsorberAddictionImage from "@/assets/emotional-shock-absorber-addiction.jpg";
 import stressExcuseAddictionImage from "@/assets/stress-excuse-addiction-families.jpg";
 import scheduleAccommodationEnablingImage from "@/assets/schedule-accommodation-enabling.jpg";
+import enablingVsHelpingRecoveryImage from "@/assets/enabling-vs-helping-recovery.jpg";
 import protectingEmbarrassmentAddictionImage from "@/assets/protecting-embarrassment-addiction.jpg";
 import takingOverResponsibilitiesImage from "@/assets/helping-turns-overfunctioning.jpg";
 import emotionalRescueAddictionImage from "@/assets/emotional-rescue-addiction.jpg";
