@@ -1,4 +1,5 @@
 import addictionFamilyCommunicationImage from "@/assets/addiction-family-communication.jpg";
+import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
 import lettingGoControlImage from "@/assets/letting-go-control-abandonment.jpg";
