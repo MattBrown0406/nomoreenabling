@@ -8689,7 +8689,7 @@ It's free. It takes five minutes. And it exists because no family should have to
     metaDescription: "From suspicion to relapse, every family navigates the same 8 stages when a loved one struggles with addiction. Learn where you are and what to do next with this expert guide.",
   },
   {
-    id: "73",
+    id: "78",
     title: "The Road to Recovery: Evidence-Based Strategies for Overcoming Addiction in 2026",
     excerpt: "Struggling with addiction? Discover proven, evidence-based strategies for addiction recovery — from detox and therapy to long-term sobriety support. Start your healing journey today.",
     category: "Recovery",
@@ -8854,7 +8854,7 @@ It's free. It takes five minutes. And it exists because no family should have to
     `,
   },
   {
-    id: "74",
+    id: "79",
     slug: "how-to-stop-enabling-an-addict",
     title: "How to Stop Enabling an Addict: A Complete Guide for Families and Loved Ones",
     excerpt: "Learn how to stop enabling addiction, recognize enabling behaviors, set healthy boundaries, and help a loved one get the treatment they need — without losing yourself in the process.",
@@ -9058,7 +9058,7 @@ It's free. It takes five minutes. And it exists because no family should have to
     `,
   },
   {
-    id: "75",
+    id: "80",
     title: "Enabling vs. Helping: How to Stop Enabling an Addict and Start Supporting Real Recovery",
     slug: "enabling-vs-helping-stop-enabling-support-real-recovery",
     excerpt: "Enabling behavior feels like love — but it often makes addiction worse. Learn the signs of enabling, the difference between helping and enabling, and how to set healthy boundaries to support real recovery.",
@@ -9190,7 +9190,7 @@ It's free. It takes five minutes. And it exists because no family should have to
     metaDescription: "Enabling behavior feels like love — but it often makes addiction worse. Learn the signs of enabling, the difference between helping and enabling, and how to set healthy boundaries to support real recovery.",
   },
   {
-    id: "76",
+    id: "81",
     slug: "codependency-addiction-families-breaking-the-cycle",
     title: "Breaking the Cycle: Understanding Codependency in Families Living with Addiction",
     excerpt: "You love someone struggling with addiction. You worry constantly, cover their mistakes, make excuses, or find yourself managing their life. What you might be experiencing is codependency — a learned pattern that can be unlearned.",
