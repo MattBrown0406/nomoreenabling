@@ -9268,3 +9268,9 @@ It's free. It takes five minutes. And it exists because no family should have to
     metaDescription: "Learn what codependency looks like in families affected by addiction, how it keeps the cycle going, and the first steps to break free and reclaim your own life.",
   },
 ];
+
+// Export with auto-generated unique IDs (index-based)
+export const blogPosts: BlogPost[] = blogPostsRaw.map((post, index) => ({
+  ...post,
+  id: String(index + 1),
+}));
