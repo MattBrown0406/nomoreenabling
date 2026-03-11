@@ -9190,7 +9190,7 @@ It's free. It takes five minutes. And it exists because no family should have to
     metaDescription: "Enabling behavior feels like love — but it often makes addiction worse. Learn the signs of enabling, the difference between helping and enabling, and how to set healthy boundaries to support real recovery.",
   },
   {
-    id: "76",
+    id: "81",
     slug: "codependency-addiction-families-breaking-the-cycle",
     title: "Breaking the Cycle: Understanding Codependency in Families Living with Addiction",
     excerpt: "You love someone struggling with addiction. You worry constantly, cover their mistakes, make excuses, or find yourself managing their life. What you might be experiencing is codependency — a learned pattern that can be unlearned.",
