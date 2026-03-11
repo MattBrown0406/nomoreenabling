@@ -69,6 +69,7 @@ import financialEnablingAddictionImage from "@/assets/financial-enabling-addicti
 import eightStagesFamilyAddictionImage from "@/assets/8-stages-family-addiction-journey.jpg";
 import roadToRecoveryAddictionImage from "@/assets/road-to-recovery-addiction.jpg";
 import howToStopEnablingImage from "@/assets/how-to-stop-enabling-addict.jpg";
+import codependencySignsLovedOneImage from "@/assets/codependency-signs-loved-one-addiction.jpg";
 
 export interface BlogPost {
   id: string;
