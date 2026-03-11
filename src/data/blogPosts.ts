@@ -86,9 +86,9 @@ export interface BlogPost {
   metaDescription?: string;
 }
 
-export const blogPosts: BlogPost[] = [
+// Auto-generate IDs from array index to prevent duplicates
+const blogPostsRaw: Omit<BlogPost, "id">[] = [
   {
-    id: "77",
     title: "8 Signs You're Codependent with an Addicted Loved One",
     excerpt: "When someone you love is struggling with addiction, it changes you. Slowly, quietly, your life begins to revolve around their chaos. Here are eight of the most common signs of codependency with an addict — and what they're really telling you.",
     category: "Codependency",
