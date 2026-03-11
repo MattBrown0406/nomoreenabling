@@ -9058,7 +9058,7 @@ It's free. It takes five minutes. And it exists because no family should have to
     `,
   },
   {
-    id: "75",
+    id: "80",
     title: "Enabling vs. Helping: How to Stop Enabling an Addict and Start Supporting Real Recovery",
     slug: "enabling-vs-helping-stop-enabling-support-real-recovery",
     excerpt: "Enabling behavior feels like love — but it often makes addiction worse. Learn the signs of enabling, the difference between helping and enabling, and how to set healthy boundaries to support real recovery.",
