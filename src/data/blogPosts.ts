@@ -8689,7 +8689,7 @@ It's free. It takes five minutes. And it exists because no family should have to
     metaDescription: "From suspicion to relapse, every family navigates the same 8 stages when a loved one struggles with addiction. Learn where you are and what to do next with this expert guide.",
   },
   {
-    id: "73",
+    id: "78",
     title: "The Road to Recovery: Evidence-Based Strategies for Overcoming Addiction in 2026",
     excerpt: "Struggling with addiction? Discover proven, evidence-based strategies for addiction recovery — from detox and therapy to long-term sobriety support. Start your healing journey today.",
     category: "Recovery",
