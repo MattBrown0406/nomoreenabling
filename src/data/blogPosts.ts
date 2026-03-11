@@ -8854,7 +8854,7 @@ It's free. It takes five minutes. And it exists because no family should have to
     `,
   },
   {
-    id: "74",
+    id: "79",
     slug: "how-to-stop-enabling-an-addict",
     title: "How to Stop Enabling an Addict: A Complete Guide for Families and Loved Ones",
     excerpt: "Learn how to stop enabling addiction, recognize enabling behaviors, set healthy boundaries, and help a loved one get the treatment they need — without losing yourself in the process.",
