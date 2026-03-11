@@ -86,9 +86,11 @@ export interface BlogPost {
   metaDescription?: string;
 }
 
-export const blogPosts: BlogPost[] = [
+// IDs are auto-generated from array index to prevent duplicates.
+// When adding a new article, just add the entry — no need to set an id.
+const blogPostsRaw: BlogPost[] = [
   {
-    id: "77",
+    id: "",
     title: "8 Signs You're Codependent with an Addicted Loved One",
     excerpt: "When someone you love is struggling with addiction, it changes you. Slowly, quietly, your life begins to revolve around their chaos. Here are eight of the most common signs of codependency with an addict — and what they're really telling you.",
     category: "Codependency",
@@ -9266,3 +9268,9 @@ It's free. It takes five minutes. And it exists because no family should have to
     metaDescription: "Learn what codependency looks like in families affected by addiction, how it keeps the cycle going, and the first steps to break free and reclaim your own life.",
   },
 ];
+
+// Export with auto-generated unique IDs (index-based)
+export const blogPosts: BlogPost[] = blogPostsRaw.map((post, index) => ({
+  ...post,
+  id: String(index + 1),
+}));
