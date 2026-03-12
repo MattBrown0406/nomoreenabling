@@ -23,6 +23,7 @@ import TermsOfService from "./pages/TermsOfService";
 import CookiePolicy from "./pages/CookiePolicy";
 import AuthGuard from "./components/auth/AuthGuard";
 import NotFound from "./pages/NotFound";
+import ContactFormWidget from "./components/ContactFormWidget";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <OrganizationJsonLd />
+        <ContactFormWidget />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/articles" element={<Articles />} />
