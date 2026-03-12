@@ -9269,6 +9269,7 @@ It's free. It takes five minutes. And it exists because no family should have to
     metaDescription: "Learn what codependency looks like in families affected by addiction, how it keeps the cycle going, and the first steps to break free and reclaim your own life.",
   },
   {
+    id: "",
     title: "Breaking the Codependency Cycle: How Families Can Reclaim Their Lives After Enabling Addiction",
     slug: "breaking-codependency-cycle-addiction",
     excerpt: "If you've spent months or years rearranging your life around a loved one's addiction, breaking the codependency cycle is one of the most courageous and necessary steps you can take.",
