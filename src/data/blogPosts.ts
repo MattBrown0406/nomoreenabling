@@ -70,6 +70,7 @@ import eightStagesFamilyAddictionImage from "@/assets/8-stages-family-addiction-
 import roadToRecoveryAddictionImage from "@/assets/road-to-recovery-addiction.jpg";
 import howToStopEnablingImage from "@/assets/how-to-stop-enabling-addict.jpg";
 import codependencySignsLovedOneImage from "@/assets/codependency-signs-loved-one-addiction.jpg";
+import breakingCodependencyCycleImage from "@/assets/breaking-codependency-cycle-addiction.jpg";
 
 export interface BlogPost {
   id: string;
