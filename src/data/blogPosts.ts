@@ -9360,6 +9360,7 @@ It's free. It takes five minutes. And it exists because no family should have to
     metaDescription: "Learn what the codependency cycle is, why it feels impossible to break, and the practical steps families can take to stop enabling and start healing.",
   },
   {
+    id: "",
     slug: "how-codependency-develops-addiction-families",
     title: "How Codependency Develops: Why You Keep Putting Their Needs Before Your Own",
     excerpt: "Codependency doesn't appear overnight. It develops through small adaptations that once helped you survive — until they became automatic, compulsive, and limiting. Here's how it happens and what you can do.",
