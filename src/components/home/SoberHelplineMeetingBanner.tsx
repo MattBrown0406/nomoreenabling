@@ -17,9 +17,14 @@ const SoberHelplineMeetingBanner = () => {
             alt="Sober Helpline"
             className="h-10 w-auto"
           />
-          <span className="text-[#2d5a3d] font-serif font-bold text-base md:text-lg">
-            Free Weekly Family Support Meetings
-          </span>
+          <div className="text-center">
+            <span className="text-[#2d5a3d] font-serif font-bold text-base md:text-lg block">
+              Free Weekly Family Support Zoom Calls
+            </span>
+            <span className="text-[#4a4a4a] text-xs md:text-sm">
+              Every Monday — Join from anywhere. No cost, no commitment.
+            </span>
+          </div>
         </div>
       </div>
     </a>

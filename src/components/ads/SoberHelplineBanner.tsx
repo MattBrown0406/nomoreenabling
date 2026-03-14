@@ -34,6 +34,17 @@ const SoberHelplineBanner = () => {
           Find ethical, proven treatment and recovery resources for your family.
         </p>
 
+        {/* Free Zoom Calls Highlight */}
+        <div className="bg-[#2d5a3d]/10 border border-[#2d5a3d]/20 rounded-lg p-3 mb-4 text-center">
+          <div className="flex items-center justify-center gap-1.5 mb-1">
+            <Video className="w-4 h-4 text-[#2d5a3d]" />
+            <span className="text-[#2d5a3d] font-serif font-bold text-sm">Free Weekly Zoom Calls</span>
+          </div>
+          <p className="text-[#4a4a4a] text-[11px] leading-snug">
+            Join free family support meetings every Monday — connect with others who understand.
+          </p>
+        </div>
+
         {/* Features Grid */}
         <div className="grid grid-cols-2 gap-2 mb-4">
           <div className="bg-white/60 rounded-lg p-2 text-center">
