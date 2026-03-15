@@ -73,6 +73,7 @@ import codependencySignsLovedOneImage from "@/assets/codependency-signs-loved-on
 import breakingCodependencyCycleImage from "@/assets/breaking-codependency-cycle-addiction.jpg";
 import howCodependencyDevelopsImage from "@/assets/how-codependency-develops-addiction-families.jpg";
 import codependentRescuingBehaviorImage from "@/assets/codependent-rescuing-behavior-addiction.jpg";
+import howToSetBoundariesAddictedImage from "@/assets/how-to-set-boundaries-addicted-loved-one.jpg";
 
 export interface BlogPost {
   id: string;
