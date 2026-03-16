@@ -154,21 +154,29 @@ const ArticlePage = () => {
 
   if (!article) {
     return (
-      <div className="min-h-screen flex flex-col bg-background">
-        <Header />
-        <main className="flex-1 flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold mb-4">Article Not Found</h1>
-            <Link to="/articles">
-              <Button variant="outline">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Articles
-              </Button>
-            </Link>
-          </div>
-        </main>
-        <Footer />
-      </div>
+      <>
+        <SEOHead
+          title="Article Not Found"
+          description="The article you are looking for does not exist."
+          noindex={true}
+        />
+        <div className="min-h-screen flex flex-col bg-background">
+          <Header />
+          <main className="flex-1 flex items-center justify-center">
+            <div className="text-center">
+              <h1 className="text-2xl font-bold mb-4">Article Not Found</h1>
+              <p className="text-muted-foreground mb-6">The article you're looking for doesn't exist or may have been moved.</p>
+              <Link to="/articles">
+                <Button variant="outline">
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Back to Articles
+                </Button>
+              </Link>
+            </div>
+          </main>
+          <Footer />
+        </div>
+      </>
     );
   }
 

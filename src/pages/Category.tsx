@@ -80,10 +80,10 @@ const Category = () => {
             ) : (
               <div className="text-center py-16 bg-card rounded-xl">
                 <h2 className="font-serif text-2xl font-bold text-foreground mb-4">
-                  No articles found
+                  Category Not Found
                 </h2>
                 <p className="text-muted-foreground mb-6">
-                  There are no articles in this category yet.
+                  This category doesn't exist or has no articles yet.
                 </p>
                 <Link 
                   to="/articles" 
