@@ -35,10 +35,14 @@ const Category = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title={`${categoryName} Articles`}
-        description={`Browse all articles about ${categoryName.toLowerCase()}. Find insights, strategies, and support for families dealing with addiction and codependency.`}
+        title={filteredPosts.length > 0 ? `${categoryName} Articles` : "Category Not Found"}
+        description={filteredPosts.length > 0 
+          ? `Browse all articles about ${categoryName.toLowerCase()}. Find insights, strategies, and support for families dealing with addiction and codependency.`
+          : "This category doesn't exist or has no articles yet."
+        }
         canonicalUrl={`https://nomoreenabling.com/category/${slug}`}
-        keywords={`${categoryName.toLowerCase()}, addiction articles, family support, codependency resources`}
+        keywords={filteredPosts.length > 0 ? `${categoryName.toLowerCase()}, addiction articles, family support, codependency resources` : undefined}
+        noindex={filteredPosts.length === 0}
       />
       <Header />
       
