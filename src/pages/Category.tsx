@@ -35,10 +35,14 @@ const Category = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title={`${categoryName} Articles`}
-        description={`Browse all articles about ${categoryName.toLowerCase()}. Find insights, strategies, and support for families dealing with addiction and codependency.`}
+        title={filteredPosts.length > 0 ? `${categoryName} Articles` : "Category Not Found"}
+        description={filteredPosts.length > 0 
+          ? `Browse all articles about ${categoryName.toLowerCase()}. Find insights, strategies, and support for families dealing with addiction and codependency.`
+          : "This category doesn't exist or has no articles yet."
+        }
         canonicalUrl={`https://nomoreenabling.com/category/${slug}`}
-        keywords={`${categoryName.toLowerCase()}, addiction articles, family support, codependency resources`}
+        keywords={filteredPosts.length > 0 ? `${categoryName.toLowerCase()}, addiction articles, family support, codependency resources` : undefined}
+        noindex={filteredPosts.length === 0}
       />
       <Header />
       
@@ -80,10 +84,10 @@ const Category = () => {
             ) : (
               <div className="text-center py-16 bg-card rounded-xl">
                 <h2 className="font-serif text-2xl font-bold text-foreground mb-4">
-                  No articles found
+                  Category Not Found
                 </h2>
                 <p className="text-muted-foreground mb-6">
-                  There are no articles in this category yet.
+                  This category doesn't exist or has no articles yet.
                 </p>
                 <Link 
                   to="/articles" 
