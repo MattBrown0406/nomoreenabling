@@ -74,6 +74,7 @@ import breakingCodependencyCycleImage from "@/assets/breaking-codependency-cycle
 import howCodependencyDevelopsImage from "@/assets/how-codependency-develops-addiction-families.jpg";
 import codependentRescuingBehaviorImage from "@/assets/codependent-rescuing-behavior-addiction.jpg";
 import howToSetBoundariesAddictedImage from "@/assets/how-to-set-boundaries-addicted-loved-one.jpg";
+import maintainingBoundariesAddictedImage from "@/assets/maintaining-boundaries-addicted-loved-one.jpg";
 
 export interface BlogPost {
   id: string;
@@ -93,6 +94,109 @@ export interface BlogPost {
 // IDs are auto-generated from array index to prevent duplicates.
 // When adding a new article, just add the entry — no need to set an id.
 const blogPostsRaw: BlogPost[] = [
+  {
+    id: "",
+    title: "How to Maintain Boundaries When Your Addicted Loved One Pushes Back",
+    excerpt: "You set a boundary. Then they pushed back — with guilt, tears, anger, or threats. Here's how to hold firm when maintaining boundaries with an addicted loved one feels emotionally impossible.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Enabling", "Family Dynamics", "Codependency", "Recovery"],
+    readTime: "11 min read",
+    date: "March 16, 2026",
+    image: maintainingBoundariesAddictedImage,
+    slug: "maintaining-boundaries-addicted-loved-one",
+    metaTitle: "How to Maintain Boundaries with an Addicted Loved One | No More Enabling",
+    metaDescription: "Learn how to hold firm on your boundaries when your addicted loved one pushes back, guilt-trips, or threatens. Practical strategies for families.",
+    content: `
+      <p>You finally did it. You set a boundary.</p>
+      <p>You told your husband you wouldn't cover for him at work anymore. You told your daughter she couldn't move back home if she was still using. You told your son you'd no longer pay his bills.</p>
+      <p>And then it happened.</p>
+      <p>They pushed back.</p>
+      <p>Maybe they got angry. Maybe they cried. Maybe they accused you of not loving them, of giving up on them, of being cruel. And in that moment, everything you'd resolved started to crack.</p>
+      <p>If this sounds familiar, you're not alone — and you haven't failed. Maintaining boundaries with someone who is addicted is one of the hardest things a family member will ever do. This article is here to help you understand why the pushback happens, what it means, and how to stay steady even when it feels emotionally impossible.</p>
+
+      <h2>Why Do Addicted Loved Ones Push Back Against Boundaries?</h2>
+      <p>When you set a boundary, it disrupts a system that addiction has built around your family. Addiction thrives on predictability — on knowing that certain behaviors will produce certain responses. When you change that dynamic, the addiction pushes back through your loved one.</p>
+      <p>This isn't a sign that your boundary was wrong. It's often a sign that your boundary was right.</p>
+      <p>Pushback can take many forms. Your loved one might become angry, cold, or emotionally manipulative. They might threaten to hurt themselves or disappear. They might cry and appeal to your love for them. In some cases, they might briefly comply — only to escalate pressure later when they realize you're serious.</p>
+      <p>Understanding that this reaction is driven by the addiction, not your loved one's true character, can help you hold firm.</p>
+
+      <h2>What Are the Most Common Tactics Used to Erode Boundaries?</h2>
+
+      <h3>Guilt and Blame</h3>
+      <p>"If you really loved me, you wouldn't do this." "This is your fault. You made me this way." "You're the only person who can help me."</p>
+      <p>Guilt is one of the most powerful tools in an addicted person's arsenal — not because they're manipulative by nature, but because guilt works. Most family members have an enormous reservoir of love for the person struggling, and that love becomes the lever used to move them off their limits.</p>
+      <p>If you hear guilt-laden statements after setting a boundary, remind yourself: love and limits are not opposites. In fact, the most loving thing you can do for someone in active addiction is refuse to protect them from the natural consequences of their choices.</p>
+
+      <h3>Escalation and Threats</h3>
+      <p>Some people will escalate their behavior when a boundary is set — using drugs more recklessly, making threats, or behaving in ways designed to frighten you into backing down. This is terrifying. And it's also, sadly, common.</p>
+      <p>If your loved one makes credible threats of self-harm or violence, contact emergency services immediately. That is always the right response. But if the escalation is emotional pressure — more anger, more tears, more drama — recognize it as what it is: a test of your resolve.</p>
+
+      <h3>Playing the Victim</h3>
+      <p>"I can't believe you're abandoning me when I need you most." "I have no one else." "You've never believed in me."</p>
+      <p>This tactic strikes at your identity as a parent, a partner, or a sibling. It reframes your healthy boundary as an act of cruelty. One of the hardest things to withstand, it activates deep fear: what if they're right? What if they do need me, and I'm letting them down?</p>
+      <p>Here is the truth: maintaining a boundary is not abandonment. It is refusing to participate in a system that is slowly destroying your loved one. You can hold a limit and still express love, maintain contact where safe, and offer to support treatment.</p>
+
+      <h2>How to Maintain Boundaries When the Pressure Is High</h2>
+
+      <h3>Write Down Why You Set the Boundary</h3>
+      <p>When you're in the middle of an emotional confrontation, it's easy to forget what led you there. Before the next difficult conversation, write down the specific behaviors that made the boundary necessary. Be concrete: "He crashed his car while drinking and I paid for it. Then he drove drunk again the following week."</p>
+      <p>When the guilt and tears come, those words remind you that this isn't about punishment. It's about reality.</p>
+
+      <h3>Prepare a Simple, Consistent Response</h3>
+      <p>You don't owe your loved one a lengthy explanation every time they challenge your boundary. In fact, the longer you engage in debate, the more you signal that the boundary is negotiable.</p>
+      <p>A short, calm response — repeated as many times as necessary — is more powerful than an argument. Some examples:</p>
+      <ul>
+        <li>"I love you. And this is where I stand."</li>
+        <li>"I hear that you're upset. My answer is still the same."</li>
+        <li>"I'm not going to change my mind on this."</li>
+      </ul>
+      <p>This technique is sometimes called the "broken record" approach. It communicates firmness without escalation.</p>
+
+      <h3>Lean on a Support System</h3>
+      <p>You were never meant to do this alone. Holding boundaries with an addicted loved one is emotionally exhausting work, and you need people who understand what you're going through.</p>
+      <p>Al-Anon, Nar-Anon, and SMART Recovery Family & Friends groups are free, widely available, and specifically designed for family members in your situation. A therapist who specializes in addiction can also be invaluable. Having people who can validate your limits — and remind you of them when you feel yourself wavering — makes an enormous difference.</p>
+
+      <h3>Recognize the Difference Between Compassion and Capitulation</h3>
+      <p>One of the most important distinctions you can make is between responding with compassion and caving to pressure. You can compassionately acknowledge your loved one's pain without changing your decision.</p>
+      <p>Compassion says: "I see how much you're hurting, and I love you."</p>
+      <p>Capitulation says: "Because you're hurting, I'll do what you want."</p>
+      <p>Compassion keeps the relationship and holds the boundary. Capitulation keeps the peace for a moment while ensuring the problem continues.</p>
+
+      <h2>When Maintaining Boundaries Alone Isn't Enough</h2>
+      <p>Setting and maintaining boundaries is a critical piece of family recovery — but sometimes the situation calls for more. If your loved one is in serious danger, if the addiction has become life-threatening, or if you've been holding limits for months or years without seeing any movement toward change, it may be time to consider a professional intervention.</p>
+      <p>A professional intervention brings in a trained specialist who helps families organize a structured, compassionate conversation with their loved one — one designed to break through denial and move them toward treatment.</p>
+      <p>This isn't a last resort. It's a tool. And for many families, it's the turning point that finally changes the trajectory.</p>
+      <p>If you're at that stage, <a href="https://freedominterventions.com" target="_blank" rel="noopener noreferrer">Freedom Interventions</a> offers professional intervention services staffed by experienced interventionists. They work with families across the country to create pathways to treatment — even when the person in addiction has refused help before.</p>
+
+      <h2>You Are Not the Problem — But You Can Be Part of the Solution</h2>
+      <p>Maintaining boundaries when your loved one pushes back doesn't mean you stop loving them. It means you've stopped participating in a cycle that was never helping them to begin with.</p>
+      <p>Every time you hold a limit, you send a message: The old rules have changed. The system that kept this going is no longer operating. Something different is possible now.</p>
+      <p>That message is a form of hope.</p>
+      <p>It won't feel that way in the moment. It will feel like conflict, like grief, like you're hurting the person you love most. But families who have come out the other side — whose loved ones found recovery — often say the same thing: the boundaries were what finally made it real.</p>
+      <p>You don't have to do this perfectly. You just have to keep trying.</p>
+      <p>If you want support, education, and guidance as you navigate this process, visit <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> — a resource designed specifically for families dealing with addiction. And if your loved one needs a professional intervention, <a href="https://freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> is ready to help.</p>
+
+      <h2>Frequently Asked Questions About Maintaining Boundaries with an Addicted Loved One</h2>
+
+      <h3>What do I do when my addicted loved one ignores or violates my boundary?</h3>
+      <p>When a boundary is crossed, the key is to follow through with whatever consequence you stated. If you said you'd ask them to leave if they came home drunk, and they come home drunk, you have to follow through. A boundary without a consequence isn't a boundary — it's a suggestion. Consistency is what gives boundaries their power.</p>
+
+      <h3>Is it okay to feel guilty about maintaining limits with someone in addiction?</h3>
+      <p>Yes — and it's also okay to act despite the guilt. Guilt is a feeling, not a verdict on whether you're doing the right thing. Many family members feel guilty while doing exactly the right thing. Over time, as you see the impact of consistent limits, the guilt often diminishes. Therapy and support groups can help you work through these feelings.</p>
+
+      <h3>What if my loved one threatens to hurt themselves if I don't give in?</h3>
+      <p>Take any credible threat of self-harm seriously by contacting emergency services or a crisis line immediately. If the threats appear designed to control your behavior rather than reflect genuine danger, recognize it as a manipulation tactic and consult with a mental health professional or addiction counselor about how to respond. You are not responsible for managing your loved one's choices — including threats.</p>
+
+      <h3>Can setting and holding limits actually drive my loved one further into addiction?</h3>
+      <p>Research and clinical experience consistently show the opposite: enabling behaviors — covering, rescuing, making excuses — prolong addiction. Boundaries remove the safety net that allows the addiction to continue without consequences. While they may cause temporary distress, they do not cause addiction to worsen. In many cases, they accelerate the path to treatment.</p>
+
+      <h3>How long should I expect to hold a boundary before anything changes?</h3>
+      <p>There's no set timeline, and it's important to hold limits for your own wellness — not only to produce a specific outcome. Many people in addiction test limits repeatedly before beginning to accept them. Recovery is their journey. Your health and sanity are yours, regardless of what they choose.</p>
+
+      <h3>What's the difference between setting boundaries and giving ultimatums?</h3>
+      <p>Boundaries are about what you will and won't do. Ultimatums are demands you make of another person. Healthy boundaries focus on your own behavior: "I will not give you money." An ultimatum focuses on theirs: "You must get sober or I'll leave." Boundaries can stand on their own. Ultimatums require follow-through to have any effect and can escalate conflict if not handled carefully.</p>
+    `,
+  },
   {
     id: "",
     title: "8 Signs You're Codependent with an Addicted Loved One",
