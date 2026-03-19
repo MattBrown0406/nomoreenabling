@@ -75,6 +75,7 @@ import howCodependencyDevelopsImage from "@/assets/how-codependency-develops-add
 import codependentRescuingBehaviorImage from "@/assets/codependent-rescuing-behavior-addiction.jpg";
 import howToSetBoundariesAddictedImage from "@/assets/how-to-set-boundaries-addicted-loved-one.jpg";
 import maintainingBoundariesAddictedImage from "@/assets/maintaining-boundaries-addicted-loved-one.jpg";
+import whatToDoBoundaryBrokenImage from "@/assets/what-to-do-boundary-broken-addiction.jpg";
 
 export interface BlogPost {
   id: string;
