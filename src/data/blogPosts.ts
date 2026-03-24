@@ -77,6 +77,7 @@ import howToSetBoundariesAddictedImage from "@/assets/how-to-set-boundaries-addi
 import maintainingBoundariesAddictedImage from "@/assets/maintaining-boundaries-addicted-loved-one.jpg";
 import whatToDoBoundaryBrokenImage from "@/assets/what-to-do-boundary-broken-addiction.jpg";
 import sayingNoLovedOneAddictionImage from "@/assets/saying-no-loved-one-addiction.jpg";
+import caregiverBurnoutAddictionFamilyImage from "@/assets/caregiver-burnout-addiction-family.jpg";
 
 export interface BlogPost {
   id: string;
