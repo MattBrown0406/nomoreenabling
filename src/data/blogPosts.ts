@@ -79,6 +79,7 @@ import whatToDoBoundaryBrokenImage from "@/assets/what-to-do-boundary-broken-add
 import sayingNoLovedOneAddictionImage from "@/assets/saying-no-loved-one-addiction.jpg";
 import caregiverBurnoutAddictionFamilyImage from "@/assets/caregiver-burnout-addiction-family.jpg";
 import supportRecoveryWithoutEnablingImage from "@/assets/support-recovery-without-enabling.jpg";
+import whatHappensAddictionTreatmentFamiliesImage from "@/assets/what-happens-addiction-treatment-families.jpg";
 
 export interface BlogPost {
   id: string;
