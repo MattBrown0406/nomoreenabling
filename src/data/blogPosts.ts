@@ -81,6 +81,7 @@ import caregiverBurnoutAddictionFamilyImage from "@/assets/caregiver-burnout-add
 import supportRecoveryWithoutEnablingImage from "@/assets/support-recovery-without-enabling.jpg";
 import whatHappensAddictionTreatmentFamiliesImage from "@/assets/what-happens-addiction-treatment-families.jpg";
 import whenIsItTimeProfessionalInterventionImage from "@/assets/when-is-it-time-professional-intervention.jpg";
+import rebuildingTrustRecoveryImage from "@/assets/rebuilding-trust-recovery-loved-one.jpg";
 
 export interface BlogPost {
   id: string;
