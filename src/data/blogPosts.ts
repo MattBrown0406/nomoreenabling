@@ -10591,7 +10591,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <p>If you're at a point where your loved one's addiction has become a safety crisis and you're wondering whether a professional intervention is the right next step, visit <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> to learn more about how the intervention process works and what it could mean for your family.</p>
     `
   },
-
+];
 
 export const blogPosts: BlogPost[] = blogPostsRaw.map((post, index) => ({
   ...post,
