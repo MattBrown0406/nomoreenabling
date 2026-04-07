@@ -82,6 +82,7 @@ import supportRecoveryWithoutEnablingImage from "@/assets/support-recovery-witho
 import whatHappensAddictionTreatmentFamiliesImage from "@/assets/what-happens-addiction-treatment-families.jpg";
 import whenIsItTimeProfessionalInterventionImage from "@/assets/when-is-it-time-professional-intervention.jpg";
 import rebuildingTrustRecoveryImage from "@/assets/rebuilding-trust-recovery-loved-one.jpg";
+import codependencyResponsibilityTrapImage from "@/assets/codependency-responsibility-trap-addiction.jpg";
 
 export interface BlogPost {
   id: string;
