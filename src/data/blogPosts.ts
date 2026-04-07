@@ -10507,8 +10507,6 @@ It's free. It takes five minutes. And it exists because no family should have to
     metaTitle: "Rebuilding Trust With a Loved One in Recovery — Without Enabling",
     metaDescription: "Learn how to rebuild trust with an addicted loved one in recovery through earned accountability, gradual steps, and healthy boundaries — without slipping back into enabling.",
   },
-];
-
   {
     id: "",
     title: "Why Families Feel Responsible for Their Loved One's Addiction — And How to Stop",
