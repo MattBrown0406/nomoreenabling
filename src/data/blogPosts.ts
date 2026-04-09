@@ -83,6 +83,7 @@ import whatHappensAddictionTreatmentFamiliesImage from "@/assets/what-happens-ad
 import whenIsItTimeProfessionalInterventionImage from "@/assets/when-is-it-time-professional-intervention.jpg";
 import rebuildingTrustRecoveryImage from "@/assets/rebuilding-trust-recovery-loved-one.jpg";
 import codependencyResponsibilityTrapImage from "@/assets/codependency-responsibility-trap-addiction.jpg";
+import codependencyFeelsLikeLoveImage from "@/assets/codependency-feels-like-love.jpg";
 
 export interface BlogPost {
   id: string;
@@ -10589,6 +10590,92 @@ It's free. It takes five minutes. And it exists because no family should have to
       <h3>Ready to Break the Cycle?</h3>
       <p>If you recognize yourself in what you've read, you don't have to figure this out alone. <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching and education designed specifically for people in your situation — practical, non-shaming support from people who understand addiction dynamics from the inside out. Coaching sessions are available at $150/hour, or join the membership community for $44.99/month and access ongoing resources, support, and the free Monday night Family Squares calls.</p>
       <p>If you're at a point where your loved one's addiction has become a safety crisis and you're wondering whether a professional intervention is the right next step, visit <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> to learn more about how the intervention process works and what it could mean for your family.</p>
+    `
+  },
+  {
+    id: "",
+    title: "When Codependency Feels Like Love: Why Caring Can Become Controlling",
+    excerpt: "Codependency feels like love — and that's exactly why it's so hard to stop. Learn why caring for an addicted loved one can quietly become codependency, and what to do instead.",
+    category: "Codependency",
+    categories: ["Codependency", "Family Recovery", "Boundaries"],
+    readTime: "9 min read",
+    date: "April 9, 2026",
+    image: codependencyFeelsLikeLoveImage,
+    slug: "when-codependency-feels-like-love",
+    metaTitle: "When Codependency Feels Like Love | No More Enabling",
+    metaDescription: "Codependency feels like love — and that's exactly why it's so hard to stop. Learn why caring for an addicted loved one can quietly become codependency, and what to do instead.",
+    content: `
+      <p>If someone asked you to describe your relationship with your addicted loved one, you'd probably reach for words like love, devotion, loyalty, and sacrifice. You'd be right. And that's exactly what makes this so hard.</p>
+      <p>The painful truth about codependency in families dealing with addiction is this: most of the behaviors that quietly fuel the problem look — and feel — exactly like love. Not toxic love. Not weak love. Just love. The kind you'd find in any good parent, devoted spouse, or caring sibling.</p>
+      <p>When codependency feels like love, you don't get to feel righteous about it. You just feel confused. And the confusion — not the addiction itself — is often what keeps families stuck for years.</p>
+      <p>This article is for you if you've ever asked yourself: "Am I helping or am I enabling? Am I loving or am I controlling? Where does care end and codependency begin?" Those are the right questions. Let's answer them.</p>
+
+      <h2>What Is Codependency, Really?</h2>
+      <p>Codependency is a pattern of relating in which one person's sense of identity, emotional stability, and daily functioning becomes organized around managing, fixing, or responding to another person's problems. In families affected by addiction, it usually looks like making the addicted person's wellbeing your primary job — even at the cost of your own.</p>
+      <p>The term was first developed in addiction treatment to describe family members whose lives had become as unmanageable as the addict's — just in different ways. While their loved one was using, they were covering, smoothing, rescuing, and holding everything together.</p>
+      <p>Here's what codependency does NOT mean: it does not mean you are weak, pathetic, or foolish. It does not mean you caused the addiction. It does not mean you don't love your person correctly. It means you learned a way of relating that made sense given what you were going through — and now that same strategy is keeping the problem alive.</p>
+
+      <h2>Why Does Codependency Feel Like Love?</h2>
+      <p>Because it started as love. Codependency doesn't arrive as a stranger. It develops slowly, out of genuine care, and it borrows all of love's vocabulary: protection, sacrifice, patience, and presence.</p>
+      <p>Consider how naturally each of these crosses the line:</p>
+      <ul>
+        <li><strong>Loyalty becomes covering up.</strong> You don't tell anyone what's really going on because you want to protect them. That's loyalty. And it also helps the addiction stay hidden.</li>
+        <li><strong>Care becomes controlling.</strong> You manage their schedule, their relationships, their consequences — because you love them and you're terrified of what happens if you stop.</li>
+        <li><strong>Hope becomes excuse-making.</strong> You believe in their potential so deeply that you explain away behavior that should have consequences. That belief is beautiful. And it's also dangerous.</li>
+        <li><strong>Provision becomes rescue.</strong> You pay the bills, make the calls, smooth things over. Because they need you, and you love them, and it feels unthinkable not to.</li>
+      </ul>
+      <p>None of those starting points are wrong. Love is the right instinct. The problem is what it grows into when it isn't paired with truth, boundaries, and a clear-eyed view of what's actually happening.</p>
+
+      <h2>How to Tell the Difference Between Love and Codependency</h2>
+      <p>There is a practical test, and it isn't based on feelings. It's based on outcomes. Ask yourself these questions honestly:</p>
+      <h3>Does my action reduce or remove a consequence they need to experience?</h3>
+      <p>Consequences are not punishments. They are information. When someone who is addicted experiences the real cost of their choices, that information has the potential to motivate change. When we remove consequences — even out of love — we remove that information. The addiction gets to keep operating without a full accounting.</p>
+      <h3>Am I doing this for them, or to manage my own anxiety?</h3>
+      <p>This one stings a little, but it's worth asking. Many codependent behaviors are driven less by what our loved one needs and more by what we cannot tolerate: the sight of them struggling, the fear of them failing, the possibility that doing nothing means something terrible will happen. When your action is primarily about reducing your own discomfort, that's worth noticing.</p>
+      <h3>Is this something they could, in reality, handle themselves?</h3>
+      <p>Genuine care steps in where someone truly cannot manage. But addiction often leaves people more capable than we give them credit for — and our consistent stepping-in can quietly communicate: "I don't believe you can handle this." That message, received often enough, contributes to the very helplessness we're trying to fix.</p>
+
+      <h2>What Healthy Love for an Addicted Loved One Actually Looks Like</h2>
+      <p>The antidote to codependency is not detachment or cruelty. It's love with a spine. It's care that includes truth. Here's what that looks like in practice:</p>
+      <ul>
+        <li>You can love someone deeply and still let them experience consequences. These are not opposites.</li>
+        <li>You can express concern without taking responsibility for fixing it. "I love you, and I'm worried about you" is a complete sentence.</li>
+        <li>You can hold a boundary without withdrawing love. Limits are not rejections — they are honest statements about what you're able to participate in.</li>
+        <li>You can stop managing the addiction without stopping the relationship. In fact, most families find that once they step back from the management role, something shifts — in them, and sometimes in their loved one.</li>
+      </ul>
+      <p>None of this is easy to do when codependency has felt like love for years. Rewiring that instinct takes practice, support, and often outside help. But it is possible — and families do it every day.</p>
+
+      <h2>Breaking the Pattern Without Breaking the Relationship</h2>
+      <p>One of the biggest fears families have when they start recognizing codependency is this: <em>If I stop doing all of this, I'll lose them. If I stop rescuing, they'll think I don't care.</em></p>
+      <p>That fear makes sense. And it deserves an honest answer: some people do push back when the family system starts to change. Your loved one may not immediately welcome you stepping back from the rescue role. The codependency pattern, as painful as it is for you, is often comfortable for the person it protects.</p>
+      <p>But here is what is also true: continuing to absorb the consequences of someone else's addiction is not the same as loving them. And a relationship built on one person's willingness to disappear into another's crisis is not a relationship that is good for either of you.</p>
+      <p>Changing codependent patterns does not require you to stop loving your person. It requires you to love them differently. More honestly. With less of yourself consumed in the process.</p>
+      <p>The resources that help most: Al-Anon family groups, individual therapy with a counselor who understands addiction, family coaching, or working directly with a professional interventionist when things have escalated beyond what the family can navigate alone.</p>
+
+      <h2>You Don't Have to Choose Between Love and Truth</h2>
+      <p>If you've recognized yourself in any of this, take a breath. The fact that your codependency looked like love is not a character flaw. It's evidence that you care deeply. The next step isn't to care less. It's to start directing that care more wisely — toward actions that actually help, rather than actions that simply feel like helping.</p>
+      <p>You are allowed to stop carrying this alone. You are allowed to get support, set limits, and reclaim your own life — without guilt, and without abandoning the person you love.</p>
+      <p>That's not giving up. That's finally loving them clearly.</p>
+
+      <h2>Ready for Support That Actually Helps?</h2>
+      <p>If you're recognizing codependent patterns in your relationship with an addicted loved one and you're ready to do something different, <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching and education built specifically for this moment. Whether you start with a free Monday night Family Squares call or a one-on-one coaching session, you don't have to figure this out alone.</p>
+      <p>If your situation has escalated and you're considering a professional intervention, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> provides compassionate, experienced guidance for families at that crossroads.</p>
+
+      <h2>Frequently Asked Questions</h2>
+      <h3>Is codependency the same as love?</h3>
+      <p>Codependency is not love — but it often grows from love. It develops when genuine care becomes organized around fixing, managing, or rescuing another person's problems. The emotional experience feels like love, but the behavioral pattern tends to remove consequences that could motivate change, making it harder for the addicted person to get well.</p>
+
+      <h3>How do I know if I'm codependent or just caring?</h3>
+      <p>A useful test is to ask whether your actions remove consequences your loved one needs to experience, or whether they're primarily driven by your own anxiety rather than their actual need. Healthy care builds someone's capacity to manage their life. Codependency quietly takes that responsibility off of them.</p>
+
+      <h3>Can I break codependency without damaging my relationship?</h3>
+      <p>Yes — in most cases. Breaking codependent patterns means changing how you show up, not ending the relationship. Your loved one may initially resist the change, since the previous dynamic was protective for them. But relationships often improve when one person stops over-functioning, because it creates space for the other person to take responsibility.</p>
+
+      <h3>What does codependency look like in a parent of an addicted adult child?</h3>
+      <p>It commonly looks like paying bills or legal fees, making excuses to extended family, doing things the adult child is capable of doing themselves, or restructuring your entire life around their needs and crises. These actions often feel like parenting — but when applied to an adult in active addiction, they tend to sustain the problem rather than address it.</p>
+
+      <h3>Where can I get help for codependency related to a loved one's addiction?</h3>
+      <p>Al-Anon family groups are a widely available free resource. Individual therapy with an addiction-informed counselor is also highly effective. For more structured guidance, <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching and a membership community designed for exactly this situation. If the crisis has escalated to the point of needing professional intervention, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> can help.</p>
     `
   },
 ];
