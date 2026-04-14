@@ -86,6 +86,7 @@ import codependencyResponsibilityTrapImage from "@/assets/codependency-responsib
 import codependencyFeelsLikeLoveImage from "@/assets/codependency-feels-like-love.jpg";
 import shameSecrecyCodependencyImage from "@/assets/shame-secrecy-codependency-addiction.jpg";
 import settingLimitsAddictedLovedOneImage from "@/assets/setting-limits-addicted-loved-one.jpg";
+import boundariesNotSelfishImage from "@/assets/boundaries-not-selfish-addicted-loved-one.jpg";
 
 export interface BlogPost {
   id: string;
@@ -10857,6 +10858,88 @@ It's free. It takes five minutes. And it exists because no family should have to
 
       <h3>Will my loved one respect the limits I set?</h3>
       <p>Probably not immediately. Limits are often tested, sometimes repeatedly. What matters is whether you follow through — not whether your loved one immediately complies. Consistency over time is what makes limits real and meaningful.</p>
+    `
+  },
+  {
+    id: "",
+    title: "Are Boundaries Selfish? Why Setting Limits With an Addicted Loved One Is Actually an Act of Love",
+    excerpt: "Think setting limits with your addicted loved one is selfish or cruel? Learn why boundaries are actually one of the most loving things you can do — for both of you.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Enabling", "Codependency"],
+    readTime: "8 min read",
+    date: "April 14, 2026",
+    image: boundariesNotSelfishImage,
+    slug: "boundaries-not-selfish-addicted-loved-one",
+    metaTitle: "Are Boundaries Selfish? Why Limits With an Addicted Loved One Are Love",
+    metaDescription: "Think setting limits with your addicted loved one is selfish or cruel? Learn why boundaries are actually one of the most loving things you can do — for both of you.",
+    content: `
+      <p>If you have ever thought about putting a limit in place with your loved one — and then talked yourself out of it because it felt cruel — you are not alone. Most families who come to me have been wrestling with this exact tension for months, sometimes years. They know, on some level, that what they are doing is not working. But the moment they consider changing course, a voice in their head says: <em>Who am I to tell them what I will and won't do? Isn't that abandonment? Isn't that selfish?</em></p>
+      <p>The short answer is no. Not even close.</p>
+      <p>Boundaries with an addicted loved one are not selfish. They are not walls meant to keep someone out. When they are set with clarity and maintained with consistency, limits are one of the most loving, courageous, and honest things a family member can offer. This article is going to explain why — and help you replace the guilt with something more useful: understanding.</p>
+
+      <h2>Where the 'Selfish' Story Comes From</h2>
+      <p>The belief that limits are selfish usually has a straightforward origin: love. You love this person deeply, and love — at least the version most of us were raised with — is supposed to mean giving, sacrificing, staying. So when you consider withdrawing something (money, housing, a bail-out, emotional rescue), the brain registers it as the opposite of love.</p>
+      <p>There is also often a secondary fear underneath that story: <em>if I stop doing what I have always done, something terrible will happen, and it will be my fault.</em></p>
+      <p>That fear is real. It deserves to be acknowledged. But it is not the same thing as fact.</p>
+      <p>The truth is that what feels like love in the moment — handing over money, covering consequences, staying silent to keep the peace — often functions as fuel for the addiction. That does not make you a bad person. It makes you a human being trying to keep someone you love alive. But there is a difference between what feels loving and what is actually helpful. Recognizing that gap is where boundaries begin.</p>
+
+      <h2>What Boundaries Actually Do (It Is Not What You Think)</h2>
+      <p>A lot of families come into this work thinking a boundary is a way to control their loved one's behavior. Set the rule, enforce the consequence, and hopefully they'll stop using.</p>
+      <p>That framing puts too much weight on the boundary and sets you up for disappointment.</p>
+      <p>A boundary is not a lever that controls someone else. It is a decision about what you will do, what you will allow in your own life and home, and what you will no longer participate in. The difference matters enormously.</p>
+      <p>When you say, "I will not give you money that I believe will go toward drugs or alcohol," you are not controlling your loved one. You are simply being honest about what you can live with. They can still make any choice they want. You are just no longer agreeing to fund it.</p>
+      <p>That is not selfish. That is integrity.</p>
+      <p>Boundaries also do something else that often goes unsaid: they give your loved one more accurate feedback about reality. When the consequences of active addiction are consistently softened by family members, the person using gets a distorted picture. They may not feel the full weight of where things stand. When you stop absorbing those consequences, reality becomes clearer. That clarity, painful as it is, is often what eventually motivates someone to seek help.</p>
+
+      <h2>The Myth That Limits Will Push Them Away</h2>
+      <p>This is probably the fear I hear most often: "What if they leave? What if they cut me off? What if this is the thing that makes them give up?"</p>
+      <p>It is an understandable fear. But it is worth examining it clearly.</p>
+      <p>First, the absence of boundaries has not pulled your loved one closer to recovery — it has often kept them comfortable enough to keep using. Staying available for every crisis has not created the change you hoped for. That is not a criticism; it is just an honest look at what has actually been happening.</p>
+      <p>Second, relationships built on one person endlessly accommodating another person's destructive behavior are not actually close. They can feel necessary — even intense — but that intensity is often crisis-based, not connection-based. Real closeness requires honesty. Limits are part of honest relationship.</p>
+      <p>Third, and most practically: when families get grounded, stop enabling, and start holding consistent limits, their loved ones do not typically disappear. What often happens is that the dynamic shifts. Sometimes slowly. Sometimes painfully. But a family member who is clear about what they will and will not accept is often more influential over time, not less.</p>
+
+      <h2>Loving Someone Does Not Mean Accepting Everything</h2>
+      <p>Consider how this works in other areas of life. A parent who loves a child still says no. A good friend tells you the truth even when it is uncomfortable. A doctor who cares about a patient does not prescribe whatever the patient asks for. Love and limits coexist in every healthy relationship. The idea that love requires unlimited tolerance is not love — it is enmeshment.</p>
+      <p>Enmeshment, in this context, means your sense of peace and safety has become tied to your loved one's behavior. When they are okay, you are okay. When they are not, you are not. You have lost the separation between your life and theirs. And in that state, the motivation to keep them comfortable — even at your own expense — feels like love because it is the only way you can feel okay.</p>
+      <p>Breaking that pattern is not abandonment. It is recovery — for you.</p>
+
+      <h2>How to Know If Your Limits Are Coming from Love</h2>
+      <p>Here is a simple way to check yourself: ask whether the limit you are setting is about controlling your loved one, or about protecting yourself and your home.</p>
+      <p>A fear-based or punitive limit sounds like: "I'm not helping you until you stop using." It is a demand disguised as a boundary, with the goal of forcing a behavior change.</p>
+      <p>A love-based limit sounds like: "I love you, and I can't keep paying your rent when I know the money isn't going toward rent. That doesn't mean I've given up on you — it means I'm being honest with you."</p>
+      <p>The difference is not just in the words. It is in your internal state when you say it.</p>
+      <p>Some helpful questions to ask yourself before setting or communicating a limit:</p>
+      <ul>
+        <li>Am I saying this out of anger, or out of clarity?</li>
+        <li>Is this something I can actually follow through on, or am I just threatening?</li>
+        <li>Does this limit protect me, or is it designed to punish them?</li>
+        <li>Would I be comfortable saying this calmly, without escalating?</li>
+      </ul>
+      <p>If you can answer those honestly, you will usually know whether what you are holding is a limit or a reaction.</p>
+
+      <h2>You Do Not Have to Choose Between Loving Them and Protecting Yourself</h2>
+      <p>Boundaries with an addicted loved one are not the end of the relationship. They are often the beginning of a more honest one. They are a signal to your loved one — and to yourself — that the current arrangement is not sustainable, and that you care too much about both of you to keep pretending otherwise.</p>
+      <p>That kind of love is harder than the kind that just says yes. It requires you to tolerate discomfort, uncertainty, and sometimes anger directed at you. But it is also the kind of love that can actually change something. The kind that says: <em>I see you. I am not leaving. And I am not going to keep helping you stay sick.</em></p>
+      <p>If you are ready to start doing that work and you want support along the way, visit <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> for family coaching and education resources. If you believe your loved one is at a point where a professional intervention may be the right next step, the team at <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> can help you understand your options.</p>
+
+      <h2>Frequently Asked Questions</h2>
+      <h3>Are boundaries with an addicted loved one selfish?</h3>
+      <p>No. Boundaries are decisions about what you will and will not participate in within your own life. They are not attempts to control your loved one — they are honest expressions of what you can sustain. Protecting your own well-being is not selfishness; it is a prerequisite for being present and helpful long-term.</p>
+
+      <h3>Will setting limits push my addicted loved one away?</h3>
+      <p>Setting consistent, calm limits may create short-term conflict, but it rarely results in permanent disconnection. More often, it shifts the dynamic over time — reducing crisis-based interaction and creating space for more honest connection. The absence of boundaries has not brought your loved one closer to recovery; clarity often does.</p>
+
+      <h3>What is the difference between a loving limit and a punishment?</h3>
+      <p>A loving limit is about protecting yourself and defining what you can live with. A punishment is designed to force a behavior change through pain or deprivation. Loving limits are communicated calmly and followed through consistently. Punishments are often reactive and hard to maintain.</p>
+
+      <h3>How do I set a limit without feeling like I'm abandoning them?</h3>
+      <p>Remind yourself that withdrawing a specific behavior — like paying for rent, covering debts, or making excuses — is not the same as withdrawing love. You can clearly separate the two: "I love you, and I won't be doing X anymore." Staying emotionally present while being behaviorally clear is not abandonment — it is honesty.</p>
+
+      <h3>Can boundaries actually help someone get sober?</h3>
+      <p>Boundaries do not make someone get sober. Only the person struggling can make that choice. But consistent family limits can change the conditions around the addiction — removing cushions that reduce the felt consequences of using and giving the person a more accurate picture of where things stand. That shift in conditions is often part of what moves someone toward asking for help.</p>
+
+      <h3>Where can I get help setting limits with a family member who struggles with addiction?</h3>
+      <p><a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching and a membership community with live support calls specifically for families navigating this. If you believe a professional intervention may be needed, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> provides experienced guidance through that process.</p>
     `
   },
 ];
