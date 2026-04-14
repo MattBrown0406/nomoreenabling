@@ -25,11 +25,19 @@ const toOutputPath = (route) => {
   return path.join(distDir, cleanRoute, "index.html");
 };
 
+const stripDefaultSeoTags = (template) => {
+  return template
+    .replace(/\s*<!-- Default meta[^]*?-->\s*/i, "\n")
+    .replace(/\s*<title>[^<]*<\/title>\s*/i, "\n")
+    .replace(/\s*<meta\s+name=["']description["'][^>]*>\s*/i, "\n");
+};
+
 const injectPrerenderedHtml = (template, { html, head }, manifest) => {
   const renderedHtml = replaceAssetPaths(html, manifest);
   const renderedHead = replaceAssetPaths(head, manifest);
+  const cleanedTemplate = stripDefaultSeoTags(template);
 
-  return template
+  return cleanedTemplate
     .replace("<div id=\"root\"></div>", `<div id=\"root\">${renderedHtml}</div>`)
     .replace("</head>", `${renderedHead}\n</head>`);
 };
