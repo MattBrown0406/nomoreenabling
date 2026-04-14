@@ -1,124 +1,163 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Mail, ArrowRight } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
 import FAQJsonLd from "@/components/seo/FAQJsonLd";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
 const aboutFaqs = [
   {
     question: "What is No More Enabling?",
-    answer: "No More Enabling is an educational and support resource for families affected by addiction, codependency, and enabling behaviors. The platform helps families understand how addiction impacts relationships and how changes within the family system can support healthier outcomes."
+    answer:
+      "No More Enabling is an educational resource for families affected by addiction, codependency, and enabling behaviors. It helps families understand patterns, make steadier decisions, and respond more clearly.",
   },
   {
     question: "Who founded No More Enabling?",
-    answer: "No More Enabling was founded by Matt Brown, a professional interventionist who has worked with families affected by substance use disorders for more than two decades since 2004."
+    answer:
+      "No More Enabling was founded by Matt Brown, a professional interventionist who has worked with families affected by substance use disorders since 2004.",
   },
   {
     question: "Is No More Enabling a treatment provider?",
-    answer: "No, No More Enabling is not a treatment provider or crisis service. It is a trusted educational resource designed to help families make informed decisions, set healthier boundaries, and reduce the chaos and confusion that addiction often creates within families."
+    answer:
+      "No. No More Enabling is not a treatment provider or crisis service. It is an educational platform designed to help families think more clearly, set healthier boundaries, and make informed decisions.",
   },
   {
     question: "What topics does No More Enabling cover?",
-    answer: "The platform focuses on enabling vs. helping, family boundaries and communication, codependency and family roles, preparing for intervention and treatment decisions, and supporting recovery without losing oneself."
-  }
+    answer:
+      "The site focuses on enabling vs helping, family boundaries and communication, codependency and family roles, intervention and treatment decisions, and supporting recovery without losing yourself.",
+  },
+];
+
+const principles = [
+  {
+    title: "Clarity over panic",
+    description: "Families usually do not need more intensity. They need a clearer read on what is happening and what to do next.",
+  },
+  {
+    title: "Boundaries with backbone",
+    description: "A boundary is not a speech. It is a decision you can hold when things get uncomfortable.",
+  },
+  {
+    title: "Support that holds under stress",
+    description: "Advice is only useful if it still makes sense on the hard day, not just the calm one.",
+  },
 ];
 
 const About = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead
-        title="About No More Enabling — Our Mission & Story"
-        description="No More Enabling is an educational resource for families affected by addiction. Founded by Matt Brown, professional interventionist with 20+ years experience."
+        title="About No More Enabling"
+        description="Learn about No More Enabling, founded by interventionist Matt Brown. See the experience, editorial standards, and family-first approach behind the site."
         canonicalUrl="https://nomoreenabling.com/about"
-        keywords="about no more enabling, addiction support, family education, Matt Brown interventionist"
+        keywords="Matt Brown interventionist, No More Enabling about, family addiction education, enabling boundaries resource"
+        articleAuthor="Matt Brown"
       />
       <FAQJsonLd faqs={aboutFaqs} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://nomoreenabling.com" },
+          { name: "About", url: "https://nomoreenabling.com/about" },
+        ]}
+      />
       <Header />
-      
+
       <main className="flex-grow" role="main">
-        {/* Hero Section */}
         <section className="py-16 md:py-24 bg-gradient-to-br from-brick-light/50 to-transparent">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground">
-                About <span className="text-primary">No More Enabling</span>
-              </h1>
+              <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground">About No More Enabling</h1>
               <p className="mt-6 text-lg text-muted-foreground">
-                We're here to help you break free from unhealthy patterns, find hope, and build 
-                stronger, healthier relationships with yourself and others...without fear and without guilt.
+                This site exists for families who are trying hard, carrying a lot, and need something more useful than
+                recycled encouragement. The goal is clarity, steadier decisions, and support that does not fall apart when stress rises.
               </p>
             </div>
           </div>
         </section>
 
-        {/* About Section */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="font-serif text-3xl font-bold text-foreground mb-6 text-center">
-                Our Mission
-              </h2>
-              <div className="prose prose-lg text-muted-foreground space-y-4">
+            <div className="max-w-4xl mx-auto grid gap-10 lg:grid-cols-[1.4fr_0.8fr] lg:items-start">
+              <div className="prose prose-lg max-w-none text-muted-foreground">
+                <h2 className="font-serif text-3xl font-bold text-foreground mb-6 not-prose">Who is behind the site</h2>
                 <p>
-                  No More Enabling is an educational and support resource for families affected by addiction, codependency, and enabling behaviors. The platform exists to help families understand how addiction impacts relationships—and how changes within the family system can support healthier outcomes.
+                  No More Enabling was founded by Matt Brown, a professional interventionist who has worked with families affected by
+                  substance use disorders since 2004. His work has focused on one stubborn reality: families often do not need more
+                  information as much as they need a better framework for using it under pressure.
                 </p>
                 <p>
-                  No More Enabling was founded by Matt Brown, a professional interventionist who has worked with families affected by substance use disorders for more than two decades. Since 2004, Matt has helped hundreds of families navigate addiction-related crises, boundary breakdowns, resistance to treatment, relapse, and recovery planning. His work has consistently focused on helping families shift from reactive, fear-based patterns to clear, structured, and sustainable responses.
+                  Over two decades, Matt has helped families navigate active addiction, failed promises, treatment resistance, relapse,
+                  and the exhausting cycle of trying to help without making things worse. That experience shapes the site. The content is
+                  written to be direct, steady, and usable in real life, not just theoretically correct.
                 </p>
                 <p>
-                  Through years of direct intervention work, Matt identified a critical gap: families are often overwhelmed, misinformed, or unintentionally enabling addiction—not because they lack care or intelligence, but because they lack clear, practical education. No More Enabling was created to meet that need.
+                  No More Enabling is not a treatment center and it is not a crisis line. It is an educational platform for families who
+                  want a clearer mirror, fewer better commitments, and guidance that respects both the seriousness of addiction and the
+                  limits of what families can control.
                 </p>
-                <p>
-                  All content on No More Enabling is grounded in real-world intervention experience, evidence-informed family systems principles, and best practices in addiction recovery. The platform focuses on topics such as:
-                </p>
-                <ul className="list-disc pl-6 space-y-2">
-                  <li>Enabling vs. helping</li>
-                  <li>Family boundaries and communication</li>
-                  <li>Codependency and family roles</li>
-                  <li>Preparing for intervention and treatment decisions</li>
-                  <li>Supporting recovery without losing oneself</li>
+
+                <h2 className="font-serif text-3xl font-bold text-foreground mb-6 not-prose mt-10">What we cover</h2>
+                <ul>
+                  <li>How to tell the difference between helping and enabling</li>
+                  <li>Family boundaries, communication, and follow-through</li>
+                  <li>Codependency, overfunctioning, and emotional burnout</li>
+                  <li>Intervention and treatment decision-making</li>
+                  <li>Supporting recovery without losing yourself in the process</li>
                 </ul>
+
+                <h2 className="font-serif text-3xl font-bold text-foreground mb-6 not-prose mt-10">Editorial standards</h2>
                 <p>
-                  In addition to Matt's contributions, No More Enabling features articles, guides, and worksheets developed by licensed mental health professionals, experienced recovery specialists, and qualified educators. Contributors are selected for their clinical knowledge, ethical standards, and firsthand experience working with families affected by addiction. Many also bring lived experience as individuals in recovery or family members, ensuring content remains practical, compassionate, and grounded in reality.
-                </p>
-                <p>
-                  No More Enabling is not a treatment provider or crisis service. It is a trusted educational resource designed to help families make informed decisions, set healthier boundaries, and reduce the chaos and confusion that addiction often creates within families.
+                  Content on No More Enabling is grounded in direct intervention experience, family systems thinking, and practical
+                  recovery guidance. When contributors are involved, they are selected for relevant clinical, educational, or lived
+                  experience. The standard is simple: if advice will not hold up in a tense family conversation, it does not belong here.
                 </p>
                 <p className="font-medium text-foreground">
-                  Our commitment is to clarity over shame, education over blame, and support that strengthens families—regardless of whether their loved one is ready for change.
+                  We aim for truth people can stay present for, not shame, hype, or false certainty.
                 </p>
               </div>
+
+              <aside className="space-y-6">
+                <div className="rounded-2xl border border-border bg-card p-6">
+                  <p className="text-sm uppercase tracking-wide text-primary font-medium">Experience</p>
+                  <h2 className="font-serif text-2xl font-bold text-foreground mt-2">Matt Brown</h2>
+                  <p className="text-muted-foreground mt-3">
+                    Professional interventionist helping families respond to addiction, treatment resistance, and recovery planning since 2004.
+                  </p>
+                  <a href="mailto:matt@nomoreenabling.com" className="inline-flex items-center gap-2 text-primary mt-4 hover:underline">
+                    Contact Matt
+                    <ArrowRight size={16} />
+                  </a>
+                </div>
+
+                <div className="rounded-2xl border border-border bg-secondary/40 p-6">
+                  <p className="text-sm uppercase tracking-wide text-primary font-medium">Start here</p>
+                  <div className="mt-4 space-y-3">
+                    <Link to="/helping-or-enabling" className="block font-medium text-foreground hover:text-primary transition-colors">
+                      Helping or Enabling? Tool
+                    </Link>
+                    <Link to="/family-support-guide" className="block font-medium text-foreground hover:text-primary transition-colors">
+                      Family Support Guide
+                    </Link>
+                    <Link to="/articles" className="block font-medium text-foreground hover:text-primary transition-colors">
+                      Latest articles
+                    </Link>
+                  </div>
+                </div>
+              </aside>
             </div>
           </div>
         </section>
 
-        {/* Values Section */}
         <section className="py-16 bg-secondary">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="font-serif text-3xl font-bold text-foreground text-center mb-12">
-                What We Believe
-              </h2>
+              <h2 className="font-serif text-3xl font-bold text-foreground text-center mb-12">What guides the work</h2>
               <div className="grid md:grid-cols-3 gap-8">
-                {[
-                  {
-                    title: "Compassion",
-                    description: "Change starts with understanding and self-compassion, not judgment.",
-                  },
-                  {
-                    title: "Boundaries",
-                    description: "Healthy boundaries are acts of love—for ourselves and others.",
-                  },
-                  {
-                    title: "Growth",
-                    description: "Recovery is a journey, not a destination. Progress matters.",
-                  },
-                ].map((value) => (
+                {principles.map((value) => (
                   <div key={value.title} className="text-center">
-                    <h3 className="font-serif text-xl font-bold text-foreground mb-3">
-                      {value.title}
-                    </h3>
+                    <h3 className="font-serif text-xl font-bold text-foreground mb-3">{value.title}</h3>
                     <p className="text-muted-foreground">{value.description}</p>
                   </div>
                 ))}
@@ -127,26 +166,23 @@ const About = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="font-serif text-3xl font-bold text-foreground mb-6">
-                Join Our Community
-              </h2>
+              <h2 className="font-serif text-3xl font-bold text-foreground mb-6">Stay connected</h2>
               <p className="text-muted-foreground mb-8">
-                Get weekly insights, practical strategies, and support delivered 
-                straight to your inbox. Join thousands who are on the path to 
-                healthier relationships.
+                Get grounded guidance, new articles, and practical reminders in your inbox.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button variant="hero" size="lg">
                   <Mail size={18} />
-                  Subscribe to Newsletter
+                  Subscribe to newsletter
                 </Button>
-                <Button variant="hero-outline" size="lg">
-                  Read Our Articles
-                  <ArrowRight size={18} />
+                <Button variant="hero-outline" size="lg" asChild>
+                  <Link to="/articles">
+                    Read articles
+                    <ArrowRight size={18} />
+                  </Link>
                 </Button>
               </div>
             </div>

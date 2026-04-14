@@ -8,7 +8,6 @@ interface ArticleJsonLdProps {
   dateModified?: string;
   authorName?: string;
   url: string;
-  keywords?: string;
 }
 
 const ArticleJsonLd = ({
@@ -17,13 +16,12 @@ const ArticleJsonLd = ({
   image,
   datePublished,
   dateModified,
-  authorName = "Matt Brown",
+  authorName = "No More Enabling",
   url,
-  keywords,
 }: ArticleJsonLdProps) => {
-  const jsonLd: Record<string, unknown> = {
+  const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: title,
     description: description,
     image: image,
@@ -32,7 +30,7 @@ const ArticleJsonLd = ({
     author: {
       "@type": "Person",
       name: authorName,
-      url: "https://freedominterventions.com/interventionist",
+      url: "https://nomoreenabling.com/about",
     },
     publisher: {
       "@type": "Organization",
@@ -48,10 +46,6 @@ const ArticleJsonLd = ({
       "@id": url,
     },
   };
-
-  if (keywords) {
-    jsonLd.keywords = keywords;
-  }
 
   return (
     <Helmet>

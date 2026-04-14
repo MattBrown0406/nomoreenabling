@@ -21,6 +21,42 @@ const XIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+const convertMarkdownLikeContentToHtml = (content: string) => {
+  const paragraphs = content
+    .split("\n\n")
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
+
+  return paragraphs
+    .map((paragraph) => {
+      if (paragraph.startsWith("**") && paragraph.endsWith("**")) {
+        return `<h2>${paragraph.replace(/\*\*/g, "")}</h2>`;
+      }
+
+      const inlineFormatted = paragraph
+        .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+        .replace(/\n/g, "<br />");
+
+      return `<p>${inlineFormatted}</p>`;
+    })
+    .join("");
+};
+
+const normalizeArticleHtml = (content: string) => {
+  if (/<(h2|h3|p|ul|ol|blockquote)>/i.test(content)) {
+    return content;
+  }
+  return convertMarkdownLikeContentToHtml(content);
+};
+
+const getArticleSections = (content: string) => {
+  const normalizedHtml = normalizeArticleHtml(content).trim();
+  if (!normalizedHtml) return [];
+
+  const sections = normalizedHtml.split(/(?=<h2[\s>])/i).filter(Boolean);
+  return sections.length ? sections : [normalizedHtml];
+};
+
 const ArticlePage = () => {
   const { slug } = useParams<{ slug: string }>();
   const article = blogPosts.find((post) => post.slug === slug);
@@ -28,14 +64,11 @@ const ArticlePage = () => {
   const viewRecorded = useRef(false);
   const { markAsRead } = useReadingProgress();
 
-  // Smart related articles: match by shared categories, then by recency
   const relatedPosts = useMemo(() => {
     if (!article) return [];
     const others = blogPosts.filter((p) => p.slug !== slug);
     const scored = others.map((post) => {
-      const sharedCategories = post.categories.filter((cat) =>
-        article.categories.includes(cat)
-      ).length;
+      const sharedCategories = post.categories.filter((cat) => article.categories.includes(cat)).length;
       return { post, score: sharedCategories };
     });
     scored.sort((a, b) => {
@@ -45,17 +78,18 @@ const ArticlePage = () => {
     return scored.slice(0, 4).map((s) => s.post);
   }, [article, slug]);
 
-  // Pick a mid-article suggestion (best related that isn't in bottom section top 2)
   const midArticleSuggestion = useMemo(() => {
     return relatedPosts.length > 2 ? relatedPosts[2] : relatedPosts[0] || null;
   }, [relatedPosts]);
 
-  const articleUrl = `https://nomoreenabling.com/articles/${slug}`;
-  const imageUrl = article?.image?.startsWith('http') 
-    ? article.image 
-    : `https://nomoreenabling.com${article?.image}`;
+  const articleSections = useMemo(() => {
+    if (!article) return [];
+    return getArticleSections(article.content);
+  }, [article]);
 
-  // Convert date string to ISO format for structured data
+  const articleUrl = `https://nomoreenabling.com/articles/${slug}`;
+  const imageUrl = article?.image?.startsWith("http") ? article.image : `https://nomoreenabling.com${article?.image}`;
+
   const getISODate = (dateStr: string) => {
     try {
       const date = new Date(dateStr);
@@ -69,40 +103,29 @@ const ArticlePage = () => {
     window.scrollTo(0, 0);
   }, [article]);
 
-  // Record article view, mark as read, and sync metadata for social sharing
   useEffect(() => {
     if (slug && !viewRecorded.current) {
       viewRecorded.current = true;
-      // Mark as read in local storage
       markAsRead(slug);
-      // Record view in database
-      supabase
-        .from("article_views")
-        .insert({ article_slug: slug })
-        .then(() => {
-          // View recorded silently
-        });
-      // Sync article metadata for social sharing previews
+      supabase.from("article_views").insert({ article_slug: slug }).then(() => {
+        // View recorded silently
+      });
       if (article) {
         const prodOrigin = "https://nomoreenabling.com";
-        // In production, Vite resolves image imports to /assets/name-hash.ext
-        // In dev, they resolve to /src/assets/name.ext — so use the production origin
-        const resolvedImage = article.image?.startsWith('http')
-          ? article.image
-          : `${prodOrigin}${article.image}`;
-        // Only sync with production-valid URLs (not /src/assets/ dev paths)
-        const imgUrl = resolvedImage.includes('/src/assets/')
-          ? `${prodOrigin}/favicon.jpg`
-          : resolvedImage;
+        const resolvedImage = article.image?.startsWith("http") ? article.image : `${prodOrigin}${article.image}`;
+        const imgUrl = resolvedImage.includes("/src/assets/") ? `${prodOrigin}/favicon.jpg` : resolvedImage;
         supabase
           .from("articles_metadata")
-          .upsert({
-            slug: slug,
-            title: article.metaTitle || article.title,
-            description: article.metaDescription || article.excerpt,
-            image_url: imgUrl,
-            updated_at: new Date().toISOString(),
-          }, { onConflict: "slug" })
+          .upsert(
+            {
+              slug: slug,
+              title: article.metaTitle || article.title,
+              description: article.metaDescription || article.excerpt,
+              image_url: imgUrl,
+              updated_at: new Date().toISOString(),
+            },
+            { onConflict: "slug" }
+          )
           .then(() => {
             // Metadata synced silently
           });
@@ -112,21 +135,21 @@ const ArticlePage = () => {
 
   const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || `https://ctqbadyfhcoxhywrkorf.supabase.co`;
   const shareUrl = `${supabaseUrl}/functions/v1/sharepreview?slug=${slug}`;
-  const shareTitle = article?.title || '';
+  const shareTitle = article?.title || "";
 
   const shareOnFacebook = () => {
     window.open(
       `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
-      '_blank',
-      'width=600,height=400'
+      "_blank",
+      "width=600,height=400"
     );
   };
 
   const shareOnX = () => {
     window.open(
       `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`,
-      '_blank',
-      'width=600,height=400'
+      "_blank",
+      "width=600,height=400"
     );
   };
 
@@ -139,11 +162,11 @@ const ArticlePage = () => {
       await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
       toast({
-        title: "Link copied!",
+        title: "Link copied",
         description: "The article link has been copied to your clipboard.",
       });
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
+    } catch {
       toast({
         title: "Failed to copy",
         description: "Please copy the URL from your browser's address bar.",
@@ -154,29 +177,21 @@ const ArticlePage = () => {
 
   if (!article) {
     return (
-      <>
-        <SEOHead
-          title="Article Not Found"
-          description="The article you are looking for does not exist."
-          noindex={true}
-        />
-        <div className="min-h-screen flex flex-col bg-background">
-          <Header />
-          <main className="flex-1 flex items-center justify-center">
-            <div className="text-center">
-              <h1 className="text-2xl font-bold mb-4">Article Not Found</h1>
-              <p className="text-muted-foreground mb-6">The article you're looking for doesn't exist or may have been moved.</p>
-              <Link to="/articles">
-                <Button variant="outline">
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Back to Articles
-                </Button>
-              </Link>
-            </div>
-          </main>
-          <Footer />
-        </div>
-      </>
+      <div className="min-h-screen flex flex-col bg-background">
+        <Header />
+        <main className="flex-1 flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold mb-4">Article not found</h1>
+            <Link to="/articles">
+              <Button variant="outline">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to articles
+              </Button>
+            </Link>
+          </div>
+        </main>
+        <Footer />
+      </div>
     );
   }
 
@@ -188,16 +203,18 @@ const ArticlePage = () => {
         canonicalUrl={articleUrl}
         ogType="article"
         ogImage={imageUrl}
+        ogImageAlt={article.title}
         articlePublishedTime={getISODate(article.date)}
+        articleAuthor="Matt Brown"
         keywords={article.categories.join(", ")}
       />
       <ArticleJsonLd
-        title={article.metaTitle || article.title}
+        title={article.title}
         description={article.metaDescription || article.excerpt}
         image={imageUrl}
         datePublished={getISODate(article.date)}
         url={articleUrl}
-        keywords={article.categories.join(", ")}
+        authorName="Matt Brown"
       />
       <BreadcrumbJsonLd
         items={[
@@ -207,13 +224,12 @@ const ArticlePage = () => {
         ]}
       />
       <Header />
-      
+
       <main className="flex-1" role="main">
-        {/* Hero Image */}
         <div className="relative h-[300px] md:h-[400px] overflow-hidden">
           <img
             src={article.image}
-            alt={`Featured image for article: ${article.title}`}
+            alt={article.title}
             className="w-full h-full object-cover"
             loading="eager"
             width={1200}
@@ -224,18 +240,12 @@ const ArticlePage = () => {
 
         <div className="container mx-auto px-4 -mt-32 relative z-10">
           <div className="flex gap-8 max-w-6xl mx-auto">
-            {/* Main Content */}
             <div className="flex-1 max-w-3xl">
-              {/* Back Link */}
-              <Link 
-                to="/articles" 
-                className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors mb-6"
-              >
+              <Link to="/articles" className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors mb-6">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Articles
+                Back to articles
               </Link>
 
-              {/* Article Header */}
               <article className="bg-card rounded-xl shadow-lg p-6 md:p-10">
                 <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-4">
                   <span className="inline-flex items-center gap-1.5 bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
@@ -252,12 +262,17 @@ const ArticlePage = () => {
                   </span>
                 </div>
 
-                <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-6 leading-tight">
-                  {article.title}
-                </h1>
+                <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">{article.title}</h1>
+                <p className="text-lg text-muted-foreground mb-6">{article.excerpt}</p>
 
-                {/* Social Share Buttons */}
-                <div className="flex items-center gap-2 mb-8 pb-6 border-b border-border">
+                <div className="rounded-xl bg-secondary/40 border border-border p-5 mb-8">
+                  <p className="text-sm uppercase tracking-wide text-primary font-medium">Why this is here</p>
+                  <p className="text-muted-foreground mt-2">
+                    Families rarely need more pressure. They need clearer patterns, steadier boundaries, and a next step they can actually hold.
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-2 mb-8 pb-6 border-b border-border flex-wrap">
                   <span className="text-sm text-muted-foreground mr-2">Share:</span>
                   <button
                     onClick={shareOnFacebook}
@@ -289,108 +304,90 @@ const ArticlePage = () => {
                   </button>
                 </div>
 
-                {/* Ad Space */}
                 <div className="mb-8">
                   <AdSpace size="leaderboard" />
                 </div>
 
-                {/* Article Content */}
-                <div className="prose prose-lg max-w-none text-foreground/90">
-                  {(() => {
-                    const paragraphs = article.content.split('\n\n');
-                    const midPoint = Math.floor(paragraphs.length / 2);
-                    
-                    return paragraphs.map((paragraph, index) => {
-                      const elements: React.ReactNode[] = [];
-                      
-                      // Insert mid-article callout at the midpoint
-                      if (index === midPoint && midArticleSuggestion) {
-                        elements.push(
-                          <RelatedArticleCallout
-                            key={`callout-${index}`}
-                            title={midArticleSuggestion.title}
-                            slug={midArticleSuggestion.slug}
-                            excerpt={midArticleSuggestion.excerpt}
-                          />
-                        );
-                      }
-
-                      if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
-                        elements.push(
-                          <h2 key={index} className="text-xl font-bold text-foreground mt-8 mb-4">
-                            {paragraph.replace(/\*\*/g, '')}
-                          </h2>
-                        );
-                      } else if (paragraph.includes('**')) {
-                        const parts = paragraph.split(/(\*\*[^*]+\*\*)/g);
-                        elements.push(
-                          <p key={index} className="mb-4 leading-relaxed">
-                            {parts.map((part, i) => {
-                              if (part.startsWith('**') && part.endsWith('**')) {
-                                return <strong key={i} className="font-semibold text-foreground">{part.replace(/\*\*/g, '')}</strong>;
-                              }
-                              return part;
-                            })}
-                          </p>
-                        );
-                      } else {
-                        elements.push(
-                          <p key={index} className="mb-4 leading-relaxed">
-                            {paragraph}
-                          </p>
-                        );
-                      }
-                      
-                      return elements;
-                    });
-                  })()}
+                <div className="prose prose-lg max-w-none text-foreground/90 prose-headings:font-serif prose-headings:text-foreground prose-p:text-foreground/90 prose-li:text-foreground/90 prose-strong:text-foreground">
+                  {articleSections.map((section, index) => (
+                    <div key={index}>
+                      {index === Math.floor(articleSections.length / 2) && midArticleSuggestion && (
+                        <RelatedArticleCallout
+                          title={midArticleSuggestion.title}
+                          slug={midArticleSuggestion.slug}
+                          excerpt={midArticleSuggestion.excerpt}
+                        />
+                      )}
+                      <div dangerouslySetInnerHTML={{ __html: section }} />
+                    </div>
+                  ))}
                 </div>
 
-                {/* Bottom Ad Space */}
                 <div className="mt-10 pt-8 border-t border-border">
+                  <div className="rounded-xl bg-secondary/40 border border-border p-5 mb-8">
+                    <p className="text-sm uppercase tracking-wide text-primary font-medium">Need a steadier starting point?</p>
+                    <div className="mt-3 flex flex-col gap-2 text-sm">
+                      <Link to="/helping-or-enabling" className="text-foreground hover:text-primary transition-colors">
+                        Helping or Enabling? Tool
+                      </Link>
+                      <Link to="/family-support-guide" className="text-foreground hover:text-primary transition-colors">
+                        Family Support Guide
+                      </Link>
+                      <Link to="/about" className="text-foreground hover:text-primary transition-colors">
+                        About Matt Brown and No More Enabling
+                      </Link>
+                    </div>
+                  </div>
                   <AdSpace size="leaderboard" />
                 </div>
               </article>
 
-              {/* Related Articles */}
               <div className="mt-12 mb-16">
-                <h2 className="font-serif text-2xl font-bold text-foreground mb-2">Continue Reading</h2>
+                <h2 className="font-serif text-2xl font-bold text-foreground mb-2">Continue reading</h2>
                 <p className="text-muted-foreground text-sm mb-6">More articles on similar topics</p>
                 <div className="grid md:grid-cols-2 gap-6">
-                  {relatedPosts
-                    .slice(0, 4)
-                    .map((post) => (
-                      <Link
-                        key={post.id}
-                        to={`/articles/${post.slug}`}
-                        className="group bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
-                      >
-                        <div className="aspect-video overflow-hidden">
-                          <img
-                            src={post.image}
-                            alt={`Read more: ${post.title}`}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            loading="lazy"
-                            width={640}
-                            height={360}
-                          />
-                        </div>
-                        <div className="p-4">
-                          <span className="text-xs text-primary font-medium">{post.category}</span>
-                          <h3 className="font-semibold text-foreground mt-1 group-hover:text-primary transition-colors line-clamp-2">
-                            {post.title}
-                          </h3>
-                          <p className="text-muted-foreground text-sm mt-1 line-clamp-2">{post.excerpt}</p>
-                        </div>
-                      </Link>
-                    ))}
+                  {relatedPosts.slice(0, 4).map((post) => (
+                    <Link
+                      key={post.id}
+                      to={`/articles/${post.slug}`}
+                      className="group bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                    >
+                      <div className="aspect-video overflow-hidden">
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
+                          width={640}
+                          height={360}
+                        />
+                      </div>
+                      <div className="p-4">
+                        <span className="text-xs text-primary font-medium">{post.category}</span>
+                        <h3 className="font-semibold text-foreground mt-1 group-hover:text-primary transition-colors line-clamp-2">
+                          {post.title}
+                        </h3>
+                        <p className="text-muted-foreground text-sm mt-1 line-clamp-2">{post.excerpt}</p>
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>
 
-            {/* Sidebar */}
             <aside className="hidden lg:block w-80 flex-shrink-0" aria-label="Sponsored content">
               <div className="sticky top-24 space-y-6">
+                <div className="rounded-2xl border border-border bg-card p-6">
+                  <p className="text-sm uppercase tracking-wide text-primary font-medium">Author perspective</p>
+                  <h2 className="font-serif text-2xl font-bold text-foreground mt-2">Matt Brown</h2>
+                  <p className="text-muted-foreground mt-3 text-sm">
+                    Professional interventionist helping families navigate addiction, treatment resistance, relapse, and recovery planning since 2004.
+                  </p>
+                  <Link to="/about" className="inline-flex items-center gap-2 mt-4 text-primary hover:underline text-sm">
+                    Learn more about the site
+                    <ArrowLeft className="w-3 h-3 rotate-180" />
+                  </Link>
+                </div>
                 <EagleCreekRanchBanner />
               </div>
             </aside>

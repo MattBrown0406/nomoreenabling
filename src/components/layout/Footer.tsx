@@ -28,8 +28,8 @@ const Footer = () => {
               <img src={logo} alt="No More Enabling" className="h-16 w-auto rounded" />
             </Link>
             <p className="mt-4 text-muted-foreground max-w-md">
-              Empowering you to break free from unhealthy patterns and build stronger, 
-              healthier relationships with yourself and others.
+              Practical guidance for families trying to respond to addiction with clearer boundaries,
+              steadier decisions, and less chaos.
             </p>
             <nav className="flex gap-4 mt-6" aria-label="Social media links">
               <a href="https://www.tiktok.com/@mattbrowninterventionist" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Follow us on TikTok">
@@ -58,7 +58,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">
-                  About Us
+                  About
                 </Link>
               </li>
               <li>
@@ -68,7 +68,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/advertise" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Advertise With Us
+                  Advertise
                 </Link>
               </li>
             </ul>

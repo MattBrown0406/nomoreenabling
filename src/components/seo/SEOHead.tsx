@@ -7,6 +7,7 @@ interface SEOHeadProps {
   canonicalUrl?: string;
   ogType?: "website" | "article";
   ogImage?: string;
+  ogImageAlt?: string;
   articlePublishedTime?: string;
   articleModifiedTime?: string;
   articleAuthor?: string;
@@ -20,6 +21,7 @@ const SEOHead = ({
   canonicalUrl,
   ogType = "website",
   ogImage = "https://nomoreenabling.com/favicon.jpg",
+  ogImageAlt = "No More Enabling",
   articlePublishedTime,
   articleModifiedTime,
   articleAuthor = "Matt Brown",
@@ -48,6 +50,7 @@ const SEOHead = ({
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
+      <meta name="author" content={articleAuthor} />
       {keywords && <meta name="keywords" content={keywords} />}
       {noindex ? (
         <meta name="robots" content="noindex, nofollow" />
@@ -62,6 +65,7 @@ const SEOHead = ({
       <meta property="og:type" content={ogType} />
       <meta property="og:url" content={canonical} />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:image:alt" content={ogImageAlt} />
       <meta property="og:site_name" content="No More Enabling" />
       <meta property="og:locale" content="en_US" />
 
@@ -79,9 +83,11 @@ const SEOHead = ({
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@NoMoreEnabling" />
+      {canonicalUrl && <meta name="twitter:url" content={canonicalUrl} />}
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image:alt" content={ogImageAlt} />
     </Helmet>
   );
 };
