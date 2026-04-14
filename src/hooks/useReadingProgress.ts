@@ -8,6 +8,10 @@ interface ReadingProgress {
 }
 
 const getStoredProgress = (): ReadingProgress => {
+  if (typeof window === "undefined") {
+    return { articlesRead: [], lastReadAt: {} };
+  }
+
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
@@ -20,6 +24,8 @@ const getStoredProgress = (): ReadingProgress => {
 };
 
 const saveProgress = (progress: ReadingProgress) => {
+  if (typeof window === "undefined") return;
+
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
   } catch (e) {
