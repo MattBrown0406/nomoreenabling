@@ -474,7 +474,7 @@ const AdminAnalytics = () => {
               <p className="text-xs text-muted-foreground">
                 After syncing, share articles using this URL format for proper previews:<br />
                 <code className="bg-muted px-2 py-1 rounded text-xs mt-1 inline-block">
-                  {`https://${import.meta.env.VITE_SUPABASE_PROJECT_ID || "ctqbadyfhcoxhywrkorf"}.supabase.co/functions/v1/sharepreview?slug=ARTICLE-SLUG`}
+                  {`https://${import.meta.env.VITE_SUPABASE_PROJECT_ID || "ctqbadyfhcoxhywrkorf"}.supabase.co/functions/v1/sharepreview/ARTICLE-SLUG`}
                 </code>
               </p>
             </CardContent>

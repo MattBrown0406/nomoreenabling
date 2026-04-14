@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState, useRef, useMemo } from "react";
-import { ArrowLeft, Clock, Calendar, Tag, Facebook, Mail, Link2, Check } from "lucide-react";
+import { ArrowLeft, Clock, Calendar, Tag, Facebook, Mail, Link2, Check, Share2 } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { blogPosts } from "@/data/blogPosts";
@@ -134,12 +134,13 @@ const ArticlePage = () => {
   }, [slug, markAsRead, article]);
 
   const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || `https://ctqbadyfhcoxhywrkorf.supabase.co`;
-  const shareUrl = `${supabaseUrl}/functions/v1/sharepreview?slug=${slug}`;
+  const sharePreviewUrl = `${supabaseUrl}/functions/v1/sharepreview/${slug}`;
   const shareTitle = article?.title || "";
+  const directShareUrl = articleUrl;
 
   const shareOnFacebook = () => {
     window.open(
-      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
+      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(sharePreviewUrl)}`,
       "_blank",
       "width=600,height=400"
     );
@@ -147,19 +148,33 @@ const ArticlePage = () => {
 
   const shareOnX = () => {
     window.open(
-      `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`,
+      `https://twitter.com/intent/tweet?url=${encodeURIComponent(sharePreviewUrl)}&text=${encodeURIComponent(shareTitle)}`,
       "_blank",
       "width=600,height=400"
     );
   };
 
   const shareViaEmail = () => {
-    window.location.href = `mailto:?subject=${encodeURIComponent(shareTitle)}&body=${encodeURIComponent(`Check out this article: ${shareUrl}`)}`;
+    window.location.href = `mailto:?subject=${encodeURIComponent(shareTitle)}&body=${encodeURIComponent(`Check out this article: ${directShareUrl}`)}`;
+  };
+
+  const shareNatively = async () => {
+    if (!navigator.share) return;
+
+    try {
+      await navigator.share({
+        title: shareTitle,
+        text: article?.excerpt,
+        url: directShareUrl,
+      });
+    } catch {
+      // Ignore cancelled shares
+    }
   };
 
   const copyLink = async () => {
     try {
-      await navigator.clipboard.writeText(shareUrl);
+      await navigator.clipboard.writeText(directShareUrl);
       setCopied(true);
       toast({
         title: "Link copied",
@@ -274,6 +289,15 @@ const ArticlePage = () => {
 
                 <div className="flex items-center gap-2 mb-8 pb-6 border-b border-border flex-wrap">
                   <span className="text-sm text-muted-foreground mr-2">Share:</span>
+                  {typeof navigator !== "undefined" && navigator.share && (
+                    <button
+                      onClick={shareNatively}
+                      className="p-2 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                      aria-label="Share article"
+                    >
+                      <Share2 className="w-4 h-4" />
+                    </button>
+                  )}
                   <button
                     onClick={shareOnFacebook}
                     className="p-2 rounded-full bg-[#1877F2] text-white hover:bg-[#1877F2]/90 transition-colors"

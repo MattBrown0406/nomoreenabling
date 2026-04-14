@@ -51,6 +51,7 @@ serve(async (req: Request) => {
       .maybeSingle();
 
     const articleUrl = `https://nomoreenabling.com/articles/${slug}`;
+    const imageUrl = data?.image_url || "https://nomoreenabling.com/favicon.jpg";
 
     if (error || !data) {
       return new Response(null, {
@@ -69,16 +70,21 @@ serve(async (req: Request) => {
   <meta charset="utf-8" />
   <title>${escapeHtml(fullTitle)}</title>
   <meta name="description" content="${escapeHtml(data.description)}" />
+  <link rel="canonical" href="${escapeHtml(articleUrl)}" />
   <meta property="og:title" content="${escapeHtml(fullTitle)}" />
   <meta property="og:description" content="${escapeHtml(data.description)}" />
-  <meta property="og:image" content="${escapeHtml(data.image_url)}" />
+  <meta property="og:image" content="${escapeHtml(imageUrl)}" />
+  <meta property="og:image:secure_url" content="${escapeHtml(imageUrl)}" />
+  <meta property="og:image:alt" content="${escapeHtml(data.title)}" />
   <meta property="og:url" content="${escapeHtml(articleUrl)}" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="No More Enabling" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="${escapeHtml(articleUrl)}" />
   <meta name="twitter:title" content="${escapeHtml(fullTitle)}" />
   <meta name="twitter:description" content="${escapeHtml(data.description)}" />
-  <meta name="twitter:image" content="${escapeHtml(data.image_url)}" />
+  <meta name="twitter:image" content="${escapeHtml(imageUrl)}" />
+  <meta http-equiv="refresh" content="0; url=${escapeHtml(articleUrl)}" />
   <script>window.location.replace("${articleUrl}");</script>
 </head>
 <body>

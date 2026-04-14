@@ -108,7 +108,7 @@ const blogPostsRaw: BlogPost[] = [
   {
     id: "",
     title: "What to Do When Your Addicted Loved One Keeps Breaking Your Boundaries",
-    excerpt: "You set the boundary. They broke it anyway. Here's exactly what to do when your addicted loved one keeps crossing the lines you've set — and how to stay grounded through it.",
+    excerpt: "When your addicted loved one breaks a boundary, the next step matters. Learn how to respond calmly, follow through, and know when the pattern needs outside help.",
     slug: "what-to-do-when-addicted-loved-one-breaks-boundaries",
     content: `
       <h2>Why Your Addicted Loved One Keeps Breaking Your Boundaries</h2>
@@ -192,21 +192,21 @@ const blogPostsRaw: BlogPost[] = [
     categories: ["Boundaries", "Enabling", "Family Dynamics", "Recovery", "Codependency"],
     date: "March 18, 2026",
     readTime: "10 min read",
-    metaTitle: "What to Do When Your Addicted Loved One Breaks Boundaries | No More Enabling",
-    metaDescription: "Your addicted loved one broke the boundary you set. Here's what to do next — how to follow through, stay grounded, and know when it's time to get professional help.",
+    metaTitle: "What to Do When an Addicted Loved One Breaks Boundaries | No More Enabling",
+    metaDescription: "Your addicted loved one broke the boundary you set. Learn how to respond, enforce consequences, and decide when repeated violations call for more support.",
   },
   {
     id: "",
     title: "How to Maintain Boundaries When Your Addicted Loved One Pushes Back",
-    excerpt: "You set a boundary. Then they pushed back — with guilt, tears, anger, or threats. Here's how to hold firm when maintaining boundaries with an addicted loved one feels emotionally impossible.",
+    excerpt: "Holding boundaries gets hardest after the guilt, anger, or threats start. Learn how to maintain boundaries with an addicted loved one when the pressure rises.",
     category: "Boundaries",
     categories: ["Boundaries", "Enabling", "Family Dynamics", "Codependency", "Recovery"],
     readTime: "11 min read",
     date: "March 16, 2026",
     image: maintainingBoundariesAddictedImage,
     slug: "maintaining-boundaries-addicted-loved-one",
-    metaTitle: "How to Maintain Boundaries with an Addicted Loved One | No More Enabling",
-    metaDescription: "Learn how to hold firm on your boundaries when your addicted loved one pushes back, guilt-trips, or threatens. Practical strategies for families.",
+    metaTitle: "How to Maintain Boundaries With an Addicted Loved One | No More Enabling",
+    metaDescription: "Learn how to maintain boundaries with an addicted loved one when they push back with guilt, anger, tears, or threats. Practical guidance for families.",
     content: `
       <p>You finally did it. You set a boundary.</p>
       <p>You told your husband you wouldn't cover for him at work anymore. You told your daughter she couldn't move back home if she was still using. You told your son you'd no longer pay his bills.</p>
@@ -301,15 +301,15 @@ const blogPostsRaw: BlogPost[] = [
   {
     id: "",
     title: "8 Signs You're Codependent with an Addicted Loved One",
-    excerpt: "When someone you love is struggling with addiction, it changes you. Slowly, quietly, your life begins to revolve around their chaos. Here are eight of the most common signs of codependency with an addict — and what they're really telling you.",
+    excerpt: "Worried you've become codependent with an addicted loved one? These eight signs can help you recognize the pattern and start separating care from over-responsibility.",
     category: "Codependency",
     categories: ["Codependency", "Enabling", "Family Dynamics", "Boundaries", "Recovery"],
     readTime: "12 min read",
     date: "March 11, 2026",
     image: codependencySignsLovedOneImage,
     slug: "codependency-signs-loved-one-addiction",
-    metaTitle: "8 Signs You're Codependent with an Addicted Loved One | No More Enabling",
-    metaDescription: "Recognize the signs of codependency with an addict. Learn what codependency looks like in families affected by addiction and how to start changing the pattern.",
+    metaTitle: "8 Signs of Codependency With an Addicted Loved One | No More Enabling",
+    metaDescription: "Learn 8 common signs of codependency with an addicted loved one, why the pattern develops, and what families can do to begin changing it.",
     content: `
       <p>When someone you love is struggling with addiction, it changes you. Slowly, quietly, your life begins to revolve around their chaos. You start sleeping lightly, watching for signs. You rehearse conversations in your head. You cancel plans, cover for them, and spend hours trying to figure out what you did wrong — or what you can do differently.</p>
       <p>If this sounds familiar, you may be experiencing signs of codependency with an addict — a deeply painful pattern that affects millions of family members and loved ones of people struggling with substance use. The good news? Recognizing it is the first step toward changing it.</p>
@@ -5781,15 +5781,15 @@ None of these are immediate cures—but all are movement.`
   {
     id: "23",
     title: "Alcohol Withdrawal—Why Quitting \"Cold Turkey\" Can Be Dangerous (What Families Should Do)",
-    excerpt: "Alcohol withdrawal is a recognized medical condition that can occur when someone reduces or stops heavy, prolonged drinking. For some people, stopping suddenly can trigger serious withdrawal symptoms.",
+    excerpt: "Alcohol withdrawal can be dangerous and sometimes life-threatening. Learn the general timeline, warning signs, and when families should get immediate medical help.",
     category: "Addiction",
     categories: ["Addiction", "Relationships"],
     readTime: "8 min read",
     date: "Dec 18, 2025",
     image: alcoholWithdrawalTimelineImage,
     slug: "alcohol-withdrawal-timeline-symptoms",
-    metaTitle: "Alcohol Withdrawal Timeline: Symptoms, Dangers, and When to Get Help",
-    metaDescription: "Alcohol withdrawal can be dangerous. Learn common symptoms, a general timeline, red flags like delirium tremens, and how families can respond safely.",
+    metaTitle: "Alcohol Withdrawal Timeline, Symptoms, and Danger Signs | No More Enabling",
+    metaDescription: "Learn the alcohol withdrawal timeline, common symptoms, serious red flags like delirium tremens, and when to seek urgent medical care.",
     content: `**The Myth: "If They Really Wanted It, They'd Just Stop"**
 
 Families often say, "Why can't you just quit?" It's an understandable question—especially after months or years of broken promises. But alcohol dependence is not simply a willpower issue. For some people, stopping suddenly can trigger serious withdrawal symptoms.
@@ -8153,7 +8153,7 @@ Recovery grows in honest environments—not insulated ones.`
   {
     id: "72",
     title: "How Taking Over Responsibilities Delays Maturity in Addiction",
-    excerpt: "In many addiction-affected families, one person begins doing more while another does less. What starts as temporary help often becomes a long-term pattern of overfunctioning that delays emotional and practical maturity.",
+    excerpt: "When families take over bills, logistics, and cleanup long-term, they may also delay maturity. Learn how overfunctioning blocks growth and how to hand responsibility back.",
     category: "Enabling",
     categories: ["Enabling", "Codependency", "Family Dynamics", "Recovery"],
     readTime: "9 min read",
@@ -8161,7 +8161,7 @@ Recovery grows in honest environments—not insulated ones.`
     image: takingOverResponsibilitiesImage,
     slug: "taking-over-responsibilities-delays-maturity-addiction",
     metaTitle: "How Taking Over Responsibilities Delays Maturity in Addiction | No More Enabling",
-    metaDescription: "Learn how overfunctioning in addiction-affected families delays emotional maturity. Discover how restoring accountability supports recovery and growth.",
+    metaDescription: "Learn how taking over responsibilities in an addiction-affected family delays maturity, reinforces dependence, and keeps everyone stuck in overfunctioning.",
     content: "In many addiction-affected families, one person begins doing more while another does less. Bills get paid quietly. Appointments get scheduled. Problems get solved before they become visible. What starts as temporary help often becomes a long-term pattern of overfunctioning. When families take over responsibilities to maintain stability, they may unintentionally delay emotional and practical maturity in the person struggling with addiction.\n\n**The Overfunctioning\u2013Underfunctioning Dynamic**\n\nAddiction systems often fall into a predictable pattern:\n\nThe addicted individual underfunctions.\nA family member overfunctions.\n\nUnderfunctioning can include:\n\n\u2022 Avoiding responsibilities\n\u2022 Missing deadlines\n\u2022 Ignoring bills\n\u2022 Neglecting obligations\n\nOverfunctioning looks like:\n\n\u2022 Stepping in financially\n\u2022 Managing logistics\n\u2022 Cleaning up consequences\n\u2022 Preventing visible fallout\n\nThe system balances itself\u2014but not in a healthy way.\n\n**Why Overfunctioning Feels Necessary**\n\nWhen instability increases, someone has to stabilize the system.\n\nFamilies think:\n\n\"If I don't handle this, everything will fall apart.\"\n\nThat instinct is understandable.\n\nChildren need security.\nHomes need stability.\nFinancial obligations must be met.\n\nBut when overfunctioning becomes chronic, it reinforces underfunctioning.\n\n**The Developmental Stall**\n\nMaturity develops through:\n\n\u2022 Consequences\n\u2022 Problem-solving\n\u2022 Ownership of mistakes\n\u2022 Managing discomfort\n\nWhen someone is shielded from these experiences, growth slows.\n\nAddiction already interferes with emotional development.\n\nOverfunctioning extends the delay.\n\n**Protecting From Inconvenience vs Supporting Growth**\n\nThere is a difference between:\n\n\u2022 Temporary assistance during crisis\n\u2022 Ongoing responsibility substitution\n\nShort-term support can be stabilizing.\n\nLong-term substitution prevents learning.\n\nIf someone never has to:\n\n\u2022 Negotiate a late payment\n\u2022 Explain a missed obligation\n\u2022 Repair damaged relationships\n\u2022 Experience financial pressure\n\nThey miss opportunities for growth.\n\n**The Emotional Cost to the Overfunctioner**\n\nOver time, the family member who overfunctions may experience:\n\n\u2022 Exhaustion\n\u2022 Resentment\n\u2022 Anxiety\n\u2022 Loss of identity\n\u2022 Emotional burnout\n\nThey may begin to feel trapped in responsibility.\n\nIronically, the more they take over, the harder it becomes to step back.\n\n**Why Stepping Back Feels Cruel**\n\nWhen families consider relinquishing responsibility, guilt emerges.\n\nThey fear:\n\n\u2022 Everything will collapse\n\u2022 Their loved one will spiral\n\u2022 They will appear unsupportive\n\u2022 Harm will increase\n\nBut continued overfunctioning rarely produces sustainable change.\n\nDiscomfort may increase temporarily.\nGrowth may increase alongside it.\n\n**The Illusion of Stability**\n\nOverfunctioning creates the appearance of control.\n\nBills are paid.\nSchedules are maintained.\nConsequences are softened.\n\nBut beneath the surface, dependency deepens.\n\nTrue stability requires shared responsibility.\n\n**Restoring Responsibility Without Escalation**\n\nRestoring accountability does not require hostility.\n\nIt requires clarity.\n\nExamples include:\n\n\"You're responsible for your own appointments.\"\n\n\"We will not cover missed payments.\"\n\n\"Transportation is your responsibility.\"\n\n\"You'll need to address this directly.\"\n\nConsistency is more important than tone.\n\nCalm follow-through builds credibility.\n\n**The Pushback Phase**\n\nWhen overfunctioning stops, resistance often increases.\n\nThere may be:\n\n\u2022 Anger\n\u2022 Blame\n\u2022 Emotional manipulation\n\u2022 Threats of withdrawal\n\nThis pushback does not mean stepping back was wrong.\n\nIt often means the pattern has shifted.\n\nStaying steady during pushback is essential.\n\n**When Professional Support Is Crucial**\n\nOverfunctioning patterns can be deeply entrenched.\n\nAn experienced interventionist can help families:\n\n\u2022 Identify responsibility imbalances\n\u2022 Develop sustainable boundary plans\n\u2022 Reduce guilt-driven reversals\n\u2022 Prepare for resistance\n\nStructured guidance prevents reactive backtracking.\n\n**The Long-Term Benefit of Accountability**\n\nWhen responsibility is restored:\n\n\u2022 Problem-solving skills develop\n\u2022 Emotional resilience increases\n\u2022 Consequences carry meaning\n\u2022 Motivation strengthens\n\nGrowth requires ownership.\n\nOwnership requires exposure to consequences.\n\nShielding delays maturity.\n\n**A Clear Takeaway**\n\nTaking over responsibilities feels protective.\n\nOver time, it delays growth.\n\nAddiction already impairs development.\n\nOverfunctioning extends the impairment.\n\nFamilies do not need to abandon support.\n\nThey need to rebalance it.\n\nSupport should empower\u2014not replace\u2014responsibility.\n\nIf stepping back feels overwhelming or risky, seeking professional guidance can provide structure and reassurance.\n\nMaturity develops when ownership returns.\n\nAnd ownership is essential for recovery."
   },
   {
@@ -9068,19 +9068,20 @@ It's free. It takes five minutes. And it exists because no family should have to
     id: "79",
     slug: "how-to-stop-enabling-an-addict",
     title: "How to Stop Enabling an Addict: A Complete Guide for Families and Loved Ones",
-    excerpt: "Learn how to stop enabling addiction, recognize enabling behaviors, set healthy boundaries, and help a loved one get the treatment they need — without losing yourself in the process.",
+    excerpt: "Learn how to stop enabling an addict, recognize the patterns keeping addiction comfortable, and set boundaries that support recovery without losing yourself.",
     date: "2026-03-08",
     category: "Enabling",
     image: howToStopEnablingImage,
     categories: ["Enabling", "Boundaries", "Codependency", "Family Dynamics", "Recovery"],
     readTime: "12 min read",
-    metaTitle: "How to Stop Enabling an Addict: Guide for Families",
-    metaDescription: "Learn how to stop enabling addiction, recognize enabling behaviors, set healthy boundaries, and help a loved one get the treatment they need — without losing yourself in the process.",
+    metaTitle: "How to Stop Enabling an Addict, Family Guide | No More Enabling",
+    metaDescription: "Trying to stop enabling an addict in your family? Learn the signs of enabling, what to do instead, and how to set boundaries that support real recovery.",
     
     content: `
       <p>When someone you love is struggling with addiction, every instinct you have screams at you to help. You make excuses for them. You cover their bills. You stay silent to keep the peace. You tell yourself it's love. But there's a painful truth that many families eventually face: what feels like helping is often hurting.</p>
       <p>Enabling addiction is one of the most misunderstood dynamics in the recovery world — and it's one of the most important to understand if you want to see your loved one get well.</p>
       <p>This guide will walk you through exactly what enabling is, how to recognize it in yourself, why it happens, and — most importantly — how to stop it so that real healing can begin.</p>
+      <p>If you're sorting out where to begin, start with <a href="/articles/enabling-vs-helping-stop-enabling-support-real-recovery">the difference between enabling and helping</a>, then move to <a href="/articles/how-to-set-boundaries-with-addicted-loved-one">how to set boundaries with an addicted loved one</a>. Those two guides give this article a practical next step.</p>
 
       <h2>What Does "Enabling" Mean in the Context of Addiction?</h2>
       <p>Enabling, in the context of substance use disorder, refers to any action — or inaction — that allows a person struggling with addiction to avoid the natural consequences of their behavior. Enablers don't set out to make addiction worse. In fact, the very opposite is true: enabling almost always comes from a place of deep love, fear, and hope.</p>
@@ -9272,12 +9273,13 @@ It's free. It takes five minutes. And it exists because no family should have to
     id: "80",
     title: "Enabling vs. Helping: How to Stop Enabling an Addict and Start Supporting Real Recovery",
     slug: "enabling-vs-helping-stop-enabling-support-real-recovery",
-    excerpt: "Enabling behavior feels like love — but it often makes addiction worse. Learn the signs of enabling, the difference between helping and enabling, and how to set healthy boundaries to support real recovery.",
+    excerpt: "Learn the difference between enabling and helping, spot the family patterns that keep addiction going, and support your loved one in ways that do not remove accountability.",
     content: `
       <p>If someone you love is struggling with addiction, you are probably doing everything you can to help them. You cover for them when they miss work. You lend money when they are short on rent. You stay silent about their drinking at family dinners to keep the peace. You tell yourself that this is love — and in many ways, it is.</p>
       <p>But there is a hard truth that many families discover too late: the things we do to protect our loved ones from consequences can become the very things that keep them sick. This is enabling — and understanding it may be the most important step you take on the road to recovery for your entire family.</p>
       <p>Enabling behavior feels like love, but it quietly removes the motivation a person needs to seek help. Learning to tell the difference between helping and enabling can change everything.</p>
       <p>This guide will help you recognize the signs of enabling behavior in relationships, understand why it happens, and discover practical steps to set healthy boundaries — without abandoning the person you love.</p>
+      <p>If this question keeps coming up in your home, you may also want to read <a href="/articles/how-to-stop-enabling-an-addict">how to stop enabling an addict</a> and <a href="/articles/codependent-rescuing-behavior-addiction">why rescuing often keeps addiction in place</a>.</p>
 
       <h2>What Is Enabling Behavior?</h2>
       <p>Enabling behavior is any action that shields a person with addiction from experiencing the natural consequences of their choices. On the surface, enabling looks like support. Underneath, it removes the discomfort that might otherwise motivate change.</p>
@@ -9397,8 +9399,8 @@ It's free. It takes five minutes. And it exists because no family should have to
     categories: ["Enabling", "Codependency", "Boundaries", "Family Dynamics", "Recovery"],
     date: "March 8, 2026",
     readTime: "12 min read",
-    metaTitle: "Enabling vs. Helping: How to Stop Enabling an Addict | No More Enabling",
-    metaDescription: "Enabling behavior feels like love — but it often makes addiction worse. Learn the signs of enabling, the difference between helping and enabling, and how to set healthy boundaries to support real recovery.",
+    metaTitle: "Enabling vs Helping in Addiction, What Families Need to Know | No More Enabling",
+    metaDescription: "Confused about enabling vs helping? Learn how families can support a loved one with addiction without removing consequences, responsibility, or the chance for change.",
   },
   {
     id: "81",
@@ -9480,7 +9482,7 @@ It's free. It takes five minutes. And it exists because no family should have to
     id: "",
     title: "Breaking the Codependency Cycle: How Families Can Reclaim Their Lives After Enabling Addiction",
     slug: "breaking-codependency-cycle-addiction",
-    excerpt: "If you've spent months or years rearranging your life around a loved one's addiction, breaking the codependency cycle is one of the most courageous and necessary steps you can take.",
+    excerpt: "Breaking the codependency cycle means stepping out of rescue, guilt, and over-responsibility. Learn how families begin reclaiming their lives after addiction has organized the home.",
     content: `
       <p>If you've spent months — or years — rearranging your entire life around your loved one's addiction, you already know the exhaustion that comes with it. You've covered for them, worried for them, made excuses for them, and somewhere along the way, you may have lost track of where they end and you begin. That invisible entanglement has a name: codependency. And breaking the codependency cycle is one of the most courageous, difficult, and necessary things a family member can do.</p>
       <p>Recognizing codependency is one thing — but actually changing the patterns is another. This article walks you through what's really happening in the codependent relationship, why it's so hard to stop, and the practical steps you can take to begin healing.</p>
@@ -9563,8 +9565,8 @@ It's free. It takes five minutes. And it exists because no family should have to
     categories: ["Codependency", "Enabling", "Boundaries", "Recovery", "Family Dynamics"],
     date: "March 12, 2026",
     readTime: "9 min read",
-    metaTitle: "Breaking the Codependency Cycle: How Families Reclaim Their Lives | No More Enabling",
-    metaDescription: "Learn what the codependency cycle is, why it feels impossible to break, and the practical steps families can take to stop enabling and start healing.",
+    metaTitle: "Breaking the Codependency Cycle in Addiction Families | No More Enabling",
+    metaDescription: "Learn how to break the codependency cycle in an addiction-affected family, stop enabling patterns, and start reclaiming your own life.",
   },
   {
     id: "",
@@ -9795,11 +9797,12 @@ It's free. It takes five minutes. And it exists because no family should have to
   {
     id: "",
     title: "How to Set Boundaries with an Addicted Loved One (And Why It's the Most Loving Thing You Can Do)",
-    excerpt: "Learning how to set boundaries with an addicted loved one is not about punishing them or walking away. It's about telling the truth — about what you will and won't accept — so that both of you have a chance at something better.",
+    excerpt: "Learn how to set boundaries with an addicted loved one, what healthy consequences look like, and how to stay steady when guilt or pushback shows up.",
     slug: "how-to-set-boundaries-with-addicted-loved-one",
     content: `
       <p>If you've been trying to help someone you love through addiction, chances are you've lost yourself a little in the process. You've covered for them. You've stayed up waiting. You've made excuses, cleaned up messes, and swallowed your own feelings to keep the peace. And somewhere along the way, the word "boundaries" started to feel like giving up.</p>
       <p>It isn't. Learning how to set boundaries with an addicted loved one is not about punishing them or walking away. It's about telling the truth — about what you will and won't accept — so that both of you have a chance at something better. This article will walk you through what healthy boundaries actually look like in the context of addiction, why they matter, and how to start setting them even when it feels impossible.</p>
+      <p>After you set a limit, the next challenge is usually holding it. You may find it helpful to keep <a href="/articles/maintaining-boundaries-addicted-loved-one">how to maintain boundaries when your loved one pushes back</a> and <a href="/articles/what-to-do-when-addicted-loved-one-breaks-boundaries">what to do when a boundary gets broken</a> close by.</p>
 
       <h2>What Are Boundaries in the Context of Addiction?</h2>
       <p>Boundaries are the limits you set to protect your own physical, emotional, and financial well-being. In the context of addiction, they are the specific behaviors you will and will not tolerate — and the consequences you're prepared to follow through on.</p>
@@ -9894,8 +9897,8 @@ It's free. It takes five minutes. And it exists because no family should have to
     categories: ["Boundaries", "Enabling", "Family Dynamics", "Codependency", "Recovery"],
     date: "March 15, 2026",
     readTime: "12 min read",
-    metaTitle: "How to Set Boundaries with an Addicted Loved One | No More Enabling",
-    metaDescription: "Learn how to set healthy boundaries with an addicted loved one. A practical guide for families on why boundaries matter and how to start — even when it feels impossible.",
+    metaTitle: "How to Set Boundaries With an Addicted Loved One, A Family Guide | No More Enabling",
+    metaDescription: "Need to set boundaries with an addicted loved one? Learn what boundaries are, how to communicate them clearly, and how to follow through without cruelty.",
   },
   {
     id: "",
@@ -9984,7 +9987,7 @@ It's free. It takes five minutes. And it exists because no family should have to
   {
     id: "",
     title: "Caregiver Burnout and Addiction: How to Recognize It Before It Breaks You",
-    excerpt: "You've been carrying someone else's crisis for so long you've forgotten what normal feels like. Here's how to recognize caregiver burnout — and what to do about it.",
+    excerpt: "Caregiver burnout in addiction often looks like numbness, resentment, and constant vigilance, not just exhaustion. Learn the signs and how families begin recovering too.",
     slug: "caregiver-burnout-addiction-family",
     content: `
       <h2>What Is Caregiver Burnout in the Context of Addiction?</h2>
@@ -10088,18 +10091,19 @@ It's free. It takes five minutes. And it exists because no family should have to
     categories: ["Caregiver Wellness", "Family Dynamics", "Boundaries", "Codependency", "Recovery"],
     date: "March 24, 2026",
     readTime: "10 min read",
-    metaTitle: "Caregiver Burnout and Addiction: Recognize It Before It Breaks You",
-    metaDescription: "Learn to recognize caregiver burnout when loving someone with addiction. Discover the signs, why it happens, and practical steps to reclaim your life.",
+    metaTitle: "Caregiver Burnout and Addiction, Signs Families Miss | No More Enabling",
+    metaDescription: "Learn the signs of caregiver burnout when you love someone with addiction, why it happens, and how to begin recovering your own footing.",
   },
   {
     id: "",
     title: "How to Support Your Loved One's Recovery Without Slipping Back Into Enabling",
-    excerpt: "Your loved one said yes to help. So why are you still walking on eggshells? Learn how to support recovery without accidentally enabling it.",
+    excerpt: "Early recovery can pull families back into old roles fast. Learn how to support your loved one's recovery without slipping back into monitoring, rescuing, or over-responsibility.",
     slug: "support-recovery-without-enabling",
     content: `
       <p>The call finally came. Your loved one said yes to help. Maybe they're heading into treatment, or they've been sober for a few weeks and things feel — for the first time in a long time — cautiously hopeful. You've cried more tears than you can count. You've fought, pleaded, prayed, and probably made compromises you're not proud of. And now they're trying.</p>
       <p>So why does part of you still feel anxious? Why, even now, are you walking on eggshells — afraid to say the wrong thing, do the wrong thing, or somehow accidentally undo all of this progress?</p>
       <p>That fear makes complete sense. Because for years, your instinct to help was quietly twisted into something that wasn't helping at all. Learning to support recovery without enabling it is one of the most important — and most misunderstood — challenges a family faces. This article will walk you through exactly how to do that.</p>
+      <p>If trust is still fragile, pair this with <a href="/articles/rebuilding-trust-addicted-loved-one-recovery">rebuilding trust in recovery</a>. If you are still unsure where support ends and enabling begins, <a href="/articles/enabling-vs-helping-stop-enabling-support-real-recovery">this guide on enabling vs helping</a> is a useful companion.</p>
 
       <h2>What Does It Mean to Support Recovery Without Enabling?</h2>
       <p>Supporting recovery means showing up for your loved one in ways that reinforce their growth, accountability, and independence — not ways that remove natural consequences or rescue them from the discomfort that drives lasting change. Enabling, by contrast, protects the addiction by shielding the person from the results of their choices.</p>
@@ -10172,14 +10176,14 @@ It's free. It takes five minutes. And it exists because no family should have to
     categories: ["Recovery", "Enabling", "Boundaries", "Family Dynamics", "Codependency"],
     date: "March 27, 2026",
     readTime: "9 min read",
-    metaTitle: "How to Support Recovery Without Enabling: A Guide for Families",
-    metaDescription: "Learn how to support your loved one's addiction recovery without slipping back into enabling. Practical strategies for boundaries, trust-building, and family healing.",
+    metaTitle: "How to Support Recovery Without Enabling | No More Enabling",
+    metaDescription: "Learn how to support a loved one's recovery without enabling, over-monitoring, or taking back responsibility that belongs to them.",
   },
   {
     id: "",
     title: "What Really Happens in Addiction Treatment: A Guide for Families",
     slug: "what-happens-in-addiction-treatment-families",
-    excerpt: "Not knowing what happens inside treatment can leave families anxious and uncertain. This guide demystifies the process so you can show up the right way.",
+    excerpt: "Not knowing what happens in addiction treatment can leave families scared and overly involved. This guide explains the process, the family role, and what comes after discharge.",
     content: `
       <p>For most families, the moment a loved one agrees to go to treatment is both a relief and a mystery. You've spent months — maybe years — hoping they would say yes. And now that they have, you realize you have almost no idea what actually happens next.</p>
 
@@ -10308,13 +10312,13 @@ It's free. It takes five minutes. And it exists because no family should have to
     categories: ["Recovery", "Family Dynamics", "Treatment", "Boundaries", "Enabling"],
     date: "March 28, 2026",
     readTime: "10 min read",
-    metaTitle: "What Really Happens in Addiction Treatment: A Guide for Families",
-    metaDescription: "Understand what addiction treatment involves, what your role is as a family member, and how to navigate the transition home. A practical guide for families.",
+    metaTitle: "What Happens in Addiction Treatment? A Family Guide | No More Enabling",
+    metaDescription: "Learn what happens in addiction treatment, what families should expect, how to support the process, and what matters most when your loved one comes home.",
   },
   {
     id: "",
     title: "When Is It Time for a Professional Intervention? What Every Family Needs to Know",
-    excerpt: "You've had the conversations. You've made the pleas. You've watched things get worse. Here's how to know when it's time to stop waiting and bring in professional help — with compassion and a clear plan.",
+    excerpt: "If conversations, consequences, and promises have not changed the pattern, it may be time for a professional intervention. Learn the signs and what the process actually looks like.",
     slug: "when-is-it-time-for-a-professional-intervention",
     content: `
       <h2>What Is a Professional Intervention — and Why Does It Work?</h2>
@@ -10322,6 +10326,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <p>The fear of getting this wrong — of pushing too hard or not hard enough — keeps so many families frozen. They worry about making their loved one angry, about destroying the relationship, about doing "the wrong thing." Meanwhile, addiction continues its quiet devastation.</p>
       <p>Here's what years of experience with families in crisis has taught us: the families who ask this question are almost never too early. More often, they have been waiting far too long — hoping, excusing, and quietly enabling while their loved one's life unravels.</p>
       <p>This article will help you recognize when it's time to stop waiting and start acting — with compassion, a clear plan, and the right support.</p>
+      <p>If your family is not there yet, two companion guides can help clarify the lead-up: <a href="/articles/how-to-set-boundaries-with-addicted-loved-one">how to set boundaries with an addicted loved one</a> and <a href="/articles/why-setting-limits-addicted-loved-one-feels-impossible">why setting limits feels impossible</a>.</p>
 
       <p>A professional intervention is a carefully structured, guided conversation in which trained family members and a certified interventionist help a person with addiction understand the impact of their behavior and move toward accepting help. It is not a surprise ambush. It is not a fight. Done well, it is one of the most loving acts a family can take.</p>
       <p>Research consistently shows that well-executed interventions are highly effective. Most people, when faced with a unified, loving message from those they care about — delivered in a non-threatening way — choose to accept treatment. This is not manipulation. It is clarity. Addiction thrives in isolation and denial; intervention brings both of those into the light.</p>
@@ -10401,14 +10406,14 @@ It's free. It takes five minutes. And it exists because no family should have to
     categories: ["Intervention", "Family Dynamics", "Recovery", "Boundaries", "Enabling"],
     date: "March 30, 2026",
     readTime: "10 min read",
-    metaTitle: "When Is It Time for a Professional Intervention? What Every Family Needs to Know",
-    metaDescription: "Learn how to recognize when it's time for a professional intervention, what to expect from the process, and how families can take action with compassion and clarity.",
+    metaTitle: "When Is It Time for a Professional Intervention? | No More Enabling",
+    metaDescription: "Wondering when it is time for a professional intervention? Learn the warning signs, when families should stop waiting, and what a structured intervention can do.",
   },
   {
     id: "",
     title: "Rebuilding Trust With a Loved One in Recovery — Without Slipping Back Into Enabling",
     slug: "rebuilding-trust-addicted-loved-one-recovery",
-    excerpt: "Your loved one made it through treatment. Now what? Learn how to rebuild trust gradually through earned accountability — without falling back into enabling patterns.",
+    excerpt: "Trust after addiction does not come back through promises alone. Learn how families can rebuild trust in recovery through time, structure, and earned accountability.",
     content: `
       <div class="prose max-w-none">
         <p>The phone call came. Your loved one made it through treatment. Relief washes over you — and then, almost immediately, so does something else: a quiet, familiar anxiety. You want so badly to believe this time is different. You also remember every promise that didn't hold, every relapse, every night you stayed up wondering if they were safe. And now they're home, or nearly home, and the question hanging in the air is: <em>how do we actually rebuild from here?</em></p>
@@ -10507,21 +10512,21 @@ It's free. It takes five minutes. And it exists because no family should have to
     categories: ["Recovery", "Boundaries", "Enabling", "Family Dynamics", "Codependency"],
     date: "March 31, 2026",
     readTime: "9 min read",
-    metaTitle: "Rebuilding Trust With a Loved One in Recovery — Without Enabling",
-    metaDescription: "Learn how to rebuild trust with an addicted loved one in recovery through earned accountability, gradual steps, and healthy boundaries — without slipping back into enabling.",
+    metaTitle: "Rebuilding Trust in Recovery Without Slipping Into Enabling | No More Enabling",
+    metaDescription: "Learn how to rebuild trust with a loved one in recovery through consistency, honesty, and earned accountability, without slipping back into enabling.",
   },
   {
     id: "",
     title: "Why Families Feel Responsible for Their Loved One's Addiction — And How to Stop",
-    excerpt: "Do you feel responsible for your loved one's addiction? Learn how codependency keeps families stuck — and how to shift from obligation to genuine support.",
+    excerpt: "Feeling responsible for a loved one's addiction is common, but it keeps families trapped in guilt and over-functioning. Learn how to separate care from control.",
     category: "Codependency",
     categories: ["Codependency", "Family Support", "Boundaries"],
     readTime: "10 min read",
     date: "April 7, 2026",
     image: codependencyResponsibilityTrapImage,
     slug: "codependency-responsibility-trap-addiction-families",
-    metaTitle: "Why Families Feel Responsible for Addiction | No More Enabling",
-    metaDescription: "Do you feel responsible for your loved one's addiction? Learn how codependency keeps families stuck — and how to shift from obligation to genuine support.",
+    metaTitle: "Why Families Feel Responsible for a Loved One's Addiction | No More Enabling",
+    metaDescription: "Do you feel responsible for your loved one's addiction or recovery? Learn why families carry that burden and how to separate love, responsibility, and control.",
     content: `
       <h2>What Does It Mean to Feel Responsible for Someone Else's Addiction?</h2>
       <p>If you've ever thought, <em>"If I had done something differently, they wouldn't be using"</em> — you are not alone. Families of people struggling with addiction almost universally carry a weight that was never theirs to carry: the belief that they are somehow responsible for the addiction, and that they are therefore responsible for fixing it.</p>
@@ -10778,15 +10783,15 @@ It's free. It takes five minutes. And it exists because no family should have to
   {
     id: "",
     title: "Why Setting Limits with an Addicted Loved One Feels Impossible — And What Actually Helps",
-    excerpt: "When someone you love struggles with addiction, setting healthy limits can feel like betrayal. Learn why this happens — and what actually helps families move forward.",
+    excerpt: "Setting limits with an addicted loved one can feel like betrayal even when you know they are needed. Learn why it feels so hard and what helps families follow through.",
     category: "Boundaries",
     categories: ["Boundaries", "Enabling", "Codependency", "Family Dynamics"],
     readTime: "9 min read",
     date: "April 12, 2026",
     image: settingLimitsAddictedLovedOneImage,
     slug: "why-setting-limits-addicted-loved-one-feels-impossible",
-    metaTitle: "Why Setting Limits with an Addicted Loved One Feels Impossible",
-    metaDescription: "When someone you love struggles with addiction, setting healthy limits can feel like betrayal. Learn why this happens—and what actually helps families move forward.",
+    metaTitle: "Why Setting Limits With an Addicted Loved One Feels Impossible | No More Enabling",
+    metaDescription: "Learn why setting limits with an addicted loved one feels so hard, what guilt and fear do to family decisions, and what helps boundaries hold.",
     content: `
       <h2>Your Brain Is Working Against You — And That's Not Your Fault</h2>
       <p>You probably already know — somewhere quiet in the back of your mind — that something needs to change. But every time you think about drawing a line, your chest tightens. What if they feel abandoned? What if it makes things worse? What if you're the one who finally pushed them over the edge?</p>

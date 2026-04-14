@@ -65,6 +65,7 @@ const SEOHead = ({
       <meta property="og:type" content={ogType} />
       <meta property="og:url" content={canonical} />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:image:secure_url" content={ogImage} />
       <meta property="og:image:alt" content={ogImageAlt} />
       <meta property="og:site_name" content="No More Enabling" />
       <meta property="og:locale" content="en_US" />
@@ -83,7 +84,7 @@ const SEOHead = ({
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@NoMoreEnabling" />
-      {canonicalUrl && <meta name="twitter:url" content={canonicalUrl} />}
+      <meta name="twitter:url" content={canonical} />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
