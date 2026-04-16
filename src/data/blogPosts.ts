@@ -87,6 +87,7 @@ import codependencyFeelsLikeLoveImage from "@/assets/codependency-feels-like-lov
 import shameSecrecyCodependencyImage from "@/assets/shame-secrecy-codependency-addiction.jpg";
 import settingLimitsAddictedLovedOneImage from "@/assets/setting-limits-addicted-loved-one.jpg";
 import boundariesNotSelfishImage from "@/assets/boundaries-not-selfish-addicted-loved-one.jpg";
+import communicateBoundariesAddictedImage from "@/assets/communicate-boundaries-addicted-loved-one.jpg";
 
 export interface BlogPost {
   id: string;
@@ -10940,6 +10941,117 @@ It's free. It takes five minutes. And it exists because no family should have to
 
       <h3>Where can I get help setting limits with a family member who struggles with addiction?</h3>
       <p><a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching and a membership community with live support calls specifically for families navigating this. If you believe a professional intervention may be needed, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> provides experienced guidance through that process.</p>
+    `
+  },
+  {
+    id: "",
+    title: "How to Communicate Boundaries to Your Addicted Loved One (Scripts That Actually Work)",
+    excerpt: "Learn the exact words to use when communicating a boundary with an addicted loved one — clear, calm scripts that actually work without guilt or conflict.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Communication", "Codependency"],
+    readTime: "9 min read",
+    date: "April 16, 2026",
+    image: communicateBoundariesAddictedImage,
+    metaTitle: "How to Communicate Boundaries to an Addicted Loved One",
+    metaDescription: "Learn the exact words to use when communicating a boundary with an addicted loved one — clear, calm scripts that actually work without guilt or conflict.",
+    slug: "how-to-communicate-boundaries-addicted-loved-one",
+    content: `
+      <p>You already know what your boundary needs to be. You've thought it through at 2 a.m., rehearsed it in the shower, and talked yourself out of saying it a dozen times. The problem isn't knowing what you want — it's finding the words to say it without starting a war.</p>
+      <p>You love this person. You don't want to sound cold. You don't want to be cruel. And honestly, you're terrified that saying the wrong thing will push them deeper into their addiction — or push them away from you entirely.</p>
+      <p>Here's the truth: how you communicate a boundary matters almost as much as the boundary itself. Vague statements get ignored. Angry ultimatums get fought. But a clear, calm, specific statement — said with love — can land differently than you expect.</p>
+      <p>This article is a practical guide to the actual language of boundaries: what to say, how to say it, and what to do when your words get dismissed or twisted. You don't need a script you memorized. You need a framework you own.</p>
+
+      <h2>Why Most Boundary Conversations Go Sideways</h2>
+      <p>Most boundary conversations fail before they start — not because the boundary is wrong, but because of how it's delivered. When emotion runs the conversation, the message gets lost.</p>
+      <p>Here are the most common traps families fall into:</p>
+      <ul>
+        <li><strong>Over-explaining:</strong> Listing every reason why the boundary exists gives your loved one something to argue against. They'll pick apart your reasoning instead of hearing your request.</li>
+        <li><strong>Attaching conditions to feelings:</strong> "I'm saying this because I love you" sounds kind, but it can feel manipulative to someone in active addiction. Lead with the action, not the emotion.</li>
+        <li><strong>Threatening instead of stating:</strong> "If you do this one more time, I swear I'll..." signals that the boundary isn't real yet. A boundary isn't a threat — it's a description of what you will do.</li>
+        <li><strong>Asking for permission:</strong> Phrases like "Would it be okay if..." or "I hope you understand..." turn a boundary into a negotiation. You're not asking for approval.</li>
+        <li><strong>Saying it when you're already at your limit:</strong> Boundaries stated in crisis — mid-fight, after a scare, during an intervention you didn't plan — rarely land cleanly. Calm, prepared conversations are more effective.</li>
+      </ul>
+      <p>None of this means you've failed. These traps are normal. You weren't taught how to do this — most people weren't. But recognizing the pattern is how you change it.</p>
+
+      <h2>The Core Formula for Communicating a Boundary Clearly</h2>
+      <p>A clear boundary statement has three parts: what you will do, under what condition, and that's it. You don't need to justify it, debate it, or make it comfortable for them.</p>
+      <p>The formula looks like this:</p>
+      <p><em>"When [this happens], I will [do this]."</em></p>
+      <p>— or —</p>
+      <p><em>"I'm not able to [do this] anymore. That's changing today."</em></p>
+      <p>Notice what's missing: no "because you always," no "I just feel like," no asking for agreement. The statement is about your behavior — which is the only behavior you can actually control.</p>
+
+      <h3>Real-World Examples</h3>
+      <p>Here are boundary statements that follow this framework across common situations:</p>
+      <ul>
+        <li>"I won't lend you money anymore. If you need groceries, I'll buy them directly — but cash isn't something I'll give."</li>
+        <li>"I'm not going to cover for you at work, with the kids, or with the family. I'll tell people the truth or I'll say nothing, but I won't lie."</li>
+        <li>"If you come home intoxicated, I'll sleep in the other room and we'll talk in the morning. I'm not going to have that conversation when you're not sober."</li>
+        <li>"I love you and I want to help you. I will drive you to treatment, sit in family sessions, and be here when you get out. I won't watch you keep drinking and pretend it's okay."</li>
+      </ul>
+      <p>These aren't speeches. They're statements. Short, specific, first-person. They say what you will do — not what you want them to do.</p>
+
+      <h3>How to Deliver the Conversation Without Losing Your Composure</h3>
+      <p>The delivery of a boundary matters as much as the words themselves. Your tone, timing, and body language all send a message — and your loved one will read those signals carefully, especially if they're used to negotiating their way around you.</p>
+      <p>A few practical guidelines for the conversation:</p>
+      <ol>
+        <li><strong>Choose a calm moment, not a crisis.</strong> Boundaries stated during active conflict get absorbed into the fight. Pick a time when both of you are sober and relatively stable. Yes, this takes patience.</li>
+        <li><strong>Say it once, clearly.</strong> Repetition signals anxiety. If you've stated the boundary and they haven't responded, silence is fine. You don't need to fill it. You don't need to convince them. You've said it.</li>
+        <li><strong>Don't negotiate on the spot.</strong> If they push back immediately — "That's not fair," "You don't understand," "I can't believe you're doing this" — you can acknowledge it without changing your position. "I hear that this is hard" is not the same as "Okay, never mind."</li>
+        <li><strong>End the conversation if it escalates.</strong> You're allowed to say, "I'm not going to keep talking about this when it turns into a fight. I'll be back in an hour." Then leave. This isn't abandonment — it's self-respect.</li>
+        <li><strong>Expect it to be uncomfortable.</strong> Discomfort is not a sign that you did it wrong. Pushback, guilt trips, and tears are all normal responses. They don't change whether the boundary was right.</li>
+      </ol>
+
+      <h2>What to Say When Your Loved One Tests or Dismisses the Boundary</h2>
+      <p>Testing is almost guaranteed. After you state a boundary, your loved one may push it — not always maliciously, but because the pattern you're changing felt safe to them. Expect it. Prepare for it.</p>
+      <p>Here are common tests and how to respond:</p>
+
+      <h3>"You're being cruel / you don't love me."</h3>
+      <p><strong>Response:</strong> "I love you, and this isn't cruelty. This is the most honest thing I know how to do right now."</p>
+      <p>Don't over-defend. Don't argue the point. Say it once and hold your ground.</p>
+
+      <h3>"You've never had a problem with this before."</h3>
+      <p><strong>Response:</strong> "You're right. I've let it go before. That's changing."</p>
+      <p>No apology for the past is needed. You're allowed to change your behavior.</p>
+
+      <h3>"Fine, I'll just figure it out myself." (The guilt maneuver)</h3>
+      <p><strong>Response:</strong> "Okay. I hope it works out."</p>
+      <p>This one is hard. It's designed to trigger your instinct to rescue. Stay quiet. A brief, non-reactive response signals that the guilt trip isn't working — and over time, it stops being deployed.</p>
+
+      <h3>They ignore the boundary entirely.</h3>
+      <p>This is when you follow through. Not with anger — with quiet, calm consistency. The boundary is only real when you hold it. The first time you follow through despite pushback is the most important moment in the whole process.</p>
+
+      <h2>A Word on Tone: Firm Doesn't Mean Cold</h2>
+      <p>One of the biggest fears families have is that setting a boundary will make them sound like they don't care. The opposite is true — but tone matters.</p>
+      <p>You can be clear and kind at the same time. You can be firm without being punishing. The goal isn't to make your loved one feel bad. The goal is to tell the truth about what you will and won't do.</p>
+      <p>Try this reframe: instead of thinking <em>"I'm cutting them off,"</em> think <em>"I'm being honest about what I can actually give."</em> Instead of <em>"I'm punishing them,"</em> think <em>"I'm taking responsibility for my own actions."</em></p>
+      <p>The most loving thing a family member can do — sometimes — is stop pretending that a crisis isn't happening. Saying it out loud, clearly, without drama, is an act of love. It doesn't always feel like one. But it is.</p>
+
+      <h2>You Don't Have to Get This Perfect</h2>
+      <p>The first time you try to say this, it won't come out exactly right. That's okay. The fact that you said it at all — that you stopped managing everyone else's feelings long enough to tell your own truth — matters more than the wording.</p>
+      <p>Boundaries aren't a one-time speech. They're a practice. Each conversation makes the next one a little clearer, a little calmer, a little more like who you actually are.</p>
+      <p>If you need support as you navigate this — whether it's coaching, community, or guidance on next steps — <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family education and one-on-one coaching with people who have walked this road. If you're at the point where your loved one needs professional intervention, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> is available to help you move forward with a clear, compassionate plan.</p>
+      <p>You've carried this long enough alone. You don't have to keep doing that.</p>
+
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>What's the best way to communicate a boundary to someone with an addiction?</h3>
+      <p>State it in first-person, specific terms: "I will" or "I won't" — focused on your behavior, not theirs. Say it once, clearly, during a calm moment rather than in the middle of a crisis. You don't need to explain, justify, or get their agreement.</p>
+
+      <h3>What do I do if my loved one refuses to accept the boundary?</h3>
+      <p>You follow through on it anyway. A boundary doesn't require acceptance — it requires action on your part. Their refusal to acknowledge it doesn't make it invalid. Quiet consistency over time is more powerful than any single conversation.</p>
+
+      <h3>How do I set a boundary without sounding cruel or cold?</h3>
+      <p>Tone and intention matter. You can be clear and warm at the same time. Focus your language on what you will do, not on what they're doing wrong. Avoid lecturing, listing grievances, or framing the boundary as a punishment — frame it as an honest description of your own behavior going forward.</p>
+
+      <h3>Should I write out what I want to say ahead of time?</h3>
+      <p>Yes — especially for the first conversation. Writing it out helps you identify when you're over-explaining or asking for permission instead of stating a limit. You don't need to read from a script, but knowing your core statement ahead of time helps you stay grounded if the conversation gets emotional.</p>
+
+      <h3>How do I respond when my loved one uses guilt to push back?</h3>
+      <p>Keep your response brief and non-reactive. "I hear that this is hard" or simply "I understand" — without changing your position. Guilt trips work when they produce a change in your behavior. When they don't, they gradually stop being used. Your calm is your most powerful tool.</p>
+
+      <h3>Is it okay to communicate a boundary over text or in writing instead of in person?</h3>
+      <p>In person is generally more effective because it's harder to misread tone and context. That said, if in-person conversations escalate quickly or become unsafe, written communication can be appropriate — especially for the first statement. Just be clear and specific in writing the same way you would be face to face.</p>
     `
   },
 ];
