@@ -90,6 +90,7 @@ import boundariesNotSelfishImage from "@/assets/boundaries-not-selfish-addicted-
 import communicateBoundariesAddictedImage from "@/assets/communicate-boundaries-addicted-loved-one.jpg";
 import lovedOneTestsBoundariesImage from "@/assets/loved-one-tests-boundaries.jpg";
 import holdingBoundariesGuiltImage from "@/assets/holding-boundaries-guilt.jpg";
+import detachingWithLoveImage from "@/assets/detaching-with-love-addiction-family.jpg";
 
 export interface BlogPost {
   id: string;
@@ -11262,6 +11263,108 @@ It's free. It takes five minutes. And it exists because no family should have to
 
       <h3>When should I consider a professional intervention instead of just holding limits on my own?</h3>
       <p>If your loved one's use is escalating, if safety is a concern, or if holding limits alone isn't producing any change over time, a professional interventionist can help. Visit <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> to learn more about that process.</p>
+    `
+  },
+  {
+    id: "",
+    title: "Detaching With Love: How to Stop Absorbing Your Loved One's Addiction",
+    excerpt: "Detaching with love doesn't mean giving up — it means protecting your wellbeing while your loved one struggles with addiction. Learn what it really means and how to do it.",
+    category: "Codependency",
+    categories: ["Codependency", "Boundaries", "Family Dynamics"],
+    readTime: "9 min read",
+    date: "April 24, 2026",
+    image: detachingWithLoveImage,
+    metaTitle: "Detaching With Love From an Addict: A Family Guide",
+    metaDescription: "Detaching with love doesn't mean giving up — it means protecting your wellbeing while your loved one struggles with addiction. Learn what it really means.",
+    slug: "detaching-with-love-addiction-family",
+    content: `
+      <p>If you've been living alongside someone else's addiction for any length of time, you've probably noticed something quietly terrible: their crisis has become your constant state. You track their moods before you track your own. You calculate what might set them off before you calculate what you need. You've learned to brace for impact so automatically that you can barely remember what un-braced feels like.</p>
+      <p>That's not love failing. That's love working overtime in a system that wasn't designed to sustain it.</p>
+      <p>Detaching with love is one of the most misunderstood concepts in addiction recovery for families. People hear the word 'detach' and picture abandonment — walking out, giving up, stopping care. That's not what it means. Detaching with love means choosing to stop absorbing someone else's addiction into your own body, mind, and daily life — while still caring deeply about their outcome.</p>
+      <p>This article is about what that actually looks like, why it matters, and how to start doing it even when it feels wrong.</p>
+
+      <h2>What Does 'Detaching With Love' Actually Mean?</h2>
+      <p>Detaching with love means separating your emotional wellbeing from your loved one's choices. It does not mean you stop loving them, stop offering help, or stop hoping for their recovery. It means you stop making their choices the foundation of your mental health.</p>
+      <p>Think of it this way: when you're attached in an unhealthy way, your loved one's bad day becomes your bad day. Their relapse becomes your emergency. Their refusal to accept help becomes your failure. You've essentially handed over your internal weather system to someone who is, by definition, not in a stable enough place to hold it.</p>
+      <p>Detachment is the practice of taking that system back. It doesn't happen all at once, and it doesn't mean you become cold or uncaring. It means you become — slowly, imperfectly — yourself again.</p>
+
+      <h3>What Detachment Is NOT</h3>
+      <ul>
+        <li>Giving up on your loved one</li>
+        <li>Refusing to help or communicate</li>
+        <li>Pretending you don't care</li>
+        <li>Punishing them for their addiction</li>
+        <li>Closing the door permanently</li>
+      </ul>
+      <p>If someone tells you to 'just detach' as if it's a switch you flip, that's not useful advice. Detachment is a gradual, ongoing practice — not a one-time decision.</p>
+
+      <h2>Why Families Struggle to Detach</h2>
+      <p>The short answer is: because love is supposed to feel like involvement. We're wired to stay close when someone we care about is suffering. Pulling back — even emotionally — can feel like betrayal, especially when your loved one is in genuine danger.</p>
+      <p>But there's another layer most families don't talk about: control. When you stay hypervigilant — monitoring, tracking, managing — there's a quiet sense that your involvement is keeping things from getting worse. Letting go of that vigilance means accepting that you were never actually in control in the first place. That's a hard truth to sit with.</p>
+      <p>There's also the guilt factor. Many families grew up in systems where 'caring' meant fixing, rescuing, and protecting at all costs. If you stop absorbing the chaos, it can feel like you've decided the person isn't worth the effort. That interpretation is wrong, but it's emotionally convincing.</p>
+      <p>Understanding why detachment is hard doesn't mean you use that understanding as an excuse not to try. It just means you're going in with accurate expectations: this is a practice, not a single decision, and it will feel uncomfortable before it feels like relief.</p>
+
+      <h2>How to Start Detaching With Love: Practical Steps</h2>
+      <p>Detachment is built through small, consistent acts — not grand gestures. Here are the practical places to start.</p>
+
+      <h3>1. Stop narrating their story in your head</h3>
+      <p>Most family members spend enormous mental energy replaying past events, predicting future outcomes, or rehearsing imaginary conversations. Notice when you're doing this. You can't stop the replay completely, but you can interrupt it and redirect your attention. That interruption, repeated dozens of times a day, is detachment in its smallest form.</p>
+
+      <h3>2. Let consequences happen without cushioning them</h3>
+      <p>One of the most loving acts you can take is allowing your loved one to experience the natural results of their choices. This doesn't mean engineering bad outcomes — it means stepping out of the way when you'd normally rush in to soften the landing. If they're supposed to call the landlord, don't call for them. If they missed their appointment, let them reschedule it themselves.</p>
+
+      <h3>3. Create space in your day that belongs only to you</h3>
+      <p>Even 30 minutes that is completely off-limits from the addiction conversation matters. A walk, a phone call with a friend, a meal you eat without checking your phone — these aren't luxuries. They're the evidence that you still have a life. You need that evidence regularly.</p>
+
+      <h3>4. Practice the honest response instead of the managed one</h3>
+      <p>When your loved one asks if you're okay and you're not, try saying: 'I'm struggling today. I love you, and I'm not going to make that about you right now.' That's detachment in language. You're not hiding — you're just not handing your emotional state over to someone who isn't currently in a position to hold it.</p>
+
+      <h2>The Role of Support: Al-Anon, Therapy, and Community</h2>
+      <p>Detachment doesn't happen in isolation — or rather, it shouldn't. The families who make the most consistent progress are the ones who build their own support system alongside anything they're doing for their loved one.</p>
+      <p>Al-Anon is one of the most effective and accessible resources available to families. It's a free, peer-led program based on the 12 steps, adapted specifically for people who love someone with a substance use disorder. Al-Anon doesn't tell you what to do about your loved one — it helps you figure out what to do about yourself. For many families, that shift in focus is the beginning of real, lasting change.</p>
+      <p>Family therapy is another valuable avenue, particularly when the addiction has significantly disrupted relationships at home. A therapist who specializes in addiction or family systems can help untangle patterns that have built up over years — and can do it in a way that doesn't require your loved one to participate.</p>
+      <p>Don't underestimate the value of one honest friend — someone who knows what's really going on and doesn't require you to perform 'fine.' That relationship, maintained consistently, does more for your recovery than most people realize.</p>
+
+      <h2>What Healthy Detachment Actually Feels Like</h2>
+      <p>When detachment is working — and this takes time — it doesn't feel like indifference. It feels more like standing on steady ground while watching a storm. You can see it clearly. You can feel concerned about it. You can hope it passes. But you're not in it. And that difference — that few feet of dry ground — changes everything about how clearly you can think and how consistently you can act.</p>
+      <p>You'll know you're making progress when:</p>
+      <ul>
+        <li>You can hear bad news without going into crisis mode</li>
+        <li>You can say no without needing to justify it for three days afterward</li>
+        <li>You can have a good hour without feeling guilty about it</li>
+        <li>You stop checking your phone every ten minutes waiting for a disaster</li>
+        <li>You start having opinions about your own life again</li>
+      </ul>
+      <p>None of these will happen all at once, and you will slide backward. That's not failure — that's what the process looks like. Keep going anyway.</p>
+
+      <h2>You Deserve to Be Here Too</h2>
+      <p>Your loved one's addiction does not have to consume your entire life. That's not a selfish position — it's actually a prerequisite for being useful to anyone, including them.</p>
+      <p>Detaching with love is an act of honesty. It says: I care about you enough not to pretend I can control this. I care about myself enough not to disappear into your crisis. And I'm willing to do the work to hold both of those truths at the same time.</p>
+      <p>That's not giving up. That's growing up — and sometimes, it's the most powerful thing you can do for everyone involved.</p>
+
+      <h2>Ready for Your Own Support?</h2>
+      <p>If you're ready to stop absorbing someone else's addiction and start building your own stability, <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching, education, and a membership community designed exactly for where you are right now. Free Monday night family support calls are a low-pressure place to start.</p>
+      <p>If your loved one's situation has escalated and you're wondering whether a professional intervention might help, visit <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> to learn about the process and what families can expect.</p>
+
+      <h2>Frequently Asked Questions About Detaching With Love</h2>
+
+      <h3>Does detaching with love mean I stop helping my loved one?</h3>
+      <p>No. Detaching with love means you stop absorbing their choices into your emotional and mental health — it doesn't mean you stop caring or offering support. The difference is whether your wellbeing depends on what they do next. Healthy support can continue; unhealthy enmeshment is what detachment addresses.</p>
+
+      <h3>What if detaching feels like abandonment?</h3>
+      <p>That feeling is common and doesn't mean you're doing anything wrong. It reflects how thoroughly your identity has become tied to managing their crisis. The discomfort of detachment is often the sensation of reclaiming yourself — which can feel strange before it feels like relief. Working with a therapist or an Al-Anon group can help you move through that discomfort.</p>
+
+      <h3>Can I still set limits with my loved one while detaching?</h3>
+      <p>Yes — in fact, healthy limits and detachment work together. Detachment makes your limits easier to keep because you're less emotionally reactive. When you're not absorbed in the chaos, you can hold a limit calmly rather than desperately, which makes it far more effective.</p>
+
+      <h3>What is Al-Anon and is it helpful for families of addicts?</h3>
+      <p>Al-Anon is a free, peer-led support program for people who love someone with an alcohol or substance use disorder. Meetings are available in person and online, worldwide. Decades of experience show it helps families reduce anxiety, build better boundaries, and make clearer decisions. You can find meetings at al-anon.org.</p>
+
+      <h3>How long does it take to emotionally detach from someone with an addiction?</h3>
+      <p>There is no fixed timeline. Most people experience gradual improvement over months with consistent effort, support, and self-awareness. Setbacks are normal and don't erase progress. The goal is a general trend toward more stability over time — not perfection at any given moment.</p>
+
+      <h3>When should a family consider a professional intervention?</h3>
+      <p>When the addiction is causing serious harm and your loved one is unwilling to accept help, a structured intervention with a professional interventionist may be the right next step. Intervention is not a last resort — for many families, it's the turning point that makes treatment possible. Learn more at <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a>.</p>
     `
   },
 ];
