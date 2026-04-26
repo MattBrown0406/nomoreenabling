@@ -86,12 +86,11 @@ const NewsletterSection = () => {
           </div>
           
           <h2 className="font-serif text-3xl md:text-4xl font-bold">
-            Stay Connected
+            Get practical family guidance by email
           </h2>
           
           <p className="mt-4 text-primary-foreground/80 text-lg">
-            Get weekly insights on healthy relationships, boundary-setting, and personal growth 
-            delivered straight to your inbox.
+            Join the list for direct guidance on enabling, family boundaries, treatment resistance, relapse, and how to help without making the pattern worse.
           </p>
           
           <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-3 max-w-md mx-auto">
@@ -130,11 +129,20 @@ const NewsletterSection = () => {
                 className="whitespace-nowrap"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Subscribing..." : "Subscribe"}
+                {isSubmitting ? "Subscribing..." : "Get the emails"}
               </Button>
             </div>
           </form>
           
+          <div className="mt-6 rounded-xl border border-primary-foreground/15 bg-primary-foreground/5 p-4 text-left text-sm text-primary-foreground/80">
+            <p className="font-medium text-primary-foreground mb-2">What you’ll get:</p>
+            <ul className="space-y-1.5 list-disc pl-5">
+              <li>clearer language for boundaries that hold up under stress</li>
+              <li>help recognizing when support turns into enabling</li>
+              <li>grounded next steps for families facing chaos, relapse, or treatment resistance</li>
+            </ul>
+          </div>
+
           <div className="mt-6 flex items-center justify-center gap-2 text-sm text-primary-foreground/70">
             <Lock size={14} />
             <p>Your information is kept strictly confidential and will never be shared with third parties.</p>

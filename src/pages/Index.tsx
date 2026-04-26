@@ -27,19 +27,46 @@ const categories = [
 
 const quickStartLinks = [
   {
-    title: "Learn the difference between helping and enabling",
-    description: "A practical starting point when everything feels blurry.",
+    title: "Take the Helping vs Enabling assessment",
+    description: "The best first step if you cannot tell whether your support is actually helping.",
     href: "/helping-or-enabling",
   },
   {
-    title: "Read the latest family addiction articles",
-    description: "Short, direct guidance for families carrying too much.",
-    href: "/articles",
+    title: "Start with the Family Support Guide",
+    description: "A steadier on-ramp for families in active confusion, fear, or boundary drift.",
+    href: "/family-support-guide",
   },
   {
-    title: "Understand who is behind this site",
-    description: "See the experience, standards, and point of view shaping the content.",
-    href: "/about",
+    title: "Join the free boundaries course",
+    description: "For families who know they need firmer limits but keep collapsing under pressure.",
+    href: "/boundaries-course",
+  },
+];
+
+const guidedPaths = [
+  {
+    title: "If everything feels chaotic",
+    description: "Start by slowing things down and getting a clearer read on what is actually happening.",
+    href: "/family-support-guide",
+    cta: "Start here",
+  },
+  {
+    title: "If you keep rescuing and second-guessing yourself",
+    description: "Use the assessment to separate love, guilt, enabling, and real support.",
+    href: "/helping-or-enabling",
+    cta: "Take the assessment",
+  },
+  {
+    title: "If boundaries keep falling apart",
+    description: "Move from emotional reactions to limits you can actually hold under stress.",
+    href: "/boundaries-course",
+    cta: "Build stronger boundaries",
+  },
+  {
+    title: "If you want context before you act",
+    description: "Browse the most useful articles by pattern instead of doom-scrolling for answers.",
+    href: "/articles",
+    cta: "Browse the articles",
   },
 ];
 
@@ -104,6 +131,11 @@ const Index = () => {
                 No More Enabling is built for families who need a clearer read on what is happening, what needs to change,
                 and what steady support actually looks like.
               </p>
+              <div className="mt-5 flex flex-wrap gap-3 text-sm text-muted-foreground">
+                <span className="rounded-full bg-secondary px-3 py-1">20+ years intervention experience</span>
+                <span className="rounded-full bg-secondary px-3 py-1">Direct, practical family guidance</span>
+                <span className="rounded-full bg-secondary px-3 py-1">Less panic. Better decisions.</span>
+              </div>
               <div className="grid gap-4 md:grid-cols-3 mt-6">
                 {quickStartLinks.map((link) => (
                   <Link
@@ -113,6 +145,30 @@ const Index = () => {
                   >
                     <h3 className="font-semibold text-foreground">{link.title}</h3>
                     <p className="mt-2 text-sm text-muted-foreground">{link.description}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="container mx-auto px-4 py-4 md:py-8">
+            <div className="max-w-6xl mx-auto">
+              <div className="mb-6">
+                <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground">Choose your starting path</h2>
+                <p className="mt-2 text-muted-foreground max-w-3xl">
+                  Don’t start with everything. Start with the pressure point that is hurting your family most right now.
+                </p>
+              </div>
+              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+                {guidedPaths.map((path) => (
+                  <Link
+                    key={path.href}
+                    to={path.href}
+                    className="rounded-2xl border border-border bg-card p-5 transition-colors hover:border-primary/40 hover:bg-secondary/20"
+                  >
+                    <h3 className="font-semibold text-foreground">{path.title}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{path.description}</p>
+                    <p className="mt-4 text-sm font-medium text-primary">{path.cta} →</p>
                   </Link>
                 ))}
               </div>

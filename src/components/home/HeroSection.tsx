@@ -1,6 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
+
+const trustPoints = [
+  "20+ years of intervention experience",
+  "Direct guidance for families under stress",
+  "Clear next steps instead of vague encouragement",
+];
 
 const HeroSection = () => {
   const scrollToNewsletter = () => {
@@ -13,7 +19,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-brick-light/50 to-transparent pointer-events-none" />
 
       <div className="container mx-auto px-4 relative">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center">
           <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6 animate-fade-up">
             Family guidance for addiction and enabling
           </span>
@@ -22,30 +28,45 @@ const HeroSection = () => {
             className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight animate-fade-up"
             style={{ animationDelay: "0.1s" }}
           >
-            Help your loved one without losing yourself in the process
+            Help your loved one without protecting the addiction
           </h1>
 
           <p
-            className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-up"
+            className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-up"
             style={{ animationDelay: "0.2s" }}
           >
-            Clear articles, tools, and grounded next steps for families trying to stop enabling, set steadier boundaries,
-            and respond to addiction with more clarity and less panic.
+            If your family keeps getting pulled into chaos, guilt, rescuing, or boundary breakdowns, start here.
+            No More Enabling gives you clearer patterns, steadier decisions, and next steps you can actually hold.
           </p>
           <div
             className="flex flex-col sm:flex-row gap-4 justify-center mt-10 animate-fade-up"
             style={{ animationDelay: "0.3s" }}
           >
             <Button variant="hero" size="lg" asChild>
-              <Link to="/articles">
-                Read the articles
+              <Link to="/helping-or-enabling">
+                Start with the assessment
                 <ArrowRight size={18} />
               </Link>
             </Button>
-            <Button variant="hero-outline" size="lg" onClick={scrollToNewsletter}>
-              Get weekly guidance
+            <Button variant="hero-outline" size="lg" asChild>
+              <Link to="/family-support-guide">
+                Get the family support guide
+              </Link>
             </Button>
           </div>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm animate-fade-up" style={{ animationDelay: "0.35s" }}>
+            {trustPoints.map((point) => (
+              <div key={point} className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-2 text-muted-foreground">
+                <CheckCircle2 className="h-4 w-4 text-primary" />
+                <span>{point}</span>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-5 text-sm text-muted-foreground animate-fade-up" style={{ animationDelay: "0.4s" }}>
+            Prefer email? <button onClick={scrollToNewsletter} className="text-primary underline underline-offset-4 hover:text-primary/80">Get practical family guidance by email</button>.
+          </p>
         </div>
       </div>
     </section>

@@ -57,6 +57,48 @@ const getArticleSections = (content: string) => {
   return sections.length ? sections : [normalizedHtml];
 };
 
+const getPrimaryCta = (article: { title: string; categories: string[] }) => {
+  const haystack = `${article.title} ${article.categories.join(" ")}`.toLowerCase();
+
+  if (haystack.includes("boundar")) {
+    return {
+      label: "Build stronger boundaries",
+      href: "/boundaries-course",
+      description: "If the real issue is holding the line, don’t stop at reading. Work through the boundaries course next.",
+      secondaryLabel: "Take the helping vs enabling assessment",
+      secondaryHref: "/helping-or-enabling",
+    };
+  }
+
+  if (haystack.includes("enabling") || haystack.includes("codependency")) {
+    return {
+      label: "Take the helping vs enabling assessment",
+      href: "/helping-or-enabling",
+      description: "If you keep wondering whether your support is actually helping, start with the assessment and get a clearer read.",
+      secondaryLabel: "Get the family support guide",
+      secondaryHref: "/family-support-guide",
+    };
+  }
+
+  if (haystack.includes("family") || haystack.includes("recovery") || haystack.includes("addiction")) {
+    return {
+      label: "Get the family support guide",
+      href: "/family-support-guide",
+      description: "If this article feels close to home, the best next move is a steadier starting point instead of more frantic searching.",
+      secondaryLabel: "Get practical guidance by email",
+      secondaryHref: "#newsletter",
+    };
+  }
+
+  return {
+    label: "Start with the family support guide",
+    href: "/family-support-guide",
+    description: "If this hit a nerve, take the next structured step instead of trying to carry it all in your head.",
+    secondaryLabel: "Browse more articles",
+    secondaryHref: "/articles",
+  };
+};
+
 const ArticlePage = () => {
   const { slug } = useParams<{ slug: string }>();
   const article = blogPosts.find((post) => post.slug === slug);
@@ -89,6 +131,7 @@ const ArticlePage = () => {
 
   const articleUrl = `https://nomoreenabling.com/articles/${slug}`;
   const imageUrl = article?.image?.startsWith("http") ? article.image : `https://nomoreenabling.com${article?.image}`;
+  const primaryCta = article ? getPrimaryCta(article) : null;
 
   const getISODate = (dateStr: string) => {
     try {
@@ -287,6 +330,26 @@ const ArticlePage = () => {
                   </p>
                 </div>
 
+                {primaryCta && (
+                  <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 mb-8">
+                    <p className="text-sm uppercase tracking-wide text-primary font-medium">If this article sounds like your family</p>
+                    <h2 className="font-serif text-2xl font-bold text-foreground mt-2">Do this next</h2>
+                    <p className="text-muted-foreground mt-3 max-w-2xl">{primaryCta.description}</p>
+                    <div className="mt-5 flex flex-col sm:flex-row gap-3">
+                      <Button asChild>
+                        <Link to={primaryCta.href}>{primaryCta.label}</Link>
+                      </Button>
+                      <Button variant="outline" asChild>
+                        {primaryCta.secondaryHref.startsWith("#") ? (
+                          <a href={primaryCta.secondaryHref}>{primaryCta.secondaryLabel}</a>
+                        ) : (
+                          <Link to={primaryCta.secondaryHref}>{primaryCta.secondaryLabel}</Link>
+                        )}
+                      </Button>
+                    </div>
+                  </div>
+                )}
+
                 <div className="flex items-center gap-2 mb-8 pb-6 border-b border-border flex-wrap">
                   <span className="text-sm text-muted-foreground mr-2">Share:</span>
                   {typeof navigator !== "undefined" && navigator.share && (
@@ -348,17 +411,28 @@ const ArticlePage = () => {
                 </div>
 
                 <div className="mt-10 pt-8 border-t border-border">
-                  <div className="rounded-xl bg-secondary/40 border border-border p-5 mb-8">
-                    <p className="text-sm uppercase tracking-wide text-primary font-medium">Need a steadier starting point?</p>
-                    <div className="mt-3 flex flex-col gap-2 text-sm">
-                      <Link to="/helping-or-enabling" className="text-foreground hover:text-primary transition-colors">
-                        Helping or Enabling? Tool
+                  <div className="rounded-2xl bg-secondary/40 border border-border p-6 mb-8">
+                    <p className="text-sm uppercase tracking-wide text-primary font-medium">Need a steadier next step?</p>
+                    <h2 className="font-serif text-2xl font-bold text-foreground mt-2">Don’t stop at insight</h2>
+                    <p className="text-muted-foreground mt-3 max-w-2xl">
+                      The families who make progress usually do three things: they get honest about the pattern, choose one clearer next step, and stop trying to manage everything at once.
+                    </p>
+                    <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                      <Link to="/helping-or-enabling" className="rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                        <p className="font-medium text-foreground">Helping or Enabling? Tool</p>
+                        <p className="text-sm text-muted-foreground mt-1">Best when you keep second-guessing what support should look like.</p>
                       </Link>
-                      <Link to="/family-support-guide" className="text-foreground hover:text-primary transition-colors">
-                        Family Support Guide
+                      <Link to="/family-support-guide" className="rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                        <p className="font-medium text-foreground">Family Support Guide</p>
+                        <p className="text-sm text-muted-foreground mt-1">Best when everything feels heavy, urgent, or emotionally scrambled.</p>
                       </Link>
-                      <Link to="/about" className="text-foreground hover:text-primary transition-colors">
-                        About Matt Brown and No More Enabling
+                      <Link to="/boundaries-course" className="rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                        <p className="font-medium text-foreground">Free Boundaries Course</p>
+                        <p className="text-sm text-muted-foreground mt-1">Best when your limits keep getting negotiated away under pressure.</p>
+                      </Link>
+                      <Link to="/about" className="rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                        <p className="font-medium text-foreground">About Matt Brown and this site</p>
+                        <p className="text-sm text-muted-foreground mt-1">Understand the experience and point of view behind the guidance here.</p>
                       </Link>
                     </div>
                   </div>
