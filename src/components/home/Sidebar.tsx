@@ -8,7 +8,7 @@ import JeffHatchCoachingBanner from "@/components/ads/JeffHatchCoachingBanner";
 import BrianOSheaBanner from "@/components/ads/BrianOSheaBanner";
 import KairosInterventionBanner from "@/components/ads/KairosInterventionBanner";
 import PersonalizedSuggestions from "@/components/suggestions/PersonalizedSuggestions";
-import { blogPosts } from "@/data/blogPosts";
+import { blogPostsMeta } from "@/data/blogPostMeta";
 import { supabase } from "@/integrations/supabase/client";
 
 interface PopularPost {
@@ -22,7 +22,7 @@ const Sidebar = () => {
   const categories = useMemo(() => {
     const categoryCount: Record<string, number> = {};
     
-    blogPosts.forEach(post => {
+    blogPostsMeta.forEach(post => {
       post.categories.forEach(category => {
         categoryCount[category] = (categoryCount[category] || 0) + 1;
       });
@@ -34,7 +34,7 @@ const Sidebar = () => {
   }, []);
 
   const newestPosts = useMemo(() => {
-    return blogPosts
+    return blogPostsMeta
       .slice()
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       .slice(0, 3)
@@ -67,7 +67,7 @@ const Sidebar = () => {
 
       // Map to posts
       const topPosts = sortedSlugs
-        .map(slug => blogPosts.find(post => post.slug === slug))
+        .map(slug => blogPostsMeta.find(post => post.slug === slug))
         .filter(Boolean)
         .map(post => ({ title: post!.title, slug: post!.slug }));
 

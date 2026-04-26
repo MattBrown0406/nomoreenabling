@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useMemo, useEffect } from "react";
-import { blogPosts } from "@/data/blogPosts";
+import { blogPostsMeta } from "@/data/blogPostMeta";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BlogCard from "@/components/blog/BlogCard";
@@ -21,7 +21,7 @@ const Category = () => {
 
   const filteredPosts = useMemo(() => {
     if (!slug) return [];
-    return blogPosts.filter(post => 
+    return blogPostsMeta.filter(post => 
       post.categories.some(cat => 
         cat.toLowerCase().replace(/\s+/g, "-") === slug.toLowerCase()
       )

@@ -12,7 +12,7 @@ import BlogCard from "@/components/blog/BlogCard";
 import Sidebar from "@/components/home/Sidebar";
 import FamilyBridgeBanner from "@/components/ads/FamilyBridgeBanner";
 import { Button } from "@/components/ui/button";
-import { blogPosts } from "@/data/blogPosts";
+import { blogPostsMeta } from "@/data/blogPostMeta";
 import SEOHead from "@/components/seo/SEOHead";
 import OrganizationJsonLd from "@/components/seo/OrganizationJsonLd";
 
@@ -70,7 +70,7 @@ const guidedPaths = [
   },
 ];
 
-const sortByDate = (posts: typeof blogPosts) => {
+const sortByDate = (posts: typeof blogPostsMeta) => {
   return [...posts].sort((a, b) => {
     const dateA = new Date(a.date);
     const dateB = new Date(b.date);
@@ -81,7 +81,7 @@ const sortByDate = (posts: typeof blogPosts) => {
 const Index = () => {
   const location = useLocation();
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const sortedPosts = useMemo(() => sortByDate(blogPosts), []);
+  const sortedPosts = useMemo(() => sortByDate(blogPostsMeta), []);
 
   const filteredPosts = useMemo(() => {
     if (selectedCategory === "All") {

@@ -1,4 +1,4 @@
-import { blogPosts } from "@/data/blogPosts";
+import { blogPostsMeta } from "@/data/blogPostMeta";
 import { topicHubs } from "@/data/topicHubs";
 
 const staticRoutes = [
@@ -22,13 +22,13 @@ const staticRoutes = [
 
 const categoryRoutes = Array.from(
   new Set(
-    blogPosts.flatMap((post) => post.categories).map((category) =>
+    blogPostsMeta.flatMap((post) => post.categories).map((category) =>
       `/category/${category.toLowerCase().replace(/\s+/g, "-")}`,
     ),
   ),
 ).sort();
 
-const articleRoutes = blogPosts.map((post) => `/articles/${post.slug}`);
+const articleRoutes = blogPostsMeta.map((post) => `/articles/${post.slug}`);
 const topicHubRoutes = topicHubs.map((hub) => `/topic-hubs/${hub.slug}`);
 
 export const prerenderRoutes = [...staticRoutes, ...categoryRoutes, ...articleRoutes, ...topicHubRoutes];

@@ -1,12 +1,12 @@
 import { BookOpen, CheckCircle } from "lucide-react";
 import { useReadingProgress } from "@/hooks/useReadingProgress";
-import { blogPosts } from "@/data/blogPosts";
+import { blogPostsMeta } from "@/data/blogPostMeta";
 import { Progress } from "@/components/ui/progress";
 
 const ReadingProgressBar = () => {
   const { getReadCount } = useReadingProgress();
   const readCount = getReadCount();
-  const totalArticles = blogPosts.length;
+  const totalArticles = blogPostsMeta.length;
   const percentage = totalArticles > 0 ? Math.round((readCount / totalArticles) * 100) : 0;
 
   if (readCount === 0) {

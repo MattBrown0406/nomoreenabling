@@ -5,7 +5,7 @@ import Footer from "@/components/layout/Footer";
 import BlogCard from "@/components/blog/BlogCard";
 import FamilyBridgeBanner from "@/components/ads/FamilyBridgeBanner";
 import { Input } from "@/components/ui/input";
-import { blogPosts } from "@/data/blogPosts";
+import { blogPostsMeta } from "@/data/blogPostMeta";
 import { Search, ArrowRight } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
@@ -24,7 +24,7 @@ const categories = [
   "Personal Growth",
 ];
 
-const sortByDate = (posts: typeof blogPosts) => {
+const sortByDate = (posts: typeof blogPostsMeta) => {
   return [...posts].sort((a, b) => {
     const dateA = new Date(a.date);
     const dateB = new Date(b.date);
@@ -36,7 +36,7 @@ const Articles = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const sortedPosts = useMemo(() => sortByDate(blogPosts), []);
+  const sortedPosts = useMemo(() => sortByDate(blogPostsMeta), []);
   const newestPost = sortedPosts[0];
 
   const filteredPosts = useMemo(() => {

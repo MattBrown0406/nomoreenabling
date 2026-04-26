@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { useReadingProgress } from "@/hooks/useReadingProgress";
-import { blogPosts } from "@/data/blogPosts";
+import { blogPostsMeta } from "@/data/blogPostMeta";
 import { supabase } from "@/integrations/supabase/client";
 
 interface Suggestion {
@@ -37,7 +37,7 @@ const PersonalizedSuggestions = ({ assessmentScore, assessmentLevel }: Personali
     setIsLoading(true);
     
     try {
-      const availableArticles = blogPosts.map(post => ({
+      const availableArticles = blogPostsMeta.map(post => ({
         slug: post.slug,
         title: post.title,
         excerpt: post.excerpt,
@@ -179,7 +179,7 @@ const PersonalizedSuggestions = ({ assessmentScore, assessmentLevel }: Personali
 
             <div className="space-y-3">
               {suggestions.suggestions.map((suggestion, index) => {
-                const article = blogPosts.find(p => p.slug === suggestion.slug);
+                const article = blogPostsMeta.find(p => p.slug === suggestion.slug);
                 if (!article) return null;
 
                 return (

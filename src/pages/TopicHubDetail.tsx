@@ -3,7 +3,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SEOHead from "@/components/seo/SEOHead";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
-import { blogPosts } from "@/data/blogPosts";
+import { blogPostsMeta } from "@/data/blogPostMeta";
 import { topicHubs } from "@/data/topicHubs";
 import BlogCard from "@/components/blog/BlogCard";
 import { Button } from "@/components/ui/button";
@@ -29,10 +29,10 @@ export default function TopicHubDetail() {
   }
 
   const featuredPosts = hub.featuredSlugs
-    .map((featuredSlug) => blogPosts.find((post) => post.slug === featuredSlug))
+    .map((featuredSlug) => blogPostsMeta.find((post) => post.slug === featuredSlug))
     .filter(Boolean);
 
-  const additionalPosts = blogPosts
+  const additionalPosts = blogPostsMeta
     .filter(
       (post) =>
         post.categories.some((category) => hub.categories.includes(category)) &&

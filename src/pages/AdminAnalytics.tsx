@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart3, LogOut, TrendingUp, Eye, FileText, Calendar, ArrowUpDown, MousePointerClick, RefreshCw, Share2 } from "lucide-react";
-import { blogPosts } from "@/data/blogPosts";
+import { blogPostsMeta } from "@/data/blogPostMeta";
 import { toast } from "@/hooks/use-toast";
 import SEOHead from "@/components/seo/SEOHead";
 
@@ -153,7 +153,7 @@ const AdminAnalytics = () => {
     });
 
     // Map to article info
-    const articleStats: ArticleStat[] = blogPosts.map((post) => ({
+    const articleStats: ArticleStat[] = blogPostsMeta.map((post) => ({
       slug: post.slug,
       title: post.title,
       views: viewCounts[post.slug] || 0,
@@ -208,7 +208,7 @@ const AdminAnalytics = () => {
     setSyncing(true);
     try {
       const siteOrigin = "https://nomoreenabling.com";
-      const records = blogPosts.map((post) => {
+      const records = blogPostsMeta.map((post) => {
         // Build absolute image URL from the resolved import
         const resolved = post.image.startsWith("http")
           ? post.image
