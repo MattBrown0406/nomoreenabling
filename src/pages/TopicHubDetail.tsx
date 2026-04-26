@@ -58,14 +58,33 @@ export default function TopicHubDetail() {
       <Header />
 
       <main className="flex-1 container mx-auto px-4 py-14 md:py-20">
-        <div className="max-w-4xl">
+        <div className="max-w-5xl">
           <Link to="/topic-hubs" className="text-sm text-muted-foreground hover:text-foreground transition-colors">← Back to topic hubs</Link>
-          <div className="mt-5">
+          <div className="mt-5 rounded-3xl border border-primary/15 bg-gradient-to-br from-primary/10 via-background to-secondary/30 p-8 md:p-10">
             <span className="inline-block rounded-full bg-primary/10 text-primary px-4 py-1.5 text-sm font-medium mb-5">
               {hub.shortTitle} Hub
             </span>
             <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground leading-tight">{hub.title}</h1>
             <p className="mt-5 text-lg text-muted-foreground max-w-3xl">{hub.description}</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <div className="rounded-full bg-background/80 border border-border px-4 py-2 text-sm text-muted-foreground">{featuredPosts.length} curated starting articles</div>
+              <div className="rounded-full bg-background/80 border border-border px-4 py-2 text-sm text-muted-foreground">Best for: {hub.shortTitle.toLowerCase()}</div>
+              <div className="rounded-full bg-background/80 border border-border px-4 py-2 text-sm text-muted-foreground">Action-oriented next steps included</div>
+            </div>
+            <div className="mt-7 flex flex-col sm:flex-row gap-3">
+              <Button asChild>
+                <Link to={hub.primaryCta.href}>{hub.primaryCta.label}</Link>
+              </Button>
+              {hub.secondaryCta && (
+                <Button variant="outline" asChild>
+                  {hub.secondaryCta.href.startsWith('/#') ? (
+                    <a href={hub.secondaryCta.href}>{hub.secondaryCta.label}</a>
+                  ) : (
+                    <Link to={hub.secondaryCta.href}>{hub.secondaryCta.label}</Link>
+                  )}
+                </Button>
+              )}
+            </div>
           </div>
         </div>
 
@@ -75,6 +94,16 @@ export default function TopicHubDetail() {
               <h2 className="font-serif text-2xl font-bold text-foreground">What this hub is for</h2>
               <p className="mt-3 text-muted-foreground">{hub.intro}</p>
               <p className="mt-3 text-foreground font-medium">{hub.bestFor}</p>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <div className="rounded-xl bg-secondary/40 p-4">
+                  <p className="text-sm font-medium text-foreground">Start here if…</p>
+                  <p className="text-sm text-muted-foreground mt-1">the same family pattern keeps repeating and you need a clearer lens before you act again.</p>
+                </div>
+                <div className="rounded-xl bg-secondary/40 p-4">
+                  <p className="text-sm font-medium text-foreground">Use this hub to…</p>
+                  <p className="text-sm text-muted-foreground mt-1">read in a smarter order, choose one next step, and stop bouncing between random articles.</p>
+                </div>
+              </div>
             </div>
 
             <section>

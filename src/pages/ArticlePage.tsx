@@ -4,6 +4,7 @@ import { ArrowLeft, Clock, Calendar, Tag, Facebook, Mail, Link2, Check, Share2 }
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { blogPosts } from "@/data/blogPosts";
+import { topicHubs } from "@/data/topicHubs";
 import AdSpace from "@/components/ads/AdSpace";
 import EagleCreekRanchBanner from "@/components/ads/EagleCreekRanchBanner";
 import RelatedArticleCallout from "@/components/blog/RelatedArticleCallout";
@@ -132,6 +133,9 @@ const ArticlePage = () => {
   const articleUrl = `https://nomoreenabling.com/articles/${slug}`;
   const imageUrl = article?.image?.startsWith("http") ? article.image : `https://nomoreenabling.com${article?.image}`;
   const primaryCta = article ? getPrimaryCta(article) : null;
+  const matchingHubs = article
+    ? topicHubs.filter((hub) => article.categories.some((category) => hub.categories.includes(category))).slice(0, 2)
+    : [];
 
   const getISODate = (dateStr: string) => {
     try {
@@ -329,6 +333,22 @@ const ArticlePage = () => {
                     Families rarely need more pressure. They need clearer patterns, steadier boundaries, and a next step they can actually hold.
                   </p>
                 </div>
+
+                {matchingHubs.length > 0 && (
+                  <div className="rounded-2xl border border-border bg-card p-5 mb-8">
+                    <p className="text-sm uppercase tracking-wide text-primary font-medium">Read this as part of a bigger pattern</p>
+                    <p className="text-muted-foreground mt-2">If this article hits home, these guided hubs will help you keep reading in a smarter order instead of starting from scratch each time.</p>
+                    <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                      {matchingHubs.map((hub) => (
+                        <Link key={hub.slug} to={`/topic-hubs/${hub.slug}`} className="rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                          <p className="font-medium text-foreground">{hub.shortTitle} Hub</p>
+                          <p className="text-sm text-muted-foreground mt-1">{hub.bestFor}</p>
+                          <p className="mt-3 text-sm font-medium text-primary">Open hub →</p>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {primaryCta && (
                   <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 mb-8">

@@ -11,9 +11,32 @@ import Footer from "@/components/layout/Footer";
 import { Link } from "react-router-dom";
 import AdSpace from "@/components/ads/AdSpace";
 import SEOHead from "@/components/seo/SEOHead";
+import { topicHubs } from "@/data/topicHubs";
 
 const handlePrint = () => {
   window.print();
+};
+
+const getRecommendedHub = (result: "helping" | "enabling" | "mixed", answers: Answers) => {
+  if (result === "enabling") {
+    if (answers.boundaryAlignment === "no" || answers.boundaryAlignment === "unclear") {
+      return topicHubs.find((hub) => hub.slug === "boundaries");
+    }
+    return topicHubs.find((hub) => hub.slug === "enabling");
+  }
+
+  if (result === "mixed") {
+    if (answers.motivation === "guilt" || answers.motivation === "fear") {
+      return topicHubs.find((hub) => hub.slug === "codependency");
+    }
+    return topicHubs.find((hub) => hub.slug === "family-dynamics");
+  }
+
+  if (answers.boundaryAlignment === "yes") {
+    return topicHubs.find((hub) => hub.slug === "recovery");
+  }
+
+  return topicHubs.find((hub) => hub.slug === "boundaries");
 };
 
 type Step = "intro" | 1 | 2 | 3 | 4 | 5 | "5b" | 6 | 7 | 8 | "result";
@@ -171,6 +194,7 @@ const HelpingOrEnabling = () => {
   };
 
   const result = currentStep === "result" ? calculateResult() : null;
+  const recommendedHub = result ? getRecommendedHub(result, answers) : null;
 
   return (
     <>
@@ -659,6 +683,22 @@ const HelpingOrEnabling = () => {
                         </ul>
                       </div>
                     </>
+                  )}
+
+                  {recommendedHub && (
+                    <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6">
+                      <p className="text-sm uppercase tracking-wide text-primary font-medium">Recommended next reading path</p>
+                      <h3 className="text-2xl font-bold text-foreground mt-2">{recommendedHub.shortTitle} Hub</h3>
+                      <p className="text-muted-foreground mt-3">{recommendedHub.bestFor}</p>
+                      <div className="mt-5 flex flex-col sm:flex-row gap-3 justify-center">
+                        <Button variant="hero" asChild>
+                          <Link to={`/topic-hubs/${recommendedHub.slug}`}>Open the {recommendedHub.shortTitle} hub</Link>
+                        </Button>
+                        <Button variant="outline" asChild>
+                          <Link to={recommendedHub.primaryCta.href}>{recommendedHub.primaryCta.label}</Link>
+                        </Button>
+                      </div>
+                    </div>
                   )}
 
                   {/* Alternative action prompt */}
