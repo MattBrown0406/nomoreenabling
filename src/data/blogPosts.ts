@@ -91,6 +91,7 @@ import communicateBoundariesAddictedImage from "@/assets/communicate-boundaries-
 import lovedOneTestsBoundariesImage from "@/assets/loved-one-tests-boundaries.jpg";
 import holdingBoundariesGuiltImage from "@/assets/holding-boundaries-guilt.jpg";
 import detachingWithLoveImage from "@/assets/detaching-with-love-addiction-family.jpg";
+import alAnonFamiliesImage from "@/assets/al-anon-families-of-addicts.jpg";
 
 export interface BlogPost {
   id: string;
