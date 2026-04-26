@@ -1,4 +1,5 @@
 import { blogPosts } from "@/data/blogPosts";
+import { topicHubs } from "@/data/topicHubs";
 
 const staticRoutes = [
   "/",
@@ -12,6 +13,8 @@ const staticRoutes = [
   "/grounding-reminder",
   "/family-system-notes",
   "/boundaries-course",
+  "/start-here",
+  "/topic-hubs",
   "/privacy",
   "/terms",
   "/cookies",
@@ -26,5 +29,6 @@ const categoryRoutes = Array.from(
 ).sort();
 
 const articleRoutes = blogPosts.map((post) => `/articles/${post.slug}`);
+const topicHubRoutes = topicHubs.map((hub) => `/topic-hubs/${hub.slug}`);
 
-export const prerenderRoutes = [...staticRoutes, ...categoryRoutes, ...articleRoutes];
+export const prerenderRoutes = [...staticRoutes, ...categoryRoutes, ...articleRoutes, ...topicHubRoutes];

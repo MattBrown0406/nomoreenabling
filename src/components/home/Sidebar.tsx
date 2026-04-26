@@ -95,6 +95,25 @@ const Sidebar = () => {
         <FreedomInterventionsBanner size="sidebar" />
       </div>
 
+      <div className="bg-card rounded-xl p-6 shadow-card border border-border/60">
+        <h3 className="font-serif text-xl font-bold text-foreground mb-2">
+          Start Here
+        </h3>
+        <p className="text-sm text-muted-foreground mb-4">
+          If you’re not sure what to read next, use the guided starting page or the topic hubs.
+        </p>
+        <div className="space-y-3">
+          <Link to="/start-here" className="block rounded-lg border border-border px-4 py-3 hover:border-primary/40 transition-colors">
+            <p className="font-medium text-foreground">Start Here</p>
+            <p className="text-sm text-muted-foreground mt-1">A calm first path for families in chaos.</p>
+          </Link>
+          <Link to="/topic-hubs" className="block rounded-lg border border-border px-4 py-3 hover:border-primary/40 transition-colors">
+            <p className="font-medium text-foreground">Guided Topic Hubs</p>
+            <p className="text-sm text-muted-foreground mt-1">Browse enabling, boundaries, codependency, family dynamics, and recovery.</p>
+          </Link>
+        </div>
+      </div>
+
       {/* Categories */}
       <div className="bg-card rounded-xl p-6 shadow-card">
         <h3 className="font-serif text-xl font-bold text-foreground mb-4">

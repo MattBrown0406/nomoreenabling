@@ -18,6 +18,9 @@ import WhyFamiliesNeedSupport from "./pages/WhyFamiliesNeedSupport";
 import GroundingReminder from "./pages/GroundingReminder";
 import FamilySystemNotes from "./pages/FamilySystemNotes";
 import BoundariesCourse from "./pages/BoundariesCourse";
+import StartHere from "./pages/StartHere";
+import TopicHubs from "./pages/TopicHubs";
+import TopicHubDetail from "./pages/TopicHubDetail";
 import AdminAnalytics from "./pages/AdminAnalytics";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
@@ -44,6 +47,9 @@ export const AppRoutes = () => (
       <Route path="/grounding-reminder" element={<GroundingReminder />} />
       <Route path="/family-system-notes" element={<FamilySystemNotes />} />
       <Route path="/boundaries-course" element={<BoundariesCourse />} />
+      <Route path="/start-here" element={<StartHere />} />
+      <Route path="/topic-hubs" element={<TopicHubs />} />
+      <Route path="/topic-hubs/:slug" element={<TopicHubDetail />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/terms" element={<TermsOfService />} />
       <Route path="/cookies" element={<CookiePolicy />} />
