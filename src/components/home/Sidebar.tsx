@@ -44,31 +44,17 @@ const Sidebar = () => {
   useEffect(() => {
     const fetchPopularPosts = async () => {
       const { data, error } = await supabase
-        .from("article_views")
-        .select("article_slug")
-        .order("viewed_at", { ascending: false });
+        .rpc("get_article_view_counts", { limit_count: 6 });
 
       if (error || !data || data.length === 0) {
         setPopularPosts(newestPosts);
         return;
       }
 
-      // Count views per article
-      const viewCounts: Record<string, number> = {};
-      data.forEach(view => {
-        viewCounts[view.article_slug] = (viewCounts[view.article_slug] || 0) + 1;
-      });
-
-      // Sort by view count and get top 3
-      const sortedSlugs = Object.entries(viewCounts)
-        .sort(([, a], [, b]) => b - a)
-        .slice(0, 3)
-        .map(([slug]) => slug);
-
-      // Map to posts
-      const topPosts = sortedSlugs
-        .map(slug => blogPostsMeta.find(post => post.slug === slug))
+      const topPosts = data
+        .map(({ article_slug }) => blogPostsMeta.find(post => post.slug === article_slug))
         .filter(Boolean)
+        .slice(0, 3)
         .map(post => ({ title: post!.title, slug: post!.slug }));
 
       if (topPosts.length < 3) {

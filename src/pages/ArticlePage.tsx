@@ -3,7 +3,8 @@ import { useEffect, useState, useRef, useMemo } from "react";
 import { ArrowLeft, Clock, Calendar, Tag, Facebook, Mail, Link2, Check, Share2 } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { blogPosts } from "@/data/blogPosts";
+import { blogPostsMeta } from "@/data/blogPostMeta";
+import { articleContentLoaders } from "@/data/articleContentLoaders";
 import { topicHubs } from "@/data/topicHubs";
 import AdSpace from "@/components/ads/AdSpace";
 import EagleCreekRanchBanner from "@/components/ads/EagleCreekRanchBanner";
@@ -15,6 +16,7 @@ import { useReadingProgress } from "@/hooks/useReadingProgress";
 import SEOHead from "@/components/seo/SEOHead";
 import ArticleJsonLd from "@/components/seo/ArticleJsonLd";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import { useInitialArticleContent } from "@/lib/articleContentContext";
 
 const XIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -102,14 +104,34 @@ const getPrimaryCta = (article: { title: string; categories: string[] }) => {
 
 const ArticlePage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const article = blogPosts.find((post) => post.slug === slug);
+  const initialArticleContent = useInitialArticleContent();
+  const article = blogPostsMeta.find((post) => post.slug === slug);
   const [copied, setCopied] = useState(false);
+  const [articleContent, setArticleContent] = useState<string | null>(() => {
+    if (!slug) return null;
+
+    if (initialArticleContent?.slug === slug && initialArticleContent.content) {
+      return initialArticleContent.content;
+    }
+
+    if (typeof window !== "undefined") {
+      const hydratedArticle = (window as Window & {
+        __ARTICLE_CONTENT__?: { slug?: string; content?: string };
+      }).__ARTICLE_CONTENT__;
+
+      if (hydratedArticle?.slug === slug && hydratedArticle.content) {
+        return hydratedArticle.content;
+      }
+    }
+
+    return null;
+  });
   const viewRecorded = useRef(false);
   const { markAsRead } = useReadingProgress();
 
   const relatedPosts = useMemo(() => {
     if (!article) return [];
-    const others = blogPosts.filter((p) => p.slug !== slug);
+    const others = blogPostsMeta.filter((p) => p.slug !== slug);
     const scored = others.map((post) => {
       const sharedCategories = post.categories.filter((cat) => article.categories.includes(cat)).length;
       return { post, score: sharedCategories };
@@ -126,9 +148,9 @@ const ArticlePage = () => {
   }, [relatedPosts]);
 
   const articleSections = useMemo(() => {
-    if (!article) return [];
-    return getArticleSections(article.content);
-  }, [article]);
+    if (!articleContent) return [];
+    return getArticleSections(articleContent);
+  }, [articleContent]);
 
   const articleUrl = `https://nomoreenabling.com/articles/${slug}`;
   const imageUrl = article?.image?.startsWith("http") ? article.image : `https://nomoreenabling.com${article?.image}`;
@@ -149,6 +171,55 @@ const ArticlePage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [article]);
+
+  useEffect(() => {
+    viewRecorded.current = false;
+  }, [slug]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    if (!slug) {
+      setArticleContent(null);
+      return;
+    }
+
+    const hydratedArticle = typeof window !== "undefined"
+      ? (window as Window & {
+          __ARTICLE_CONTENT__?: { slug?: string; content?: string };
+        }).__ARTICLE_CONTENT__
+      : undefined;
+
+    if (hydratedArticle?.slug === slug && hydratedArticle.content) {
+      setArticleContent(hydratedArticle.content);
+      return;
+    }
+
+    const loadArticleContent = articleContentLoaders[slug];
+
+    if (!loadArticleContent) {
+      setArticleContent(null);
+      return;
+    }
+
+    setArticleContent((current) => (article?.slug === slug ? current : null));
+
+    loadArticleContent()
+      .then((module) => {
+        if (!cancelled) {
+          setArticleContent(module.default);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setArticleContent(null);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [slug, article?.slug, initialArticleContent]);
 
   useEffect(() => {
     if (slug && !viewRecorded.current) {
@@ -285,6 +356,13 @@ const ArticlePage = () => {
           { name: article.title, url: articleUrl },
         ]}
       />
+      {articleContent && (
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.__ARTICLE_CONTENT__ = ${JSON.stringify({ slug, content: articleContent }).replace(/</g, "\\u003c")};`,
+          }}
+        />
+      )}
       <Header />
 
       <main className="flex-1" role="main">
@@ -415,20 +493,26 @@ const ArticlePage = () => {
                   <AdSpace size="leaderboard" />
                 </div>
 
-                <div className="prose prose-lg max-w-none text-foreground/90 prose-headings:font-serif prose-headings:text-foreground prose-p:text-foreground/90 prose-li:text-foreground/90 prose-strong:text-foreground">
-                  {articleSections.map((section, index) => (
-                    <div key={index}>
-                      {index === Math.floor(articleSections.length / 2) && midArticleSuggestion && (
-                        <RelatedArticleCallout
-                          title={midArticleSuggestion.title}
-                          slug={midArticleSuggestion.slug}
-                          excerpt={midArticleSuggestion.excerpt}
-                        />
-                      )}
-                      <div dangerouslySetInnerHTML={{ __html: section }} />
-                    </div>
-                  ))}
-                </div>
+                {articleContent ? (
+                  <div className="prose prose-lg max-w-none text-foreground/90 prose-headings:font-serif prose-headings:text-foreground prose-p:text-foreground/90 prose-li:text-foreground/90 prose-strong:text-foreground">
+                    {articleSections.map((section, index) => (
+                      <div key={index}>
+                        {index === Math.floor(articleSections.length / 2) && midArticleSuggestion && (
+                          <RelatedArticleCallout
+                            title={midArticleSuggestion.title}
+                            slug={midArticleSuggestion.slug}
+                            excerpt={midArticleSuggestion.excerpt}
+                          />
+                        )}
+                        <div dangerouslySetInnerHTML={{ __html: section }} />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="rounded-2xl border border-border bg-secondary/30 p-6 text-muted-foreground">
+                    Loading article…
+                  </div>
+                )}
 
                 <div className="mt-10 pt-8 border-t border-border">
                   <div className="rounded-2xl bg-secondary/40 border border-border p-6 mb-8">

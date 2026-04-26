@@ -175,6 +175,55 @@ const Index = () => {
             </div>
           </section>
 
+          <section className="container mx-auto px-4 py-6 md:py-10">
+            <div className="max-w-6xl mx-auto grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+              <div className="rounded-3xl border border-border bg-card p-6 md:p-8">
+                <p className="text-sm uppercase tracking-wide text-primary font-medium">Why trust this guidance</p>
+                <h2 className="font-serif text-3xl font-bold text-foreground mt-2">Built by a working interventionist, not a content mill</h2>
+                <p className="mt-4 text-muted-foreground max-w-3xl">
+                  Matt Brown has spent more than 20 years helping families through addiction, treatment resistance, relapse, and the fallout that wears people down at home.
+                  The goal here is not more panic, more guilt, or more theory. It is clearer pattern recognition and steadier next steps.
+                </p>
+                <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                  <div className="rounded-2xl bg-secondary/40 p-4">
+                    <p className="font-medium text-foreground">20+ years in the work</p>
+                    <p className="text-sm text-muted-foreground mt-1">Grounded in real family systems, not generic wellness advice.</p>
+                  </div>
+                  <div className="rounded-2xl bg-secondary/40 p-4">
+                    <p className="font-medium text-foreground">Direct but calm</p>
+                    <p className="text-sm text-muted-foreground mt-1">Clear enough to act on when your family is under stress.</p>
+                  </div>
+                  <div className="rounded-2xl bg-secondary/40 p-4">
+                    <p className="font-medium text-foreground">Action over doom-scrolling</p>
+                    <p className="text-sm text-muted-foreground mt-1">Articles, tools, and courses meant to move families forward.</p>
+                  </div>
+                </div>
+                <Button variant="outline" className="mt-6" asChild>
+                  <Link to="/about">Read Matt’s background</Link>
+                </Button>
+              </div>
+
+              <div className="rounded-3xl border border-primary/20 bg-primary/5 p-6 md:p-8">
+                <p className="text-sm uppercase tracking-wide text-primary font-medium">Need more than articles?</p>
+                <h2 className="font-serif text-3xl font-bold text-foreground mt-2">Pick the support lane that fits</h2>
+                <div className="mt-5 space-y-3">
+                  <a href="https://soberhelpline.com" target="_blank" rel="noreferrer" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                    <p className="font-medium text-foreground">Sober Helpline</p>
+                    <p className="text-sm text-muted-foreground mt-1">Free family support Zoom every Monday night plus practical support for families who need live help.</p>
+                  </a>
+                  <a href="https://freedominterventions.com" target="_blank" rel="noreferrer" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                    <p className="font-medium text-foreground">Freedom Interventions</p>
+                    <p className="text-sm text-muted-foreground mt-1">When the situation is escalating and your family may need professional intervention guidance.</p>
+                  </a>
+                  <Link to="/family-support-guide" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                    <p className="font-medium text-foreground">Stay here and start with the guide</p>
+                    <p className="text-sm text-muted-foreground mt-1">Best if you need a calmer on-ramp before you decide anything bigger.</p>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <SelfAssessment />
           <AddictionAssessment />
           <GuidedMeditation />

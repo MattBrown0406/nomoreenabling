@@ -106,6 +106,28 @@ export default function TopicHubDetail() {
               </div>
             </div>
 
+            <div className="rounded-2xl border border-border bg-card p-6">
+              <p className="text-sm uppercase tracking-wide text-primary font-medium">Why families trust this</p>
+              <h2 className="font-serif text-2xl font-bold text-foreground mt-2">The goal is clarity, not content for content’s sake</h2>
+              <p className="mt-3 text-muted-foreground">
+                This hub is meant to help families read in a smarter order, spot the pattern faster, and take one sturdier step instead of circling the same fear.
+              </p>
+              <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                <div className="rounded-xl bg-secondary/40 p-4">
+                  <p className="font-medium text-foreground">Pattern-first</p>
+                  <p className="text-sm text-muted-foreground mt-1">Less random reading. More useful sequencing.</p>
+                </div>
+                <div className="rounded-xl bg-secondary/40 p-4">
+                  <p className="font-medium text-foreground">Built from field experience</p>
+                  <p className="text-sm text-muted-foreground mt-1">Grounded in real intervention and family support work.</p>
+                </div>
+                <div className="rounded-xl bg-secondary/40 p-4">
+                  <p className="font-medium text-foreground">Action-oriented</p>
+                  <p className="text-sm text-muted-foreground mt-1">Every hub should leave you with a next move.</p>
+                </div>
+              </div>
+            </div>
+
             <section>
               <h2 className="font-serif text-3xl font-bold text-foreground mb-5">Start with these articles</h2>
               <div className="grid md:grid-cols-2 gap-6">
@@ -172,6 +194,17 @@ export default function TopicHubDetail() {
                     {category}
                   </Link>
                 ))}
+              </div>
+
+              <div className="mt-6 pt-6 border-t border-border space-y-3">
+                <a href="https://soberhelpline.com" target="_blank" rel="noreferrer" className="block rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                  <p className="font-medium text-foreground">Need live family support?</p>
+                  <p className="text-sm text-muted-foreground mt-1">SoberHelpline.com offers a free family support Zoom every Monday night led by professional interventionists.</p>
+                </a>
+                <a href="https://freedominterventions.com" target="_blank" rel="noreferrer" className="block rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                  <p className="font-medium text-foreground">Need higher-level intervention help?</p>
+                  <p className="text-sm text-muted-foreground mt-1">Freedom Interventions is the better path when the situation is escalating or treatment refusal is entrenched.</p>
+                </a>
               </div>
             </div>
           </aside>

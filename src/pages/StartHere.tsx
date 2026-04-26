@@ -98,6 +98,55 @@ export default function StartHere() {
             </div>
           </div>
         </section>
+
+        <section className="container mx-auto px-4 pb-16">
+          <div className="max-w-5xl mx-auto grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+            <div className="rounded-3xl border border-border bg-card p-6 md:p-8">
+              <p className="text-sm uppercase tracking-wide text-primary font-medium">Before you keep reading</p>
+              <h2 className="font-serif text-3xl font-bold text-foreground mt-2">A calmer standard for what good help looks like</h2>
+              <p className="mt-4 text-muted-foreground">
+                Good family support is not frantic. It is honest, boundaried, and steady enough to survive the next hard conversation.
+                That is the standard behind this site.
+              </p>
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                <div className="rounded-2xl bg-secondary/40 p-4">
+                  <p className="font-medium text-foreground">Less rescuing</p>
+                  <p className="text-sm text-muted-foreground mt-1">More clarity about what belongs to you and what does not.</p>
+                </div>
+                <div className="rounded-2xl bg-secondary/40 p-4">
+                  <p className="font-medium text-foreground">Less guessing</p>
+                  <p className="text-sm text-muted-foreground mt-1">More pattern recognition before you react.</p>
+                </div>
+                <div className="rounded-2xl bg-secondary/40 p-4">
+                  <p className="font-medium text-foreground">Less panic</p>
+                  <p className="text-sm text-muted-foreground mt-1">More next steps that still make sense tomorrow.</p>
+                </div>
+              </div>
+              <Button variant="outline" className="mt-6" asChild>
+                <Link to="/about">Why Matt Brown built this site</Link>
+              </Button>
+            </div>
+
+            <div className="rounded-3xl border border-primary/20 bg-primary/5 p-6 md:p-8">
+              <p className="text-sm uppercase tracking-wide text-primary font-medium">When self-help is not enough</p>
+              <h2 className="font-serif text-3xl font-bold text-foreground mt-2">Use the right level of support</h2>
+              <div className="mt-5 space-y-3">
+                <a href="https://soberhelpline.com" target="_blank" rel="noreferrer" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                  <p className="font-medium text-foreground">Join Sober Helpline</p>
+                  <p className="text-sm text-muted-foreground mt-1">Free family support Zoom every Monday night led by professional interventionists. Ask questions or just listen.</p>
+                </a>
+                <a href="https://freedominterventions.com" target="_blank" rel="noreferrer" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                  <p className="font-medium text-foreground">Talk to Freedom Interventions</p>
+                  <p className="text-sm text-muted-foreground mt-1">For families facing treatment refusal, escalating risk, or repeated relapse patterns.</p>
+                </a>
+                <Link to="/family-support-guide" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                  <p className="font-medium text-foreground">Stay in the guided path</p>
+                  <p className="text-sm text-muted-foreground mt-1">If you need a steadier first move before deciding on outside help.</p>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />
