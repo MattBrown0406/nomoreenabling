@@ -92,6 +92,7 @@ import lovedOneTestsBoundariesImage from "@/assets/loved-one-tests-boundaries.jp
 import holdingBoundariesGuiltImage from "@/assets/holding-boundaries-guilt.jpg";
 import detachingWithLoveImage from "@/assets/detaching-with-love-addiction-family.jpg";
 import alAnonFamiliesImage from "@/assets/al-anon-families-of-addicts.jpg";
+import preparingLovedOnesReturnImage from "@/assets/preparing-loved-ones-return-from-treatment.jpg";
 
 export interface BlogPostMeta {
   id: string;
