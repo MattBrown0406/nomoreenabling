@@ -43,7 +43,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     const fetchPopularPosts = async () => {
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .rpc("get_article_view_counts", { limit_count: 6 });
 
       if (error || !data || data.length === 0) {

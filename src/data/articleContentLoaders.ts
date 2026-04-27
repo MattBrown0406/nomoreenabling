@@ -104,4 +104,5 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "holding-boundaries-addicted-loved-one-guilt": () => import("./article-content/holding-boundaries-addicted-loved-one-guilt"),
   "detaching-with-love-addiction-family": () => import("./article-content/detaching-with-love-addiction-family"),
   "al-anon-for-families-of-addicts": () => import("./article-content/al-anon-for-families-of-addicts"),
+  "preparing-for-loved-ones-return-from-treatment": () => import("./article-content/preparing-for-loved-ones-return-from-treatment"),
 };
