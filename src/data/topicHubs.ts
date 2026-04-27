@@ -81,6 +81,23 @@ export const topicHubs: TopicHub[] = [
     secondaryCta: { label: "Read all family dynamics articles", href: "/category/family-dynamics" },
   },
   {
+    slug: "intervention",
+    title: "Intervention guidance: when waiting is no longer a plan",
+    shortTitle: "Intervention",
+    description: "Understand when professional intervention guidance may be appropriate, what families should prepare, and how to move from fear to a structured plan.",
+    intro: "This hub is for families facing treatment refusal, escalating risk, repeated relapse, or the painful sense that every informal strategy has already been tried.",
+    bestFor: "Best when your family is afraid of what happens next and needs a plan before the next crisis.",
+    categories: ["Recovery", "Addiction", "Family Dynamics", "Boundaries"],
+    featuredSlugs: [
+      "when-is-it-time-for-a-professional-intervention",
+      "choosing-right-addiction-treatment-center-families",
+      "what-happens-in-addiction-treatment-families",
+      "8-stages-family-addiction-journey",
+    ],
+    primaryCta: { label: "Request guidance from Matt", href: "/work-with-matt" },
+    secondaryCta: { label: "Read signs you may need help", href: "/professional-guidance-signs" },
+  },
+  {
     slug: "recovery",
     title: "Recovery: what real support looks like after crisis and during change",
     shortTitle: "Recovery",

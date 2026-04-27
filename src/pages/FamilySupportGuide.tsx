@@ -5,6 +5,25 @@ import Footer from "@/components/layout/Footer";
 import AdSpace from "@/components/ads/AdSpace";
 import SEOHead from "@/components/seo/SEOHead";
 import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
+import FAQJsonLd from "@/components/seo/FAQJsonLd";
+
+const familySupportFaqs = [
+  {
+    question: "How can families help someone with addiction without enabling?",
+    answer:
+      "Families can help by staying honest, setting clear limits, refusing to cover up consequences, and getting support for their own decisions. Real help supports responsibility instead of protecting addiction from reality.",
+  },
+  {
+    question: "When should a family seek outside guidance?",
+    answer:
+      "Outside guidance is worth considering when boundaries keep collapsing, the family is divided, safety concerns are present, treatment is refused, or everyone is waiting for the next crisis without a plan.",
+  },
+  {
+    question: "Can family change matter if the addicted person refuses help?",
+    answer:
+      "Yes. Families cannot force recovery, but they can change the conditions around addiction. Clearer boundaries, family alignment, and reduced enabling often change the system before the loved one is ready.",
+  },
+];
 
 const FamilySupportGuide = () => {
   const handlePrint = () => {
@@ -19,6 +38,7 @@ const FamilySupportGuide = () => {
         canonicalUrl="https://nomoreenabling.com/family-support-guide"
         keywords="family support guide, addiction help, family recovery, enabling behaviors"
       />
+      <FAQJsonLd faqs={familySupportFaqs} />
       <Header />
       <div className="container mx-auto px-4 py-8">
         <div className="flex gap-8">
@@ -344,6 +364,20 @@ const FamilySupportGuide = () => {
 
             <section className="mb-12">
               <CoachingInterventionCTA variant="compact" />
+            </section>
+
+            <section className="mb-12">
+              <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-6">
+                Family Support Questions
+              </h2>
+              <div className="grid gap-4">
+                {familySupportFaqs.map((faq) => (
+                  <div key={faq.question} className="rounded-lg border border-border bg-card p-5">
+                    <h3 className="font-semibold text-foreground">{faq.question}</h3>
+                    <p className="mt-2 text-muted-foreground">{faq.answer}</p>
+                  </div>
+                ))}
+              </div>
             </section>
 
             <section className="text-center border-t border-border pt-8">

@@ -21,6 +21,7 @@ import BoundariesCourse from "./pages/BoundariesCourse";
 import StartHere from "./pages/StartHere";
 import TopicHubs from "./pages/TopicHubs";
 import TopicHubDetail from "./pages/TopicHubDetail";
+import WorkWithMatt from "./pages/WorkWithMatt";
 import AdminAnalytics from "./pages/AdminAnalytics";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
@@ -50,6 +51,7 @@ export const AppRoutes = () => (
       <Route path="/start-here" element={<StartHere />} />
       <Route path="/topic-hubs" element={<TopicHubs />} />
       <Route path="/topic-hubs/:slug" element={<TopicHubDetail />} />
+      <Route path="/work-with-matt" element={<WorkWithMatt />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/terms" element={<TermsOfService />} />
       <Route path="/cookies" element={<CookiePolicy />} />

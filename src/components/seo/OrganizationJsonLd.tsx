@@ -47,7 +47,7 @@ const OrganizationJsonLd = () => {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "Matt Brown Addiction Family Coaching and Intervention Guidance",
-    url: "https://nomoreenabling.com/about",
+    url: "https://nomoreenabling.com/work-with-matt",
     image: "https://nomoreenabling.com/favicon.jpg",
     description:
       "Family coaching and professional intervention guidance for families navigating addiction, enabling, boundaries, treatment resistance, and relapse patterns.",

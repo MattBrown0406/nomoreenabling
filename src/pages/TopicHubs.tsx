@@ -11,9 +11,9 @@ export default function TopicHubs() {
     <div className="min-h-screen bg-background flex flex-col">
       <SEOHead
         title="Topic Hubs — Guided Family Addiction Resources"
-        description="Browse guided topic hubs for enabling, boundaries, codependency, family dynamics, and recovery."
+        description="Browse guided topic hubs for enabling, boundaries, codependency, intervention, family dynamics, and recovery."
         canonicalUrl="https://nomoreenabling.com/topic-hubs"
-        keywords="family addiction resources, enabling help, boundaries help, codependency help, recovery family support"
+        keywords="family addiction resources, enabling help, boundaries help, codependency help, intervention guidance, recovery family support"
       />
       <BreadcrumbJsonLd
         items={[
@@ -38,6 +38,9 @@ export default function TopicHubs() {
             </Button>
             <Button variant="outline" asChild>
               <Link to="/articles">Browse all articles</Link>
+            </Button>
+            <Button variant="outline" asChild>
+              <Link to="/work-with-matt">Work with Matt</Link>
             </Button>
           </div>
         </div>

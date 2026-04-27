@@ -7,6 +7,25 @@ import { Printer, AlertTriangle, Users, Heart, Shield, Brain, MessageCircle, Hel
 import AdSpace from "@/components/ads/AdSpace";
 import SEOHead from "@/components/seo/SEOHead";
 import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
+import FAQJsonLd from "@/components/seo/FAQJsonLd";
+
+const professionalGuidanceFaqs = [
+  {
+    question: "When should a family call an addiction interventionist?",
+    answer:
+      "Families should consider an interventionist when informal conversations, promises, and consequences keep repeating without change, especially when treatment is refused, risk is escalating, or the family cannot stay aligned.",
+  },
+  {
+    question: "Is professional guidance only for a formal intervention?",
+    answer:
+      "No. Professional guidance can help with family alignment, boundary planning, safety concerns, treatment decisions, and deciding whether a formal intervention is appropriate.",
+  },
+  {
+    question: "What if our loved one is not ready for help?",
+    answer:
+      "Families can still get guidance. A professional can help the family stop reinforcing the pattern, prepare for treatment opportunities, and respond more consistently when resistance shows up.",
+  },
+];
 
 const ProfessionalGuidanceSigns = () => {
   const handlePrint = () => {
@@ -130,6 +149,7 @@ const ProfessionalGuidanceSigns = () => {
         canonicalUrl="https://nomoreenabling.com/professional-guidance-signs"
         keywords="professional addiction help, when to seek help, family intervention signs"
       />
+      <FAQJsonLd faqs={professionalGuidanceFaqs} />
       
       <div className="min-h-screen bg-background print-content">
         <Header />
@@ -298,6 +318,22 @@ const ProfessionalGuidanceSigns = () => {
           <div className="mb-12">
             <CoachingInterventionCTA variant="compact" />
           </div>
+
+          <Card className="mb-12">
+            <CardContent className="p-8">
+              <h2 className="text-2xl font-serif font-bold text-foreground mb-5">
+                Questions Families Ask Before Calling
+              </h2>
+              <div className="space-y-4">
+                {professionalGuidanceFaqs.map((faq) => (
+                  <div key={faq.question} className="rounded-lg border border-border bg-background p-4">
+                    <h3 className="font-semibold text-foreground">{faq.question}</h3>
+                    <p className="mt-2 text-muted-foreground">{faq.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Disclaimer */}
           <p className="text-xs text-muted-foreground text-center">

@@ -26,6 +26,7 @@ export interface SitemapInput {
 const staticPages: { path: string; priority: string; changefreq: string }[] = [
   { path: "/", priority: "1.0", changefreq: "weekly" },
   { path: "/start-here", priority: "0.95", changefreq: "monthly" },
+  { path: "/work-with-matt", priority: "0.95", changefreq: "monthly" },
   { path: "/articles", priority: "0.9", changefreq: "weekly" },
   { path: "/topic-hubs", priority: "0.85", changefreq: "monthly" },
   { path: "/about", priority: "0.8", changefreq: "monthly" },

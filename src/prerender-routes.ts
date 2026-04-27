@@ -15,6 +15,7 @@ const staticRoutes = [
   "/boundaries-course",
   "/start-here",
   "/topic-hubs",
+  "/work-with-matt",
   "/privacy",
   "/terms",
   "/cookies",

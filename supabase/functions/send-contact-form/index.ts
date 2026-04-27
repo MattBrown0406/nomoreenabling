@@ -32,7 +32,7 @@ serve(async (req) => {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
-    if (!message || typeof message !== "string" || message.trim().length === 0 || message.length > 1000) {
+    if (!message || typeof message !== "string" || message.trim().length === 0 || message.length > 4000) {
       return new Response(JSON.stringify({ error: "Invalid message" }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },

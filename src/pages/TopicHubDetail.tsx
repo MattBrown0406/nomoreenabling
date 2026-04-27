@@ -184,9 +184,11 @@ export default function TopicHubDetail() {
                     )}
                   </Button>
                 )}
-                <Button variant="ghost" className="w-full" asChild>
-                  <Link to="/start-here">Open the Start Here page</Link>
-                </Button>
+                {hub.primaryCta.href !== "/work-with-matt" && (
+                  <Button variant="ghost" className="w-full" asChild>
+                    <Link to="/work-with-matt">Request guidance from Matt</Link>
+                  </Button>
+                )}
               </div>
               <div className="mt-6 flex flex-wrap gap-2">
                 {hub.categories.map((category) => (
@@ -201,6 +203,10 @@ export default function TopicHubDetail() {
                   <p className="font-medium text-foreground">Need live family support?</p>
                   <p className="text-sm text-muted-foreground mt-1">SoberHelpline.com offers a free family support Zoom every Monday night led by professional interventionists.</p>
                 </a>
+                <Link to="/work-with-matt" className="block rounded-xl border border-primary/20 bg-primary/5 p-4 hover:border-primary/40 transition-colors">
+                  <p className="font-medium text-foreground">Need a private family plan?</p>
+                  <p className="text-sm text-muted-foreground mt-1">Use the consultation request form to share what is happening and ask for guidance from Matt.</p>
+                </Link>
                 <a href="https://freedominterventions.com" target="_blank" rel="noreferrer" className="block rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
                   <p className="font-medium text-foreground">Need higher-level intervention help?</p>
                   <p className="text-sm text-muted-foreground mt-1">Freedom Interventions is the better path when the situation is escalating or treatment refusal is entrenched.</p>

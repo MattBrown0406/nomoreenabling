@@ -22,10 +22,10 @@ const CoachingInterventionCTA = ({ variant = "wide" }: CoachingInterventionCTAPr
         </p>
         <div className="mt-5 flex flex-col sm:flex-row gap-3">
           <Button asChild>
-            <a href="mailto:matt@nomoreenabling.com?subject=Family%20coaching%20or%20intervention%20guidance">
-              <Mail className="h-4 w-4" />
-              Email Matt
-            </a>
+            <Link to="/work-with-matt">
+              Request guidance
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </Button>
           <Button variant="outline" asChild>
             <a href="https://freedominterventions.com" target="_blank" rel="noreferrer">
@@ -34,10 +34,10 @@ const CoachingInterventionCTA = ({ variant = "wide" }: CoachingInterventionCTAPr
             </a>
           </Button>
           <Button variant="ghost" asChild>
-            <Link to="/professional-guidance-signs">
-              See warning signs
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            <a href="mailto:matt@nomoreenabling.com?subject=Family%20coaching%20or%20intervention%20guidance">
+              <Mail className="h-4 w-4" />
+              Email Matt
+            </a>
           </Button>
         </div>
       </div>

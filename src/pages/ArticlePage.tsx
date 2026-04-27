@@ -413,6 +413,18 @@ const ArticlePage = () => {
                   </p>
                 </div>
 
+                <div className="rounded-xl border border-border bg-background p-5 mb-8">
+                  <p className="text-sm uppercase tracking-wide text-primary font-medium">Written from intervention experience</p>
+                  <p className="text-muted-foreground mt-2">
+                    This article is part of No More Enabling’s family education library, shaped by Matt Brown’s work with families affected by addiction,
+                    treatment resistance, relapse, and boundary breakdowns since 2004.
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-3 text-sm">
+                    <Link to="/about" className="text-primary hover:underline">About Matt Brown</Link>
+                    <Link to="/work-with-matt" className="text-primary hover:underline">Request family guidance</Link>
+                  </div>
+                </div>
+
                 {matchingHubs.length > 0 && (
                   <div className="rounded-2xl border border-border bg-card p-5 mb-8">
                     <p className="text-sm uppercase tracking-wide text-primary font-medium">Read this as part of a bigger pattern</p>
