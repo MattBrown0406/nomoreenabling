@@ -4,8 +4,8 @@ import path from "path";
 
 /**
  * Vite plugin that auto-generates sitemap.xml during build.
- * It reads all blog post slugs from the blogPosts data file
- * and combines them with static routes.
+ * It reads route data from the same source files the app uses and combines
+ * articles, categories, topic hubs, and static routes.
  */
 export function sitemapPlugin(): Plugin {
   return {
@@ -13,29 +13,44 @@ export function sitemapPlugin(): Plugin {
     apply: "build",
     async closeBundle() {
       try {
-        // Dynamically read slugs from the built blogPosts data
-        const dataFilePath = path.resolve(__dirname, "../src/data/blogPosts.ts");
-        const content = fs.readFileSync(dataFilePath, "utf-8");
+        const metaFilePath = path.resolve(__dirname, "../src/data/blogPostMeta.ts");
+        const topicHubFilePath = path.resolve(__dirname, "../src/data/topicHubs.ts");
+        const metaContent = fs.readFileSync(metaFilePath, "utf-8");
+        const topicHubContent = fs.readFileSync(topicHubFilePath, "utf-8");
 
-        // Extract all slugs from the source using regex
-        const slugRegex = /slug:\s*["']([^"']+)["']/g;
-        const slugs: string[] = [];
-        let match: RegExpExecArray | null;
-        while ((match = slugRegex.exec(content)) !== null) {
-          // Deduplicate slugs
-          if (!slugs.includes(match[1])) {
-            slugs.push(match[1]);
+        const articles: { slug: string; date?: string }[] = [];
+        const categories = new Set<string>();
+        const articleBlockRegex = /\{\s*id:\s*["'][^"']+["'][\s\S]*?slug:\s*["']([^"']+)["'][\s\S]*?\}/g;
+        let articleMatch: RegExpExecArray | null;
+        while ((articleMatch = articleBlockRegex.exec(metaContent)) !== null) {
+          const block = articleMatch[0];
+          const slug = articleMatch[1];
+          const date = block.match(/date:\s*["']([^"']+)["']/)?.[1];
+          const categoriesText = block.match(/categories:\s*\[([^\]]+)\]/)?.[1] ?? "";
+
+          if (!articles.some((article) => article.slug === slug)) {
+            articles.push({ slug, date });
+          }
+
+          for (const category of categoriesText.matchAll(/["']([^"']+)["']/g)) {
+            categories.add(category[1].toLowerCase().replace(/\s+/g, "-"));
           }
         }
 
-        // Import the generator
-        const { generateSitemapXml } = await import("../scripts/generate-sitemap");
-        const xml = generateSitemapXml(slugs);
+        const topicHubs = Array.from(topicHubContent.matchAll(/slug:\s*["']([^"']+)["']/g))
+          .map((match) => match[1])
+          .filter((slug, index, all) => all.indexOf(slug) === index);
 
-        // Write to dist/sitemap.xml
+        const { generateSitemapXml } = await import("../scripts/generate-sitemap");
+        const xml = generateSitemapXml({
+          articles,
+          categories: Array.from(categories).sort(),
+          topicHubs,
+        });
+
         const distPath = path.resolve(__dirname, "../dist/sitemap.xml");
         fs.writeFileSync(distPath, xml, "utf-8");
-        console.log(`✅ Sitemap generated with ${slugs.length} articles and static pages`);
+        console.log(`✅ Sitemap generated with ${articles.length} articles, ${categories.size} categories, and ${topicHubs.length} topic hubs`);
       } catch (err) {
         console.error("⚠️ Failed to generate sitemap:", err);
       }

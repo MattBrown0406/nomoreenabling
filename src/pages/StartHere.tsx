@@ -5,6 +5,7 @@ import SEOHead from "@/components/seo/SEOHead";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import { Button } from "@/components/ui/button";
 import { topicHubs } from "@/data/topicHubs";
+import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
 
 const steps = [
   {
@@ -98,6 +99,8 @@ export default function StartHere() {
             </div>
           </div>
         </section>
+
+        <CoachingInterventionCTA />
 
         <section className="container mx-auto px-4 pb-16">
           <div className="max-w-5xl mx-auto grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">

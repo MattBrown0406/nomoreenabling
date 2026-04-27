@@ -30,15 +30,10 @@ const SEOHead = ({
 }: SEOHeadProps) => {
   const location = useLocation();
 
-  // Build the full title, truncating if needed to stay under 60 chars
   const buildTitle = () => {
     const suffix = " | No More Enabling";
     if (title.includes("No More Enabling")) return title;
-    const full = `${title}${suffix}`;
-    if (full.length <= 60) return full;
-    // Truncate the title portion
-    const maxTitleLen = 60 - suffix.length - 1; // -1 for ellipsis
-    return `${title.substring(0, maxTitleLen)}…${suffix}`;
+    return `${title}${suffix}`;
   };
 
   const fullTitle = buildTitle();
@@ -67,6 +62,8 @@ const SEOHead = ({
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:secure_url" content={ogImage} />
       <meta property="og:image:alt" content={ogImageAlt} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
       <meta property="og:site_name" content="No More Enabling" />
       <meta property="og:locale" content="en_US" />
 

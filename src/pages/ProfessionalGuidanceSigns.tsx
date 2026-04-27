@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Printer, AlertTriangle, Users, Heart, Shield, Brain, MessageCircle, HelpCircle, Clock, ArrowRight } from "lucide-react";
 import AdSpace from "@/components/ads/AdSpace";
 import SEOHead from "@/components/seo/SEOHead";
+import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
 
 const ProfessionalGuidanceSigns = () => {
   const handlePrint = () => {
@@ -293,6 +294,10 @@ const ProfessionalGuidanceSigns = () => {
               </p>
             </CardContent>
           </Card>
+
+          <div className="mb-12">
+            <CoachingInterventionCTA variant="compact" />
+          </div>
 
           {/* Disclaimer */}
           <p className="text-xs text-muted-foreground text-center">

@@ -43,10 +43,38 @@ const OrganizationJsonLd = () => {
     inLanguage: "en-US",
   };
 
+  const professionalServiceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "Matt Brown Addiction Family Coaching and Intervention Guidance",
+    url: "https://nomoreenabling.com/about",
+    image: "https://nomoreenabling.com/favicon.jpg",
+    description:
+      "Family coaching and professional intervention guidance for families navigating addiction, enabling, boundaries, treatment resistance, and relapse patterns.",
+    founder: {
+      "@type": "Person",
+      name: "Matt Brown",
+      jobTitle: "Professional Interventionist",
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "United States",
+    },
+    serviceType: [
+      "Family addiction coaching",
+      "Addiction intervention guidance",
+      "Family boundaries coaching",
+      "Treatment resistance consultation",
+    ],
+    email: "matt@nomoreenabling.com",
+    sameAs: organizationJsonLd.sameAs,
+  };
+
   return (
     <Helmet>
       <script type="application/ld+json">{JSON.stringify(organizationJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(websiteJsonLd)}</script>
+      <script type="application/ld+json">{JSON.stringify(professionalServiceJsonLd)}</script>
     </Helmet>
   );
 };

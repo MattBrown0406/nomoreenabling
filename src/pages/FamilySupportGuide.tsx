@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AdSpace from "@/components/ads/AdSpace";
 import SEOHead from "@/components/seo/SEOHead";
+import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
 
 const FamilySupportGuide = () => {
   const handlePrint = () => {
@@ -339,6 +340,10 @@ const FamilySupportGuide = () => {
               <p className="text-primary font-semibold italic">
                 Change does not require perfection. It requires honesty, support, and follow-through.
               </p>
+            </section>
+
+            <section className="mb-12">
+              <CoachingInterventionCTA variant="compact" />
             </section>
 
             <section className="text-center border-t border-border pt-8">

@@ -17,6 +17,7 @@ import SEOHead from "@/components/seo/SEOHead";
 import ArticleJsonLd from "@/components/seo/ArticleJsonLd";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import { useInitialArticleContent } from "@/lib/articleContentContext";
+import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
 
 const XIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -447,6 +448,10 @@ const ArticlePage = () => {
                     </div>
                   </div>
                 )}
+
+                <div className="mb-8">
+                  <CoachingInterventionCTA variant="compact" />
+                </div>
 
                 <div className="flex items-center gap-2 mb-8 pb-6 border-b border-border flex-wrap">
                   <span className="text-sm text-muted-foreground mr-2">Share:</span>

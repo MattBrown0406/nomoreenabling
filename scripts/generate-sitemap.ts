@@ -11,10 +11,23 @@
 
 const DOMAIN = "https://nomoreenabling.com";
 
+export interface SitemapArticle {
+  slug: string;
+  date?: string;
+}
+
+export interface SitemapInput {
+  articles: SitemapArticle[];
+  categories?: string[];
+  topicHubs?: string[];
+}
+
 // Static pages with their priorities and change frequencies
 const staticPages: { path: string; priority: string; changefreq: string }[] = [
   { path: "/", priority: "1.0", changefreq: "weekly" },
+  { path: "/start-here", priority: "0.95", changefreq: "monthly" },
   { path: "/articles", priority: "0.9", changefreq: "weekly" },
+  { path: "/topic-hubs", priority: "0.85", changefreq: "monthly" },
   { path: "/about", priority: "0.8", changefreq: "monthly" },
   { path: "/advertise", priority: "0.7", changefreq: "monthly" },
   { path: "/boundaries-course", priority: "0.8", changefreq: "monthly" },
@@ -29,25 +42,67 @@ const staticPages: { path: string; priority: string; changefreq: string }[] = [
   { path: "/cookies", priority: "0.5", changefreq: "monthly" },
 ];
 
-export function generateSitemapXml(slugs: string[]): string {
+const toLastMod = (date?: string) => {
+  if (!date) return null;
+  const parsed = new Date(date);
+  if (Number.isNaN(parsed.getTime())) return null;
+  return parsed.toISOString().slice(0, 10);
+};
+
+const formatUrl = ({
+  loc,
+  changefreq,
+  priority,
+  lastmod,
+}: {
+  loc: string;
+  changefreq: string;
+  priority: string;
+  lastmod?: string | null;
+}) => `  <url>
+    <loc>${loc}</loc>
+${lastmod ? `    <lastmod>${lastmod}</lastmod>\n` : ""}    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+
+export function generateSitemapXml(input: SitemapInput | string[]): string {
+  const normalizedInput: SitemapInput = Array.isArray(input)
+    ? { articles: input.map((slug) => ({ slug })) }
+    : input;
+
   const urls: string[] = [];
 
-  // Add static pages
   for (const page of staticPages) {
-    urls.push(`  <url>
-    <loc>${DOMAIN}${page.path}</loc>
-    <changefreq>${page.changefreq}</changefreq>
-    <priority>${page.priority}</priority>
-  </url>`);
+    urls.push(formatUrl({
+      loc: `${DOMAIN}${page.path}`,
+      changefreq: page.changefreq,
+      priority: page.priority,
+    }));
   }
 
-  // Add article pages
-  for (const slug of slugs) {
-    urls.push(`  <url>
-    <loc>${DOMAIN}/articles/${slug}</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>`);
+  for (const category of normalizedInput.categories ?? []) {
+    urls.push(formatUrl({
+      loc: `${DOMAIN}/category/${category}`,
+      changefreq: "weekly",
+      priority: "0.75",
+    }));
+  }
+
+  for (const hub of normalizedInput.topicHubs ?? []) {
+    urls.push(formatUrl({
+      loc: `${DOMAIN}/topic-hubs/${hub}`,
+      changefreq: "monthly",
+      priority: "0.8",
+    }));
+  }
+
+  for (const article of normalizedInput.articles) {
+    urls.push(formatUrl({
+      loc: `${DOMAIN}/articles/${article.slug}`,
+      lastmod: toLastMod(article.date),
+      changefreq: "monthly",
+      priority: "0.7",
+    }));
   }
 
   return `<?xml version="1.0" encoding="UTF-8"?>

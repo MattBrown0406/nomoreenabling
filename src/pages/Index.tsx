@@ -11,10 +11,10 @@ import NewsletterSection from "@/components/home/NewsletterSection";
 import BlogCard from "@/components/blog/BlogCard";
 import Sidebar from "@/components/home/Sidebar";
 import FamilyBridgeBanner from "@/components/ads/FamilyBridgeBanner";
+import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
 import { Button } from "@/components/ui/button";
 import { blogPostsMeta } from "@/data/blogPostMeta";
 import SEOHead from "@/components/seo/SEOHead";
-import OrganizationJsonLd from "@/components/seo/OrganizationJsonLd";
 
 const categories = [
   "All",
@@ -112,7 +112,6 @@ const Index = () => {
         canonicalUrl="https://nomoreenabling.com/"
         keywords="family addiction support, enabling addiction, boundaries with addiction, help vs enabling, codependency family recovery"
       />
-      <OrganizationJsonLd />
 
       <div className="min-h-screen flex flex-col">
         <Header />
@@ -223,6 +222,8 @@ const Index = () => {
               </div>
             </div>
           </section>
+
+          <CoachingInterventionCTA />
 
           <SelfAssessment />
           <AddictionAssessment />
