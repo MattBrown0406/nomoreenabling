@@ -1404,5 +1404,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "al-anon-for-families-of-addicts",
     metaTitle: "Al-Anon for Families of Addicts: What to Expect",
     metaDescription: "Discover how Al-Anon helps families of addicts find real support, stop feeling alone, and begin healing. Learn what to expect and why it works.",
+  },
+  {
+    id: "104",
+    title: "How to Prepare for Your Loved One's Return from Treatment (Without Undoing the Work)",
+    excerpt: "Learn how to prepare your home, your mindset, and your boundaries before your loved one returns from addiction treatment — so you can support recovery without slipping back into enabling.",
+    category: "Recovery",
+    categories: ["Recovery", "Family Support", "Boundaries"],
+    readTime: "10 min read",
+    date: "April 27, 2026",
+    image: preparingLovedOnesReturnImage,
+    slug: "preparing-for-loved-ones-return-from-treatment",
+    metaTitle: "Preparing for a Loved One's Return from Treatment",
+    metaDescription: "Prepare your home, mindset, and boundaries before your loved one returns from addiction treatment — support recovery without slipping back into enabling.",
   }
 ];
