@@ -94,6 +94,7 @@ import detachingWithLoveImage from "@/assets/detaching-with-love-addiction-famil
 import alAnonFamiliesImage from "@/assets/al-anon-families-of-addicts.jpg";
 import preparingLovedOnesReturnImage from "@/assets/preparing-loved-ones-return-from-treatment.jpg";
 import respondToRelapseImage from "@/assets/respond-to-relapse-without-enabling.jpg";
+import talkToLovedOneTreatmentImage from "@/assets/talk-to-loved-one-about-addiction-treatment.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -1432,5 +1433,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "respond-to-relapse-without-enabling",
     metaTitle: "How to Respond to a Relapse Without Enabling",
     metaDescription: "When your loved one relapses, your response matters. Learn how to react with love and clear limits — without enabling their addiction or losing yourself.",
+  },
+  {
+    id: "106",
+    title: "How to Talk to Your Loved One About Addiction Treatment (Without Making Things Worse)",
+    excerpt: "Struggling to talk to your loved one about getting help for addiction? Learn what to say, what to avoid, and how to have the conversation that could change everything.",
+    category: "Family Support",
+    categories: ["Family Support", "Communication", "Recovery"],
+    readTime: "9 min read",
+    date: "April 30, 2026",
+    image: talkToLovedOneTreatmentImage,
+    slug: "talk-to-loved-one-about-addiction-treatment",
+    metaTitle: "How to Talk to a Loved One About Addiction Treatment",
+    metaDescription: "Struggling to talk to your loved one about getting help for addiction? Learn what to say, what to avoid, and how to have the conversation that could change everything.",
   }
 ];
