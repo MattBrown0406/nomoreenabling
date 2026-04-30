@@ -93,6 +93,7 @@ import holdingBoundariesGuiltImage from "@/assets/holding-boundaries-guilt.jpg";
 import detachingWithLoveImage from "@/assets/detaching-with-love-addiction-family.jpg";
 import alAnonFamiliesImage from "@/assets/al-anon-families-of-addicts.jpg";
 import preparingLovedOnesReturnImage from "@/assets/preparing-loved-ones-return-from-treatment.jpg";
+import respondToRelapseImage from "@/assets/respond-to-relapse-without-enabling.jpg";
 
 export interface BlogPost {
   id: string;
@@ -11578,6 +11579,20 @@ It's free. It takes five minutes. And it exists because no family should have to
       <h3>What is the biggest mistake families make when a loved one comes home from rehab?</h3>
       <p>The most common mistake is abandoning limits out of relief and love. Families let the boundaries soften, slip back into old roles, and unknowingly recreate the dynamic that supported the addiction. The antidote is preparation — knowing in advance what you will and won't do, and having support to hold to it.</p>
     `
+  },
+  {
+    id: "",
+    title: "When Your Loved One Relapses: How to Respond Without Enabling",
+    excerpt: "When your loved one relapses, your response matters. Learn how to react with love and clear limits — without enabling their addiction or losing yourself in the process.",
+    category: "Recovery",
+    categories: ["Recovery", "Boundaries", "Family Support"],
+    readTime: "9 min read",
+    date: "April 29, 2026",
+    image: respondToRelapseImage,
+    metaTitle: "How to Respond to a Relapse Without Enabling",
+    metaDescription: "When your loved one relapses, your response matters. Learn how to react with love and clear limits — without enabling their addiction or losing yourself.",
+    slug: "respond-to-relapse-without-enabling",
+    content: (await import("./article-content/respond-to-relapse-without-enabling")).default,
   },
 ];
 
