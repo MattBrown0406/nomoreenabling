@@ -106,4 +106,5 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "al-anon-for-families-of-addicts": () => import("./article-content/al-anon-for-families-of-addicts"),
   "preparing-for-loved-ones-return-from-treatment": () => import("./article-content/preparing-for-loved-ones-return-from-treatment"),
   "respond-to-relapse-without-enabling": () => import("./article-content/respond-to-relapse-without-enabling"),
+  "talk-to-loved-one-about-addiction-treatment": () => import("./article-content/talk-to-loved-one-about-addiction-treatment"),
 };
