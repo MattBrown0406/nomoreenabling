@@ -93,6 +93,7 @@ import holdingBoundariesGuiltImage from "@/assets/holding-boundaries-guilt.jpg";
 import detachingWithLoveImage from "@/assets/detaching-with-love-addiction-family.jpg";
 import alAnonFamiliesImage from "@/assets/al-anon-families-of-addicts.jpg";
 import preparingLovedOnesReturnImage from "@/assets/preparing-loved-ones-return-from-treatment.jpg";
+import respondToRelapseImage from "@/assets/respond-to-relapse-without-enabling.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -1418,5 +1419,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "preparing-for-loved-ones-return-from-treatment",
     metaTitle: "Preparing for a Loved One's Return from Treatment",
     metaDescription: "Prepare your home, mindset, and boundaries before your loved one returns from addiction treatment — support recovery without slipping back into enabling.",
+  },
+  {
+    id: "105",
+    title: "When Your Loved One Relapses: How to Respond Without Enabling",
+    excerpt: "When your loved one relapses, your response matters. Learn how to react with love and clear limits — without enabling their addiction or losing yourself in the process.",
+    category: "Recovery",
+    categories: ["Recovery", "Boundaries", "Family Support"],
+    readTime: "9 min read",
+    date: "April 29, 2026",
+    image: respondToRelapseImage,
+    slug: "respond-to-relapse-without-enabling",
+    metaTitle: "How to Respond to a Relapse Without Enabling",
+    metaDescription: "When your loved one relapses, your response matters. Learn how to react with love and clear limits — without enabling their addiction or losing yourself.",
   }
 ];
