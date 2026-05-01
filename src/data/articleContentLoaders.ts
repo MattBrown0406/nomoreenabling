@@ -120,4 +120,8 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "how-to-talk-to-someone-who-needs-treatment": () => import("./article-content/how-to-talk-to-someone-who-needs-treatment"),
   "when-is-an-addiction-intervention-necessary": () => import("./article-content/when-is-an-addiction-intervention-necessary"),
   "addiction-treatment-refusal-family-plan": () => import("./article-content/addiction-treatment-refusal-family-plan"),
+  "how-to-support-someone-after-rehab": () => import("./article-content/how-to-support-someone-after-rehab"),
+  "boundaries-after-rehab": () => import("./article-content/boundaries-after-rehab"),
+  "what-to-do-after-relapse": () => import("./article-content/what-to-do-after-relapse"),
+  "family-rules-after-addiction-treatment": () => import("./article-content/family-rules-after-addiction-treatment"),
 };

@@ -114,6 +114,10 @@ import articleContent112 from "./article-content/loved-one-refuses-addiction-tre
 import articleContent113 from "./article-content/how-to-talk-to-someone-who-needs-treatment";
 import articleContent114 from "./article-content/when-is-an-addiction-intervention-necessary";
 import articleContent115 from "./article-content/addiction-treatment-refusal-family-plan";
+import articleContent116 from "./article-content/how-to-support-someone-after-rehab";
+import articleContent117 from "./article-content/boundaries-after-rehab";
+import articleContent118 from "./article-content/what-to-do-after-relapse";
+import articleContent119 from "./article-content/family-rules-after-addiction-treatment";
 
 export const articleContentBySlug: Record<string, string> = {
   "8-stages-family-addiction-journey": articleContent0,
@@ -232,6 +236,10 @@ export const articleContentBySlug: Record<string, string> = {
   "how-to-talk-to-someone-who-needs-treatment": articleContent113,
   "when-is-an-addiction-intervention-necessary": articleContent114,
   "addiction-treatment-refusal-family-plan": articleContent115,
+  "how-to-support-someone-after-rehab": articleContent116,
+  "boundaries-after-rehab": articleContent117,
+  "what-to-do-after-relapse": articleContent118,
+  "family-rules-after-addiction-treatment": articleContent119,
 };
 
 export const getServerArticleContent = (slug: string | undefined) => (slug ? articleContentBySlug[slug] ?? null : null);

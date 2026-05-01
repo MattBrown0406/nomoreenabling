@@ -135,6 +135,45 @@ export const topicHubs: TopicHub[] = [
     ],
   },
   {
+    slug: "after-treatment",
+    title: "After treatment: how families support recovery without rebuilding the old pattern",
+    shortTitle: "After Treatment",
+    description: "A practical hub for families navigating the first weeks after rehab, post-treatment boundaries, relapse response, and household rules.",
+    intro: "This hub is for families whose loved one is coming home from treatment, rebuilding trust, facing early recovery risk, or trying to respond wisely after relapse.",
+    bestFor: "Best when the crisis is quieter but the family still needs structure, support, and clear limits.",
+    categories: ["After Treatment", "Recovery", "Boundaries", "Family Support"],
+    featuredSlugs: [
+      "how-to-support-someone-after-rehab",
+      "boundaries-after-rehab",
+      "what-to-do-after-relapse",
+      "family-rules-after-addiction-treatment",
+    ],
+    primaryCta: { label: "Build stronger boundaries", href: "/boundaries-course" },
+    secondaryCta: { label: "Request guidance from Matt", href: "/work-with-matt" },
+    searchIntent: "Families searching for how to support someone after rehab, what rules to set after treatment, how to handle relapse, and how to avoid enabling in early recovery.",
+    sponsorCategory: "Aftercare providers, sober living, outpatient programs, recovery coaching, family support, relapse prevention, and recovery technology.",
+    keyQuestions: [
+      "How do I support someone after rehab without enabling?",
+      "What boundaries should families set after rehab?",
+      "What should we do after relapse?",
+      "What family rules help after addiction treatment?",
+    ],
+    guideSections: [
+      {
+        heading: "After treatment is a transition, not a finish line",
+        body: "Families often expect treatment discharge to bring relief, but the return-home period can be one of the most delicate points in recovery. The person is trying to practice new tools, and the family is trying not to fall back into old roles. This hub gives that transition a clearer structure.",
+      },
+      {
+        heading: "Why this cluster matters for search",
+        body: "Post-treatment searches are highly practical. Families are asking what to do tonight, what rules to write down, whether relapse means treatment failed, and how to support recovery without becoming the monitor. That makes this cluster valuable for organic traffic and for ethical recovery-support advertisers.",
+      },
+      {
+        heading: "The path this hub should create",
+        body: "The reading path starts with support after rehab, then moves into boundaries, relapse response, and family rules. The goal is to help families create a healthier recovery environment while protecting themselves from the old rescue-and-chaos pattern.",
+      },
+    ],
+  },
+  {
     slug: "enabling",
     title: "Enabling: when helping starts protecting the problem",
     shortTitle: "Enabling",

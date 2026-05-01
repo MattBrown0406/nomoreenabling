@@ -62,6 +62,7 @@ Prioritize search phrases with clear pain and commercial potential:
    - "loved one refuses addiction treatment"
 
 4. After treatment
+   - Status: published May 1, 2026
    - "how to support someone after rehab"
    - "boundaries after rehab"
    - "what to do after relapse"
@@ -93,6 +94,7 @@ Already implemented:
 - first dedicated cluster: Adult Child Addiction hub plus four supporting articles
 - second dedicated cluster: Financial Enabling hub plus four supporting articles
 - third dedicated cluster: Treatment Resistance hub plus five supporting articles
+- fourth dedicated cluster: After Treatment hub plus four supporting articles
 
 Next technical wins:
 
