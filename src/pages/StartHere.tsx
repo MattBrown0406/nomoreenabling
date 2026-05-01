@@ -8,7 +8,7 @@ import ItemListJsonLd from "@/components/seo/ItemListJsonLd";
 import { Button } from "@/components/ui/button";
 import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
 import { funnelPaths } from "@/data/funnelPaths";
-import { AlertTriangle, ArrowRight, CheckCircle2, ExternalLink, LifeBuoy, MapPinned, ShieldAlert } from "lucide-react";
+import { AlertTriangle, ArrowRight, CheckCircle2, ClipboardList, ExternalLink, LifeBuoy, MapPinned, ShieldAlert } from "lucide-react";
 
 const principles = [
   {
@@ -101,7 +101,7 @@ export default function StartHere() {
                     </a>
                   </Button>
                   <Button variant="outline" size="lg" asChild>
-                    <Link to="/helping-or-enabling">Take the assessment</Link>
+                    <Link to="/family-situation-assessment">Take the family assessment</Link>
                   </Button>
                 </div>
               </div>
@@ -201,25 +201,30 @@ export default function StartHere() {
                 </h2>
               </div>
               <div className="grid gap-4 sm:grid-cols-2 lg:col-span-2">
-                <a href="https://soberhelpline.com" target="_blank" rel="noreferrer" className="rounded-2xl border border-border bg-background p-5 hover:border-primary/40 transition-colors">
+                <Link to="/family-situation-assessment" className="rounded-2xl border border-border bg-background p-5 hover:border-primary/40 transition-colors">
+                  <ClipboardList className="h-5 w-5 text-primary" />
+                  <p className="mt-3 font-semibold text-foreground">Family Situation Assessment</p>
+                  <p className="mt-2 text-sm text-muted-foreground">Best for readers who need to identify whether this is a safety, intervention, boundaries, after-treatment, or support problem.</p>
+                </Link>
+                <Link to="/support/sober-helpline" className="rounded-2xl border border-border bg-background p-5 hover:border-primary/40 transition-colors">
                   <LifeBuoy className="h-5 w-5 text-primary" />
                   <p className="mt-3 font-semibold text-foreground">Sober Helpline</p>
                   <p className="mt-2 text-sm text-muted-foreground">Best for families who need live support, orientation, and a place to ask questions before choosing a bigger step.</p>
-                </a>
-                <a href="https://freedominterventions.com" target="_blank" rel="noreferrer" className="rounded-2xl border border-border bg-background p-5 hover:border-primary/40 transition-colors">
+                </Link>
+                <Link to="/support/freedom-interventions" className="rounded-2xl border border-border bg-background p-5 hover:border-primary/40 transition-colors">
                   <ShieldAlert className="h-5 w-5 text-primary" />
                   <p className="mt-3 font-semibold text-foreground">Freedom Interventions</p>
                   <p className="mt-2 text-sm text-muted-foreground">Best when treatment refusal, escalating risk, relapse, or family division means education alone is not enough.</p>
-                </a>
-                <Link to="/boundaries-course" className="rounded-2xl border border-border bg-background p-5 hover:border-primary/40 transition-colors">
+                </Link>
+                <Link to="/support/boundaries-course" className="rounded-2xl border border-border bg-background p-5 hover:border-primary/40 transition-colors">
                   <CheckCircle2 className="h-5 w-5 text-primary" />
                   <p className="mt-3 font-semibold text-foreground">Boundaries Course</p>
                   <p className="mt-2 text-sm text-muted-foreground">Best when the family knows the issue but keeps losing the limit under guilt, fear, or pressure.</p>
                 </Link>
-                <Link to="/helping-or-enabling" className="rounded-2xl border border-border bg-background p-5 hover:border-primary/40 transition-colors">
+                <Link to="/support/family-bridge" className="rounded-2xl border border-border bg-background p-5 hover:border-primary/40 transition-colors">
                   <MapPinned className="h-5 w-5 text-primary" />
-                  <p className="mt-3 font-semibold text-foreground">Helping or Enabling Tool</p>
-                  <p className="mt-2 text-sm text-muted-foreground">Best for readers who are not sure whether their next move supports recovery or protects the pattern.</p>
+                  <p className="mt-3 font-semibold text-foreground">Family Bridge</p>
+                  <p className="mt-2 text-sm text-muted-foreground">Best after treatment, when the family needs structure, shared expectations, and better communication.</p>
                 </Link>
               </div>
             </div>

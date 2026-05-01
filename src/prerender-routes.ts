@@ -1,5 +1,6 @@
 import { blogPostsMeta } from "@/data/blogPostMeta";
 import { topicHubs } from "@/data/topicHubs";
+import { supportOffers } from "@/data/supportOffers";
 
 const staticRoutes = [
   "/",
@@ -14,6 +15,7 @@ const staticRoutes = [
   "/family-system-notes",
   "/boundaries-course",
   "/start-here",
+  "/family-situation-assessment",
   "/topic-hubs",
   "/work-with-matt",
   "/privacy",
@@ -31,5 +33,6 @@ const categoryRoutes = Array.from(
 
 const articleRoutes = blogPostsMeta.map((post) => `/articles/${post.slug}`);
 const topicHubRoutes = topicHubs.map((hub) => `/topic-hubs/${hub.slug}`);
+const supportRoutes = supportOffers.map((offer) => `/support/${offer.slug}`);
 
-export const prerenderRoutes = [...staticRoutes, ...categoryRoutes, ...articleRoutes, ...topicHubRoutes];
+export const prerenderRoutes = [...staticRoutes, ...categoryRoutes, ...articleRoutes, ...topicHubRoutes, ...supportRoutes];

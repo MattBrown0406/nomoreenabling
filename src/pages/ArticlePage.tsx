@@ -9,6 +9,7 @@ import { topicHubs } from "@/data/topicHubs";
 import AdSpace from "@/components/ads/AdSpace";
 import EagleCreekRanchBanner from "@/components/ads/EagleCreekRanchBanner";
 import RelatedArticleCallout from "@/components/blog/RelatedArticleCallout";
+import ArticleStickyCTA from "@/components/blog/ArticleStickyCTA";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -256,6 +257,37 @@ const getPrimaryCta = (article: { title: string; categories: string[] }) => {
   };
 };
 
+const isHighIntentArticle = (article: { title: string; categories: string[] }) => {
+  const haystack = `${article.title} ${article.categories.join(" ")}`.toLowerCase();
+  const highIntentTerms = [
+    "crisis",
+    "safety",
+    "unsafe",
+    "violence",
+    "threat",
+    "intervention",
+    "refuses",
+    "refusal",
+    "alcoholic",
+    "alcohol",
+    "spouse",
+    "partner",
+    "adult child",
+    "financial",
+    "money",
+    "rent",
+    "bills",
+    "after treatment",
+    "after rehab",
+    "relapse",
+    "boundary",
+    "enabling",
+    "codependency",
+  ];
+
+  return highIntentTerms.some((term) => haystack.includes(term));
+};
+
 const ArticlePage = () => {
   const { slug } = useParams<{ slug: string }>();
   const initialArticleContent = useInitialArticleContent();
@@ -324,6 +356,7 @@ const ArticlePage = () => {
   const articleUrl = `https://nomoreenabling.com/articles/${slug}`;
   const imageUrl = article?.image?.startsWith("http") ? article.image : `https://nomoreenabling.com${article?.image}`;
   const primaryCta = article ? getPrimaryCta(article) : null;
+  const showStickyCta = article ? isHighIntentArticle(article) : false;
   const matchingHubs = article
     ? topicHubs.filter((hub) => article.categories.some((category) => hub.categories.includes(category))).slice(0, 2)
     : [];
@@ -648,6 +681,20 @@ const ArticlePage = () => {
                   </div>
                 )}
 
+                {primaryCta && showStickyCta && (
+                  <div className="sticky top-24 z-20 mb-8 lg:hidden">
+                    <ArticleStickyCTA
+                      title="Choose your next step"
+                      description="If this article sounds like your family, use the short assessment to route the situation before the next hard conversation."
+                      primaryLabel="Take the family assessment"
+                      primaryHref="/family-situation-assessment"
+                      secondaryLabel={primaryCta.label}
+                      secondaryHref={primaryCta.href}
+                      compact
+                    />
+                  </div>
+                )}
+
                 <div className="mb-8">
                   <CoachingInterventionCTA variant="compact" />
                 </div>
@@ -783,6 +830,16 @@ const ArticlePage = () => {
 
             <aside className="hidden lg:block w-80 flex-shrink-0" aria-label="Sponsored content">
               <div className="sticky top-24 space-y-6">
+                {primaryCta && showStickyCta && (
+                  <ArticleStickyCTA
+                    title="Do this before the next conversation"
+                    description="Take the family assessment, get a route, and move toward the right offer instead of reading one more article in panic."
+                    primaryLabel="Take the assessment"
+                    primaryHref="/family-situation-assessment"
+                    secondaryLabel={primaryCta.label}
+                    secondaryHref={primaryCta.href}
+                  />
+                )}
                 <div className="rounded-2xl border border-border bg-card p-6">
                   <p className="text-sm uppercase tracking-wide text-primary font-medium">Author perspective</p>
                   <h2 className="font-serif text-2xl font-bold text-foreground mt-2">Matt Brown</h2>

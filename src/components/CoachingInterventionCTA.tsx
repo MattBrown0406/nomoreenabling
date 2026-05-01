@@ -28,10 +28,10 @@ const CoachingInterventionCTA = ({ variant = "wide" }: CoachingInterventionCTAPr
             </Link>
           </Button>
           <Button variant="outline" asChild>
-            <a href="https://freedominterventions.com" target="_blank" rel="noreferrer">
+            <Link to="/support/freedom-interventions">
               <MessageCircle className="h-4 w-4" />
               Intervention support
-            </a>
+            </Link>
           </Button>
           <Button variant="ghost" asChild>
             <a href="mailto:matt@nomoreenabling.com?subject=Family%20coaching%20or%20intervention%20guidance">
