@@ -95,6 +95,8 @@ import alAnonFamiliesImage from "@/assets/al-anon-families-of-addicts.jpg";
 import preparingLovedOnesReturnImage from "@/assets/preparing-loved-ones-return-from-treatment.jpg";
 import respondToRelapseImage from "@/assets/respond-to-relapse-without-enabling.jpg";
 import talkToLovedOneTreatmentImage from "@/assets/talk-to-loved-one-about-addiction-treatment.jpg";
+import stoppingEnablingAbandonmentImage from "@/assets/stopping-enabling-feels-like-abandonment.jpg";
+import stoppingEnablingAbandonmentContent from "./article-content/stopping-enabling-feels-like-abandonment";
 
 export interface BlogPost {
   id: string;
@@ -11761,6 +11763,20 @@ It's free. It takes five minutes. And it exists because no family should have to
       <h3>Is it ever too late to have the conversation about addiction treatment?</h3>
       <p>Almost never. People enter recovery at every stage of addiction — and every honest conversation, even one that doesn't immediately produce results, contributes to the cumulative pressure that eventually motivates change. Don't let the fear of being too late keep you from saying what needs to be said.</p>
     `,
+  },
+  {
+    id: "",
+    title: "Why Stopping Enabling Feels Like Abandonment — And Why It's Not",
+    excerpt: "Stopping enabling can feel like abandonment, but it isn't. Learn why that voice is lying to you and what real love looks like in addiction recovery.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Support", "Boundaries", "Codependency"],
+    readTime: "8 min read",
+    date: "May 1, 2026",
+    image: stoppingEnablingAbandonmentImage,
+    metaTitle: "Why Stopping Enabling Feels Like Abandonment (It's Not)",
+    metaDescription: "Stopping enabling your loved one's addiction can feel like abandonment. Learn why that feeling is a trap—and what real love looks like in recovery.",
+    slug: "stopping-enabling-feels-like-abandonment",
+    content: stoppingEnablingAbandonmentContent,
   },
 ];
 
