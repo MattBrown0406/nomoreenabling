@@ -16,6 +16,8 @@ const sanitizeString = (str: string | null | undefined, maxLength: number): stri
   return str.trim().slice(0, maxLength);
 };
 
+const ASSESSMENT_RESULTS = new Set(['safety', 'intervention', 'boundaries', 'after-treatment', 'support']);
+
 // Disposable/temporary email domains commonly used by bots
 const DISPOSABLE_DOMAINS = new Set([
   'mailinator.com', 'guerrillamail.com', 'guerrillamail.de', 'grr.la', 'guerrillamailblock.com',
@@ -98,7 +100,7 @@ serve(async (req) => {
   }
 
   try {
-    const { email, first_name, _t } = await req.json();
+    const { email, first_name, source, result, recommended_offer, answers, _t } = await req.json();
 
     // Validate email
     if (!email || typeof email !== 'string') {
@@ -139,6 +141,12 @@ serve(async (req) => {
     }
 
     const sanitizedFirstName = sanitizeString(first_name, 100);
+    const sanitizedSource = sanitizeString(source, 120);
+    const sanitizedResult = sanitizeString(result, 80);
+    const sanitizedRecommendedOffer = sanitizeString(recommended_offer, 120);
+    const isAssessmentSignup = sanitizedSource === 'family_situation_assessment'
+      && sanitizedResult
+      && ASSESSMENT_RESULTS.has(sanitizedResult);
 
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
@@ -153,23 +161,48 @@ serve(async (req) => {
         first_name: sanitizedFirstName 
       });
 
+    let alreadySubscribed = false;
+
     if (error) {
       if (error.code === '23505') {
-        return new Response(
-          JSON.stringify({ error: 'already_subscribed' }),
-          { status: 409, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-        );
+        alreadySubscribed = true;
+      } else {
+        console.error('Database error:', error.message);
+        throw error;
       }
-      console.error('Database error:', error.message);
-      throw error;
     }
 
-    syncToMailchimp(sanitizedEmail, sanitizedFirstName).catch(e => 
-      console.error('Background Mailchimp sync error:', e)
-    );
+    if (isAssessmentSignup) {
+      const safeAnswers = typeof answers === 'object' && answers !== null ? answers : {};
+      const { error: assessmentError } = await supabase
+        .from('assessment_leads')
+        .upsert(
+          {
+            email: sanitizedEmail,
+            first_name: sanitizedFirstName,
+            source: sanitizedSource,
+            assessment_result: sanitizedResult,
+            recommended_offer: sanitizedRecommendedOffer,
+            answers: safeAnswers,
+            last_result_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          },
+          { onConflict: 'email' },
+        );
+
+      if (assessmentError) {
+        console.error('Assessment lead capture error:', assessmentError.message);
+      }
+    }
+
+    if (!alreadySubscribed) {
+      syncToMailchimp(sanitizedEmail, sanitizedFirstName).catch(e =>
+        console.error('Background Mailchimp sync error:', e)
+      );
+    }
 
     return new Response(
-      JSON.stringify({ success: true }),
+      JSON.stringify({ success: true, error: alreadySubscribed ? 'already_subscribed' : undefined }),
       { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
 

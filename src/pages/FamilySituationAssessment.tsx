@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import {
   AlertTriangle,
@@ -20,6 +20,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { getSupportOffer, type SupportOfferSlug } from "@/data/supportOffers";
+import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 
 type OutcomeId = "safety" | "intervention" | "boundaries" | "after-treatment" | "support";
 
@@ -349,6 +350,8 @@ export default function FamilySituationAssessment() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [captureComplete, setCaptureComplete] = useState(false);
   const loadedAt = useRef(Date.now());
+  const startedTracked = useRef(false);
+  const completedTracked = useRef(false);
 
   const answeredCount = Object.keys(answers).length;
   const isComplete = answeredCount === questions.length;
@@ -377,6 +380,29 @@ export default function FamilySituationAssessment() {
 
   const offer = result ? getSupportOffer(result.offerSlug) : null;
 
+  useEffect(() => {
+    if (!result || completedTracked.current) return;
+
+    completedTracked.current = true;
+    void trackFunnelEvent("assessment_completed", {
+      source: "family_situation_assessment",
+      assessmentResult: result.id,
+      offerSlug: result.offerSlug,
+      metadata: { answers },
+    });
+  }, [answers, result]);
+
+  const handleAnswer = (questionId: string, value: string) => {
+    if (!startedTracked.current) {
+      startedTracked.current = true;
+      void trackFunnelEvent("assessment_started", {
+        source: "family_situation_assessment",
+      });
+    }
+
+    setAnswers((current) => ({ ...current, [questionId]: value }));
+  };
+
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     if (!result || !email.trim()) return;
@@ -387,6 +413,11 @@ export default function FamilySituationAssessment() {
     }
 
     setIsSubmitting(true);
+    void trackFunnelEvent("email_capture_attempt", {
+      source: "family_situation_assessment",
+      assessmentResult: result.id,
+      offerSlug: offer?.slug,
+    });
 
     try {
       const { data, error } = await supabase.functions.invoke("newsletter-signup", {
@@ -395,6 +426,8 @@ export default function FamilySituationAssessment() {
           first_name: firstName || null,
           source: "family_situation_assessment",
           result: result.id,
+          recommended_offer: offer?.slug,
+          answers,
           _t: loadedAt.current,
         },
       });
@@ -402,6 +435,11 @@ export default function FamilySituationAssessment() {
       if (error && data?.error !== "already_subscribed") throw error;
 
       setCaptureComplete(true);
+      void trackFunnelEvent("email_capture_success", {
+        source: "family_situation_assessment",
+        assessmentResult: result.id,
+        offerSlug: offer?.slug,
+      });
       toast({
         title: data?.error === "already_subscribed" ? "You are already on the list." : "Your plan is saved.",
         description: "Use the result below now, and watch your inbox for practical family guidance.",
@@ -409,6 +447,11 @@ export default function FamilySituationAssessment() {
       setEmail("");
       setFirstName("");
     } catch {
+      void trackFunnelEvent("email_capture_failure", {
+        source: "family_situation_assessment",
+        assessmentResult: result.id,
+        offerSlug: offer?.slug,
+      });
       toast({
         title: "Something went wrong",
         description: "Your result is still available below. Please try the email form again later.",
@@ -423,6 +466,8 @@ export default function FamilySituationAssessment() {
     setAnswers({});
     setCaptureComplete(false);
     loadedAt.current = Date.now();
+    startedTracked.current = false;
+    completedTracked.current = false;
   };
 
   return (
@@ -484,7 +529,7 @@ export default function FamilySituationAssessment() {
                         <button
                           key={option.value}
                           type="button"
-                          onClick={() => setAnswers((current) => ({ ...current, [question.id]: option.value }))}
+                          onClick={() => handleAnswer(question.id, option.value)}
                           className={`text-left rounded-xl border p-4 transition-colors ${
                             selected ? "border-primary bg-primary/5" : "border-border bg-background hover:border-primary/40"
                           }`}
@@ -541,7 +586,17 @@ export default function FamilySituationAssessment() {
                     {offer && (
                       <div className="mt-5 grid gap-3">
                         <Button asChild>
-                          <Link to={`/support/${offer.slug}`}>
+                          <Link
+                            to={`/support/${offer.slug}`}
+                            onClick={() => {
+                              void trackFunnelEvent("assessment_route_click", {
+                                source: "family_situation_assessment",
+                                assessmentResult: result.id,
+                                offerSlug: offer.slug,
+                                targetHref: `/support/${offer.slug}`,
+                              });
+                            }}
+                          >
                             See why {offer.name} fits
                             <ArrowRight className="h-4 w-4" />
                           </Link>

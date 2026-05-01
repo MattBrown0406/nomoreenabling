@@ -690,6 +690,8 @@ const ArticlePage = () => {
                       primaryHref="/family-situation-assessment"
                       secondaryLabel={primaryCta.label}
                       secondaryHref={primaryCta.href}
+                      articleSlug={article.slug}
+                      ctaLocation="article_mobile_sticky"
                       compact
                     />
                   </div>
@@ -838,6 +840,8 @@ const ArticlePage = () => {
                     primaryHref="/family-situation-assessment"
                     secondaryLabel={primaryCta.label}
                     secondaryHref={primaryCta.href}
+                    articleSlug={article.slug}
+                    ctaLocation="article_sidebar_sticky"
                   />
                 )}
                 <div className="rounded-2xl border border-border bg-card p-6">

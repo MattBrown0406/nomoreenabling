@@ -7,21 +7,42 @@ import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import FAQJsonLd from "@/components/seo/FAQJsonLd";
 import { Button } from "@/components/ui/button";
 import { getSupportOffer } from "@/data/supportOffers";
+import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 
 const isExternalHref = (href: string) => href.startsWith("http");
 
-const BridgeButton = ({ href, children, variant = "default" }: { href: string; children: React.ReactNode; variant?: "default" | "outline" }) => {
+const BridgeButton = ({
+  href,
+  children,
+  variant = "default",
+  offerSlug,
+  placement,
+}: {
+  href: string;
+  children: React.ReactNode;
+  variant?: "default" | "outline";
+  offerSlug: string;
+  placement: string;
+}) => {
   const content = (
     <>
       {children}
       {isExternalHref(href) ? <ExternalLink className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
     </>
   );
+  const trackClick = () => {
+    void trackFunnelEvent(isExternalHref(href) ? "outbound_offer_click" : "bridge_page_click", {
+      source: "support_bridge",
+      offerSlug,
+      targetHref: href,
+      metadata: { placement, external: isExternalHref(href) },
+    });
+  };
 
   if (isExternalHref(href)) {
     return (
       <Button variant={variant} size="lg" asChild>
-        <a href={href} target="_blank" rel="noreferrer">
+        <a href={href} target="_blank" rel="noreferrer" onClick={trackClick}>
           {content}
         </a>
       </Button>
@@ -30,7 +51,7 @@ const BridgeButton = ({ href, children, variant = "default" }: { href: string; c
 
   return (
     <Button variant={variant} size="lg" asChild>
-      <Link to={href}>{content}</Link>
+      <Link to={href} onClick={trackClick}>{content}</Link>
     </Button>
   );
 };
@@ -93,8 +114,8 @@ export default function SupportBridge() {
                   {offer.description}
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                  <BridgeButton href={offer.primaryHref}>{offer.primaryLabel}</BridgeButton>
-                  <BridgeButton href={offer.secondaryHref} variant="outline">{offer.secondaryLabel}</BridgeButton>
+                  <BridgeButton href={offer.primaryHref} offerSlug={offer.slug} placement="hero_primary">{offer.primaryLabel}</BridgeButton>
+                  <BridgeButton href={offer.secondaryHref} offerSlug={offer.slug} placement="hero_secondary" variant="outline">{offer.secondaryLabel}</BridgeButton>
                 </div>
               </div>
 
@@ -161,8 +182,8 @@ export default function SupportBridge() {
                   This page exists so No More Enabling readers do not jump from an article straight into the wrong offer. If this route fits, take the next step. If it does not, use the assessment and get rerouted.
                 </p>
                 <div className="mt-6 flex flex-col sm:flex-row gap-3">
-                  <BridgeButton href={offer.primaryHref}>{offer.primaryLabel}</BridgeButton>
-                  <BridgeButton href="/family-situation-assessment" variant="outline">Retake the assessment</BridgeButton>
+                  <BridgeButton href={offer.primaryHref} offerSlug={offer.slug} placement="final_primary">{offer.primaryLabel}</BridgeButton>
+                  <BridgeButton href="/family-situation-assessment" offerSlug={offer.slug} placement="final_assessment" variant="outline">Retake the assessment</BridgeButton>
                 </div>
               </div>
             </div>
