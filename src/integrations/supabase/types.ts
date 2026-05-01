@@ -77,6 +77,81 @@ export type Database = {
         }
         Relationships: []
       }
+      assessment_followup_templates: {
+        Row: {
+          assessment_result: string
+          body_markdown: string
+          created_at: string
+          day_offset: number
+          id: string
+          preview_text: string
+          primary_cta_href: string
+          primary_cta_label: string
+          subject: string
+        }
+        Insert: {
+          assessment_result: string
+          body_markdown: string
+          created_at?: string
+          day_offset: number
+          id?: string
+          preview_text: string
+          primary_cta_href: string
+          primary_cta_label: string
+          subject: string
+        }
+        Update: {
+          assessment_result?: string
+          body_markdown?: string
+          created_at?: string
+          day_offset?: number
+          id?: string
+          preview_text?: string
+          primary_cta_href?: string
+          primary_cta_label?: string
+          subject?: string
+        }
+        Relationships: []
+      }
+      assessment_leads: {
+        Row: {
+          answers: Json
+          assessment_result: string
+          email: string
+          first_name: string | null
+          id: string
+          last_result_at: string
+          recommended_offer: string | null
+          source: string
+          subscribed_at: string
+          updated_at: string
+        }
+        Insert: {
+          answers?: Json
+          assessment_result: string
+          email: string
+          first_name?: string | null
+          id?: string
+          last_result_at?: string
+          recommended_offer?: string | null
+          source?: string
+          subscribed_at?: string
+          updated_at?: string
+        }
+        Update: {
+          answers?: Json
+          assessment_result?: string
+          email?: string
+          first_name?: string | null
+          id?: string
+          last_result_at?: string
+          recommended_offer?: string | null
+          source?: string
+          subscribed_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       course_enrollments: {
         Row: {
           completed_at: string | null
@@ -113,6 +188,51 @@ export type Database = {
           is_active?: boolean
           last_email_sent_at?: string | null
           next_email_at?: string | null
+        }
+        Relationships: []
+      }
+      funnel_events: {
+        Row: {
+          article_slug: string | null
+          assessment_result: string | null
+          created_at: string
+          event_name: string
+          id: string
+          metadata: Json
+          offer_slug: string | null
+          page_path: string | null
+          page_title: string | null
+          referrer: string | null
+          source: string | null
+          target_href: string | null
+        }
+        Insert: {
+          article_slug?: string | null
+          assessment_result?: string | null
+          created_at?: string
+          event_name: string
+          id?: string
+          metadata?: Json
+          offer_slug?: string | null
+          page_path?: string | null
+          page_title?: string | null
+          referrer?: string | null
+          source?: string | null
+          target_href?: string | null
+        }
+        Update: {
+          article_slug?: string | null
+          assessment_result?: string | null
+          created_at?: string
+          event_name?: string
+          id?: string
+          metadata?: Json
+          offer_slug?: string | null
+          page_path?: string | null
+          page_title?: string | null
+          referrer?: string | null
+          source?: string | null
+          target_href?: string | null
         }
         Relationships: []
       }
