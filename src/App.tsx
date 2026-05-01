@@ -28,7 +28,6 @@ import AdminAnalytics from "./pages/AdminAnalytics";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import CookiePolicy from "./pages/CookiePolicy";
-import AuthGuard from "./components/auth/AuthGuard";
 import NotFound from "./pages/NotFound";
 import ContactFormWidget from "./components/ContactFormWidget";
 
@@ -59,11 +58,7 @@ export const AppRoutes = () => (
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/terms" element={<TermsOfService />} />
       <Route path="/cookies" element={<CookiePolicy />} />
-      <Route path="/admin" element={
-        <AuthGuard>
-          <AdminAnalytics />
-        </AuthGuard>
-      } />
+      <Route path="/admin" element={<AdminAnalytics />} />
 
       {/* Legacy WordPress 301 Redirects */}
       <Route path="/are-you-an-enabler" element={<Navigate to="/helping-or-enabling" replace />} />

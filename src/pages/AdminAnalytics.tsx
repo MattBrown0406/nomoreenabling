@@ -1,13 +1,29 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { useNavigate } from "react-router-dom";
+import type { Session } from "@supabase/supabase-js";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart3, LogOut, TrendingUp, Eye, FileText, Calendar, ArrowUpDown, MousePointerClick, RefreshCw, Share2 } from "lucide-react";
+import {
+  ArrowUpDown,
+  BarChart3,
+  ClipboardList,
+  Eye,
+  FileText,
+  LogOut,
+  Mail,
+  MousePointerClick,
+  RefreshCw,
+  Route,
+  Share2,
+  Target,
+  TrendingUp,
+  Users,
+} from "lucide-react";
 import { blogPostsMeta } from "@/data/blogPostMeta";
 import { toast } from "@/hooks/use-toast";
 import SEOHead from "@/components/seo/SEOHead";
+import { getSupportOffer } from "@/data/supportOffers";
 
 interface ArticleStat {
   slug: string;
@@ -22,13 +38,54 @@ interface AdClickStat {
   clicks: number;
 }
 
+interface FunnelEventRow {
+  event_name: string;
+  created_at: string;
+  page_path: string | null;
+  article_slug: string | null;
+  assessment_result: string | null;
+  offer_slug: string | null;
+  target_href: string | null;
+}
+
+interface AssessmentLeadRow {
+  id: string;
+  email: string;
+  first_name: string | null;
+  source: string;
+  assessment_result: string;
+  recommended_offer: string | null;
+  last_result_at: string;
+}
+
+interface FunnelBreakdownStat {
+  key: string;
+  label: string;
+  count: number;
+}
+
 type SortField = "views" | "title" | "date";
 type SortDir = "asc" | "desc";
 type TimeRange = "7d" | "30d" | "90d" | "all";
 
+const resultLabels: Record<string, string> = {
+  safety: "Safety",
+  intervention: "Intervention",
+  boundaries: "Boundaries",
+  "after-treatment": "After Treatment",
+  support: "Support",
+};
+
+const formatDateTime = (value: string) =>
+  new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  }).format(new Date(value));
+
 const AdminAnalytics = () => {
-  const navigate = useNavigate();
-  const [session, setSession] = useState<any>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState("");
@@ -43,6 +100,9 @@ const AdminAnalytics = () => {
   const [enrollmentCount, setEnrollmentCount] = useState<number | null>(null);
   const [adClicks, setAdClicks] = useState<AdClickStat[]>([]);
   const [totalAdClicks, setTotalAdClicks] = useState(0);
+  const [funnelEvents, setFunnelEvents] = useState<FunnelEventRow[]>([]);
+  const [assessmentLeads, setAssessmentLeads] = useState<AssessmentLeadRow[]>([]);
+  const [assessmentLeadCount, setAssessmentLeadCount] = useState<number | null>(null);
   const [syncing, setSyncing] = useState(false);
   const [lastSyncCount, setLastSyncCount] = useState<number | null>(null);
 
@@ -80,6 +140,7 @@ const AdminAnalytics = () => {
       fetchAnalytics();
       fetchCounts();
       fetchAdClicks();
+      fetchFunnelAnalytics();
     } else {
       setIsAdmin(false);
       setLoading(false);
@@ -87,12 +148,14 @@ const AdminAnalytics = () => {
   };
 
   const fetchCounts = async () => {
-    const [subResult, enrollResult] = await Promise.all([
+    const [subResult, enrollResult, assessmentResult] = await Promise.all([
       supabase.from('subscribers').select('id', { count: 'exact', head: true }),
       supabase.from('course_enrollments').select('id', { count: 'exact', head: true }),
+      supabase.from('assessment_leads').select('id', { count: 'exact', head: true }),
     ]);
     setSubscriberCount(subResult.count ?? 0);
     setEnrollmentCount(enrollResult.count ?? 0);
+    setAssessmentLeadCount(assessmentResult.count ?? 0);
   };
 
   const fetchAdClicks = async () => {
@@ -124,6 +187,39 @@ const AdminAnalytics = () => {
 
     setAdClicks(clickStats);
     setTotalAdClicks(data.length);
+  };
+
+  const fetchFunnelAnalytics = async () => {
+    let eventQuery = supabase
+      .from('funnel_events')
+      .select('event_name, created_at, page_path, article_slug, assessment_result, offer_slug, target_href');
+
+    if (timeRange !== 'all') {
+      const days = timeRange === '7d' ? 7 : timeRange === '30d' ? 30 : 90;
+      const since = new Date();
+      since.setDate(since.getDate() - days);
+      eventQuery = eventQuery.gte('created_at', since.toISOString());
+    }
+
+    const { data: eventData, error: eventError } = await eventQuery.order('created_at', { ascending: false }).limit(1000);
+
+    if (eventError || !eventData) {
+      setFunnelEvents([]);
+    } else {
+      setFunnelEvents(eventData);
+    }
+
+    const { data: leadData, error: leadError } = await supabase
+      .from('assessment_leads')
+      .select('id, email, first_name, source, assessment_result, recommended_offer, last_result_at')
+      .order('last_result_at', { ascending: false })
+      .limit(10);
+
+    if (leadError || !leadData) {
+      setAssessmentLeads([]);
+    } else {
+      setAssessmentLeads(leadData);
+    }
   };
 
   const fetchAnalytics = async () => {
@@ -170,6 +266,7 @@ const AdminAnalytics = () => {
     if (isAdmin) {
       fetchAnalytics();
       fetchAdClicks();
+      fetchFunnelAnalytics();
     }
   }, [timeRange, isAdmin]);
 
@@ -237,10 +334,11 @@ const AdminAnalytics = () => {
         title: "Metadata synced!",
         description: `${records.length} articles synced for social sharing.`,
       });
-    } catch (err: any) {
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Please try again later.";
       toast({
         title: "Sync failed",
-        description: err.message,
+        description: message,
         variant: "destructive",
       });
     } finally {
@@ -257,7 +355,58 @@ const AdminAnalytics = () => {
   });
 
   const topArticle = stats.reduce((top, s) => (s.views > (top?.views || 0) ? s : top), stats[0]);
-  const avgViews = stats.length > 0 ? Math.round(totalViews / stats.filter(s => s.views > 0).length) : 0;
+  const viewedArticleCount = stats.filter((s) => s.views > 0).length;
+  const avgViews = viewedArticleCount > 0 ? Math.round(totalViews / viewedArticleCount) : 0;
+  const eventCount = (eventName: string) => funnelEvents.filter((event) => event.event_name === eventName).length;
+  const assessmentStarts = eventCount("assessment_started");
+  const assessmentCompletions = eventCount("assessment_completed");
+  const emailCaptures = eventCount("email_capture_success");
+  const stickyCtaClicks = eventCount("sticky_cta_click");
+  const bridgeClicks = eventCount("bridge_page_click");
+  const outboundOfferClicks = eventCount("outbound_offer_click");
+  const completionRate = assessmentStarts > 0 ? Math.round((assessmentCompletions / assessmentStarts) * 100) : 0;
+  const captureRate = assessmentCompletions > 0 ? Math.round((emailCaptures / assessmentCompletions) * 100) : 0;
+
+  const resultBreakdown: FunnelBreakdownStat[] = Object.entries(
+    funnelEvents
+      .filter((event) => event.event_name === "assessment_completed" && event.assessment_result)
+      .reduce<Record<string, number>>((acc, event) => {
+        const key = event.assessment_result || "unknown";
+        acc[key] = (acc[key] || 0) + 1;
+        return acc;
+      }, {})
+  )
+    .map(([key, count]) => ({ key, label: resultLabels[key] || key, count }))
+    .sort((a, b) => b.count - a.count);
+
+  const offerClickBreakdown: FunnelBreakdownStat[] = Object.entries(
+    funnelEvents
+      .filter((event) => ["bridge_page_click", "outbound_offer_click"].includes(event.event_name) && event.offer_slug)
+      .reduce<Record<string, number>>((acc, event) => {
+        const key = event.offer_slug || "unknown";
+        acc[key] = (acc[key] || 0) + 1;
+        return acc;
+      }, {})
+  )
+    .map(([key, count]) => ({ key, label: getSupportOffer(key)?.name || key, count }))
+    .sort((a, b) => b.count - a.count);
+
+  const articleFunnelSources: FunnelBreakdownStat[] = Object.entries(
+    funnelEvents
+      .filter((event) => event.article_slug)
+      .reduce<Record<string, number>>((acc, event) => {
+        const key = event.article_slug || "unknown";
+        acc[key] = (acc[key] || 0) + 1;
+        return acc;
+      }, {})
+  )
+    .map(([key, count]) => ({
+      key,
+      label: blogPostsMeta.find((post) => post.slug === key)?.title || key,
+      count,
+    }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 8);
 
   // Login screen
   if (!session || !isAdmin) {
@@ -328,7 +477,7 @@ const AdminAnalytics = () => {
           <div className="container mx-auto px-4 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <BarChart3 className="w-6 h-6 text-primary" />
-              <h1 className="font-serif text-xl font-bold text-foreground">Article Analytics</h1>
+              <h1 className="font-serif text-xl font-bold text-foreground">Admin Dashboard</h1>
             </div>
             <Button variant="ghost" size="sm" onClick={handleLogout}>
               <LogOut className="w-4 h-4 mr-2" />
@@ -356,6 +505,201 @@ const AdminAnalytics = () => {
               </Button>
             ))}
           </div>
+
+          {/* Funnel Summary */}
+          <section className="mb-8">
+            <div className="flex items-center justify-between gap-4 mb-4">
+              <div>
+                <h2 className="font-serif text-2xl font-bold text-foreground">Funnel Performance</h2>
+                <p className="text-muted-foreground text-sm">Assessment, capture, bridge, and offer-click activity for the selected period.</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
+                    <ClipboardList className="w-4 h-4" />
+                    Starts
+                  </div>
+                  <p className="text-3xl font-bold text-foreground">{assessmentStarts.toLocaleString()}</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
+                    <Target className="w-4 h-4" />
+                    Completed
+                  </div>
+                  <p className="text-3xl font-bold text-foreground">{assessmentCompletions.toLocaleString()}</p>
+                  <p className="text-xs text-muted-foreground">{completionRate}% completion</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
+                    <Mail className="w-4 h-4" />
+                    Captures
+                  </div>
+                  <p className="text-3xl font-bold text-foreground">{emailCaptures.toLocaleString()}</p>
+                  <p className="text-xs text-muted-foreground">{captureRate}% of completions</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
+                    <Route className="w-4 h-4" />
+                    Bridge Clicks
+                  </div>
+                  <p className="text-3xl font-bold text-foreground">{bridgeClicks.toLocaleString()}</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
+                    <MousePointerClick className="w-4 h-4" />
+                    Offer Clicks
+                  </div>
+                  <p className="text-3xl font-bold text-foreground">{outboundOfferClicks.toLocaleString()}</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
+                    <Users className="w-4 h-4" />
+                    Leads
+                  </div>
+                  <p className="text-3xl font-bold text-foreground">{assessmentLeadCount?.toLocaleString() ?? "—"}</p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="grid gap-6 lg:grid-cols-3">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">Assessment Results</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {resultBreakdown.length === 0 ? (
+                    <p className="text-muted-foreground text-sm">No assessment completions recorded yet.</p>
+                  ) : (
+                    <div className="space-y-3">
+                      {resultBreakdown.map((item) => {
+                        const percentage = assessmentCompletions > 0 ? (item.count / assessmentCompletions) * 100 : 0;
+                        return (
+                          <div key={item.key}>
+                            <div className="flex justify-between gap-3 text-sm mb-1">
+                              <span className="font-medium text-foreground">{item.label}</span>
+                              <span className="text-muted-foreground">{item.count} ({percentage.toFixed(0)}%)</span>
+                            </div>
+                            <div className="h-2 rounded-full bg-muted overflow-hidden">
+                              <div className="h-full bg-primary" style={{ width: `${percentage}%` }} />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">Offer Routing</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {offerClickBreakdown.length === 0 ? (
+                    <p className="text-muted-foreground text-sm">No bridge or offer clicks recorded yet.</p>
+                  ) : (
+                    <div className="space-y-3">
+                      {offerClickBreakdown.map((item) => {
+                        const totalOfferClicks = bridgeClicks + outboundOfferClicks;
+                        const percentage = totalOfferClicks > 0 ? (item.count / totalOfferClicks) * 100 : 0;
+                        return (
+                          <div key={item.key}>
+                            <div className="flex justify-between gap-3 text-sm mb-1">
+                              <span className="font-medium text-foreground truncate">{item.label}</span>
+                              <span className="text-muted-foreground">{item.count}</span>
+                            </div>
+                            <div className="h-2 rounded-full bg-muted overflow-hidden">
+                              <div className="h-full bg-primary" style={{ width: `${percentage}%` }} />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">Top Article Funnel Sources</CardTitle>
+                  <p className="text-muted-foreground text-sm">{stickyCtaClicks.toLocaleString()} sticky CTA clicks</p>
+                </CardHeader>
+                <CardContent>
+                  {articleFunnelSources.length === 0 ? (
+                    <p className="text-muted-foreground text-sm">No article funnel source events yet.</p>
+                  ) : (
+                    <div className="space-y-3">
+                      {articleFunnelSources.map((item) => (
+                        <div key={item.key} className="flex justify-between gap-3 text-sm">
+                          <span className="font-medium text-foreground line-clamp-2">{item.label}</span>
+                          <span className="text-muted-foreground flex-shrink-0">{item.count}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+
+            <Card className="mt-6">
+              <CardHeader>
+                <CardTitle className="font-serif text-lg">Recent Assessment Leads</CardTitle>
+                <p className="text-muted-foreground text-sm">Latest segmented leads captured by the family situation assessment.</p>
+              </CardHeader>
+              <CardContent>
+                {assessmentLeads.length === 0 ? (
+                  <p className="text-muted-foreground text-sm">No assessment leads captured yet.</p>
+                ) : (
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="border-b border-border">
+                          <th className="text-left py-3 px-2 font-medium text-muted-foreground">Lead</th>
+                          <th className="text-left py-3 px-2 font-medium text-muted-foreground">Result</th>
+                          <th className="text-left py-3 px-2 font-medium text-muted-foreground hidden md:table-cell">Recommended Offer</th>
+                          <th className="text-right py-3 px-2 font-medium text-muted-foreground">Latest</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {assessmentLeads.map((lead) => (
+                          <tr key={lead.id} className="border-b border-border/50">
+                            <td className="py-3 px-2">
+                              <p className="font-medium text-foreground">{lead.first_name || "Unknown"}</p>
+                              <p className="text-xs text-muted-foreground">{lead.email}</p>
+                            </td>
+                            <td className="py-3 px-2">
+                              <span className="bg-primary/10 text-primary text-xs px-2 py-0.5 rounded-full">
+                                {resultLabels[lead.assessment_result] || lead.assessment_result}
+                              </span>
+                            </td>
+                            <td className="py-3 px-2 text-muted-foreground hidden md:table-cell">
+                              {lead.recommended_offer ? getSupportOffer(lead.recommended_offer)?.name || lead.recommended_offer : "—"}
+                            </td>
+                            <td className="py-3 px-2 text-right text-muted-foreground text-xs">
+                              {formatDateTime(lead.last_result_at)}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </section>
 
           {/* Summary Cards */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">

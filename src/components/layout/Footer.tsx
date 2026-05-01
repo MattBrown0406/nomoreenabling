@@ -103,7 +103,12 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-border mt-10 pt-8 text-center text-muted-foreground text-sm">
-          <p>© {new Date().getFullYear()} No More Enabling. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} No More Enabling. All rights reserved.
+            <Link to="/admin" className="ml-2 text-muted-foreground/40 hover:text-muted-foreground transition-colors">
+              Staff
+            </Link>
+          </p>
         </div>
       </div>
     </footer>
