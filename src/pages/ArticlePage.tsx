@@ -147,6 +147,76 @@ const getWordCount = (content: string) => {
 const getPrimaryCta = (article: { title: string; categories: string[] }) => {
   const haystack = `${article.title} ${article.categories.join(" ")}`.toLowerCase();
 
+  if (haystack.includes("crisis") || haystack.includes("safety") || haystack.includes("911") || haystack.includes("violence") || haystack.includes("threat")) {
+    return {
+      label: "Open the safety path",
+      href: "/topic-hubs/crisis-and-safety",
+      description: "When safety is involved, the next step should be clear and proportionate. Start with the crisis and safety path before another conversation.",
+      secondaryLabel: "Request private guidance",
+      secondaryHref: "/work-with-matt",
+    };
+  }
+
+  if (haystack.includes("intervention") || haystack.includes("refuses") || haystack.includes("refusal") || haystack.includes("treatment resistance")) {
+    return {
+      label: "Read the intervention path",
+      href: "/topic-hubs/intervention",
+      description: "If the family is circling treatment refusal or intervention questions, use the structured intervention path instead of improvising the next talk.",
+      secondaryLabel: "Request guidance from Matt",
+      secondaryHref: "/work-with-matt",
+    };
+  }
+
+  if (haystack.includes("alcoholic") || haystack.includes("alcohol")) {
+    return {
+      label: "Open the alcohol family path",
+      href: "/topic-hubs/alcoholic-family-member",
+      description: "Alcohol can hide behind functioning and normal routines. Use the alcohol family path to separate minimization from real household impact.",
+      secondaryLabel: "Take the helping vs enabling assessment",
+      secondaryHref: "/helping-or-enabling",
+    };
+  }
+
+  if (haystack.includes("spouse") || haystack.includes("partner")) {
+    return {
+      label: "Open the spouse or partner path",
+      href: "/topic-hubs/spouse-partner-addiction",
+      description: "When addiction is inside the relationship, the next step has to protect love, safety, money, children, and reality at the same time.",
+      secondaryLabel: "Build stronger boundaries",
+      secondaryHref: "/boundaries-course",
+    };
+  }
+
+  if (haystack.includes("adult child")) {
+    return {
+      label: "Open the parent path",
+      href: "/topic-hubs/adult-child-addiction",
+      description: "Parents need guidance that honors the love without letting the addiction use money, housing, guilt, or rescue as the family system.",
+      secondaryLabel: "Take the helping vs enabling assessment",
+      secondaryHref: "/helping-or-enabling",
+    };
+  }
+
+  if (haystack.includes("financial") || haystack.includes("money") || haystack.includes("rent") || haystack.includes("bills")) {
+    return {
+      label: "Open the money path",
+      href: "/topic-hubs/financial-enabling",
+      description: "Money questions are rarely only about money. Use the financial enabling path to decide what support points toward recovery.",
+      secondaryLabel: "Take the helping vs enabling assessment",
+      secondaryHref: "/helping-or-enabling",
+    };
+  }
+
+  if (haystack.includes("after treatment") || haystack.includes("after rehab") || haystack.includes("relapse")) {
+    return {
+      label: "Open the after-treatment path",
+      href: "/topic-hubs/after-treatment",
+      description: "After treatment, the family needs structure that supports recovery without rebuilding the old rescue pattern.",
+      secondaryLabel: "Build stronger boundaries",
+      secondaryHref: "/boundaries-course",
+    };
+  }
+
   if (haystack.includes("boundar")) {
     return {
       label: "Build stronger boundaries",
