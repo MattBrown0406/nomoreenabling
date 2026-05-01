@@ -95,6 +95,7 @@ import alAnonFamiliesImage from "@/assets/al-anon-families-of-addicts.jpg";
 import preparingLovedOnesReturnImage from "@/assets/preparing-loved-ones-return-from-treatment.jpg";
 import respondToRelapseImage from "@/assets/respond-to-relapse-without-enabling.jpg";
 import talkToLovedOneTreatmentImage from "@/assets/talk-to-loved-one-about-addiction-treatment.jpg";
+import stoppingEnablingAbandonmentImage from "@/assets/stopping-enabling-feels-like-abandonment.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -1914,5 +1915,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "when-to-call-911-crisis-line-treatment-interventionist",
     metaTitle: "When to Call 911, a Crisis Line, Treatment, or an Interventionist",
     metaDescription: "Know when to call 911, 988, treatment resources, or an interventionist when addiction crisis, refusal, or family safety concerns escalate.",
+  },
+  {
+    id: "143",
+    title: "Why Stopping Enabling Feels Like Abandonment — And Why It's Not",
+    excerpt: "Stopping enabling can feel like abandonment, but it isn't. Learn why that voice is lying to you and what real love looks like in addiction recovery.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Support", "Boundaries", "Codependency"],
+    readTime: "8 min read",
+    date: "May 1, 2026",
+    image: stoppingEnablingAbandonmentImage,
+    slug: "stopping-enabling-feels-like-abandonment",
+    metaTitle: "Why Stopping Enabling Feels Like Abandonment (It's Not)",
+    metaDescription: "Stopping enabling your loved one's addiction can feel like abandonment. Learn why that feeling is a trap—and what real love looks like in recovery.",
   }
 ];
