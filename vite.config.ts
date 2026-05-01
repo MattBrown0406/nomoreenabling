@@ -12,7 +12,13 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks(id) {
           if (id.includes("node_modules")) {
-            if (id.includes("react-dom") || id.includes("react/") || id.includes("scheduler")) {
+            const normalizedId = id.replace(/\\/g, "/");
+
+            if (
+              normalizedId.includes("/node_modules/react-dom/") ||
+              normalizedId.includes("/node_modules/react/") ||
+              normalizedId.includes("/node_modules/scheduler/")
+            ) {
               return "react-vendor";
             }
             if (id.includes("react-router") || id.includes("@tanstack/react-query")) {
