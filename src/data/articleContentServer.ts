@@ -122,6 +122,21 @@ import articleContent120 from "./article-content/living-with-an-alcoholic-spouse
 import articleContent121 from "./article-content/boundaries-with-addicted-spouse";
 import articleContent122 from "./article-content/should-i-leave-someone-with-addiction";
 import articleContent123 from "./article-content/protecting-children-from-spouse-addiction";
+import articleContent124 from "./article-content/how-to-plan-an-addiction-intervention";
+import articleContent125 from "./article-content/what-to-say-in-addiction-intervention";
+import articleContent126 from "./article-content/addiction-intervention-letter-examples";
+import articleContent127 from "./article-content/family-intervention-for-alcoholism";
+import articleContent128 from "./article-content/what-happens-after-an-intervention";
+import articleContent129 from "./article-content/how-to-help-an-alcoholic-who-doesnt-want-help";
+import articleContent130 from "./article-content/how-to-stop-enabling-an-alcoholic";
+import articleContent131 from "./article-content/high-functioning-alcoholic-family-signs";
+import articleContent132 from "./article-content/alcoholic-parent-boundaries";
+import articleContent133 from "./article-content/drinking-around-kids-unsafe";
+import articleContent134 from "./article-content/addiction-makes-home-unsafe";
+import articleContent135 from "./article-content/loved-one-using-drugs-in-my-house";
+import articleContent136 from "./article-content/addicted-loved-one-stealing-from-you";
+import articleContent137 from "./article-content/addiction-threats-violence-home";
+import articleContent138 from "./article-content/when-to-call-911-crisis-line-treatment-interventionist";
 
 export const articleContentBySlug: Record<string, string> = {
   "8-stages-family-addiction-journey": articleContent0,
@@ -248,6 +263,21 @@ export const articleContentBySlug: Record<string, string> = {
   "boundaries-with-addicted-spouse": articleContent121,
   "should-i-leave-someone-with-addiction": articleContent122,
   "protecting-children-from-spouse-addiction": articleContent123,
+  "how-to-plan-an-addiction-intervention": articleContent124,
+  "what-to-say-in-addiction-intervention": articleContent125,
+  "addiction-intervention-letter-examples": articleContent126,
+  "family-intervention-for-alcoholism": articleContent127,
+  "what-happens-after-an-intervention": articleContent128,
+  "how-to-help-an-alcoholic-who-doesnt-want-help": articleContent129,
+  "how-to-stop-enabling-an-alcoholic": articleContent130,
+  "high-functioning-alcoholic-family-signs": articleContent131,
+  "alcoholic-parent-boundaries": articleContent132,
+  "drinking-around-kids-unsafe": articleContent133,
+  "addiction-makes-home-unsafe": articleContent134,
+  "loved-one-using-drugs-in-my-house": articleContent135,
+  "addicted-loved-one-stealing-from-you": articleContent136,
+  "addiction-threats-violence-home": articleContent137,
+  "when-to-call-911-crisis-line-treatment-interventionist": articleContent138,
 };
 
 export const getServerArticleContent = (slug: string | undefined) => (slug ? articleContentBySlug[slug] ?? null : null);

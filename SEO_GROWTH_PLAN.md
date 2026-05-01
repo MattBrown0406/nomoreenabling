@@ -75,6 +75,30 @@ Prioritize search phrases with clear pain and commercial potential:
    - "should I leave someone with addiction"
    - "protecting children from spouse addiction"
 
+6. Intervention
+   - Status: published May 1, 2026
+   - "how to plan an addiction intervention"
+   - "what to say in an addiction intervention"
+   - "addiction intervention letter examples"
+   - "family intervention for alcoholism"
+   - "what happens after an intervention"
+
+7. Alcoholic family member
+   - Status: published May 1, 2026
+   - "how to help an alcoholic who doesn't want help"
+   - "how to stop enabling an alcoholic"
+   - "high functioning alcoholic signs family"
+   - "alcoholic parent boundaries"
+   - "drinking around kids unsafe"
+
+8. Crisis and safety
+   - Status: published May 1, 2026
+   - "what to do when addiction makes home unsafe"
+   - "loved one using drugs in my house"
+   - "addicted loved one stealing from me"
+   - "addiction threats violence home"
+   - "when to call 911 crisis line treatment interventionist"
+
 ## Technical SEO Priorities
 
 Already implemented:
@@ -97,6 +121,9 @@ Already implemented:
 - third dedicated cluster: Treatment Resistance hub plus five supporting articles
 - fourth dedicated cluster: After Treatment hub plus four supporting articles
 - fifth dedicated cluster: Spouse or Partner Addiction hub plus four supporting articles
+- sixth dedicated cluster: Intervention hub plus five supporting articles
+- seventh dedicated cluster: Alcoholic Family Member hub plus five supporting articles
+- eighth dedicated cluster: Crisis and Safety hub plus five supporting articles
 
 Next technical wins:
 
