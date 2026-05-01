@@ -16,6 +16,7 @@ import { useReadingProgress } from "@/hooks/useReadingProgress";
 import SEOHead from "@/components/seo/SEOHead";
 import ArticleJsonLd from "@/components/seo/ArticleJsonLd";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import FAQJsonLd from "@/components/seo/FAQJsonLd";
 import { useInitialArticleContent } from "@/lib/articleContentContext";
 import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
 
@@ -53,12 +54,94 @@ const normalizeArticleHtml = (content: string) => {
   return convertMarkdownLikeContentToHtml(content);
 };
 
+const stripHtml = (html: string) =>
+  html
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const slugifyHeading = (text: string) =>
+  text
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 80);
+
+const withHeadingIds = (html: string) => {
+  const seen: Record<string, number> = {};
+
+  return html.replace(/<h2([^>]*)>([\s\S]*?)<\/h2>/gi, (match, attrs, innerHtml) => {
+    if (/\sid=/i.test(attrs)) return match;
+
+    const headingText = stripHtml(innerHtml);
+    const baseId = slugifyHeading(headingText) || "section";
+    seen[baseId] = (seen[baseId] || 0) + 1;
+    const id = seen[baseId] === 1 ? baseId : `${baseId}-${seen[baseId]}`;
+
+    return `<h2${attrs} id="${id}">${innerHtml}</h2>`;
+  });
+};
+
+const getNormalizedArticleHtml = (content: string) => withHeadingIds(normalizeArticleHtml(content).trim());
+
+const getArticleHeadings = (content: string) => {
+  const normalizedHtml = getNormalizedArticleHtml(content);
+  const headings: { id: string; text: string }[] = [];
+  const headingRegex = /<h2[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h2>/gi;
+  let match: RegExpExecArray | null;
+
+  while ((match = headingRegex.exec(normalizedHtml)) !== null) {
+    const text = stripHtml(match[2]);
+    if (text && !/^frequently asked questions/i.test(text)) {
+      headings.push({ id: match[1], text });
+    }
+  }
+
+  return headings.slice(0, 8);
+};
+
 const getArticleSections = (content: string) => {
-  const normalizedHtml = normalizeArticleHtml(content).trim();
+  const normalizedHtml = getNormalizedArticleHtml(content);
   if (!normalizedHtml) return [];
 
   const sections = normalizedHtml.split(/(?=<h2[\s>])/i).filter(Boolean);
   return sections.length ? sections : [normalizedHtml];
+};
+
+const extractArticleFaqs = (content: string) => {
+  const normalizedHtml = normalizeArticleHtml(content);
+  const faqStart = normalizedHtml.search(/<h2[^>]*>\s*Frequently Asked Questions/i);
+
+  if (faqStart === -1) return [];
+
+  const faqHtml = normalizedHtml.slice(faqStart);
+  const faqs: { question: string; answer: string }[] = [];
+  const questionRegex = /<h3[^>]*>([\s\S]*?)<\/h3>\s*<p[^>]*>([\s\S]*?)<\/p>/gi;
+  let match: RegExpExecArray | null;
+
+  while ((match = questionRegex.exec(faqHtml)) !== null) {
+    const question = stripHtml(match[1]);
+    const answer = stripHtml(match[2]);
+
+    if (question && answer) {
+      faqs.push({ question, answer });
+    }
+  }
+
+  return faqs.slice(0, 8);
+};
+
+const getWordCount = (content: string) => {
+  const text = stripHtml(normalizeArticleHtml(content));
+  if (!text) return undefined;
+  return text.split(/\s+/).filter(Boolean).length;
 };
 
 const getPrimaryCta = (article: { title: string; categories: string[] }) => {
@@ -151,6 +234,21 @@ const ArticlePage = () => {
   const articleSections = useMemo(() => {
     if (!articleContent) return [];
     return getArticleSections(articleContent);
+  }, [articleContent]);
+
+  const tableOfContents = useMemo(() => {
+    if (!articleContent) return [];
+    return getArticleHeadings(articleContent);
+  }, [articleContent]);
+
+  const articleFaqs = useMemo(() => {
+    if (!articleContent) return [];
+    return extractArticleFaqs(articleContent);
+  }, [articleContent]);
+
+  const wordCount = useMemo(() => {
+    if (!articleContent) return undefined;
+    return getWordCount(articleContent);
   }, [articleContent]);
 
   const articleUrl = `https://nomoreenabling.com/articles/${slug}`;
@@ -349,7 +447,11 @@ const ArticlePage = () => {
         datePublished={getISODate(article.date)}
         url={articleUrl}
         authorName="Matt Brown"
+        articleSection={article.category}
+        keywords={article.categories}
+        wordCount={wordCount}
       />
+      {articleFaqs.length > 0 && <FAQJsonLd faqs={articleFaqs} />}
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "https://nomoreenabling.com" },
@@ -424,6 +526,21 @@ const ArticlePage = () => {
                     <Link to="/work-with-matt" className="text-primary hover:underline">Request family guidance</Link>
                   </div>
                 </div>
+
+                {tableOfContents.length > 2 && (
+                  <nav className="rounded-2xl border border-border bg-secondary/30 p-5 mb-8" aria-label="Article table of contents">
+                    <p className="text-sm uppercase tracking-wide text-primary font-medium">In this guide</p>
+                    <ol className="mt-4 grid gap-2 sm:grid-cols-2">
+                      {tableOfContents.map((heading) => (
+                        <li key={heading.id}>
+                          <a href={`#${heading.id}`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                            {heading.text}
+                          </a>
+                        </li>
+                      ))}
+                    </ol>
+                  </nav>
+                )}
 
                 {matchingHubs.length > 0 && (
                   <div className="rounded-2xl border border-border bg-card p-5 mb-8">

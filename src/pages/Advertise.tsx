@@ -2,7 +2,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import AdSpace from "@/components/ads/AdSpace";
-import { Check, Mail, Phone, MessageSquare } from "lucide-react";
+import { Check, Mail } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
 
 const Advertise = () => {
@@ -34,12 +34,45 @@ const Advertise = () => {
   ];
 
   const benefits = [
-    "Reach a highly engaged audience interested in self-improvement",
-    "Target readers actively seeking wellness and personal growth content",
-    "Support a mission-driven publication",
-    "Flexible ad formats and placements",
-    "Monthly and quarterly packages available",
-    "Dedicated account support",
+    "Reach families actively researching addiction, enabling, boundaries, treatment, and recovery support",
+    "Show up beside practical education instead of broad, low-intent wellness content",
+    "Align with an ethics-first publication built by a working interventionist",
+    "Use flexible placements across article pages, topic hubs, and the homepage",
+    "Choose monthly or quarterly campaigns with simple flat-rate pricing",
+    "Receive direct placement support from the No More Enabling team",
+  ];
+
+  const audienceSegments = [
+    {
+      title: "Families in active confusion",
+      description: "Parents, spouses, siblings, and adult children trying to understand whether support has become enabling.",
+    },
+    {
+      title: "Treatment and intervention researchers",
+      description: "Readers comparing next steps when conversations, promises, and informal boundaries have stopped working.",
+    },
+    {
+      title: "Recovery support decision-makers",
+      description: "Families looking for aftercare, sober living, family coaching, accountability tools, and long-term support.",
+    },
+  ];
+
+  const sponsorshipPackages = [
+    {
+      name: "Topic Hub Sponsor",
+      fit: "Best for providers who want category-level visibility around enabling, boundaries, intervention, or recovery.",
+      includes: "Hub placement, sidebar visibility, and one contextual article placement.",
+    },
+    {
+      name: "Provider Spotlight",
+      fit: "Best for ethical treatment, coaching, family support, or recovery technology providers.",
+      includes: "Profile-style placement, homepage or article sidebar visibility, and newsletter-ready copy.",
+    },
+    {
+      name: "Network Bundle",
+      fit: "Best for sponsors who want reach across No More Enabling, Party Wreckers, and Sober Helpline.",
+      includes: "Custom package across articles, podcast mentions, newsletter, and family support resources.",
+    },
   ];
 
   return (
@@ -48,7 +81,7 @@ const Advertise = () => {
         title="Advertise on No More Enabling — Reach Families & Providers"
         description="Reach families and treatment providers through ethical advertising on NoMoreEnabling.com. High-intent audience actively seeking addiction and recovery resources."
         canonicalUrl="https://nomoreenabling.com/advertise"
-        keywords="advertise, wellness advertising, addiction recovery marketing, mental health advertising"
+        keywords="addiction recovery advertising, treatment provider advertising, family addiction audience, ethical recovery marketing, mental health advertising"
       />
       <Header />
       
@@ -58,12 +91,68 @@ const Advertise = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground">
-                Advertise With <span className="text-primary">Us</span>
+                Advertise to Families Looking for Real Addiction Support
               </h1>
               <p className="mt-6 text-lg text-muted-foreground">
-                Connect your brand with our engaged community of readers seeking 
-                personal growth, healthy relationships, and positive change.
+                No More Enabling reaches readers who are not casually browsing. They are trying to understand enabling,
+                boundaries, treatment resistance, relapse, and what to do next for someone they love.
               </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center max-w-3xl mx-auto mb-10">
+                <p className="text-sm uppercase tracking-wide text-primary font-medium">Audience intent</p>
+                <h2 className="font-serif text-3xl font-bold text-foreground mt-2">
+                  This is not broad wellness traffic
+                </h2>
+                <p className="mt-4 text-muted-foreground">
+                  Readers arrive with specific family addiction questions. That makes sponsorship here more about trust,
+                  timing, and fit than raw impressions alone.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-6">
+                {audienceSegments.map((segment) => (
+                  <div key={segment.title} className="rounded-xl border border-border bg-card p-6">
+                    <h3 className="font-serif text-xl font-bold text-foreground">{segment.title}</h3>
+                    <p className="mt-3 text-sm text-muted-foreground">{segment.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 bg-secondary/50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center max-w-3xl mx-auto mb-10">
+                <p className="text-sm uppercase tracking-wide text-primary font-medium">Sponsorship packages</p>
+                <h2 className="font-serif text-3xl font-bold text-foreground mt-2">
+                  Built for ethical recovery brands
+                </h2>
+                <p className="mt-4 text-muted-foreground">
+                  Sponsorships are reviewed for fit. No More Enabling sells visibility and education-aligned placement,
+                  not treatment referrals, clinical endorsement, or pay-for-placement recommendations.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-6">
+                {sponsorshipPackages.map((packageOption) => (
+                  <div key={packageOption.name} className="rounded-xl border border-border bg-card p-6 shadow-card">
+                    <h3 className="font-serif text-xl font-bold text-foreground">{packageOption.name}</h3>
+                    <p className="mt-3 text-sm text-muted-foreground">{packageOption.fit}</p>
+                    <div className="mt-5 rounded-lg bg-primary/10 p-4">
+                      <p className="text-sm font-medium text-primary">Includes</p>
+                      <p className="mt-1 text-sm text-muted-foreground">{packageOption.includes}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -103,7 +192,7 @@ const Advertise = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="font-serif text-3xl font-bold text-foreground text-center mb-12">
-                Why Advertise With Us?
+                Why Advertise Here?
               </h2>
               <div className="grid md:grid-cols-2 gap-4">
                 {benefits.map((benefit) => (
@@ -124,11 +213,11 @@ const Advertise = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center">
               <h2 className="font-serif text-3xl font-bold text-foreground mb-6">
-                Get Started Today
+                Request the Current Media Kit
               </h2>
               <p className="text-muted-foreground mb-8">
-                Ready to reach our audience? Contact our advertising team to 
-                discuss packages and pricing.
+                Ask for current traffic, placement availability, sponsorship guidelines, and package options.
+                We only accept advertisers that fit the site’s family-support mission.
               </p>
               <div className="flex justify-center">
                 <a href="mailto:matt@nomoreenabling.com">

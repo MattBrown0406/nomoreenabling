@@ -8,6 +8,9 @@ interface ArticleJsonLdProps {
   dateModified?: string;
   authorName?: string;
   url: string;
+  articleSection?: string;
+  keywords?: string[];
+  wordCount?: number;
 }
 
 const ArticleJsonLd = ({
@@ -18,6 +21,9 @@ const ArticleJsonLd = ({
   dateModified,
   authorName = "No More Enabling",
   url,
+  articleSection,
+  keywords,
+  wordCount,
 }: ArticleJsonLdProps) => {
   const jsonLd = {
     "@context": "https://schema.org",
@@ -25,8 +31,18 @@ const ArticleJsonLd = ({
     headline: title,
     description: description,
     image: image,
+    thumbnailUrl: image,
     datePublished: datePublished,
     dateModified: dateModified || datePublished,
+    articleSection,
+    keywords,
+    wordCount,
+    isAccessibleForFree: true,
+    inLanguage: "en-US",
+    about: keywords?.map((keyword) => ({
+      "@type": "Thing",
+      name: keyword,
+    })),
     author: {
       "@type": "Person",
       name: authorName,

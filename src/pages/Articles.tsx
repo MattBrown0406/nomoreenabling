@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BlogCard from "@/components/blog/BlogCard";
@@ -9,10 +9,12 @@ import { blogPostsMeta } from "@/data/blogPostMeta";
 import { Search, ArrowRight } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import ItemListJsonLd from "@/components/seo/ItemListJsonLd";
 
 const categories = [
   "All",
   "Addiction",
+  "Adult Child Addiction",
   "Enabling",
   "Boundaries",
   "Codependency",
@@ -33,7 +35,9 @@ const sortByDate = (posts: typeof blogPostsMeta) => {
 };
 
 const Articles = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchParams] = useSearchParams();
+  const initialQuery = searchParams.get("q") || "";
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const sortedPosts = useMemo(() => sortByDate(blogPostsMeta), []);
@@ -64,6 +68,15 @@ const Articles = () => {
           { name: "Home", url: "https://nomoreenabling.com" },
           { name: "Articles", url: "https://nomoreenabling.com/articles" },
         ]}
+      />
+      <ItemListJsonLd
+        name="No More Enabling Family Addiction Article Library"
+        description="Practical articles on enabling, boundaries, codependency, addiction, treatment, and family recovery."
+        items={sortedPosts.slice(0, 25).map((post) => ({
+          name: post.title,
+          description: post.excerpt,
+          url: `https://nomoreenabling.com/articles/${post.slug}`,
+        }))}
       />
       <Header />
 

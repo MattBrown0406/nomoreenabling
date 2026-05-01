@@ -101,6 +101,10 @@ import articleContent99 from "./article-content/when-love-becomes-enabling-suppo
 import articleContent100 from "./article-content/when-loved-one-tests-your-boundaries";
 import articleContent101 from "./article-content/why-good-parents-enable";
 import articleContent102 from "./article-content/why-setting-limits-addicted-loved-one-feels-impossible";
+import articleContent103 from "./article-content/how-to-stop-enabling-adult-child-addiction";
+import articleContent104 from "./article-content/should-i-let-addicted-adult-child-live-at-home";
+import articleContent105 from "./article-content/financial-boundaries-with-addicted-adult-child";
+import articleContent106 from "./article-content/when-adult-child-refuses-addiction-treatment";
 
 export const articleContentBySlug: Record<string, string> = {
   "8-stages-family-addiction-journey": articleContent0,
@@ -206,6 +210,10 @@ export const articleContentBySlug: Record<string, string> = {
   "when-loved-one-tests-your-boundaries": articleContent100,
   "why-good-parents-enable": articleContent101,
   "why-setting-limits-addicted-loved-one-feels-impossible": articleContent102,
+  "how-to-stop-enabling-adult-child-addiction": articleContent103,
+  "should-i-let-addicted-adult-child-live-at-home": articleContent104,
+  "financial-boundaries-with-addicted-adult-child": articleContent105,
+  "when-adult-child-refuses-addiction-treatment": articleContent106,
 };
 
 export const getServerArticleContent = (slug: string | undefined) => (slug ? articleContentBySlug[slug] ?? null : null);

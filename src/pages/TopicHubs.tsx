@@ -51,6 +51,7 @@ export default function TopicHubs() {
               <h2 className="font-serif text-2xl font-bold text-foreground">{hub.shortTitle}</h2>
               <p className="mt-3 text-muted-foreground">{hub.description}</p>
               <p className="mt-4 text-sm text-muted-foreground">{hub.bestFor}</p>
+              <p className="mt-4 text-sm text-muted-foreground">{hub.searchIntent}</p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {hub.categories.slice(0, 3).map((category) => (
                   <span key={category} className="rounded-full bg-secondary px-3 py-1 text-xs text-muted-foreground">{category}</span>

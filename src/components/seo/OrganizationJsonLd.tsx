@@ -41,6 +41,14 @@ const OrganizationJsonLd = () => {
       name: "No More Enabling",
     },
     inLanguage: "en-US",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: "https://nomoreenabling.com/articles?q={search_term_string}",
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 
   const professionalServiceJsonLd = {

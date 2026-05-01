@@ -3,6 +3,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SEOHead from "@/components/seo/SEOHead";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import ItemListJsonLd from "@/components/seo/ItemListJsonLd";
 import { blogPostsMeta } from "@/data/blogPostMeta";
 import { topicHubs } from "@/data/topicHubs";
 import BlogCard from "@/components/blog/BlogCard";
@@ -39,6 +40,7 @@ export default function TopicHubDetail() {
         !hub.featuredSlugs.includes(post.slug),
     )
     .slice(0, 8);
+  const hubPosts = [...featuredPosts, ...additionalPosts].filter(Boolean);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -54,6 +56,15 @@ export default function TopicHubDetail() {
           { name: "Topic Hubs", url: "https://nomoreenabling.com/topic-hubs" },
           { name: hub.shortTitle, url: `https://nomoreenabling.com/topic-hubs/${hub.slug}` },
         ]}
+      />
+      <ItemListJsonLd
+        name={`${hub.shortTitle} Reading Path`}
+        description={hub.description}
+        items={hubPosts.map((post) => ({
+          name: post!.title,
+          description: post!.excerpt,
+          url: `https://nomoreenabling.com/articles/${post!.slug}`,
+        }))}
       />
       <Header />
 
@@ -105,6 +116,32 @@ export default function TopicHubDetail() {
                 </div>
               </div>
             </div>
+
+            <section className="rounded-2xl border border-border bg-card p-6">
+              <p className="text-sm uppercase tracking-wide text-primary font-medium">Pillar guide</p>
+              <h2 className="font-serif text-3xl font-bold text-foreground mt-2">{hub.shortTitle} guidance for families affected by addiction</h2>
+              <p className="mt-4 text-muted-foreground">{hub.searchIntent}</p>
+              <div className="mt-6 space-y-6">
+                {hub.guideSections.map((section) => (
+                  <div key={section.heading}>
+                    <h3 className="font-serif text-2xl font-bold text-foreground">{section.heading}</h3>
+                    <p className="mt-2 text-muted-foreground leading-relaxed">{section.body}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section className="rounded-2xl border border-border bg-card p-6">
+              <p className="text-sm uppercase tracking-wide text-primary font-medium">Questions this hub answers</p>
+              <h2 className="font-serif text-2xl font-bold text-foreground mt-2">Common searches families bring here</h2>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                {hub.keyQuestions.map((question) => (
+                  <div key={question} className="rounded-xl bg-secondary/40 p-4">
+                    <p className="font-medium text-foreground">{question}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
 
             <div className="rounded-2xl border border-border bg-card p-6">
               <p className="text-sm uppercase tracking-wide text-primary font-medium">Why families trust this</p>
@@ -196,6 +233,14 @@ export default function TopicHubDetail() {
                     {category}
                   </Link>
                 ))}
+              </div>
+
+              <div className="mt-6 rounded-xl border border-border bg-background p-4">
+                <p className="text-sm font-medium text-foreground">Advertiser fit</p>
+                <p className="text-sm text-muted-foreground mt-1">{hub.sponsorCategory}</p>
+                <Link to="/advertise" className="inline-flex mt-3 text-sm font-medium text-primary hover:underline">
+                  See sponsorship options
+                </Link>
               </div>
 
               <div className="mt-6 pt-6 border-t border-border space-y-3">

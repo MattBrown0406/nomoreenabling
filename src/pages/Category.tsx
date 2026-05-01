@@ -7,6 +7,8 @@ import BlogCard from "@/components/blog/BlogCard";
 import Sidebar from "@/components/home/Sidebar";
 import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import ItemListJsonLd from "@/components/seo/ItemListJsonLd";
 
 const Category = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -44,6 +46,24 @@ const Category = () => {
         keywords={filteredPosts.length > 0 ? `${categoryName.toLowerCase()}, addiction articles, family support, codependency resources` : undefined}
         noindex={filteredPosts.length === 0}
       />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://nomoreenabling.com" },
+          { name: "Articles", url: "https://nomoreenabling.com/articles" },
+          { name: categoryName || "Category", url: `https://nomoreenabling.com/category/${slug}` },
+        ]}
+      />
+      {filteredPosts.length > 0 && (
+        <ItemListJsonLd
+          name={`${categoryName} Articles on No More Enabling`}
+          description={`A curated collection of No More Enabling articles about ${categoryName.toLowerCase()} for families affected by addiction.`}
+          items={filteredPosts.slice(0, 25).map((post) => ({
+            name: post.title,
+            description: post.excerpt,
+            url: `https://nomoreenabling.com/articles/${post.slug}`,
+          }))}
+        />
+      )}
       <Header />
       
       <main className="container mx-auto px-4 py-12">
