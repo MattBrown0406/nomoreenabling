@@ -7,7 +7,7 @@ import { blogPostsMeta } from "@/data/blogPostMeta";
 import { articleContentLoaders } from "@/data/articleContentLoaders";
 import { topicHubs } from "@/data/topicHubs";
 import AdSpace from "@/components/ads/AdSpace";
-import EagleCreekRanchBanner from "@/components/ads/EagleCreekRanchBanner";
+import PartyWreckersBanner from "@/components/ads/PartyWreckersBanner";
 import RelatedArticleCallout from "@/components/blog/RelatedArticleCallout";
 import ArticleStickyCTA from "@/components/blog/ArticleStickyCTA";
 import { Button } from "@/components/ui/button";
@@ -855,7 +855,7 @@ const ArticlePage = () => {
                     <ArrowLeft className="w-3 h-3 rotate-180" />
                   </Link>
                 </div>
-                <EagleCreekRanchBanner />
+                <PartyWreckersBanner size="sidebar" />
               </div>
             </aside>
           </div>

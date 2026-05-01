@@ -70,7 +70,7 @@ const Advertise = () => {
     },
     {
       name: "Network Bundle",
-      fit: "Best for sponsors who want reach across No More Enabling, Party Wreckers, and Sober Helpline.",
+      fit: "Best for sponsors who want reach across No More Enabling, Freedom Interventions, Family Bridge, and Party Wreckers.",
       includes: "Custom package across articles, podcast mentions, newsletter, and family support resources.",
     },
   ];
@@ -167,7 +167,7 @@ const Advertise = () => {
               {adPlacements.map((placement) => (
                 <div key={placement.name} className="bg-card rounded-xl p-6 shadow-card">
                   <div className="mb-4">
-                    <AdSpace size="sidebar" className="h-32" />
+                    <AdSpace size="sidebar" />
                   </div>
                   <h3 className="font-serif text-xl font-bold text-foreground mb-2">
                     {placement.name}

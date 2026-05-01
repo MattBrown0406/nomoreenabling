@@ -90,7 +90,7 @@ const PrivacyPolicy = () => {
                 <ul>
                   <li><strong>Google Analytics:</strong> Tracks website usage and performance</li>
                   <li><strong>Supabase:</strong> Stores newsletter subscriber information and user data</li>
-                  <li><strong>Advertising Partners:</strong> Third-party ad networks (including BetterHelp and other partners) may collect data for targeted advertising</li>
+                  <li><strong>Owned Brand Placements:</strong> We may measure clicks to Freedom Interventions, Family Bridge, and The Party Wreckers Podcast</li>
                 </ul>
                 <p>
                   These third parties have their own privacy policies. We encourage you to review their 

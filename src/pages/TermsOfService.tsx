@@ -109,14 +109,14 @@ const TermsOfService = () => {
 
                 <h2>Third-Party Content and Links</h2>
                 <p>
-                  Our website may contain links to third-party websites, advertisements, or services. 
-                  We do not control or endorse these third-party resources and are not responsible 
-                  for their content, privacy practices, or terms of service.
+                  Our website may contain links to owned brands, sponsors, third-party websites, or services. 
+                  We are not responsible for the content, privacy practices, or terms of service of websites
+                  we do not operate.
                 </p>
                 <p>
-                  Third-party advertisements (including but not limited to BetterHelp and other partners) 
-                  are not endorsements of specific products or services. We encourage you to research 
-                  any services before engaging with them.
+                  Featured placements for Freedom Interventions, Family Bridge, and The Party Wreckers Podcast are
+                  part of the No More Enabling ecosystem. We encourage you to research any service before engaging
+                  with it.
                 </p>
 
                 <h2>Limitation of Liability</h2>

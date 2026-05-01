@@ -14,6 +14,7 @@ const FreedomInterventionsBanner = ({ size = "sidebar" }: FreedomInterventionsBa
       <a
         href="https://freedominterventions.com"
         target="_blank"
+        rel="noopener noreferrer"
         onClick={() => trackAdClick("Freedom Interventions")}
         className="block bg-gradient-to-r from-[#1a365d] via-[#2c5282] to-[#1a365d] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 max-w-4xl mx-auto border border-[#3182ce]/30"
       >

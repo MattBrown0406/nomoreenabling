@@ -1,63 +1,41 @@
-import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
+import FamilyBridgeBanner from "@/components/ads/FamilyBridgeBanner";
+import FreedomInterventionsBanner from "@/components/ads/FreedomInterventionsBanner";
+import PartyWreckersBanner from "@/components/ads/PartyWreckersBanner";
 
 interface AdSpaceProps {
   size: "banner" | "sidebar" | "inline" | "leaderboard";
   className?: string;
+  variant?: "family-bridge" | "freedom-interventions" | "party-wreckers";
 }
 
-const sizeClasses = {
-  banner: "h-24 md:h-32 w-full",
-  sidebar: "h-64 w-full",
-  inline: "h-20 w-full my-6",
-  leaderboard: "h-20 md:h-24 w-full max-w-4xl mx-auto",
+const spacingClasses = {
+  banner: "my-6",
+  sidebar: "",
+  inline: "my-6",
+  leaderboard: "my-8",
 };
 
-// Ad format mapping for responsive ads
-const adFormats = {
-  banner: "horizontal",
-  sidebar: "vertical",
-  inline: "horizontal",
-  leaderboard: "horizontal",
-};
+const defaultVariants = {
+  banner: "party-wreckers",
+  sidebar: "family-bridge",
+  inline: "family-bridge",
+  leaderboard: "freedom-interventions",
+} as const;
 
-declare global {
-  interface Window {
-    adsbygoogle: unknown[];
-  }
-}
+const AdSpace = ({ size, className, variant }: AdSpaceProps) => {
+  const selectedVariant = variant ?? defaultVariants[size];
+  const bannerSize = size === "sidebar" ? "sidebar" : "leaderboard";
 
-const AdSpace = ({ size, className }: AdSpaceProps) => {
-  const adRef = useRef<HTMLModElement>(null);
-  const isAdLoaded = useRef(false);
-
-  useEffect(() => {
-    if (adRef.current && !isAdLoaded.current) {
-      try {
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-        isAdLoaded.current = true;
-      } catch (error) {
-        console.error("AdSense error:", error);
-      }
-    }
-  }, []);
+  const placement = {
+    "family-bridge": <FamilyBridgeBanner size={bannerSize} />,
+    "freedom-interventions": <FreedomInterventionsBanner size={bannerSize} />,
+    "party-wreckers": <PartyWreckersBanner size={bannerSize} />,
+  }[selectedVariant];
 
   return (
-    <div
-      className={cn(
-        "ad-space flex items-center justify-center overflow-hidden",
-        sizeClasses[size],
-        className
-      )}
-    >
-      <ins
-        ref={adRef}
-        className="adsbygoogle"
-        style={{ display: "block", width: "100%", height: "100%" }}
-        data-ad-client="ca-pub-4711693967004790"
-        data-ad-format={adFormats[size]}
-        data-full-width-responsive="true"
-      />
+    <div className={cn("owned-ad-space", spacingClasses[size], className)}>
+      {placement}
     </div>
   );
 };

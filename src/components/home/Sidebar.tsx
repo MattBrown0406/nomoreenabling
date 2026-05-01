@@ -1,12 +1,8 @@
 import { Link } from "react-router-dom";
 import { useMemo, useEffect, useState } from "react";
-import AdSpace from "@/components/ads/AdSpace";
 import FreedomInterventionsBanner from "@/components/ads/FreedomInterventionsBanner";
-import SoberHelplineBanner from "@/components/ads/SoberHelplineBanner";
-
-import JeffHatchCoachingBanner from "@/components/ads/JeffHatchCoachingBanner";
-import BrianOSheaBanner from "@/components/ads/BrianOSheaBanner";
-import KairosInterventionBanner from "@/components/ads/KairosInterventionBanner";
+import FamilyBridgeBanner from "@/components/ads/FamilyBridgeBanner";
+import PartyWreckersBanner from "@/components/ads/PartyWreckersBanner";
 import PersonalizedSuggestions from "@/components/suggestions/PersonalizedSuggestions";
 import { blogPostsMeta } from "@/data/blogPostMeta";
 import { supabase } from "@/integrations/supabase/client";
@@ -15,6 +11,15 @@ interface PopularPost {
   title: string;
   slug: string;
 }
+
+interface ArticleViewCountRow {
+  article_slug: string;
+}
+
+const fetchArticleViewCounts = supabase.rpc as unknown as (
+  fn: "get_article_view_counts",
+  args: { limit_count: number }
+) => Promise<{ data: ArticleViewCountRow[] | null; error: unknown }>;
 
 const Sidebar = () => {
   const [popularPosts, setPopularPosts] = useState<PopularPost[]>([]);
@@ -43,8 +48,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     const fetchPopularPosts = async () => {
-      const { data, error } = await (supabase as any)
-        .rpc("get_article_view_counts", { limit_count: 6 });
+      const { data, error } = await fetchArticleViewCounts("get_article_view_counts", { limit_count: 6 });
 
       if (error || !data || data.length === 0) {
         setPopularPosts(newestPosts);
@@ -146,39 +150,14 @@ const Sidebar = () => {
         </ul>
       </div>
 
-      {/* Sober Helpline Banner */}
+      {/* FamilyBridge Sponsor Banner */}
       <div>
-        <SoberHelplineBanner />
+        <FamilyBridgeBanner size="sidebar" />
       </div>
 
-      {/* Jeff Hatch Coaching Banner */}
+      {/* Party Wreckers Sponsor Banner */}
       <div>
-        <JeffHatchCoachingBanner />
-      </div>
-
-      {/* Brian O'Shea Banner */}
-      <div>
-        <BrianOSheaBanner />
-      </div>
-
-      {/* Kairos Intervention Banner */}
-      <div>
-        <KairosInterventionBanner />
-      </div>
-
-      {/* Google Ad Space 1 */}
-      <div>
-        <AdSpace size="sidebar" />
-      </div>
-
-      {/* Google Ad Space 2 */}
-      <div>
-        <AdSpace size="sidebar" />
-      </div>
-
-      {/* Google Ad Space 3 */}
-      <div>
-        <AdSpace size="sidebar" />
+        <PartyWreckersBanner size="sidebar" />
       </div>
     </aside>
   );

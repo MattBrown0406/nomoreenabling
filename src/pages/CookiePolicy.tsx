@@ -78,16 +78,16 @@ const CookiePolicy = () => {
                   <li>Browser and device information</li>
                 </ul>
 
-                <h3>Advertising Cookies</h3>
+                <h3>Owned Promotion and Sponsorship Cookies</h3>
                 <p>
-                  These cookies are set by our advertising partners (including BetterHelp and other third-party 
-                  advertisers) and may be used to build a profile of your interests and show you relevant 
-                  advertisements on other websites. They work by uniquely identifying your browser and device.
+                  We may measure clicks and conversions for owned placements, sponsorship requests, and links to
+                  Freedom Interventions, Family Bridge, and The Party Wreckers Podcast. These tools help us understand
+                  which resources readers use on this site.
                 </p>
                 <ul>
-                  <li>Retargeting pixels to show relevant ads on other websites</li>
-                  <li>Conversion tracking to measure ad effectiveness</li>
-                  <li>Interest-based advertising based on your browsing behavior</li>
+                  <li>Click tracking for owned brand placements</li>
+                  <li>Conversion tracking for newsletter, assessment, and contact forms</li>
+                  <li>Basic placement performance reporting</li>
                 </ul>
 
                 <h3>Functionality Cookies</h3>
