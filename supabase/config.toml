@@ -3,6 +3,9 @@ project_id = "ctqbadyfhcoxhywrkorf"
 [functions.newsletter-signup]
 verify_jwt = false
 
+[functions.track-funnel-event]
+verify_jwt = false
+
 [functions.send-newsletter]
 verify_jwt = true
 
