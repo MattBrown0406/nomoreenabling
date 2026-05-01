@@ -55,6 +55,7 @@ Prioritize search phrases with clear pain and commercial potential:
    - "when helping with bills becomes enabling"
 
 3. Treatment resistance
+   - Status: published May 1, 2026
    - "what to do when someone refuses rehab"
    - "how to talk to someone who needs treatment"
    - "when is an intervention necessary"
@@ -91,6 +92,7 @@ Already implemented:
 - advertiser page sections for audience intent, sponsorship packages, and ethical placement rules
 - first dedicated cluster: Adult Child Addiction hub plus four supporting articles
 - second dedicated cluster: Financial Enabling hub plus four supporting articles
+- third dedicated cluster: Treatment Resistance hub plus five supporting articles
 
 Next technical wins:
 

@@ -95,6 +95,46 @@ export const topicHubs: TopicHub[] = [
     ],
   },
   {
+    slug: "treatment-resistance",
+    title: "Treatment resistance: what families can do when help is refused",
+    shortTitle: "Treatment Resistance",
+    description: "Guidance for families facing rehab refusal, denied addiction problems, repeated broken promises, and the question of when intervention becomes necessary.",
+    intro: "This hub is for families who know their loved one needs help but keep hearing no, not yet, I can handle it, or you are overreacting.",
+    bestFor: "Best when conversations about treatment keep failing and the family needs a calmer, more structured next move.",
+    categories: ["Treatment Resistance", "Intervention", "Family Support", "Boundaries"],
+    featuredSlugs: [
+      "what-to-do-when-someone-refuses-rehab",
+      "loved-one-refuses-addiction-treatment",
+      "how-to-talk-to-someone-who-needs-treatment",
+      "when-is-an-addiction-intervention-necessary",
+      "addiction-treatment-refusal-family-plan",
+    ],
+    primaryCta: { label: "Request guidance from Matt", href: "/work-with-matt" },
+    secondaryCta: { label: "Read the intervention guide", href: "/topic-hubs/intervention" },
+    searchIntent: "Families searching for what to do when a loved one refuses rehab, denies the problem, avoids assessment, or rejects addiction treatment.",
+    sponsorCategory: "Intervention services, treatment navigation, detox and assessment providers, family recovery coaching, and ethical treatment programs.",
+    keyQuestions: [
+      "What do I do when someone refuses rehab?",
+      "How do I talk to someone who needs addiction treatment?",
+      "When is an addiction intervention necessary?",
+      "What family plan should we make if treatment is refused?",
+    ],
+    guideSections: [
+      {
+        heading: "Refusal does not mean the family is out of moves",
+        body: "Treatment resistance often makes families feel powerless because they cannot force an adult to accept help. But the family can still change the structure around the addiction. It can stop rescuing, align boundaries, prepare real treatment options, and use professional guidance before the next crisis decides for everyone.",
+      },
+      {
+        heading: "Why this cluster matters for search",
+        body: "Searches about refusing rehab and refusing treatment are usually urgent. The reader may be looking at a loved one who just said no, backed out of detox, rejected an assessment, or promised to stop on their own again. That makes this cluster a strong bridge from education into Sober Helpline, intervention consults, and treatment navigation.",
+      },
+      {
+        heading: "The path this hub should create",
+        body: "The reading path moves from immediate refusal to better conversation, then to intervention timing and family planning. The goal is to help families stop repeating the same argument and start building a plan that can hold whether the loved one says yes or no today.",
+      },
+    ],
+  },
+  {
     slug: "enabling",
     title: "Enabling: when helping starts protecting the problem",
     shortTitle: "Enabling",

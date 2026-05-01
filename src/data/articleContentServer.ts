@@ -109,6 +109,11 @@ import articleContent107 from "./article-content/should-i-give-money-to-someone-
 import articleContent108 from "./article-content/paying-rent-for-addicted-adult-child";
 import articleContent109 from "./article-content/financial-boundaries-with-addiction";
 import articleContent110 from "./article-content/when-helping-with-bills-becomes-enabling";
+import articleContent111 from "./article-content/what-to-do-when-someone-refuses-rehab";
+import articleContent112 from "./article-content/loved-one-refuses-addiction-treatment";
+import articleContent113 from "./article-content/how-to-talk-to-someone-who-needs-treatment";
+import articleContent114 from "./article-content/when-is-an-addiction-intervention-necessary";
+import articleContent115 from "./article-content/addiction-treatment-refusal-family-plan";
 
 export const articleContentBySlug: Record<string, string> = {
   "8-stages-family-addiction-journey": articleContent0,
@@ -222,6 +227,11 @@ export const articleContentBySlug: Record<string, string> = {
   "paying-rent-for-addicted-adult-child": articleContent108,
   "financial-boundaries-with-addiction": articleContent109,
   "when-helping-with-bills-becomes-enabling": articleContent110,
+  "what-to-do-when-someone-refuses-rehab": articleContent111,
+  "loved-one-refuses-addiction-treatment": articleContent112,
+  "how-to-talk-to-someone-who-needs-treatment": articleContent113,
+  "when-is-an-addiction-intervention-necessary": articleContent114,
+  "addiction-treatment-refusal-family-plan": articleContent115,
 };
 
 export const getServerArticleContent = (slug: string | undefined) => (slug ? articleContentBySlug[slug] ?? null : null);

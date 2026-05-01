@@ -16,6 +16,7 @@ const categories = [
   "Addiction",
   "Adult Child Addiction",
   "Financial Enabling",
+  "Treatment Resistance",
   "Enabling",
   "Boundaries",
   "Codependency",

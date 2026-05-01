@@ -115,4 +115,9 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "paying-rent-for-addicted-adult-child": () => import("./article-content/paying-rent-for-addicted-adult-child"),
   "financial-boundaries-with-addiction": () => import("./article-content/financial-boundaries-with-addiction"),
   "when-helping-with-bills-becomes-enabling": () => import("./article-content/when-helping-with-bills-becomes-enabling"),
+  "what-to-do-when-someone-refuses-rehab": () => import("./article-content/what-to-do-when-someone-refuses-rehab"),
+  "loved-one-refuses-addiction-treatment": () => import("./article-content/loved-one-refuses-addiction-treatment"),
+  "how-to-talk-to-someone-who-needs-treatment": () => import("./article-content/how-to-talk-to-someone-who-needs-treatment"),
+  "when-is-an-addiction-intervention-necessary": () => import("./article-content/when-is-an-addiction-intervention-necessary"),
+  "addiction-treatment-refusal-family-plan": () => import("./article-content/addiction-treatment-refusal-family-plan"),
 };
