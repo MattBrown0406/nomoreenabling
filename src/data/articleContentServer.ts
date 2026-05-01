@@ -137,6 +137,7 @@ import articleContent135 from "./article-content/loved-one-using-drugs-in-my-hou
 import articleContent136 from "./article-content/addicted-loved-one-stealing-from-you";
 import articleContent137 from "./article-content/addiction-threats-violence-home";
 import articleContent138 from "./article-content/when-to-call-911-crisis-line-treatment-interventionist";
+import articleContent139 from "./article-content/stopping-enabling-feels-like-abandonment";
 
 export const articleContentBySlug: Record<string, string> = {
   "8-stages-family-addiction-journey": articleContent0,
@@ -278,6 +279,7 @@ export const articleContentBySlug: Record<string, string> = {
   "addicted-loved-one-stealing-from-you": articleContent136,
   "addiction-threats-violence-home": articleContent137,
   "when-to-call-911-crisis-line-treatment-interventionist": articleContent138,
+  "stopping-enabling-feels-like-abandonment": articleContent139,
 };
 
 export const getServerArticleContent = (slug: string | undefined) => (slug ? articleContentBySlug[slug] ?? null : null);

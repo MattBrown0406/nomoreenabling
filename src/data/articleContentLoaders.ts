@@ -107,6 +107,7 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "preparing-for-loved-ones-return-from-treatment": () => import("./article-content/preparing-for-loved-ones-return-from-treatment"),
   "respond-to-relapse-without-enabling": () => import("./article-content/respond-to-relapse-without-enabling"),
   "talk-to-loved-one-about-addiction-treatment": () => import("./article-content/talk-to-loved-one-about-addiction-treatment"),
+  "stopping-enabling-feels-like-abandonment": () => import("./article-content/stopping-enabling-feels-like-abandonment"),
   "how-to-stop-enabling-adult-child-addiction": () => import("./article-content/how-to-stop-enabling-adult-child-addiction"),
   "should-i-let-addicted-adult-child-live-at-home": () => import("./article-content/should-i-let-addicted-adult-child-live-at-home"),
   "financial-boundaries-with-addicted-adult-child": () => import("./article-content/financial-boundaries-with-addicted-adult-child"),
