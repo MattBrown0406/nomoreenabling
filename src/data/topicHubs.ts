@@ -174,6 +174,45 @@ export const topicHubs: TopicHub[] = [
     ],
   },
   {
+    slug: "spouse-partner-addiction",
+    title: "Spouse or partner addiction: how to protect love, safety, and reality",
+    shortTitle: "Spouse or Partner Addiction",
+    description: "Guidance for partners living with addiction in the home, setting boundaries, protecting children, and deciding what safety and recovery require.",
+    intro: "This hub is for husbands, wives, and partners trying to stay grounded when addiction has entered the relationship, the home, the finances, or the parenting system.",
+    bestFor: "Best when you are asking how to love someone without surrendering your safety, children, money, or sense of reality.",
+    categories: ["Spouse or Partner Addiction", "Relationships", "Boundaries", "Family Support"],
+    featuredSlugs: [
+      "living-with-an-alcoholic-spouse",
+      "boundaries-with-addicted-spouse",
+      "should-i-leave-someone-with-addiction",
+      "protecting-children-from-spouse-addiction",
+    ],
+    primaryCta: { label: "Build stronger boundaries", href: "/boundaries-course" },
+    secondaryCta: { label: "Request guidance from Matt", href: "/work-with-matt" },
+    searchIntent: "Spouses and partners searching for help with an addicted husband, wife, boyfriend, girlfriend, or co-parent while weighing safety, children, boundaries, and treatment.",
+    sponsorCategory: "Family therapy, partner support, treatment navigation, intervention services, domestic safety resources, recovery coaching, and family education.",
+    keyQuestions: [
+      "What do I do if I am living with an alcoholic spouse?",
+      "How do I set boundaries with an addicted husband or wife?",
+      "Should I leave someone with addiction?",
+      "How do I protect children from a spouse's addiction?",
+    ],
+    guideSections: [
+      {
+        heading: "Partner addiction turns love into a household system",
+        body: "When addiction affects a spouse or partner, the impact moves through money, sleep, parenting, intimacy, transportation, trust, and emotional safety. The non-addicted partner is often forced into crisis management while still trying to preserve the relationship. This hub gives that person a clearer place to stand.",
+      },
+      {
+        heading: "Why this cluster matters for search",
+        body: "Spouse and partner searches are high-intent because the reader is often making urgent decisions about staying, leaving, money, children, or treatment. These are not casual searches. They are moments where practical guidance can lead into family support, Sober Helpline, Freedom Interventions, and ethically aligned advertisers.",
+      },
+      {
+        heading: "The path this hub should create",
+        body: "The reading path starts with naming life with an alcoholic spouse, then moves into enforceable boundaries, the stay-or-leave question, and child protection. The goal is to help partners stop making decisions from fear alone and start building a plan around safety, recovery, and truth.",
+      },
+    ],
+  },
+  {
     slug: "enabling",
     title: "Enabling: when helping starts protecting the problem",
     shortTitle: "Enabling",

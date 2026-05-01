@@ -124,4 +124,8 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "boundaries-after-rehab": () => import("./article-content/boundaries-after-rehab"),
   "what-to-do-after-relapse": () => import("./article-content/what-to-do-after-relapse"),
   "family-rules-after-addiction-treatment": () => import("./article-content/family-rules-after-addiction-treatment"),
+  "living-with-an-alcoholic-spouse": () => import("./article-content/living-with-an-alcoholic-spouse"),
+  "boundaries-with-addicted-spouse": () => import("./article-content/boundaries-with-addicted-spouse"),
+  "should-i-leave-someone-with-addiction": () => import("./article-content/should-i-leave-someone-with-addiction"),
+  "protecting-children-from-spouse-addiction": () => import("./article-content/protecting-children-from-spouse-addiction"),
 };

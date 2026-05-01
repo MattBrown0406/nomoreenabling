@@ -18,6 +18,7 @@ const categories = [
   "Financial Enabling",
   "Treatment Resistance",
   "After Treatment",
+  "Spouse or Partner Addiction",
   "Enabling",
   "Boundaries",
   "Codependency",

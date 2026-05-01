@@ -69,6 +69,7 @@ Prioritize search phrases with clear pain and commercial potential:
    - "family rules after addiction treatment"
 
 5. Spouse or partner addiction
+   - Status: published May 1, 2026
    - "living with an alcoholic spouse"
    - "boundaries with addicted husband"
    - "should I leave someone with addiction"
@@ -95,6 +96,7 @@ Already implemented:
 - second dedicated cluster: Financial Enabling hub plus four supporting articles
 - third dedicated cluster: Treatment Resistance hub plus five supporting articles
 - fourth dedicated cluster: After Treatment hub plus four supporting articles
+- fifth dedicated cluster: Spouse or Partner Addiction hub plus four supporting articles
 
 Next technical wins:
 
