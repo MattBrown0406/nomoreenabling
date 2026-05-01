@@ -48,6 +48,7 @@ Prioritize search phrases with clear pain and commercial potential:
    - "parents of adult addicts support"
 
 2. Financial enabling
+   - Status: published May 1, 2026
    - "should I give money to someone with addiction"
    - "paying rent for addicted adult child"
    - "financial boundaries with addiction"
@@ -89,6 +90,7 @@ Already implemented:
 - expanded topic hub pillar copy, family search questions, and advertiser-fit language
 - advertiser page sections for audience intent, sponsorship packages, and ethical placement rules
 - first dedicated cluster: Adult Child Addiction hub plus four supporting articles
+- second dedicated cluster: Financial Enabling hub plus four supporting articles
 
 Next technical wins:
 

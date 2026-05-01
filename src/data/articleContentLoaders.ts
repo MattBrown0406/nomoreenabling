@@ -111,4 +111,8 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "should-i-let-addicted-adult-child-live-at-home": () => import("./article-content/should-i-let-addicted-adult-child-live-at-home"),
   "financial-boundaries-with-addicted-adult-child": () => import("./article-content/financial-boundaries-with-addicted-adult-child"),
   "when-adult-child-refuses-addiction-treatment": () => import("./article-content/when-adult-child-refuses-addiction-treatment"),
+  "should-i-give-money-to-someone-with-addiction": () => import("./article-content/should-i-give-money-to-someone-with-addiction"),
+  "paying-rent-for-addicted-adult-child": () => import("./article-content/paying-rent-for-addicted-adult-child"),
+  "financial-boundaries-with-addiction": () => import("./article-content/financial-boundaries-with-addiction"),
+  "when-helping-with-bills-becomes-enabling": () => import("./article-content/when-helping-with-bills-becomes-enabling"),
 };

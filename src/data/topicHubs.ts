@@ -56,6 +56,45 @@ export const topicHubs: TopicHub[] = [
     ],
   },
   {
+    slug: "financial-enabling",
+    title: "Financial enabling: when money keeps addiction protected",
+    shortTitle: "Financial Enabling",
+    description: "A practical hub for families deciding when to stop giving cash, paying rent, covering bills, or absorbing financial consequences tied to addiction.",
+    intro: "This hub is for parents, spouses, siblings, and friends who keep getting pulled into money requests, rent emergencies, unpaid bills, legal costs, and promises that this will be the last time.",
+    bestFor: "Best when you need to help without becoming the financial safety net that keeps the addiction cycle alive.",
+    categories: ["Financial Enabling", "Enabling", "Boundaries", "Family Support"],
+    featuredSlugs: [
+      "should-i-give-money-to-someone-with-addiction",
+      "paying-rent-for-addicted-adult-child",
+      "financial-boundaries-with-addiction",
+      "when-helping-with-bills-becomes-enabling",
+    ],
+    primaryCta: { label: "Take the helping vs enabling assessment", href: "/helping-or-enabling" },
+    secondaryCta: { label: "Request guidance from Matt", href: "/work-with-matt" },
+    searchIntent: "Families deciding whether to give money, pay bills, cover rent, or set financial boundaries with a loved one struggling with addiction.",
+    sponsorCategory: "Treatment navigation, family recovery coaching, intervention services, sober living, financial wellness, and recovery-aligned family support.",
+    keyQuestions: [
+      "Should I give money to someone with addiction?",
+      "Should I keep paying rent for my addicted adult child?",
+      "How do I set financial boundaries with addiction?",
+      "When does helping with bills become enabling?",
+    ],
+    guideSections: [
+      {
+        heading: "Money is where love and fear collide",
+        body: "Financial enabling is one of the hardest patterns for families to change because the requests often sound practical. Rent, groceries, gas, a phone bill, a court fine, or one more repair can all feel urgent. But when the family repeatedly absorbs the cost of active addiction, money can become the structure that protects the pattern from consequences.",
+      },
+      {
+        heading: "Why this cluster matters for search",
+        body: "Money-related searches are high-intent because families are usually making a decision right now. They are not reading in theory. They are looking at a payment request, a missed bill, or an eviction warning and trying to decide what love requires. That makes this cluster valuable for organic traffic and highly relevant for ethical sponsors that support recovery, treatment access, and family education.",
+      },
+      {
+        heading: "The path this hub should create",
+        body: "The reading path starts with the broad cash question, then moves into rent, family-wide financial boundaries, and recurring bill rescue. Each article should help the reader slow down, remove panic from the decision, and redirect support toward treatment, safety, and recovery rather than repeated bailout.",
+      },
+    ],
+  },
+  {
     slug: "enabling",
     title: "Enabling: when helping starts protecting the problem",
     shortTitle: "Enabling",
