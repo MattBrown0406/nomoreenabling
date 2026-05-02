@@ -20,6 +20,7 @@ export interface SitemapInput {
   articles: SitemapArticle[];
   categories?: string[];
   topicHubs?: string[];
+  supportOffers?: string[];
 }
 
 // Static pages with their priorities and change frequencies
@@ -27,6 +28,7 @@ const staticPages: { path: string; priority: string; changefreq: string }[] = [
   { path: "/", priority: "1.0", changefreq: "weekly" },
   { path: "/start-here", priority: "0.95", changefreq: "monthly" },
   { path: "/work-with-matt", priority: "0.95", changefreq: "monthly" },
+  { path: "/family-situation-assessment", priority: "0.95", changefreq: "monthly" },
   { path: "/articles", priority: "0.9", changefreq: "weekly" },
   { path: "/topic-hubs", priority: "0.85", changefreq: "monthly" },
   { path: "/about", priority: "0.8", changefreq: "monthly" },
@@ -94,6 +96,14 @@ export function generateSitemapXml(input: SitemapInput | string[]): string {
       loc: `${DOMAIN}/topic-hubs/${hub}`,
       changefreq: "monthly",
       priority: "0.8",
+    }));
+  }
+
+  for (const offer of normalizedInput.supportOffers ?? []) {
+    urls.push(formatUrl({
+      loc: `${DOMAIN}/support/${offer}`,
+      changefreq: "monthly",
+      priority: "0.75",
     }));
   }
 

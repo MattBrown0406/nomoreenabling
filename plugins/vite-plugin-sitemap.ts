@@ -15,8 +15,10 @@ export function sitemapPlugin(): Plugin {
       try {
         const metaFilePath = path.resolve(__dirname, "../src/data/blogPostMeta.ts");
         const topicHubFilePath = path.resolve(__dirname, "../src/data/topicHubs.ts");
+        const supportOffersFilePath = path.resolve(__dirname, "../src/data/supportOffers.ts");
         const metaContent = fs.readFileSync(metaFilePath, "utf-8");
         const topicHubContent = fs.readFileSync(topicHubFilePath, "utf-8");
+        const supportOffersContent = fs.readFileSync(supportOffersFilePath, "utf-8");
 
         const articles: { slug: string; date?: string }[] = [];
         const categories = new Set<string>();
@@ -41,16 +43,21 @@ export function sitemapPlugin(): Plugin {
           .map((match) => match[1])
           .filter((slug, index, all) => all.indexOf(slug) === index);
 
+        const supportOffers = Array.from(supportOffersContent.matchAll(/slug:\s*["']([^"']+)["']/g))
+          .map((match) => match[1])
+          .filter((slug, index, all) => all.indexOf(slug) === index);
+
         const { generateSitemapXml } = await import("../scripts/generate-sitemap");
         const xml = generateSitemapXml({
           articles,
           categories: Array.from(categories).sort(),
           topicHubs,
+          supportOffers,
         });
 
         const distPath = path.resolve(__dirname, "../dist/sitemap.xml");
         fs.writeFileSync(distPath, xml, "utf-8");
-        console.log(`✅ Sitemap generated with ${articles.length} articles, ${categories.size} categories, and ${topicHubs.length} topic hubs`);
+        console.log(`✅ Sitemap generated with ${articles.length} articles, ${categories.size} categories, ${topicHubs.length} topic hubs, and ${supportOffers.length} support pages`);
       } catch (err) {
         console.error("⚠️ Failed to generate sitemap:", err);
       }
