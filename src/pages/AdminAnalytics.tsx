@@ -23,6 +23,7 @@ import {
   Users,
 } from "lucide-react";
 import { blogPostsMeta } from "@/data/blogPostMeta";
+import { topicHubs } from "@/data/topicHubs";
 import { toast } from "@/hooks/use-toast";
 import SEOHead from "@/components/seo/SEOHead";
 import { getSupportOffer } from "@/data/supportOffers";
@@ -70,6 +71,16 @@ interface FunnelBreakdownStat {
   key: string;
   label: string;
   count: number;
+}
+
+interface ClusterFunnelStat {
+  key: string;
+  label: string;
+  articleCount: number;
+  events: number;
+  ctaClicks: number;
+  hubClicks: number;
+  offerClicks: number;
 }
 
 type SortField = "views" | "title" | "date";
@@ -373,6 +384,9 @@ const AdminAnalytics = () => {
   const assessmentCompletions = eventCount("assessment_completed");
   const emailCaptures = eventCount("email_capture_success");
   const stickyCtaClicks = eventCount("sticky_cta_click");
+  const articleIntentCtaClicks = eventCount("article_intent_cta_click");
+  const topicHubCtaClicks = eventCount("topic_hub_cta_click");
+  const sponsorImpressions = eventCount("sponsor_impression");
   const bridgeClicks = eventCount("bridge_page_click");
   const outboundOfferClicks = eventCount("outbound_offer_click");
   const completionRate = assessmentStarts > 0 ? Math.round((assessmentCompletions / assessmentStarts) * 100) : 0;
@@ -417,6 +431,67 @@ const AdminAnalytics = () => {
       count,
     }))
     .sort((a, b) => b.count - a.count)
+    .slice(0, 8);
+
+  const getPrimaryHubForArticle = (slug: string | null) => {
+    if (!slug) return null;
+
+    const post = blogPostsMeta.find((article) => article.slug === slug);
+    if (!post) return null;
+
+    return (
+      topicHubs.find((hub) => post.categories.some((category) => hub.categories.includes(category))) ??
+      topicHubs.find((hub) => hub.featuredSlugs.includes(post.slug)) ??
+      null
+    );
+  };
+
+  const clusterArticleCounts = topicHubs.reduce<Record<string, number>>((acc, hub) => {
+    acc[hub.slug] = blogPostsMeta.filter((post) => {
+      const categoryMatch = post.categories.some((category) => hub.categories.includes(category));
+      return categoryMatch || hub.featuredSlugs.includes(post.slug);
+    }).length;
+    return acc;
+  }, {});
+
+  const clusterFunnelStats: ClusterFunnelStat[] = Object.values(
+    funnelEvents
+      .filter((event) => event.article_slug)
+      .reduce<Record<string, ClusterFunnelStat>>((acc, event) => {
+        const hub = getPrimaryHubForArticle(event.article_slug);
+        const key = hub?.slug ?? "unclustered";
+        const label = hub?.shortTitle ?? "Unclustered Articles";
+
+        if (!acc[key]) {
+          acc[key] = {
+            key,
+            label,
+            articleCount: key === "unclustered" ? 0 : clusterArticleCounts[key] ?? 0,
+            events: 0,
+            ctaClicks: 0,
+            hubClicks: 0,
+            offerClicks: 0,
+          };
+        }
+
+        acc[key].events += 1;
+
+        if (["sticky_cta_click", "article_intent_cta_click"].includes(event.event_name)) {
+          acc[key].ctaClicks += 1;
+        }
+
+        if (event.event_name === "topic_hub_cta_click") {
+          acc[key].hubClicks += 1;
+        }
+
+        if (["bridge_page_click", "outbound_offer_click"].includes(event.event_name)) {
+          acc[key].offerClicks += 1;
+        }
+
+        return acc;
+      }, {})
+  )
+    .sort((a, b) => b.ctaClicks + b.offerClicks + b.hubClicks - (a.ctaClicks + a.offerClicks + a.hubClicks))
     .slice(0, 8);
 
   // Login screen
@@ -560,9 +635,10 @@ const AdminAnalytics = () => {
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
                     <BarChart3 className="w-4 h-4" />
-                    House Slots
+                    Impressions
                   </div>
-                  <p className="text-3xl font-bold text-foreground">{houseSponsorPlacements}</p>
+                  <p className="text-3xl font-bold text-foreground">{sponsorImpressions.toLocaleString()}</p>
+                  <p className="text-xs text-muted-foreground">{houseSponsorPlacements} house slots live</p>
                 </CardContent>
               </Card>
             </div>
@@ -761,7 +837,9 @@ const AdminAnalytics = () => {
               <Card>
                 <CardHeader>
                   <CardTitle className="font-serif text-lg">Top Article Funnel Sources</CardTitle>
-                  <p className="text-muted-foreground text-sm">{stickyCtaClicks.toLocaleString()} sticky CTA clicks</p>
+                  <p className="text-muted-foreground text-sm">
+                    {(stickyCtaClicks + articleIntentCtaClicks).toLocaleString()} CTA clicks and {topicHubCtaClicks.toLocaleString()} hub clicks
+                  </p>
                 </CardHeader>
                 <CardContent>
                   {articleFunnelSources.length === 0 ? (
@@ -779,6 +857,49 @@ const AdminAnalytics = () => {
                 </CardContent>
               </Card>
             </div>
+
+            <Card className="mt-6">
+              <CardHeader>
+                <CardTitle className="font-serif text-lg">SEO Cluster Funnel Performance</CardTitle>
+                <p className="text-muted-foreground text-sm">
+                  Shows which topic clusters are turning article readers into next-step clicks.
+                </p>
+              </CardHeader>
+              <CardContent>
+                {clusterFunnelStats.length === 0 ? (
+                  <p className="text-muted-foreground text-sm">No article cluster funnel events recorded yet.</p>
+                ) : (
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="border-b border-border">
+                          <th className="text-left py-3 px-2 font-medium text-muted-foreground">Cluster</th>
+                          <th className="text-right py-3 px-2 font-medium text-muted-foreground">Articles</th>
+                          <th className="text-right py-3 px-2 font-medium text-muted-foreground">Events</th>
+                          <th className="text-right py-3 px-2 font-medium text-muted-foreground">CTA Clicks</th>
+                          <th className="text-right py-3 px-2 font-medium text-muted-foreground">Hub Clicks</th>
+                          <th className="text-right py-3 px-2 font-medium text-muted-foreground">Offer Clicks</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {clusterFunnelStats.map((cluster) => (
+                          <tr key={cluster.key} className="border-b border-border/50">
+                            <td className="py-3 px-2">
+                              <p className="font-medium text-foreground">{cluster.label}</p>
+                            </td>
+                            <td className="py-3 px-2 text-right text-muted-foreground">{cluster.articleCount}</td>
+                            <td className="py-3 px-2 text-right text-muted-foreground">{cluster.events.toLocaleString()}</td>
+                            <td className="py-3 px-2 text-right font-medium text-foreground">{cluster.ctaClicks.toLocaleString()}</td>
+                            <td className="py-3 px-2 text-right text-muted-foreground">{cluster.hubClicks.toLocaleString()}</td>
+                            <td className="py-3 px-2 text-right text-muted-foreground">{cluster.offerClicks.toLocaleString()}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
 
             <Card className="mt-6">
               <CardHeader>

@@ -7,7 +7,6 @@ import { blogPostsMeta } from "@/data/blogPostMeta";
 import { articleContentLoaders } from "@/data/articleContentLoaders";
 import { topicHubs } from "@/data/topicHubs";
 import AdSpace from "@/components/ads/AdSpace";
-import PartyWreckersBanner from "@/components/ads/PartyWreckersBanner";
 import RelatedArticleCallout from "@/components/blog/RelatedArticleCallout";
 import ArticleStickyCTA from "@/components/blog/ArticleStickyCTA";
 import { Button } from "@/components/ui/button";
@@ -20,6 +19,7 @@ import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import FAQJsonLd from "@/components/seo/FAQJsonLd";
 import { useInitialArticleContent } from "@/lib/articleContentContext";
 import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
+import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 
 const XIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -358,8 +358,62 @@ const ArticlePage = () => {
   const primaryCta = article ? getPrimaryCta(article) : null;
   const showStickyCta = article ? isHighIntentArticle(article) : false;
   const matchingHubs = article
-    ? topicHubs.filter((hub) => article.categories.some((category) => hub.categories.includes(category))).slice(0, 2)
+    ? topicHubs
+        .map((hub) => {
+          const categoryMatches = article.categories.filter((category) => hub.categories.includes(category)).length;
+          const featuredMatch = hub.featuredSlugs.includes(article.slug) ? 3 : 0;
+          return { hub, score: categoryMatches + featuredMatch };
+        })
+        .filter(({ score }) => score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3)
+        .map(({ hub }) => hub)
     : [];
+
+  const trackArticleIntentClick = (href: string, label: string, slot: "primary" | "secondary") => {
+    if (!article) return;
+
+    void trackFunnelEvent("article_intent_cta_click", {
+      source: "article_intent_cta",
+      articleSlug: article.slug,
+      targetHref: href,
+      metadata: {
+        label,
+        slot,
+        articleTitle: article.title,
+      },
+    });
+  };
+
+  const trackTopicHubClick = (hub: (typeof topicHubs)[number]) => {
+    if (!article) return;
+
+    void trackFunnelEvent("topic_hub_cta_click", {
+      source: "article_topic_hub_block",
+      articleSlug: article.slug,
+      targetHref: `/topic-hubs/${hub.slug}`,
+      metadata: {
+        hubSlug: hub.slug,
+        hubTitle: hub.shortTitle,
+        articleTitle: article.title,
+      },
+    });
+  };
+
+  const trackAllTopicHubsClick = () => {
+    if (!article) return;
+
+    void trackFunnelEvent("topic_hub_cta_click", {
+      source: "article_topic_hub_block",
+      articleSlug: article.slug,
+      targetHref: "/topic-hubs",
+      metadata: {
+        hubSlug: "all",
+        hubTitle: "All Topic Hubs",
+        articleTitle: article.title,
+      },
+    });
+  };
 
   const getISODate = (dateStr: string) => {
     try {
@@ -651,13 +705,25 @@ const ArticlePage = () => {
                     <p className="text-muted-foreground mt-2">If this article hits home, these guided hubs will help you keep reading in a smarter order instead of starting from scratch each time.</p>
                     <div className="mt-4 grid gap-3 sm:grid-cols-2">
                       {matchingHubs.map((hub) => (
-                        <Link key={hub.slug} to={`/topic-hubs/${hub.slug}`} className="rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                        <Link
+                          key={hub.slug}
+                          to={`/topic-hubs/${hub.slug}`}
+                          onClick={() => trackTopicHubClick(hub)}
+                          className="rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors"
+                        >
                           <p className="font-medium text-foreground">{hub.shortTitle} Hub</p>
                           <p className="text-sm text-muted-foreground mt-1">{hub.bestFor}</p>
                           <p className="mt-3 text-sm font-medium text-primary">Open hub →</p>
                         </Link>
                       ))}
                     </div>
+                    <Link
+                      to="/topic-hubs"
+                      onClick={trackAllTopicHubsClick}
+                      className="inline-flex mt-4 text-sm font-medium text-primary hover:underline"
+                    >
+                      Browse every guided hub →
+                    </Link>
                   </div>
                 )}
 
@@ -668,13 +734,28 @@ const ArticlePage = () => {
                     <p className="text-muted-foreground mt-3 max-w-2xl">{primaryCta.description}</p>
                     <div className="mt-5 flex flex-col sm:flex-row gap-3">
                       <Button asChild>
-                        <Link to={primaryCta.href}>{primaryCta.label}</Link>
+                        <Link
+                          to={primaryCta.href}
+                          onClick={() => trackArticleIntentClick(primaryCta.href, primaryCta.label, "primary")}
+                        >
+                          {primaryCta.label}
+                        </Link>
                       </Button>
                       <Button variant="outline" asChild>
                         {primaryCta.secondaryHref.startsWith("#") ? (
-                          <a href={primaryCta.secondaryHref}>{primaryCta.secondaryLabel}</a>
+                          <a
+                            href={primaryCta.secondaryHref}
+                            onClick={() => trackArticleIntentClick(primaryCta.secondaryHref, primaryCta.secondaryLabel, "secondary")}
+                          >
+                            {primaryCta.secondaryLabel}
+                          </a>
                         ) : (
-                          <Link to={primaryCta.secondaryHref}>{primaryCta.secondaryLabel}</Link>
+                          <Link
+                            to={primaryCta.secondaryHref}
+                            onClick={() => trackArticleIntentClick(primaryCta.secondaryHref, primaryCta.secondaryLabel, "secondary")}
+                          >
+                            {primaryCta.secondaryLabel}
+                          </Link>
                         )}
                       </Button>
                     </div>
@@ -855,7 +936,7 @@ const ArticlePage = () => {
                     <ArrowLeft className="w-3 h-3 rotate-180" />
                   </Link>
                 </div>
-                <PartyWreckersBanner size="sidebar" />
+                <AdSpace size="sidebar" placementKey="article_sidebar" />
               </div>
             </aside>
           </div>

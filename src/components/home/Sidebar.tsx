@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import { useMemo, useEffect, useState } from "react";
-import FreedomInterventionsBanner from "@/components/ads/FreedomInterventionsBanner";
-import FamilyBridgeBanner from "@/components/ads/FamilyBridgeBanner";
-import PartyWreckersBanner from "@/components/ads/PartyWreckersBanner";
+import AdSpace from "@/components/ads/AdSpace";
 import PersonalizedSuggestions from "@/components/suggestions/PersonalizedSuggestions";
 import { blogPostsMeta } from "@/data/blogPostMeta";
 import { supabase } from "@/integrations/supabase/client";
@@ -82,7 +80,7 @@ const Sidebar = () => {
 
       {/* Freedom Interventions Sponsor Banner */}
       <div>
-        <FreedomInterventionsBanner size="sidebar" />
+        <AdSpace size="sidebar" placementKey="homepage_sidebar" />
       </div>
 
       <div className="bg-card rounded-xl p-6 shadow-card border border-border/60">
@@ -152,12 +150,12 @@ const Sidebar = () => {
 
       {/* FamilyBridge Sponsor Banner */}
       <div>
-        <FamilyBridgeBanner size="sidebar" />
+        <AdSpace size="sidebar" placementKey="evergreen_sidebar" />
       </div>
 
       {/* Party Wreckers Sponsor Banner */}
       <div>
-        <PartyWreckersBanner size="sidebar" />
+        <AdSpace size="sidebar" placementKey="article_sidebar" />
       </div>
     </aside>
   );
