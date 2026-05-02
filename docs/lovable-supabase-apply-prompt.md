@@ -5,14 +5,15 @@ Please apply and verify the latest No More Enabling backend changes from the rep
 
 Context:
 - Supabase is managed inside Lovable for this project.
-- The frontend now includes high-intent consultation pages, lead scoring, advertiser inquiry capture, admin dashboard reporting, and consultation follow-up automation.
+- The frontend now includes high-intent consultation pages, lead scoring, advertiser inquiry capture, admin dashboard reporting, consultation follow-up automation, and admin pipeline controls.
 
 Please do the following:
 1. Apply the migrations:
    - supabase/migrations/20260502160000_add_consultation_and_advertiser_leads.sql
    - supabase/migrations/20260502173000_add_consultation_followup_automation.sql
+   - supabase/migrations/20260502213000_add_admin_lead_pipeline_fields.sql
 
-2. Confirm these tables exist with RLS enabled and admin read policies:
+2. Confirm these tables exist with RLS enabled and admin read/update policies where applicable:
    - public.consultation_leads
    - public.advertiser_inquiries
    - public.consultation_followup_queue
@@ -37,6 +38,7 @@ Please do the following:
    - is deployed with verify_jwt = false
    - rejects unauthenticated calls unless called by an admin session or with x-automation-secret matching FOLLOWUP_AUTOMATION_SECRET
    - sends due consultation follow-up emails through Resend
+   - skips leads where followups_paused_at is set or pipeline_status is booked, closed, or lost
    - marks sent rows with sent_at
    - updates consultation_leads.last_followup_at, next_followup_at, and followup_status
 
@@ -51,6 +53,11 @@ Please do the following:
    - Temporarily set one follow-up scheduled_for to now and run process-consultation-followups
    - Confirm the follow-up email sends and sent_at is filled
    - Confirm advertiser inquiry appears in the admin dashboard
+   - In the admin dashboard, test changing one consultation lead to Contacted, Booked, Closed, and Lost
+   - Confirm Booked, Closed, and Lost pause automated follow-ups
+   - Confirm Resume follow-ups clears followups_paused_at
+   - Confirm admin notes save on the selected consultation lead
+   - Confirm consultation and advertiser CSV exports download
    - Delete the test rows after verification
 
 9. Confirm these pages load and are included in the deployed sitemap:

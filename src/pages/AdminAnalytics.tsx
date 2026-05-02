@@ -3,11 +3,15 @@ import { supabase } from "@/integrations/supabase/client";
 import type { Session } from "@supabase/supabase-js";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ArrowUpDown,
   BarChart3,
+  CalendarCheck,
+  CheckCircle2,
   ClipboardList,
+  Download,
   DollarSign,
   Eye,
   FileText,
@@ -15,6 +19,8 @@ import {
   Mail,
   MousePointerClick,
   PhoneCall,
+  PlayCircle,
+  PauseCircle,
   RefreshCw,
   Route,
   Share2,
@@ -22,6 +28,7 @@ import {
   Target,
   TrendingUp,
   Users,
+  XCircle,
 } from "lucide-react";
 import { blogPostsMeta } from "@/data/blogPostMeta";
 import { topicHubs } from "@/data/topicHubs";
@@ -75,15 +82,26 @@ interface ConsultationLeadRow {
   phone: string | null;
   relationship: string | null;
   concern: string | null;
+  treatment_history: string | null;
   urgency: string | null;
+  message: string;
   source: string;
+  page_path: string | null;
   lead_intent: string | null;
   lead_score: number;
   lead_tier: string;
   lead_reasons: string[];
+  pipeline_status: string;
   followup_status: string;
+  followups_paused_at: string | null;
   next_followup_at: string | null;
   last_followup_at: string | null;
+  contacted_at: string | null;
+  booked_at: string | null;
+  closed_at: string | null;
+  lost_at: string | null;
+  last_admin_action_at: string | null;
+  admin_notes: string | null;
   created_at: string;
 }
 
@@ -107,6 +125,9 @@ interface AdvertiserInquiryRow {
   company: string | null;
   sponsor_type: string | null;
   monthly_budget: string | null;
+  pipeline_status: string;
+  last_admin_action_at: string | null;
+  admin_notes: string | null;
   created_at: string;
 }
 
@@ -129,6 +150,7 @@ interface ClusterFunnelStat {
 type SortField = "views" | "title" | "date";
 type SortDir = "asc" | "desc";
 type TimeRange = "7d" | "30d" | "90d" | "all";
+type LeadPipelineStatus = "new" | "contacted" | "booked" | "active" | "closed" | "lost";
 
 const resultLabels: Record<string, string> = {
   safety: "Safety",
@@ -138,6 +160,29 @@ const resultLabels: Record<string, string> = {
   support: "Support",
 };
 
+const pipelineLabels: Record<LeadPipelineStatus, string> = {
+  new: "New",
+  contacted: "Contacted",
+  booked: "Booked",
+  active: "Active",
+  closed: "Closed",
+  lost: "Lost",
+};
+
+const pipelineBadgeClass: Record<LeadPipelineStatus, string> = {
+  new: "bg-secondary text-muted-foreground",
+  contacted: "bg-primary/10 text-primary",
+  booked: "bg-emerald-100 text-emerald-800",
+  active: "bg-blue-100 text-blue-800",
+  closed: "bg-slate-900 text-white",
+  lost: "bg-destructive/10 text-destructive",
+};
+
+const leadPipelineStatuses: LeadPipelineStatus[] = ["new", "contacted", "booked", "active", "closed", "lost"];
+
+const getPipelineStatus = (status: string | null | undefined): LeadPipelineStatus =>
+  leadPipelineStatuses.includes(status as LeadPipelineStatus) ? (status as LeadPipelineStatus) : "new";
+
 const formatDateTime = (value: string) =>
   new Intl.DateTimeFormat("en-US", {
     month: "short",
@@ -145,6 +190,28 @@ const formatDateTime = (value: string) =>
     hour: "numeric",
     minute: "2-digit",
   }).format(new Date(value));
+
+const csvEscape = (value: string | number | null | undefined) => {
+  const text = value === null || value === undefined ? "" : String(value);
+  return `"${text.replace(/"/g, '""')}"`;
+};
+
+const downloadCsv = (filename: string, rows: Array<Record<string, string | number | null | undefined>>) => {
+  if (rows.length === 0) return;
+
+  const headers = Object.keys(rows[0]);
+  const csv = [
+    headers.map(csvEscape).join(","),
+    ...rows.map((row) => headers.map((header) => csvEscape(row[header])).join(",")),
+  ].join("\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  link.click();
+  URL.revokeObjectURL(url);
+};
 
 const AdminAnalytics = () => {
   const [session, setSession] = useState<Session | null>(null);
@@ -174,6 +241,9 @@ const AdminAnalytics = () => {
   const [processingFollowups, setProcessingFollowups] = useState(false);
   const [lastSyncCount, setLastSyncCount] = useState<number | null>(null);
   const [lastFollowupRun, setLastFollowupRun] = useState<{ sent: number; errors: number } | null>(null);
+  const [selectedLeadId, setSelectedLeadId] = useState<string | null>(null);
+  const [leadActionLoading, setLeadActionLoading] = useState<string | null>(null);
+  const [leadNoteDraft, setLeadNoteDraft] = useState("");
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -296,10 +366,10 @@ const AdminAnalytics = () => {
 
     const { data: consultationData, error: consultationError } = await supabase
       .from('consultation_leads')
-      .select('id, name, email, phone, relationship, concern, urgency, source, lead_intent, lead_score, lead_tier, lead_reasons, followup_status, next_followup_at, last_followup_at, created_at')
+      .select('id, name, email, phone, relationship, concern, treatment_history, urgency, message, source, page_path, lead_intent, lead_score, lead_tier, lead_reasons, pipeline_status, followup_status, followups_paused_at, next_followup_at, last_followup_at, contacted_at, booked_at, closed_at, lost_at, last_admin_action_at, admin_notes, created_at')
       .order('lead_score', { ascending: false })
       .order('created_at', { ascending: false })
-      .limit(12);
+      .limit(50);
 
     if (consultationError || !consultationData) {
       setConsultationLeads([]);
@@ -323,9 +393,9 @@ const AdminAnalytics = () => {
 
     const { data: advertiserData, error: advertiserError } = await supabase
       .from('advertiser_inquiries')
-      .select('id, name, email, company, sponsor_type, monthly_budget, created_at')
+      .select('id, name, email, company, sponsor_type, monthly_budget, pipeline_status, last_admin_action_at, admin_notes, created_at')
       .order('created_at', { ascending: false })
-      .limit(8);
+      .limit(50);
 
     if (advertiserError || !advertiserData) {
       setAdvertiserInquiries([]);
@@ -382,6 +452,15 @@ const AdminAnalytics = () => {
     }
   }, [timeRange, isAdmin]);
 
+  useEffect(() => {
+    const selectedLead = consultationLeads.find((lead) => lead.id === selectedLeadId);
+    if (selectedLead) {
+      setLeadNoteDraft(selectedLead.admin_notes || "");
+    } else if (!selectedLeadId && consultationLeads.length > 0) {
+      setSelectedLeadId(consultationLeads[0].id);
+    }
+  }, [consultationLeads, selectedLeadId]);
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setAuthLoading(true);
@@ -433,6 +512,167 @@ const AdminAnalytics = () => {
     } finally {
       setProcessingFollowups(false);
     }
+  };
+
+  const updateConsultationLead = async (
+    lead: ConsultationLeadRow,
+    patch: Partial<ConsultationLeadRow>,
+    successMessage: string,
+  ) => {
+    setLeadActionLoading(lead.id);
+    try {
+      const { error } = await supabase
+        .from('consultation_leads')
+        .update(patch)
+        .eq('id', lead.id);
+
+      if (error) throw error;
+
+      toast({
+        title: "Lead updated",
+        description: successMessage,
+      });
+      await fetchFunnelAnalytics();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Please try again later.";
+      toast({
+        title: "Lead update failed",
+        description: message,
+        variant: "destructive",
+      });
+    } finally {
+      setLeadActionLoading(null);
+    }
+  };
+
+  const setLeadPipelineStatus = (lead: ConsultationLeadRow, status: LeadPipelineStatus) => {
+    const now = new Date().toISOString();
+    const patch: Partial<ConsultationLeadRow> = {
+      pipeline_status: status,
+      last_admin_action_at: now,
+    };
+
+    if (status === "contacted") {
+      patch.contacted_at = lead.contacted_at || now;
+    }
+
+    if (status === "booked") {
+      patch.contacted_at = lead.contacted_at || now;
+      patch.booked_at = lead.booked_at || now;
+      patch.followup_status = "paused";
+      patch.followups_paused_at = lead.followups_paused_at || now;
+    }
+
+    if (status === "active") {
+      patch.followup_status = "active";
+      patch.followups_paused_at = null;
+    }
+
+    if (status === "closed") {
+      patch.closed_at = lead.closed_at || now;
+      patch.followup_status = "complete";
+      patch.followups_paused_at = lead.followups_paused_at || now;
+    }
+
+    if (status === "lost") {
+      patch.lost_at = lead.lost_at || now;
+      patch.followup_status = "complete";
+      patch.followups_paused_at = lead.followups_paused_at || now;
+    }
+
+    updateConsultationLead(lead, patch, `Moved ${lead.name} to ${pipelineLabels[status]}.`);
+  };
+
+  const toggleLeadFollowups = (lead: ConsultationLeadRow) => {
+    const now = new Date().toISOString();
+    const isPaused = Boolean(lead.followups_paused_at);
+    updateConsultationLead(
+      lead,
+      {
+        followup_status: isPaused ? "active" : "paused",
+        followups_paused_at: isPaused ? null : now,
+        last_admin_action_at: now,
+      },
+      isPaused ? "Automated follow-ups resumed." : "Automated follow-ups paused.",
+    );
+  };
+
+  const saveLeadNotes = (lead: ConsultationLeadRow) => {
+    updateConsultationLead(
+      lead,
+      {
+        admin_notes: leadNoteDraft.trim() || null,
+        last_admin_action_at: new Date().toISOString(),
+      },
+      "Lead notes saved.",
+    );
+  };
+
+  const updateAdvertiserStatus = async (inquiry: AdvertiserInquiryRow, status: LeadPipelineStatus) => {
+    setLeadActionLoading(inquiry.id);
+    try {
+      const { error } = await supabase
+        .from('advertiser_inquiries')
+        .update({
+          pipeline_status: status,
+          last_admin_action_at: new Date().toISOString(),
+        })
+        .eq('id', inquiry.id);
+
+      if (error) throw error;
+
+      toast({
+        title: "Advertiser updated",
+        description: `Moved ${inquiry.company || inquiry.name} to ${pipelineLabels[status]}.`,
+      });
+      await fetchFunnelAnalytics();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Please try again later.";
+      toast({
+        title: "Advertiser update failed",
+        description: message,
+        variant: "destructive",
+      });
+    } finally {
+      setLeadActionLoading(null);
+    }
+  };
+
+  const exportConsultationLeads = () => {
+    downloadCsv(
+      `consultation-leads-${new Date().toISOString().slice(0, 10)}.csv`,
+      consultationLeads.map((lead) => ({
+        name: lead.name,
+        email: lead.email,
+        phone: lead.phone,
+        status: pipelineLabels[getPipelineStatus(lead.pipeline_status)],
+        score: lead.lead_score,
+        tier: lead.lead_tier,
+        intent: lead.lead_intent,
+        source: lead.source,
+        page_path: lead.page_path,
+        relationship: lead.relationship,
+        urgency: lead.urgency,
+        concern: lead.concern,
+        next_followup_at: lead.next_followup_at,
+        created_at: lead.created_at,
+      })),
+    );
+  };
+
+  const exportAdvertiserInquiries = () => {
+    downloadCsv(
+      `advertiser-inquiries-${new Date().toISOString().slice(0, 10)}.csv`,
+      advertiserInquiries.map((inquiry) => ({
+        company: inquiry.company,
+        name: inquiry.name,
+        email: inquiry.email,
+        status: pipelineLabels[getPipelineStatus(inquiry.pipeline_status)],
+        sponsor_type: inquiry.sponsor_type,
+        monthly_budget: inquiry.monthly_budget,
+        created_at: inquiry.created_at,
+      })),
+    );
   };
 
   const toggleSort = (field: SortField) => {
@@ -587,6 +827,27 @@ const AdminAnalytics = () => {
   const nowTime = Date.now();
   const dueFollowups = consultationFollowups.filter((followup) => new Date(followup.scheduled_for).getTime() <= nowTime);
   const nextQueuedFollowup = consultationFollowups.find((followup) => new Date(followup.scheduled_for).getTime() > nowTime);
+  const selectedLead = consultationLeads.find((lead) => lead.id === selectedLeadId) || consultationLeads[0] || null;
+  const selectedLeadFollowups = selectedLead
+    ? consultationFollowups.filter((followup) => followup.consultation_lead_id === selectedLead.id)
+    : [];
+  const pipelineCounts = leadPipelineStatuses.map((status) => ({
+    status,
+    count: consultationLeads.filter((lead) => getPipelineStatus(lead.pipeline_status) === status).length,
+  }));
+  const hotLeadCount = consultationLeads.filter((lead) => lead.lead_tier === "priority" || lead.lead_score >= 65).length;
+  const bookedLeadCount = consultationLeads.filter((lead) => getPipelineStatus(lead.pipeline_status) === "booked").length;
+  const closedLeadCount = consultationLeads.filter((lead) => getPipelineStatus(lead.pipeline_status) === "closed").length;
+  const leadSourceStats: FunnelBreakdownStat[] = Object.entries(
+    consultationLeads.reduce<Record<string, number>>((acc, lead) => {
+      const key = lead.page_path || lead.source || "unknown";
+      acc[key] = (acc[key] || 0) + 1;
+      return acc;
+    }, {})
+  )
+    .map(([key, count]) => ({ key, label: key, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 6);
 
   const getPrimaryHubForArticle = (slug: string | null) => {
     if (!slug) return null;
@@ -748,6 +1009,52 @@ const AdminAnalytics = () => {
           </div>
 
           <section className="mb-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="text-muted-foreground text-sm mb-1">Hot Leads</div>
+                  <p className="text-3xl font-bold text-foreground">{hotLeadCount}</p>
+                  <p className="text-xs text-muted-foreground">Priority score or 65+</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="text-muted-foreground text-sm mb-1">Booked</div>
+                  <p className="text-3xl font-bold text-foreground">{bookedLeadCount}</p>
+                  <p className="text-xs text-muted-foreground">Consultation pipeline</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="text-muted-foreground text-sm mb-1">Closed</div>
+                  <p className="text-3xl font-bold text-foreground">{closedLeadCount}</p>
+                  <p className="text-xs text-muted-foreground">Won opportunities</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="text-muted-foreground text-sm mb-1">Due Follow-Ups</div>
+                  <p className="text-3xl font-bold text-foreground">{dueFollowups.length}</p>
+                  <p className="text-xs text-muted-foreground">{consultationFollowups.length} queued total</p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Card>
+              <CardContent className="pt-6">
+                <div className="grid gap-3 md:grid-cols-6">
+                  {pipelineCounts.map((item) => (
+                    <div key={item.status} className="rounded-xl border border-border p-3">
+                      <p className="text-xs text-muted-foreground">{pipelineLabels[item.status]}</p>
+                      <p className="text-2xl font-bold text-foreground">{item.count}</p>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+
+          <section className="mb-8">
             <div className="flex items-center justify-between gap-4 mb-4">
               <div>
                 <h2 className="font-serif text-2xl font-bold text-foreground">Follow Up Today</h2>
@@ -772,13 +1079,18 @@ const AdminAnalytics = () => {
                               <p className="font-semibold text-foreground">{lead.name}</p>
                               <p className="text-xs text-muted-foreground">{lead.relationship || "Relationship unknown"} · {lead.lead_intent || lead.source}</p>
                             </div>
-                            <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${
-                              lead.lead_tier === "priority"
-                                ? "bg-destructive/10 text-destructive"
-                                : "bg-primary/10 text-primary"
-                            }`}>
-                              {lead.lead_score}
-                            </span>
+                            <div className="flex flex-col items-end gap-1">
+                              <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${
+                                lead.lead_tier === "priority"
+                                  ? "bg-destructive/10 text-destructive"
+                                  : "bg-primary/10 text-primary"
+                              }`}>
+                                {lead.lead_score}
+                              </span>
+                              <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${pipelineBadgeClass[getPipelineStatus(lead.pipeline_status)]}`}>
+                                {pipelineLabels[getPipelineStatus(lead.pipeline_status)]}
+                              </span>
+                            </div>
                           </div>
                           <p className="mt-3 text-sm text-muted-foreground line-clamp-2">
                             {lead.concern || lead.urgency || "No concern listed"}
@@ -805,6 +1117,10 @@ const AdminAnalytics = () => {
                                 </a>
                               </Button>
                             )}
+                            <Button size="sm" variant="secondary" onClick={() => setSelectedLeadId(lead.id)}>
+                              <ClipboardList className="h-4 w-4" />
+                              Details
+                            </Button>
                             <span className="ml-auto text-xs text-muted-foreground self-center">
                               {formatDateTime(lead.created_at)}
                             </span>
@@ -816,6 +1132,146 @@ const AdminAnalytics = () => {
                 )}
               </CardContent>
             </Card>
+
+            {selectedLead && (
+              <Card className="mt-4">
+                <CardHeader>
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <CardTitle className="font-serif text-lg">Lead Detail</CardTitle>
+                      <p className="text-muted-foreground text-sm">
+                        {selectedLead.name} · {selectedLead.email} · {selectedLead.page_path || selectedLead.source}
+                      </p>
+                    </div>
+                    <span className={`rounded-full px-3 py-1 text-xs font-medium ${pipelineBadgeClass[getPipelineStatus(selectedLead.pipeline_status)]}`}>
+                      {pipelineLabels[getPipelineStatus(selectedLead.pipeline_status)]}
+                    </span>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+                    <div className="space-y-4">
+                      <div className="grid gap-3 md:grid-cols-3">
+                        <div className="rounded-xl bg-secondary/40 p-3">
+                          <p className="text-xs text-muted-foreground">Score</p>
+                          <p className="font-semibold text-foreground">{selectedLead.lead_score} · {selectedLead.lead_tier}</p>
+                        </div>
+                        <div className="rounded-xl bg-secondary/40 p-3">
+                          <p className="text-xs text-muted-foreground">Intent</p>
+                          <p className="font-semibold text-foreground">{selectedLead.lead_intent || "Unknown"}</p>
+                        </div>
+                        <div className="rounded-xl bg-secondary/40 p-3">
+                          <p className="text-xs text-muted-foreground">Next Follow-Up</p>
+                          <p className="font-semibold text-foreground">
+                            {selectedLead.next_followup_at ? formatDateTime(selectedLead.next_followup_at) : "None queued"}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="grid gap-4 md:grid-cols-2">
+                        <div>
+                          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Concern</p>
+                          <p className="mt-1 text-sm text-foreground">{selectedLead.concern || selectedLead.message || "No concern listed."}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Urgency</p>
+                          <p className="mt-1 text-sm text-foreground">{selectedLead.urgency || "Not specified"}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Treatment History</p>
+                          <p className="mt-1 text-sm text-foreground">{selectedLead.treatment_history || "Not specified"}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Attribution</p>
+                          <p className="mt-1 text-sm text-foreground">{selectedLead.page_path || selectedLead.source}</p>
+                        </div>
+                      </div>
+
+                      {selectedLead.lead_reasons.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {selectedLead.lead_reasons.map((reason) => (
+                            <span key={reason} className="rounded-full bg-secondary px-2.5 py-1 text-xs text-muted-foreground">
+                              {reason}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      <div>
+                        <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground mb-2">Admin Notes</p>
+                        <Textarea
+                          value={leadNoteDraft}
+                          onChange={(event) => setLeadNoteDraft(event.target.value)}
+                          placeholder="Add notes from calls, next steps, family context, or booking details."
+                          className="min-h-28"
+                        />
+                        <Button
+                          className="mt-2"
+                          size="sm"
+                          onClick={() => saveLeadNotes(selectedLead)}
+                          disabled={leadActionLoading === selectedLead.id}
+                        >
+                          Save notes
+                        </Button>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="rounded-xl border border-border p-4">
+                        <p className="text-sm font-medium text-foreground mb-3">Pipeline Actions</p>
+                        <div className="grid grid-cols-2 gap-2">
+                          <Button size="sm" variant="outline" onClick={() => setLeadPipelineStatus(selectedLead, "contacted")} disabled={leadActionLoading === selectedLead.id}>
+                            <CheckCircle2 className="h-4 w-4" />
+                            Contacted
+                          </Button>
+                          <Button size="sm" variant="outline" onClick={() => setLeadPipelineStatus(selectedLead, "booked")} disabled={leadActionLoading === selectedLead.id}>
+                            <CalendarCheck className="h-4 w-4" />
+                            Booked
+                          </Button>
+                          <Button size="sm" variant="outline" onClick={() => setLeadPipelineStatus(selectedLead, "closed")} disabled={leadActionLoading === selectedLead.id}>
+                            <DollarSign className="h-4 w-4" />
+                            Closed
+                          </Button>
+                          <Button size="sm" variant="outline" onClick={() => setLeadPipelineStatus(selectedLead, "lost")} disabled={leadActionLoading === selectedLead.id}>
+                            <XCircle className="h-4 w-4" />
+                            Lost
+                          </Button>
+                        </div>
+                        <Button
+                          className="mt-3 w-full"
+                          size="sm"
+                          variant={selectedLead.followups_paused_at ? "default" : "secondary"}
+                          onClick={() => toggleLeadFollowups(selectedLead)}
+                          disabled={leadActionLoading === selectedLead.id}
+                        >
+                          {selectedLead.followups_paused_at ? <PlayCircle className="h-4 w-4" /> : <PauseCircle className="h-4 w-4" />}
+                          {selectedLead.followups_paused_at ? "Resume follow-ups" : "Pause follow-ups"}
+                        </Button>
+                      </div>
+
+                      <div className="rounded-xl border border-border p-4">
+                        <p className="text-sm font-medium text-foreground mb-3">Queued Follow-Ups</p>
+                        {selectedLeadFollowups.length === 0 ? (
+                          <p className="text-sm text-muted-foreground">No unsent follow-ups are queued for this lead.</p>
+                        ) : (
+                          <div className="space-y-3">
+                            {selectedLeadFollowups.map((followup) => (
+                              <div key={followup.id} className="text-sm">
+                                <div className="flex justify-between gap-3">
+                                  <p className="font-medium text-foreground">Step {followup.sequence_step}</p>
+                                  <p className="text-xs text-muted-foreground">{formatDateTime(followup.scheduled_for)}</p>
+                                </div>
+                                <p className="text-xs text-muted-foreground">{followup.subject}</p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
 
             <div className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr] mt-4">
               <Card>
@@ -1215,6 +1671,37 @@ const AdminAnalytics = () => {
 
             <Card className="mt-6">
               <CardHeader>
+                <CardTitle className="font-serif text-lg">Lead Revenue Attribution</CardTitle>
+                <p className="text-muted-foreground text-sm">
+                  Shows which pages are producing consultation opportunities, not just traffic.
+                </p>
+              </CardHeader>
+              <CardContent>
+                {leadSourceStats.length === 0 ? (
+                  <p className="text-muted-foreground text-sm">No consultation lead source data yet.</p>
+                ) : (
+                  <div className="grid gap-3 md:grid-cols-2">
+                    {leadSourceStats.map((item) => {
+                      const percentage = consultationLeads.length > 0 ? (item.count / consultationLeads.length) * 100 : 0;
+                      return (
+                        <div key={item.key} className="rounded-xl border border-border p-4">
+                          <div className="flex justify-between gap-3 text-sm mb-2">
+                            <span className="font-medium text-foreground truncate">{item.label}</span>
+                            <span className="text-muted-foreground">{item.count}</span>
+                          </div>
+                          <div className="h-2 rounded-full bg-muted overflow-hidden">
+                            <div className="h-full bg-primary" style={{ width: `${percentage}%` }} />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            <Card className="mt-6">
+              <CardHeader>
                 <CardTitle className="font-serif text-lg">SEO Cluster Funnel Performance</CardTitle>
                 <p className="text-muted-foreground text-sm">
                   Shows which topic clusters are turning article readers into next-step clicks.
@@ -1259,10 +1746,18 @@ const AdminAnalytics = () => {
             <div className="grid gap-6 lg:grid-cols-[1.35fr_0.9fr] mt-6">
               <Card>
                 <CardHeader>
-                  <CardTitle className="font-serif text-lg">Priority Consultation Leads</CardTitle>
-                  <p className="text-muted-foreground text-sm">
-                    {consultationRequests.toLocaleString()} consultation request events. Leads are sorted by urgency and buying intent.
-                  </p>
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <CardTitle className="font-serif text-lg">Priority Consultation Leads</CardTitle>
+                      <p className="text-muted-foreground text-sm">
+                        {consultationRequests.toLocaleString()} consultation request events. Leads are sorted by urgency and buying intent.
+                      </p>
+                    </div>
+                    <Button size="sm" variant="outline" onClick={exportConsultationLeads} disabled={consultationLeads.length === 0}>
+                      <Download className="h-4 w-4" />
+                      Export CSV
+                    </Button>
+                  </div>
                 </CardHeader>
                 <CardContent>
                   {consultationLeads.length === 0 ? (
@@ -1274,23 +1769,32 @@ const AdminAnalytics = () => {
                           <tr className="border-b border-border">
                             <th className="text-left py-3 px-2 font-medium text-muted-foreground">Lead</th>
                             <th className="text-left py-3 px-2 font-medium text-muted-foreground hidden md:table-cell">Concern</th>
+                            <th className="text-left py-3 px-2 font-medium text-muted-foreground hidden lg:table-cell">Status</th>
                             <th className="text-right py-3 px-2 font-medium text-muted-foreground">Score</th>
-                            <th className="text-right py-3 px-2 font-medium text-muted-foreground">Latest</th>
+                            <th className="text-right py-3 px-2 font-medium text-muted-foreground">Action</th>
                           </tr>
                         </thead>
                         <tbody>
                           {consultationLeads.map((lead) => (
-                            <tr key={lead.id} className="border-b border-border/50">
+                            <tr key={lead.id} className="border-b border-border/50 hover:bg-muted/40">
                               <td className="py-3 px-2">
                                 <p className="font-medium text-foreground">{lead.name}</p>
                                 <p className="text-xs text-muted-foreground">{lead.email}</p>
-                                <p className="text-xs text-muted-foreground">{lead.relationship || "Relationship unknown"} · {lead.lead_intent || lead.source}</p>
+                                <p className="text-xs text-muted-foreground">{lead.relationship || "Relationship unknown"} · {lead.page_path || lead.source}</p>
                               </td>
                               <td className="py-3 px-2 text-muted-foreground hidden md:table-cell">
                                 <p className="line-clamp-2">{lead.concern || lead.urgency || "—"}</p>
                                 {lead.lead_reasons.length > 0 && (
                                   <p className="text-xs mt-1">{lead.lead_reasons.slice(0, 2).join(" · ")}</p>
                                 )}
+                              </td>
+                              <td className="py-3 px-2 hidden lg:table-cell">
+                                <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${pipelineBadgeClass[getPipelineStatus(lead.pipeline_status)]}`}>
+                                  {pipelineLabels[getPipelineStatus(lead.pipeline_status)]}
+                                </span>
+                                <p className="mt-1 text-xs text-muted-foreground">
+                                  {lead.followups_paused_at ? "Follow-ups paused" : lead.followup_status}
+                                </p>
                               </td>
                               <td className="py-3 px-2 text-right">
                                 <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${
@@ -1303,8 +1807,10 @@ const AdminAnalytics = () => {
                                   {lead.lead_score}
                                 </span>
                               </td>
-                              <td className="py-3 px-2 text-right text-muted-foreground text-xs">
-                                {formatDateTime(lead.created_at)}
+                              <td className="py-3 px-2 text-right">
+                                <Button size="sm" variant="ghost" onClick={() => setSelectedLeadId(lead.id)}>
+                                  Details
+                                </Button>
                               </td>
                             </tr>
                           ))}
@@ -1317,10 +1823,18 @@ const AdminAnalytics = () => {
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="font-serif text-lg">Advertiser Inquiries</CardTitle>
-                  <p className="text-muted-foreground text-sm">
-                    {advertiserInquiryEvents.toLocaleString()} inquiry events and {advertiserInquiryCount?.toLocaleString() ?? "—"} stored inquiries.
-                  </p>
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <CardTitle className="font-serif text-lg">Advertiser Inquiries</CardTitle>
+                      <p className="text-muted-foreground text-sm">
+                        {advertiserInquiryEvents.toLocaleString()} inquiry events and {advertiserInquiryCount?.toLocaleString() ?? "—"} stored inquiries.
+                      </p>
+                    </div>
+                    <Button size="sm" variant="outline" onClick={exportAdvertiserInquiries} disabled={advertiserInquiries.length === 0}>
+                      <Download className="h-4 w-4" />
+                      Export CSV
+                    </Button>
+                  </div>
                 </CardHeader>
                 <CardContent>
                   {advertiserInquiries.length === 0 ? (
@@ -1334,12 +1848,28 @@ const AdminAnalytics = () => {
                               <p className="font-medium text-foreground">{inquiry.company || inquiry.name}</p>
                               <p className="text-xs text-muted-foreground">{inquiry.email}</p>
                             </div>
-                            <span className="text-xs text-muted-foreground">{formatDateTime(inquiry.created_at)}</span>
+                            <div className="text-right">
+                              <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${pipelineBadgeClass[getPipelineStatus(inquiry.pipeline_status)]}`}>
+                                {pipelineLabels[getPipelineStatus(inquiry.pipeline_status)]}
+                              </span>
+                              <p className="mt-1 text-xs text-muted-foreground">{formatDateTime(inquiry.created_at)}</p>
+                            </div>
                           </div>
                           <p className="mt-2 text-sm text-muted-foreground">{inquiry.sponsor_type || "Sponsor type not provided"}</p>
                           {inquiry.monthly_budget && (
                             <p className="mt-2 text-xs text-primary font-medium">{inquiry.monthly_budget}</p>
                           )}
+                          <div className="mt-3 flex flex-wrap gap-2">
+                            <Button size="sm" variant="outline" onClick={() => updateAdvertiserStatus(inquiry, "contacted")} disabled={leadActionLoading === inquiry.id}>
+                              Contacted
+                            </Button>
+                            <Button size="sm" variant="outline" onClick={() => updateAdvertiserStatus(inquiry, "active")} disabled={leadActionLoading === inquiry.id}>
+                              Active
+                            </Button>
+                            <Button size="sm" variant="outline" onClick={() => updateAdvertiserStatus(inquiry, "closed")} disabled={leadActionLoading === inquiry.id}>
+                              Closed
+                            </Button>
+                          </div>
                         </div>
                       ))}
                     </div>

@@ -116,6 +116,21 @@ serve(async (req) => {
 
     for (const followup of followups || []) {
       try {
+        if (followup.consultation_lead_id) {
+          const { data: leadState } = await supabase
+            .from("consultation_leads")
+            .select("followups_paused_at, pipeline_status")
+            .eq("id", followup.consultation_lead_id)
+            .maybeSingle();
+
+          if (
+            leadState?.followups_paused_at ||
+            ["booked", "closed", "lost"].includes(leadState?.pipeline_status || "")
+          ) {
+            continue;
+          }
+        }
+
         await resend.emails.send({
           from: "No More Enabling <contact@nomoreenabling.com>",
           to: [followup.email],
