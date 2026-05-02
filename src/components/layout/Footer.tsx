@@ -88,7 +88,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/advertise/media-kit" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Media Kit
+                  For Treatment Centers & Recovery Brands
                 </Link>
               </li>
             </ul>

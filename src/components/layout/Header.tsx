@@ -22,6 +22,7 @@ const Header = () => {
     { name: "Start Here", href: "/start-here" },
     { name: "Articles", href: "/articles" },
     { name: "Work With Matt", href: "/work-with-matt" },
+    { name: "Advertise", href: "/advertise/media-kit" },
     { name: "About", href: "/about" },
   ];
 
@@ -30,6 +31,7 @@ const Header = () => {
     { name: "Intervention Help", href: "/intervention-help", highlight: true },
     { name: "Family Addiction Coaching", href: "/family-addiction-coaching", highlight: true },
     { name: "Guided Topic Hubs", href: "/topic-hubs", highlight: true },
+    { name: "For Treatment Centers & Recovery Brands", href: "/advertise/media-kit", highlight: true },
     { name: "Free Boundaries Course", href: "/boundaries-course", highlight: false },
     { name: "Helping or Enabling? Tool", href: "/helping-or-enabling" },
     { name: "Signs You Need Professional Help", href: "/professional-guidance-signs" },
@@ -69,7 +71,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
+          <nav className="hidden lg:flex items-center gap-7" aria-label="Main navigation">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -113,7 +115,7 @@ const Header = () => {
           </nav>
 
           {/* CTA Button */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Button variant="hero" size="default" onClick={scrollToNewsletter}>
               Get the emails
             </Button>
@@ -122,7 +124,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-foreground"
+            className="lg:hidden p-2 text-foreground"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -131,7 +133,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-border animate-fade-in" aria-label="Mobile navigation">
+          <nav className="lg:hidden py-4 border-t border-border animate-fade-in" aria-label="Mobile navigation">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <Link
@@ -150,6 +152,7 @@ const Header = () => {
                   <Link to="/intervention-help" className="text-primary hover:text-primary/80 transition-colors font-semibold" onClick={() => setIsMenuOpen(false)}>Intervention Help</Link>
                   <Link to="/family-addiction-coaching" className="text-primary hover:text-primary/80 transition-colors font-semibold" onClick={() => setIsMenuOpen(false)}>Family Addiction Coaching</Link>
                   <Link to="/topic-hubs" className="text-primary hover:text-primary/80 transition-colors font-semibold" onClick={() => setIsMenuOpen(false)}>Guided Topic Hubs</Link>
+                  <Link to="/advertise/media-kit" className="text-primary hover:text-primary/80 transition-colors font-semibold" onClick={() => setIsMenuOpen(false)}>For Treatment Centers & Recovery Brands</Link>
                   <Link to="/boundaries-course" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Free Boundaries Course</Link>
                   <Link to="/helping-or-enabling" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Helping or Enabling? Tool</Link>
                   <Link to="/professional-guidance-signs" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Signs You Need Professional Help</Link>

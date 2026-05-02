@@ -13,10 +13,16 @@ import Sidebar from "@/components/home/Sidebar";
 import AdSpace from "@/components/ads/AdSpace";
 import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
 import { Button } from "@/components/ui/button";
+import { ArrowRight, BadgeDollarSign, CheckCircle2, HeartHandshake, Route, ShieldAlert } from "lucide-react";
 import { blogPostsMeta } from "@/data/blogPostMeta";
 import SEOHead from "@/components/seo/SEOHead";
 import { trackGAConversion } from "@/lib/gaConversions";
 import { withOwnedUtm } from "@/lib/ownedLinks";
+import mattHeadshot from "@/assets/matt-brown-headshot.jpeg";
+import freedomLogo from "@/assets/freedom-interventions-logo.jpg";
+import soberHelplineLogo from "@/assets/sober-helpline-logo.png";
+import familyBridgeLogo from "@/assets/family-bridge-logo.png";
+import partyWreckersLogo from "@/assets/party-wreckers-logo.jpg";
 
 const categories = [
   "All",
@@ -32,16 +38,29 @@ const quickStartLinks = [
     title: "Intervention help",
     description: "Best when treatment is refused, consequences are escalating, or your family needs a structured plan.",
     href: "/intervention-help",
+    icon: ShieldAlert,
+    accent: "bg-red-50 border-red-200 text-red-950",
   },
   {
     title: "Family addiction coaching",
     description: "Best when boundaries, relapse, money, housing, or family alignment keep breaking down.",
     href: "/family-addiction-coaching",
+    icon: HeartHandshake,
+    accent: "bg-amber-50 border-amber-200 text-amber-950",
   },
   {
     title: "Family situation assessment",
     description: "Best when you do not know whether this is support, coaching, intervention, safety, or aftercare.",
     href: "/family-situation-assessment",
+    icon: Route,
+    accent: "bg-emerald-50 border-emerald-200 text-emerald-950",
+  },
+  {
+    title: "Advertise here",
+    description: "Best for recovery-aligned brands that want an ethical, family-focused audience.",
+    href: "/advertise/media-kit",
+    icon: BadgeDollarSign,
+    accent: "bg-sky-50 border-sky-200 text-sky-950",
   },
 ];
 
@@ -70,6 +89,13 @@ const guidedPaths = [
     href: "/family-addiction-consultation",
     cta: "Request direction",
   },
+];
+
+const ecosystemProof = [
+  { name: "Freedom Interventions", image: freedomLogo, detail: "Structured intervention guidance" },
+  { name: "Sober Helpline", image: soberHelplineLogo, detail: "Family support and live help" },
+  { name: "Family Bridge", image: familyBridgeLogo, detail: "Recovery support technology" },
+  { name: "Party Wreckers", image: partyWreckersLogo, detail: "Podcast education and reach" },
 ];
 
 const sortByDate = (posts: typeof blogPostsMeta) => {
@@ -132,32 +158,51 @@ const Index = () => {
         <main className="flex-grow" role="main">
           <HeroSection />
 
-          <section className="container mx-auto px-4 pt-4 pb-10">
-            <div className="max-w-4xl mx-auto rounded-2xl border border-border bg-card p-6 md:p-8">
-              <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground">
-                Clearer support for families living with addiction
-              </h2>
-                <p className="mt-4 text-base md:text-lg text-muted-foreground">
-                If you have been trying to help and somehow things keep getting worse, use this site to route the situation.
-                The goal is to help you decide whether your family needs education, boundaries, live support, coaching,
-                or higher-level intervention guidance.
-              </p>
-              <div className="mt-5 flex flex-wrap gap-3 text-sm text-muted-foreground">
-                <span className="rounded-full bg-secondary px-3 py-1">20+ years intervention experience</span>
-                <span className="rounded-full bg-secondary px-3 py-1">Direct, practical family guidance</span>
-                <span className="rounded-full bg-secondary px-3 py-1">Less panic. Better decisions.</span>
+          <section className="container mx-auto px-4 pt-8 pb-10">
+            <div className="max-w-6xl mx-auto">
+              <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+                <div>
+                  <p className="text-sm uppercase tracking-wide text-primary font-medium">Decision engine</p>
+                  <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mt-2">
+                    One site. Four clean doorways.
+                  </h2>
+                  <p className="mt-4 text-base md:text-lg text-muted-foreground">
+                    If you have been trying to help and somehow things keep getting worse, start by choosing the doorway that matches the pressure in your home right now.
+                  </p>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <div className="rounded-2xl border border-border bg-card p-4">
+                    <p className="text-3xl font-bold text-foreground">143</p>
+                    <p className="text-sm text-muted-foreground">Search-focused family education articles</p>
+                  </div>
+                  <div className="rounded-2xl border border-border bg-card p-4">
+                    <p className="text-3xl font-bold text-foreground">20+</p>
+                    <p className="text-sm text-muted-foreground">Years of intervention and family support work</p>
+                  </div>
+                </div>
               </div>
-              <div className="grid gap-4 md:grid-cols-3 mt-6">
-                {quickStartLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    to={link.href}
-                    className="rounded-xl border border-border bg-background p-5 transition-colors hover:border-primary/50 hover:bg-secondary/40"
-                  >
-                    <h3 className="font-semibold text-foreground">{link.title}</h3>
-                    <p className="mt-2 text-sm text-muted-foreground">{link.description}</p>
-                  </Link>
-                ))}
+
+              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4 mt-6">
+                {quickStartLinks.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <Link
+                      key={link.href}
+                      to={link.href}
+                      className={`group rounded-2xl border p-5 transition-all hover:-translate-y-1 hover:shadow-hover ${link.accent}`}
+                    >
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/70">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <h3 className="font-serif text-xl font-bold mt-4">{link.title}</h3>
+                      <p className="mt-2 text-sm opacity-80">{link.description}</p>
+                      <p className="mt-4 inline-flex items-center gap-1 text-sm font-semibold">
+                        Open path
+                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                      </p>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -188,26 +233,39 @@ const Index = () => {
 
           <section className="container mx-auto px-4 py-6 md:py-10">
             <div className="max-w-6xl mx-auto grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-              <div className="rounded-3xl border border-border bg-card p-6 md:p-8">
+              <div className="rounded-3xl border border-border bg-card p-6 md:p-8 overflow-hidden relative">
+                <div className="absolute right-0 top-0 h-full w-1 bg-primary" aria-hidden="true" />
                 <p className="text-sm uppercase tracking-wide text-primary font-medium">Why trust this guidance</p>
                 <h2 className="font-serif text-3xl font-bold text-foreground mt-2">Built by a working interventionist, not a content mill</h2>
-                <p className="mt-4 text-muted-foreground max-w-3xl">
-                  Matt Brown has spent more than 20 years helping families through addiction, treatment resistance, relapse, and the fallout that wears people down at home.
-                  The goal here is not more panic, more guilt, or more theory. It is clearer pattern recognition and steadier next steps.
-                </p>
+                <div className="mt-5 grid gap-5 md:grid-cols-[120px_1fr] md:items-center">
+                  <img src={mattHeadshot} alt="Matt Brown" className="h-28 w-28 rounded-2xl object-cover shadow-card" />
+                  <p className="text-muted-foreground">
+                    Matt Brown has spent more than 20 years helping families through addiction, treatment resistance, relapse, and the fallout that wears people down at home.
+                    The goal here is not more panic, more guilt, or more theory. It is clearer pattern recognition and steadier next steps.
+                  </p>
+                </div>
                 <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                  <div className="rounded-2xl bg-secondary/40 p-4">
-                    <p className="font-medium text-foreground">20+ years in the work</p>
-                    <p className="text-sm text-muted-foreground mt-1">Grounded in real family systems, not generic wellness advice.</p>
-                  </div>
-                  <div className="rounded-2xl bg-secondary/40 p-4">
-                    <p className="font-medium text-foreground">Direct but calm</p>
-                    <p className="text-sm text-muted-foreground mt-1">Clear enough to act on when your family is under stress.</p>
-                  </div>
-                  <div className="rounded-2xl bg-secondary/40 p-4">
-                    <p className="font-medium text-foreground">Action over doom-scrolling</p>
-                    <p className="text-sm text-muted-foreground mt-1">Articles, tools, and courses meant to move families forward.</p>
-                  </div>
+                  {[
+                    ["20+ years in the work", "Grounded in real family systems, not generic wellness advice."],
+                    ["Direct but calm", "Clear enough to act on when your family is under stress."],
+                    ["Action over scrolling", "Articles, tools, and support paths meant to move families forward."],
+                  ].map(([title, copy]) => (
+                    <div key={title} className="rounded-2xl bg-secondary/40 p-4">
+                      <CheckCircle2 className="h-5 w-5 text-primary" />
+                      <p className="font-medium text-foreground mt-3">{title}</p>
+                      <p className="text-sm text-muted-foreground mt-1">{copy}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 grid gap-3 sm:grid-cols-4">
+                  {ecosystemProof.map((item) => (
+                    <div key={item.name} className="rounded-2xl border border-border bg-background p-3">
+                      <div className="h-14 flex items-center">
+                        <img src={item.image} alt={item.name} className="max-h-12 max-w-full rounded object-contain" />
+                      </div>
+                      <p className="mt-2 text-xs text-muted-foreground">{item.detail}</p>
+                    </div>
+                  ))}
                 </div>
                 <Button variant="outline" className="mt-6" asChild>
                   <Link to="/about">Read Matt’s background</Link>
@@ -225,7 +283,7 @@ const Index = () => {
                     className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors"
                     onClick={() => trackGAConversion("family_squares_click", { source: "homepage_support_lane" })}
                   >
-                  <p className="font-medium text-foreground">Sober Helpline and Family Squares</p>
+                    <p className="font-medium text-foreground">Sober Helpline and Family Squares</p>
                     <p className="text-sm text-muted-foreground mt-1">Free family support Zoom every Monday night plus practical support for families who need live help.</p>
                   </a>
                   <a
@@ -235,9 +293,9 @@ const Index = () => {
                     className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors"
                     onClick={() => trackGAConversion("owned_offer_click", { source: "homepage_support_lane", owned_brand: "freedom-interventions" })}
                   >
-                  <p className="font-medium text-foreground">Freedom Interventions</p>
-                  <p className="text-sm text-muted-foreground mt-1">When the situation is escalating and your family may need professional intervention guidance.</p>
-                </a>
+                    <p className="font-medium text-foreground">Freedom Interventions</p>
+                    <p className="text-sm text-muted-foreground mt-1">When the situation is escalating and your family may need professional intervention guidance.</p>
+                  </a>
                   <Link to="/family-addiction-consultation" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
                     <p className="font-medium text-foreground">Private family consultation</p>
                     <p className="text-sm text-muted-foreground mt-1">Best if you need help choosing between coaching, support, treatment planning, or intervention.</p>
@@ -246,6 +304,33 @@ const Index = () => {
                     <p className="font-medium text-foreground">Advertise to this audience</p>
                     <p className="text-sm text-muted-foreground mt-1">For ethical recovery, prevention, treatment-adjacent, and family-support sponsors.</p>
                   </Link>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="container mx-auto px-4 py-4 md:py-8">
+            <div className="max-w-6xl mx-auto rounded-3xl border border-border bg-card p-6 md:p-8">
+              <div className="grid gap-6 md:grid-cols-[0.8fr_1.2fr] md:items-center">
+                <div>
+                  <p className="text-sm uppercase tracking-wide text-primary font-medium">For ethical sponsors</p>
+                  <h2 className="font-serif text-3xl font-bold text-foreground mt-2">A premium family addiction audience is taking shape here</h2>
+                </div>
+                <div>
+                  <p className="text-muted-foreground">
+                    No More Enabling now tracks sponsor impressions, clicks, lead source pages, advertiser inquiries, and weekly reporting so recovery-aligned brands can buy visibility with cleaner proof.
+                  </p>
+                  <div className="mt-5 flex flex-col sm:flex-row gap-3">
+                    <Button asChild>
+                      <Link to="/advertise/media-kit">
+                        View media kit
+                        <BadgeDollarSign className="h-4 w-4" />
+                      </Link>
+                    </Button>
+                    <Button variant="outline" asChild>
+                      <Link to="/advertise">Sponsor overview</Link>
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
