@@ -43,6 +43,7 @@ export type Database = {
           email: string
           id: string
           last_admin_action_at: string | null
+          lost_at: string | null
           message: string
           metadata: Json
           monthly_budget: string | null
@@ -51,9 +52,8 @@ export type Database = {
           page_path: string | null
           pipeline_status: string
           proposal_sent_at: string | null
-          sponsor_type: string | null
           sold_at: string | null
-          lost_at: string | null
+          sponsor_type: string | null
           website: string | null
         }
         Insert: {
@@ -63,6 +63,7 @@ export type Database = {
           email: string
           id?: string
           last_admin_action_at?: string | null
+          lost_at?: string | null
           message: string
           metadata?: Json
           monthly_budget?: string | null
@@ -71,9 +72,8 @@ export type Database = {
           page_path?: string | null
           pipeline_status?: string
           proposal_sent_at?: string | null
-          sponsor_type?: string | null
           sold_at?: string | null
-          lost_at?: string | null
+          sponsor_type?: string | null
           website?: string | null
         }
         Update: {
@@ -83,6 +83,7 @@ export type Database = {
           email?: string
           id?: string
           last_admin_action_at?: string | null
+          lost_at?: string | null
           message?: string
           metadata?: Json
           monthly_budget?: string | null
@@ -91,9 +92,8 @@ export type Database = {
           page_path?: string | null
           pipeline_status?: string
           proposal_sent_at?: string | null
-          sponsor_type?: string | null
           sold_at?: string | null
-          lost_at?: string | null
+          sponsor_type?: string | null
           website?: string | null
         }
         Relationships: []
@@ -496,6 +496,24 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
       weekly_owner_summaries: {
         Row: {
           created_at: string
@@ -529,24 +547,6 @@ export type Database = {
           sent_to?: string
           subject?: string
           summary?: Json
-        }
-        Relationships: []
-      }
-      user_roles: {
-        Row: {
-          id: string
-          role: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
-        Insert: {
-          id?: string
-          role: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
-        Update: {
-          id?: string
-          role?: Database["public"]["Enums"]["app_role"]
-          user_id?: string
         }
         Relationships: []
       }
