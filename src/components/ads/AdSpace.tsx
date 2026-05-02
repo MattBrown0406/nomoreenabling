@@ -2,11 +2,13 @@ import { cn } from "@/lib/utils";
 import FamilyBridgeBanner from "@/components/ads/FamilyBridgeBanner";
 import FreedomInterventionsBanner from "@/components/ads/FreedomInterventionsBanner";
 import PartyWreckersBanner from "@/components/ads/PartyWreckersBanner";
+import { getHouseVariantForPlacement, type OwnedAdVariant, type SponsorPlacementKey } from "@/data/sponsorInventory";
 
 interface AdSpaceProps {
   size: "banner" | "sidebar" | "inline" | "leaderboard";
   className?: string;
-  variant?: "family-bridge" | "freedom-interventions" | "party-wreckers";
+  variant?: OwnedAdVariant;
+  placementKey?: SponsorPlacementKey;
 }
 
 const spacingClasses = {
@@ -23,8 +25,8 @@ const defaultVariants = {
   leaderboard: "freedom-interventions",
 } as const;
 
-const AdSpace = ({ size, className, variant }: AdSpaceProps) => {
-  const selectedVariant = variant ?? defaultVariants[size];
+const AdSpace = ({ size, className, variant, placementKey }: AdSpaceProps) => {
+  const selectedVariant = variant ?? (placementKey ? getHouseVariantForPlacement(placementKey) : defaultVariants[size]);
   const bannerSize = size === "sidebar" ? "sidebar" : "leaderboard";
 
   const placement = {
@@ -34,7 +36,12 @@ const AdSpace = ({ size, className, variant }: AdSpaceProps) => {
   }[selectedVariant];
 
   return (
-    <div className={cn("owned-ad-space", spacingClasses[size], className)}>
+    <div
+      className={cn("owned-ad-space", spacingClasses[size], className)}
+      data-sponsor-placement={placementKey ?? size}
+      data-sponsor-mode="house"
+      aria-label="House sponsor placement"
+    >
       {placement}
     </div>
   );

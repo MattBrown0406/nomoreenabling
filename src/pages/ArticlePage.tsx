@@ -743,7 +743,7 @@ const ArticlePage = () => {
                 </div>
 
                 <div className="mb-8">
-                  <AdSpace size="leaderboard" />
+                  <AdSpace size="leaderboard" placementKey="article_top_leaderboard" />
                 </div>
 
                 {articleContent ? (
@@ -793,7 +793,7 @@ const ArticlePage = () => {
                       </Link>
                     </div>
                   </div>
-                  <AdSpace size="leaderboard" />
+                  <AdSpace size="leaderboard" placementKey="article_bottom_leaderboard" />
                 </div>
               </article>
 

@@ -45,7 +45,7 @@ const FamilySupportGuide = () => {
           {/* Left Sidebar Ad - Desktop Only */}
           <aside className="hidden xl:block w-[160px] flex-shrink-0 no-print">
             <div className="sticky top-24 space-y-6">
-              <AdSpace size="sidebar" />
+              <AdSpace size="sidebar" placementKey="evergreen_sidebar" />
             </div>
           </aside>
 
@@ -395,7 +395,7 @@ const FamilySupportGuide = () => {
           {/* Right Sidebar Ad - Desktop Only */}
           <aside className="hidden xl:block w-[160px] flex-shrink-0 no-print">
             <div className="sticky top-24 space-y-6">
-              <AdSpace size="sidebar" />
+              <AdSpace size="sidebar" placementKey="evergreen_sidebar" />
             </div>
           </aside>
         </div>

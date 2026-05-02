@@ -8,6 +8,7 @@ import {
   ArrowUpDown,
   BarChart3,
   ClipboardList,
+  DollarSign,
   Eye,
   FileText,
   LogOut,
@@ -16,6 +17,7 @@ import {
   RefreshCw,
   Route,
   Share2,
+  ShieldCheck,
   Target,
   TrendingUp,
   Users,
@@ -24,6 +26,12 @@ import { blogPostsMeta } from "@/data/blogPostMeta";
 import { toast } from "@/hooks/use-toast";
 import SEOHead from "@/components/seo/SEOHead";
 import { getSupportOffer } from "@/data/supportOffers";
+import {
+  formatSponsorRate,
+  sponsorPlacements,
+  sponsorshipPackages,
+  sponsorStandards,
+} from "@/data/sponsorInventory";
 
 interface ArticleStat {
   slug: string;
@@ -357,6 +365,9 @@ const AdminAnalytics = () => {
   const topArticle = stats.reduce((top, s) => (s.views > (top?.views || 0) ? s : top), stats[0]);
   const viewedArticleCount = stats.filter((s) => s.views > 0).length;
   const avgViews = viewedArticleCount > 0 ? Math.round(totalViews / viewedArticleCount) : 0;
+  const monthlySponsorInventory = sponsorPlacements.reduce((total, placement) => total + placement.monthlyRate, 0);
+  const availableSponsorPlacements = sponsorPlacements.filter((placement) => placement.status === "available").length;
+  const houseSponsorPlacements = sponsorPlacements.filter((placement) => placement.status === "house").length;
   const eventCount = (eventName: string) => funnelEvents.filter((event) => event.event_name === eventName).length;
   const assessmentStarts = eventCount("assessment_started");
   const assessmentCompletions = eventCount("assessment_completed");
@@ -505,6 +516,121 @@ const AdminAnalytics = () => {
               </Button>
             ))}
           </div>
+
+          {/* Sponsor Inventory */}
+          <section className="mb-8">
+            <div className="flex items-center justify-between gap-4 mb-4">
+              <div>
+                <h2 className="font-serif text-2xl font-bold text-foreground">Sponsor Inventory</h2>
+                <p className="text-muted-foreground text-sm">
+                  Paid sponsor infrastructure is staged. Live placements are still house ads until you approve a sponsor.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
+                    <DollarSign className="w-4 h-4" />
+                    Monthly Inventory
+                  </div>
+                  <p className="text-3xl font-bold text-foreground">{formatSponsorRate(monthlySponsorInventory)}</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
+                    <MousePointerClick className="w-4 h-4" />
+                    Ad Clicks
+                  </div>
+                  <p className="text-3xl font-bold text-foreground">{totalAdClicks.toLocaleString()}</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
+                    <ShieldCheck className="w-4 h-4" />
+                    Available
+                  </div>
+                  <p className="text-3xl font-bold text-foreground">{availableSponsorPlacements}</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
+                    <BarChart3 className="w-4 h-4" />
+                    House Slots
+                  </div>
+                  <p className="text-3xl font-bold text-foreground">{houseSponsorPlacements}</p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">Placement Menu</CardTitle>
+                  <p className="text-muted-foreground text-sm">The rate card currently shown on the advertising page.</p>
+                </CardHeader>
+                <CardContent>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="border-b border-border">
+                          <th className="text-left py-3 px-2 font-medium text-muted-foreground">Placement</th>
+                          <th className="text-left py-3 px-2 font-medium text-muted-foreground hidden md:table-cell">Surface</th>
+                          <th className="text-right py-3 px-2 font-medium text-muted-foreground">Monthly</th>
+                          <th className="text-right py-3 px-2 font-medium text-muted-foreground">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {sponsorPlacements.map((placement) => (
+                          <tr key={placement.key} className="border-b border-border/50">
+                            <td className="py-3 px-2">
+                              <p className="font-medium text-foreground">{placement.name}</p>
+                              <p className="text-xs text-muted-foreground">{placement.size}</p>
+                            </td>
+                            <td className="py-3 px-2 text-muted-foreground hidden md:table-cell">{placement.surface}</td>
+                            <td className="py-3 px-2 text-right font-medium text-foreground">
+                              {formatSponsorRate(placement.monthlyRate)}
+                            </td>
+                            <td className="py-3 px-2 text-right">
+                              <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary capitalize">
+                                {placement.status}
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">Package Ladder</CardTitle>
+                  <p className="text-muted-foreground text-sm">Simple starting points for sales conversations.</p>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {sponsorshipPackages.map((packageOption) => (
+                    <div key={packageOption.name} className="rounded-xl border border-border p-4">
+                      <div className="flex items-start justify-between gap-3">
+                        <p className="font-medium text-foreground">{packageOption.name}</p>
+                        <span className="rounded-full bg-secondary px-2 py-0.5 text-xs text-muted-foreground">{packageOption.price}</span>
+                      </div>
+                      <p className="mt-2 text-sm text-muted-foreground">{packageOption.fit}</p>
+                    </div>
+                  ))}
+                  <div className="rounded-xl bg-secondary/50 p-4">
+                    <p className="text-sm font-medium text-foreground">Hard filter</p>
+                    <p className="mt-1 text-sm text-muted-foreground">{sponsorStandards.notAccepted[0]}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
 
           {/* Funnel Summary */}
           <section className="mb-8">

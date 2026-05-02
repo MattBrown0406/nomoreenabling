@@ -2,37 +2,17 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import AdSpace from "@/components/ads/AdSpace";
-import { Check, Mail } from "lucide-react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Check, Mail, ShieldCheck, X } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
+import {
+  formatSponsorRate,
+  sponsorPlacements,
+  sponsorshipPackages,
+  sponsorStandards,
+} from "@/data/sponsorInventory";
 
 const Advertise = () => {
-  const adPlacements = [
-    {
-      name: "Leaderboard Banner",
-      size: "728×90",
-      location: "Homepage, below hero section",
-      visibility: "High - Above the fold",
-      priceMonthly: "$500/month",
-      priceQuarterly: "$1,000/quarter",
-    },
-    {
-      name: "Sidebar Ad",
-      size: "300×250",
-      location: "Article pages & homepage sidebar",
-      visibility: "High - Persistent on scroll",
-      priceMonthly: "$400/month",
-      priceQuarterly: "$800/quarter",
-    },
-    {
-      name: "Inline Content Ad",
-      size: "728×90",
-      location: "Within article content",
-      visibility: "Medium - Contextual placement",
-      priceMonthly: "$250/month",
-      priceQuarterly: "$500/quarter",
-    },
-  ];
-
   const benefits = [
     "Reach families actively researching addiction, enabling, boundaries, treatment, and recovery support",
     "Show up beside practical education instead of broad, low-intent wellness content",
@@ -54,24 +34,6 @@ const Advertise = () => {
     {
       title: "Recovery support decision-makers",
       description: "Families looking for aftercare, sober living, family coaching, accountability tools, and long-term support.",
-    },
-  ];
-
-  const sponsorshipPackages = [
-    {
-      name: "Topic Hub Sponsor",
-      fit: "Best for providers who want category-level visibility around enabling, boundaries, intervention, or recovery.",
-      includes: "Hub placement, sidebar visibility, and one contextual article placement.",
-    },
-    {
-      name: "Provider Spotlight",
-      fit: "Best for ethical treatment, coaching, family support, or recovery technology providers.",
-      includes: "Profile-style placement, homepage or article sidebar visibility, and newsletter-ready copy.",
-    },
-    {
-      name: "Network Bundle",
-      fit: "Best for sponsors who want reach across No More Enabling, Freedom Interventions, Family Bridge, and Party Wreckers.",
-      includes: "Custom package across articles, podcast mentions, newsletter, and family support resources.",
     },
   ];
 
@@ -144,11 +106,21 @@ const Advertise = () => {
               <div className="grid md:grid-cols-3 gap-6">
                 {sponsorshipPackages.map((packageOption) => (
                   <div key={packageOption.name} className="rounded-xl border border-border bg-card p-6 shadow-card">
-                    <h3 className="font-serif text-xl font-bold text-foreground">{packageOption.name}</h3>
+                    <div className="flex items-start justify-between gap-4">
+                      <h3 className="font-serif text-xl font-bold text-foreground">{packageOption.name}</h3>
+                      <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">{packageOption.price}</span>
+                    </div>
                     <p className="mt-3 text-sm text-muted-foreground">{packageOption.fit}</p>
                     <div className="mt-5 rounded-lg bg-primary/10 p-4">
                       <p className="text-sm font-medium text-primary">Includes</p>
-                      <p className="mt-1 text-sm text-muted-foreground">{packageOption.includes}</p>
+                      <ul className="mt-2 space-y-2 text-sm text-muted-foreground">
+                        {packageOption.includes.map((item) => (
+                          <li key={item} className="flex gap-2">
+                            <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
                 ))}
@@ -157,32 +129,111 @@ const Advertise = () => {
           </div>
         </section>
 
-        {/* Ad Placements */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <h2 className="font-serif text-3xl font-bold text-foreground text-center mb-12">
-              Available Ad Placements
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {adPlacements.map((placement) => (
-                <div key={placement.name} className="bg-card rounded-xl p-6 shadow-card">
-                  <div className="mb-4">
-                    <AdSpace size="sidebar" />
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center max-w-3xl mx-auto mb-10">
+                <p className="text-sm uppercase tracking-wide text-primary font-medium">Sellable inventory</p>
+                <h2 className="font-serif text-3xl font-bold text-foreground mt-2">
+                  Current Placement Menu
+                </h2>
+                <p className="mt-4 text-muted-foreground">
+                  Until a sponsor is approved, these placements remain house inventory for Freedom Interventions,
+                  Family Bridge, and The Party Wreckers Podcast.
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-border bg-card shadow-card overflow-hidden">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Placement</TableHead>
+                      <TableHead className="hidden md:table-cell">Surface</TableHead>
+                      <TableHead className="hidden lg:table-cell">Best Fit</TableHead>
+                      <TableHead className="text-right">Monthly</TableHead>
+                      <TableHead className="text-right hidden sm:table-cell">Quarterly</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {sponsorPlacements.map((placement) => (
+                      <TableRow key={placement.key}>
+                        <TableCell>
+                          <p className="font-medium text-foreground">{placement.name}</p>
+                          <p className="text-xs text-muted-foreground">{placement.size}</p>
+                        </TableCell>
+                        <TableCell className="hidden md:table-cell text-muted-foreground">{placement.surface}</TableCell>
+                        <TableCell className="hidden lg:table-cell text-muted-foreground max-w-xs">{placement.buyerFit}</TableCell>
+                        <TableCell className="text-right font-medium text-foreground">
+                          {formatSponsorRate(placement.monthlyRate)}
+                        </TableCell>
+                        <TableCell className="text-right font-medium text-foreground hidden sm:table-cell">
+                          {formatSponsorRate(placement.quarterlyRate)}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <div className="grid lg:grid-cols-[1fr_360px] gap-8 items-start">
+                <div>
+                  <p className="text-sm uppercase tracking-wide text-primary font-medium">Example house placement</p>
+                  <h2 className="font-serif text-3xl font-bold text-foreground mt-2">
+                    Paid ads will be limited and clearly reviewed
+                  </h2>
+                  <p className="mt-4 text-muted-foreground">
+                    The live site currently uses house placements for the No More Enabling ecosystem. Future paid
+                    sponsors will be reviewed before launch and kept separate from editorial recommendations.
+                  </p>
+                  <div className="mt-8 grid md:grid-cols-2 gap-6">
+                    <div className="rounded-xl border border-border bg-card p-6">
+                      <div className="flex items-center gap-2 text-primary font-medium">
+                        <ShieldCheck className="h-5 w-5" />
+                        Accepted Sponsor Types
+                      </div>
+                      <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+                        {sponsorStandards.accepted.map((item) => (
+                          <li key={item} className="flex gap-2">
+                            <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="rounded-xl border border-border bg-card p-6">
+                      <div className="flex items-center gap-2 text-destructive font-medium">
+                        <X className="h-5 w-5" />
+                        Not a Fit
+                      </div>
+                      <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+                        {sponsorStandards.notAccepted.map((item) => (
+                          <li key={item} className="flex gap-2">
+                            <X className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                  <h3 className="font-serif text-xl font-bold text-foreground mb-2">
-                    {placement.name}
-                  </h3>
-                  <div className="mb-4 p-3 bg-primary/10 rounded-lg">
-                    <p className="text-lg font-bold text-primary">{placement.priceMonthly}</p>
-                    <p className="text-sm text-muted-foreground">or {placement.priceQuarterly} <span className="text-primary font-medium">(Save!)</span></p>
-                  </div>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li><strong>Size:</strong> {placement.size}</li>
-                    <li><strong>Location:</strong> {placement.location}</li>
-                    <li><strong>Visibility:</strong> {placement.visibility}</li>
-                  </ul>
                 </div>
-              ))}
+                <div className="space-y-4">
+                  <AdSpace size="sidebar" placementKey="article_sidebar" />
+                  <div className="rounded-xl border border-border bg-secondary/40 p-4">
+                    <p className="text-sm font-medium text-foreground">Sponsor review questions</p>
+                    <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+                      {sponsorStandards.reviewQuestions.map((question) => (
+                        <li key={question}>{question}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
