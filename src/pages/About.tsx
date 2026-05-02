@@ -6,6 +6,7 @@ import { Mail, ArrowRight } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
 import FAQJsonLd from "@/components/seo/FAQJsonLd";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import mattHeadshot from "@/assets/matt-brown-headshot.jpeg";
 
 const aboutFaqs = [
   {
