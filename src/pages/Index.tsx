@@ -29,46 +29,46 @@ const categories = [
 
 const quickStartLinks = [
   {
-    title: "Take the Helping vs Enabling assessment",
-    description: "The best first step if you cannot tell whether your support is actually helping.",
-    href: "/helping-or-enabling",
+    title: "Intervention help",
+    description: "Best when treatment is refused, consequences are escalating, or your family needs a structured plan.",
+    href: "/intervention-help",
   },
   {
-    title: "Start with the Family Support Guide",
-    description: "A steadier on-ramp for families in active confusion, fear, or boundary drift.",
-    href: "/family-support-guide",
+    title: "Family addiction coaching",
+    description: "Best when boundaries, relapse, money, housing, or family alignment keep breaking down.",
+    href: "/family-addiction-coaching",
   },
   {
-    title: "Join the free boundaries course",
-    description: "For families who know they need firmer limits but keep collapsing under pressure.",
-    href: "/boundaries-course",
+    title: "Family situation assessment",
+    description: "Best when you do not know whether this is support, coaching, intervention, safety, or aftercare.",
+    href: "/family-situation-assessment",
   },
 ];
 
 const guidedPaths = [
   {
-    title: "If everything feels chaotic",
-    description: "Start by slowing things down and getting a clearer read on what is actually happening.",
-    href: "/family-support-guide",
-    cta: "Start here",
+    title: "If they refuse treatment",
+    description: "Stop repeating the same argument and build a family plan that does not depend on another promise.",
+    href: "/what-to-do-when-they-refuse-treatment",
+    cta: "Build a refusal plan",
   },
   {
-    title: "If you keep rescuing and second-guessing yourself",
-    description: "Use the assessment to separate love, guilt, enabling, and real support.",
-    href: "/helping-or-enabling",
-    cta: "Take the assessment",
+    title: "If alcohol is being minimized",
+    description: "Use the alcohol-specific path when drinking is hidden behind functioning, denial, or broken promises.",
+    href: "/alcohol-intervention-help",
+    cta: "Open alcohol help",
   },
   {
-    title: "If boundaries keep falling apart",
-    description: "Move from emotional reactions to limits you can actually hold under stress.",
-    href: "/boundaries-course",
-    cta: "Build stronger boundaries",
+    title: "If your adult child is stuck",
+    description: "Sort money, housing, treatment refusal, and intervention questions from the parent lane.",
+    href: "/addiction-intervention-for-adult-child",
+    cta: "Open parent guidance",
   },
   {
-    title: "If you want context before you act",
-    description: "Browse the most useful articles by pattern instead of doom-scrolling for answers.",
-    href: "/articles",
-    cta: "Browse the articles",
+    title: "If you just need the right doorway",
+    description: "Use one private consultation path to decide between coaching, intervention, Family Squares, or self-guided support.",
+    href: "/family-addiction-consultation",
+    cta: "Request direction",
   },
 ];
 
@@ -137,10 +137,10 @@ const Index = () => {
               <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground">
                 Clearer support for families living with addiction
               </h2>
-              <p className="mt-4 text-base md:text-lg text-muted-foreground">
-                If you have been trying to help and somehow things keep getting worse, you are not crazy and you are not alone.
-                No More Enabling is built for families who need a clearer read on what is happening, what needs to change,
-                and what steady support actually looks like.
+                <p className="mt-4 text-base md:text-lg text-muted-foreground">
+                If you have been trying to help and somehow things keep getting worse, use this site to route the situation.
+                The goal is to help you decide whether your family needs education, boundaries, live support, coaching,
+                or higher-level intervention guidance.
               </p>
               <div className="mt-5 flex flex-wrap gap-3 text-sm text-muted-foreground">
                 <span className="rounded-full bg-secondary px-3 py-1">20+ years intervention experience</span>
@@ -225,7 +225,7 @@ const Index = () => {
                     className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors"
                     onClick={() => trackGAConversion("family_squares_click", { source: "homepage_support_lane" })}
                   >
-                    <p className="font-medium text-foreground">Sober Helpline</p>
+                  <p className="font-medium text-foreground">Sober Helpline and Family Squares</p>
                     <p className="text-sm text-muted-foreground mt-1">Free family support Zoom every Monday night plus practical support for families who need live help.</p>
                   </a>
                   <a
@@ -235,12 +235,16 @@ const Index = () => {
                     className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors"
                     onClick={() => trackGAConversion("owned_offer_click", { source: "homepage_support_lane", owned_brand: "freedom-interventions" })}
                   >
-                    <p className="font-medium text-foreground">Freedom Interventions</p>
-                    <p className="text-sm text-muted-foreground mt-1">When the situation is escalating and your family may need professional intervention guidance.</p>
-                  </a>
-                  <Link to="/family-support-guide" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
-                    <p className="font-medium text-foreground">Stay here and start with the guide</p>
-                    <p className="text-sm text-muted-foreground mt-1">Best if you need a calmer on-ramp before you decide anything bigger.</p>
+                  <p className="font-medium text-foreground">Freedom Interventions</p>
+                  <p className="text-sm text-muted-foreground mt-1">When the situation is escalating and your family may need professional intervention guidance.</p>
+                </a>
+                  <Link to="/family-addiction-consultation" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                    <p className="font-medium text-foreground">Private family consultation</p>
+                    <p className="text-sm text-muted-foreground mt-1">Best if you need help choosing between coaching, support, treatment planning, or intervention.</p>
+                  </Link>
+                  <Link to="/advertise" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                    <p className="font-medium text-foreground">Advertise to this audience</p>
+                    <p className="text-sm text-muted-foreground mt-1">For ethical recovery, prevention, treatment-adjacent, and family-support sponsors.</p>
                   </Link>
                 </div>
               </div>

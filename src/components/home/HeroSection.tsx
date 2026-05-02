@@ -28,29 +28,34 @@ const HeroSection = () => {
             className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight animate-fade-up"
             style={{ animationDelay: "0.1s" }}
           >
-            Help your loved one without protecting the addiction
+            Find the right level of help before the next crisis decides for you
           </h1>
 
           <p
             className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-up"
             style={{ animationDelay: "0.2s" }}
           >
-            If your family keeps getting pulled into chaos, guilt, rescuing, or boundary breakdowns, start here.
-            No More Enabling gives you clearer patterns, steadier decisions, and next steps you can actually hold.
+            No More Enabling helps families move from search panic into the right next step:
+            coaching, intervention guidance, family support, or a clearer boundary plan.
           </p>
           <div
             className="flex flex-col sm:flex-row gap-4 justify-center mt-10 animate-fade-up"
             style={{ animationDelay: "0.3s" }}
           >
             <Button variant="hero" size="lg" asChild>
-              <Link to="/helping-or-enabling">
-                Start with the assessment
+              <Link to="/family-situation-assessment">
+                Take the family assessment
                 <ArrowRight size={18} />
               </Link>
             </Button>
             <Button variant="hero-outline" size="lg" asChild>
-              <Link to="/family-support-guide">
-                Get the family support guide
+              <Link to="/intervention-help">
+                Intervention help
+              </Link>
+            </Button>
+            <Button variant="outline" size="lg" asChild>
+              <Link to="/family-addiction-coaching">
+                Family coaching
               </Link>
             </Button>
           </div>

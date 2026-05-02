@@ -14,6 +14,7 @@ import {
   LogOut,
   Mail,
   MousePointerClick,
+  PhoneCall,
   RefreshCw,
   Route,
   Share2,
@@ -516,6 +517,9 @@ const AdminAnalytics = () => {
     `${formatSponsorRate(monthlySponsorInventory)} listed monthly inventory`,
     `${availableSponsorPlacements} available paid placements`,
   ];
+  const followUpTodayLeads = consultationLeads
+    .filter((lead) => lead.lead_tier === "priority" || lead.lead_tier === "warm")
+    .slice(0, 6);
 
   const getPrimaryHubForArticle = (slug: string | null) => {
     if (!slug) return null;
@@ -675,6 +679,77 @@ const AdminAnalytics = () => {
               </Button>
             ))}
           </div>
+
+          <section className="mb-8">
+            <div className="flex items-center justify-between gap-4 mb-4">
+              <div>
+                <h2 className="font-serif text-2xl font-bold text-foreground">Follow Up Today</h2>
+                <p className="text-muted-foreground text-sm">
+                  The warmest consultation leads, sorted by urgency and intent. Start here before reviewing the rest of the dashboard.
+                </p>
+              </div>
+            </div>
+            <Card>
+              <CardContent className="pt-6">
+                {followUpTodayLeads.length === 0 ? (
+                  <p className="text-muted-foreground text-sm">No priority or warm consultation leads yet.</p>
+                ) : (
+                  <div className="grid gap-4 lg:grid-cols-2">
+                    {followUpTodayLeads.map((lead) => {
+                      const phoneHref = lead.phone ? `tel:${lead.phone.replace(/[^\d+]/g, "")}` : null;
+                      const emailHref = `mailto:${lead.email}?subject=${encodeURIComponent("Following up on your No More Enabling request")}`;
+                      return (
+                        <div key={lead.id} className="rounded-2xl border border-border bg-background p-4">
+                          <div className="flex items-start justify-between gap-3">
+                            <div>
+                              <p className="font-semibold text-foreground">{lead.name}</p>
+                              <p className="text-xs text-muted-foreground">{lead.relationship || "Relationship unknown"} · {lead.lead_intent || lead.source}</p>
+                            </div>
+                            <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${
+                              lead.lead_tier === "priority"
+                                ? "bg-destructive/10 text-destructive"
+                                : "bg-primary/10 text-primary"
+                            }`}>
+                              {lead.lead_score}
+                            </span>
+                          </div>
+                          <p className="mt-3 text-sm text-muted-foreground line-clamp-2">
+                            {lead.concern || lead.urgency || "No concern listed"}
+                          </p>
+                          <div className="mt-3 flex flex-wrap gap-2">
+                            {lead.lead_reasons.slice(0, 3).map((reason) => (
+                              <span key={reason} className="rounded-full bg-secondary px-2.5 py-1 text-xs text-muted-foreground">
+                                {reason}
+                              </span>
+                            ))}
+                          </div>
+                          <div className="mt-4 flex flex-wrap gap-2">
+                            <Button size="sm" asChild>
+                              <a href={emailHref}>
+                                <Mail className="h-4 w-4" />
+                                Email
+                              </a>
+                            </Button>
+                            {phoneHref && (
+                              <Button size="sm" variant="outline" asChild>
+                                <a href={phoneHref}>
+                                  <PhoneCall className="h-4 w-4" />
+                                  Call
+                                </a>
+                              </Button>
+                            )}
+                            <span className="ml-auto text-xs text-muted-foreground self-center">
+                              {formatDateTime(lead.created_at)}
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </section>
 
           {/* Sponsor Inventory */}
           <section className="mb-8">

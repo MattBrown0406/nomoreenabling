@@ -24,6 +24,7 @@ import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import LeadMagnetCard from "@/components/LeadMagnetCard";
 import { getLeadMagnetForArticle } from "@/data/leadMagnets";
 import { getCommercialIntentPageForContext } from "@/data/commercialIntentPages";
+import { getInternalMoneyPageLink } from "@/data/internalMoneyPageLinks";
 
 const XIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -381,6 +382,7 @@ const ArticlePage = () => {
         hubSlug: matchingHubs[0]?.slug,
       })
     : null;
+  const internalMoneyPageLink = getInternalMoneyPageLink(article?.slug);
 
   const trackArticleIntentClick = (href: string, label: string, slot: "primary" | "secondary") => {
     if (!article) return;
@@ -695,6 +697,22 @@ const ArticlePage = () => {
                     <Link to="/work-with-matt" className="text-primary hover:underline">Request family guidance</Link>
                   </div>
                 </div>
+
+                {internalMoneyPageLink && (
+                  <div className="rounded-xl border border-primary/20 bg-primary/5 p-5 mb-8">
+                    <p className="text-sm uppercase tracking-wide text-primary font-medium">Related next step</p>
+                    <h2 className="font-serif text-2xl font-bold text-foreground mt-2">{internalMoneyPageLink.label}</h2>
+                    <p className="text-muted-foreground mt-2">{internalMoneyPageLink.description}</p>
+                    <Button asChild className="mt-4">
+                      <Link
+                        to={internalMoneyPageLink.href}
+                        onClick={() => trackArticleIntentClick(internalMoneyPageLink.href, internalMoneyPageLink.label, "primary")}
+                      >
+                        Open the next-step page
+                      </Link>
+                    </Button>
+                  </div>
+                )}
 
                 {tableOfContents.length > 2 && (
                   <nav className="rounded-2xl border border-border bg-secondary/30 p-5 mb-8" aria-label="Article table of contents">
