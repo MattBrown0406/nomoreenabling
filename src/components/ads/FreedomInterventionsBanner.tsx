@@ -1,6 +1,7 @@
 import freedomLogo from "@/assets/freedom-interventions-logo.jpg";
 import { Phone } from "lucide-react";
 import { trackAdClick } from "@/lib/trackAdClick";
+import { withOwnedUtm } from "@/lib/ownedLinks";
 
 interface FreedomInterventionsBannerProps {
   size?: "sidebar" | "leaderboard";
@@ -8,11 +9,16 @@ interface FreedomInterventionsBannerProps {
 
 const FreedomInterventionsBanner = ({ size = "sidebar" }: FreedomInterventionsBannerProps) => {
   const isLeaderboard = size === "leaderboard";
+  const href = withOwnedUtm("https://freedominterventions.com", {
+    medium: "house_ad",
+    campaign: "intervention_consult",
+    content: `freedom_interventions_${size}`,
+  });
 
   if (isLeaderboard) {
     return (
       <a
-        href="https://freedominterventions.com"
+        href={href}
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => trackAdClick("Freedom Interventions")}
@@ -45,7 +51,7 @@ const FreedomInterventionsBanner = ({ size = "sidebar" }: FreedomInterventionsBa
 
   return (
     <a
-      href="https://freedominterventions.com"
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       className="block bg-gradient-to-br from-[#1a365d] to-[#2c5282] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 border border-[#3182ce]/30"

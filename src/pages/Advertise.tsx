@@ -5,6 +5,7 @@ import AdSpace from "@/components/ads/AdSpace";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Check, Mail, ShieldCheck, X } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
+import { Link } from "react-router-dom";
 import {
   formatSponsorRate,
   sponsorPlacements,
@@ -271,12 +272,19 @@ const Advertise = () => {
                 We only accept advertisers that fit the site’s family-support mission.
               </p>
               <div className="flex justify-center">
-                <a href="mailto:matt@nomoreenabling.com">
-                  <Button variant="hero" size="lg">
-                    <Mail size={18} />
-                    matt@nomoreenabling.com
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Button variant="hero" size="lg" asChild>
+                    <a href="mailto:matt@nomoreenabling.com">
+                      <Mail size={18} />
+                      matt@nomoreenabling.com
+                    </a>
                   </Button>
-                </a>
+                  <Button variant="outline" size="lg" asChild>
+                    <Link to="/advertise/media-kit">
+                      View public media kit
+                    </Link>
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

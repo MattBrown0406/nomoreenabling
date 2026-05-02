@@ -7,6 +7,7 @@ const staticRoutes = [
   "/about",
   "/articles",
   "/advertise",
+  "/advertise/media-kit",
   "/family-support-guide",
   "/helping-or-enabling",
   "/professional-guidance-signs",

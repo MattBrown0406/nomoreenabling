@@ -8,6 +8,7 @@ import FAQJsonLd from "@/components/seo/FAQJsonLd";
 import { Button } from "@/components/ui/button";
 import { getSupportOffer } from "@/data/supportOffers";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
+import { withOwnedUtm } from "@/lib/ownedLinks";
 
 const isExternalHref = (href: string) => href.startsWith("http");
 
@@ -30,11 +31,14 @@ const BridgeButton = ({
       {isExternalHref(href) ? <ExternalLink className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
     </>
   );
+  const trackedHref = isExternalHref(href)
+    ? withOwnedUtm(href, { medium: "support_bridge", campaign: offerSlug, content: placement })
+    : href;
   const trackClick = () => {
     void trackFunnelEvent(isExternalHref(href) ? "outbound_offer_click" : "bridge_page_click", {
       source: "support_bridge",
       offerSlug,
-      targetHref: href,
+      targetHref: trackedHref,
       metadata: { placement, external: isExternalHref(href) },
     });
   };
@@ -42,7 +46,7 @@ const BridgeButton = ({
   if (isExternalHref(href)) {
     return (
       <Button variant={variant} size="lg" asChild>
-        <a href={href} target="_blank" rel="noreferrer" onClick={trackClick}>
+        <a href={trackedHref} target="_blank" rel="noreferrer" onClick={trackClick}>
           {content}
         </a>
       </Button>
@@ -51,7 +55,7 @@ const BridgeButton = ({
 
   return (
     <Button variant={variant} size="lg" asChild>
-      <Link to={href} onClick={trackClick}>{content}</Link>
+      <Link to={trackedHref} onClick={trackClick}>{content}</Link>
     </Button>
   );
 };

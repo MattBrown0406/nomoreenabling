@@ -20,6 +20,8 @@ import FAQJsonLd from "@/components/seo/FAQJsonLd";
 import { useInitialArticleContent } from "@/lib/articleContentContext";
 import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
+import LeadMagnetCard from "@/components/LeadMagnetCard";
+import { getLeadMagnetForArticle } from "@/data/leadMagnets";
 
 const XIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -369,6 +371,7 @@ const ArticlePage = () => {
         .slice(0, 3)
         .map(({ hub }) => hub)
     : [];
+  const leadMagnet = getLeadMagnetForArticle(article, matchingHubs.map((hub) => hub.slug));
 
   const trackArticleIntentClick = (href: string, label: string, slot: "primary" | "secondary") => {
     if (!article) return;
@@ -845,6 +848,17 @@ const ArticlePage = () => {
                 ) : (
                   <div className="rounded-2xl border border-border bg-secondary/30 p-6 text-muted-foreground">
                     Loading article…
+                  </div>
+                )}
+
+                {leadMagnet && article && (
+                  <div className="mt-10">
+                    <LeadMagnetCard
+                      magnet={leadMagnet}
+                      source="article"
+                      articleSlug={article.slug}
+                      hubSlug={matchingHubs[0]?.slug}
+                    />
                   </div>
                 )}
 

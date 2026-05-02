@@ -6,8 +6,11 @@ import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import ItemListJsonLd from "@/components/seo/ItemListJsonLd";
 import { blogPostsMeta } from "@/data/blogPostMeta";
 import { topicHubs } from "@/data/topicHubs";
+import { getLeadMagnetForHub } from "@/data/leadMagnets";
 import BlogCard from "@/components/blog/BlogCard";
 import { Button } from "@/components/ui/button";
+import LeadMagnetCard from "@/components/LeadMagnetCard";
+import { withOwnedUtm } from "@/lib/ownedLinks";
 
 export default function TopicHubDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -41,6 +44,17 @@ export default function TopicHubDetail() {
     )
     .slice(0, 8);
   const hubPosts = [...featuredPosts, ...additionalPosts].filter(Boolean);
+  const leadMagnet = getLeadMagnetForHub(hub.slug);
+  const soberHelplineHref = withOwnedUtm("https://soberhelpline.com", {
+    medium: "topic_hub_cta",
+    campaign: "family_squares",
+    content: hub.slug,
+  });
+  const freedomInterventionsHref = withOwnedUtm("https://freedominterventions.com", {
+    medium: "topic_hub_cta",
+    campaign: "intervention_consult",
+    content: hub.slug,
+  });
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -130,6 +144,10 @@ export default function TopicHubDetail() {
                 ))}
               </div>
             </section>
+
+            {leadMagnet && (
+              <LeadMagnetCard magnet={leadMagnet} source="topic_hub" hubSlug={hub.slug} />
+            )}
 
             <section className="rounded-2xl border border-border bg-card p-6">
               <p className="text-sm uppercase tracking-wide text-primary font-medium">Questions this hub answers</p>
@@ -244,7 +262,7 @@ export default function TopicHubDetail() {
               </div>
 
               <div className="mt-6 pt-6 border-t border-border space-y-3">
-                <a href="https://soberhelpline.com" target="_blank" rel="noreferrer" className="block rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                <a href={soberHelplineHref} target="_blank" rel="noreferrer" className="block rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
                   <p className="font-medium text-foreground">Need live family support?</p>
                   <p className="text-sm text-muted-foreground mt-1">SoberHelpline.com offers a free family support Zoom every Monday night led by professional interventionists.</p>
                 </a>
@@ -252,7 +270,7 @@ export default function TopicHubDetail() {
                   <p className="font-medium text-foreground">Need a private family plan?</p>
                   <p className="text-sm text-muted-foreground mt-1">Use the consultation request form to share what is happening and ask for guidance from Matt.</p>
                 </Link>
-                <a href="https://freedominterventions.com" target="_blank" rel="noreferrer" className="block rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                <a href={freedomInterventionsHref} target="_blank" rel="noreferrer" className="block rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
                   <p className="font-medium text-foreground">Need higher-level intervention help?</p>
                   <p className="text-sm text-muted-foreground mt-1">Freedom Interventions is the better path when the situation is escalating or treatment refusal is entrenched.</p>
                 </a>

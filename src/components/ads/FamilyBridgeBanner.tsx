@@ -1,6 +1,7 @@
 import familyBridgeLogo from "@/assets/family-bridge-logo.png";
 import { Brain, Shield, MessageSquare, TrendingUp, Pill, MapPin, DollarSign, FileText } from "lucide-react";
 import { trackAdClick } from "@/lib/trackAdClick";
+import { withOwnedUtm } from "@/lib/ownedLinks";
 
 interface FamilyBridgeBannerProps {
   size?: "sidebar" | "leaderboard";
@@ -8,11 +9,16 @@ interface FamilyBridgeBannerProps {
 
 const FamilyBridgeBanner = ({ size = "leaderboard" }: FamilyBridgeBannerProps) => {
   const isLeaderboard = size === "leaderboard";
+  const href = withOwnedUtm("https://familybridgeapp.com", {
+    medium: "house_ad",
+    campaign: "family_bridge_app",
+    content: `family_bridge_${size}`,
+  });
 
   if (isLeaderboard) {
     return (
       <a
-        href="https://familybridgeapp.com"
+        href={href}
         target="_blank"
         rel="noopener noreferrer"
         className="block bg-gradient-to-r from-[#0d4a4a] via-[#0f5f5f] to-[#0d4a4a] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 max-w-4xl mx-auto border border-[#2a9d8f]/30"
@@ -79,7 +85,7 @@ const FamilyBridgeBanner = ({ size = "leaderboard" }: FamilyBridgeBannerProps) =
   // Sidebar version
   return (
     <a
-      href="https://familybridgeapp.com"
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       className="block bg-gradient-to-br from-[#0d4a4a] to-[#0f5f5f] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 border border-[#2a9d8f]/30"

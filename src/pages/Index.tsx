@@ -10,11 +10,12 @@ import GuidedMeditation from "@/components/home/GuidedMeditation";
 import NewsletterSection from "@/components/home/NewsletterSection";
 import BlogCard from "@/components/blog/BlogCard";
 import Sidebar from "@/components/home/Sidebar";
-import FamilyBridgeBanner from "@/components/ads/FamilyBridgeBanner";
+import AdSpace from "@/components/ads/AdSpace";
 import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
 import { Button } from "@/components/ui/button";
 import { blogPostsMeta } from "@/data/blogPostMeta";
 import SEOHead from "@/components/seo/SEOHead";
+import { withOwnedUtm } from "@/lib/ownedLinks";
 
 const categories = [
   "All",
@@ -94,6 +95,16 @@ const Index = () => {
 
   const featuredPost = filteredPosts[0];
   const recentPosts = filteredPosts.slice(1, 7);
+  const soberHelplineHref = withOwnedUtm("https://soberhelpline.com", {
+    medium: "homepage_cta",
+    campaign: "family_squares",
+    content: "support_lane",
+  });
+  const freedomInterventionsHref = withOwnedUtm("https://freedominterventions.com", {
+    medium: "homepage_cta",
+    campaign: "intervention_consult",
+    content: "support_lane",
+  });
 
   useEffect(() => {
     if (location.state?.scrollToNewsletter) {
@@ -206,11 +217,11 @@ const Index = () => {
                 <p className="text-sm uppercase tracking-wide text-primary font-medium">Need more than articles?</p>
                 <h2 className="font-serif text-3xl font-bold text-foreground mt-2">Pick the support lane that fits</h2>
                 <div className="mt-5 space-y-3">
-                  <a href="https://soberhelpline.com" target="_blank" rel="noreferrer" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                  <a href={soberHelplineHref} target="_blank" rel="noreferrer" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
                     <p className="font-medium text-foreground">Sober Helpline</p>
                     <p className="text-sm text-muted-foreground mt-1">Free family support Zoom every Monday night plus practical support for families who need live help.</p>
                   </a>
-                  <a href="https://freedominterventions.com" target="_blank" rel="noreferrer" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                  <a href={freedomInterventionsHref} target="_blank" rel="noreferrer" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
                     <p className="font-medium text-foreground">Freedom Interventions</p>
                     <p className="text-sm text-muted-foreground mt-1">When the situation is escalating and your family may need professional intervention guidance.</p>
                   </a>
@@ -230,7 +241,7 @@ const Index = () => {
           <GuidedMeditation />
 
           <div className="container mx-auto px-4 py-6">
-            <FamilyBridgeBanner size="leaderboard" />
+            <AdSpace size="leaderboard" placementKey="article_bottom_leaderboard" />
           </div>
 
           <section className="container mx-auto px-4 py-12">

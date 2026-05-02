@@ -76,6 +76,11 @@ const Footer = () => {
                   Advertise
                 </Link>
               </li>
+              <li>
+                <Link to="/advertise/media-kit" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Media Kit
+                </Link>
+              </li>
             </ul>
           </nav>
 

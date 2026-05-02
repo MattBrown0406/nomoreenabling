@@ -11,6 +11,7 @@ import Articles from "./pages/Articles";
 import ArticlePage from "./pages/ArticlePage";
 import Category from "./pages/Category";
 import Advertise from "./pages/Advertise";
+import AdvertiseMediaKit from "./pages/AdvertiseMediaKit";
 import FamilySupportGuide from "./pages/FamilySupportGuide";
 import HelpingOrEnabling from "./pages/HelpingOrEnabling";
 import ProfessionalGuidanceSigns from "./pages/ProfessionalGuidanceSigns";
@@ -44,6 +45,7 @@ export const AppRoutes = () => (
       <Route path="/category/:slug" element={<Category />} />
       <Route path="/about" element={<About />} />
       <Route path="/advertise" element={<Advertise />} />
+      <Route path="/advertise/media-kit" element={<AdvertiseMediaKit />} />
       <Route path="/family-support-guide" element={<FamilySupportGuide />} />
       <Route path="/helping-or-enabling" element={<HelpingOrEnabling />} />
       <Route path="/professional-guidance-signs" element={<ProfessionalGuidanceSigns />} />

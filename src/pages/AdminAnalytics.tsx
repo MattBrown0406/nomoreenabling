@@ -386,9 +386,11 @@ const AdminAnalytics = () => {
   const stickyCtaClicks = eventCount("sticky_cta_click");
   const articleIntentCtaClicks = eventCount("article_intent_cta_click");
   const topicHubCtaClicks = eventCount("topic_hub_cta_click");
+  const leadMagnetSignups = eventCount("lead_magnet_signup");
   const sponsorImpressions = eventCount("sponsor_impression");
   const bridgeClicks = eventCount("bridge_page_click");
   const outboundOfferClicks = eventCount("outbound_offer_click");
+  const sponsorCtr = sponsorImpressions > 0 ? ((totalAdClicks / sponsorImpressions) * 100).toFixed(1) : "0.0";
   const completionRate = assessmentStarts > 0 ? Math.round((assessmentCompletions / assessmentStarts) * 100) : 0;
   const captureRate = assessmentCompletions > 0 ? Math.round((emailCaptures / assessmentCompletions) * 100) : 0;
 
@@ -432,6 +434,27 @@ const AdminAnalytics = () => {
     }))
     .sort((a, b) => b.count - a.count)
     .slice(0, 8);
+
+  const sponsorPageStats: FunnelBreakdownStat[] = Object.entries(
+    funnelEvents
+      .filter((event) => event.event_name === "sponsor_impression")
+      .reduce<Record<string, number>>((acc, event) => {
+        const key = event.page_path || "unknown";
+        acc[key] = (acc[key] || 0) + 1;
+        return acc;
+      }, {})
+  )
+    .map(([key, count]) => ({ key, label: key, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 6);
+
+  const sponsorSummary = [
+    `${sponsorImpressions.toLocaleString()} sponsor impressions`,
+    `${totalAdClicks.toLocaleString()} sponsor clicks`,
+    `${sponsorCtr}% sponsor CTR`,
+    `${formatSponsorRate(monthlySponsorInventory)} listed monthly inventory`,
+    `${availableSponsorPlacements} available paid placements`,
+  ];
 
   const getPrimaryHubForArticle = (slug: string | null) => {
     if (!slug) return null;
@@ -703,6 +726,64 @@ const AdminAnalytics = () => {
                     <p className="text-sm font-medium text-foreground">Hard filter</p>
                     <p className="mt-1 text-sm text-muted-foreground">{sponsorStandards.notAccepted[0]}</p>
                   </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="grid gap-6 lg:grid-cols-[1fr_1fr] mt-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">Advertiser Reporting Snapshot</CardTitle>
+                  <p className="text-muted-foreground text-sm">Use this as the starting point for monthly sponsor recaps.</p>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="rounded-xl bg-secondary/40 p-4">
+                      <p className="text-xs text-muted-foreground">Sponsor CTR</p>
+                      <p className="text-2xl font-bold text-foreground">{sponsorCtr}%</p>
+                    </div>
+                    <div className="rounded-xl bg-secondary/40 p-4">
+                      <p className="text-xs text-muted-foreground">Lead Magnet Signups</p>
+                      <p className="text-2xl font-bold text-foreground">{leadMagnetSignups.toLocaleString()}</p>
+                    </div>
+                  </div>
+                  <div className="mt-4 rounded-xl border border-border bg-background p-4">
+                    <p className="text-sm font-medium text-foreground">Copy-ready summary</p>
+                    <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+                      {sponsorSummary.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">Top Sponsor Impression Pages</CardTitle>
+                  <p className="text-muted-foreground text-sm">Pages creating the most sponsor visibility in this period.</p>
+                </CardHeader>
+                <CardContent>
+                  {sponsorPageStats.length === 0 ? (
+                    <p className="text-muted-foreground text-sm">No sponsor impressions recorded yet.</p>
+                  ) : (
+                    <div className="space-y-3">
+                      {sponsorPageStats.map((item) => {
+                        const percentage = sponsorImpressions > 0 ? (item.count / sponsorImpressions) * 100 : 0;
+                        return (
+                          <div key={item.key}>
+                            <div className="flex justify-between gap-3 text-sm mb-1">
+                              <span className="font-medium text-foreground truncate">{item.label}</span>
+                              <span className="text-muted-foreground">{item.count}</span>
+                            </div>
+                            <div className="h-2 rounded-full bg-muted overflow-hidden">
+                              <div className="h-full bg-primary" style={{ width: `${percentage}%` }} />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </div>

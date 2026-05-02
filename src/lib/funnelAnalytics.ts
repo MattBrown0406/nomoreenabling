@@ -10,6 +10,7 @@ export type FunnelEventName =
   | "sticky_cta_click"
   | "article_intent_cta_click"
   | "topic_hub_cta_click"
+  | "lead_magnet_signup"
   | "sponsor_impression"
   | "bridge_page_click"
   | "outbound_offer_click";

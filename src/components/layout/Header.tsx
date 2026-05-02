@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import logo from "@/assets/logo.jpg";
+import { withOwnedUtm } from "@/lib/ownedLinks";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,6 +35,11 @@ const Header = () => {
     { name: "Family System Notes", href: "/family-system-notes" },
     { name: "Family Support Guide", href: "/family-support-guide" },
   ];
+  const familySquaresHref = withOwnedUtm("https://soberhelpline.com", {
+    medium: "header_nav",
+    campaign: "family_squares",
+    content: "family_support_forum",
+  });
 
   const scrollToNewsletter = () => {
     setIsMenuOpen(false);
@@ -85,7 +91,7 @@ const Header = () => {
                 ))}
                 <DropdownMenuItem asChild>
                   <a
-                    href="https://soberhelpline.com"
+                    href={familySquaresHref}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="cursor-pointer text-primary"
@@ -140,7 +146,7 @@ const Header = () => {
                   <Link to="/grounding-reminder" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>A Grounding Reminder</Link>
                   <Link to="/family-system-notes" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Family System Notes</Link>
                   <Link to="/family-support-guide" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Family Support Guide</Link>
-                  <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Family Support Forum</a>
+                  <a href={familySquaresHref} target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Family Support Forum</a>
                 </div>
               </div>
               <Button variant="hero" size="default" className="mt-2" onClick={scrollToNewsletter}>

@@ -1,6 +1,7 @@
 import partyWreckersLogo from "@/assets/party-wreckers-logo.png";
 import { Headphones, Star, Users } from "lucide-react";
 import { trackAdClick } from "@/lib/trackAdClick";
+import { withOwnedUtm } from "@/lib/ownedLinks";
 
 interface PartyWreckersBannerProps {
   size?: "sidebar" | "leaderboard";
@@ -8,11 +9,16 @@ interface PartyWreckersBannerProps {
 
 const PartyWreckersBanner = ({ size = "leaderboard" }: PartyWreckersBannerProps) => {
   const isLeaderboard = size === "leaderboard";
+  const href = withOwnedUtm("https://partywreckers.com", {
+    medium: "house_ad",
+    campaign: "party_wreckers_podcast",
+    content: `party_wreckers_${size}`,
+  });
 
   if (isLeaderboard) {
     return (
       <a
-        href="https://partywreckers.com"
+        href={href}
         target="_blank"
         rel="noopener noreferrer"
         className="block bg-gradient-to-r from-[#2d2a26] via-[#3d3832] to-[#2d2a26] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 max-w-4xl mx-auto border border-[#c4a77d]/30"
@@ -65,7 +71,7 @@ const PartyWreckersBanner = ({ size = "leaderboard" }: PartyWreckersBannerProps)
   // Sidebar version
   return (
     <a
-      href="https://partywreckers.com"
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       className="block bg-gradient-to-br from-[#2d2a26] to-[#3d3832] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 border border-[#c4a77d]/30"

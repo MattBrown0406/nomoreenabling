@@ -9,6 +9,9 @@ import { Button } from "@/components/ui/button";
 import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
 import { funnelPaths } from "@/data/funnelPaths";
 import { AlertTriangle, ArrowRight, CheckCircle2, ClipboardList, ExternalLink, LifeBuoy, MapPinned, ShieldAlert } from "lucide-react";
+import { getLeadMagnetForHub } from "@/data/leadMagnets";
+import LeadMagnetCard from "@/components/LeadMagnetCard";
+import { withOwnedUtm } from "@/lib/ownedLinks";
 
 const principles = [
   {
@@ -33,8 +36,13 @@ const FunnelLink = ({ href, children, variant = "default" }: { href: string; chi
     : "inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors";
 
   if (isExternalHref(href)) {
+    const trackedHref = withOwnedUtm(href, {
+      medium: "start_here",
+      content: "decision_path",
+    });
+
     return (
-      <a href={href} target="_blank" rel="noreferrer" className={className}>
+      <a href={trackedHref} target="_blank" rel="noreferrer" className={className}>
         {children}
         <ExternalLink className="h-4 w-4" />
       </a>
@@ -52,6 +60,18 @@ const FunnelLink = ({ href, children, variant = "default" }: { href: string; chi
 export default function StartHere() {
   const [selectedPathId, setSelectedPathId] = useState(funnelPaths[0].id);
   const selectedPath = funnelPaths.find((path) => path.id === selectedPathId) ?? funnelPaths[0];
+  const selectedHubSlug = selectedPath.hubHref.split("/").pop();
+  const selectedLeadMagnet = getLeadMagnetForHub(selectedHubSlug);
+  const soberHelplineHref = withOwnedUtm("https://soberhelpline.com", {
+    medium: "start_here",
+    campaign: "family_squares",
+    content: selectedPath.id,
+  });
+  const freedomInterventionsHref = withOwnedUtm("https://freedominterventions.com", {
+    medium: "start_here",
+    campaign: "intervention_consult",
+    content: selectedPath.id,
+  });
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -189,6 +209,16 @@ export default function StartHere() {
               </div>
             </aside>
           </div>
+
+          {selectedLeadMagnet && (
+            <div className="mt-8 max-w-4xl">
+              <LeadMagnetCard
+                magnet={selectedLeadMagnet}
+                source="start_here"
+                hubSlug={selectedHubSlug}
+              />
+            </div>
+          )}
         </section>
 
         <section className="bg-secondary/20 border-y border-border">
@@ -265,11 +295,11 @@ export default function StartHere() {
               <p className="text-sm uppercase tracking-wide text-primary font-medium">When self-help is not enough</p>
               <h2 className="font-serif text-3xl font-bold text-foreground mt-2">Use the right level of support</h2>
               <div className="mt-5 space-y-3">
-                <a href="https://soberhelpline.com" target="_blank" rel="noreferrer" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                <a href={soberHelplineHref} target="_blank" rel="noreferrer" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
                   <p className="font-medium text-foreground">Join Sober Helpline</p>
                   <p className="text-sm text-muted-foreground mt-1">Free family support Zoom every Monday night led by professional interventionists. Ask questions or just listen.</p>
                 </a>
-                <a href="https://freedominterventions.com" target="_blank" rel="noreferrer" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                <a href={freedomInterventionsHref} target="_blank" rel="noreferrer" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
                   <p className="font-medium text-foreground">Talk to Freedom Interventions</p>
                   <p className="text-sm text-muted-foreground mt-1">For families facing treatment refusal, escalating risk, or repeated relapse patterns.</p>
                 </a>

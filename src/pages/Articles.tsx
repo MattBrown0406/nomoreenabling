@@ -3,7 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BlogCard from "@/components/blog/BlogCard";
-import FamilyBridgeBanner from "@/components/ads/FamilyBridgeBanner";
+import AdSpace from "@/components/ads/AdSpace";
 import { Input } from "@/components/ui/input";
 import { blogPostsMeta } from "@/data/blogPostMeta";
 import { Search, ArrowRight } from "lucide-react";
@@ -166,7 +166,7 @@ const Articles = () => {
         </section>
 
         <div className="container mx-auto px-4 py-6">
-          <FamilyBridgeBanner size="leaderboard" />
+          <AdSpace size="leaderboard" placementKey="article_bottom_leaderboard" />
         </div>
 
         <section className="py-8">
