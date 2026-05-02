@@ -10,8 +10,10 @@ import { getLeadMagnetForHub } from "@/data/leadMagnets";
 import BlogCard from "@/components/blog/BlogCard";
 import { Button } from "@/components/ui/button";
 import LeadMagnetCard from "@/components/LeadMagnetCard";
+import CommercialIntentCTA from "@/components/CommercialIntentCTA";
 import { trackGAConversion } from "@/lib/gaConversions";
 import { withOwnedUtm } from "@/lib/ownedLinks";
+import { getCommercialIntentPageForContext } from "@/data/commercialIntentPages";
 
 export default function TopicHubDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -46,6 +48,11 @@ export default function TopicHubDetail() {
     .slice(0, 8);
   const hubPosts = [...featuredPosts, ...additionalPosts].filter(Boolean);
   const leadMagnet = getLeadMagnetForHub(hub.slug);
+  const commercialIntentPage = getCommercialIntentPageForContext({
+    title: hub.title,
+    categories: hub.categories,
+    hubSlug: hub.slug,
+  });
   const soberHelplineHref = withOwnedUtm("https://soberhelpline.com", {
     medium: "topic_hub_cta",
     campaign: "family_squares",
@@ -148,6 +155,10 @@ export default function TopicHubDetail() {
 
             {leadMagnet && (
               <LeadMagnetCard magnet={leadMagnet} source="topic_hub" hubSlug={hub.slug} />
+            )}
+
+            {commercialIntentPage && (
+              <CommercialIntentCTA page={commercialIntentPage} source="topic_hub" hubSlug={hub.slug} />
             )}
 
             <section className="rounded-2xl border border-border bg-card p-6">

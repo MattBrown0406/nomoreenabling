@@ -77,6 +77,48 @@ export type Database = {
         }
         Relationships: []
       }
+      advertiser_inquiries: {
+        Row: {
+          company: string | null
+          created_at: string
+          email: string
+          id: string
+          message: string
+          metadata: Json
+          monthly_budget: string | null
+          name: string
+          page_path: string | null
+          sponsor_type: string | null
+          website: string | null
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          metadata?: Json
+          monthly_budget?: string | null
+          name: string
+          page_path?: string | null
+          sponsor_type?: string | null
+          website?: string | null
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          metadata?: Json
+          monthly_budget?: string | null
+          name?: string
+          page_path?: string | null
+          sponsor_type?: string | null
+          website?: string | null
+        }
+        Relationships: []
+      }
       assessment_followup_templates: {
         Row: {
           assessment_result: string
@@ -188,6 +230,66 @@ export type Database = {
           is_active?: boolean
           last_email_sent_at?: string | null
           next_email_at?: string | null
+        }
+        Relationships: []
+      }
+      consultation_leads: {
+        Row: {
+          concern: string | null
+          created_at: string
+          email: string
+          id: string
+          lead_intent: string | null
+          lead_reasons: string[]
+          lead_score: number
+          lead_tier: string
+          message: string
+          metadata: Json
+          name: string
+          page_path: string | null
+          phone: string | null
+          relationship: string | null
+          source: string
+          treatment_history: string | null
+          urgency: string | null
+        }
+        Insert: {
+          concern?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          lead_intent?: string | null
+          lead_reasons?: string[]
+          lead_score?: number
+          lead_tier?: string
+          message: string
+          metadata?: Json
+          name: string
+          page_path?: string | null
+          phone?: string | null
+          relationship?: string | null
+          source?: string
+          treatment_history?: string | null
+          urgency?: string | null
+        }
+        Update: {
+          concern?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          lead_intent?: string | null
+          lead_reasons?: string[]
+          lead_score?: number
+          lead_tier?: string
+          message?: string
+          metadata?: Json
+          name?: string
+          page_path?: string | null
+          phone?: string | null
+          relationship?: string | null
+          source?: string
+          treatment_history?: string | null
+          urgency?: string | null
         }
         Relationships: []
       }

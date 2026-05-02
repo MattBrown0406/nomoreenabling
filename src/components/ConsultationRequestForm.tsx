@@ -6,6 +6,9 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { scoreLead } from "@/lib/leadScoring";
+import { trackFunnelEvent } from "@/lib/funnelAnalytics";
+import { trackGAConversion } from "@/lib/gaConversions";
 
 const relationshipOptions = [
   "Parent",
@@ -23,7 +26,21 @@ const urgencyOptions = [
   "We are considering a professional intervention",
 ];
 
-const ConsultationRequestForm = () => {
+interface ConsultationRequestFormProps {
+  source?: string;
+  contextLabel?: string;
+  defaultConcern?: string;
+  leadIntent?: string;
+  submitLabel?: string;
+}
+
+const ConsultationRequestForm = ({
+  source = "work-with-matt",
+  contextLabel = "Private consultation request",
+  defaultConcern = "",
+  leadIntent = "general-consultation",
+  submitLabel = "Request guidance",
+}: ConsultationRequestFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [honeypot, setHoneypot] = useState("");
   const loadedAt = useRef(Date.now());
@@ -33,7 +50,7 @@ const ConsultationRequestForm = () => {
     email: "",
     phone: "",
     relationship: "",
-    concern: "",
+    concern: defaultConcern,
     treatmentHistory: "",
     urgency: "",
     message: "",
@@ -66,17 +83,24 @@ const ConsultationRequestForm = () => {
     }
 
     const structuredMessage = [
-      "Consultation request from Work With Matt page",
+      `Consultation request from ${contextLabel}`,
       "",
       `Phone: ${trimmed.phone || "Not provided"}`,
       `Relationship: ${trimmed.relationship}`,
       `Primary concern: ${trimmed.concern}`,
       `Treatment history: ${trimmed.treatmentHistory || "Not provided"}`,
       `Urgency: ${trimmed.urgency}`,
+      `Lead intent: ${leadIntent}`,
       "",
       "What is happening now:",
       trimmed.message,
     ].join("\n");
+    const leadScore = scoreLead({
+      ...trimmed,
+      source,
+      leadIntent,
+      pagePath: typeof window === "undefined" ? undefined : window.location.pathname,
+    });
 
     setIsSubmitting(true);
     try {
@@ -85,11 +109,40 @@ const ConsultationRequestForm = () => {
           name: trimmed.name,
           email: trimmed.email,
           message: structuredMessage,
-          source: "work-with-matt",
+          source,
+          phone: trimmed.phone,
+          relationship: trimmed.relationship,
+          concern: trimmed.concern,
+          treatment_history: trimmed.treatmentHistory,
+          urgency: trimmed.urgency,
+          lead_intent: leadIntent,
+          lead_score: leadScore.score,
+          lead_tier: leadScore.tier,
+          lead_reasons: leadScore.reasons,
+          page_path: typeof window === "undefined" ? null : window.location.pathname,
         },
       });
 
       if (error) throw error;
+
+      trackGAConversion("consultation_request", {
+        source,
+        lead_intent: leadIntent,
+        lead_score: leadScore.score,
+        lead_tier: leadScore.tier,
+      });
+      void trackFunnelEvent("consultation_request", {
+        source,
+        targetHref: typeof window === "undefined" ? undefined : window.location.pathname,
+        metadata: {
+          leadIntent,
+          leadScore: leadScore.score,
+          leadTier: leadScore.tier,
+          leadReasons: leadScore.reasons,
+          relationship: trimmed.relationship,
+          urgency: trimmed.urgency,
+        },
+      });
 
       toast({
         title: "Request sent",
@@ -100,7 +153,7 @@ const ConsultationRequestForm = () => {
         email: "",
         phone: "",
         relationship: "",
-        concern: "",
+        concern: defaultConcern,
         treatmentHistory: "",
         urgency: "",
         message: "",
@@ -129,7 +182,7 @@ const ConsultationRequestForm = () => {
       />
 
       <div>
-        <p className="text-sm uppercase tracking-wide text-primary font-medium">Private consultation request</p>
+        <p className="text-sm uppercase tracking-wide text-primary font-medium">{contextLabel}</p>
         <h2 className="font-serif text-3xl font-bold text-foreground mt-2">Tell Matt what your family is facing</h2>
         <p className="mt-2 text-muted-foreground">
           This is not a crisis line. If someone is in immediate danger, call 911 or 988. For family guidance, share enough context to help Matt understand the next best step.
@@ -224,7 +277,7 @@ const ConsultationRequestForm = () => {
         ) : (
           <>
             <Send className="h-4 w-4" />
-            Request guidance
+            {submitLabel}
           </>
         )}
       </Button>

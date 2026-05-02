@@ -112,6 +112,9 @@ export default function WorkWithMatt() {
               <p className="mt-3 text-muted-foreground">
                 For families who need clearer language, calmer boundaries, and help deciding what belongs to them and what does not.
               </p>
+              <Link to="/family-addiction-coaching" className="inline-flex mt-4 text-sm font-medium text-primary hover:underline">
+                See coaching fit
+              </Link>
             </div>
             <div className="rounded-2xl border border-border bg-card p-6">
               <Shield className="h-8 w-8 text-primary" />
@@ -119,6 +122,9 @@ export default function WorkWithMatt() {
               <p className="mt-3 text-muted-foreground">
                 For situations involving treatment refusal, escalating consequences, repeated relapse, or family division.
               </p>
+              <Link to="/what-to-do-when-they-refuse-treatment" className="inline-flex mt-4 text-sm font-medium text-primary hover:underline">
+                Read refusal next steps
+              </Link>
             </div>
             <div className="rounded-2xl border border-border bg-card p-6">
               <ArrowRight className="h-8 w-8 text-primary" />
@@ -126,6 +132,9 @@ export default function WorkWithMatt() {
               <p className="mt-3 text-muted-foreground">
                 For families who may need a structured professional intervention and want experienced guidance before acting.
               </p>
+              <Link to="/intervention-help" className="inline-flex mt-4 text-sm font-medium text-primary hover:underline">
+                See intervention help
+              </Link>
             </div>
           </div>
         </section>
@@ -156,7 +165,12 @@ export default function WorkWithMatt() {
 
         <section id="consultation-form" className="container mx-auto px-4 pb-16">
           <div className="grid gap-8 lg:grid-cols-[1fr_0.7fr] lg:items-start">
-            <ConsultationRequestForm />
+            <ConsultationRequestForm
+              source="work-with-matt"
+              contextLabel="Work with Matt"
+              defaultConcern="We need help deciding the next step"
+              leadIntent="work-with-matt"
+            />
             <aside className="rounded-2xl border border-border bg-card p-6">
               <h2 className="font-serif text-2xl font-bold text-foreground">What makes a good first message?</h2>
               <ul className="mt-4 space-y-3 text-muted-foreground list-disc pl-5">

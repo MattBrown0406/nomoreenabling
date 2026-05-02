@@ -27,6 +27,8 @@ const Header = () => {
 
   const familyResources = [
     { name: "Family Situation Assessment", href: "/family-situation-assessment", highlight: true },
+    { name: "Intervention Help", href: "/intervention-help", highlight: true },
+    { name: "Family Addiction Coaching", href: "/family-addiction-coaching", highlight: true },
     { name: "Guided Topic Hubs", href: "/topic-hubs", highlight: true },
     { name: "Free Boundaries Course", href: "/boundaries-course", highlight: false },
     { name: "Helping or Enabling? Tool", href: "/helping-or-enabling" },
@@ -145,6 +147,8 @@ const Header = () => {
                 <p className="text-muted-foreground font-medium mb-2">Family Education Resources</p>
                 <div className="flex flex-col gap-2 pl-4">
                   <Link to="/family-situation-assessment" className="text-primary hover:text-primary/80 transition-colors font-semibold" onClick={() => setIsMenuOpen(false)}>Family Situation Assessment</Link>
+                  <Link to="/intervention-help" className="text-primary hover:text-primary/80 transition-colors font-semibold" onClick={() => setIsMenuOpen(false)}>Intervention Help</Link>
+                  <Link to="/family-addiction-coaching" className="text-primary hover:text-primary/80 transition-colors font-semibold" onClick={() => setIsMenuOpen(false)}>Family Addiction Coaching</Link>
                   <Link to="/topic-hubs" className="text-primary hover:text-primary/80 transition-colors font-semibold" onClick={() => setIsMenuOpen(false)}>Guided Topic Hubs</Link>
                   <Link to="/boundaries-course" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Free Boundaries Course</Link>
                   <Link to="/helping-or-enabling" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Helping or Enabling? Tool</Link>

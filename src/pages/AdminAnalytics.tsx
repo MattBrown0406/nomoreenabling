@@ -67,6 +67,32 @@ interface AssessmentLeadRow {
   last_result_at: string;
 }
 
+interface ConsultationLeadRow {
+  id: string;
+  name: string;
+  email: string;
+  phone: string | null;
+  relationship: string | null;
+  concern: string | null;
+  urgency: string | null;
+  source: string;
+  lead_intent: string | null;
+  lead_score: number;
+  lead_tier: string;
+  lead_reasons: string[];
+  created_at: string;
+}
+
+interface AdvertiserInquiryRow {
+  id: string;
+  name: string;
+  email: string;
+  company: string | null;
+  sponsor_type: string | null;
+  monthly_budget: string | null;
+  created_at: string;
+}
+
 interface FunnelBreakdownStat {
   key: string;
   label: string;
@@ -121,7 +147,11 @@ const AdminAnalytics = () => {
   const [totalAdClicks, setTotalAdClicks] = useState(0);
   const [funnelEvents, setFunnelEvents] = useState<FunnelEventRow[]>([]);
   const [assessmentLeads, setAssessmentLeads] = useState<AssessmentLeadRow[]>([]);
+  const [consultationLeads, setConsultationLeads] = useState<ConsultationLeadRow[]>([]);
+  const [advertiserInquiries, setAdvertiserInquiries] = useState<AdvertiserInquiryRow[]>([]);
   const [assessmentLeadCount, setAssessmentLeadCount] = useState<number | null>(null);
+  const [consultationLeadCount, setConsultationLeadCount] = useState<number | null>(null);
+  const [advertiserInquiryCount, setAdvertiserInquiryCount] = useState<number | null>(null);
   const [syncing, setSyncing] = useState(false);
   const [lastSyncCount, setLastSyncCount] = useState<number | null>(null);
 
@@ -167,14 +197,18 @@ const AdminAnalytics = () => {
   };
 
   const fetchCounts = async () => {
-    const [subResult, enrollResult, assessmentResult] = await Promise.all([
+    const [subResult, enrollResult, assessmentResult, consultationResult, advertiserResult] = await Promise.all([
       supabase.from('subscribers').select('id', { count: 'exact', head: true }),
       supabase.from('course_enrollments').select('id', { count: 'exact', head: true }),
       supabase.from('assessment_leads').select('id', { count: 'exact', head: true }),
+      supabase.from('consultation_leads').select('id', { count: 'exact', head: true }),
+      supabase.from('advertiser_inquiries').select('id', { count: 'exact', head: true }),
     ]);
     setSubscriberCount(subResult.count ?? 0);
     setEnrollmentCount(enrollResult.count ?? 0);
     setAssessmentLeadCount(assessmentResult.count ?? 0);
+    setConsultationLeadCount(consultationResult.count ?? 0);
+    setAdvertiserInquiryCount(advertiserResult.count ?? 0);
   };
 
   const fetchAdClicks = async () => {
@@ -238,6 +272,31 @@ const AdminAnalytics = () => {
       setAssessmentLeads([]);
     } else {
       setAssessmentLeads(leadData);
+    }
+
+    const { data: consultationData, error: consultationError } = await supabase
+      .from('consultation_leads')
+      .select('id, name, email, phone, relationship, concern, urgency, source, lead_intent, lead_score, lead_tier, lead_reasons, created_at')
+      .order('lead_score', { ascending: false })
+      .order('created_at', { ascending: false })
+      .limit(12);
+
+    if (consultationError || !consultationData) {
+      setConsultationLeads([]);
+    } else {
+      setConsultationLeads(consultationData);
+    }
+
+    const { data: advertiserData, error: advertiserError } = await supabase
+      .from('advertiser_inquiries')
+      .select('id, name, email, company, sponsor_type, monthly_budget, created_at')
+      .order('created_at', { ascending: false })
+      .limit(8);
+
+    if (advertiserError || !advertiserData) {
+      setAdvertiserInquiries([]);
+    } else {
+      setAdvertiserInquiries(advertiserData);
     }
   };
 
@@ -387,6 +446,8 @@ const AdminAnalytics = () => {
   const articleIntentCtaClicks = eventCount("article_intent_cta_click");
   const topicHubCtaClicks = eventCount("topic_hub_cta_click");
   const leadMagnetSignups = eventCount("lead_magnet_signup");
+  const consultationRequests = eventCount("consultation_request");
+  const advertiserInquiryEvents = eventCount("advertiser_inquiry");
   const sponsorImpressions = eventCount("sponsor_impression");
   const bridgeClicks = eventCount("bridge_page_click");
   const outboundOfferClicks = eventCount("outbound_offer_click");
@@ -982,6 +1043,98 @@ const AdminAnalytics = () => {
               </CardContent>
             </Card>
 
+            <div className="grid gap-6 lg:grid-cols-[1.35fr_0.9fr] mt-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">Priority Consultation Leads</CardTitle>
+                  <p className="text-muted-foreground text-sm">
+                    {consultationRequests.toLocaleString()} consultation request events. Leads are sorted by urgency and buying intent.
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  {consultationLeads.length === 0 ? (
+                    <p className="text-muted-foreground text-sm">No consultation leads captured yet.</p>
+                  ) : (
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="border-b border-border">
+                            <th className="text-left py-3 px-2 font-medium text-muted-foreground">Lead</th>
+                            <th className="text-left py-3 px-2 font-medium text-muted-foreground hidden md:table-cell">Concern</th>
+                            <th className="text-right py-3 px-2 font-medium text-muted-foreground">Score</th>
+                            <th className="text-right py-3 px-2 font-medium text-muted-foreground">Latest</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {consultationLeads.map((lead) => (
+                            <tr key={lead.id} className="border-b border-border/50">
+                              <td className="py-3 px-2">
+                                <p className="font-medium text-foreground">{lead.name}</p>
+                                <p className="text-xs text-muted-foreground">{lead.email}</p>
+                                <p className="text-xs text-muted-foreground">{lead.relationship || "Relationship unknown"} · {lead.lead_intent || lead.source}</p>
+                              </td>
+                              <td className="py-3 px-2 text-muted-foreground hidden md:table-cell">
+                                <p className="line-clamp-2">{lead.concern || lead.urgency || "—"}</p>
+                                {lead.lead_reasons.length > 0 && (
+                                  <p className="text-xs mt-1">{lead.lead_reasons.slice(0, 2).join(" · ")}</p>
+                                )}
+                              </td>
+                              <td className="py-3 px-2 text-right">
+                                <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${
+                                  lead.lead_tier === "priority"
+                                    ? "bg-destructive/10 text-destructive"
+                                    : lead.lead_tier === "warm"
+                                      ? "bg-primary/10 text-primary"
+                                      : "bg-secondary text-muted-foreground"
+                                }`}>
+                                  {lead.lead_score}
+                                </span>
+                              </td>
+                              <td className="py-3 px-2 text-right text-muted-foreground text-xs">
+                                {formatDateTime(lead.created_at)}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">Advertiser Inquiries</CardTitle>
+                  <p className="text-muted-foreground text-sm">
+                    {advertiserInquiryEvents.toLocaleString()} inquiry events and {advertiserInquiryCount?.toLocaleString() ?? "—"} stored inquiries.
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  {advertiserInquiries.length === 0 ? (
+                    <p className="text-muted-foreground text-sm">No advertiser inquiries captured yet.</p>
+                  ) : (
+                    <div className="space-y-4">
+                      {advertiserInquiries.map((inquiry) => (
+                        <div key={inquiry.id} className="rounded-xl border border-border p-4">
+                          <div className="flex justify-between gap-3">
+                            <div>
+                              <p className="font-medium text-foreground">{inquiry.company || inquiry.name}</p>
+                              <p className="text-xs text-muted-foreground">{inquiry.email}</p>
+                            </div>
+                            <span className="text-xs text-muted-foreground">{formatDateTime(inquiry.created_at)}</span>
+                          </div>
+                          <p className="mt-2 text-sm text-muted-foreground">{inquiry.sponsor_type || "Sponsor type not provided"}</p>
+                          {inquiry.monthly_budget && (
+                            <p className="mt-2 text-xs text-primary font-medium">{inquiry.monthly_budget}</p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+
             <Card className="mt-6">
               <CardHeader>
                 <CardTitle className="font-serif text-lg">Recent Assessment Leads</CardTitle>
@@ -1071,7 +1224,7 @@ const AdminAnalytics = () => {
           </div>
 
           {/* Subscriber & Enrollment Counts */}
-          <div className="grid grid-cols-2 gap-4 mb-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <Card>
               <CardContent className="pt-6">
                 <div className="text-muted-foreground text-sm mb-1">Newsletter Subscribers</div>
@@ -1082,6 +1235,18 @@ const AdminAnalytics = () => {
               <CardContent className="pt-6">
                 <div className="text-muted-foreground text-sm mb-1">Course Enrollments</div>
                 <p className="text-3xl font-bold text-foreground">{enrollmentCount?.toLocaleString() ?? "—"}</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="pt-6">
+                <div className="text-muted-foreground text-sm mb-1">Consultation Leads</div>
+                <p className="text-3xl font-bold text-foreground">{consultationLeadCount?.toLocaleString() ?? "—"}</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="pt-6">
+                <div className="text-muted-foreground text-sm mb-1">Advertiser Inquiries</div>
+                <p className="text-3xl font-bold text-foreground">{advertiserInquiryCount?.toLocaleString() ?? "—"}</p>
               </CardContent>
             </Card>
           </div>

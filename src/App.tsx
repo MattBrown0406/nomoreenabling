@@ -23,6 +23,7 @@ import StartHere from "./pages/StartHere";
 import TopicHubs from "./pages/TopicHubs";
 import TopicHubDetail from "./pages/TopicHubDetail";
 import WorkWithMatt from "./pages/WorkWithMatt";
+import CommercialIntentPage from "./pages/CommercialIntentPage";
 import FamilySituationAssessment from "./pages/FamilySituationAssessment";
 import SupportBridge from "./pages/SupportBridge";
 import AdminAnalytics from "./pages/AdminAnalytics";
@@ -57,6 +58,12 @@ export const AppRoutes = () => (
       <Route path="/topic-hubs" element={<TopicHubs />} />
       <Route path="/topic-hubs/:slug" element={<TopicHubDetail />} />
       <Route path="/work-with-matt" element={<WorkWithMatt />} />
+      <Route path="/intervention-help" element={<CommercialIntentPage pageSlug="intervention-help" />} />
+      <Route path="/family-addiction-coaching" element={<CommercialIntentPage pageSlug="family-addiction-coaching" />} />
+      <Route path="/addiction-intervention-for-adult-child" element={<CommercialIntentPage pageSlug="addiction-intervention-for-adult-child" />} />
+      <Route path="/alcohol-intervention-help" element={<CommercialIntentPage pageSlug="alcohol-intervention-help" />} />
+      <Route path="/what-to-do-when-they-refuse-treatment" element={<CommercialIntentPage pageSlug="what-to-do-when-they-refuse-treatment" />} />
+      <Route path="/family-addiction-consultation" element={<CommercialIntentPage pageSlug="family-addiction-consultation" />} />
       <Route path="/family-situation-assessment" element={<FamilySituationAssessment />} />
       <Route path="/support/:slug" element={<SupportBridge />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />

@@ -2,6 +2,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import AdSpace from "@/components/ads/AdSpace";
+import AdvertiserInquiryForm from "@/components/AdvertiserInquiryForm";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Check, Mail, ShieldCheck, X } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
@@ -263,16 +264,17 @@ const Advertise = () => {
         {/* Contact */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto text-center">
-              <h2 className="font-serif text-3xl font-bold text-foreground mb-6">
-                Request the Current Media Kit
-              </h2>
-              <p className="text-muted-foreground mb-8">
-                Ask for current traffic, placement availability, sponsorship guidelines, and package options.
-                We only accept advertisers that fit the site’s family-support mission.
-              </p>
-              <div className="flex justify-center">
-                <div className="flex flex-col sm:flex-row gap-3">
+            <div className="max-w-5xl mx-auto grid gap-8 lg:grid-cols-[1fr_0.7fr] items-start">
+              <AdvertiserInquiryForm />
+              <div className="rounded-2xl border border-border bg-secondary/40 p-6">
+                <h2 className="font-serif text-3xl font-bold text-foreground">
+                  Request the Current Media Kit
+                </h2>
+                <p className="text-muted-foreground mt-4">
+                  Ask for current traffic, placement availability, sponsorship guidelines, and package options.
+                  We only accept advertisers that fit the site’s family-support mission.
+                </p>
+                <div className="mt-6 flex flex-col gap-3">
                   <Button variant="hero" size="lg" asChild>
                     <a href="mailto:matt@nomoreenabling.com">
                       <Mail size={18} />

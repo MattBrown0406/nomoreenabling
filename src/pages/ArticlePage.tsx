@@ -19,9 +19,11 @@ import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import FAQJsonLd from "@/components/seo/FAQJsonLd";
 import { useInitialArticleContent } from "@/lib/articleContentContext";
 import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
+import CommercialIntentCTA from "@/components/CommercialIntentCTA";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import LeadMagnetCard from "@/components/LeadMagnetCard";
 import { getLeadMagnetForArticle } from "@/data/leadMagnets";
+import { getCommercialIntentPageForContext } from "@/data/commercialIntentPages";
 
 const XIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -372,6 +374,13 @@ const ArticlePage = () => {
         .map(({ hub }) => hub)
     : [];
   const leadMagnet = getLeadMagnetForArticle(article, matchingHubs.map((hub) => hub.slug));
+  const commercialIntentPage = article
+    ? getCommercialIntentPageForContext({
+        title: article.title,
+        categories: article.categories,
+        hubSlug: matchingHubs[0]?.slug,
+      })
+    : null;
 
   const trackArticleIntentClick = (href: string, label: string, slot: "primary" | "secondary") => {
     if (!article) return;
@@ -784,6 +793,18 @@ const ArticlePage = () => {
                 <div className="mb-8">
                   <CoachingInterventionCTA variant="compact" />
                 </div>
+
+                {commercialIntentPage && showStickyCta && (
+                  <div className="mb-8">
+                    <CommercialIntentCTA
+                      page={commercialIntentPage}
+                      source="article"
+                      articleSlug={article.slug}
+                      hubSlug={matchingHubs[0]?.slug}
+                      compact
+                    />
+                  </div>
+                )}
 
                 <div className="flex items-center gap-2 mb-8 pb-6 border-b border-border flex-wrap">
                   <span className="text-sm text-muted-foreground mr-2">Share:</span>

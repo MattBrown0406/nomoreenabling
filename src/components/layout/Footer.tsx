@@ -62,6 +62,16 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/intervention-help" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Intervention Help
+                </Link>
+              </li>
+              <li>
+                <Link to="/family-addiction-coaching" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Family Coaching
+                </Link>
+              </li>
+              <li>
                 <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">
                   About
                 </Link>
