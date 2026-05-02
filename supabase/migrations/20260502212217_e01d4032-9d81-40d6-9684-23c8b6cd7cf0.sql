@@ -1,0 +1,1 @@
+DELETE FROM public.consultation_leads WHERE id = '4a976b79-69e4-48ff-8aeb-ce0c546423e4';
