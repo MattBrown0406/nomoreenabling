@@ -130,6 +130,12 @@ const About = () => {
                   they lacked was a framework that held up when fear, guilt, and exhaustion were running the show. So the work
                   he does now — and the writing on this site — is built around clarity under pressure, not theory in calm rooms.
                 </p>
+                <p>
+                  Matt is also a man in long-term recovery himself, sober since <strong>April 6, 2003</strong>. In 2001, he
+                  was on the receiving end of his own family's DIY intervention. It took two more years after that before he
+                  found lasting sobriety — and he uses that lived experience to help families avoid some of the well-meaning
+                  but innocent mistakes his own family made with him.
+                </p>
 
                 <h2 className="font-serif text-3xl font-bold text-foreground mb-6 not-prose mt-10">How he got here</h2>
                 <p>
