@@ -37,50 +37,41 @@ export type Database = {
       }
       advertiser_inquiries: {
         Row: {
-          admin_notes: string | null
           company: string | null
           created_at: string
           email: string
           id: string
-          last_admin_action_at: string | null
           message: string
           metadata: Json
           monthly_budget: string | null
           name: string
           page_path: string | null
-          pipeline_status: string
           sponsor_type: string | null
           website: string | null
         }
         Insert: {
-          admin_notes?: string | null
           company?: string | null
           created_at?: string
           email: string
           id?: string
-          last_admin_action_at?: string | null
           message: string
           metadata?: Json
           monthly_budget?: string | null
           name: string
           page_path?: string | null
-          pipeline_status?: string
           sponsor_type?: string | null
           website?: string | null
         }
         Update: {
-          admin_notes?: string | null
           company?: string | null
           created_at?: string
           email?: string
           id?: string
-          last_admin_action_at?: string | null
           message?: string
           metadata?: Json
           monthly_budget?: string | null
           name?: string
           page_path?: string | null
-          pipeline_status?: string
           sponsor_type?: string | null
           website?: string | null
         }
@@ -276,93 +267,69 @@ export type Database = {
       }
       consultation_leads: {
         Row: {
-          admin_notes: string | null
-          booked_at: string | null
-          closed_at: string | null
           concern: string | null
-          contacted_at: string | null
           created_at: string
           email: string
           first_name: string | null
           followup_status: string
-          followups_paused_at: string | null
           id: string
-          last_admin_action_at: string | null
           last_followup_at: string | null
           lead_intent: string | null
           lead_reasons: string[]
           lead_score: number
           lead_tier: string
-          lost_at: string | null
           message: string
           metadata: Json
           name: string
           next_followup_at: string | null
           page_path: string | null
           phone: string | null
-          pipeline_status: string
           relationship: string | null
           source: string
           treatment_history: string | null
           urgency: string | null
         }
         Insert: {
-          admin_notes?: string | null
-          booked_at?: string | null
-          closed_at?: string | null
           concern?: string | null
-          contacted_at?: string | null
           created_at?: string
           email: string
           first_name?: string | null
           followup_status?: string
-          followups_paused_at?: string | null
           id?: string
-          last_admin_action_at?: string | null
           last_followup_at?: string | null
           lead_intent?: string | null
           lead_reasons?: string[]
           lead_score?: number
           lead_tier?: string
-          lost_at?: string | null
           message: string
           metadata?: Json
           name: string
           next_followup_at?: string | null
           page_path?: string | null
           phone?: string | null
-          pipeline_status?: string
           relationship?: string | null
           source?: string
           treatment_history?: string | null
           urgency?: string | null
         }
         Update: {
-          admin_notes?: string | null
-          booked_at?: string | null
-          closed_at?: string | null
           concern?: string | null
-          contacted_at?: string | null
           created_at?: string
           email?: string
           first_name?: string | null
           followup_status?: string
-          followups_paused_at?: string | null
           id?: string
-          last_admin_action_at?: string | null
           last_followup_at?: string | null
           lead_intent?: string | null
           lead_reasons?: string[]
           lead_score?: number
           lead_tier?: string
-          lost_at?: string | null
           message?: string
           metadata?: Json
           name?: string
           next_followup_at?: string | null
           page_path?: string | null
           phone?: string | null
-          pipeline_status?: string
           relationship?: string | null
           source?: string
           treatment_history?: string | null
