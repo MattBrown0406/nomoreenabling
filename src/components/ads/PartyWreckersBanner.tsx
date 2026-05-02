@@ -1,4 +1,4 @@
-import partyWreckersLogo from "@/assets/party-wreckers-logo.png";
+import partyWreckersLogo from "@/assets/party-wreckers-logo.jpg";
 import { Headphones, Star, Users } from "lucide-react";
 import { trackAdClick } from "@/lib/trackAdClick";
 import { withOwnedUtm } from "@/lib/ownedLinks";

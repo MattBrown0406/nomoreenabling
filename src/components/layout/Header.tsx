@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import logo from "@/assets/logo.jpg";
+import { trackGAConversion } from "@/lib/gaConversions";
 import { withOwnedUtm } from "@/lib/ownedLinks";
 
 const Header = () => {
@@ -40,6 +41,11 @@ const Header = () => {
     campaign: "family_squares",
     content: "family_support_forum",
   });
+  const trackFamilySquaresClick = () => {
+    trackGAConversion("family_squares_click", {
+      source: "header_nav",
+    });
+  };
 
   const scrollToNewsletter = () => {
     setIsMenuOpen(false);
@@ -95,6 +101,7 @@ const Header = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="cursor-pointer text-primary"
+                    onClick={trackFamilySquaresClick}
                   >
                     Family Support Forum
                   </a>
@@ -146,7 +153,18 @@ const Header = () => {
                   <Link to="/grounding-reminder" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>A Grounding Reminder</Link>
                   <Link to="/family-system-notes" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Family System Notes</Link>
                   <Link to="/family-support-guide" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Family Support Guide</Link>
-                  <a href={familySquaresHref} target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Family Support Forum</a>
+                  <a
+                    href={familySquaresHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:text-primary/80 transition-colors font-medium"
+                    onClick={() => {
+                      trackFamilySquaresClick();
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    Family Support Forum
+                  </a>
                 </div>
               </div>
               <Button variant="hero" size="default" className="mt-2" onClick={scrollToNewsletter}>

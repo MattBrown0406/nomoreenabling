@@ -6,6 +6,7 @@ import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import type { LeadMagnet } from "@/data/leadMagnets";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
+import { trackGAConversion } from "@/lib/gaConversions";
 import { withOwnedUtm } from "@/lib/ownedLinks";
 
 interface LeadMagnetCardProps {
@@ -64,6 +65,7 @@ const LeadMagnetCard = ({ magnet, source, articleSlug, hubSlug, compact = false 
           lead_magnet_source: source,
           article_slug: articleSlug ?? null,
           hub_slug: hubSlug ?? null,
+          page_path: window.location.pathname,
           _t: loadedAt.current,
         },
       });
@@ -79,6 +81,13 @@ const LeadMagnetCard = ({ magnet, source, articleSlug, hubSlug, compact = false 
         articleSlug,
         targetHref: magnet.slug,
         metadata: { ...eventMetadata, alreadySubscribed: data?.error === "already_subscribed" },
+      });
+
+      trackGAConversion("lead_magnet_signup", {
+        lead_magnet: magnet.slug,
+        lead_magnet_source: source,
+        article_slug: articleSlug,
+        hub_slug: hubSlug,
       });
 
       void trackFunnelEvent("email_capture_success", {
@@ -191,7 +200,17 @@ const LeadMagnetCard = ({ magnet, source, articleSlug, hubSlug, compact = false 
             </p>
             <div className="mt-4 flex flex-col sm:flex-row gap-3">
               <Button asChild>
-                <a href={familySquaresHref} target="_blank" rel="noreferrer">
+                <a
+                  href={familySquaresHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() =>
+                    trackGAConversion("family_squares_click", {
+                      source: "lead_magnet_thank_you",
+                      lead_magnet: magnet.slug,
+                    })
+                  }
+                >
                   <Mail className="h-4 w-4" />
                   Register for Family Squares
                 </a>

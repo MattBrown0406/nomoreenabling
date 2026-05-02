@@ -236,6 +236,48 @@ export type Database = {
         }
         Relationships: []
       }
+      lead_magnet_downloads: {
+        Row: {
+          article_slug: string | null
+          downloaded_at: string
+          email: string
+          first_name: string | null
+          hub_slug: string | null
+          id: string
+          lead_magnet_slug: string
+          lead_magnet_source: string | null
+          metadata: Json
+          page_path: string | null
+          updated_at: string
+        }
+        Insert: {
+          article_slug?: string | null
+          downloaded_at?: string
+          email: string
+          first_name?: string | null
+          hub_slug?: string | null
+          id?: string
+          lead_magnet_slug: string
+          lead_magnet_source?: string | null
+          metadata?: Json
+          page_path?: string | null
+          updated_at?: string
+        }
+        Update: {
+          article_slug?: string | null
+          downloaded_at?: string
+          email?: string
+          first_name?: string | null
+          hub_slug?: string | null
+          id?: string
+          lead_magnet_slug?: string
+          lead_magnet_source?: string | null
+          metadata?: Json
+          page_path?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       subscribers: {
         Row: {
           email: string

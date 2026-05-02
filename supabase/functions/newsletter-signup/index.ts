@@ -16,6 +16,9 @@ const sanitizeString = (str: string | null | undefined, maxLength: number): stri
   return str.trim().slice(0, maxLength);
 };
 
+const normalizeTag = (value: string | null) =>
+  value ? value.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') : null;
+
 const ASSESSMENT_RESULTS = new Set(['safety', 'intervention', 'boundaries', 'after-treatment', 'support']);
 
 // Disposable/temporary email domains commonly used by bots
@@ -49,7 +52,7 @@ const isDisposableEmail = (email: string): boolean => {
 };
 
 // Sync contact to Mailchimp
-const syncToMailchimp = async (email: string, firstName: string | null): Promise<void> => {
+const syncToMailchimp = async (email: string, firstName: string | null, tags: string[] = []): Promise<void> => {
   const apiKey = Deno.env.get('MAILCHIMP_API_KEY');
   const audienceId = Deno.env.get('MAILCHIMP_AUDIENCE_ID');
   
@@ -69,6 +72,10 @@ const syncToMailchimp = async (email: string, firstName: string | null): Promise
 
     if (firstName) {
       subscriberData.merge_fields = { FNAME: firstName };
+    }
+
+    if (tags.length > 0) {
+      subscriberData.tags = tags;
     }
 
     const response = await fetch(url, {
@@ -100,7 +107,20 @@ serve(async (req) => {
   }
 
   try {
-    const { email, first_name, source, result, recommended_offer, answers, _t } = await req.json();
+    const {
+      email,
+      first_name,
+      source,
+      result,
+      recommended_offer,
+      answers,
+      lead_magnet,
+      lead_magnet_source,
+      article_slug,
+      hub_slug,
+      page_path,
+      _t,
+    } = await req.json();
 
     // Validate email
     if (!email || typeof email !== 'string') {
@@ -144,9 +164,15 @@ serve(async (req) => {
     const sanitizedSource = sanitizeString(source, 120);
     const sanitizedResult = sanitizeString(result, 80);
     const sanitizedRecommendedOffer = sanitizeString(recommended_offer, 120);
+    const sanitizedLeadMagnet = sanitizeString(lead_magnet, 120);
+    const sanitizedLeadMagnetSource = sanitizeString(lead_magnet_source, 120);
+    const sanitizedArticleSlug = sanitizeString(article_slug, 160);
+    const sanitizedHubSlug = sanitizeString(hub_slug, 160);
+    const sanitizedPagePath = sanitizeString(page_path, 300);
     const isAssessmentSignup = sanitizedSource === 'family_situation_assessment'
       && sanitizedResult
       && ASSESSMENT_RESULTS.has(sanitizedResult);
+    const isLeadMagnetSignup = sanitizedSource === 'lead_magnet' && !!sanitizedLeadMagnet;
 
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
@@ -195,8 +221,44 @@ serve(async (req) => {
       }
     }
 
-    if (!alreadySubscribed) {
-      syncToMailchimp(sanitizedEmail, sanitizedFirstName).catch(e =>
+    if (isLeadMagnetSignup) {
+      const leadMagnetCapturedAt = new Date().toISOString();
+      const { error: leadMagnetError } = await supabase
+        .from('lead_magnet_downloads')
+        .upsert(
+          {
+            email: sanitizedEmail,
+            first_name: sanitizedFirstName,
+            lead_magnet_slug: sanitizedLeadMagnet,
+            lead_magnet_source: sanitizedLeadMagnetSource,
+            article_slug: sanitizedArticleSlug,
+            hub_slug: sanitizedHubSlug,
+            page_path: sanitizedPagePath,
+            metadata: {
+              source: sanitizedSource,
+              lead_magnet_source: sanitizedLeadMagnetSource,
+              mailchimp_tag: normalizeTag(`lead_magnet_${sanitizedLeadMagnet}`),
+            },
+            downloaded_at: leadMagnetCapturedAt,
+            updated_at: leadMagnetCapturedAt,
+          },
+          { onConflict: 'email,lead_magnet_slug' },
+        );
+
+      if (leadMagnetError) {
+        console.error('Lead magnet capture error:', leadMagnetError.message);
+      }
+    }
+
+    const mailchimpTags = [
+      sanitizedSource ? normalizeTag(sanitizedSource) : null,
+      isAssessmentSignup && sanitizedResult ? normalizeTag(`assessment_${sanitizedResult}`) : null,
+      isLeadMagnetSignup && sanitizedLeadMagnet ? normalizeTag(`lead_magnet_${sanitizedLeadMagnet}`) : null,
+      isLeadMagnetSignup && sanitizedLeadMagnetSource ? normalizeTag(`source_${sanitizedLeadMagnetSource}`) : null,
+    ].filter((tag): tag is string => Boolean(tag));
+
+    if (!alreadySubscribed || mailchimpTags.length > 0) {
+      syncToMailchimp(sanitizedEmail, sanitizedFirstName, mailchimpTags).catch(e =>
         console.error('Background Mailchimp sync error:', e)
       );
     }

@@ -15,6 +15,7 @@ import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
 import { Button } from "@/components/ui/button";
 import { blogPostsMeta } from "@/data/blogPostMeta";
 import SEOHead from "@/components/seo/SEOHead";
+import { trackGAConversion } from "@/lib/gaConversions";
 import { withOwnedUtm } from "@/lib/ownedLinks";
 
 const categories = [
@@ -107,13 +108,13 @@ const Index = () => {
   });
 
   useEffect(() => {
-    if (location.state?.scrollToNewsletter) {
+    if (location.state?.scrollToNewsletter || location.hash === "#newsletter") {
       setTimeout(() => {
         const element = document.getElementById("newsletter");
         element?.scrollIntoView({ behavior: "smooth" });
       }, 100);
     }
-  }, [location.state]);
+  }, [location.hash, location.state]);
 
   return (
     <>
@@ -217,11 +218,23 @@ const Index = () => {
                 <p className="text-sm uppercase tracking-wide text-primary font-medium">Need more than articles?</p>
                 <h2 className="font-serif text-3xl font-bold text-foreground mt-2">Pick the support lane that fits</h2>
                 <div className="mt-5 space-y-3">
-                  <a href={soberHelplineHref} target="_blank" rel="noreferrer" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                  <a
+                    href={soberHelplineHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors"
+                    onClick={() => trackGAConversion("family_squares_click", { source: "homepage_support_lane" })}
+                  >
                     <p className="font-medium text-foreground">Sober Helpline</p>
                     <p className="text-sm text-muted-foreground mt-1">Free family support Zoom every Monday night plus practical support for families who need live help.</p>
                   </a>
-                  <a href={freedomInterventionsHref} target="_blank" rel="noreferrer" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                  <a
+                    href={freedomInterventionsHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors"
+                    onClick={() => trackGAConversion("owned_offer_click", { source: "homepage_support_lane", owned_brand: "freedom-interventions" })}
+                  >
                     <p className="font-medium text-foreground">Freedom Interventions</p>
                     <p className="text-sm text-muted-foreground mt-1">When the situation is escalating and your family may need professional intervention guidance.</p>
                   </a>

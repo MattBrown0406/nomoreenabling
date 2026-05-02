@@ -11,6 +11,7 @@ import { funnelPaths } from "@/data/funnelPaths";
 import { AlertTriangle, ArrowRight, CheckCircle2, ClipboardList, ExternalLink, LifeBuoy, MapPinned, ShieldAlert } from "lucide-react";
 import { getLeadMagnetForHub } from "@/data/leadMagnets";
 import LeadMagnetCard from "@/components/LeadMagnetCard";
+import { trackGAConversion } from "@/lib/gaConversions";
 import { withOwnedUtm } from "@/lib/ownedLinks";
 
 const principles = [
@@ -295,11 +296,23 @@ export default function StartHere() {
               <p className="text-sm uppercase tracking-wide text-primary font-medium">When self-help is not enough</p>
               <h2 className="font-serif text-3xl font-bold text-foreground mt-2">Use the right level of support</h2>
               <div className="mt-5 space-y-3">
-                <a href={soberHelplineHref} target="_blank" rel="noreferrer" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                <a
+                  href={soberHelplineHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors"
+                  onClick={() => trackGAConversion("family_squares_click", { source: "start_here", path_id: selectedPath.id })}
+                >
                   <p className="font-medium text-foreground">Join Sober Helpline</p>
                   <p className="text-sm text-muted-foreground mt-1">Free family support Zoom every Monday night led by professional interventionists. Ask questions or just listen.</p>
                 </a>
-                <a href={freedomInterventionsHref} target="_blank" rel="noreferrer" className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                <a
+                  href={freedomInterventionsHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors"
+                  onClick={() => trackGAConversion("owned_offer_click", { source: "start_here", owned_brand: "freedom-interventions", path_id: selectedPath.id })}
+                >
                   <p className="font-medium text-foreground">Talk to Freedom Interventions</p>
                   <p className="text-sm text-muted-foreground mt-1">For families facing treatment refusal, escalating risk, or repeated relapse patterns.</p>
                 </a>

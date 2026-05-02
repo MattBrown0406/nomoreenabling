@@ -21,6 +21,7 @@ import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { getSupportOffer, type SupportOfferSlug } from "@/data/supportOffers";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
+import { trackGAConversion } from "@/lib/gaConversions";
 
 type OutcomeId = "safety" | "intervention" | "boundaries" | "after-treatment" | "support";
 
@@ -390,6 +391,10 @@ export default function FamilySituationAssessment() {
       offerSlug: result.offerSlug,
       metadata: { answers },
     });
+    trackGAConversion("assessment_completed", {
+      assessment_result: result.id,
+      offer_slug: result.offerSlug,
+    });
   }, [answers, result]);
 
   const handleAnswer = (questionId: string, value: string) => {
@@ -439,6 +444,10 @@ export default function FamilySituationAssessment() {
         source: "family_situation_assessment",
         assessmentResult: result.id,
         offerSlug: offer?.slug,
+      });
+      trackGAConversion("assessment_email_capture", {
+        assessment_result: result.id,
+        offer_slug: offer?.slug,
       });
       toast({
         title: data?.error === "already_subscribed" ? "You are already on the list." : "Your plan is saved.",

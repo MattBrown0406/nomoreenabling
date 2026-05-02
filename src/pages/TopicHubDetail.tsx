@@ -10,6 +10,7 @@ import { getLeadMagnetForHub } from "@/data/leadMagnets";
 import BlogCard from "@/components/blog/BlogCard";
 import { Button } from "@/components/ui/button";
 import LeadMagnetCard from "@/components/LeadMagnetCard";
+import { trackGAConversion } from "@/lib/gaConversions";
 import { withOwnedUtm } from "@/lib/ownedLinks";
 
 export default function TopicHubDetail() {
@@ -262,7 +263,13 @@ export default function TopicHubDetail() {
               </div>
 
               <div className="mt-6 pt-6 border-t border-border space-y-3">
-                <a href={soberHelplineHref} target="_blank" rel="noreferrer" className="block rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                <a
+                  href={soberHelplineHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors"
+                  onClick={() => trackGAConversion("family_squares_click", { source: "topic_hub", hub_slug: hub.slug })}
+                >
                   <p className="font-medium text-foreground">Need live family support?</p>
                   <p className="text-sm text-muted-foreground mt-1">SoberHelpline.com offers a free family support Zoom every Monday night led by professional interventionists.</p>
                 </a>
@@ -270,7 +277,13 @@ export default function TopicHubDetail() {
                   <p className="font-medium text-foreground">Need a private family plan?</p>
                   <p className="text-sm text-muted-foreground mt-1">Use the consultation request form to share what is happening and ask for guidance from Matt.</p>
                 </Link>
-                <a href={freedomInterventionsHref} target="_blank" rel="noreferrer" className="block rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors">
+                <a
+                  href={freedomInterventionsHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors"
+                  onClick={() => trackGAConversion("owned_offer_click", { source: "topic_hub", owned_brand: "freedom-interventions", hub_slug: hub.slug })}
+                >
                   <p className="font-medium text-foreground">Need higher-level intervention help?</p>
                   <p className="text-sm text-muted-foreground mt-1">Freedom Interventions is the better path when the situation is escalating or treatment refusal is entrenched.</p>
                 </a>

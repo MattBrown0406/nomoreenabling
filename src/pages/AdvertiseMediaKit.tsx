@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BarChart3, CheckCircle2, Download, Mail, ShieldCheck, Target, Users } from "lucide-react";
+import { BarChart3, CalendarDays, CheckCircle2, Download, Mail, ShieldCheck, Target, Users } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SEOHead from "@/components/seo/SEOHead";
@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { blogPostsMeta } from "@/data/blogPostMeta";
 import { topicHubs } from "@/data/topicHubs";
+import { supportOffers } from "@/data/supportOffers";
 import { leadMagnets } from "@/data/leadMagnets";
 import {
   formatSponsorRate,
@@ -18,7 +19,14 @@ import {
 const AdvertiseMediaKit = () => {
   const articleCount = blogPostsMeta.length;
   const categoryCount = new Set(blogPostsMeta.flatMap((post) => post.categories)).size;
+  const indexablePageCount = articleCount + categoryCount + topicHubs.length + supportOffers.length + 19;
   const monthlyInventory = sponsorPlacements.reduce((total, placement) => total + placement.monthlyRate, 0);
+  const proofStats = [
+    { label: "Indexable routes", value: `${indexablePageCount}+`, detail: "Prerendered pages eligible for search discovery" },
+    { label: "Articles", value: articleCount.toLocaleString(), detail: "Long-form family addiction education pages" },
+    { label: "Topic hubs", value: topicHubs.length.toLocaleString(), detail: "Clustered sponsor and SEO intent paths" },
+    { label: "Lead magnets", value: leadMagnets.length.toLocaleString(), detail: "Segmented first-party interest signals" },
+  ];
 
   const audienceProof = [
     {
@@ -94,6 +102,33 @@ const AdvertiseMediaKit = () => {
               <ShieldCheck className="h-5 w-5 text-primary" />
               <p className="mt-3 text-3xl font-bold text-foreground">{formatSponsorRate(monthlyInventory)}</p>
               <p className="text-sm text-muted-foreground">Current monthly inventory</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="container mx-auto px-4 pb-12">
+          <div className="rounded-2xl border border-border bg-card p-6 md:p-8">
+            <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="text-sm uppercase tracking-wide text-primary font-medium">Advertiser proof</p>
+                <h2 className="font-serif text-3xl font-bold text-foreground mt-2">Built for measurable sponsor value</h2>
+                <p className="mt-3 text-muted-foreground max-w-3xl">
+                  The site now separates editorial content, sponsor placements, lead magnets, and outbound owned-business clicks so campaigns can be summarized cleanly each month.
+                </p>
+              </div>
+              <div className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm text-muted-foreground">
+                <CalendarDays className="h-4 w-4" />
+                Updated May 2026
+              </div>
+            </div>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {proofStats.map((stat) => (
+                <div key={stat.label} className="rounded-xl border border-border bg-background p-5">
+                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+                  <p className="mt-2 text-3xl font-bold text-foreground">{stat.value}</p>
+                  <p className="mt-2 text-xs text-muted-foreground">{stat.detail}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>

@@ -6,6 +6,7 @@ import { Mail, ArrowRight } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
 import FAQJsonLd from "@/components/seo/FAQJsonLd";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import PersonJsonLd from "@/components/seo/PersonJsonLd";
 import mattHeadshot from "@/assets/matt-brown-headshot.jpeg";
 
 const aboutFaqs = [
@@ -57,6 +58,7 @@ const About = () => {
         articleAuthor="Matt Brown"
       />
       <FAQJsonLd faqs={aboutFaqs} />
+      <PersonJsonLd imageUrl={`https://nomoreenabling.com${mattHeadshot}`} />
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "https://nomoreenabling.com" },
@@ -219,9 +221,11 @@ const About = () => {
                 Get grounded guidance, new articles, and practical reminders in your inbox.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button variant="hero" size="lg">
-                  <Mail size={18} />
-                  Subscribe to newsletter
+                <Button variant="hero" size="lg" asChild>
+                  <a href="/#newsletter">
+                    <Mail size={18} />
+                    Subscribe to newsletter
+                  </a>
                 </Button>
                 <Button variant="hero-outline" size="lg" asChild>
                   <Link to="/articles">

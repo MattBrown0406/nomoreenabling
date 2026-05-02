@@ -8,7 +8,8 @@ import FAQJsonLd from "@/components/seo/FAQJsonLd";
 import { Button } from "@/components/ui/button";
 import { getSupportOffer } from "@/data/supportOffers";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
-import { withOwnedUtm } from "@/lib/ownedLinks";
+import { trackGAConversion } from "@/lib/gaConversions";
+import { getOwnedBrandForUrl, withOwnedUtm } from "@/lib/ownedLinks";
 
 const isExternalHref = (href: string) => href.startsWith("http");
 
@@ -41,6 +42,15 @@ const BridgeButton = ({
       targetHref: trackedHref,
       metadata: { placement, external: isExternalHref(href) },
     });
+
+    if (isExternalHref(href)) {
+      const ownedBrand = getOwnedBrandForUrl(href);
+      trackGAConversion(ownedBrand === "sober-helpline" ? "family_squares_click" : "owned_offer_click", {
+        offer_slug: offerSlug,
+        owned_brand: ownedBrand ?? "external",
+        placement,
+      });
+    }
   };
 
   if (isExternalHref(href)) {
