@@ -23,6 +23,7 @@ import {
   PauseCircle,
   RefreshCw,
   Route,
+  Send,
   Share2,
   ShieldCheck,
   Target,
@@ -35,6 +36,7 @@ import { topicHubs } from "@/data/topicHubs";
 import { toast } from "@/hooks/use-toast";
 import SEOHead from "@/components/seo/SEOHead";
 import { getSupportOffer } from "@/data/supportOffers";
+import { commercialIntentPages } from "@/data/commercialIntentPages";
 import {
   formatSponsorRate,
   sponsorPlacements,
@@ -102,6 +104,8 @@ interface ConsultationLeadRow {
   lost_at: string | null;
   last_admin_action_at: string | null;
   admin_notes: string | null;
+  next_action: string;
+  next_action_due_at: string | null;
   created_at: string;
 }
 
@@ -126,6 +130,10 @@ interface AdvertiserInquiryRow {
   sponsor_type: string | null;
   monthly_budget: string | null;
   pipeline_status: string;
+  next_action: string;
+  proposal_sent_at: string | null;
+  sold_at: string | null;
+  lost_at: string | null;
   last_admin_action_at: string | null;
   admin_notes: string | null;
   created_at: string;
@@ -151,6 +159,7 @@ type SortField = "views" | "title" | "date";
 type SortDir = "asc" | "desc";
 type TimeRange = "7d" | "30d" | "90d" | "all";
 type LeadPipelineStatus = "new" | "contacted" | "booked" | "active" | "closed" | "lost";
+type AdvertiserPipelineStatus = "new" | "contacted" | "proposal_sent" | "negotiating" | "sold" | "lost";
 
 const resultLabels: Record<string, string> = {
   safety: "Safety",
@@ -169,6 +178,27 @@ const pipelineLabels: Record<LeadPipelineStatus, string> = {
   lost: "Lost",
 };
 
+const nextActionLabels: Record<string, string> = {
+  call: "Call",
+  email: "Email",
+  book_consultation: "Book consultation",
+  send_resources: "Send resources",
+  wait: "Wait",
+  close: "Close",
+  send_media_kit: "Send media kit",
+  send_proposal: "Send proposal",
+  follow_up: "Follow up",
+};
+
+const advertiserPipelineLabels: Record<AdvertiserPipelineStatus, string> = {
+  new: "New",
+  contacted: "Contacted",
+  proposal_sent: "Proposal sent",
+  negotiating: "Negotiating",
+  sold: "Sold",
+  lost: "Lost",
+};
+
 const pipelineBadgeClass: Record<LeadPipelineStatus, string> = {
   new: "bg-secondary text-muted-foreground",
   contacted: "bg-primary/10 text-primary",
@@ -178,10 +208,25 @@ const pipelineBadgeClass: Record<LeadPipelineStatus, string> = {
   lost: "bg-destructive/10 text-destructive",
 };
 
+const advertiserPipelineBadgeClass: Record<AdvertiserPipelineStatus, string> = {
+  new: "bg-secondary text-muted-foreground",
+  contacted: "bg-primary/10 text-primary",
+  proposal_sent: "bg-blue-100 text-blue-800",
+  negotiating: "bg-amber-100 text-amber-800",
+  sold: "bg-emerald-100 text-emerald-800",
+  lost: "bg-destructive/10 text-destructive",
+};
+
 const leadPipelineStatuses: LeadPipelineStatus[] = ["new", "contacted", "booked", "active", "closed", "lost"];
+const advertiserPipelineStatuses: AdvertiserPipelineStatus[] = ["new", "contacted", "proposal_sent", "negotiating", "sold", "lost"];
+const consultationNextActions = ["call", "email", "book_consultation", "send_resources", "wait", "close"];
+const advertiserNextActions = ["email", "send_media_kit", "send_proposal", "follow_up", "wait", "close"];
 
 const getPipelineStatus = (status: string | null | undefined): LeadPipelineStatus =>
   leadPipelineStatuses.includes(status as LeadPipelineStatus) ? (status as LeadPipelineStatus) : "new";
+
+const getAdvertiserPipelineStatus = (status: string | null | undefined): AdvertiserPipelineStatus =>
+  advertiserPipelineStatuses.includes(status as AdvertiserPipelineStatus) ? (status as AdvertiserPipelineStatus) : "new";
 
 const formatDateTime = (value: string) =>
   new Intl.DateTimeFormat("en-US", {
@@ -239,8 +284,10 @@ const AdminAnalytics = () => {
   const [advertiserInquiryCount, setAdvertiserInquiryCount] = useState<number | null>(null);
   const [syncing, setSyncing] = useState(false);
   const [processingFollowups, setProcessingFollowups] = useState(false);
+  const [sendingWeeklySummary, setSendingWeeklySummary] = useState(false);
   const [lastSyncCount, setLastSyncCount] = useState<number | null>(null);
   const [lastFollowupRun, setLastFollowupRun] = useState<{ sent: number; errors: number } | null>(null);
+  const [lastWeeklySummarySentTo, setLastWeeklySummarySentTo] = useState<string | null>(null);
   const [selectedLeadId, setSelectedLeadId] = useState<string | null>(null);
   const [leadActionLoading, setLeadActionLoading] = useState<string | null>(null);
   const [leadNoteDraft, setLeadNoteDraft] = useState("");
@@ -366,7 +413,7 @@ const AdminAnalytics = () => {
 
     const { data: consultationData, error: consultationError } = await supabase
       .from('consultation_leads')
-      .select('id, name, email, phone, relationship, concern, treatment_history, urgency, message, source, page_path, lead_intent, lead_score, lead_tier, lead_reasons, pipeline_status, followup_status, followups_paused_at, next_followup_at, last_followup_at, contacted_at, booked_at, closed_at, lost_at, last_admin_action_at, admin_notes, created_at')
+      .select('id, name, email, phone, relationship, concern, treatment_history, urgency, message, source, page_path, lead_intent, lead_score, lead_tier, lead_reasons, pipeline_status, followup_status, followups_paused_at, next_followup_at, last_followup_at, contacted_at, booked_at, closed_at, lost_at, last_admin_action_at, admin_notes, next_action, next_action_due_at, created_at')
       .order('lead_score', { ascending: false })
       .order('created_at', { ascending: false })
       .limit(50);
@@ -393,7 +440,7 @@ const AdminAnalytics = () => {
 
     const { data: advertiserData, error: advertiserError } = await supabase
       .from('advertiser_inquiries')
-      .select('id, name, email, company, sponsor_type, monthly_budget, pipeline_status, last_admin_action_at, admin_notes, created_at')
+      .select('id, name, email, company, sponsor_type, monthly_budget, pipeline_status, next_action, proposal_sent_at, sold_at, lost_at, last_admin_action_at, admin_notes, created_at')
       .order('created_at', { ascending: false })
       .limit(50);
 
@@ -514,6 +561,33 @@ const AdminAnalytics = () => {
     }
   };
 
+  const sendWeeklyOwnerSummary = async () => {
+    setSendingWeeklySummary(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('send-weekly-owner-summary', {
+        body: {},
+      });
+
+      if (error) throw error;
+
+      const sentTo = typeof data?.sentTo === "string" ? data.sentTo : "Matt";
+      setLastWeeklySummarySentTo(sentTo);
+      toast({
+        title: "Weekly summary sent",
+        description: `Owner summary sent to ${sentTo}.`,
+      });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Please try again later.";
+      toast({
+        title: "Weekly summary failed",
+        description: message,
+        variant: "destructive",
+      });
+    } finally {
+      setSendingWeeklySummary(false);
+    }
+  };
+
   const updateConsultationLead = async (
     lead: ConsultationLeadRow,
     patch: Partial<ConsultationLeadRow>,
@@ -554,6 +628,7 @@ const AdminAnalytics = () => {
 
     if (status === "contacted") {
       patch.contacted_at = lead.contacted_at || now;
+      patch.next_action = "book_consultation";
     }
 
     if (status === "booked") {
@@ -561,26 +636,41 @@ const AdminAnalytics = () => {
       patch.booked_at = lead.booked_at || now;
       patch.followup_status = "paused";
       patch.followups_paused_at = lead.followups_paused_at || now;
+      patch.next_action = "wait";
     }
 
     if (status === "active") {
       patch.followup_status = "active";
       patch.followups_paused_at = null;
+      patch.next_action = "call";
     }
 
     if (status === "closed") {
       patch.closed_at = lead.closed_at || now;
       patch.followup_status = "complete";
       patch.followups_paused_at = lead.followups_paused_at || now;
+      patch.next_action = "close";
     }
 
     if (status === "lost") {
       patch.lost_at = lead.lost_at || now;
       patch.followup_status = "complete";
       patch.followups_paused_at = lead.followups_paused_at || now;
+      patch.next_action = "close";
     }
 
     updateConsultationLead(lead, patch, `Moved ${lead.name} to ${pipelineLabels[status]}.`);
+  };
+
+  const setLeadNextAction = (lead: ConsultationLeadRow, nextAction: string) => {
+    updateConsultationLead(
+      lead,
+      {
+        next_action: nextAction,
+        last_admin_action_at: new Date().toISOString(),
+      },
+      `Next action set to ${nextActionLabels[nextAction] || nextAction}.`,
+    );
   };
 
   const toggleLeadFollowups = (lead: ConsultationLeadRow) => {
@@ -608,13 +698,61 @@ const AdminAnalytics = () => {
     );
   };
 
-  const updateAdvertiserStatus = async (inquiry: AdvertiserInquiryRow, status: LeadPipelineStatus) => {
+  const updateAdvertiserStatus = async (inquiry: AdvertiserInquiryRow, status: AdvertiserPipelineStatus) => {
+    setLeadActionLoading(inquiry.id);
+    const now = new Date().toISOString();
+    const patch: Partial<AdvertiserInquiryRow> = {
+      pipeline_status: status,
+      last_admin_action_at: now,
+    };
+
+    if (status === "contacted") patch.next_action = "send_media_kit";
+    if (status === "proposal_sent") {
+      patch.proposal_sent_at = inquiry.proposal_sent_at || now;
+      patch.next_action = "follow_up";
+    }
+    if (status === "negotiating") patch.next_action = "follow_up";
+    if (status === "sold") {
+      patch.sold_at = inquiry.sold_at || now;
+      patch.next_action = "wait";
+    }
+    if (status === "lost") {
+      patch.lost_at = inquiry.lost_at || now;
+      patch.next_action = "close";
+    }
+
+    try {
+      const { error } = await supabase
+        .from('advertiser_inquiries')
+        .update(patch)
+        .eq('id', inquiry.id);
+
+      if (error) throw error;
+
+      toast({
+        title: "Advertiser updated",
+        description: `Moved ${inquiry.company || inquiry.name} to ${advertiserPipelineLabels[status]}.`,
+      });
+      await fetchFunnelAnalytics();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Please try again later.";
+      toast({
+        title: "Advertiser update failed",
+        description: message,
+        variant: "destructive",
+      });
+    } finally {
+      setLeadActionLoading(null);
+    }
+  };
+
+  const updateAdvertiserNextAction = async (inquiry: AdvertiserInquiryRow, nextAction: string) => {
     setLeadActionLoading(inquiry.id);
     try {
       const { error } = await supabase
         .from('advertiser_inquiries')
         .update({
-          pipeline_status: status,
+          next_action: nextAction,
           last_admin_action_at: new Date().toISOString(),
         })
         .eq('id', inquiry.id);
@@ -623,7 +761,7 @@ const AdminAnalytics = () => {
 
       toast({
         title: "Advertiser updated",
-        description: `Moved ${inquiry.company || inquiry.name} to ${pipelineLabels[status]}.`,
+        description: `Next action set to ${nextActionLabels[nextAction] || nextAction}.`,
       });
       await fetchFunnelAnalytics();
     } catch (error) {
@@ -646,6 +784,7 @@ const AdminAnalytics = () => {
         email: lead.email,
         phone: lead.phone,
         status: pipelineLabels[getPipelineStatus(lead.pipeline_status)],
+        next_action: nextActionLabels[lead.next_action] || lead.next_action,
         score: lead.lead_score,
         tier: lead.lead_tier,
         intent: lead.lead_intent,
@@ -667,7 +806,8 @@ const AdminAnalytics = () => {
         company: inquiry.company,
         name: inquiry.name,
         email: inquiry.email,
-        status: pipelineLabels[getPipelineStatus(inquiry.pipeline_status)],
+        status: advertiserPipelineLabels[getAdvertiserPipelineStatus(inquiry.pipeline_status)],
+        next_action: nextActionLabels[inquiry.next_action] || inquiry.next_action,
         sponsor_type: inquiry.sponsor_type,
         monthly_budget: inquiry.monthly_budget,
         created_at: inquiry.created_at,
@@ -838,6 +978,10 @@ const AdminAnalytics = () => {
   const hotLeadCount = consultationLeads.filter((lead) => lead.lead_tier === "priority" || lead.lead_score >= 65).length;
   const bookedLeadCount = consultationLeads.filter((lead) => getPipelineStatus(lead.pipeline_status) === "booked").length;
   const closedLeadCount = consultationLeads.filter((lead) => getPipelineStatus(lead.pipeline_status) === "closed").length;
+  const nextActionCounts = consultationNextActions.map((action) => ({
+    action,
+    count: consultationLeads.filter((lead) => lead.next_action === action).length,
+  }));
   const leadSourceStats: FunnelBreakdownStat[] = Object.entries(
     consultationLeads.reduce<Record<string, number>>((acc, lead) => {
       const key = lead.page_path || lead.source || "unknown";
@@ -848,6 +992,37 @@ const AdminAnalytics = () => {
     .map(([key, count]) => ({ key, label: key, count }))
     .sort((a, b) => b.count - a.count)
     .slice(0, 6);
+  const advertiserPipelineCounts = advertiserPipelineStatuses.map((status) => ({
+    status,
+    count: advertiserInquiries.filter((inquiry) => getAdvertiserPipelineStatus(inquiry.pipeline_status) === status).length,
+  }));
+  const advertiserSoldCount = advertiserInquiries.filter((inquiry) => getAdvertiserPipelineStatus(inquiry.pipeline_status) === "sold").length;
+  const advertiserOpenCount = advertiserInquiries.filter((inquiry) =>
+    ["new", "contacted", "proposal_sent", "negotiating"].includes(getAdvertiserPipelineStatus(inquiry.pipeline_status))
+  ).length;
+  const conversionAudit = commercialIntentPages.map((page) => {
+    const pagePath = `/${page.slug}`;
+    const leadCount = consultationLeads.filter((lead) => lead.page_path === pagePath || lead.lead_intent === page.leadIntent).length;
+    const ctaClicks = funnelEvents.filter((event) =>
+      event.event_name === "article_intent_cta_click" &&
+      (event.page_path === pagePath || event.target_href?.includes(page.slug))
+    ).length;
+    const recommendation =
+      page.primaryOffer === "freedom-interventions"
+        ? "Intervention CTA"
+        : page.primaryOffer === "sober-helpline"
+          ? "Sober Helpline CTA"
+          : "Coaching CTA";
+
+    return {
+      slug: page.slug,
+      title: page.eyebrow,
+      recommendation,
+      leadCount,
+      ctaClicks,
+      status: leadCount > 0 ? "Producing leads" : ctaClicks > 0 ? "Clicks, no leads yet" : "Needs traffic",
+    };
+  });
 
   const getPrimaryHubForArticle = (slug: string | null) => {
     if (!slug) return null;
@@ -1052,6 +1227,43 @@ const AdminAnalytics = () => {
                 </div>
               </CardContent>
             </Card>
+
+            <div className="grid gap-4 lg:grid-cols-[1fr_1fr] mt-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">Weekly Operating Summary</CardTitle>
+                  <p className="text-muted-foreground text-sm">
+                    Sends Matt a weekly owner email with hot leads, due follow-ups, lead source pages, advertiser pipeline, and sponsor stats.
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <Button className="w-full" size="sm" onClick={sendWeeklyOwnerSummary} disabled={sendingWeeklySummary}>
+                    <Send className={`h-4 w-4 ${sendingWeeklySummary ? "animate-pulse" : ""}`} />
+                    {sendingWeeklySummary ? "Sending summary..." : "Send weekly summary now"}
+                  </Button>
+                  {lastWeeklySummarySentTo && (
+                    <p className="mt-3 text-xs text-muted-foreground">Last sent this session to {lastWeeklySummarySentTo}.</p>
+                  )}
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">Next Actions</CardTitle>
+                  <p className="text-muted-foreground text-sm">A simple operating queue for what each lead needs next.</p>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    {nextActionCounts.map((item) => (
+                      <div key={item.action} className="rounded-xl bg-secondary/40 p-3">
+                        <p className="text-xs text-muted-foreground">{nextActionLabels[item.action]}</p>
+                        <p className="text-2xl font-bold text-foreground">{item.count}</p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </section>
 
           <section className="mb-8">
@@ -1151,7 +1363,7 @@ const AdminAnalytics = () => {
                 <CardContent>
                   <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
                     <div className="space-y-4">
-                      <div className="grid gap-3 md:grid-cols-3">
+                      <div className="grid gap-3 md:grid-cols-4">
                         <div className="rounded-xl bg-secondary/40 p-3">
                           <p className="text-xs text-muted-foreground">Score</p>
                           <p className="font-semibold text-foreground">{selectedLead.lead_score} · {selectedLead.lead_tier}</p>
@@ -1165,6 +1377,10 @@ const AdminAnalytics = () => {
                           <p className="font-semibold text-foreground">
                             {selectedLead.next_followup_at ? formatDateTime(selectedLead.next_followup_at) : "None queued"}
                           </p>
+                        </div>
+                        <div className="rounded-xl bg-secondary/40 p-3">
+                          <p className="text-xs text-muted-foreground">Next Action</p>
+                          <p className="font-semibold text-foreground">{nextActionLabels[selectedLead.next_action] || selectedLead.next_action}</p>
                         </div>
                       </div>
 
@@ -1247,6 +1463,23 @@ const AdminAnalytics = () => {
                           {selectedLead.followups_paused_at ? <PlayCircle className="h-4 w-4" /> : <PauseCircle className="h-4 w-4" />}
                           {selectedLead.followups_paused_at ? "Resume follow-ups" : "Pause follow-ups"}
                         </Button>
+                      </div>
+
+                      <div className="rounded-xl border border-border p-4">
+                        <p className="text-sm font-medium text-foreground mb-3">Next Action</p>
+                        <div className="grid grid-cols-2 gap-2">
+                          {consultationNextActions.map((action) => (
+                            <Button
+                              key={action}
+                              size="sm"
+                              variant={selectedLead.next_action === action ? "default" : "outline"}
+                              onClick={() => setLeadNextAction(selectedLead, action)}
+                              disabled={leadActionLoading === selectedLead.id}
+                            >
+                              {nextActionLabels[action]}
+                            </Button>
+                          ))}
+                        </div>
                       </div>
 
                       <div className="rounded-xl border border-border p-4">
@@ -1702,6 +1935,56 @@ const AdminAnalytics = () => {
 
             <Card className="mt-6">
               <CardHeader>
+                <CardTitle className="font-serif text-lg">Conversion Audit</CardTitle>
+                <p className="text-muted-foreground text-sm">
+                  Checks the money pages against the CTA each page should be pushing.
+                </p>
+              </CardHeader>
+              <CardContent>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-border">
+                        <th className="text-left py-3 px-2 font-medium text-muted-foreground">Page</th>
+                        <th className="text-left py-3 px-2 font-medium text-muted-foreground hidden md:table-cell">Primary CTA</th>
+                        <th className="text-right py-3 px-2 font-medium text-muted-foreground">Clicks</th>
+                        <th className="text-right py-3 px-2 font-medium text-muted-foreground">Leads</th>
+                        <th className="text-right py-3 px-2 font-medium text-muted-foreground">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {conversionAudit.map((item) => (
+                        <tr key={item.slug} className="border-b border-border/50">
+                          <td className="py-3 px-2">
+                            <a href={`/${item.slug}`} target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary">
+                              {item.title}
+                            </a>
+                            <p className="text-xs text-muted-foreground">/{item.slug}</p>
+                          </td>
+                          <td className="py-3 px-2 text-muted-foreground hidden md:table-cell">{item.recommendation}</td>
+                          <td className="py-3 px-2 text-right text-muted-foreground">{item.ctaClicks}</td>
+                          <td className="py-3 px-2 text-right font-medium text-foreground">{item.leadCount}</td>
+                          <td className="py-3 px-2 text-right">
+                            <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${
+                              item.status === "Producing leads"
+                                ? "bg-emerald-100 text-emerald-800"
+                                : item.status === "Clicks, no leads yet"
+                                  ? "bg-amber-100 text-amber-800"
+                                  : "bg-secondary text-muted-foreground"
+                            }`}>
+                              {item.status}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="mt-6">
+              <CardHeader>
                 <CardTitle className="font-serif text-lg">SEO Cluster Funnel Performance</CardTitle>
                 <p className="text-muted-foreground text-sm">
                   Shows which topic clusters are turning article readers into next-step clicks.
@@ -1770,6 +2053,7 @@ const AdminAnalytics = () => {
                             <th className="text-left py-3 px-2 font-medium text-muted-foreground">Lead</th>
                             <th className="text-left py-3 px-2 font-medium text-muted-foreground hidden md:table-cell">Concern</th>
                             <th className="text-left py-3 px-2 font-medium text-muted-foreground hidden lg:table-cell">Status</th>
+                            <th className="text-left py-3 px-2 font-medium text-muted-foreground hidden xl:table-cell">Next</th>
                             <th className="text-right py-3 px-2 font-medium text-muted-foreground">Score</th>
                             <th className="text-right py-3 px-2 font-medium text-muted-foreground">Action</th>
                           </tr>
@@ -1795,6 +2079,11 @@ const AdminAnalytics = () => {
                                 <p className="mt-1 text-xs text-muted-foreground">
                                   {lead.followups_paused_at ? "Follow-ups paused" : lead.followup_status}
                                 </p>
+                              </td>
+                              <td className="py-3 px-2 hidden xl:table-cell">
+                                <span className="rounded-full bg-secondary px-2 py-0.5 text-xs text-muted-foreground">
+                                  {nextActionLabels[lead.next_action] || lead.next_action}
+                                </span>
                               </td>
                               <td className="py-3 px-2 text-right">
                                 <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${
@@ -1837,6 +2126,24 @@ const AdminAnalytics = () => {
                   </div>
                 </CardHeader>
                 <CardContent>
+                  <div className="grid grid-cols-2 gap-3 mb-4">
+                    <div className="rounded-xl bg-secondary/40 p-3">
+                      <p className="text-xs text-muted-foreground">Open pipeline</p>
+                      <p className="text-2xl font-bold text-foreground">{advertiserOpenCount}</p>
+                    </div>
+                    <div className="rounded-xl bg-secondary/40 p-3">
+                      <p className="text-xs text-muted-foreground">Sold</p>
+                      <p className="text-2xl font-bold text-foreground">{advertiserSoldCount}</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 mb-4">
+                    {advertiserPipelineCounts.map((item) => (
+                      <div key={item.status} className="rounded-lg border border-border p-2">
+                        <p className="text-[11px] text-muted-foreground">{advertiserPipelineLabels[item.status]}</p>
+                        <p className="text-lg font-bold text-foreground">{item.count}</p>
+                      </div>
+                    ))}
+                  </div>
                   {advertiserInquiries.length === 0 ? (
                     <p className="text-muted-foreground text-sm">No advertiser inquiries captured yet.</p>
                   ) : (
@@ -1849,13 +2156,16 @@ const AdminAnalytics = () => {
                               <p className="text-xs text-muted-foreground">{inquiry.email}</p>
                             </div>
                             <div className="text-right">
-                              <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${pipelineBadgeClass[getPipelineStatus(inquiry.pipeline_status)]}`}>
-                                {pipelineLabels[getPipelineStatus(inquiry.pipeline_status)]}
+                              <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${advertiserPipelineBadgeClass[getAdvertiserPipelineStatus(inquiry.pipeline_status)]}`}>
+                                {advertiserPipelineLabels[getAdvertiserPipelineStatus(inquiry.pipeline_status)]}
                               </span>
                               <p className="mt-1 text-xs text-muted-foreground">{formatDateTime(inquiry.created_at)}</p>
                             </div>
                           </div>
                           <p className="mt-2 text-sm text-muted-foreground">{inquiry.sponsor_type || "Sponsor type not provided"}</p>
+                          <p className="mt-1 text-xs text-muted-foreground">
+                            Next: {nextActionLabels[inquiry.next_action] || inquiry.next_action}
+                          </p>
                           {inquiry.monthly_budget && (
                             <p className="mt-2 text-xs text-primary font-medium">{inquiry.monthly_budget}</p>
                           )}
@@ -1863,12 +2173,31 @@ const AdminAnalytics = () => {
                             <Button size="sm" variant="outline" onClick={() => updateAdvertiserStatus(inquiry, "contacted")} disabled={leadActionLoading === inquiry.id}>
                               Contacted
                             </Button>
-                            <Button size="sm" variant="outline" onClick={() => updateAdvertiserStatus(inquiry, "active")} disabled={leadActionLoading === inquiry.id}>
-                              Active
+                            <Button size="sm" variant="outline" onClick={() => updateAdvertiserStatus(inquiry, "proposal_sent")} disabled={leadActionLoading === inquiry.id}>
+                              Proposal
                             </Button>
-                            <Button size="sm" variant="outline" onClick={() => updateAdvertiserStatus(inquiry, "closed")} disabled={leadActionLoading === inquiry.id}>
-                              Closed
+                            <Button size="sm" variant="outline" onClick={() => updateAdvertiserStatus(inquiry, "negotiating")} disabled={leadActionLoading === inquiry.id}>
+                              Negotiating
                             </Button>
+                            <Button size="sm" variant="outline" onClick={() => updateAdvertiserStatus(inquiry, "sold")} disabled={leadActionLoading === inquiry.id}>
+                              Sold
+                            </Button>
+                            <Button size="sm" variant="outline" onClick={() => updateAdvertiserStatus(inquiry, "lost")} disabled={leadActionLoading === inquiry.id}>
+                              Lost
+                            </Button>
+                          </div>
+                          <div className="mt-3 flex flex-wrap gap-2">
+                            {advertiserNextActions.map((action) => (
+                              <Button
+                                key={action}
+                                size="sm"
+                                variant={inquiry.next_action === action ? "default" : "ghost"}
+                                onClick={() => updateAdvertiserNextAction(inquiry, action)}
+                                disabled={leadActionLoading === inquiry.id}
+                              >
+                                {nextActionLabels[action]}
+                              </Button>
+                            ))}
                           </div>
                         </div>
                       ))}

@@ -42,6 +42,14 @@ const AdvertiseMediaKit = () => {
       detail: "Placements now track impressions, clicks, page path, and article or cluster context inside the admin dashboard.",
     },
   ];
+  const measurementProof = [
+    "Sponsor impressions and clicks by page path",
+    "Consultation leads by source page",
+    "Advertiser inquiries by sales stage",
+    "Lead magnet interest by topic cluster",
+    "Weekly owner summaries for campaign review",
+    "CSV exports for advertiser recaps",
+  ];
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -142,6 +150,28 @@ const AdvertiseMediaKit = () => {
                 <p className="mt-3 text-muted-foreground">{proof.detail}</p>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section className="container mx-auto px-4 pb-12">
+          <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 md:p-8">
+            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+              <div>
+                <p className="text-sm uppercase tracking-wide text-primary font-medium">Measurement stack</p>
+                <h2 className="font-serif text-3xl font-bold text-foreground mt-2">Advertisers can be sold on proof, not guesswork</h2>
+                <p className="mt-3 text-muted-foreground">
+                  No More Enabling is set up to show where sponsor visibility happened and which pages are creating business conversations.
+                </p>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {measurementProof.map((item) => (
+                  <div key={item} className="rounded-xl border border-border bg-background p-4">
+                    <CheckCircle2 className="h-4 w-4 text-primary" />
+                    <p className="mt-2 text-sm font-medium text-foreground">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 

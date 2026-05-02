@@ -47,9 +47,13 @@ export type Database = {
           metadata: Json
           monthly_budget: string | null
           name: string
+          next_action: string
           page_path: string | null
           pipeline_status: string
+          proposal_sent_at: string | null
           sponsor_type: string | null
+          sold_at: string | null
+          lost_at: string | null
           website: string | null
         }
         Insert: {
@@ -63,9 +67,13 @@ export type Database = {
           metadata?: Json
           monthly_budget?: string | null
           name: string
+          next_action?: string
           page_path?: string | null
           pipeline_status?: string
+          proposal_sent_at?: string | null
           sponsor_type?: string | null
+          sold_at?: string | null
+          lost_at?: string | null
           website?: string | null
         }
         Update: {
@@ -79,9 +87,13 @@ export type Database = {
           metadata?: Json
           monthly_budget?: string | null
           name?: string
+          next_action?: string
           page_path?: string | null
           pipeline_status?: string
+          proposal_sent_at?: string | null
           sponsor_type?: string | null
+          sold_at?: string | null
+          lost_at?: string | null
           website?: string | null
         }
         Relationships: []
@@ -297,6 +309,8 @@ export type Database = {
           message: string
           metadata: Json
           name: string
+          next_action: string
+          next_action_due_at: string | null
           next_followup_at: string | null
           page_path: string | null
           phone: string | null
@@ -328,6 +342,8 @@ export type Database = {
           message: string
           metadata?: Json
           name: string
+          next_action?: string
+          next_action_due_at?: string | null
           next_followup_at?: string | null
           page_path?: string | null
           phone?: string | null
@@ -359,6 +375,8 @@ export type Database = {
           message?: string
           metadata?: Json
           name?: string
+          next_action?: string
+          next_action_due_at?: string | null
           next_followup_at?: string | null
           page_path?: string | null
           phone?: string | null
@@ -475,6 +493,42 @@ export type Database = {
           id?: string
           is_active?: boolean
           subscribed_at?: string
+        }
+        Relationships: []
+      }
+      weekly_owner_summaries: {
+        Row: {
+          created_at: string
+          error_message: string | null
+          id: string
+          period_end: string
+          period_start: string
+          sent_at: string | null
+          sent_to: string
+          subject: string
+          summary: Json
+        }
+        Insert: {
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          period_end: string
+          period_start: string
+          sent_at?: string | null
+          sent_to: string
+          subject: string
+          summary?: Json
+        }
+        Update: {
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          period_end?: string
+          period_start?: string
+          sent_at?: string | null
+          sent_to?: string
+          subject?: string
+          summary?: Json
         }
         Relationships: []
       }
