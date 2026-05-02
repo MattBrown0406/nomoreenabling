@@ -62,6 +62,7 @@ const verifyAdmin = async (req: Request, supabase: ReturnType<typeof createClien
   const authHeader = req.headers.get("Authorization");
   const automationSecret = Deno.env.get("FOLLOWUP_AUTOMATION_SECRET");
   const requestedSecret = req.headers.get("x-automation-secret");
+  console.log("auth check", { hasEnv: Boolean(automationSecret), envLen: automationSecret?.length ?? 0, hasHeader: Boolean(requestedSecret), headerLen: requestedSecret?.length ?? 0 });
 
   if (automationSecret && requestedSecret === automationSecret) return true;
   if (!authHeader) return false;
