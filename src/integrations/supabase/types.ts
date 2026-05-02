@@ -194,6 +194,77 @@ export type Database = {
         }
         Relationships: []
       }
+      consultation_followup_queue: {
+        Row: {
+          body_markdown: string
+          consultation_lead_id: string | null
+          created_at: string
+          email: string
+          error_message: string | null
+          id: string
+          lead_intent: string | null
+          lead_tier: string
+          metadata: Json
+          name: string | null
+          preview_text: string | null
+          primary_cta_href: string | null
+          primary_cta_label: string | null
+          scheduled_for: string
+          sent_at: string | null
+          sequence_step: number
+          skipped_at: string | null
+          subject: string
+        }
+        Insert: {
+          body_markdown: string
+          consultation_lead_id?: string | null
+          created_at?: string
+          email: string
+          error_message?: string | null
+          id?: string
+          lead_intent?: string | null
+          lead_tier?: string
+          metadata?: Json
+          name?: string | null
+          preview_text?: string | null
+          primary_cta_href?: string | null
+          primary_cta_label?: string | null
+          scheduled_for: string
+          sent_at?: string | null
+          sequence_step: number
+          skipped_at?: string | null
+          subject: string
+        }
+        Update: {
+          body_markdown?: string
+          consultation_lead_id?: string | null
+          created_at?: string
+          email?: string
+          error_message?: string | null
+          id?: string
+          lead_intent?: string | null
+          lead_tier?: string
+          metadata?: Json
+          name?: string | null
+          preview_text?: string | null
+          primary_cta_href?: string | null
+          primary_cta_label?: string | null
+          scheduled_for?: string
+          sent_at?: string | null
+          sequence_step?: number
+          skipped_at?: string | null
+          subject?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "consultation_followup_queue_consultation_lead_id_fkey"
+            columns: ["consultation_lead_id"]
+            isOneToOne: false
+            referencedRelation: "consultation_leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       consultation_leads: {
         Row: {
           concern: string | null
@@ -265,77 +336,6 @@ export type Database = {
           urgency?: string | null
         }
         Relationships: []
-      }
-      consultation_followup_queue: {
-        Row: {
-          body_markdown: string
-          consultation_lead_id: string | null
-          created_at: string
-          email: string
-          error_message: string | null
-          id: string
-          lead_intent: string | null
-          lead_tier: string
-          metadata: Json
-          name: string | null
-          preview_text: string | null
-          primary_cta_href: string | null
-          primary_cta_label: string | null
-          scheduled_for: string
-          sent_at: string | null
-          sequence_step: number
-          skipped_at: string | null
-          subject: string
-        }
-        Insert: {
-          body_markdown: string
-          consultation_lead_id?: string | null
-          created_at?: string
-          email: string
-          error_message?: string | null
-          id?: string
-          lead_intent?: string | null
-          lead_tier?: string
-          metadata?: Json
-          name?: string | null
-          preview_text?: string | null
-          primary_cta_href?: string | null
-          primary_cta_label?: string | null
-          scheduled_for: string
-          sent_at?: string | null
-          sequence_step: number
-          skipped_at?: string | null
-          subject: string
-        }
-        Update: {
-          body_markdown?: string
-          consultation_lead_id?: string | null
-          created_at?: string
-          email?: string
-          error_message?: string | null
-          id?: string
-          lead_intent?: string | null
-          lead_tier?: string
-          metadata?: Json
-          name?: string | null
-          preview_text?: string | null
-          primary_cta_href?: string | null
-          primary_cta_label?: string | null
-          scheduled_for?: string
-          sent_at?: string | null
-          sequence_step?: number
-          skipped_at?: string | null
-          subject?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "consultation_followup_queue_consultation_lead_id_fkey"
-            columns: ["consultation_lead_id"]
-            isOneToOne: false
-            referencedRelation: "consultation_leads"
-            referencedColumns: ["id"]
-          },
-        ]
       }
       course_enrollments: {
         Row: {
