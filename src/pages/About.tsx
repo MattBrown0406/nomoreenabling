@@ -82,11 +82,11 @@ const About = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto grid gap-10 lg:grid-cols-[0.9fr_1.4fr] lg:items-start">
               <aside className="space-y-6 lg:sticky lg:top-24">
-                <figure className="rounded-2xl overflow-hidden border border-border bg-card shadow-card">
+                <figure className="rounded-2xl overflow-hidden border border-border bg-card shadow-card max-w-[260px] mx-auto lg:mx-0">
                   <img
                     src={mattHeadshot}
                     alt="Matt Brown, founder of No More Enabling and professional interventionist"
-                    className="w-full h-auto object-cover"
+                    className="w-full aspect-square object-cover object-top"
                     loading="lazy"
                   />
                   <figcaption className="p-5">
