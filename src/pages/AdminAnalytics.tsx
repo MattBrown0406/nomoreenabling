@@ -81,7 +81,23 @@ interface ConsultationLeadRow {
   lead_score: number;
   lead_tier: string;
   lead_reasons: string[];
+  followup_status: string;
+  next_followup_at: string | null;
+  last_followup_at: string | null;
   created_at: string;
+}
+
+interface ConsultationFollowupRow {
+  id: string;
+  consultation_lead_id: string | null;
+  email: string;
+  name: string | null;
+  subject: string;
+  sequence_step: number;
+  scheduled_for: string;
+  sent_at: string | null;
+  skipped_at: string | null;
+  error_message: string | null;
 }
 
 interface AdvertiserInquiryRow {
@@ -149,12 +165,15 @@ const AdminAnalytics = () => {
   const [funnelEvents, setFunnelEvents] = useState<FunnelEventRow[]>([]);
   const [assessmentLeads, setAssessmentLeads] = useState<AssessmentLeadRow[]>([]);
   const [consultationLeads, setConsultationLeads] = useState<ConsultationLeadRow[]>([]);
+  const [consultationFollowups, setConsultationFollowups] = useState<ConsultationFollowupRow[]>([]);
   const [advertiserInquiries, setAdvertiserInquiries] = useState<AdvertiserInquiryRow[]>([]);
   const [assessmentLeadCount, setAssessmentLeadCount] = useState<number | null>(null);
   const [consultationLeadCount, setConsultationLeadCount] = useState<number | null>(null);
   const [advertiserInquiryCount, setAdvertiserInquiryCount] = useState<number | null>(null);
   const [syncing, setSyncing] = useState(false);
+  const [processingFollowups, setProcessingFollowups] = useState(false);
   const [lastSyncCount, setLastSyncCount] = useState<number | null>(null);
+  const [lastFollowupRun, setLastFollowupRun] = useState<{ sent: number; errors: number } | null>(null);
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -277,7 +296,7 @@ const AdminAnalytics = () => {
 
     const { data: consultationData, error: consultationError } = await supabase
       .from('consultation_leads')
-      .select('id, name, email, phone, relationship, concern, urgency, source, lead_intent, lead_score, lead_tier, lead_reasons, created_at')
+      .select('id, name, email, phone, relationship, concern, urgency, source, lead_intent, lead_score, lead_tier, lead_reasons, followup_status, next_followup_at, last_followup_at, created_at')
       .order('lead_score', { ascending: false })
       .order('created_at', { ascending: false })
       .limit(12);
@@ -286,6 +305,20 @@ const AdminAnalytics = () => {
       setConsultationLeads([]);
     } else {
       setConsultationLeads(consultationData);
+    }
+
+    const { data: followupData, error: followupError } = await supabase
+      .from('consultation_followup_queue')
+      .select('id, consultation_lead_id, email, name, subject, sequence_step, scheduled_for, sent_at, skipped_at, error_message')
+      .is('sent_at', null)
+      .is('skipped_at', null)
+      .order('scheduled_for', { ascending: true })
+      .limit(12);
+
+    if (followupError || !followupData) {
+      setConsultationFollowups([]);
+    } else {
+      setConsultationFollowups(followupData);
     }
 
     const { data: advertiserData, error: advertiserError } = await supabase
@@ -369,6 +402,37 @@ const AdminAnalytics = () => {
     await supabase.auth.signOut();
     setSession(null);
     setIsAdmin(false);
+  };
+
+  const processConsultationFollowups = async () => {
+    setProcessingFollowups(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('process-consultation-followups', {
+        body: {},
+      });
+
+      if (error) throw error;
+
+      const result = {
+        sent: typeof data?.sent === 'number' ? data.sent : 0,
+        errors: typeof data?.errors === 'number' ? data.errors : 0,
+      };
+      setLastFollowupRun(result);
+      toast({
+        title: "Follow-up run complete",
+        description: `${result.sent} sent, ${result.errors} errors.`,
+      });
+      fetchFunnelAnalytics();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Please try again later.";
+      toast({
+        title: "Follow-up run failed",
+        description: message,
+        variant: "destructive",
+      });
+    } finally {
+      setProcessingFollowups(false);
+    }
   };
 
   const toggleSort = (field: SortField) => {
@@ -520,6 +584,9 @@ const AdminAnalytics = () => {
   const followUpTodayLeads = consultationLeads
     .filter((lead) => lead.lead_tier === "priority" || lead.lead_tier === "warm")
     .slice(0, 6);
+  const nowTime = Date.now();
+  const dueFollowups = consultationFollowups.filter((followup) => new Date(followup.scheduled_for).getTime() <= nowTime);
+  const nextQueuedFollowup = consultationFollowups.find((followup) => new Date(followup.scheduled_for).getTime() > nowTime);
 
   const getPrimaryHubForArticle = (slug: string | null) => {
     if (!slug) return null;
@@ -749,6 +816,77 @@ const AdminAnalytics = () => {
                 )}
               </CardContent>
             </Card>
+
+            <div className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr] mt-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">Automated Follow-Ups</CardTitle>
+                  <p className="text-muted-foreground text-sm">
+                    Queued emails are created when someone submits a consultation request.
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="rounded-xl bg-secondary/40 p-4">
+                      <p className="text-xs text-muted-foreground">Due now</p>
+                      <p className="text-2xl font-bold text-foreground">{dueFollowups.length}</p>
+                    </div>
+                    <div className="rounded-xl bg-secondary/40 p-4">
+                      <p className="text-xs text-muted-foreground">Queued</p>
+                      <p className="text-2xl font-bold text-foreground">{consultationFollowups.length}</p>
+                    </div>
+                  </div>
+                  {nextQueuedFollowup && (
+                    <p className="mt-3 text-xs text-muted-foreground">
+                      Next queued: {formatDateTime(nextQueuedFollowup.scheduled_for)}
+                    </p>
+                  )}
+                  {lastFollowupRun && (
+                    <p className="mt-2 text-xs text-muted-foreground">
+                      Last run: {lastFollowupRun.sent} sent, {lastFollowupRun.errors} errors.
+                    </p>
+                  )}
+                  <Button
+                    className="mt-4 w-full"
+                    size="sm"
+                    onClick={processConsultationFollowups}
+                    disabled={processingFollowups}
+                  >
+                    <RefreshCw className={`h-4 w-4 ${processingFollowups ? "animate-spin" : ""}`} />
+                    {processingFollowups ? "Processing..." : "Run due follow-ups"}
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">Next Queued Follow-Ups</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {consultationFollowups.length === 0 ? (
+                    <p className="text-muted-foreground text-sm">No consultation follow-up emails are queued.</p>
+                  ) : (
+                    <div className="space-y-3">
+                      {consultationFollowups.slice(0, 5).map((followup) => (
+                        <div key={followup.id} className="flex justify-between gap-4 rounded-xl border border-border p-3 text-sm">
+                          <div>
+                            <p className="font-medium text-foreground">{followup.name || followup.email}</p>
+                            <p className="text-xs text-muted-foreground">{followup.subject}</p>
+                            {followup.error_message && (
+                              <p className="text-xs text-destructive mt-1">{followup.error_message}</p>
+                            )}
+                          </div>
+                          <div className="text-right text-xs text-muted-foreground flex-shrink-0">
+                            <p>Step {followup.sequence_step}</p>
+                            <p>{formatDateTime(followup.scheduled_for)}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
           </section>
 
           {/* Sponsor Inventory */}

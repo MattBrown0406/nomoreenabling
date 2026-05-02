@@ -31,6 +31,108 @@ const sanitizeJsonArray = (value: unknown): string[] => {
     .slice(0, 6);
 };
 
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+
+const sendEmail = async ({
+  apiKey,
+  to,
+  subject,
+  html,
+  replyTo,
+}: {
+  apiKey: string;
+  to: string[];
+  subject: string;
+  html: string;
+  replyTo?: string;
+}) => {
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: "No More Enabling <contact@nomoreenabling.com>",
+      to,
+      subject,
+      reply_to: replyTo,
+      html,
+    }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.text();
+    console.error("Resend API error:", response.status, errorData);
+    throw new Error(`Email send failed [${response.status}]: ${errorData}`);
+  }
+};
+
+const buildConsultationFollowups = ({
+  leadId,
+  email,
+  name,
+  leadTier,
+  leadIntent,
+}: {
+  leadId: string;
+  email: string;
+  name: string;
+  leadTier: string;
+  leadIntent: string | null;
+}) => {
+  const firstName = name.split(/\s+/)[0] || null;
+  const dayOne = new Date();
+  dayOne.setDate(dayOne.getDate() + 1);
+  const dayThree = new Date();
+  dayThree.setDate(dayThree.getDate() + 3);
+
+  const greeting = firstName ? `Hi ${firstName},` : "Hi,";
+  const urgencyLine = leadTier === "priority"
+    ? "Because your request sounded time-sensitive, I do not want this to get buried behind another crisis."
+    : "I do not want this to get lost while your family is still trying to sort out the next right step.";
+
+  return [
+    {
+      consultation_lead_id: leadId,
+      email,
+      name,
+      lead_tier: leadTier,
+      lead_intent: leadIntent,
+      sequence_step: 1,
+      subject: "A steadier next step for your family",
+      preview_text: "A short follow-up after your No More Enabling request.",
+      body_markdown: `${greeting}\n\nThank you for reaching out through No More Enabling. ${urgencyLine}\n\nIf you have not already heard back, the most useful next reply is simple: what changed most recently, what your family has already tried, and what decision feels hardest right now.\n\nYou do not have to explain the whole history perfectly. Start with the part that feels most urgent or most stuck.`,
+      primary_cta_label: "Review the family assessment",
+      primary_cta_href: "https://nomoreenabling.com/family-situation-assessment",
+      scheduled_for: dayOne.toISOString(),
+      metadata: { source: "consultation_automation" },
+    },
+    {
+      consultation_lead_id: leadId,
+      email,
+      name,
+      lead_tier: leadTier,
+      lead_intent: leadIntent,
+      sequence_step: 2,
+      subject: "If the same conversation keeps failing",
+      preview_text: "Use this if your family is still circling treatment, boundaries, or next steps.",
+      body_markdown: `${greeting}\n\nIf the situation is still circling the same conversation, try not to make one more emotional talk the whole plan.\n\nFamilies usually need to sort three things before the next confrontation: what the actual risk is, what support will stop, and what level of outside help fits.\n\nIf treatment is being refused or consequences are escalating, the intervention help page is the better next read. If the issue is boundaries that keep collapsing, family coaching may fit better.`,
+      primary_cta_label: leadIntent?.includes("intervention") ? "Open intervention help" : "Open family coaching",
+      primary_cta_href: leadIntent?.includes("intervention")
+        ? "https://nomoreenabling.com/intervention-help"
+        : "https://nomoreenabling.com/family-addiction-coaching",
+      scheduled_for: dayThree.toISOString(),
+      metadata: { source: "consultation_automation" },
+    },
+  ];
+};
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -67,8 +169,19 @@ serve(async (req) => {
 
     // Sanitize
     const safeName = name.trim().replace(/[<>]/g, "");
+    const safeEmail = email.trim().toLowerCase();
     const safeMessage = message.trim().replace(/[<>]/g, "");
     const source = sanitizeText(payload.source, 120) || "contact-form";
+    const leadScore = sanitizeNumber(payload.lead_score) ?? 20;
+    const leadTier = sanitizeText(payload.lead_tier, 40) || "nurture";
+    const leadReasons = sanitizeJsonArray(payload.lead_reasons);
+    const leadIntent = sanitizeText(payload.lead_intent, 120);
+    const phone = sanitizeText(payload.phone, 80);
+    const relationship = sanitizeText(payload.relationship, 120);
+    const concern = sanitizeText(payload.concern, 240);
+    const treatmentHistory = sanitizeText(payload.treatment_history, 240);
+    const urgency = sanitizeText(payload.urgency, 240);
+    const pagePath = sanitizeText(payload.page_path, 500);
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
     const supabase = supabaseUrl && supabaseServiceKey ? createClient(supabaseUrl, supabaseServiceKey) : null;
@@ -76,7 +189,7 @@ serve(async (req) => {
     if (supabase && source === "advertiser-inquiry") {
       const { error } = await supabase.from("advertiser_inquiries").insert({
         name: safeName,
-        email: email.trim(),
+        email: safeEmail,
         company: sanitizeText(payload.company, 180),
         website: sanitizeText(payload.website, 255),
         sponsor_type: sanitizeText(payload.sponsor_type, 180),
@@ -92,57 +205,115 @@ serve(async (req) => {
         console.error("advertiser_inquiries insert error:", error.message);
       }
     } else if (supabase) {
-      const { error } = await supabase.from("consultation_leads").insert({
+      const firstName = safeName.split(/\s+/)[0] || null;
+      const followups = buildConsultationFollowups({
+        leadId: "pending",
+        email: safeEmail,
         name: safeName,
-        email: email.trim(),
-        phone: sanitizeText(payload.phone, 80),
-        relationship: sanitizeText(payload.relationship, 120),
-        concern: sanitizeText(payload.concern, 240),
-        treatment_history: sanitizeText(payload.treatment_history, 240),
-        urgency: sanitizeText(payload.urgency, 240),
-        message: safeMessage,
-        source,
-        lead_intent: sanitizeText(payload.lead_intent, 120),
-        lead_score: sanitizeNumber(payload.lead_score) ?? 20,
-        lead_tier: sanitizeText(payload.lead_tier, 40) || "nurture",
-        lead_reasons: sanitizeJsonArray(payload.lead_reasons),
-        page_path: sanitizeText(payload.page_path, 500),
-        metadata: {
-          source,
-        },
+        leadTier,
+        leadIntent,
       });
+      const { data: insertedLead, error } = await supabase
+        .from("consultation_leads")
+        .insert({
+          name: safeName,
+          first_name: firstName,
+          email: safeEmail,
+          phone,
+          relationship,
+          concern,
+          treatment_history: treatmentHistory,
+          urgency,
+          message: safeMessage,
+          source,
+          lead_intent: leadIntent,
+          lead_score: leadScore,
+          lead_tier: leadTier,
+          lead_reasons: leadReasons,
+          page_path: pagePath,
+          next_followup_at: followups[0]?.scheduled_for ?? null,
+          metadata: {
+            source,
+          },
+        })
+        .select("id")
+        .single();
 
       if (error) {
         console.error("consultation_leads insert error:", error.message);
+      } else if (insertedLead?.id) {
+        const queuedFollowups = buildConsultationFollowups({
+          leadId: insertedLead.id,
+          email: safeEmail,
+          name: safeName,
+          leadTier,
+          leadIntent,
+        });
+
+        const { error: queueError } = await supabase
+          .from("consultation_followup_queue")
+          .upsert(queuedFollowups, { onConflict: "consultation_lead_id,sequence_step" });
+
+        if (queueError) {
+          console.error("consultation_followup_queue insert error:", queueError.message);
+        }
       }
     }
 
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: "No More Enabling <contact@nomoreenabling.com>",
-        to: ["matt@nomoreenabling.com"],
-        subject: source === "advertiser-inquiry" ? `Advertiser Inquiry: ${safeName}` : `Consultation Request: ${safeName}`,
-        reply_to: email.trim(),
-        html: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${safeName}</p>
-          <p><strong>Email:</strong> ${email.trim()}</p>
-          <p><strong>Source:</strong> ${source}</p>
-          <p><strong>Message:</strong></p>
-          <p>${safeMessage.replace(/\n/g, "<br>")}</p>
-        `,
-      }),
+    await sendEmail({
+      apiKey: RESEND_API_KEY,
+      to: ["matt@nomoreenabling.com"],
+      subject: source === "advertiser-inquiry"
+        ? `Advertiser Inquiry: ${safeName}`
+        : `${leadTier === "priority" ? "Priority " : ""}Consultation Request: ${safeName}`,
+      replyTo: safeEmail,
+      html: `
+        <h2>${source === "advertiser-inquiry" ? "New Advertiser Inquiry" : "New Consultation Request"}</h2>
+        <p><strong>Name:</strong> ${escapeHtml(safeName)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(safeEmail)}</p>
+        ${phone ? `<p><strong>Phone:</strong> ${escapeHtml(phone)}</p>` : ""}
+        <p><strong>Source:</strong> ${escapeHtml(source)}</p>
+        ${source !== "advertiser-inquiry" ? `
+          <p><strong>Lead score:</strong> ${leadScore} (${escapeHtml(leadTier)})</p>
+          ${leadIntent ? `<p><strong>Intent:</strong> ${escapeHtml(leadIntent)}</p>` : ""}
+          ${relationship ? `<p><strong>Relationship:</strong> ${escapeHtml(relationship)}</p>` : ""}
+          ${concern ? `<p><strong>Concern:</strong> ${escapeHtml(concern)}</p>` : ""}
+          ${urgency ? `<p><strong>Urgency:</strong> ${escapeHtml(urgency)}</p>` : ""}
+          ${leadReasons.length ? `<p><strong>Why this was scored:</strong> ${leadReasons.map(escapeHtml).join(", ")}</p>` : ""}
+          ${pagePath ? `<p><strong>Page:</strong> ${escapeHtml(pagePath)}</p>` : ""}
+        ` : ""}
+        <p><strong>Message:</strong></p>
+        <p>${escapeHtml(safeMessage).replace(/\n/g, "<br>")}</p>
+      `,
     });
 
-    if (!res.ok) {
-      const errorData = await res.text();
-      console.error("Resend API error:", res.status, errorData);
-      throw new Error(`Email send failed [${res.status}]: ${errorData}`);
+    try {
+      if (source === "advertiser-inquiry") {
+        await sendEmail({
+          apiKey: RESEND_API_KEY,
+          to: [safeEmail],
+          subject: "We received your No More Enabling sponsor inquiry",
+          html: `
+            <p>Hi ${escapeHtml(safeName.split(/\s+/)[0] || safeName)},</p>
+            <p>Thank you for reaching out about advertising on No More Enabling. Matt will review the fit and follow up if the sponsor category aligns with the family-support mission of the site.</p>
+            <p>In the meantime, you can review the public media kit here: <a href="https://nomoreenabling.com/advertise/media-kit">https://nomoreenabling.com/advertise/media-kit</a></p>
+          `,
+        });
+      } else {
+        await sendEmail({
+          apiKey: RESEND_API_KEY,
+          to: [safeEmail],
+          subject: "We received your request for family guidance",
+          html: `
+            <p>Hi ${escapeHtml(safeName.split(/\s+/)[0] || safeName)},</p>
+            <p>Thank you for reaching out through No More Enabling. Your note was received and will be reviewed.</p>
+            <p>If the situation changes or becomes immediately unsafe, use emergency or crisis support first. If this is not an emergency, the family situation assessment can help organize the next step while you wait:</p>
+            <p><a href="https://nomoreenabling.com/family-situation-assessment">https://nomoreenabling.com/family-situation-assessment</a></p>
+          `,
+        });
+      }
+    } catch (confirmationError) {
+      console.error("Confirmation email failed:", confirmationError);
     }
 
     return new Response(JSON.stringify({ success: true }), {

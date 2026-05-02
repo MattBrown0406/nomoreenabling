@@ -29,3 +29,6 @@ verify_jwt = false
 
 [functions.send-contact-form]
 verify_jwt = false
+
+[functions.process-consultation-followups]
+verify_jwt = false
