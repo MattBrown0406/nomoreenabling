@@ -35,48 +35,6 @@ export type Database = {
         }
         Relationships: []
       }
-      article_views: {
-        Row: {
-          article_slug: string
-          id: string
-          viewed_at: string
-        }
-        Insert: {
-          article_slug: string
-          id?: string
-          viewed_at?: string
-        }
-        Update: {
-          article_slug?: string
-          id?: string
-          viewed_at?: string
-        }
-        Relationships: []
-      }
-      articles_metadata: {
-        Row: {
-          description: string
-          image_url: string
-          slug: string
-          title: string
-          updated_at: string
-        }
-        Insert: {
-          description: string
-          image_url: string
-          slug: string
-          title: string
-          updated_at?: string
-        }
-        Update: {
-          description?: string
-          image_url?: string
-          slug?: string
-          title?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
       advertiser_inquiries: {
         Row: {
           company: string | null
@@ -116,6 +74,48 @@ export type Database = {
           page_path?: string | null
           sponsor_type?: string | null
           website?: string | null
+        }
+        Relationships: []
+      }
+      article_views: {
+        Row: {
+          article_slug: string
+          id: string
+          viewed_at: string
+        }
+        Insert: {
+          article_slug: string
+          id?: string
+          viewed_at?: string
+        }
+        Update: {
+          article_slug?: string
+          id?: string
+          viewed_at?: string
+        }
+        Relationships: []
+      }
+      articles_metadata: {
+        Row: {
+          description: string
+          image_url: string
+          slug: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          description: string
+          image_url: string
+          slug: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          description?: string
+          image_url?: string
+          slug?: string
+          title?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -194,45 +194,6 @@ export type Database = {
         }
         Relationships: []
       }
-      course_enrollments: {
-        Row: {
-          completed_at: string | null
-          course_name: string
-          current_lesson: number
-          email: string
-          enrolled_at: string
-          first_name: string | null
-          id: string
-          is_active: boolean
-          last_email_sent_at: string | null
-          next_email_at: string | null
-        }
-        Insert: {
-          completed_at?: string | null
-          course_name?: string
-          current_lesson?: number
-          email: string
-          enrolled_at?: string
-          first_name?: string | null
-          id?: string
-          is_active?: boolean
-          last_email_sent_at?: string | null
-          next_email_at?: string | null
-        }
-        Update: {
-          completed_at?: string | null
-          course_name?: string
-          current_lesson?: number
-          email?: string
-          enrolled_at?: string
-          first_name?: string | null
-          id?: string
-          is_active?: boolean
-          last_email_sent_at?: string | null
-          next_email_at?: string | null
-        }
-        Relationships: []
-      }
       consultation_leads: {
         Row: {
           concern: string | null
@@ -293,6 +254,45 @@ export type Database = {
         }
         Relationships: []
       }
+      course_enrollments: {
+        Row: {
+          completed_at: string | null
+          course_name: string
+          current_lesson: number
+          email: string
+          enrolled_at: string
+          first_name: string | null
+          id: string
+          is_active: boolean
+          last_email_sent_at: string | null
+          next_email_at: string | null
+        }
+        Insert: {
+          completed_at?: string | null
+          course_name?: string
+          current_lesson?: number
+          email: string
+          enrolled_at?: string
+          first_name?: string | null
+          id?: string
+          is_active?: boolean
+          last_email_sent_at?: string | null
+          next_email_at?: string | null
+        }
+        Update: {
+          completed_at?: string | null
+          course_name?: string
+          current_lesson?: number
+          email?: string
+          enrolled_at?: string
+          first_name?: string | null
+          id?: string
+          is_active?: boolean
+          last_email_sent_at?: string | null
+          next_email_at?: string | null
+        }
+        Relationships: []
+      }
       funnel_events: {
         Row: {
           article_slug: string | null
@@ -335,48 +335,6 @@ export type Database = {
           referrer?: string | null
           source?: string | null
           target_href?: string | null
-        }
-        Relationships: []
-      }
-      lead_magnet_downloads: {
-        Row: {
-          article_slug: string | null
-          downloaded_at: string
-          email: string
-          first_name: string | null
-          hub_slug: string | null
-          id: string
-          lead_magnet_slug: string
-          lead_magnet_source: string | null
-          metadata: Json
-          page_path: string | null
-          updated_at: string
-        }
-        Insert: {
-          article_slug?: string | null
-          downloaded_at?: string
-          email: string
-          first_name?: string | null
-          hub_slug?: string | null
-          id?: string
-          lead_magnet_slug: string
-          lead_magnet_source?: string | null
-          metadata?: Json
-          page_path?: string | null
-          updated_at?: string
-        }
-        Update: {
-          article_slug?: string | null
-          downloaded_at?: string
-          email?: string
-          first_name?: string | null
-          hub_slug?: string | null
-          id?: string
-          lead_magnet_slug?: string
-          lead_magnet_source?: string | null
-          metadata?: Json
-          page_path?: string | null
-          updated_at?: string
         }
         Relationships: []
       }
