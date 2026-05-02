@@ -30,9 +30,11 @@ import TermsOfService from "./pages/TermsOfService";
 import CookiePolicy from "./pages/CookiePolicy";
 import NotFound from "./pages/NotFound";
 import ContactFormWidget from "./components/ContactFormWidget";
+import GoogleAnalytics from "./components/analytics/GoogleAnalytics";
 
 export const AppRoutes = () => (
   <>
+    <GoogleAnalytics />
     <OrganizationJsonLd />
     <ContactFormWidget />
     <Routes>
