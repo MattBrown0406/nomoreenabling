@@ -1166,6 +1166,18 @@ const AdminAnalytics = () => {
         </header>
 
         <main className="container mx-auto px-4 py-8">
+          <div className="flex gap-2 mb-6 border-b border-border">
+            <button
+              onClick={() => setActiveTab("analytics")}
+              className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${activeTab === "analytics" ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-foreground"}`}
+            >Analytics & Leads</button>
+            <button
+              onClick={() => setActiveTab("crm")}
+              className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${activeTab === "crm" ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-foreground"}`}
+            >CRM & Email</button>
+          </div>
+
+          {activeTab === "crm" ? <AdminCrmPanel /> : <>
           {/* Time Range Filter */}
           <div className="flex flex-wrap gap-2 mb-8">
             {([
