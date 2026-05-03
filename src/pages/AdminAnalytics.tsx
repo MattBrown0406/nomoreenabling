@@ -261,6 +261,7 @@ const downloadCsv = (filename: string, rows: Array<Record<string, string | numbe
 const AdminAnalytics = () => {
   const [session, setSession] = useState<Session | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [activeTab, setActiveTab] = useState<"analytics" | "crm">("analytics");
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
