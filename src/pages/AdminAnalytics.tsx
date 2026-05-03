@@ -35,6 +35,7 @@ import { blogPostsMeta } from "@/data/blogPostMeta";
 import { topicHubs } from "@/data/topicHubs";
 import { toast } from "@/hooks/use-toast";
 import SEOHead from "@/components/seo/SEOHead";
+import { AdminCrmPanel } from "@/components/admin/AdminCrmPanel";
 import { getSupportOffer } from "@/data/supportOffers";
 import { commercialIntentPages } from "@/data/commercialIntentPages";
 import {
