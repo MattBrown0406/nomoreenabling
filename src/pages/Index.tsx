@@ -122,9 +122,9 @@ const Index = () => {
 
   const featuredPost = filteredPosts[0];
   const recentPosts = filteredPosts.slice(1, 7);
-  const soberHelplineHref = withOwnedUtm("https://soberhelpline.com", {
+  const soberHelplineHref = withOwnedUtm("https://soberhelpline.com/from-no-more-enabling", {
     medium: "homepage_cta",
-    campaign: "family_squares",
+    campaign: "soberhelpline_bridge",
     content: "support_lane",
   });
   const freedomInterventionsHref = withOwnedUtm("https://freedominterventions.com", {
@@ -283,8 +283,8 @@ const Index = () => {
                     className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors"
                     onClick={() => trackGAConversion("family_squares_click", { source: "homepage_support_lane" })}
                   >
-                    <p className="font-medium text-foreground">Sober Helpline and Family Squares</p>
-                    <p className="text-sm text-muted-foreground mt-1">Free family support Zoom every Monday night plus practical support for families who need live help.</p>
+                    <p className="font-medium text-foreground">Sober Helpline bridge and Family Squares</p>
+                    <p className="text-sm text-muted-foreground mt-1">A guided handoff into free Monday support, private consultation, or intervention readiness.</p>
                   </a>
                   <a
                     href={freedomInterventionsHref}

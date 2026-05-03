@@ -809,7 +809,7 @@ const ArticlePage = () => {
                 )}
 
                 <div className="mb-8">
-                  <CoachingInterventionCTA variant="compact" />
+                  <CoachingInterventionCTA variant="compact" articleSlug={article.slug} />
                 </div>
 
                 {commercialIntentPage && showStickyCta && (

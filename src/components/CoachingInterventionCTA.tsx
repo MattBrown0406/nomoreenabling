@@ -1,13 +1,33 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Mail, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { trackFunnelEvent } from "@/lib/funnelAnalytics";
+import { withOwnedUtm } from "@/lib/ownedLinks";
 
 interface CoachingInterventionCTAProps {
   variant?: "compact" | "wide";
+  articleSlug?: string;
 }
 
-const CoachingInterventionCTA = ({ variant = "wide" }: CoachingInterventionCTAProps) => {
+const soberHelplineBridgeHref = withOwnedUtm("https://soberhelpline.com/from-no-more-enabling", {
+  medium: "article_cta",
+  campaign: "soberhelpline_bridge",
+  content: "coaching_intervention_cta",
+});
+
+const CoachingInterventionCTA = ({ variant = "wide", articleSlug }: CoachingInterventionCTAProps) => {
   const isCompact = variant === "compact";
+  const trackSoberHelplineBridge = () => {
+    void trackFunnelEvent("outbound_offer_click", {
+      source: "coaching_intervention_cta",
+      articleSlug,
+      targetHref: soberHelplineBridgeHref,
+      metadata: {
+        ownedBrand: "sober-helpline",
+        placement: variant,
+      },
+    });
+  };
 
   return (
     <section className={isCompact ? "" : "container mx-auto px-4 py-10"}>
@@ -32,6 +52,12 @@ const CoachingInterventionCTA = ({ variant = "wide" }: CoachingInterventionCTAPr
               <MessageCircle className="h-4 w-4" />
               Intervention support
             </Link>
+          </Button>
+          <Button variant="secondary" asChild>
+            <a href={soberHelplineBridgeHref} target="_blank" rel="noreferrer" onClick={trackSoberHelplineBridge}>
+              Live support lane
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </Button>
           <Button variant="ghost" asChild>
             <a href="mailto:matt@nomoreenabling.com?subject=Family%20coaching%20or%20intervention%20guidance">

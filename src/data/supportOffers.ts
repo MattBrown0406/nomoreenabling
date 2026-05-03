@@ -50,8 +50,8 @@ export const supportOffers: SupportOffer[] = [
     ],
     whyItFits:
       "No More Enabling can educate the family, but many readers need a human support layer after the article. Sober Helpline is the natural next step for those families.",
-    primaryLabel: "Visit Sober Helpline",
-    primaryHref: "https://soberhelpline.com",
+    primaryLabel: "Open the Sober Helpline bridge",
+    primaryHref: "https://soberhelpline.com/from-no-more-enabling",
     secondaryLabel: "Take the family assessment",
     secondaryHref: "/family-situation-assessment",
     external: true,

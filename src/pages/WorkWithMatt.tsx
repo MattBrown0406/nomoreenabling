@@ -57,9 +57,9 @@ const freedomHref = withOwnedUtm("https://freedominterventions.com", {
   content: "business_bridge",
 });
 
-const soberHelplineHref = withOwnedUtm("https://soberhelpline.com", {
+const soberHelplineHref = withOwnedUtm("https://soberhelpline.com/from-no-more-enabling", {
   medium: "work_with_matt",
-  campaign: "family_squares",
+  campaign: "soberhelpline_bridge",
   content: "business_bridge",
 });
 
