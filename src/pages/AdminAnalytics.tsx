@@ -35,6 +35,7 @@ import { blogPostsMeta } from "@/data/blogPostMeta";
 import { topicHubs } from "@/data/topicHubs";
 import { toast } from "@/hooks/use-toast";
 import SEOHead from "@/components/seo/SEOHead";
+import { AdminCrmPanel } from "@/components/admin/AdminCrmPanel";
 import { getSupportOffer } from "@/data/supportOffers";
 import { commercialIntentPages } from "@/data/commercialIntentPages";
 import {
@@ -261,6 +262,7 @@ const downloadCsv = (filename: string, rows: Array<Record<string, string | numbe
 const AdminAnalytics = () => {
   const [session, setSession] = useState<Session | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [activeTab, setActiveTab] = useState<"analytics" | "crm">("analytics");
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -1164,6 +1166,18 @@ const AdminAnalytics = () => {
         </header>
 
         <main className="container mx-auto px-4 py-8">
+          <div className="flex gap-2 mb-6 border-b border-border">
+            <button
+              onClick={() => setActiveTab("analytics")}
+              className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${activeTab === "analytics" ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-foreground"}`}
+            >Analytics & Leads</button>
+            <button
+              onClick={() => setActiveTab("crm")}
+              className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${activeTab === "crm" ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-foreground"}`}
+            >CRM & Email</button>
+          </div>
+
+          {activeTab === "crm" ? <AdminCrmPanel /> : <>
           {/* Time Range Filter */}
           <div className="flex flex-wrap gap-2 mb-8">
             {([
@@ -2447,6 +2461,7 @@ const AdminAnalytics = () => {
               </div>
             </CardContent>
           </Card>
+          </>}
         </main>
       </div>
     </>

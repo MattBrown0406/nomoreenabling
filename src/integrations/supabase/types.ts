@@ -427,6 +427,78 @@ export type Database = {
         }
         Relationships: []
       }
+      crm_contacts: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          name: string
+          notes: string | null
+          phone: string | null
+          tags: string[]
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          notes?: string | null
+          phone?: string | null
+          tags?: string[]
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          notes?: string | null
+          phone?: string | null
+          tags?: string[]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      email_campaigns: {
+        Row: {
+          body_html: string
+          campaign_type: string
+          created_at: string
+          created_by: string | null
+          failed_count: number
+          id: string
+          recipients: string[]
+          sent_at: string | null
+          sent_count: number
+          subject: string
+        }
+        Insert: {
+          body_html: string
+          campaign_type?: string
+          created_at?: string
+          created_by?: string | null
+          failed_count?: number
+          id?: string
+          recipients?: string[]
+          sent_at?: string | null
+          sent_count?: number
+          subject: string
+        }
+        Update: {
+          body_html?: string
+          campaign_type?: string
+          created_at?: string
+          created_by?: string | null
+          failed_count?: number
+          id?: string
+          recipients?: string[]
+          sent_at?: string | null
+          sent_count?: number
+          subject?: string
+        }
+        Relationships: []
+      }
       funnel_events: {
         Row: {
           article_slug: string | null
