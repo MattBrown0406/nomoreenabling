@@ -2461,6 +2461,7 @@ const AdminAnalytics = () => {
               </div>
             </CardContent>
           </Card>
+          </>}
         </main>
       </div>
     </>
