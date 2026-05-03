@@ -22,9 +22,11 @@ import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
 import CommercialIntentCTA from "@/components/CommercialIntentCTA";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import LeadMagnetCard from "@/components/LeadMagnetCard";
+import SoberHelplineBridgeCallout from "@/components/blog/SoberHelplineBridgeCallout";
 import { getLeadMagnetForArticle } from "@/data/leadMagnets";
 import { getCommercialIntentPageForContext } from "@/data/commercialIntentPages";
 import { getInternalMoneyPageLink } from "@/data/internalMoneyPageLinks";
+import { getArticleBridgeLink } from "@/data/articleBridgeLinks";
 
 const XIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -383,6 +385,7 @@ const ArticlePage = () => {
       })
     : null;
   const internalMoneyPageLink = getInternalMoneyPageLink(article?.slug);
+  const articleBridgeLink = getArticleBridgeLink(article?.slug);
 
   const trackArticleIntentClick = (href: string, label: string, slot: "primary" | "secondary") => {
     if (!article) return;
@@ -789,6 +792,12 @@ const ArticlePage = () => {
                         )}
                       </Button>
                     </div>
+                  </div>
+                )}
+
+                {articleBridgeLink && (
+                  <div className="mb-8">
+                    <SoberHelplineBridgeCallout bridgeLink={articleBridgeLink} articleTitle={article.title} />
                   </div>
                 )}
 

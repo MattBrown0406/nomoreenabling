@@ -237,6 +237,9 @@ const formatDateTime = (value: string) =>
     minute: "2-digit",
   }).format(new Date(value));
 
+const formatPercent = (numerator: number, denominator: number) =>
+  denominator > 0 ? `${((numerator / denominator) * 100).toFixed(1)}%` : "0.0%";
+
 const csvEscape = (value: string | number | null | undefined) => {
   const text = value === null || value === undefined ? "" : String(value);
   return `"${text.replace(/"/g, '""')}"`;
@@ -901,6 +904,54 @@ const AdminAnalytics = () => {
   const sponsorCtr = sponsorImpressions > 0 ? ((totalAdClicks / sponsorImpressions) * 100).toFixed(1) : "0.0";
   const completionRate = assessmentStarts > 0 ? Math.round((assessmentCompletions / assessmentStarts) * 100) : 0;
   const captureRate = assessmentCompletions > 0 ? Math.round((emailCaptures / assessmentCompletions) * 100) : 0;
+  const soberHelplineBridgeEvents = funnelEvents.filter((event) => {
+    const targetHref = event.target_href || "";
+    return (
+      targetHref.includes("soberhelpline.com/from-no-more-enabling") ||
+      (event.offer_slug === "sober-helpline" && ["bridge_page_click", "outbound_offer_click"].includes(event.event_name))
+    );
+  });
+  const soberHelplineHandoffs = soberHelplineBridgeEvents.length;
+  const consultationLeadRows = consultationLeads.length;
+  const advertiserInquiryRows = advertiserInquiries.length;
+  const visibleBookedLeadCount = consultationLeads.filter((lead) => getPipelineStatus(lead.pipeline_status) === "booked").length;
+  const visibleClosedLeadCount = consultationLeads.filter((lead) => getPipelineStatus(lead.pipeline_status) === "closed").length;
+  const consultationCloseRate = formatPercent(visibleBookedLeadCount + visibleClosedLeadCount, consultationLeadRows);
+  const articleToBridgeRate = formatPercent(soberHelplineHandoffs, totalViews);
+  const articleToConsultationRate = formatPercent(consultationLeadRows, totalViews);
+  const advertiserConversionRate = formatPercent(advertiserInquiryRows, totalViews);
+  const funnelScorecard = [
+    {
+      label: "Article Views",
+      value: totalViews.toLocaleString(),
+      note: `${viewedArticleCount} articles with traffic`,
+      icon: Eye,
+    },
+    {
+      label: "Sober Helpline Handoffs",
+      value: soberHelplineHandoffs.toLocaleString(),
+      note: `${articleToBridgeRate} of article views`,
+      icon: Route,
+    },
+    {
+      label: "Consultation Leads",
+      value: consultationLeadRows.toLocaleString(),
+      note: `${articleToConsultationRate} of article views`,
+      icon: PhoneCall,
+    },
+    {
+      label: "Booked or Closed",
+      value: (visibleBookedLeadCount + visibleClosedLeadCount).toLocaleString(),
+      note: `${consultationCloseRate} of visible leads`,
+      icon: CalendarCheck,
+    },
+    {
+      label: "Advertiser Inquiries",
+      value: advertiserInquiryRows.toLocaleString(),
+      note: `${advertiserConversionRate} of article views`,
+      icon: DollarSign,
+    },
+  ];
 
   const resultBreakdown: FunnelBreakdownStat[] = Object.entries(
     funnelEvents
@@ -942,6 +993,28 @@ const AdminAnalytics = () => {
     }))
     .sort((a, b) => b.count - a.count)
     .slice(0, 8);
+
+  const bridgeArticleSources = Object.entries(
+    soberHelplineBridgeEvents
+      .filter((event) => event.article_slug)
+      .reduce<Record<string, number>>((acc, event) => {
+        const key = event.article_slug || "unknown";
+        acc[key] = (acc[key] || 0) + 1;
+        return acc;
+      }, {})
+  )
+    .map(([key, handoffs]) => {
+      const articleStat = stats.find((stat) => stat.slug === key);
+      return {
+        key,
+        title: articleStat?.title || blogPostsMeta.find((post) => post.slug === key)?.title || key,
+        views: articleStat?.views || 0,
+        handoffs,
+        rate: articleStat?.views ? handoffs / articleStat.views : 0,
+      };
+    })
+    .sort((a, b) => b.handoffs - a.handoffs || b.rate - a.rate)
+    .slice(0, 6);
 
   const sponsorPageStats: FunnelBreakdownStat[] = Object.entries(
     funnelEvents
@@ -1196,6 +1269,98 @@ const AdminAnalytics = () => {
               </Button>
             ))}
           </div>
+
+          <section className="mb-8">
+            <div className="mb-4 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <h2 className="font-serif text-2xl font-bold text-foreground">Funnel Scorecard</h2>
+                <p className="text-muted-foreground text-sm">
+                  The short version: articles should create trust, hand off families to Sober Helpline or consultation, and prove sponsor value.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+              {funnelScorecard.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Card key={item.label} className="overflow-hidden">
+                    <CardContent className="pt-6">
+                      <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <p className="text-sm text-muted-foreground">{item.label}</p>
+                      <p className="mt-1 text-3xl font-bold text-foreground">{item.value}</p>
+                      <p className="mt-2 text-xs text-muted-foreground">{item.note}</p>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+
+            <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_0.85fr]">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">Sober Helpline Bridge Sources</CardTitle>
+                  <p className="text-muted-foreground text-sm">
+                    Which article pages are handing readers to the NME bridge on SoberHelpline.com.
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  {bridgeArticleSources.length === 0 ? (
+                    <p className="text-muted-foreground text-sm">No article bridge clicks recorded yet for this period.</p>
+                  ) : (
+                    <div className="space-y-3">
+                      {bridgeArticleSources.map((item) => (
+                        <div key={item.key} className="rounded-xl border border-border p-3">
+                          <div className="flex items-start justify-between gap-3">
+                            <div>
+                              <a
+                                href={`/articles/${item.key}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-medium text-foreground hover:text-primary"
+                              >
+                                {item.title}
+                              </a>
+                              <p className="text-xs text-muted-foreground">{item.views.toLocaleString()} article views</p>
+                            </div>
+                            <div className="text-right">
+                              <p className="font-semibold text-foreground">{item.handoffs}</p>
+                              <p className="text-xs text-muted-foreground">{formatPercent(item.handoffs, item.views)}</p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">Next Funnel Question</CardTitle>
+                  <p className="text-muted-foreground text-sm">
+                    Use this to decide the next build sprint without guessing.
+                  </p>
+                </CardHeader>
+                <CardContent className="space-y-3 text-sm text-muted-foreground">
+                  <div className="rounded-xl bg-secondary/40 p-4">
+                    <p className="font-medium text-foreground">If article views are growing but handoffs are low</p>
+                    <p className="mt-1">Improve article CTAs, bridge placement, and the Sober Helpline bridge page promise.</p>
+                  </div>
+                  <div className="rounded-xl bg-secondary/40 p-4">
+                    <p className="font-medium text-foreground">If handoffs are growing but leads are flat</p>
+                    <p className="mt-1">Tighten the bridge page and Family Squares registration path before adding more traffic.</p>
+                  </div>
+                  <div className="rounded-xl bg-secondary/40 p-4">
+                    <p className="font-medium text-foreground">If sponsor interest is flat</p>
+                    <p className="mt-1">Package traffic proof, audience fit, and lead quality into the advertise page and media kit.</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
 
           <section className="mb-8">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
