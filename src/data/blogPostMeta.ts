@@ -78,6 +78,7 @@ import maintainingBoundariesAddictedImage from "@/assets/maintaining-boundaries-
 import whatToDoBoundaryBrokenImage from "@/assets/what-to-do-boundary-broken-addiction.jpg";
 import sayingNoLovedOneAddictionImage from "@/assets/saying-no-loved-one-addiction.jpg";
 import caregiverBurnoutAddictionFamilyImage from "@/assets/caregiver-burnout-addiction-family.jpg";
+import enablingCycleAddictionFamiliesImage from "@/assets/enabling-cycle-addiction-families.jpg";
 import supportRecoveryWithoutEnablingImage from "@/assets/support-recovery-without-enabling.jpg";
 import whatHappensAddictionTreatmentFamiliesImage from "@/assets/what-happens-addiction-treatment-families.jpg";
 import whenIsItTimeProfessionalInterventionImage from "@/assets/when-is-it-time-professional-intervention.jpg";
@@ -1928,5 +1929,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "stopping-enabling-feels-like-abandonment",
     metaTitle: "Why Stopping Enabling Feels Like Abandonment (It's Not)",
     metaDescription: "Stopping enabling your loved one's addiction can feel like abandonment. Learn why that feeling is a trap—and what real love looks like in recovery.",
+  },
+  {
+    id: "144",
+    title: "The Enabling Cycle: Why Families Keep Repeating the Same Patterns (And How to Stop)",
+    excerpt: "Why do families keep enabling, even when they know better? Learn how the enabling cycle works in addiction and how to break free — with compassion.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Support", "Boundaries", "Codependency"],
+    readTime: "9 min read",
+    date: "May 3, 2026",
+    image: enablingCycleAddictionFamiliesImage,
+    slug: "enabling-cycle-addiction-families",
+    metaTitle: "The Enabling Cycle in Addiction Families: How to Break Free",
+    metaDescription: "Why do families keep enabling, even when they know better? Learn how the enabling cycle works in addiction and how to break free — with compassion.",
   }
 ];
