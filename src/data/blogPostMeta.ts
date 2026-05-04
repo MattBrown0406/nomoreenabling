@@ -78,6 +78,7 @@ import maintainingBoundariesAddictedImage from "@/assets/maintaining-boundaries-
 import whatToDoBoundaryBrokenImage from "@/assets/what-to-do-boundary-broken-addiction.jpg";
 import sayingNoLovedOneAddictionImage from "@/assets/saying-no-loved-one-addiction.jpg";
 import caregiverBurnoutAddictionFamilyImage from "@/assets/caregiver-burnout-addiction-family.jpg";
+import enablingCycleAddictionFamiliesImage from "@/assets/enabling-cycle-addiction-families.jpg";
 import supportRecoveryWithoutEnablingImage from "@/assets/support-recovery-without-enabling.jpg";
 import whatHappensAddictionTreatmentFamiliesImage from "@/assets/what-happens-addiction-treatment-families.jpg";
 import whenIsItTimeProfessionalInterventionImage from "@/assets/when-is-it-time-professional-intervention.jpg";
