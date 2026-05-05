@@ -277,7 +277,7 @@ const Index = () => {
                 <p className="text-sm uppercase tracking-wide text-primary font-medium">Why trust this guidance</p>
                 <h2 className="font-serif text-3xl font-bold text-foreground mt-2">Built by a working interventionist, not a content mill</h2>
                 <div className="mt-5 grid gap-5 md:grid-cols-[120px_1fr] md:items-center">
-                  <img src={mattHeadshot} alt="Matt Brown" className="h-28 w-28 rounded-2xl object-cover shadow-card" />
+                  <img src={mattHeadshot} alt="Matt Brown" className="h-28 w-28 rounded-2xl object-cover object-top shadow-card" />
                   <p className="text-muted-foreground">
                     Matt Brown has spent more than 20 years helping families through addiction, treatment resistance, relapse, and the fallout that wears people down at home.
                     The goal here is not more panic, more guilt, or more theory. It is clearer pattern recognition and steadier next steps.
