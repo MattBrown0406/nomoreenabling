@@ -127,10 +127,15 @@ const Index = () => {
     campaign: "soberhelpline_bridge",
     content: "support_lane",
   });
-  const freedomInterventionsHref = withOwnedUtm("https://freedominterventions.com", {
+  const freedomInterventionsHref = withOwnedUtm("https://freedominterventions.com/from-no-more-enabling", {
     medium: "homepage_cta",
     campaign: "intervention_consult",
     content: "support_lane",
+  });
+  const freedomBridgeHref = withOwnedUtm("https://freedominterventions.com/from-no-more-enabling", {
+    medium: "homepage_cta",
+    campaign: "intervention_consult",
+    content: "high_risk_direct",
   });
 
   useEffect(() => {
@@ -227,6 +232,40 @@ const Index = () => {
                     <p className="mt-4 text-sm font-medium text-primary">{path.cta} →</p>
                   </Link>
                 ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="container mx-auto px-4 py-6 md:py-10">
+            <div className="max-w-6xl mx-auto rounded-3xl border border-red-200 bg-red-50 p-6 md:p-8">
+              <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
+                <div>
+                  <p className="text-sm uppercase tracking-wide text-red-700 font-medium">High-risk situation?</p>
+                  <h2 className="font-serif text-3xl font-bold text-red-950 mt-2">
+                    If treatment is being refused and waiting feels dangerous, go straight to Freedom Interventions.
+                  </h2>
+                  <p className="mt-3 text-red-900/80">
+                    Sober Helpline is the support layer. Freedom Interventions is the structured intervention path when relapse, safety concerns, family division, or repeated broken promises have crossed the line.
+                  </p>
+                </div>
+                <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+                  <Button asChild>
+                    <a
+                      href={freedomBridgeHref}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={() => trackGAConversion("owned_offer_click", { owned_brand: "freedom-interventions", placement: "homepage_high_risk_direct" })}
+                    >
+                      Talk to Freedom
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
+                  </Button>
+                  <Button variant="outline" asChild>
+                    <Link to="/intervention-help">
+                      Review intervention signs
+                    </Link>
+                  </Button>
+                </div>
               </div>
             </div>
           </section>

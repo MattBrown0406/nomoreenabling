@@ -15,6 +15,12 @@ const soberHelplineBridgeHref = withOwnedUtm("https://soberhelpline.com/from-no-
   content: "coaching_intervention_cta",
 });
 
+const freedomBridgeHref = withOwnedUtm("https://freedominterventions.com/from-no-more-enabling", {
+  medium: "article_cta",
+  campaign: "intervention_consult",
+  content: "coaching_intervention_cta",
+});
+
 const CoachingInterventionCTA = ({ variant = "wide", articleSlug }: CoachingInterventionCTAProps) => {
   const isCompact = variant === "compact";
   const trackSoberHelplineBridge = () => {
@@ -24,6 +30,18 @@ const CoachingInterventionCTA = ({ variant = "wide", articleSlug }: CoachingInte
       targetHref: soberHelplineBridgeHref,
       metadata: {
         ownedBrand: "sober-helpline",
+        placement: variant,
+      },
+    });
+  };
+
+  const trackFreedomBridge = () => {
+    void trackFunnelEvent("outbound_offer_click", {
+      source: "coaching_intervention_cta",
+      articleSlug,
+      targetHref: freedomBridgeHref,
+      metadata: {
+        ownedBrand: "freedom-interventions",
         placement: variant,
       },
     });
@@ -48,10 +66,10 @@ const CoachingInterventionCTA = ({ variant = "wide", articleSlug }: CoachingInte
             </Link>
           </Button>
           <Button variant="outline" asChild>
-            <Link to="/support/freedom-interventions">
+            <a href={freedomBridgeHref} target="_blank" rel="noreferrer" onClick={trackFreedomBridge}>
               <MessageCircle className="h-4 w-4" />
-              Intervention support
-            </Link>
+              High-risk intervention help
+            </a>
           </Button>
           <Button variant="secondary" asChild>
             <a href={soberHelplineBridgeHref} target="_blank" rel="noreferrer" onClick={trackSoberHelplineBridge}>

@@ -82,8 +82,8 @@ export const supportOffers: SupportOffer[] = [
     ],
     whyItFits:
       "The highest-intent No More Enabling readers are often searching because the old conversations have failed. Freedom Interventions gives those families a more structured path.",
-    primaryLabel: "Visit Freedom Interventions",
-    primaryHref: "https://freedominterventions.com",
+    primaryLabel: "Open the Freedom Interventions bridge",
+    primaryHref: "https://freedominterventions.com/from-no-more-enabling",
     secondaryLabel: "Request guidance from Matt",
     secondaryHref: "/work-with-matt",
     external: true,
