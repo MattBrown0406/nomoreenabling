@@ -80,6 +80,7 @@ import sayingNoLovedOneAddictionImage from "@/assets/saying-no-loved-one-addicti
 import caregiverBurnoutAddictionFamilyImage from "@/assets/caregiver-burnout-addiction-family.jpg";
 import enablingCycleAddictionFamiliesImage from "@/assets/enabling-cycle-addiction-families.jpg";
 import rationalizationsFamiliesEnableImage from "@/assets/rationalizations-families-enable-addiction.jpg";
+import goodIntentionsEnablingAddictionImage from "@/assets/good-intentions-enabling-addiction.jpg";
 import supportRecoveryWithoutEnablingImage from "@/assets/support-recovery-without-enabling.jpg";
 import whatHappensAddictionTreatmentFamiliesImage from "@/assets/what-happens-addiction-treatment-families.jpg";
 import whenIsItTimeProfessionalInterventionImage from "@/assets/when-is-it-time-professional-intervention.jpg";
@@ -1956,5 +1957,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "rationalizations-families-enable-addiction",
     metaTitle: "Excuses Families Make to Enable Addiction: Break the Cycle",
     metaDescription: "Discover the most common rationalizations families use to justify enabling a loved one's addiction—and how to break the cycle with honest, compassionate action.",
+  },
+  {
+    id: "146",
+    title: "When Love Becomes Enabling: How Good Intentions Fuel Addiction",
+    excerpt: "You love them—so why is your help making things worse? Learn how good intentions fuel addiction and what real support actually looks like.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Support", "Boundaries", "Codependency"],
+    readTime: "8 min read",
+    date: "May 5, 2026",
+    image: goodIntentionsEnablingAddictionImage,
+    slug: "good-intentions-enabling-addiction",
+    metaTitle: "Good Intentions Enabling Addiction: When Love Hurts",
+    metaDescription: "You love them—so why is your help making things worse? Learn how good intentions fuel addiction and what real support actually looks like.",
   }
 ];
