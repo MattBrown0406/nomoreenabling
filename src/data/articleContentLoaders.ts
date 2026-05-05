@@ -145,4 +145,5 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "addiction-threats-violence-home": () => import("./article-content/addiction-threats-violence-home"),
   "when-to-call-911-crisis-line-treatment-interventionist": () => import("./article-content/when-to-call-911-crisis-line-treatment-interventionist"),
   "enabling-cycle-addiction-families": () => import("./article-content/enabling-cycle-addiction-families"),
+  "rationalizations-families-enable-addiction": () => import("./article-content/rationalizations-families-enable-addiction"),
 };

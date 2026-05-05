@@ -79,6 +79,7 @@ import whatToDoBoundaryBrokenImage from "@/assets/what-to-do-boundary-broken-add
 import sayingNoLovedOneAddictionImage from "@/assets/saying-no-loved-one-addiction.jpg";
 import caregiverBurnoutAddictionFamilyImage from "@/assets/caregiver-burnout-addiction-family.jpg";
 import enablingCycleAddictionFamiliesImage from "@/assets/enabling-cycle-addiction-families.jpg";
+import rationalizationsFamiliesEnableImage from "@/assets/rationalizations-families-enable-addiction.jpg";
 import supportRecoveryWithoutEnablingImage from "@/assets/support-recovery-without-enabling.jpg";
 import whatHappensAddictionTreatmentFamiliesImage from "@/assets/what-happens-addiction-treatment-families.jpg";
 import whenIsItTimeProfessionalInterventionImage from "@/assets/when-is-it-time-professional-intervention.jpg";
@@ -1942,5 +1943,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "enabling-cycle-addiction-families",
     metaTitle: "The Enabling Cycle in Addiction Families: How to Break Free",
     metaDescription: "Why do families keep enabling, even when they know better? Learn how the enabling cycle works in addiction and how to break free — with compassion.",
+  },
+  {
+    id: "145",
+    title: "\"It's Just This Once\": The Common Rationalizations That Keep Enabling Going",
+    excerpt: "Discover the most common rationalizations families use to justify enabling a loved one's addiction—and how to break the cycle with honest, compassionate action.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Support", "Boundaries", "Codependency"],
+    readTime: "8 min read",
+    date: "May 4, 2026",
+    image: rationalizationsFamiliesEnableImage,
+    slug: "rationalizations-families-enable-addiction",
+    metaTitle: "Excuses Families Make to Enable Addiction: Break the Cycle",
+    metaDescription: "Discover the most common rationalizations families use to justify enabling a loved one's addiction—and how to break the cycle with honest, compassionate action.",
   }
 ];
