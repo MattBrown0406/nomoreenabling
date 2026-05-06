@@ -35,3 +35,6 @@ verify_jwt = false
 
 [functions.send-weekly-owner-summary]
 verify_jwt = false
+
+[functions.nme-revenue-report]
+verify_jwt = false
