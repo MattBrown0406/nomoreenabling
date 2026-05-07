@@ -9,9 +9,9 @@ interface FreedomInterventionsBannerProps {
 
 const FreedomInterventionsBanner = ({ size = "sidebar" }: FreedomInterventionsBannerProps) => {
   const isLeaderboard = size === "leaderboard";
-  const href = withOwnedUtm("https://freedominterventions.com", {
+  const href = withOwnedUtm("https://freedominterventions.com/from-no-more-enabling", {
     medium: "house_ad",
-    campaign: "intervention_consult",
+    campaign: "nme_to_freedom_intervention",
     content: `freedom_interventions_${size}`,
   });
 
