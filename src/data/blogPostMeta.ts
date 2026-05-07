@@ -81,6 +81,7 @@ import caregiverBurnoutAddictionFamilyImage from "@/assets/caregiver-burnout-add
 import enablingCycleAddictionFamiliesImage from "@/assets/enabling-cycle-addiction-families.jpg";
 import rationalizationsFamiliesEnableImage from "@/assets/rationalizations-families-enable-addiction.jpg";
 import goodIntentionsEnablingAddictionImage from "@/assets/good-intentions-enabling-addiction.jpg";
+import codependencySpousesParentsSiblingsImage from "@/assets/codependency-spouses-parents-siblings.jpg";
 import supportRecoveryWithoutEnablingImage from "@/assets/support-recovery-without-enabling.jpg";
 import whatHappensAddictionTreatmentFamiliesImage from "@/assets/what-happens-addiction-treatment-families.jpg";
 import whenIsItTimeProfessionalInterventionImage from "@/assets/when-is-it-time-professional-intervention.jpg";
@@ -1970,5 +1971,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "good-intentions-enabling-addiction",
     metaTitle: "Good Intentions Enabling Addiction: When Love Hurts",
     metaDescription: "You love them—so why is your help making things worse? Learn how good intentions fuel addiction and what real support actually looks like.",
+  },
+  {
+    id: "147",
+    title: "The Invisible Weight: How Codependency Looks Different for Spouses, Parents, and Siblings",
+    excerpt: "Codependency doesn't look the same for every family member. Learn how it shows up differently for spouses, parents, and siblings — and what each can do to start healing.",
+    category: "Codependency",
+    categories: ["Codependency", "Family Support", "Enabling", "Boundaries"],
+    readTime: "9 min read",
+    date: "May 6, 2026",
+    image: codependencySpousesParentsSiblingsImage,
+    slug: "codependency-spouses-parents-siblings-addiction",
+    metaTitle: "Codependency in Spouses, Parents & Siblings of Addicts",
+    metaDescription: "Codependency doesn't look the same for every family member. Learn how it shows up differently for spouses, parents, and siblings — and what each can do to start healing.",
   }
 ];

@@ -147,4 +147,5 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "enabling-cycle-addiction-families": () => import("./article-content/enabling-cycle-addiction-families"),
   "rationalizations-families-enable-addiction": () => import("./article-content/rationalizations-families-enable-addiction"),
   "good-intentions-enabling-addiction": () => import("./article-content/good-intentions-enabling-addiction"),
+  "codependency-spouses-parents-siblings-addiction": () => import("./article-content/codependency-spouses-parents-siblings"),
 };
