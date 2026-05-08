@@ -82,6 +82,7 @@ import enablingCycleAddictionFamiliesImage from "@/assets/enabling-cycle-addicti
 import rationalizationsFamiliesEnableImage from "@/assets/rationalizations-families-enable-addiction.jpg";
 import goodIntentionsEnablingAddictionImage from "@/assets/good-intentions-enabling-addiction.jpg";
 import codependencySpousesParentsSiblingsImage from "@/assets/codependency-spouses-parents-siblings.jpg";
+import conflictAvoidanceEnablingImage from "@/assets/conflict-avoidance-enabling-addiction.jpg";
 import supportRecoveryWithoutEnablingImage from "@/assets/support-recovery-without-enabling.jpg";
 import whatHappensAddictionTreatmentFamiliesImage from "@/assets/what-happens-addiction-treatment-families.jpg";
 import whenIsItTimeProfessionalInterventionImage from "@/assets/when-is-it-time-professional-intervention.jpg";
@@ -1984,5 +1985,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "codependency-spouses-parents-siblings-addiction",
     metaTitle: "Codependency in Spouses, Parents & Siblings of Addicts",
     metaDescription: "Codependency doesn't look the same for every family member. Learn how it shows up differently for spouses, parents, and siblings — and what each can do to start healing.",
+  },
+  {
+    id: "148",
+    title: "The Price of Keeping the Peace: How Conflict Avoidance Enables Addiction at Home",
+    excerpt: "Keeping the peace with an addicted loved one feels like kindness — but it may be fueling the problem. Learn how conflict avoidance enables addiction and how to change the pattern.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Support", "Communication", "Boundaries"],
+    readTime: "8 min read",
+    date: "May 8, 2026",
+    image: conflictAvoidanceEnablingImage,
+    slug: "conflict-avoidance-enabling-addiction-family",
+    metaTitle: "Conflict Avoidance & Enabling Addiction in Families",
+    metaDescription: "Keeping the peace with an addicted loved one feels like kindness — but it may be fueling the problem. Learn how conflict avoidance enables addiction.",
   }
 ];
