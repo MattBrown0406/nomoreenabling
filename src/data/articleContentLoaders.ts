@@ -148,4 +148,5 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "rationalizations-families-enable-addiction": () => import("./article-content/rationalizations-families-enable-addiction"),
   "good-intentions-enabling-addiction": () => import("./article-content/good-intentions-enabling-addiction"),
   "codependency-spouses-parents-siblings-addiction": () => import("./article-content/codependency-spouses-parents-siblings"),
+  "conflict-avoidance-enabling-addiction-family": () => import("./article-content/conflict-avoidance-enabling-addiction-family"),
 };
