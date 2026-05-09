@@ -1,5 +1,6 @@
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, CheckCircle2, HelpCircle, Library, Scale, ShieldAlert } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2, HelpCircle, Library, Scale, Search, ShieldAlert } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SEOHead from "@/components/seo/SEOHead";
@@ -16,14 +17,32 @@ const answerFaqs = aeoAnswers.slice(0, 8).map((answer) => ({
 }));
 
 const categories = Array.from(new Set(aeoAnswers.map((answer) => answer.category)));
-const firstAnswerByCategory = Object.fromEntries(
-  categories.map((category) => [
-    category,
-    aeoAnswers.find((answer) => answer.category === category)?.id ?? "",
-  ]),
-);
 
 export default function Answers() {
+  const [query, setQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
+  const searchableCategories = useMemo(() => ["All", ...categories], []);
+  const filteredAnswers = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase();
+
+    return aeoAnswers.filter((answer) => {
+      const matchesCategory = activeCategory === "All" || answer.category === activeCategory;
+      const searchableText = [
+        answer.question,
+        answer.shortAnswer,
+        answer.category,
+        answer.nextStep,
+        answer.concern,
+        answer.whenToGetHelp,
+        ...(answer.tags || []),
+        ...(answer.whatToDo || []),
+      ].filter(Boolean).join(" ").toLowerCase();
+      const matchesQuery = !normalizedQuery || searchableText.includes(normalizedQuery);
+
+      return matchesCategory && matchesQuery;
+    });
+  }, [activeCategory, query]);
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <SEOHead
@@ -83,22 +102,49 @@ export default function Answers() {
         </section>
 
         <section className="container mx-auto px-4 py-10">
-          <div className="flex flex-wrap gap-2">
-            {categories.map((category) => (
-              <a
+          <div className="rounded-2xl border border-border bg-card p-4">
+            <label htmlFor="nme-answer-search" className="text-sm font-semibold text-foreground">
+              Search family questions
+            </label>
+            <div className="mt-3 flex items-center gap-3 rounded-lg border border-border bg-background px-3 py-2">
+              <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
+              <input
+                id="nme-answer-search"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Search enabling, money, adult child, treatment refusal, spouse, relapse..."
+                className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
+              />
+            </div>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {searchableCategories.map((category) => (
+                <button
                 key={category}
-                href={`#${firstAnswerByCategory[category]}`}
-                className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground hover:border-primary/40 hover:text-primary"
+                  type="button"
+                  onClick={() => setActiveCategory(category)}
+                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                    activeCategory === category
+                      ? "border-primary bg-primary text-primary-foreground"
+                      : "border-border bg-background text-muted-foreground hover:border-primary/40 hover:text-primary"
+                  }`}
               >
                 {category}
-              </a>
+                </button>
             ))}
+            </div>
           </div>
         </section>
 
         <section className="container mx-auto px-4 pb-12">
           <div className="grid gap-4 md:grid-cols-2">
-            {aeoAnswers.map((answer) => (
+            {filteredAnswers.length === 0 ? (
+              <article className="rounded-2xl border border-border bg-card p-6 md:col-span-2">
+                <h2 className="font-serif text-2xl font-bold text-foreground">No exact match yet</h2>
+                <p className="mt-3 leading-relaxed text-muted-foreground">
+                  Try a shorter phrase like money, boundary, spouse, adult child, refusal, or relapse.
+                </p>
+              </article>
+            ) : filteredAnswers.map((answer) => (
               <article
                 key={answer.id}
                 id={answer.id}
