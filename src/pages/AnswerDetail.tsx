@@ -9,6 +9,7 @@ import PersonJsonLd from "@/components/seo/PersonJsonLd";
 import QAPageJsonLd from "@/components/seo/QAPageJsonLd";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import TrustedResourceList from "@/components/TrustedResourceList";
 import mattHeadshot from "@/assets/matt-brown-headshot.jpeg";
 import {
   aeoAnswers,
@@ -16,6 +17,7 @@ import {
   getRelatedAnswers,
   getRelatedGlossaryTerms,
 } from "@/data/aeoAnswers";
+import { getTrustedResourcesForTags } from "@/data/trustedResources";
 
 const laneConfig = {
   support: {
@@ -76,6 +78,7 @@ export default function AnswerDetail() {
   const helpSignal =
     answer.whenToGetHelp ??
     "If this pattern keeps repeating, if safety is changing, or if the family cannot stay aligned, get outside guidance before the next crisis decides for you.";
+  const trustedResources = getTrustedResourcesForTags(answer.tags);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -172,6 +175,8 @@ export default function AnswerDetail() {
                 </p>
                 <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{helpSignal}</p>
               </article>
+
+              <TrustedResourceList resources={trustedResources} />
             </div>
 
             <aside className="space-y-6">

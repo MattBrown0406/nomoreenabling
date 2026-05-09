@@ -29,6 +29,8 @@ import { getCommercialIntentPageForContext } from "@/data/commercialIntentPages"
 import { getInternalMoneyPageLink } from "@/data/internalMoneyPageLinks";
 import { getArticleBridgeLink } from "@/data/articleBridgeLinks";
 import { answerDetailPath, getAeoArticleAnswer, getNextBestAnswerLinks } from "@/data/aeoAnswers";
+import { getTrustedResourcesForTags } from "@/data/trustedResources";
+import TrustedResourceList from "@/components/TrustedResourceList";
 import mattHeadshot from "@/assets/matt-brown-headshot.jpeg";
 
 const XIcon = ({ className }: { className?: string }) => (
@@ -391,6 +393,9 @@ const ArticlePage = () => {
   const articleBridgeLink = getArticleBridgeLink(article?.slug);
   const aeoArticleAnswer = article ? getAeoArticleAnswer(article) : null;
   const nextBestAnswerLinks = article ? getNextBestAnswerLinks(article) : [];
+  const trustedResources = article
+    ? getTrustedResourcesForTags([article.title, article.excerpt, ...article.categories], 3)
+    : [];
   const structuredFaqs = aeoArticleAnswer
     ? [
         { question: aeoArticleAnswer.question, answer: aeoArticleAnswer.shortAnswer },
@@ -945,8 +950,10 @@ const ArticlePage = () => {
                 )}
 
                 <div className="mt-10 pt-8 border-t border-border">
+                  <TrustedResourceList resources={trustedResources} />
+
                   {nextBestAnswerLinks.length > 0 && (
-                    <div className="rounded-2xl bg-card border border-border p-6 mb-8">
+                    <div className="rounded-2xl bg-card border border-border p-6 my-8">
                       <p className="text-sm uppercase tracking-wide text-primary font-medium">Next best answers</p>
                       <h2 className="font-serif text-2xl font-bold text-foreground mt-2">If this is what you were really asking</h2>
                       <div className="mt-5 grid gap-3 sm:grid-cols-2">

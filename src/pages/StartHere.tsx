@@ -13,6 +13,8 @@ import { getLeadMagnetForHub } from "@/data/leadMagnets";
 import LeadMagnetCard from "@/components/LeadMagnetCard";
 import { trackGAConversion } from "@/lib/gaConversions";
 import { withOwnedUtm } from "@/lib/ownedLinks";
+import TrustedResourceList from "@/components/TrustedResourceList";
+import { trustedResources } from "@/data/trustedResources";
 
 const principles = [
   {
@@ -26,6 +28,34 @@ const principles = [
   {
     title: "Support recovery",
     description: "The goal is to support truth, treatment, boundaries, and repair without rescuing the addiction.",
+  },
+];
+
+const situationShortcuts = [
+  {
+    label: "They refuse treatment",
+    detail: "Conversations go nowhere, promises keep breaking, or the family is considering intervention.",
+    href: "/answers/refuses-treatment",
+  },
+  {
+    label: "My adult child is using",
+    detail: "Money, housing, rent, bills, treatment refusal, or the family home are part of the decision.",
+    href: "/answers/am-i-enabling-adult-child",
+  },
+  {
+    label: "My spouse is drinking",
+    detail: "Alcohol is being minimized while trust, parenting, safety, or finances are being affected.",
+    href: "/answers/spouse-wont-stop-drinking",
+  },
+  {
+    label: "I keep giving money",
+    detail: "Cash, rent, repairs, legal costs, and one-more-time rescue payments keep returning.",
+    href: "/answers/stop-giving-money",
+  },
+  {
+    label: "I think we need intervention",
+    detail: "The situation has outgrown ordinary family talks and needs structure.",
+    href: "/answers/call-an-interventionist",
   },
 ];
 
@@ -154,6 +184,36 @@ export default function StartHere() {
           </div>
         </section>
 
+        <section className="container mx-auto px-4 pb-12">
+          <div className="rounded-3xl border border-border bg-card p-6 md:p-8">
+            <div className="mb-6 max-w-3xl">
+              <p className="text-sm uppercase tracking-wide text-primary font-medium">Start by situation</p>
+              <h2 className="font-serif text-3xl font-bold text-foreground mt-2">
+                Choose the sentence closest to what is happening
+              </h2>
+              <p className="mt-3 text-muted-foreground">
+                These are the high-intent questions families usually search before they become coaching, intervention, or support leads.
+              </p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+              {situationShortcuts.map((situation) => (
+                <Link
+                  key={situation.href}
+                  to={situation.href}
+                  className="rounded-2xl border border-border bg-background p-5 transition-colors hover:border-primary/40"
+                >
+                  <p className="font-semibold text-foreground">{situation.label}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{situation.detail}</p>
+                  <p className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                    Open answer
+                    <ArrowRight className="h-4 w-4" />
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="decision-paths" className="container mx-auto px-4 py-12">
           <div className="mb-8 max-w-3xl">
             <p className="text-sm uppercase tracking-wide text-primary font-medium">Decision routing</p>
@@ -260,6 +320,14 @@ export default function StartHere() {
               </div>
             </div>
           </div>
+        </section>
+
+        <section className="container mx-auto px-4 pb-12">
+          <TrustedResourceList
+            resources={trustedResources}
+            title="Official safety and treatment resources"
+            description="Use these public resources when the situation involves crisis, overdose risk, alcohol risk, treatment location, or immediate safety questions."
+          />
         </section>
 
         <CoachingInterventionCTA />

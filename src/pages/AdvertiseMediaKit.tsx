@@ -9,6 +9,7 @@ import { blogPostsMeta } from "@/data/blogPostMeta";
 import { topicHubs } from "@/data/topicHubs";
 import { supportOffers } from "@/data/supportOffers";
 import { leadMagnets } from "@/data/leadMagnets";
+import { aeoAnswers, glossaryTerms } from "@/data/aeoAnswers";
 import {
   formatSponsorRate,
   sponsorPlacements,
@@ -19,13 +20,16 @@ import {
 const AdvertiseMediaKit = () => {
   const articleCount = blogPostsMeta.length;
   const categoryCount = new Set(blogPostsMeta.flatMap((post) => post.categories)).size;
-  const indexablePageCount = articleCount + categoryCount + topicHubs.length + supportOffers.length + 19;
+  const answerCount = aeoAnswers.length;
+  const glossaryCount = glossaryTerms.length;
+  const indexablePageCount = articleCount + categoryCount + topicHubs.length + supportOffers.length + answerCount + glossaryCount + 20;
   const monthlyInventory = sponsorPlacements.reduce((total, placement) => total + placement.monthlyRate, 0);
   const proofStats = [
     { label: "Indexable routes", value: `${indexablePageCount}+`, detail: "Prerendered pages eligible for search discovery" },
     { label: "Articles", value: articleCount.toLocaleString(), detail: "Long-form family addiction education pages" },
+    { label: "Answer pages", value: answerCount.toLocaleString(), detail: "Direct Q&A pages for People Also Ask and AI answer retrieval" },
     { label: "Topic hubs", value: topicHubs.length.toLocaleString(), detail: "Clustered sponsor and SEO intent paths" },
-    { label: "Lead magnets", value: leadMagnets.length.toLocaleString(), detail: "Segmented first-party interest signals" },
+    { label: "Glossary pages", value: glossaryCount.toLocaleString(), detail: "Definition pages that reinforce topic authority" },
   ];
 
   const audienceProof = [
@@ -40,6 +44,10 @@ const AdvertiseMediaKit = () => {
     {
       label: "First-party funnel tracking",
       detail: "Placements now track impressions, clicks, page path, and article or cluster context inside the admin dashboard.",
+    },
+    {
+      label: "AEO-ready answer inventory",
+      detail: "The site now includes standalone Q&A pages, glossary definitions, and structured data that make sponsor-adjacent topics easier to discover.",
     },
   ];
   const measurementProof = [
@@ -142,7 +150,7 @@ const AdvertiseMediaKit = () => {
         </section>
 
         <section className="container mx-auto px-4 pb-12">
-          <div className="grid gap-6 lg:grid-cols-3">
+            <div className="grid gap-6 lg:grid-cols-4">
             {audienceProof.map((proof) => (
               <div key={proof.label} className="rounded-2xl border border-border bg-card p-6">
                 <CheckCircle2 className="h-5 w-5 text-primary" />
