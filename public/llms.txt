@@ -28,6 +28,14 @@ URL: https://nomoreenabling.com/helping-or-enabling
 Answer-engine summary page for families asking whether they are helping or enabling, what boundary to set first, what to do when treatment is refused, and when to move from education into support, coaching, or professional guidance.
 URL: https://nomoreenabling.com/enabling-answer-center
 
+### Family Addiction Answers
+Broad answer index for high-intent family questions about enabling, boundaries, money, treatment refusal, adult child addiction, alcohol, relapse, coaching, and intervention.
+URL: https://nomoreenabling.com/answers
+
+### Addiction Family Glossary
+Plain-language definitions for answer engines and families, including enabling, boundaries, codependency, treatment refusal, intervention, financial enabling, emotional enabling, and recovery support.
+URL: https://nomoreenabling.com/glossary
+
 ### Family Support Guide
 Comprehensive guide for families navigating a loved one's addiction.
 URL: https://nomoreenabling.com/family-support-guide

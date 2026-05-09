@@ -5,11 +5,15 @@ import Footer from "@/components/layout/Footer";
 import SEOHead from "@/components/seo/SEOHead";
 import FAQJsonLd from "@/components/seo/FAQJsonLd";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import HowToJsonLd from "@/components/seo/HowToJsonLd";
+import PersonJsonLd from "@/components/seo/PersonJsonLd";
 import ConsultationRequestForm from "@/components/ConsultationRequestForm";
 import { Button } from "@/components/ui/button";
 import { getCommercialIntentPage } from "@/data/commercialIntentPages";
+import { getCommercialHowToSteps } from "@/data/aeoAnswers";
 import { trackGAConversion } from "@/lib/gaConversions";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
+import mattHeadshot from "@/assets/matt-brown-headshot.jpeg";
 
 const urgencyLabels = {
   urgent: "Safety-sensitive",
@@ -42,6 +46,7 @@ export default function CommercialIntentPage({ pageSlug }: CommercialIntentPageP
   }
 
   const canonicalUrl = `https://nomoreenabling.com/${page.slug}`;
+  const directAnswer = page.faqs[0];
 
   const trackPageCta = (label: string, href: string) => {
     trackGAConversion("money_page_cta_click", {
@@ -69,6 +74,12 @@ export default function CommercialIntentPage({ pageSlug }: CommercialIntentPageP
         keywords={page.keywords}
       />
       <FAQJsonLd faqs={page.faqs} />
+      <HowToJsonLd
+        name={`How to approach ${page.eyebrow.toLowerCase()}`}
+        description={page.description}
+        steps={getCommercialHowToSteps(page)}
+      />
+      <PersonJsonLd imageUrl={`https://nomoreenabling.com${mattHeadshot}`} />
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "https://nomoreenabling.com" },
@@ -91,6 +102,13 @@ export default function CommercialIntentPage({ pageSlug }: CommercialIntentPageP
               <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl">
                 This page is for {page.audience}
               </p>
+              {directAnswer && (
+                <div className="mt-6 rounded-2xl border border-primary/20 bg-primary/5 p-5">
+                  <p className="text-sm uppercase tracking-wide text-primary font-medium">Direct answer</p>
+                  <h2 className="font-serif text-2xl font-bold text-foreground mt-2">{directAnswer.question}</h2>
+                  <p className="mt-3 text-muted-foreground leading-relaxed">{directAnswer.answer}</p>
+                </div>
+              )}
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
                 <Button size="lg" asChild>
                   <a href="#consultation-form" onClick={() => trackPageCta("Request private guidance", "#consultation-form")}>

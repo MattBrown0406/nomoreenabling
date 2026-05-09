@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState, useRef, useMemo } from "react";
-import { ArrowLeft, Clock, Calendar, Tag, Facebook, Mail, Link2, Check, Share2 } from "lucide-react";
+import { ArrowLeft, Clock, Calendar, Tag, Facebook, Mail, Link2, Check, Share2, HelpCircle } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { blogPostsMeta } from "@/data/blogPostMeta";
@@ -17,6 +17,7 @@ import SEOHead from "@/components/seo/SEOHead";
 import ArticleJsonLd from "@/components/seo/ArticleJsonLd";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import FAQJsonLd from "@/components/seo/FAQJsonLd";
+import PersonJsonLd from "@/components/seo/PersonJsonLd";
 import { useInitialArticleContent } from "@/lib/articleContentContext";
 import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
 import CommercialIntentCTA from "@/components/CommercialIntentCTA";
@@ -27,6 +28,8 @@ import { getLeadMagnetForArticle } from "@/data/leadMagnets";
 import { getCommercialIntentPageForContext } from "@/data/commercialIntentPages";
 import { getInternalMoneyPageLink } from "@/data/internalMoneyPageLinks";
 import { getArticleBridgeLink } from "@/data/articleBridgeLinks";
+import { getAeoArticleAnswer, getNextBestAnswerLinks } from "@/data/aeoAnswers";
+import mattHeadshot from "@/assets/matt-brown-headshot.jpeg";
 
 const XIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -386,6 +389,14 @@ const ArticlePage = () => {
     : null;
   const internalMoneyPageLink = getInternalMoneyPageLink(article?.slug);
   const articleBridgeLink = getArticleBridgeLink(article?.slug);
+  const aeoArticleAnswer = article ? getAeoArticleAnswer(article) : null;
+  const nextBestAnswerLinks = article ? getNextBestAnswerLinks(article) : [];
+  const structuredFaqs = aeoArticleAnswer
+    ? [
+        { question: aeoArticleAnswer.question, answer: aeoArticleAnswer.shortAnswer },
+        ...articleFaqs.filter((faq) => faq.question !== aeoArticleAnswer.question),
+      ].slice(0, 8)
+    : articleFaqs;
 
   const trackArticleIntentClick = (href: string, label: string, slot: "primary" | "secondary") => {
     if (!article) return;
@@ -625,7 +636,8 @@ const ArticlePage = () => {
         keywords={article.categories}
         wordCount={wordCount}
       />
-      {articleFaqs.length > 0 && <FAQJsonLd faqs={articleFaqs} />}
+      <PersonJsonLd imageUrl={`https://nomoreenabling.com${mattHeadshot}`} />
+      {structuredFaqs.length > 0 && <FAQJsonLd faqs={structuredFaqs} />}
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "https://nomoreenabling.com" },
@@ -682,6 +694,25 @@ const ArticlePage = () => {
                 <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">{article.title}</h1>
                 <p className="text-lg text-muted-foreground mb-6">{article.excerpt}</p>
 
+                {aeoArticleAnswer && (
+                  <div className="rounded-2xl border border-primary/20 bg-primary/5 p-5 mb-8">
+                    <div className="flex items-center gap-2 text-primary">
+                      <HelpCircle className="h-5 w-5" />
+                      <p className="text-sm uppercase tracking-wide font-medium">Direct answer</p>
+                    </div>
+                    <h2 className="font-serif text-2xl font-bold text-foreground mt-3">{aeoArticleAnswer.question}</h2>
+                    <p className="text-muted-foreground mt-3 leading-relaxed">{aeoArticleAnswer.shortAnswer}</p>
+                    <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between rounded-xl bg-background/70 p-4">
+                      <p className="text-sm text-muted-foreground">
+                        Reviewed through Matt Brown's family intervention and coaching lens.
+                      </p>
+                      <Link to={aeoArticleAnswer.href} className="text-sm font-semibold text-primary hover:underline">
+                        Open full answer →
+                      </Link>
+                    </div>
+                  </div>
+                )}
+
                 <div className="rounded-xl bg-secondary/40 border border-border p-5 mb-8">
                   <p className="text-sm uppercase tracking-wide text-primary font-medium">Why this is here</p>
                   <p className="text-muted-foreground mt-2">
@@ -694,6 +725,9 @@ const ArticlePage = () => {
                   <p className="text-muted-foreground mt-2">
                     This article is part of No More Enabling’s family education library, shaped by Matt Brown’s work with families affected by addiction,
                     treatment resistance, relapse, and boundary breakdowns since 2004.
+                  </p>
+                  <p className="text-muted-foreground mt-2 text-sm">
+                    Author and reviewer: Matt Brown, professional interventionist and family addiction coach.
                   </p>
                   <div className="mt-3 flex flex-wrap gap-3 text-sm">
                     <Link to="/about" className="text-primary hover:underline">About Matt Brown</Link>
@@ -911,6 +945,26 @@ const ArticlePage = () => {
                 )}
 
                 <div className="mt-10 pt-8 border-t border-border">
+                  {nextBestAnswerLinks.length > 0 && (
+                    <div className="rounded-2xl bg-card border border-border p-6 mb-8">
+                      <p className="text-sm uppercase tracking-wide text-primary font-medium">Next best answers</p>
+                      <h2 className="font-serif text-2xl font-bold text-foreground mt-2">If this is what you were really asking</h2>
+                      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                        {nextBestAnswerLinks.map((answer) => (
+                          <Link
+                            key={answer.id}
+                            to={answer.href}
+                            className="rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors"
+                          >
+                            <p className="font-medium text-foreground">{answer.question}</p>
+                            <p className="text-sm text-muted-foreground mt-2 line-clamp-3">{answer.shortAnswer}</p>
+                            <p className="mt-3 text-sm font-medium text-primary">Open answer →</p>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   <div className="rounded-2xl bg-secondary/40 border border-border p-6 mb-8">
                     <p className="text-sm uppercase tracking-wide text-primary font-medium">Need a steadier next step?</p>
                     <h2 className="font-serif text-2xl font-bold text-foreground mt-2">Don’t stop at insight</h2>

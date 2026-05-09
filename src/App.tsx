@@ -28,6 +28,9 @@ import FamilySituationAssessment from "./pages/FamilySituationAssessment";
 import SupportBridge from "./pages/SupportBridge";
 import AdminAnalytics from "./pages/AdminAnalytics";
 import EnablingAnswerCenter from "./pages/EnablingAnswerCenter";
+import Answers from "./pages/Answers";
+import Glossary from "./pages/Glossary";
+import GlossaryTerm from "./pages/GlossaryTerm";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import CookiePolicy from "./pages/CookiePolicy";
@@ -56,7 +59,10 @@ export const AppRoutes = () => (
       <Route path="/family-system-notes" element={<FamilySystemNotes />} />
       <Route path="/boundaries-course" element={<BoundariesCourse />} />
       <Route path="/start-here" element={<StartHere />} />
+      <Route path="/answers" element={<Answers />} />
       <Route path="/enabling-answer-center" element={<EnablingAnswerCenter />} />
+      <Route path="/glossary" element={<Glossary />} />
+      <Route path="/glossary/:termSlug" element={<GlossaryTerm />} />
       <Route path="/topic-hubs" element={<TopicHubs />} />
       <Route path="/topic-hubs/:slug" element={<TopicHubDetail />} />
       <Route path="/work-with-matt" element={<WorkWithMatt />} />
