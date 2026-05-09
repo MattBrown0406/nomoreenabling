@@ -7,6 +7,7 @@ import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import FAQJsonLd from "@/components/seo/FAQJsonLd";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import AnswerQuestionIntake from "@/components/AnswerQuestionIntake";
 import { aeoAnswers, answerDetailPath, comparisonAnswers } from "@/data/aeoAnswers";
 
 const answerFaqs = aeoAnswers.slice(0, 8).map((answer) => ({
@@ -158,6 +159,10 @@ export default function Answers() {
         </section>
 
         <section className="container mx-auto px-4 py-12">
+          <div className="mb-8">
+            <AnswerQuestionIntake source="answers-library-question-intake" contextPath="/answers" />
+          </div>
+
           <div className="grid gap-4 md:grid-cols-3">
             <Card>
               <CardContent className="p-6">

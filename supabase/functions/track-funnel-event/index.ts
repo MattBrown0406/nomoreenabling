@@ -7,6 +7,7 @@ const corsHeaders = {
 };
 
 const allowedEvents = new Set([
+  "answer_question_submit",
   "answer_page_view",
   "answer_page_click",
   "official_resource_click",

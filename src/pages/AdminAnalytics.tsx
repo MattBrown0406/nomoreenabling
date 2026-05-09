@@ -935,6 +935,10 @@ const AdminAnalytics = () => {
   const answerPageViews = eventCount("answer_page_view");
   const answerPageClicks = eventCount("answer_page_click");
   const officialResourceClicks = eventCount("official_resource_click");
+  const questionIntakeLeads = consultationLeads.filter((lead) =>
+    lead.source.includes("question-intake") || lead.lead_intent === "answer-question"
+  );
+  const answerQuestionSubmissions = Math.max(eventCount("answer_question_submit"), questionIntakeLeads.length);
   const sponsorCtr = sponsorImpressions > 0 ? ((totalAdClicks / sponsorImpressions) * 100).toFixed(1) : "0.0";
   const completionRate = assessmentStarts > 0 ? Math.round((assessmentCompletions / assessmentStarts) * 100) : 0;
   const captureRate = assessmentCompletions > 0 ? Math.round((emailCaptures / assessmentCompletions) * 100) : 0;
@@ -1045,6 +1049,9 @@ const AdminAnalytics = () => {
     );
 
   const topAnswerPages = answerPageStats.filter((stat) => stat.views + stat.clicks + stat.consultationLeads > 0).slice(0, 10);
+  const answerPageWinners = answerPageStats
+    .filter((stat) => stat.views + stat.clicks + stat.revenueClicks + stat.consultationLeads > 0)
+    .slice(0, 5);
   const answerRevenuePathCounts: FunnelBreakdownStat[] = Object.entries(
     funnelEvents
       .filter((event) => event.event_name === "answer_page_click" && getMetadataString(event, "click_type") === "primary_revenue_path")
@@ -1480,6 +1487,54 @@ const AdminAnalytics = () => {
               </Card>
             </div>
 
+            <div className="mt-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">Top Answer Pages</CardTitle>
+                  <p className="text-muted-foreground text-sm">
+                    Ranked by the signals that matter most: views, revenue-path clicks, official-source trust clicks, and consultation leads.
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  {topAnswerPages.length === 0 ? (
+                    <p className="text-muted-foreground text-sm">No answer-page activity recorded yet.</p>
+                  ) : (
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="border-b border-border">
+                            <th className="text-left py-3 px-2 font-medium text-muted-foreground">Answer</th>
+                            <th className="text-right py-3 px-2 font-medium text-muted-foreground">Views</th>
+                            <th className="text-right py-3 px-2 font-medium text-muted-foreground">CTA</th>
+                            <th className="text-right py-3 px-2 font-medium text-muted-foreground hidden md:table-cell">Official</th>
+                            <th className="text-right py-3 px-2 font-medium text-muted-foreground">Leads</th>
+                            <th className="text-left py-3 px-2 font-medium text-muted-foreground hidden lg:table-cell">Path</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {topAnswerPages.map((stat) => (
+                            <tr key={stat.path} className="border-b border-border/50">
+                              <td className="py-3 px-2">
+                                <a href={stat.path} target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary">
+                                  {stat.answer.question}
+                                </a>
+                                <p className="text-xs text-muted-foreground">{stat.answer.category}</p>
+                              </td>
+                              <td className="py-3 px-2 text-right text-muted-foreground">{stat.views.toLocaleString()}</td>
+                              <td className="py-3 px-2 text-right font-medium text-foreground">{stat.revenueClicks.toLocaleString()}</td>
+                              <td className="py-3 px-2 text-right text-muted-foreground hidden md:table-cell">{stat.officialResourceClicks.toLocaleString()}</td>
+                              <td className="py-3 px-2 text-right font-medium text-foreground">{stat.consultationLeads.toLocaleString()}</td>
+                              <td className="py-3 px-2 text-muted-foreground hidden lg:table-cell">{stat.answer.revenuePath ?? "assessment"}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+
             <div className="mt-4 grid gap-4 lg:grid-cols-[1.4fr_0.9fr]">
               <Card>
                 <CardHeader>
@@ -1533,7 +1588,7 @@ const AdminAnalytics = () => {
                   </p>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
                     <div className="rounded-xl bg-secondary/40 p-3">
                       <p className="text-xs text-muted-foreground">Views</p>
                       <p className="text-2xl font-bold text-foreground">{answerPageViews.toLocaleString()}</p>
@@ -1545,6 +1600,10 @@ const AdminAnalytics = () => {
                     <div className="rounded-xl bg-secondary/40 p-3">
                       <p className="text-xs text-muted-foreground">Source</p>
                       <p className="text-2xl font-bold text-foreground">{officialResourceClicks.toLocaleString()}</p>
+                    </div>
+                    <div className="rounded-xl bg-secondary/40 p-3">
+                      <p className="text-xs text-muted-foreground">Questions</p>
+                      <p className="text-2xl font-bold text-foreground">{answerQuestionSubmissions.toLocaleString()}</p>
                     </div>
                   </div>
 
@@ -1629,7 +1688,7 @@ const AdminAnalytics = () => {
               </CardContent>
             </Card>
 
-            <div className="grid gap-4 lg:grid-cols-[1fr_1fr] mt-4">
+            <div className="grid gap-4 lg:grid-cols-3 mt-4">
               <Card>
                 <CardHeader>
                   <CardTitle className="font-serif text-lg">Weekly Operating Summary</CardTitle>
@@ -1644,6 +1703,31 @@ const AdminAnalytics = () => {
                   </Button>
                   {lastWeeklySummarySentTo && (
                     <p className="mt-3 text-xs text-muted-foreground">Last sent this session to {lastWeeklySummarySentTo}.</p>
+                  )}
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">Answer Page Winners</CardTitle>
+                  <p className="text-muted-foreground text-sm">Use these first when improving AEO pages for revenue movement.</p>
+                </CardHeader>
+                <CardContent>
+                  {answerPageWinners.length === 0 ? (
+                    <p className="text-sm text-muted-foreground">No answer winners yet.</p>
+                  ) : (
+                    <div className="space-y-3">
+                      {answerPageWinners.map((stat) => (
+                        <div key={stat.path} className="rounded-xl border border-border p-3">
+                          <a href={stat.path} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-foreground hover:text-primary">
+                            {stat.answer.question}
+                          </a>
+                          <p className="mt-1 text-xs text-muted-foreground">
+                            {stat.views} views · {stat.revenueClicks} CTA clicks · {stat.consultationLeads} leads
+                          </p>
+                        </div>
+                      ))}
+                    </div>
                   )}
                 </CardContent>
               </Card>

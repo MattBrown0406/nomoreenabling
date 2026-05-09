@@ -90,6 +90,7 @@ const renderEmail = (summary: {
   answerPageViews: number;
   answerPageClicks: number;
   officialResourceClicks: number;
+  answerQuestionSubmissions: number;
   dueFollowupCount: number;
   topLeadSources: Array<{ label: string; count: number }>;
   topAnswerPages: Array<{ label: string; views: number; clicks: number; leads: number }>;
@@ -117,6 +118,7 @@ const renderEmail = (summary: {
           ["Due follow-ups", summary.dueFollowupCount],
           ["Answer page views", summary.answerPageViews],
           ["Answer page clicks", summary.answerPageClicks],
+          ["Reader questions", summary.answerQuestionSubmissions],
           ["Sponsor impressions", summary.sponsorImpressions],
           ["Sponsor clicks", summary.sponsorClicks],
         ].map(([label, value]) => `
@@ -243,7 +245,7 @@ serve(async (req) => {
         .select("event_name, page_path, metadata")
         .gte("created_at", periodStart)
         .lt("created_at", periodEnd)
-        .in("event_name", ["answer_page_view", "answer_page_click", "official_resource_click"]),
+        .in("event_name", ["answer_question_submit", "answer_page_view", "answer_page_click", "official_resource_click"]),
       supabase
         .from("advertiser_inquiries")
         .select("name, email, company, sponsor_type, monthly_budget, pipeline_status, next_action, created_at")
@@ -296,6 +298,11 @@ serve(async (req) => {
     const answerPageViews = (funnelEventsResult.data || []).filter((event) => event.event_name === "answer_page_view").length;
     const answerPageClicks = (funnelEventsResult.data || []).filter((event) => event.event_name === "answer_page_click").length;
     const officialResourceClicks = (funnelEventsResult.data || []).filter((event) => event.event_name === "official_resource_click").length;
+    const questionEventCount = (funnelEventsResult.data || []).filter((event) => event.event_name === "answer_question_submit").length;
+    const questionLeadCount = (leadSourceResult.data || []).filter((lead) =>
+      (lead.source || "").includes("question-intake")
+    ).length;
+    const answerQuestionSubmissions = Math.max(questionEventCount, questionLeadCount);
 
     const summary = {
       periodStart,
@@ -311,6 +318,7 @@ serve(async (req) => {
       answerPageViews,
       answerPageClicks,
       officialResourceClicks,
+      answerQuestionSubmissions,
       dueFollowupCount: dueFollowupsResult.count ?? 0,
       topLeadSources: Object.entries(sourceCounts)
         .map(([label, count]) => ({ label, count }))

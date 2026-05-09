@@ -1,6 +1,7 @@
 import { supabase } from "@/integrations/supabase/client";
 
 export type FunnelEventName =
+  | "answer_question_submit"
   | "answer_page_view"
   | "answer_page_click"
   | "official_resource_click"

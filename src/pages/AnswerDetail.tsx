@@ -10,6 +10,7 @@ import PersonJsonLd from "@/components/seo/PersonJsonLd";
 import QAPageJsonLd from "@/components/seo/QAPageJsonLd";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import AnswerQuestionIntake from "@/components/AnswerQuestionIntake";
 import TrustedResourceList from "@/components/TrustedResourceList";
 import mattHeadshot from "@/assets/matt-brown-headshot.jpeg";
 import {
@@ -50,6 +51,27 @@ const defaultMoves = [
   "Choose one next action that supports safety, honesty, treatment, or accountability.",
 ];
 
+const ctaHierarchy = [
+  {
+    id: "family-squares",
+    label: "Join the free Family Squares support meeting",
+    href: "https://soberhelpline.com/family-squares?utm_source=nomoreenabling&utm_medium=answer_page&utm_campaign=answer_cta_hierarchy",
+    note: "Free Monday support for families who need a place to ask questions.",
+  },
+  {
+    id: "consultation",
+    label: "Cannot wait until Monday? Book a session and get answers now",
+    href: "/family-addiction-consultation",
+    note: "Best when the next decision feels too important to keep guessing.",
+  },
+  {
+    id: "intervention-readiness",
+    label: "Check intervention readiness",
+    href: "/intervention-help",
+    note: "Use this when refusal, risk, or consequences are escalating.",
+  },
+];
+
 export default function AnswerDetail() {
   const { answerSlug } = useParams<{ answerSlug: string }>();
   const answer = aeoAnswers.find((item) => item.id === answerSlug);
@@ -88,8 +110,18 @@ export default function AnswerDetail() {
 
   const canonicalUrl = `https://nomoreenabling.com${answerDetailPath(answer)}`;
   const relatedAnswers = getRelatedAnswers(answer);
-  const relatedTerms = getRelatedGlossaryTerms(answer);
   const lane = laneConfig[answer.revenuePath ?? "assessment"];
+  const sameCategoryAnswers = aeoAnswers
+    .filter((candidate) => candidate.id !== answer.id && candidate.category === answer.category)
+    .slice(0, 4);
+  const sameRevenuePathAnswers = aeoAnswers
+    .filter((candidate) => candidate.id !== answer.id && candidate.revenuePath === answer.revenuePath)
+    .slice(0, 4);
+  const answerClusters = [
+    { label: `More ${answer.category.toLowerCase()} questions`, answers: sameCategoryAnswers },
+    { label: `${lane.label.replace(/^Join the free /, "").replace(/^Check /, "Check ")} path`, answers: sameRevenuePathAnswers },
+  ].filter((cluster) => cluster.answers.length > 0);
+  const relatedTerms = getRelatedGlossaryTerms(answer);
   const moves = answer.whatToDo ?? defaultMoves;
   const helpSignal =
     answer.whenToGetHelp ??
@@ -222,7 +254,7 @@ export default function AnswerDetail() {
             <aside className="space-y-6">
               <Card className="border-primary/20 bg-primary/5">
                 <CardContent className="p-6">
-                  <p className="text-sm font-semibold uppercase tracking-wide text-primary">Best next step</p>
+                  <p className="text-sm font-semibold uppercase tracking-wide text-primary">Best next step for this question</p>
                   <h2 className="mt-2 font-serif text-2xl font-bold text-foreground">{lane.label}</h2>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{lane.description}</p>
                   <Button asChild className="mt-5 w-full">
@@ -236,6 +268,27 @@ export default function AnswerDetail() {
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </a>
                   </Button>
+                  <div className="mt-5 border-t border-primary/20 pt-5">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-primary">If this is not the exact fit</p>
+                    <div className="mt-3 space-y-3">
+                      {ctaHierarchy
+                        .filter((item) => item.href !== lane.href)
+                        .map((item) => (
+                          <a
+                            key={item.id}
+                            href={item.href}
+                            onClick={() => trackAnswerClick("secondary_revenue_path", item.href, {
+                              label: item.label,
+                              cta_id: item.id,
+                            })}
+                            className="block rounded-xl border border-border bg-background p-3 hover:border-primary/40"
+                          >
+                            <span className="text-sm font-semibold text-foreground">{item.label}</span>
+                            <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">{item.note}</span>
+                          </a>
+                        ))}
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
 
@@ -307,6 +360,56 @@ export default function AnswerDetail() {
             </div>
           </section>
         )}
+
+        {answerClusters.length > 0 && (
+          <section className="container mx-auto px-4 py-12">
+            <div className="mb-6 max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary">Keep following the pattern</p>
+              <h2 className="mt-2 font-serif text-3xl font-bold text-foreground">Related answer clusters</h2>
+              <p className="mt-3 text-muted-foreground">
+                These clusters keep the family moving from one isolated question into the next useful decision.
+              </p>
+            </div>
+            <div className="grid gap-4 lg:grid-cols-2">
+              {answerClusters.map((cluster) => (
+                <Card key={cluster.label}>
+                  <CardContent className="p-6">
+                    <h3 className="font-serif text-2xl font-bold text-foreground">{cluster.label}</h3>
+                    <div className="mt-4 space-y-3">
+                      {cluster.answers.map((clusterAnswer) => (
+                        <Link
+                          key={clusterAnswer.id}
+                          to={answerDetailPath(clusterAnswer)}
+                          className="flex items-start justify-between gap-3 rounded-xl border border-border bg-background p-4 hover:border-primary/40"
+                          onClick={() => trackAnswerClick("answer_cluster", answerDetailPath(clusterAnswer), {
+                            cluster_label: cluster.label,
+                            related_answer_id: clusterAnswer.id,
+                            related_answer_question: clusterAnswer.question,
+                          })}
+                        >
+                          <span>
+                            <span className="block font-medium text-foreground">{clusterAnswer.question}</span>
+                            <span className="mt-1 block text-sm text-muted-foreground">{clusterAnswer.shortAnswer}</span>
+                          </span>
+                          <ArrowRight className="mt-1 h-4 w-4 flex-shrink-0 text-primary" />
+                        </Link>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <section className="border-t border-border bg-secondary/20 py-12">
+          <div className="container mx-auto px-4">
+            <AnswerQuestionIntake
+              contextQuestion={answer.question}
+              contextPath={answerDetailPath(answer)}
+            />
+          </div>
+        </section>
       </main>
 
       <Footer />

@@ -182,6 +182,7 @@ serve(async (req) => {
     const treatmentHistory = sanitizeText(payload.treatment_history, 240);
     const urgency = sanitizeText(payload.urgency, 240);
     const pagePath = sanitizeText(payload.page_path, 500);
+    const isQuestionIntake = source.includes("question-intake");
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
     const supabase = supabaseUrl && supabaseServiceKey ? createClient(supabaseUrl, supabaseServiceKey) : null;
@@ -206,13 +207,15 @@ serve(async (req) => {
       }
     } else if (supabase) {
       const firstName = safeName.split(/\s+/)[0] || null;
-      const followups = buildConsultationFollowups({
-        leadId: "pending",
-        email: safeEmail,
-        name: safeName,
-        leadTier,
-        leadIntent,
-      });
+      const followups = isQuestionIntake
+        ? []
+        : buildConsultationFollowups({
+            leadId: "pending",
+            email: safeEmail,
+            name: safeName,
+            leadTier,
+            leadIntent,
+          });
       const { data: insertedLead, error } = await supabase
         .from("consultation_leads")
         .insert({
@@ -241,7 +244,7 @@ serve(async (req) => {
 
       if (error) {
         console.error("consultation_leads insert error:", error.message);
-      } else if (insertedLead?.id) {
+      } else if (insertedLead?.id && !isQuestionIntake) {
         const queuedFollowups = buildConsultationFollowups({
           leadId: insertedLead.id,
           email: safeEmail,
@@ -265,10 +268,12 @@ serve(async (req) => {
       to: ["matt@nomoreenabling.com"],
       subject: source === "advertiser-inquiry"
         ? `Advertiser Inquiry: ${safeName}`
+        : isQuestionIntake
+          ? `Family Question: ${safeName}`
         : `${leadTier === "priority" ? "Priority " : ""}Consultation Request: ${safeName}`,
       replyTo: safeEmail,
       html: `
-        <h2>${source === "advertiser-inquiry" ? "New Advertiser Inquiry" : "New Consultation Request"}</h2>
+        <h2>${source === "advertiser-inquiry" ? "New Advertiser Inquiry" : isQuestionIntake ? "New Family Recovery Question" : "New Consultation Request"}</h2>
         <p><strong>Name:</strong> ${escapeHtml(safeName)}</p>
         <p><strong>Email:</strong> ${escapeHtml(safeEmail)}</p>
         ${phone ? `<p><strong>Phone:</strong> ${escapeHtml(phone)}</p>` : ""}
@@ -297,6 +302,17 @@ serve(async (req) => {
             <p>Hi ${escapeHtml(safeName.split(/\s+/)[0] || safeName)},</p>
             <p>Thank you for reaching out about advertising on No More Enabling. Matt will review the fit and follow up if the sponsor category aligns with the family-support mission of the site.</p>
             <p>In the meantime, you can review the public media kit here: <a href="https://nomoreenabling.com/advertise/media-kit">https://nomoreenabling.com/advertise/media-kit</a></p>
+          `,
+        });
+      } else if (isQuestionIntake) {
+        await sendEmail({
+          apiKey: RESEND_API_KEY,
+          to: [safeEmail],
+          subject: "We received your No More Enabling question",
+          html: `
+            <p>Hi ${escapeHtml(safeName.split(/\s+/)[0] || safeName)},</p>
+            <p>Thank you for sending a family recovery question through No More Enabling. Your question was received and may help shape a future answer or guide.</p>
+            <p>If your family needs direct help now, use the family situation assessment here: <a href="https://nomoreenabling.com/family-situation-assessment">https://nomoreenabling.com/family-situation-assessment</a></p>
           `,
         });
       } else {
