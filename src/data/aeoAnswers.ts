@@ -9,6 +9,10 @@ export interface AeoAnswer {
   href: string;
   nextStep: string;
   tags: string[];
+  concern?: string;
+  whatToDo?: string[];
+  whenToGetHelp?: string;
+  revenuePath?: "support" | "coaching" | "intervention" | "assessment";
 }
 
 export interface GlossaryTerm {
@@ -38,6 +42,14 @@ export const aeoAnswers: AeoAnswer[] = [
     href: "/helping-or-enabling",
     nextStep: "Use the Helping or Enabling tool before the next rescue decision.",
     tags: ["enabling", "helping", "boundaries", "codependency"],
+    concern: "The family is trying to decide whether a specific action is love or rescue.",
+    whatToDo: [
+      "Ask whether the help increases responsibility or removes it.",
+      "Separate emotional support from money, housing, secrecy, or cleanup.",
+      "Offer support that points toward treatment, honesty, and repair.",
+    ],
+    whenToGetHelp: "If the same rescue decision keeps repeating, the family may need coaching before the next crisis resets the pattern.",
+    revenuePath: "assessment",
   },
   {
     id: "stop-enabling-without-abandoning",
@@ -47,6 +59,8 @@ export const aeoAnswers: AeoAnswer[] = [
     href: "/articles/letting-go-without-abandoning-enabling",
     nextStep: "Name what support remains available and what rescue ends.",
     tags: ["enabling", "abandonment", "support", "family"],
+    concern: "The family is afraid that stopping rescue means stopping love.",
+    revenuePath: "support",
   },
   {
     id: "first-boundary",
@@ -56,6 +70,8 @@ export const aeoAnswers: AeoAnswer[] = [
     href: "/family-support-guide",
     nextStep: "Write one boundary that you can actually hold under pressure.",
     tags: ["boundaries", "family dynamics", "safety"],
+    concern: "The family knows something has to change but is not sure where to begin.",
+    revenuePath: "support",
   },
   {
     id: "boundary-broken",
@@ -65,6 +81,8 @@ export const aeoAnswers: AeoAnswer[] = [
     href: "/articles/what-to-do-when-addicted-loved-one-breaks-boundaries",
     nextStep: "Decide the consequence before the next conversation.",
     tags: ["boundaries", "consequences", "enabling"],
+    concern: "A boundary was set, but the follow-through is becoming the hard part.",
+    revenuePath: "coaching",
   },
   {
     id: "money-help",
@@ -74,6 +92,8 @@ export const aeoAnswers: AeoAnswer[] = [
     href: "/articles/should-i-give-money-to-someone-with-addiction",
     nextStep: "Pause the payment and decide whether it supports recovery or protects the addiction.",
     tags: ["money", "financial", "adult child", "enabling"],
+    concern: "The next payment may quiet the crisis while keeping the addiction system intact.",
+    revenuePath: "assessment",
   },
   {
     id: "pay-rent",
@@ -83,6 +103,8 @@ export const aeoAnswers: AeoAnswer[] = [
     href: "/articles/paying-rent-for-addicted-adult-child",
     nextStep: "Review the parent path before another housing decision.",
     tags: ["rent", "adult child", "money", "housing"],
+    concern: "Housing support is becoming the family's main leverage point.",
+    revenuePath: "coaching",
   },
   {
     id: "adult-child-home",
@@ -92,6 +114,8 @@ export const aeoAnswers: AeoAnswer[] = [
     href: "/articles/should-i-let-addicted-adult-child-live-at-home",
     nextStep: "Clarify home rules before the move-in or return conversation.",
     tags: ["adult child", "housing", "boundaries", "safety"],
+    concern: "The family is trying to protect love, safety, money, and the home at the same time.",
+    revenuePath: "coaching",
   },
   {
     id: "refuses-treatment",
@@ -101,6 +125,8 @@ export const aeoAnswers: AeoAnswer[] = [
     href: "/what-to-do-when-they-refuse-treatment",
     nextStep: "Use the treatment refusal page to decide between coaching and intervention readiness.",
     tags: ["refuses", "treatment", "intervention", "coaching"],
+    concern: "The family is waiting for a yes that may not come without a different structure.",
+    revenuePath: "intervention",
   },
   {
     id: "intervention-needed",
@@ -110,6 +136,8 @@ export const aeoAnswers: AeoAnswer[] = [
     href: "/intervention-help",
     nextStep: "Check the intervention help page if refusal and risk are escalating.",
     tags: ["intervention", "refusal", "safety", "treatment"],
+    concern: "The family may be past ordinary conversations and into structured help.",
+    revenuePath: "intervention",
   },
   {
     id: "alcohol-minimized",
@@ -119,6 +147,8 @@ export const aeoAnswers: AeoAnswer[] = [
     href: "/alcohol-intervention-help",
     nextStep: "Use the alcohol intervention page when drinking is minimized and treatment is refused.",
     tags: ["alcohol", "alcoholic", "minimization", "intervention"],
+    concern: "Alcohol is being normalized while the impact is getting harder to ignore.",
+    revenuePath: "intervention",
   },
   {
     id: "spouse-addiction",
@@ -128,6 +158,8 @@ export const aeoAnswers: AeoAnswer[] = [
     href: "/topic-hubs/spouse-partner-addiction",
     nextStep: "Use the spouse or partner hub before the next confrontation.",
     tags: ["spouse", "partner", "boundaries", "children"],
+    concern: "The addiction is affecting partnership, parenting, money, trust, and emotional safety.",
+    revenuePath: "coaching",
   },
   {
     id: "relapse-response",
@@ -137,6 +169,8 @@ export const aeoAnswers: AeoAnswer[] = [
     href: "/articles/respond-to-relapse-without-enabling",
     nextStep: "Separate relapse support from relapse rescue.",
     tags: ["relapse", "after treatment", "boundaries", "recovery"],
+    concern: "The family wants to respond to relapse without rebuilding the old rescue pattern.",
+    revenuePath: "coaching",
   },
   {
     id: "after-rehab-boundaries",
@@ -146,6 +180,8 @@ export const aeoAnswers: AeoAnswer[] = [
     href: "/articles/boundaries-after-rehab",
     nextStep: "Use the after-treatment path before discharge or return home.",
     tags: ["after rehab", "after treatment", "boundaries", "relapse"],
+    concern: "The family needs a post-treatment structure before old patterns return.",
+    revenuePath: "coaching",
   },
   {
     id: "codependency-definition",
@@ -155,6 +191,8 @@ export const aeoAnswers: AeoAnswer[] = [
     href: "/articles/codependency-addiction-families-breaking-the-cycle",
     nextStep: "Look for where responsibility has shifted away from the person with addiction.",
     tags: ["codependency", "family dynamics", "enabling"],
+    concern: "The family member has become over-responsible for another person's addiction, emotions, or recovery.",
+    revenuePath: "support",
   },
   {
     id: "professional-guidance",
@@ -164,6 +202,8 @@ export const aeoAnswers: AeoAnswer[] = [
     href: "/professional-guidance-signs",
     nextStep: "Use the guidance signs page if the family keeps circling the same crisis.",
     tags: ["professional guidance", "coaching", "intervention", "safety"],
+    concern: "The next step is too important to keep improvising alone.",
+    revenuePath: "coaching",
   },
   {
     id: "family-assessment",
@@ -173,6 +213,113 @@ export const aeoAnswers: AeoAnswer[] = [
     href: "/family-situation-assessment",
     nextStep: "Take the assessment before another late-night search spiral.",
     tags: ["assessment", "start here", "coaching", "intervention"],
+    concern: "The family needs triage before choosing education, support, coaching, or intervention.",
+    revenuePath: "assessment",
+  },
+  {
+    id: "am-i-enabling-adult-child",
+    question: "Am I enabling my addicted adult child?",
+    shortAnswer: "You may be enabling if your help repeatedly shields your adult child from addiction-related consequences, especially through money, housing, excuses, cleanup, or crisis rescue without treatment or accountability.",
+    category: "Adult child addiction",
+    href: "/articles/how-to-stop-enabling-adult-child-addiction",
+    nextStep: "Look at the last three times you stepped in and ask what consequence your adult child did not have to face.",
+    tags: ["adult child", "enabling", "money", "housing", "parent"],
+    concern: "A parent is trying to tell the difference between love and a rescue pattern.",
+    whatToDo: [
+      "List the help you provide most often: money, housing, transportation, legal help, or emotional cleanup.",
+      "Ask which of those supports require treatment, honesty, work, or accountability.",
+      "Keep emotional connection available while removing support that protects active addiction.",
+    ],
+    whenToGetHelp: "If your adult child is escalating, refusing treatment, living at home unsafely, or cycling through repeated crises, get outside guidance before changing everything alone.",
+    revenuePath: "coaching",
+  },
+  {
+    id: "should-i-kick-addicted-child-out",
+    question: "Should I kick my addicted adult child out?",
+    shortAnswer: "Do not make the housing decision as a sudden punishment. Decide what conditions protect safety, sobriety, children, money, and the household, then make the next step clear and realistic.",
+    category: "Adult child addiction",
+    href: "/articles/should-i-let-addicted-adult-child-live-at-home",
+    nextStep: "Write the home conditions, the consequence if they are broken, and the safety plan before the conversation.",
+    tags: ["adult child", "housing", "home", "safety", "boundaries"],
+    concern: "The family home may no longer be safe or stable under the current rules.",
+    revenuePath: "coaching",
+  },
+  {
+    id: "spouse-wont-stop-drinking",
+    question: "What do I do if my spouse will not stop drinking?",
+    shortAnswer: "Stop trying to win a debate about whether the drinking is bad enough. Name the impact, protect money and children, stop covering consequences, and decide whether family coaching or intervention planning is needed.",
+    category: "Alcohol",
+    href: "/alcohol-intervention-help",
+    nextStep: "Write down the concrete impacts of drinking before the next conversation.",
+    tags: ["spouse", "alcohol", "drinking", "children", "intervention"],
+    concern: "Alcohol is being minimized while the family consequences keep growing.",
+    revenuePath: "intervention",
+  },
+  {
+    id: "stop-giving-money",
+    question: "How do I stop giving money to someone with addiction?",
+    shortAnswer: "Stop by replacing open-ended money with clear recovery-supporting offers. You can pay a provider directly, offer a ride to treatment, or help with a specific safety need without handing over cash.",
+    category: "Financial enabling",
+    href: "/articles/should-i-give-money-to-someone-with-addiction",
+    nextStep: "Choose one sentence you can repeat: 'I cannot give cash, but I can help you connect with treatment.'",
+    tags: ["money", "financial", "cash", "enabling", "boundaries"],
+    concern: "Money has become the fastest way to calm the crisis and the fastest way to keep the pattern alive.",
+    revenuePath: "assessment",
+  },
+  {
+    id: "using-drugs-in-my-house",
+    question: "What should I do if my loved one is using drugs in my house?",
+    shortAnswer: "Treat drug use in the home as a safety issue, not just a behavior issue. Protect children, medications, vehicles, valuables, and your own stability, then set a boundary the household can actually enforce.",
+    category: "Safety",
+    href: "/articles/loved-one-using-drugs-in-my-house",
+    nextStep: "Decide what must change immediately to protect the home and who needs to be involved.",
+    tags: ["drugs", "house", "home", "safety", "boundaries"],
+    concern: "Substance use is now affecting the safety and integrity of the home.",
+    revenuePath: "intervention",
+  },
+  {
+    id: "call-an-interventionist",
+    question: "When should I call an interventionist?",
+    shortAnswer: "Call an interventionist when treatment is being refused, risk is escalating, the family is divided, or ordinary conversations have become another part of the cycle.",
+    category: "Intervention",
+    href: "/intervention-help",
+    nextStep: "Use the intervention readiness path if the family cannot stay aligned without professional structure.",
+    tags: ["interventionist", "intervention", "refusal", "family", "risk"],
+    concern: "The family may need a structured process, not another emotional conversation.",
+    revenuePath: "intervention",
+  },
+  {
+    id: "what-to-say-refuses-rehab",
+    question: "What should I say to someone who refuses rehab?",
+    shortAnswer: "Keep it short, specific, and focused on impact. Avoid arguing about labels. State what you see, what you are willing to support, and what you will no longer protect.",
+    category: "Treatment refusal",
+    href: "/articles/what-to-do-when-someone-refuses-rehab",
+    nextStep: "Prepare the message before the conversation so panic does not write it for you.",
+    tags: ["rehab", "refuses", "treatment", "conversation", "intervention"],
+    concern: "The family needs language that does not turn into begging, debating, or rescuing.",
+    revenuePath: "coaching",
+  },
+  {
+    id: "family-disagrees-boundaries",
+    question: "What if my family disagrees about addiction boundaries?",
+    shortAnswer: "Family disagreement often keeps addiction protected. Start by aligning around safety, money, children, and what nobody will cover up anymore, even if everyone is not ready for the same boundary.",
+    category: "Family dynamics",
+    href: "/family-addiction-consultation",
+    nextStep: "Get the decision-makers into one conversation before announcing a major boundary.",
+    tags: ["family", "boundaries", "alignment", "coaching", "intervention"],
+    concern: "The addiction is benefiting from divided family responses.",
+    revenuePath: "coaching",
+  },
+  {
+    id: "boundaries-vs-ultimatums",
+    question: "What is the difference between a boundary and an ultimatum?",
+    shortAnswer: "A boundary defines what you will do to protect safety, honesty, money, or stability. An ultimatum tries to force someone else to change through pressure or threat.",
+    category: "Boundaries",
+    href: "/family-support-guide",
+    nextStep: "Rewrite the statement so it starts with what you will do, not what they must do.",
+    tags: ["boundaries", "ultimatum", "control", "family dynamics"],
+    concern: "The family needs a clear limit without turning the conversation into a power struggle.",
+    revenuePath: "support",
   },
 ];
 
@@ -316,7 +463,7 @@ export const comparisonAnswers: ComparisonAnswer[] = [
     leftDefinition: "What I will do to protect safety, honesty, money, children, or my own stability.",
     rightLabel: "Ultimatum",
     rightDefinition: "A threat meant to pressure someone else into changing immediately.",
-    href: "/articles/boundaries-vs-ultimatums",
+    href: "/answers/boundaries-vs-ultimatums",
   },
   {
     title: "Support vs. rescue",
@@ -369,3 +516,27 @@ export const getCommercialHowToSteps = (page: CommercialIntentPage) =>
   }));
 
 export const glossaryTermPaths = glossaryTerms.map((term) => `/glossary/${term.slug}`);
+export const answerDetailPath = (answer: AeoAnswer) => `/answers/${answer.id}`;
+export const answerDetailPaths = aeoAnswers.map(answerDetailPath);
+
+export const getRelatedAnswers = (answer: AeoAnswer): AeoAnswer[] => {
+  const related = aeoAnswers
+    .filter((candidate) => candidate.id !== answer.id)
+    .map((candidate) => ({
+      answer: candidate,
+      score: candidate.tags.reduce((total, tag) => total + (answer.tags.includes(tag) ? 1 : 0), 0),
+    }))
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map(({ answer: candidate }) => candidate);
+
+  return related.slice(0, 3);
+};
+
+export const getRelatedGlossaryTerms = (answer: AeoAnswer): GlossaryTerm[] =>
+  glossaryTerms
+    .filter((term) => {
+      const termNeedle = `${term.term} ${term.slug}`.toLowerCase();
+      return answer.tags.some((tag) => termNeedle.includes(tag) || tag.includes(term.slug));
+    })
+    .slice(0, 3);

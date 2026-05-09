@@ -11,6 +11,34 @@
 
 const DOMAIN = "https://nomoreenabling.com";
 
+const answerPages = [
+  "helping-or-enabling",
+  "stop-enabling-without-abandoning",
+  "first-boundary",
+  "boundary-broken",
+  "money-help",
+  "pay-rent",
+  "adult-child-home",
+  "refuses-treatment",
+  "intervention-needed",
+  "alcohol-minimized",
+  "spouse-addiction",
+  "relapse-response",
+  "after-rehab-boundaries",
+  "codependency-definition",
+  "professional-guidance",
+  "family-assessment",
+  "am-i-enabling-adult-child",
+  "should-i-kick-addicted-child-out",
+  "spouse-wont-stop-drinking",
+  "stop-giving-money",
+  "using-drugs-in-my-house",
+  "call-an-interventionist",
+  "what-to-say-refuses-rehab",
+  "family-disagrees-boundaries",
+  "boundaries-vs-ultimatums",
+];
+
 export interface SitemapArticle {
   slug: string;
   date?: string;
@@ -39,6 +67,7 @@ const staticPages: { path: string; priority: string; changefreq: string }[] = [
   { path: "/articles", priority: "0.9", changefreq: "weekly" },
   { path: "/topic-hubs", priority: "0.85", changefreq: "monthly" },
   { path: "/answers", priority: "0.95", changefreq: "monthly" },
+  ...answerPages.map((slug) => ({ path: `/answers/${slug}`, priority: "0.85", changefreq: "monthly" })),
   { path: "/glossary", priority: "0.85", changefreq: "monthly" },
   { path: "/glossary/enabling", priority: "0.8", changefreq: "monthly" },
   { path: "/glossary/boundary", priority: "0.8", changefreq: "monthly" },

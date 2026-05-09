@@ -28,7 +28,7 @@ import { getLeadMagnetForArticle } from "@/data/leadMagnets";
 import { getCommercialIntentPageForContext } from "@/data/commercialIntentPages";
 import { getInternalMoneyPageLink } from "@/data/internalMoneyPageLinks";
 import { getArticleBridgeLink } from "@/data/articleBridgeLinks";
-import { getAeoArticleAnswer, getNextBestAnswerLinks } from "@/data/aeoAnswers";
+import { answerDetailPath, getAeoArticleAnswer, getNextBestAnswerLinks } from "@/data/aeoAnswers";
 import mattHeadshot from "@/assets/matt-brown-headshot.jpeg";
 
 const XIcon = ({ className }: { className?: string }) => (
@@ -706,7 +706,7 @@ const ArticlePage = () => {
                       <p className="text-sm text-muted-foreground">
                         Reviewed through Matt Brown's family intervention and coaching lens.
                       </p>
-                      <Link to={aeoArticleAnswer.href} className="text-sm font-semibold text-primary hover:underline">
+                      <Link to={answerDetailPath(aeoArticleAnswer)} className="text-sm font-semibold text-primary hover:underline">
                         Open full answer →
                       </Link>
                     </div>
@@ -953,7 +953,7 @@ const ArticlePage = () => {
                         {nextBestAnswerLinks.map((answer) => (
                           <Link
                             key={answer.id}
-                            to={answer.href}
+                            to={answerDetailPath(answer)}
                             className="rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition-colors"
                           >
                             <p className="font-medium text-foreground">{answer.question}</p>

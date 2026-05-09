@@ -51,6 +51,20 @@ URL: https://nomoreenabling.com/enabling-answer-center
 Answer index that gives short, direct answers for common family addiction searches. It covers helping vs. enabling, boundaries, adult child addiction, financial enabling, treatment refusal, alcohol minimization, relapse response, coaching, and intervention. It routes readers to the best next full guide or assessment.
 URL: https://nomoreenabling.com/answers
 
+#### Individual Answer Pages
+These pages are designed for direct answer retrieval, People Also Ask-style searches, and AI answer engines. Each page includes a short accepted answer, practical next steps, related definitions, author trust signals, and a route into Family Squares, assessment, coaching, or intervention guidance.
+
+- How do I know if I am helping or enabling? https://nomoreenabling.com/answers/helping-or-enabling
+- Am I enabling my addicted adult child? https://nomoreenabling.com/answers/am-i-enabling-adult-child
+- Should I kick my addicted adult child out? https://nomoreenabling.com/answers/should-i-kick-addicted-child-out
+- What do I do if my spouse will not stop drinking? https://nomoreenabling.com/answers/spouse-wont-stop-drinking
+- How do I stop giving money to someone with addiction? https://nomoreenabling.com/answers/stop-giving-money
+- What should I do if my loved one is using drugs in my house? https://nomoreenabling.com/answers/using-drugs-in-my-house
+- When should I call an interventionist? https://nomoreenabling.com/answers/call-an-interventionist
+- What should I say to someone who refuses rehab? https://nomoreenabling.com/answers/what-to-say-refuses-rehab
+- What if my family disagrees about addiction boundaries? https://nomoreenabling.com/answers/family-disagrees-boundaries
+- What is the difference between a boundary and an ultimatum? https://nomoreenabling.com/answers/boundaries-vs-ultimatums
+
 ### Addiction Family Glossary
 Structured glossary and definition pages for answer engines. Core terms include enabling, boundary, codependency, treatment refusal, intervention, financial enabling, emotional enabling, natural consequence, family system, family addiction coaching, recovery support, and crisis support.
 URL: https://nomoreenabling.com/glossary

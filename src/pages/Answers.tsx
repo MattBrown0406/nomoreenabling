@@ -7,7 +7,7 @@ import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import FAQJsonLd from "@/components/seo/FAQJsonLd";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { aeoAnswers, comparisonAnswers } from "@/data/aeoAnswers";
+import { aeoAnswers, answerDetailPath, comparisonAnswers } from "@/data/aeoAnswers";
 
 const answerFaqs = aeoAnswers.slice(0, 8).map((answer) => ({
   question: answer.question,
@@ -110,8 +110,8 @@ export default function Answers() {
                   <p className="text-sm font-semibold text-foreground">Next step</p>
                   <p className="mt-1 text-sm text-muted-foreground">{answer.nextStep}</p>
                 </div>
-                <Link to={answer.href} className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                  Read the full answer
+                <Link to={answerDetailPath(answer)} className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                  Open answer page
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </article>

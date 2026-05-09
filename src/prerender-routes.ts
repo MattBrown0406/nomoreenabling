@@ -2,7 +2,7 @@ import { blogPostsMeta } from "@/data/blogPostMeta";
 import { topicHubs } from "@/data/topicHubs";
 import { supportOffers } from "@/data/supportOffers";
 import { commercialIntentPages } from "@/data/commercialIntentPages";
-import { glossaryTermPaths } from "@/data/aeoAnswers";
+import { answerDetailPaths, glossaryTermPaths } from "@/data/aeoAnswers";
 
 const staticRoutes = [
   "/",
@@ -42,4 +42,4 @@ const topicHubRoutes = topicHubs.map((hub) => `/topic-hubs/${hub.slug}`);
 const supportRoutes = supportOffers.map((offer) => `/support/${offer.slug}`);
 const commercialIntentRoutes = commercialIntentPages.map((page) => `/${page.slug}`);
 
-export const prerenderRoutes = [...staticRoutes, ...glossaryTermPaths, ...commercialIntentRoutes, ...categoryRoutes, ...articleRoutes, ...topicHubRoutes, ...supportRoutes];
+export const prerenderRoutes = [...staticRoutes, ...answerDetailPaths, ...glossaryTermPaths, ...commercialIntentRoutes, ...categoryRoutes, ...articleRoutes, ...topicHubRoutes, ...supportRoutes];
