@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, CheckCircle2, HelpCircle, Library, Scale, Search, ShieldAlert } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2, ExternalLink, HelpCircle, Library, Scale, Search, ShieldAlert } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SEOHead from "@/components/seo/SEOHead";
@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import AnswerQuestionIntake from "@/components/AnswerQuestionIntake";
 import { aeoAnswers, answerDetailPath, comparisonAnswers } from "@/data/aeoAnswers";
+import { withOwnedUtm } from "@/lib/ownedLinks";
 
 const answerFaqs = aeoAnswers.slice(0, 8).map((answer) => ({
   question: answer.question,
@@ -17,6 +18,39 @@ const answerFaqs = aeoAnswers.slice(0, 8).map((answer) => ({
 }));
 
 const categories = Array.from(new Set(aeoAnswers.map((answer) => answer.category)));
+
+const moneyPathMap = [
+  {
+    stage: "1",
+    title: "No More Enabling",
+    description: "Answer the question, name the pattern, and help the reader stop spinning.",
+    href: "/start-here",
+    cta: "Choose a path",
+    internal: true,
+  },
+  {
+    stage: "2",
+    title: "Sober Helpline",
+    description: "Move the reader into live support, Family Squares, or private coaching when the family needs help applying the answer.",
+    href: withOwnedUtm("https://soberhelpline.com/family-addiction-answers", {
+      medium: "answer_library",
+      content: "money_path_map",
+    }),
+    cta: "Open live support",
+    internal: false,
+  },
+  {
+    stage: "3",
+    title: "Freedom Interventions",
+    description: "Route high-risk readers into intervention readiness when treatment refusal, relapse, or safety has crossed the line.",
+    href: withOwnedUtm("https://freedominterventions.com/intervention-readiness", {
+      medium: "answer_library",
+      content: "money_path_map",
+    }),
+    cta: "Check intervention fit",
+    internal: false,
+  },
+];
 
 export default function Answers() {
   const [query, setQuery] = useState("");
@@ -97,6 +131,49 @@ export default function Answers() {
                   </p>
                 </CardContent>
               </Card>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-border bg-background">
+          <div className="container mx-auto px-4 py-10">
+            <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 md:p-8">
+              <div className="mb-6 max-w-3xl">
+                <p className="text-sm font-semibold uppercase tracking-wide text-primary">Cross-site money path</p>
+                <h2 className="mt-2 font-serif text-3xl font-bold text-foreground">
+                  Education here should hand off to support, coaching, or intervention.
+                </h2>
+                <p className="mt-3 text-muted-foreground">
+                  No More Enabling is the search and trust layer. Sober Helpline is the support and coaching layer. Freedom Interventions is the high-ticket intervention layer when the family needs structure.
+                </p>
+              </div>
+              <div className="grid gap-4 md:grid-cols-3">
+                {moneyPathMap.map((step) => {
+                  const content = (
+                    <>
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+                        {step.stage}
+                      </span>
+                      <h3 className="mt-4 font-serif text-xl font-bold text-foreground">{step.title}</h3>
+                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.description}</p>
+                      <p className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                        {step.cta}
+                        {step.internal ? <ArrowRight className="h-4 w-4" /> : <ExternalLink className="h-4 w-4" />}
+                      </p>
+                    </>
+                  );
+
+                  return step.internal ? (
+                    <Link key={step.title} to={step.href} className="rounded-2xl border border-border bg-background p-5 transition-colors hover:border-primary/40">
+                      {content}
+                    </Link>
+                  ) : (
+                    <a key={step.title} href={step.href} target="_blank" rel="noreferrer" className="rounded-2xl border border-border bg-background p-5 transition-colors hover:border-primary/40">
+                      {content}
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </section>
