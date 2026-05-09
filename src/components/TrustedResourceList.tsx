@@ -1,16 +1,21 @@
 import { ExternalLink, ShieldCheck } from "lucide-react";
 import type { TrustedResource } from "@/data/trustedResources";
+import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 
 interface TrustedResourceListProps {
   resources: TrustedResource[];
   title?: string;
   description?: string;
+  source?: string;
+  trackingContext?: Record<string, unknown>;
 }
 
 const TrustedResourceList = ({
   resources,
   title = "Source-worthy public resources",
   description = "These links are not a substitute for medical, legal, or crisis care. They are included to help families verify safety and treatment information from official sources.",
+  source = "trusted_resource_list",
+  trackingContext = {},
 }: TrustedResourceListProps) => {
   if (resources.length === 0) return null;
 
@@ -32,6 +37,18 @@ const TrustedResourceList = ({
             target="_blank"
             rel="noreferrer"
             className="rounded-xl border border-border bg-background p-4 transition-colors hover:border-primary/40"
+            onClick={() => {
+              void trackFunnelEvent("official_resource_click", {
+                source,
+                targetHref: resource.href,
+                metadata: {
+                  ...trackingContext,
+                  resource_id: resource.id,
+                  resource_title: resource.title,
+                  resource_organization: resource.organization,
+                },
+              });
+            }}
           >
             <div className="flex items-start justify-between gap-3">
               <div>

@@ -950,7 +950,15 @@ const ArticlePage = () => {
                 )}
 
                 <div className="mt-10 pt-8 border-t border-border">
-                  <TrustedResourceList resources={trustedResources} />
+                  <TrustedResourceList
+                    resources={trustedResources}
+                    source="article_page"
+                    trackingContext={{
+                      article_slug: article.slug,
+                      article_title: article.title,
+                      primary_category: article.category,
+                    }}
+                  />
 
                   {nextBestAnswerLinks.length > 0 && (
                     <div className="rounded-2xl bg-card border border-border p-6 my-8">

@@ -39,6 +39,11 @@ import { AdminCrmPanel } from "@/components/admin/AdminCrmPanel";
 import { getSupportOffer } from "@/data/supportOffers";
 import { commercialIntentPages } from "@/data/commercialIntentPages";
 import {
+  aeoAnswers,
+  answerDetailPath,
+  type AeoAnswer,
+} from "@/data/aeoAnswers";
+import {
   formatSponsorRate,
   sponsorPlacements,
   sponsorshipPackages,
@@ -62,10 +67,12 @@ interface FunnelEventRow {
   event_name: string;
   created_at: string;
   page_path: string | null;
+  source: string | null;
   article_slug: string | null;
   assessment_result: string | null;
   offer_slug: string | null;
   target_href: string | null;
+  metadata: Record<string, unknown> | null;
 }
 
 interface AssessmentLeadRow {
@@ -156,6 +163,20 @@ interface ClusterFunnelStat {
   offerClicks: number;
 }
 
+interface AnswerMoneyStat {
+  answer: AeoAnswer;
+  path: string;
+  views: number;
+  clicks: number;
+  revenueClicks: number;
+  familySquaresClicks: number;
+  consultationClicks: number;
+  interventionClicks: number;
+  assessmentClicks: number;
+  officialResourceClicks: number;
+  consultationLeads: number;
+}
+
 type SortField = "views" | "title" | "date";
 type SortDir = "asc" | "desc";
 type TimeRange = "7d" | "30d" | "90d" | "all";
@@ -239,6 +260,16 @@ const formatDateTime = (value: string) =>
 
 const formatPercent = (numerator: number, denominator: number) =>
   denominator > 0 ? `${((numerator / denominator) * 100).toFixed(1)}%` : "0.0%";
+
+const getEventMetadata = (event: FunnelEventRow): Record<string, unknown> =>
+  event.metadata && typeof event.metadata === "object" && !Array.isArray(event.metadata)
+    ? event.metadata
+    : {};
+
+const getMetadataString = (event: FunnelEventRow, key: string) => {
+  const value = getEventMetadata(event)[key];
+  return typeof value === "string" ? value : "";
+};
 
 const csvEscape = (value: string | number | null | undefined) => {
   const text = value === null || value === undefined ? "" : String(value);
@@ -387,7 +418,7 @@ const AdminAnalytics = () => {
   const fetchFunnelAnalytics = async () => {
     let eventQuery = supabase
       .from('funnel_events')
-      .select('event_name, created_at, page_path, article_slug, assessment_result, offer_slug, target_href');
+      .select('event_name, created_at, page_path, source, article_slug, assessment_result, offer_slug, target_href, metadata');
 
     if (timeRange !== 'all') {
       const days = timeRange === '7d' ? 7 : timeRange === '30d' ? 30 : 90;
@@ -901,6 +932,9 @@ const AdminAnalytics = () => {
   const sponsorImpressions = eventCount("sponsor_impression");
   const bridgeClicks = eventCount("bridge_page_click");
   const outboundOfferClicks = eventCount("outbound_offer_click");
+  const answerPageViews = eventCount("answer_page_view");
+  const answerPageClicks = eventCount("answer_page_click");
+  const officialResourceClicks = eventCount("official_resource_click");
   const sponsorCtr = sponsorImpressions > 0 ? ((totalAdClicks / sponsorImpressions) * 100).toFixed(1) : "0.0";
   const completionRate = assessmentStarts > 0 ? Math.round((assessmentCompletions / assessmentStarts) * 100) : 0;
   const captureRate = assessmentCompletions > 0 ? Math.round((emailCaptures / assessmentCompletions) * 100) : 0;
@@ -975,6 +1009,64 @@ const AdminAnalytics = () => {
       }, {})
   )
     .map(([key, count]) => ({ key, label: getSupportOffer(key)?.name || key, count }))
+    .sort((a, b) => b.count - a.count);
+
+  const answerPathForId = (answerId: string) => `/answers/${answerId}`;
+  const answerEventsForPath = (path: string) =>
+    funnelEvents.filter((event) => event.page_path === path || event.target_href === path);
+  const answerPageStats: AnswerMoneyStat[] = aeoAnswers
+    .map((answer) => {
+      const path = answerDetailPath(answer);
+      const eventsForPage = answerEventsForPath(path);
+      const clickEvents = eventsForPage.filter((event) => event.event_name === "answer_page_click");
+      const revenueClicks = clickEvents.filter((event) => getMetadataString(event, "click_type") === "primary_revenue_path");
+      const officialClicks = eventsForPage.filter((event) => event.event_name === "official_resource_click");
+      const targetMatches = (needle: string) => clickEvents.filter((event) => (event.target_href || "").includes(needle)).length;
+
+      return {
+        answer,
+        path,
+        views: eventsForPage.filter((event) => event.event_name === "answer_page_view").length,
+        clicks: clickEvents.length,
+        revenueClicks: revenueClicks.length,
+        familySquaresClicks: targetMatches("soberhelpline.com/family-squares"),
+        consultationClicks: targetMatches("/family-addiction-consultation"),
+        interventionClicks: targetMatches("/intervention-help"),
+        assessmentClicks: targetMatches("/family-situation-assessment"),
+        officialResourceClicks: officialClicks.length,
+        consultationLeads: consultationLeads.filter((lead) => lead.page_path === path).length,
+      };
+    })
+    .sort((a, b) =>
+      b.consultationLeads - a.consultationLeads ||
+      b.revenueClicks - a.revenueClicks ||
+      b.clicks - a.clicks ||
+      b.views - a.views
+    );
+
+  const topAnswerPages = answerPageStats.filter((stat) => stat.views + stat.clicks + stat.consultationLeads > 0).slice(0, 10);
+  const answerRevenuePathCounts: FunnelBreakdownStat[] = Object.entries(
+    funnelEvents
+      .filter((event) => event.event_name === "answer_page_click" && getMetadataString(event, "click_type") === "primary_revenue_path")
+      .reduce<Record<string, number>>((acc, event) => {
+        const key = getMetadataString(event, "revenue_path") || "unknown";
+        acc[key] = (acc[key] || 0) + 1;
+        return acc;
+      }, {})
+  )
+    .map(([key, count]) => ({ key, label: key.replace(/-/g, " "), count }))
+    .sort((a, b) => b.count - a.count);
+
+  const officialResourceBreakdown: FunnelBreakdownStat[] = Object.entries(
+    funnelEvents
+      .filter((event) => event.event_name === "official_resource_click")
+      .reduce<Record<string, number>>((acc, event) => {
+        const key = getMetadataString(event, "resource_organization") || getMetadataString(event, "resource_id") || "unknown";
+        acc[key] = (acc[key] || 0) + 1;
+        return acc;
+      }, {})
+  )
+    .map(([key, count]) => ({ key, label: key, count }))
     .sort((a, b) => b.count - a.count);
 
   const articleFunnelSources: FunnelBreakdownStat[] = Object.entries(
@@ -1098,6 +1190,33 @@ const AdminAnalytics = () => {
       status: leadCount > 0 ? "Producing leads" : ctaClicks > 0 ? "Clicks, no leads yet" : "Needs traffic",
     };
   });
+
+  const seoAeoMoneyPages = [
+    ...answerPageStats
+      .filter((stat) => stat.views + stat.clicks + stat.consultationLeads > 0)
+      .slice(0, 8)
+      .map((stat) => ({
+        key: stat.path,
+        label: stat.answer.question,
+        type: "Answer",
+        views: stat.views,
+        clicks: stat.revenueClicks,
+        leads: stat.consultationLeads,
+        note: stat.answer.revenuePath ?? "assessment",
+      })),
+    ...conversionAudit
+      .filter((page) => page.ctaClicks + page.leadCount > 0)
+      .slice(0, 6)
+      .map((page) => ({
+        key: `/${page.slug}`,
+        label: page.title,
+        type: "Money page",
+        views: 0,
+        clicks: page.ctaClicks,
+        leads: page.leadCount,
+        note: page.recommendation,
+      })),
+  ].sort((a, b) => b.leads - a.leads || b.clicks - a.clicks || b.views - a.views);
 
   const getPrimaryHubForArticle = (slug: string | null) => {
     if (!slug) return null;
@@ -1356,6 +1475,109 @@ const AdminAnalytics = () => {
                   <div className="rounded-xl bg-secondary/40 p-4">
                     <p className="font-medium text-foreground">If sponsor interest is flat</p>
                     <p className="mt-1">Package traffic proof, audience fit, and lead quality into the advertise page and media kit.</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="mt-4 grid gap-4 lg:grid-cols-[1.4fr_0.9fr]">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">SEO/AEO Money Pages</CardTitle>
+                  <p className="text-muted-foreground text-sm">
+                    Answer pages and commercial pages ranked by revenue clicks, consultation leads, and search-intent movement.
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  {seoAeoMoneyPages.length === 0 ? (
+                    <p className="text-muted-foreground text-sm">No answer-page or money-page revenue activity recorded yet.</p>
+                  ) : (
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="border-b border-border">
+                            <th className="text-left py-3 px-2 font-medium text-muted-foreground">Page</th>
+                            <th className="text-left py-3 px-2 font-medium text-muted-foreground hidden md:table-cell">Type</th>
+                            <th className="text-right py-3 px-2 font-medium text-muted-foreground">Views</th>
+                            <th className="text-right py-3 px-2 font-medium text-muted-foreground">Clicks</th>
+                            <th className="text-right py-3 px-2 font-medium text-muted-foreground">Leads</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {seoAeoMoneyPages.map((page) => (
+                            <tr key={page.key} className="border-b border-border/50">
+                              <td className="py-3 px-2">
+                                <a href={page.key} target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary">
+                                  {page.label}
+                                </a>
+                                <p className="text-xs text-muted-foreground">{page.note}</p>
+                              </td>
+                              <td className="py-3 px-2 text-muted-foreground hidden md:table-cell">{page.type}</td>
+                              <td className="py-3 px-2 text-right text-muted-foreground">{page.views.toLocaleString()}</td>
+                              <td className="py-3 px-2 text-right font-medium text-foreground">{page.clicks.toLocaleString()}</td>
+                              <td className="py-3 px-2 text-right font-medium text-foreground">{page.leads.toLocaleString()}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">Answer Page Activity</CardTitle>
+                  <p className="text-muted-foreground text-sm">
+                    Separates revenue clicks from trust-source clicks so we know what is helping conversion versus credibility.
+                  </p>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-3 gap-3">
+                    <div className="rounded-xl bg-secondary/40 p-3">
+                      <p className="text-xs text-muted-foreground">Views</p>
+                      <p className="text-2xl font-bold text-foreground">{answerPageViews.toLocaleString()}</p>
+                    </div>
+                    <div className="rounded-xl bg-secondary/40 p-3">
+                      <p className="text-xs text-muted-foreground">Clicks</p>
+                      <p className="text-2xl font-bold text-foreground">{answerPageClicks.toLocaleString()}</p>
+                    </div>
+                    <div className="rounded-xl bg-secondary/40 p-3">
+                      <p className="text-xs text-muted-foreground">Source</p>
+                      <p className="text-2xl font-bold text-foreground">{officialResourceClicks.toLocaleString()}</p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="mb-2 text-sm font-medium text-foreground">Revenue path clicks</p>
+                    {answerRevenuePathCounts.length === 0 ? (
+                      <p className="text-sm text-muted-foreground">No primary answer-page revenue clicks yet.</p>
+                    ) : (
+                      <div className="space-y-2">
+                        {answerRevenuePathCounts.map((item) => (
+                          <div key={item.key} className="flex justify-between gap-3 rounded-lg border border-border p-2 text-sm">
+                            <span className="capitalize text-foreground">{item.label}</span>
+                            <span className="font-medium text-foreground">{item.count}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <div>
+                    <p className="mb-2 text-sm font-medium text-foreground">Official-source clicks</p>
+                    {officialResourceBreakdown.length === 0 ? (
+                      <p className="text-sm text-muted-foreground">No official-source clicks yet.</p>
+                    ) : (
+                      <div className="space-y-2">
+                        {officialResourceBreakdown.slice(0, 4).map((item) => (
+                          <div key={item.key} className="flex justify-between gap-3 rounded-lg border border-border p-2 text-sm">
+                            <span className="text-foreground">{item.label}</span>
+                            <span className="font-medium text-foreground">{item.count}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>

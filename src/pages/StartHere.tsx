@@ -327,6 +327,11 @@ export default function StartHere() {
             resources={trustedResources}
             title="Official safety and treatment resources"
             description="Use these public resources when the situation involves crisis, overdose risk, alcohol risk, treatment location, or immediate safety questions."
+            source="start_here"
+            trackingContext={{
+              selected_path_id: selectedPath.id,
+              selected_path_label: selectedPath.label,
+            }}
           />
         </section>
 

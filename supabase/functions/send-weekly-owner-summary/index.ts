@@ -87,8 +87,13 @@ const renderEmail = (summary: {
   advertiserInquiryCount: number;
   sponsorImpressions: number;
   sponsorClicks: number;
+  answerPageViews: number;
+  answerPageClicks: number;
+  officialResourceClicks: number;
   dueFollowupCount: number;
   topLeadSources: Array<{ label: string; count: number }>;
+  topAnswerPages: Array<{ label: string; views: number; clicks: number; leads: number }>;
+  answerRevenuePathClicks: Array<{ label: string; count: number }>;
   hotLeads: Array<Record<string, string | number | null>>;
   advertiserInquiries: Array<Record<string, string | number | null>>;
 }) => `
@@ -110,6 +115,8 @@ const renderEmail = (summary: {
           ["Closed leads", summary.closedLeadCount],
           ["Advertiser inquiries", summary.advertiserInquiryCount],
           ["Due follow-ups", summary.dueFollowupCount],
+          ["Answer page views", summary.answerPageViews],
+          ["Answer page clicks", summary.answerPageClicks],
           ["Sponsor impressions", summary.sponsorImpressions],
           ["Sponsor clicks", summary.sponsorClicks],
         ].map(([label, value]) => `
@@ -127,6 +134,20 @@ const renderEmail = (summary: {
 
       <h2 style="font-size: 20px; color: #111827; margin-top: 26px;">Top lead source pages</h2>
       ${buildList(summary.topLeadSources.map((source) => `${escapeHtml(source.label)}: <strong>${escapeHtml(source.count)}</strong>`))}
+
+      <h2 style="font-size: 20px; color: #111827; margin-top: 26px;">Top NME answer pages</h2>
+      ${buildList(summary.topAnswerPages.map((page) =>
+        `${escapeHtml(page.label)}: <strong>${escapeHtml(page.views)}</strong> views · <strong>${escapeHtml(page.clicks)}</strong> clicks · <strong>${escapeHtml(page.leads)}</strong> leads`
+      ))}
+
+      <h2 style="font-size: 20px; color: #111827; margin-top: 26px;">Answer page revenue path clicks</h2>
+      ${buildList(summary.answerRevenuePathClicks.map((path) =>
+        `${escapeHtml(path.label)}: <strong>${escapeHtml(path.count)}</strong>`
+      ))}
+
+      <p style="margin-top: 10px; color: #64748b; font-size: 13px;">
+        Official source clicks this week: <strong>${escapeHtml(summary.officialResourceClicks)}</strong>
+      </p>
 
       <h2 style="font-size: 20px; color: #111827; margin-top: 26px;">Advertiser pipeline</h2>
       ${buildList(summary.advertiserInquiries.map((inquiry) =>
@@ -180,6 +201,7 @@ serve(async (req) => {
       bookedResult,
       closedResult,
       leadSourceResult,
+      funnelEventsResult,
       advertiserResult,
     ] = await Promise.all([
       countRows(supabase, "consultation_leads", "created_at", periodStart, periodEnd),
@@ -217,6 +239,12 @@ serve(async (req) => {
         .gte("created_at", periodStart)
         .lt("created_at", periodEnd),
       supabase
+        .from("funnel_events")
+        .select("event_name, page_path, metadata")
+        .gte("created_at", periodStart)
+        .lt("created_at", periodEnd)
+        .in("event_name", ["answer_page_view", "answer_page_click", "official_resource_click"]),
+      supabase
         .from("advertiser_inquiries")
         .select("name, email, company, sponsor_type, monthly_budget, pipeline_status, next_action, created_at")
         .in("pipeline_status", ["new", "contacted", "proposal_sent", "negotiating"])
@@ -229,6 +257,7 @@ serve(async (req) => {
     if (bookedResult.error) throw bookedResult.error;
     if (closedResult.error) throw closedResult.error;
     if (leadSourceResult.error) throw leadSourceResult.error;
+    if (funnelEventsResult.error) throw funnelEventsResult.error;
     if (advertiserResult.error) throw advertiserResult.error;
 
     const sourceCounts = (leadSourceResult.data || []).reduce<Record<string, number>>((acc, lead) => {
@@ -236,6 +265,37 @@ serve(async (req) => {
       acc[key] = (acc[key] || 0) + 1;
       return acc;
     }, {});
+
+    const answerLeadCounts = (leadSourceResult.data || []).reduce<Record<string, number>>((acc, lead) => {
+      const key = lead.page_path || "";
+      if (key.startsWith("/answers/")) acc[key] = (acc[key] || 0) + 1;
+      return acc;
+    }, {});
+
+    const answerPageCounts = (funnelEventsResult.data || []).reduce<Record<string, { views: number; clicks: number }>>((acc, event) => {
+      const key = event.page_path || "unknown";
+      if (!key.startsWith("/answers/")) return acc;
+
+      if (!acc[key]) acc[key] = { views: 0, clicks: 0 };
+      if (event.event_name === "answer_page_view") acc[key].views += 1;
+      if (event.event_name === "answer_page_click") acc[key].clicks += 1;
+      return acc;
+    }, {});
+
+    const answerRevenuePathCounts = (funnelEventsResult.data || []).reduce<Record<string, number>>((acc, event) => {
+      if (event.event_name !== "answer_page_click") return acc;
+      const metadata = event.metadata && typeof event.metadata === "object" && !Array.isArray(event.metadata)
+        ? event.metadata as Record<string, unknown>
+        : {};
+      if (metadata.click_type !== "primary_revenue_path") return acc;
+      const key = typeof metadata.revenue_path === "string" ? metadata.revenue_path : "unknown";
+      acc[key] = (acc[key] || 0) + 1;
+      return acc;
+    }, {});
+
+    const answerPageViews = (funnelEventsResult.data || []).filter((event) => event.event_name === "answer_page_view").length;
+    const answerPageClicks = (funnelEventsResult.data || []).filter((event) => event.event_name === "answer_page_click").length;
+    const officialResourceClicks = (funnelEventsResult.data || []).filter((event) => event.event_name === "official_resource_click").length;
 
     const summary = {
       periodStart,
@@ -248,11 +308,26 @@ serve(async (req) => {
       advertiserInquiryCount,
       sponsorImpressions,
       sponsorClicks,
+      answerPageViews,
+      answerPageClicks,
+      officialResourceClicks,
       dueFollowupCount: dueFollowupsResult.count ?? 0,
       topLeadSources: Object.entries(sourceCounts)
         .map(([label, count]) => ({ label, count }))
         .sort((a, b) => b.count - a.count)
         .slice(0, 6),
+      topAnswerPages: Object.entries(answerPageCounts)
+        .map(([label, counts]) => ({
+          label,
+          views: counts.views,
+          clicks: counts.clicks,
+          leads: answerLeadCounts[label] || 0,
+        }))
+        .sort((a, b) => b.leads - a.leads || b.clicks - a.clicks || b.views - a.views)
+        .slice(0, 6),
+      answerRevenuePathClicks: Object.entries(answerRevenuePathCounts)
+        .map(([label, count]) => ({ label, count }))
+        .sort((a, b) => b.count - a.count),
       hotLeads: hotLeadsResult.data || [],
       advertiserInquiries: advertiserResult.data || [],
     };

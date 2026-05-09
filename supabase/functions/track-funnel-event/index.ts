@@ -7,6 +7,9 @@ const corsHeaders = {
 };
 
 const allowedEvents = new Set([
+  "answer_page_view",
+  "answer_page_click",
+  "official_resource_click",
   "assessment_started",
   "assessment_completed",
   "assessment_route_click",

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, CheckCircle2, HelpCircle, ShieldAlert, UserRoundCheck } from "lucide-react";
 import Header from "@/components/layout/Header";
@@ -18,6 +19,7 @@ import {
   getRelatedGlossaryTerms,
 } from "@/data/aeoAnswers";
 import { getTrustedResourcesForTags } from "@/data/trustedResources";
+import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 
 const laneConfig = {
   support: {
@@ -52,6 +54,20 @@ export default function AnswerDetail() {
   const { answerSlug } = useParams<{ answerSlug: string }>();
   const answer = aeoAnswers.find((item) => item.id === answerSlug);
 
+  useEffect(() => {
+    if (!answer) return;
+
+    void trackFunnelEvent("answer_page_view", {
+      source: "answer_detail",
+      metadata: {
+        answer_id: answer.id,
+        answer_question: answer.question,
+        answer_category: answer.category,
+        revenue_path: answer.revenuePath ?? "assessment",
+      },
+    });
+  }, [answer]);
+
   if (!answer) {
     return (
       <div className="min-h-screen bg-background flex flex-col">
@@ -79,6 +95,21 @@ export default function AnswerDetail() {
     answer.whenToGetHelp ??
     "If this pattern keeps repeating, if safety is changing, or if the family cannot stay aligned, get outside guidance before the next crisis decides for you.";
   const trustedResources = getTrustedResourcesForTags(answer.tags);
+
+  const trackAnswerClick = (clickType: string, targetHref: string, extra: Record<string, unknown> = {}) => {
+    void trackFunnelEvent("answer_page_click", {
+      source: "answer_detail",
+      targetHref,
+      metadata: {
+        answer_id: answer.id,
+        answer_question: answer.question,
+        answer_category: answer.category,
+        revenue_path: answer.revenuePath ?? "assessment",
+        click_type: clickType,
+        ...extra,
+      },
+    });
+  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -176,7 +207,16 @@ export default function AnswerDetail() {
                 <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{helpSignal}</p>
               </article>
 
-              <TrustedResourceList resources={trustedResources} />
+              <TrustedResourceList
+                resources={trustedResources}
+                source="answer_detail"
+                trackingContext={{
+                  answer_id: answer.id,
+                  answer_question: answer.question,
+                  answer_category: answer.category,
+                  revenue_path: answer.revenuePath ?? "assessment",
+                }}
+              />
             </div>
 
             <aside className="space-y-6">
@@ -186,7 +226,12 @@ export default function AnswerDetail() {
                   <h2 className="mt-2 font-serif text-2xl font-bold text-foreground">{lane.label}</h2>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{lane.description}</p>
                   <Button asChild className="mt-5 w-full">
-                    <a href={lane.href}>
+                    <a
+                      href={lane.href}
+                      onClick={() => trackAnswerClick("primary_revenue_path", lane.href, {
+                        label: lane.label,
+                      })}
+                    >
                       Start here
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </a>
@@ -198,7 +243,13 @@ export default function AnswerDetail() {
                 <CardContent className="p-6">
                   <h2 className="font-serif text-2xl font-bold text-foreground">Deeper guide</h2>
                   <p className="mt-3 text-sm text-muted-foreground">{answer.nextStep}</p>
-                  <Link to={answer.href} className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                  <Link
+                    to={answer.href}
+                    className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary"
+                    onClick={() => trackAnswerClick("related_guide", answer.href, {
+                      label: answer.nextStep,
+                    })}
+                  >
                     Open the related guide
                     <ArrowRight className="h-4 w-4" />
                   </Link>
@@ -215,6 +266,10 @@ export default function AnswerDetail() {
                           key={term.slug}
                           to={`/glossary/${term.slug}`}
                           className="block rounded-xl border border-border bg-background p-4 hover:border-primary/40"
+                          onClick={() => trackAnswerClick("glossary_definition", `/glossary/${term.slug}`, {
+                            term_slug: term.slug,
+                            term: term.term,
+                          })}
                         >
                           <p className="font-semibold text-foreground">{term.term}</p>
                           <p className="mt-1 text-sm text-muted-foreground">{term.plainDefinition}</p>
@@ -238,6 +293,10 @@ export default function AnswerDetail() {
                     key={related.id}
                     to={answerDetailPath(related)}
                     className="rounded-2xl border border-border bg-card p-5 hover:border-primary/40"
+                    onClick={() => trackAnswerClick("related_answer", answerDetailPath(related), {
+                      related_answer_id: related.id,
+                      related_answer_question: related.question,
+                    })}
                   >
                     <p className="text-sm font-semibold uppercase tracking-wide text-primary">{related.category}</p>
                     <h3 className="mt-2 font-serif text-xl font-bold text-foreground">{related.question}</h3>
