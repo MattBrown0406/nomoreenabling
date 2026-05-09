@@ -28,6 +28,7 @@ const staticPages: { path: string; priority: string; changefreq: string }[] = [
   { path: "/", priority: "1.0", changefreq: "weekly" },
   { path: "/start-here", priority: "0.95", changefreq: "monthly" },
   { path: "/work-with-matt", priority: "0.95", changefreq: "monthly" },
+  { path: "/enabling-answer-center", priority: "0.95", changefreq: "monthly" },
   { path: "/intervention-help", priority: "0.95", changefreq: "monthly" },
   { path: "/family-addiction-coaching", priority: "0.95", changefreq: "monthly" },
   { path: "/addiction-intervention-for-adult-child", priority: "0.95", changefreq: "monthly" },

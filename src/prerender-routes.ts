@@ -17,6 +17,7 @@ const staticRoutes = [
   "/family-system-notes",
   "/boundaries-course",
   "/start-here",
+  "/enabling-answer-center",
   "/family-situation-assessment",
   "/topic-hubs",
   "/work-with-matt",
