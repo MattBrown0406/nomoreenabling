@@ -83,6 +83,7 @@ import rationalizationsFamiliesEnableImage from "@/assets/rationalizations-famil
 import goodIntentionsEnablingAddictionImage from "@/assets/good-intentions-enabling-addiction.jpg";
 import codependencySpousesParentsSiblingsImage from "@/assets/codependency-spouses-parents-siblings.jpg";
 import conflictAvoidanceEnablingImage from "@/assets/conflict-avoidance-enabling-addiction.jpg";
+import healthyBoundaryWithAddictImage from "@/assets/healthy-boundary-with-addict.jpg";
 import supportRecoveryWithoutEnablingImage from "@/assets/support-recovery-without-enabling.jpg";
 import whatHappensAddictionTreatmentFamiliesImage from "@/assets/what-happens-addiction-treatment-families.jpg";
 import whenIsItTimeProfessionalInterventionImage from "@/assets/when-is-it-time-professional-intervention.jpg";
@@ -1998,5 +1999,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "conflict-avoidance-enabling-addiction-family",
     metaTitle: "Conflict Avoidance & Enabling Addiction in Families",
     metaDescription: "Keeping the peace with an addicted loved one feels like kindness — but it may be fueling the problem. Learn how conflict avoidance enables addiction.",
+  },
+  {
+    id: "149",
+    title: "What Is a Healthy Boundary With an Addict? (It's Not What Most Families Think)",
+    excerpt: "A healthy boundary with an addict isn't about controlling them — it's about deciding what YOU will do. Learn the real definition and why it changes everything.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Support", "Enabling", "Communication"],
+    readTime: "9 min read",
+    date: "May 11, 2026",
+    image: healthyBoundaryWithAddictImage,
+    slug: "healthy-boundary-with-addict",
+    metaTitle: "What Is a Healthy Boundary With an Addict?",
+    metaDescription: "A healthy boundary with an addict isn't about controlling them — it's about deciding what YOU will do. Learn the real definition and why it changes everything.",
   }
 ];
