@@ -111,6 +111,11 @@ export default function AnswerDetail() {
   const canonicalUrl = `https://nomoreenabling.com${answerDetailPath(answer)}`;
   const relatedAnswers = getRelatedAnswers(answer);
   const lane = laneConfig[answer.revenuePath ?? "assessment"];
+  const primaryCta = {
+    label: answer.primaryCtaLabel ?? lane.label,
+    href: answer.primaryCtaHref ?? lane.href,
+    description: answer.primaryCtaDescription ?? lane.description,
+  };
   const sameCategoryAnswers = aeoAnswers
     .filter((candidate) => candidate.id !== answer.id && candidate.category === answer.category)
     .slice(0, 4);
@@ -255,13 +260,13 @@ export default function AnswerDetail() {
               <Card className="border-primary/20 bg-primary/5">
                 <CardContent className="p-6">
                   <p className="text-sm font-semibold uppercase tracking-wide text-primary">Best next step for this question</p>
-                  <h2 className="mt-2 font-serif text-2xl font-bold text-foreground">{lane.label}</h2>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{lane.description}</p>
+                  <h2 className="mt-2 font-serif text-2xl font-bold text-foreground">{primaryCta.label}</h2>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{primaryCta.description}</p>
                   <Button asChild className="mt-5 w-full">
                     <a
-                      href={lane.href}
-                      onClick={() => trackAnswerClick("primary_revenue_path", lane.href, {
-                        label: lane.label,
+                      href={primaryCta.href}
+                      onClick={() => trackAnswerClick("primary_revenue_path", primaryCta.href, {
+                        label: primaryCta.label,
                       })}
                     >
                       Start here
@@ -272,7 +277,7 @@ export default function AnswerDetail() {
                     <p className="text-xs font-semibold uppercase tracking-wide text-primary">If this is not the exact fit</p>
                     <div className="mt-3 space-y-3">
                       {ctaHierarchy
-                        .filter((item) => item.href !== lane.href)
+                        .filter((item) => item.href !== primaryCta.href)
                         .map((item) => (
                           <a
                             key={item.id}

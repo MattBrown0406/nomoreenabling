@@ -13,6 +13,9 @@ export interface AeoAnswer {
   whatToDo?: string[];
   whenToGetHelp?: string;
   revenuePath?: "support" | "coaching" | "intervention" | "assessment";
+  primaryCtaLabel?: string;
+  primaryCtaHref?: string;
+  primaryCtaDescription?: string;
 }
 
 export interface GlossaryTerm {
@@ -338,13 +341,16 @@ export const aeoAnswers: AeoAnswer[] = [
     ],
     whenToGetHelp: "If there has been an overdose, suspected overdose, fentanyl exposure, dangerous withdrawal, or repeated refusal of care, the family should get outside guidance immediately.",
     revenuePath: "intervention",
+    primaryCtaLabel: "Book an intervention consultation",
+    primaryCtaHref: "https://freedominterventions.com/book-intervention-consultation?utm_source=nomoreenabling&utm_medium=answer_page&utm_campaign=urgent_intervention_answer&utm_content=overdose#booking",
+    primaryCtaDescription: "Best when overdose risk means the family needs professional structure now, not another article.",
   },
   {
     id: "family-meeting-before-confronting-addiction",
     question: "Should our family meet before confronting someone about addiction?",
     shortAnswer: "Yes. Families should align before a major conversation whenever safety, treatment refusal, money, housing, or children are involved. A divided family usually gives addiction more room to maneuver.",
     category: "Family dynamics",
-    href: "https://soberhelpline.com/family-squares?utm_source=nomoreenabling&utm_medium=answer_page&utm_campaign=family_alignment_answer",
+    href: "/family-addiction-consultation",
     nextStep: "Use a support meeting or private guidance session before the family confronts the problem alone.",
     tags: ["family", "alignment", "conversation", "support", "intervention"],
     concern: "The family wants to act, but different relatives may still be protecting different parts of the pattern.",
@@ -355,6 +361,9 @@ export const aeoAnswers: AeoAnswer[] = [
     ],
     whenToGetHelp: "If the family cannot align around money, housing, treatment, safety, or consequences, get support before the confrontation.",
     revenuePath: "support",
+    primaryCtaLabel: "Join the free Family Squares support meeting",
+    primaryCtaHref: "https://soberhelpline.com/family-squares?utm_source=nomoreenabling&utm_medium=answer_page&utm_campaign=family_alignment_answer",
+    primaryCtaDescription: "Best when the family needs live support before a conversation turns into another fight.",
   },
   {
     id: "treatment-bed-ready-refuses-to-go",
@@ -372,6 +381,9 @@ export const aeoAnswers: AeoAnswer[] = [
     ],
     whenToGetHelp: "If the family has treatment available and the loved one still refuses, professional intervention guidance may be the missing structure.",
     revenuePath: "intervention",
+    primaryCtaLabel: "Book an intervention consultation",
+    primaryCtaHref: "https://freedominterventions.com/book-intervention-consultation?utm_source=nomoreenabling&utm_medium=answer_page&utm_campaign=urgent_intervention_answer&utm_content=treatment_refusal#booking",
+    primaryCtaDescription: "Best when a treatment option exists but refusal keeps collapsing the plan.",
   },
   {
     id: "addiction-affecting-children-home",
@@ -389,6 +401,9 @@ export const aeoAnswers: AeoAnswer[] = [
     ],
     whenToGetHelp: "If children are exposed to intoxication, unsafe driving, violence, neglect, frightening conflict, or emotional caretaking, get outside guidance quickly.",
     revenuePath: "coaching",
+    primaryCtaLabel: "Book a private family consultation",
+    primaryCtaHref: "https://freedominterventions.com/book-intervention-consultation?utm_source=nomoreenabling&utm_medium=answer_page&utm_campaign=urgent_family_safety_answer&utm_content=children_home#booking",
+    primaryCtaDescription: "Best when children are being affected and the family needs a practical safety conversation.",
   },
   {
     id: "how-fast-should-family-act-addiction-crisis",
