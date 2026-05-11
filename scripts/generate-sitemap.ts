@@ -37,6 +37,11 @@ const answerPages = [
   "what-to-say-refuses-rehab",
   "family-disagrees-boundaries",
   "boundaries-vs-ultimatums",
+  "loved-one-overdosed-what-now",
+  "family-meeting-before-confronting-addiction",
+  "treatment-bed-ready-refuses-to-go",
+  "addiction-affecting-children-home",
+  "how-fast-should-family-act-addiction-crisis",
 ];
 
 export interface SitemapArticle {
