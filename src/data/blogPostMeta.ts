@@ -84,6 +84,7 @@ import goodIntentionsEnablingAddictionImage from "@/assets/good-intentions-enabl
 import codependencySpousesParentsSiblingsImage from "@/assets/codependency-spouses-parents-siblings.jpg";
 import conflictAvoidanceEnablingImage from "@/assets/conflict-avoidance-enabling-addiction.jpg";
 import healthyBoundaryWithAddictImage from "@/assets/healthy-boundary-with-addict.jpg";
+import boundaryVsThreatAddictionImage from "@/assets/boundary-vs-threat-addiction.jpg";
 import supportRecoveryWithoutEnablingImage from "@/assets/support-recovery-without-enabling.jpg";
 import whatHappensAddictionTreatmentFamiliesImage from "@/assets/what-happens-addiction-treatment-families.jpg";
 import whenIsItTimeProfessionalInterventionImage from "@/assets/when-is-it-time-professional-intervention.jpg";
@@ -2012,5 +2013,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "healthy-boundary-with-addict",
     metaTitle: "What Is a Healthy Boundary With an Addict?",
     metaDescription: "A healthy boundary with an addict isn't about controlling them — it's about deciding what YOU will do. Learn the real definition and why it changes everything.",
+  },
+  {
+    id: "150",
+    title: "Boundaries vs. Threats: Why One Protects You and One Just Prolongs the Pain",
+    excerpt: "Learn the difference between a boundary and a threat when a loved one struggles with addiction — and why one protects you while the other prolongs the pain.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Support", "Enabling", "Communication"],
+    readTime: "9 min read",
+    date: "May 12, 2026",
+    image: boundaryVsThreatAddictionImage,
+    slug: "boundary-vs-threat-addiction-families",
+    metaTitle: "Boundary vs. Threat in Addiction: Know the Difference",
+    metaDescription: "Learn the difference between a boundary and a threat when a loved one struggles with addiction — and why one protects you while the other prolongs the pain.",
   }
 ];

@@ -150,4 +150,5 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "codependency-spouses-parents-siblings-addiction": () => import("./article-content/codependency-spouses-parents-siblings"),
   "conflict-avoidance-enabling-addiction-family": () => import("./article-content/conflict-avoidance-enabling-addiction-family"),
   "healthy-boundary-with-addict": () => import("./article-content/healthy-boundary-with-addict"),
+  "boundary-vs-threat-addiction-families": () => import("./article-content/boundary-vs-threat-addiction-families"),
 };
