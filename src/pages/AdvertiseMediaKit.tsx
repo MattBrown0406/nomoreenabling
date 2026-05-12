@@ -58,6 +58,28 @@ const AdvertiseMediaKit = () => {
     "Weekly owner summaries for campaign review",
     "CSV exports for advertiser recaps",
   ];
+  const proofPackage = [
+    {
+      label: "Traffic and inventory snapshot",
+      detail: "Indexable route count, article volume, answer pages, topic hubs, current sponsor inventory, and available monthly placements.",
+    },
+    {
+      label: "Audience intent summary",
+      detail: "Top family addiction topics, lead magnet themes, money pages, and answer paths that show what readers are actively trying to solve.",
+    },
+    {
+      label: "Campaign performance recap",
+      detail: "Sponsor impressions, sponsor clicks, page paths, placement names, top pages, and click-through rate where data is available.",
+    },
+    {
+      label: "Lead and business context",
+      detail: "Consultation requests, advertiser inquiries, source pages, and funnel actions summarized without exposing private family information.",
+    },
+    {
+      label: "Next-month recommendation",
+      detail: "A practical renewal note: keep, move, expand, or pause placements based on page performance and sponsor fit.",
+    },
+  ];
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -176,6 +198,35 @@ const AdvertiseMediaKit = () => {
                   <div key={item} className="rounded-xl border border-border bg-background p-4">
                     <CheckCircle2 className="h-4 w-4 text-primary" />
                     <p className="mt-2 text-sm font-medium text-foreground">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="container mx-auto px-4 pb-12">
+          <div className="rounded-2xl border border-border bg-card p-6 md:p-8">
+            <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+              <div>
+                <p className="text-sm uppercase tracking-wide text-primary font-medium">Advertiser proof package</p>
+                <h2 className="font-serif text-3xl font-bold text-foreground mt-2">What a sponsor should receive each month</h2>
+                <p className="mt-3 text-muted-foreground">
+                  This keeps No More Enabling positioned as a premium advertising product: sponsors should see audience context, campaign activity, and the next recommendation in one clean recap.
+                </p>
+              </div>
+              <div className="grid gap-3">
+                {proofPackage.map((item, index) => (
+                  <div key={item.label} className="rounded-xl border border-border bg-background p-4">
+                    <div className="flex gap-3">
+                      <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
+                        {index + 1}
+                      </span>
+                      <div>
+                        <p className="font-medium text-foreground">{item.label}</p>
+                        <p className="mt-1 text-sm text-muted-foreground">{item.detail}</p>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>

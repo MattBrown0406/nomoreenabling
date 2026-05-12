@@ -88,6 +88,7 @@ const staticPages: { path: string; priority: string; changefreq: string }[] = [
   { path: "/glossary/crisis-support", priority: "0.8", changefreq: "monthly" },
   { path: "/about", priority: "0.8", changefreq: "monthly" },
   { path: "/advertise", priority: "0.7", changefreq: "monthly" },
+  { path: "/advertise/media-kit", priority: "0.7", changefreq: "monthly" },
   { path: "/boundaries-course", priority: "0.8", changefreq: "monthly" },
   { path: "/family-support-guide", priority: "0.8", changefreq: "monthly" },
   { path: "/helping-or-enabling", priority: "0.8", changefreq: "monthly" },
