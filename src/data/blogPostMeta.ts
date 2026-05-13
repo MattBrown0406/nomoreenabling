@@ -85,6 +85,7 @@ import codependencySpousesParentsSiblingsImage from "@/assets/codependency-spous
 import conflictAvoidanceEnablingImage from "@/assets/conflict-avoidance-enabling-addiction.jpg";
 import healthyBoundaryWithAddictImage from "@/assets/healthy-boundary-with-addict.jpg";
 import boundaryVsThreatAddictionImage from "@/assets/boundary-vs-threat-addiction.jpg";
+import realBoundaryFeelsLikeImage from "@/assets/real-boundary-feels-like-addiction.jpg";
 import supportRecoveryWithoutEnablingImage from "@/assets/support-recovery-without-enabling.jpg";
 import whatHappensAddictionTreatmentFamiliesImage from "@/assets/what-happens-addiction-treatment-families.jpg";
 import whenIsItTimeProfessionalInterventionImage from "@/assets/when-is-it-time-professional-intervention.jpg";
@@ -2026,5 +2027,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "boundary-vs-threat-addiction-families",
     metaTitle: "Boundary vs. Threat in Addiction: Know the Difference",
     metaDescription: "Learn the difference between a boundary and a threat when a loved one struggles with addiction — and why one protects you while the other prolongs the pain.",
+  },
+  {
+    id: "151",
+    title: "What a Real Boundary Actually Feels Like (And Why Most Families Are Surprised)",
+    excerpt: "Most families expect setting a healthy boundary to feel empowering. Learn why real limits feel uncomfortable at first — and why that's a sign you're doing it right.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Support", "Enabling", "Communication"],
+    readTime: "9 min read",
+    date: "May 13, 2026",
+    image: realBoundaryFeelsLikeImage,
+    slug: "real-boundary-feels-like-addiction-family",
+    metaTitle: "What a Real Boundary Actually Feels Like in Addiction",
+    metaDescription: "Most families expect setting a healthy boundary to feel empowering. Learn why real limits feel uncomfortable at first — and why that's a sign you're doing it right.",
   }
 ];
