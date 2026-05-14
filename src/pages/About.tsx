@@ -51,10 +51,10 @@ const About = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead
-        title="About No More Enabling"
-        description="Learn about No More Enabling, founded by interventionist Matt Brown. See the experience, editorial standards, and family-first approach behind the site."
+        title="Matt Brown Interventionist | About No More Enabling"
+        description="Meet Matt Brown, the interventionist behind No More Enabling. Learn how his recovery, family coaching, and intervention work help families stop enabling addiction."
         canonicalUrl="https://nomoreenabling.com/about"
-        keywords="Matt Brown interventionist, No More Enabling about, family addiction education, enabling boundaries resource"
+        keywords="Matt Brown interventionist, No More Enabling about, family addiction coaching, enabling boundaries resource"
         articleAuthor="Matt Brown"
       />
       <FAQJsonLd faqs={aboutFaqs} />
@@ -71,10 +71,13 @@ const About = () => {
         <section className="py-16 md:py-24 bg-gradient-to-br from-brick-light/50 to-transparent">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground">About No More Enabling</h1>
+              <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground">
+                Matt Brown, the interventionist behind No More Enabling
+              </h1>
               <p className="mt-6 text-lg text-muted-foreground">
-                This site exists for families who are trying hard, carrying a lot, and need something more useful than
-                recycled encouragement. The goal is clarity, steadier decisions, and support that does not fall apart when stress rises.
+                Families usually arrive here after too many arguments, rescues, promises, and sleepless nights. This site
+                gives them clear addiction-family guidance from a professional interventionist who knows how enabling,
+                fear, guilt, and treatment resistance actually work at home.
               </p>
             </div>
           </div>
@@ -126,6 +129,11 @@ const About = () => {
                   Matt Brown is a professional interventionist and the founder of No More Enabling. Since 2004, he has worked
                   directly with families in the hardest moments of addiction — the late-night phone calls, the standoffs over
                   treatment, the relapses, and the slow, quieter work of rebuilding trust afterward.
+                </p>
+                <p>
+                  If you searched for Matt Brown interventionist, family addiction coaching, or help for a loved one who keeps
+                  refusing treatment, this is the background that matters: his work is not built around slogans. It is built
+                  around helping families stop reacting from panic and start making decisions they can actually hold.
                 </p>
                 <p>
                   His approach is shaped by one stubborn pattern he kept seeing: families rarely lacked love or effort. What

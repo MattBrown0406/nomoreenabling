@@ -1,6 +1,7 @@
 export default `
-      <p>Money is one of the most emotionally loaded parts of parenting an addicted adult child. Parents often say, "I am not giving them money for drugs. I am paying rent." Or, "I am not enabling. I am making sure the car insurance stays active." That distinction makes sense emotionally, but addiction often benefits from money indirectly.</p>
-      <p>Financial boundaries are not about punishment. They are about refusing to keep absorbing the cost of a pattern that your adult child needs to face honestly.</p>
+      <p>If you are paying rent, phone bills, car insurance, legal costs, groceries, or emergency expenses for an addicted adult child, the question is not whether you love them. The question is whether the money is helping recovery or quietly protecting the addiction from consequences.</p>
+      <p>Financial boundaries with an addicted adult child are not about punishment. They are about deciding what you will stop paying for, what recovery support you are still willing to provide, and how to stop letting crisis calls make the decision for you.</p>
+      <p>Parents often say, "I am not giving them money for drugs. I am paying rent." Or, "I am not enabling. I am making sure the car insurance stays active." That distinction makes sense emotionally, but addiction often benefits from money indirectly.</p>
 
       <h2>Why Money Becomes So Complicated</h2>
       <p>Money can symbolize care, protection, loyalty, and hope. When your adult child is struggling, not helping financially can feel like withdrawing love. But addiction can convert ordinary help into a pressure-release valve.</p>

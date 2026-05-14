@@ -85,14 +85,14 @@ export const commercialIntentPages: CommercialIntentPage[] = [
   {
     slug: "family-addiction-coaching",
     eyebrow: "Family addiction coaching",
-    title: "Family addiction coaching for boundaries, relapse, and treatment decisions",
-    metaTitle: "Family Addiction Coaching | Boundaries and Treatment Guidance",
+    title: "Family addiction coaching for parents, spouses, and siblings",
+    metaTitle: "Family Addiction Coaching for Parents, Spouses, and Siblings",
     description:
-      "Private family addiction coaching for loved ones who need help with boundaries, enabling, relapse, treatment refusal, and family alignment.",
+      "Private family addiction coaching for parents, spouses, and siblings who need help with enabling, boundaries, treatment refusal, relapse, and family alignment.",
     keywords:
-      "family addiction coaching, addiction family coach, family recovery coaching, addiction boundaries coaching, help for families of addicts",
+      "family addiction coaching, addiction family coach, family recovery coaching, help for families of addicts, addiction boundaries coaching",
     audience:
-      "parents, spouses, siblings, and loved ones who need practical guidance before the situation becomes another crisis.",
+      "parents, spouses, siblings, and loved ones who need practical guidance before the next crisis, relapse, money request, or treatment argument.",
     urgency: "steady",
     primaryOffer: "coaching",
     defaultConcern: "We need family addiction coaching",

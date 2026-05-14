@@ -1,7 +1,7 @@
 export default `
+      <p>Codependency in addiction families does not look the same for everyone. A spouse may become the emotional monitor. A parent may keep rescuing from guilt. A sibling may become the secret-keeper or crisis absorber. The pattern is similar, but the signs are different depending on your role.</p>
       <p>If you've been told you're codependent, you may have nodded along while quietly thinking: <em>but I'm not like that</em>. Maybe you picture codependency as something dramatic — a spouse who bails someone out of jail, a parent who calls in sick for their adult child, a person who completely loses themselves. And maybe your situation doesn't look like that at all.</p>
-      <p>Here's what most people don't know: codependency doesn't have a single face. It shapes itself around your relationship to the person struggling. A husband's codependency looks different from a mother's. A sibling's looks different from both. Same root pattern, very different expressions.</p>
-      <p>Understanding how codependency shows up in your specific role — as a spouse, a parent, or a sibling — is one of the most practical things you can do. Because you can't change what you can't see clearly. And once you see it, you have options.</p>
+      <p>Understanding how codependency shows up for spouses, parents, and siblings is one of the most practical things you can do. Because you can't change what you can't see clearly. And once you see it, you have options.</p>
 
       <h2>What Is Codependency, Really?</h2>
       <p>Codependency is a pattern of over-focusing on someone else's problems, feelings, and needs at the expense of your own. In families affected by addiction, it usually develops gradually — not because anyone is weak or foolish, but because the situation demands constant adaptation.</p>
