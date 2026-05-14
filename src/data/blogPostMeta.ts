@@ -86,6 +86,7 @@ import conflictAvoidanceEnablingImage from "@/assets/conflict-avoidance-enabling
 import healthyBoundaryWithAddictImage from "@/assets/healthy-boundary-with-addict.jpg";
 import boundaryVsThreatAddictionImage from "@/assets/boundary-vs-threat-addiction.jpg";
 import realBoundaryFeelsLikeImage from "@/assets/real-boundary-feels-like-addiction.jpg";
+import noBoundariesAddictedLovedOneImage from "@/assets/no-boundaries-addicted-loved-one.jpg";
 import supportRecoveryWithoutEnablingImage from "@/assets/support-recovery-without-enabling.jpg";
 import whatHappensAddictionTreatmentFamiliesImage from "@/assets/what-happens-addiction-treatment-families.jpg";
 import whenIsItTimeProfessionalInterventionImage from "@/assets/when-is-it-time-professional-intervention.jpg";
@@ -2040,5 +2041,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "real-boundary-feels-like-addiction-family",
     metaTitle: "What a Real Boundary Actually Feels Like in Addiction",
     metaDescription: "Most families expect setting a healthy boundary to feel empowering. Learn why real limits feel uncomfortable at first — and why that's a sign you're doing it right.",
+  },
+  {
+    id: "152",
+    title: "What Happens When You Have No Boundaries With an Addicted Loved One",
+    excerpt: "Living without boundaries when a loved one is addicted quietly destroys your health, relationships, and their chance at recovery. Here's what no limits actually costs.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Support", "Enabling", "Communication"],
+    readTime: "10 min read",
+    date: "May 14, 2026",
+    image: noBoundariesAddictedLovedOneImage,
+    slug: "no-boundaries-addicted-loved-one",
+    metaTitle: "No Boundaries With an Addicted Loved One: True Cost",
+    metaDescription: "Living without boundaries when a loved one is addicted quietly destroys your health, relationships, and their chance at recovery. Here's what no limits actually costs.",
   }
 ];
