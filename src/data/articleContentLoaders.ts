@@ -152,4 +152,5 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "healthy-boundary-with-addict": () => import("./article-content/healthy-boundary-with-addict"),
   "boundary-vs-threat-addiction-families": () => import("./article-content/boundary-vs-threat-addiction-families"),
   "real-boundary-feels-like-addiction-family": () => import("./article-content/real-boundary-feels-like-addiction-family"),
+  "no-boundaries-addicted-loved-one": () => import("./article-content/no-boundaries-addicted-loved-one"),
 };
