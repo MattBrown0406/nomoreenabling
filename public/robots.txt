@@ -16,6 +16,9 @@ User-agent: LinkedInBot
 Allow: /
 
 # AI and Answer Engine Crawlers
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: GPTBot
 Allow: /
 
