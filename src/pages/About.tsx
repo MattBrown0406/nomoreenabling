@@ -51,10 +51,10 @@ const About = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead
-        title="Matt Brown Interventionist | About No More Enabling"
-        description="Meet Matt Brown, the interventionist behind No More Enabling. Learn how his recovery, family coaching, and intervention work help families stop enabling addiction."
+        title="Matt Brown Interventionist & Family Addiction Coaching | No More Enabling"
+        description="Meet Matt Brown, professional interventionist and family addiction coach. Get clear help for enabling, boundaries, treatment refusal, and loved-one addiction."
         canonicalUrl="https://nomoreenabling.com/about"
-        keywords="Matt Brown interventionist, No More Enabling about, family addiction coaching, enabling boundaries resource"
+        keywords="Matt Brown interventionist, family addiction coaching, addiction family coach, professional interventionist, treatment refusal, enabling boundaries resource"
         articleAuthor="Matt Brown"
       />
       <FAQJsonLd faqs={aboutFaqs} />
@@ -72,13 +72,24 @@ const About = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground">
-                Matt Brown, the interventionist behind No More Enabling
+                Matt Brown interventionist and family addiction coach
               </h1>
               <p className="mt-6 text-lg text-muted-foreground">
                 Families usually arrive here after too many arguments, rescues, promises, and sleepless nights. This site
                 gives them clear addiction-family guidance from a professional interventionist who knows how enabling,
                 fear, guilt, and treatment resistance actually work at home.
               </p>
+              <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+                <Button asChild size="lg">
+                  <Link to="/work-with-matt">
+                    Request private guidance
+                    <ArrowRight size={18} />
+                  </Link>
+                </Button>
+                <Button variant="outline" asChild size="lg">
+                  <Link to="/family-addiction-coaching">Family addiction coaching</Link>
+                </Button>
+              </div>
             </div>
           </div>
         </section>
@@ -116,6 +127,9 @@ const About = () => {
                     <Link to="/family-support-guide" className="block font-medium text-foreground hover:text-primary transition-colors">
                       Family Support Guide
                     </Link>
+                    <Link to="/family-addiction-coaching" className="block font-medium text-foreground hover:text-primary transition-colors">
+                      Family Addiction Coaching
+                    </Link>
                     <Link to="/articles" className="block font-medium text-foreground hover:text-primary transition-colors">
                       Latest articles
                     </Link>
@@ -126,9 +140,9 @@ const About = () => {
               <div className="prose prose-lg max-w-none text-muted-foreground">
                 <h2 className="font-serif text-3xl font-bold text-foreground mb-6 not-prose">Meet Matt Brown</h2>
                 <p>
-                  Matt Brown is a professional interventionist and the founder of No More Enabling. Since 2004, he has worked
-                  directly with families in the hardest moments of addiction — the late-night phone calls, the standoffs over
-                  treatment, the relapses, and the slow, quieter work of rebuilding trust afterward.
+                  Matt Brown is a professional interventionist, family addiction coach, and the founder of No More Enabling.
+                  Since 2004, he has worked directly with families in the hardest moments of addiction — the late-night phone
+                  calls, the standoffs over treatment, the relapses, and the slow, quieter work of rebuilding trust afterward.
                 </p>
                 <p>
                   If you searched for Matt Brown interventionist, family addiction coaching, or help for a loved one who keeps
