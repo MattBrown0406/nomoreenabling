@@ -87,6 +87,7 @@ import healthyBoundaryWithAddictImage from "@/assets/healthy-boundary-with-addic
 import boundaryVsThreatAddictionImage from "@/assets/boundary-vs-threat-addiction.jpg";
 import realBoundaryFeelsLikeImage from "@/assets/real-boundary-feels-like-addiction.jpg";
 import noBoundariesAddictedLovedOneImage from "@/assets/no-boundaries-addicted-loved-one.jpg";
+import whyBoundariesProtectImage from "@/assets/why-boundaries-protect-addicted-loved-one.jpg";
 import supportRecoveryWithoutEnablingImage from "@/assets/support-recovery-without-enabling.jpg";
 import whatHappensAddictionTreatmentFamiliesImage from "@/assets/what-happens-addiction-treatment-families.jpg";
 import whenIsItTimeProfessionalInterventionImage from "@/assets/when-is-it-time-professional-intervention.jpg";
@@ -2054,5 +2055,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "no-boundaries-addicted-loved-one",
     metaTitle: "No Boundaries With an Addicted Loved One: True Cost",
     metaDescription: "Living without boundaries when a loved one is addicted quietly destroys your health, relationships, and their chance at recovery. Here's what no limits actually costs.",
+  },
+  {
+    id: "153",
+    title: "Why Boundaries Actually Protect Your Addicted Loved One — Not Just You",
+    excerpt: "Healthy boundaries with an addicted loved one don't just protect you — they protect them too. Here's why limits are one of the most loving things a family can offer.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Support", "Enabling", "Communication"],
+    readTime: "9 min read",
+    date: "May 15, 2026",
+    image: whyBoundariesProtectImage,
+    slug: "why-boundaries-protect-addicted-loved-one",
+    metaTitle: "Why Boundaries Protect Your Addicted Loved One",
+    metaDescription: "Healthy boundaries with an addicted loved one don't just protect you — they protect them too. Here's why limits are one of the most loving things you can offer.",
   }
 ];
