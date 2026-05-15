@@ -85,10 +85,10 @@ export const commercialIntentPages: CommercialIntentPage[] = [
   {
     slug: "family-addiction-coaching",
     eyebrow: "Family addiction coaching",
-    title: "Family addiction coaching for parents, spouses, and siblings",
-    metaTitle: "Family Addiction Coaching for Parents, Spouses, and Siblings",
+    title: "Family addiction coaching for families stuck in enabling, relapse, or treatment refusal",
+    metaTitle: "Family Addiction Coaching | Boundaries, Enabling & Treatment Refusal",
     description:
-      "Private family addiction coaching for parents, spouses, and siblings who need help with enabling, boundaries, treatment refusal, relapse, and family alignment.",
+      "Private family addiction coaching for parents, spouses, and siblings who need help with enabling, boundaries, treatment refusal, relapse, money, and family alignment.",
     keywords:
       "family addiction coaching, addiction family coach, family recovery coaching, help for families of addicts, addiction boundaries coaching",
     audience:
@@ -98,6 +98,7 @@ export const commercialIntentPages: CommercialIntentPage[] = [
     defaultConcern: "We need family addiction coaching",
     leadIntent: "family-addiction-coaching",
     trustProof: [
+      "Led by a professional interventionist with family addiction experience since 2004",
       "Focused on family systems, not shame or lectures",
       "Useful before, during, or after treatment decisions",
       "Designed to turn article insight into decisions the family can hold",
@@ -126,7 +127,7 @@ export const commercialIntentPages: CommercialIntentPage[] = [
     relatedLinks: [
       { label: "Helping or Enabling Tool", href: "/helping-or-enabling", description: "Start with a quick pattern check." },
       { label: "Boundaries Hub", href: "/topic-hubs/boundaries", description: "Read the boundary path in a smarter order." },
-      { label: "Family Situation Assessment", href: "/family-situation-assessment", description: "Route the situation before the next hard conversation." },
+      { label: "Work With Matt", href: "/work-with-matt", description: "Request private guidance when the family needs a plan." },
     ],
     faqs: [
       {
