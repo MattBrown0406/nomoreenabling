@@ -10,6 +10,18 @@ import SEOHead from "@/components/seo/SEOHead";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import ItemListJsonLd from "@/components/seo/ItemListJsonLd";
 
+const categorySeoCopy: Record<string, { title: string; description: string; intro: string; keywords: string }> = {
+  "financial-enabling": {
+    title: "Financial Enabling Articles for Families",
+    description:
+      "Learn what to stop paying for, when money helps recovery, and how families can set financial boundaries without abandoning an addicted loved one.",
+    intro:
+      "Money is often where helping turns into enabling. These articles help parents, spouses, and family members decide what support points toward recovery and what keeps addiction protected.",
+    keywords:
+      "financial enabling, addicted adult child money, addiction financial boundaries, stop paying rent addiction, family addiction support",
+  },
+};
+
 const Category = () => {
   const { slug } = useParams<{ slug: string }>();
   
@@ -34,16 +46,18 @@ const Category = () => {
     window.scrollTo(0, 0);
   }, [categoryName]);
 
+  const seoCopy = slug ? categorySeoCopy[slug.toLowerCase()] : undefined;
+
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title={filteredPosts.length > 0 ? `${categoryName} Articles` : "Category Not Found"}
+        title={filteredPosts.length > 0 ? seoCopy?.title || `${categoryName} Articles` : "Category Not Found"}
         description={filteredPosts.length > 0 
-          ? `Browse all articles about ${categoryName.toLowerCase()}. Find insights, strategies, and support for families dealing with addiction and codependency.`
+          ? seoCopy?.description || `Browse all articles about ${categoryName.toLowerCase()}. Find insights, strategies, and support for families dealing with addiction and codependency.`
           : "This category doesn't exist or has no articles yet."
         }
         canonicalUrl={`https://nomoreenabling.com/category/${slug}`}
-        keywords={filteredPosts.length > 0 ? `${categoryName.toLowerCase()}, addiction articles, family support, codependency resources` : undefined}
+        keywords={filteredPosts.length > 0 ? seoCopy?.keywords || `${categoryName.toLowerCase()}, addiction articles, family support, codependency resources` : undefined}
         noindex={filteredPosts.length === 0}
       />
       <BreadcrumbJsonLd
@@ -80,7 +94,7 @@ const Category = () => {
             {categoryName}
           </h1>
           <p className="text-muted-foreground text-lg">
-            {filteredPosts.length} {filteredPosts.length === 1 ? "article" : "articles"} in this category
+            {seoCopy?.intro || `${filteredPosts.length} ${filteredPosts.length === 1 ? "article" : "articles"} in this category`}
           </p>
         </div>
 
