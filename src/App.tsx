@@ -38,10 +38,12 @@ import CookiePolicy from "./pages/CookiePolicy";
 import NotFound from "./pages/NotFound";
 import ContactFormWidget from "./components/ContactFormWidget";
 import GoogleAnalytics from "./components/analytics/GoogleAnalytics";
+import SocialShareUrlGuard from "./components/SocialShareUrlGuard";
 
 export const AppRoutes = () => (
   <>
     <GoogleAnalytics />
+    <SocialShareUrlGuard />
     <OrganizationJsonLd />
     <ContactFormWidget />
     <Routes>
