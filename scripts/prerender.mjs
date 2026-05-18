@@ -3,6 +3,15 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createServer } from "vite";
 
+// Vite sometimes logs "✘ [ERROR] The build was canceled" on clean shutdown in constrained
+// environments (even when prerender succeeds). It is noise for this script, so silence it.
+const originalConsoleError = console.error;
+console.error = (...args) => {
+  const message = String(args[0] ?? "");
+  if (message.includes("The build was canceled")) return;
+  originalConsoleError(...args);
+};
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const root = path.resolve(__dirname, "..");
@@ -46,7 +55,13 @@ const vite = await createServer({
   root,
   logLevel: "error",
   appType: "custom",
-  server: { middlewareMode: true, hmr: false },
+  optimizeDeps: { disabled: true },
+  server: {
+    middlewareMode: true,
+    hmr: false,
+    ws: false,
+    host: "127.0.0.1",
+  },
 });
 
 try {
