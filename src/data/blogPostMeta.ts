@@ -2068,5 +2068,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "why-boundaries-protect-addicted-loved-one",
     metaTitle: "Why Boundaries Protect Your Addicted Loved One",
     metaDescription: "Healthy boundaries with an addicted loved one don't just protect you — they protect them too. Here's why limits are one of the most loving things you can offer.",
+  },
+  {
+    id: "154",
+    title: "Getting Your Family on the Same Page About Addiction Boundaries",
+    excerpt: "When addiction divides your family, your limits collapse. Learn how to align with other family members so your loved one can't play one person against another.",
+    category: "Family Support",
+    categories: ["Family Support", "Boundaries", "Communication", "Enabling"],
+    readTime: "10 min read",
+    date: "May 18, 2026",
+    image: addictionFamilyCommunicationImage,
+    slug: "family-same-page-addiction-boundaries",
+    metaTitle: "Family on the Same Page About Addiction Boundaries",
+    metaDescription: "When addiction divides your family, your limits collapse. Learn how to align with other family members so your loved one can't play one person against another.",
   }
 ];
