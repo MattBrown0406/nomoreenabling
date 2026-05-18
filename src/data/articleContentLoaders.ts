@@ -154,4 +154,5 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "real-boundary-feels-like-addiction-family": () => import("./article-content/real-boundary-feels-like-addiction-family"),
   "no-boundaries-addicted-loved-one": () => import("./article-content/no-boundaries-addicted-loved-one"),
   "why-boundaries-protect-addicted-loved-one": () => import("./article-content/why-boundaries-protect-addicted-loved-one"),
+  "family-same-page-addiction-boundaries": () => import("./article-content/family-same-page-addiction-boundaries"),
 };
