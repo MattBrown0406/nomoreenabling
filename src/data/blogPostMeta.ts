@@ -1,4 +1,5 @@
 import addictionFamilyCommunicationImage from "@/assets/addiction-family-communication.jpg";
+import holdLimitsPushesBackImage from "@/assets/hold-limits-addicted-pushes-back.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2081,5 +2082,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "family-same-page-addiction-boundaries",
     metaTitle: "Family on the Same Page About Addiction Boundaries",
     metaDescription: "When addiction divides your family, your limits collapse. Learn how to align with other family members so your loved one can't play one person against another.",
+  },
+  {
+    id: "155",
+    title: "How to Hold Your Limits When Your Addicted Loved One Pushes Back",
+    excerpt: "When your addicted loved one uses guilt to make you give in, staying grounded is hard. Learn how to hold firm on your limits — with love — even under pressure.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Support", "Enabling", "Communication"],
+    readTime: "10 min read",
+    date: "May 20, 2026",
+    image: holdLimitsPushesBackImage,
+    slug: "hold-limits-addicted-pushes-back",
+    metaTitle: "Hold Your Limits When Addicted Loved One Pushes Back",
+    metaDescription: "When your addicted loved one uses guilt to make you give in, staying grounded is hard. Learn how to hold firm on your limits — with love — even under pressure.",
   }
 ];
