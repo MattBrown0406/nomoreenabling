@@ -1,5 +1,6 @@
 import addictionFamilyCommunicationImage from "@/assets/addiction-family-communication.jpg";
 import holdLimitsPushesBackImage from "@/assets/hold-limits-addicted-pushes-back.jpg";
+import reclaimingIdentityImage from "@/assets/reclaiming-identity-after-enabling.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2095,5 +2096,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "hold-limits-addicted-pushes-back",
     metaTitle: "Hold Your Limits When Addicted Loved One Pushes Back",
     metaDescription: "When your addicted loved one uses guilt to make you give in, staying grounded is hard. Learn how to hold firm on your limits — with love — even under pressure.",
+  },
+  {
+    id: "156",
+    title: "Reclaiming Your Identity After Years of Enabling",
+    excerpt: "Years of enabling can erase who you are. Learn how families can reclaim their identity, rebuild a sense of self, and find life beyond a loved one's addiction.",
+    category: "Family Support",
+    categories: ["Family Support", "Codependency", "Enabling", "Self-Care"],
+    readTime: "9 min read",
+    date: "May 21, 2026",
+    image: reclaimingIdentityImage,
+    slug: "reclaiming-identity-after-enabling",
+    metaTitle: "Reclaiming Your Identity After Years of Enabling",
+    metaDescription: "Years of enabling can erase who you are. Learn how families can reclaim their identity, rebuild a sense of self, and find life beyond addiction.",
   }
 ];
