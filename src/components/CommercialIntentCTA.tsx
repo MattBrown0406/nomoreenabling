@@ -64,6 +64,7 @@ const CommercialIntentCTA = ({ page, source, articleSlug, hubSlug, compact = fal
                 Request guidance
               </Link>
             </Button>
+            <PhoneCallButton source={`commercial_intent_${source}_${page.slug}`} variant="coral" />
           </div>
         </div>
       </div>
