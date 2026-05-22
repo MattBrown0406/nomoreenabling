@@ -119,9 +119,10 @@ const Header = () => {
             </DropdownMenu>
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden lg:block">
-            <Button variant="hero" size="default" onClick={scrollToNewsletter}>
+          {/* CTA Buttons */}
+          <div className="hidden lg:flex items-center gap-2">
+            <PhoneCallButton source="header_desktop" size="sm" />
+            <Button variant="hero-outline" size="sm" onClick={scrollToNewsletter}>
               Get the emails
             </Button>
           </div>
