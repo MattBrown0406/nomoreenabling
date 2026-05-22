@@ -183,7 +183,8 @@ const Header = () => {
                   </a>
                 </div>
               </div>
-              <Button variant="hero" size="default" className="mt-2" onClick={scrollToNewsletter}>
+              <PhoneCallButton source="header_mobile" size="default" className="mt-2 w-full" />
+              <Button variant="hero-outline" size="default" className="w-full" onClick={scrollToNewsletter}>
                 Get the emails
               </Button>
             </div>
