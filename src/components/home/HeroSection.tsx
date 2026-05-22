@@ -106,6 +106,12 @@ const HeroSection = () => {
                 Family coaching
               </Link>
             </Button>
+            <PhoneCallButton
+              source="hero_section"
+              size="lg"
+              variant="hero-outline"
+              className="border-white bg-white text-maroon hover:bg-white/90 hover:text-maroon"
+            />
           </div>
 
           <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm animate-fade-up" style={{ animationDelay: "0.35s" }}>
