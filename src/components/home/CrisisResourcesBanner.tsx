@@ -30,6 +30,19 @@ const CrisisResourcesBanner = () => {
             <span className="text-muted-foreground">
               Emergency? <strong className="text-foreground">Call 911</strong>
             </span>
+
+            <a
+              href="tel:+15413065757"
+              className="flex items-center gap-1.5 text-foreground hover:text-primary transition-colors font-semibold"
+              onClick={() => {
+                if (typeof window !== "undefined" && typeof window.gtag === "function") {
+                  window.gtag("event", "phone_call_click", { source: "crisis_banner", phone: "541-306-5757" });
+                }
+              }}
+            >
+              <Phone className="h-3.5 w-3.5" />
+              <span>Family support: 541-306-5757</span>
+            </a>
           </div>
         </div>
         <p className="text-center text-sm text-muted-foreground mt-2">
