@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, BadgeDollarSign, CheckCircle2, HeartHandshake, ShieldAlert, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/family-trauma-after-addiction.jpg";
+import PhoneCallButton from "@/components/PhoneCallButton";
 
 const trustPoints = [
   "20+ years of intervention experience",
