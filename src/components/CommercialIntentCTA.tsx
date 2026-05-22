@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import type { CommercialIntentPage } from "@/data/commercialIntentPages";
 import { trackGAConversion } from "@/lib/gaConversions";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
+import PhoneCallButton from "@/components/PhoneCallButton";
 
 interface CommercialIntentCTAProps {
   page: CommercialIntentPage;
