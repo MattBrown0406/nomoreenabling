@@ -60,6 +60,7 @@ const CoachingInterventionCTA = ({ variant = "wide", articleSlug }: CoachingInte
           boundaries, treatment refusal, relapse patterns, or deciding whether an intervention makes sense.
         </p>
         <div className="mt-5 flex flex-col sm:flex-row gap-3">
+          <PhoneCallButton source={`coaching_intervention_cta_${variant}`} variant="coral" />
           <Button asChild>
             <Link to="/work-with-matt">
               Request guidance
