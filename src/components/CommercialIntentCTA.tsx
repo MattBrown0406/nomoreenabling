@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import type { CommercialIntentPage } from "@/data/commercialIntentPages";
 import { trackGAConversion } from "@/lib/gaConversions";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
+import PhoneCallButton from "@/components/PhoneCallButton";
 
 interface CommercialIntentCTAProps {
   page: CommercialIntentPage;
@@ -63,6 +64,7 @@ const CommercialIntentCTA = ({ page, source, articleSlug, hubSlug, compact = fal
                 Request guidance
               </Link>
             </Button>
+            <PhoneCallButton source={`commercial_intent_${source}_${page.slug}`} variant="coral" />
           </div>
         </div>
       </div>

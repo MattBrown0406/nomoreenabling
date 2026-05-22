@@ -3,6 +3,7 @@ import { ArrowRight, Mail, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { withOwnedUtm } from "@/lib/ownedLinks";
+import PhoneCallButton from "@/components/PhoneCallButton";
 
 interface CoachingInterventionCTAProps {
   variant?: "compact" | "wide";
@@ -59,6 +60,7 @@ const CoachingInterventionCTA = ({ variant = "wide", articleSlug }: CoachingInte
           boundaries, treatment refusal, relapse patterns, or deciding whether an intervention makes sense.
         </p>
         <div className="mt-5 flex flex-col sm:flex-row gap-3">
+          <PhoneCallButton source={`coaching_intervention_cta_${variant}`} variant="coral" />
           <Button asChild>
             <Link to="/work-with-matt">
               Request guidance

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, BadgeDollarSign, CheckCircle2, HeartHandshake, ShieldAlert, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/family-trauma-after-addiction.jpg";
+import PhoneCallButton from "@/components/PhoneCallButton";
 
 const trustPoints = [
   "20+ years of intervention experience",
@@ -105,6 +106,12 @@ const HeroSection = () => {
                 Family coaching
               </Link>
             </Button>
+            <PhoneCallButton
+              source="hero_section"
+              size="lg"
+              variant="hero-outline"
+              className="border-white bg-white text-maroon hover:bg-white/90 hover:text-maroon"
+            />
           </div>
 
           <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm animate-fade-up" style={{ animationDelay: "0.35s" }}>

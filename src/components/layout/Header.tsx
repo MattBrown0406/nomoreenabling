@@ -11,6 +11,7 @@ import {
 import logo from "@/assets/logo.jpg";
 import { trackGAConversion } from "@/lib/gaConversions";
 import { withOwnedUtm } from "@/lib/ownedLinks";
+import PhoneCallButton from "@/components/PhoneCallButton";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -118,9 +119,10 @@ const Header = () => {
             </DropdownMenu>
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden lg:block">
-            <Button variant="hero" size="default" onClick={scrollToNewsletter}>
+          {/* CTA Buttons */}
+          <div className="hidden lg:flex items-center gap-2">
+            <PhoneCallButton source="header_desktop" size="sm" />
+            <Button variant="hero-outline" size="sm" onClick={scrollToNewsletter}>
               Get the emails
             </Button>
           </div>
@@ -181,7 +183,8 @@ const Header = () => {
                   </a>
                 </div>
               </div>
-              <Button variant="hero" size="default" className="mt-2" onClick={scrollToNewsletter}>
+              <PhoneCallButton source="header_mobile" size="default" className="mt-2 w-full" />
+              <Button variant="hero-outline" size="default" className="w-full" onClick={scrollToNewsletter}>
                 Get the emails
               </Button>
             </div>
