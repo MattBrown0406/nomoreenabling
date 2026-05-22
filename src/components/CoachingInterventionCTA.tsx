@@ -3,6 +3,7 @@ import { ArrowRight, Mail, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { withOwnedUtm } from "@/lib/ownedLinks";
+import PhoneCallButton from "@/components/PhoneCallButton";
 
 interface CoachingInterventionCTAProps {
   variant?: "compact" | "wide";
