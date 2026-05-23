@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 supabase/.temp
+.gsc/
+*token*.json
+*client_secret*.json
+docs/gsc-weekly-reports/
+docs/chatgpt-visibility-reports/
 
 # Editor directories and files
 .vscode/*
