@@ -28,10 +28,15 @@ const replaceAssetPaths = (content, manifest) => {
   });
 };
 
-const toOutputPath = (route) => {
-  if (route === "/") return path.join(distDir, "index.html");
+const toOutputPaths = (route) => {
+  if (route === "/") return [path.join(distDir, "index.html")];
+
   const cleanRoute = route.replace(/^\//, "").replace(/\/+$/, "");
-  return path.join(distDir, cleanRoute, "index.html");
+
+  return [
+    path.join(distDir, cleanRoute, "index.html"),
+    path.join(distDir, `${cleanRoute}.html`),
+  ];
 };
 
 const stripDefaultSeoTags = (template) => {
@@ -73,10 +78,12 @@ try {
   for (const route of prerenderRoutes) {
     const result = await render(route);
     const html = injectPrerenderedHtml(template, result, manifest);
-    const outputPath = toOutputPath(route);
+    const outputPaths = toOutputPaths(route);
 
-    await fs.mkdir(path.dirname(outputPath), { recursive: true });
-    await fs.writeFile(outputPath, html, "utf8");
+    for (const outputPath of outputPaths) {
+      await fs.mkdir(path.dirname(outputPath), { recursive: true });
+      await fs.writeFile(outputPath, html, "utf8");
+    }
   }
 
   console.log(`✅ Prerendered ${prerenderRoutes.length} routes`);
