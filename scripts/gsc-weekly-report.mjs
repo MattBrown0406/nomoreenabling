@@ -4,7 +4,7 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 
 const secretsDir = process.env.GSC_SECRETS_DIR || "/Users/matthewbrown/Secrets";
-const tokenPath = process.env.GSC_TOKEN_PATH || path.join(secretsDir, "freedominterventions-gsc-token.json");
+const tokenPath = process.env.GSC_TOKEN_PATH || path.join(secretsDir, "nomoreenabling-gsc-token.json");
 const reportsDir = process.env.GSC_REPORTS_DIR || "/Users/matthewbrown/Desktop/NME/SEO";
 const defaultSiteUrl = "sc-domain:nomoreenabling.com";
 const scope = "https://www.googleapis.com/auth/webmasters.readonly";
