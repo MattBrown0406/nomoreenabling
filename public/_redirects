@@ -1,0 +1,8 @@
+# Canonicalize No More Enabling URLs for search engines.
+# Cloudflare Pages / Netlify-style hosts read this file at deploy time.
+
+http://nomoreenabling.com/* https://nomoreenabling.com/:splat 301
+http://www.nomoreenabling.com/* https://nomoreenabling.com/:splat 301
+https://www.nomoreenabling.com/* https://nomoreenabling.com/:splat 301
+
+/* /index.html 200
