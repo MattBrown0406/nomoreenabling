@@ -2,6 +2,7 @@ import familyBridgeLogo from "@/assets/family-bridge-logo.png";
 import { Brain, Shield, MessageSquare, TrendingUp, Pill, MapPin, DollarSign, FileText } from "lucide-react";
 import { trackAdClick } from "@/lib/trackAdClick";
 import { withOwnedUtm } from "@/lib/ownedLinks";
+import AppStoreBadge from "@/components/AppStoreBadge";
 
 interface FamilyBridgeBannerProps {
   size?: "sidebar" | "leaderboard";
@@ -17,10 +18,7 @@ const FamilyBridgeBanner = ({ size = "leaderboard" }: FamilyBridgeBannerProps) =
 
   if (isLeaderboard) {
     return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
+      <div
         className="block bg-gradient-to-r from-[#0d4a4a] via-[#0f5f5f] to-[#0d4a4a] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 max-w-4xl mx-auto border border-[#2a9d8f]/30"
         onClick={() => trackAdClick("FamilyBridge")}
       >
@@ -74,20 +72,15 @@ const FamilyBridgeBanner = ({ size = "leaderboard" }: FamilyBridgeBannerProps) =
           </div>
 
           {/* CTA */}
-          <div className="bg-[#2a9d8f] hover:bg-[#238b7e] text-white font-bold py-2.5 px-5 rounded-lg transition-colors text-sm whitespace-nowrap flex-shrink-0">
-            Learn More
-          </div>
+          <AppStoreBadge height={44} className="flex-shrink-0" />
         </div>
-      </a>
+      </div>
     );
   }
 
   // Sidebar version
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+    <div
       className="block bg-gradient-to-br from-[#0d4a4a] to-[#0f5f5f] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 border border-[#2a9d8f]/30"
       onClick={() => trackAdClick("FamilyBridge")}
     >
@@ -143,8 +136,8 @@ const FamilyBridgeBanner = ({ size = "leaderboard" }: FamilyBridgeBannerProps) =
         </div>
 
         {/* CTA Button */}
-        <div className="bg-[#2a9d8f] hover:bg-[#238b7e] text-white font-bold text-center py-2.5 px-4 rounded-lg transition-colors text-sm">
-          Learn More
+        <div className="flex justify-center">
+          <AppStoreBadge height={36} />
         </div>
 
         {/* Tagline */}
@@ -152,7 +145,7 @@ const FamilyBridgeBanner = ({ size = "leaderboard" }: FamilyBridgeBannerProps) =
           Patent-Pending FIIS Technology
         </p>
       </div>
-    </a>
+    </div>
   );
 };
 
