@@ -22,57 +22,48 @@ const FamilyBridgeBanner = ({ size = "leaderboard" }: FamilyBridgeBannerProps) =
         className="block bg-gradient-to-r from-[#0d4a4a] via-[#0f5f5f] to-[#0d4a4a] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 max-w-4xl mx-auto border border-[#2a9d8f]/30"
         onClick={() => trackAdClick("FamilyBridge")}
       >
-        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 p-4 md:p-5">
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 p-4 md:p-6">
           {/* Logo */}
           <img
             src={familyBridgeLogo}
             alt="FamilyBridge App"
             className="h-20 md:h-24 w-auto rounded-lg bg-white/95 p-2 shadow-lg flex-shrink-0"
           />
-          
-          {/* Content */}
-          <div className="flex-1 text-center md:text-left">
-            <h3 className="text-white font-serif text-xl md:text-2xl font-bold mb-1">
-              Family<span className="text-[#2a9d8f]">Bridge</span>
-            </h3>
-            <p className="text-white/90 text-sm md:text-base mb-2">
-              AI-powered clinical insights for families and providers across the recovery journey.
-            </p>
-            <p className="text-white/60 text-xs">
-              Patent-pending FIIS technology surfaces recovery insights before crises occur
-            </p>
-          </div>
 
-          {/* Features Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-2 text-center px-2">
-            <div className="flex items-center gap-1.5">
-              <Brain className="w-3.5 h-3.5 text-[#2a9d8f] flex-shrink-0" />
-              <span className="text-white/80 text-[10px] whitespace-nowrap">FIIS Recovery Intelligence</span>
+          {/* Content + Features + CTA */}
+          <div className="flex-1 flex flex-col gap-3 text-center md:text-left min-w-0">
+            {/* Title + description */}
+            <div>
+              <h3 className="text-white font-serif text-xl md:text-2xl font-bold mb-1">
+                Family<span className="text-[#2a9d8f]">Bridge</span>
+              </h3>
+              <p className="text-white/90 text-sm md:text-base">
+                AI support for families across the recovery journey.
+              </p>
             </div>
-            <div className="flex items-center gap-1.5">
-              <TrendingUp className="w-3.5 h-3.5 text-[#2a9d8f] flex-shrink-0" />
-              <span className="text-white/80 text-[10px] whitespace-nowrap">Recovery Tracking</span>
+
+            {/* Features row */}
+            <div className="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-1.5">
+              {[
+                { Icon: Brain, label: "Recovery Intelligence" },
+                { Icon: TrendingUp, label: "Recovery Tracking" },
+                { Icon: Pill, label: "Medication Compliance" },
+                { Icon: MapPin, label: "Meeting Check-Ins" },
+                { Icon: DollarSign, label: "Financial Coordination" },
+                { Icon: MessageSquare, label: "AI Chat" },
+              ].map(({ Icon, label }) => (
+                <div key={label} className="flex items-center gap-1.5">
+                  <Icon className="w-3.5 h-3.5 text-[#2a9d8f] flex-shrink-0" />
+                  <span className="text-white/80 text-[11px]">{label}</span>
+                </div>
+              ))}
             </div>
-            <div className="flex items-center gap-1.5">
-              <Pill className="w-3.5 h-3.5 text-[#2a9d8f] flex-shrink-0" />
-              <span className="text-white/80 text-[10px] whitespace-nowrap">Medication Compliance</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-[#2a9d8f] flex-shrink-0" />
-              <span className="text-white/80 text-[10px] whitespace-nowrap">Meeting Check-Ins</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <DollarSign className="w-3.5 h-3.5 text-[#2a9d8f] flex-shrink-0" />
-              <span className="text-white/80 text-[10px] whitespace-nowrap">Financial Coordination</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <MessageSquare className="w-3.5 h-3.5 text-[#2a9d8f] flex-shrink-0" />
-              <span className="text-white/80 text-[10px] whitespace-nowrap">AI Chat Moderation</span>
+
+            {/* Badge */}
+            <div className="flex justify-center md:justify-start">
+              <AppStoreBadge height={40} />
             </div>
           </div>
-
-          {/* CTA */}
-          <AppStoreBadge height={44} className="flex-shrink-0" />
         </div>
       </div>
     );
