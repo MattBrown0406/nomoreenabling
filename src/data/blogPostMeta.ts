@@ -1,6 +1,7 @@
 import addictionFamilyCommunicationImage from "@/assets/addiction-family-communication.jpg";
 import holdLimitsPushesBackImage from "@/assets/hold-limits-addicted-pushes-back.jpg";
 import reclaimingIdentityImage from "@/assets/reclaiming-identity-after-enabling.jpg";
+import managingAnxietyFamilyImage from "@/assets/managing-anxiety-family-addiction.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2109,5 +2110,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "reclaiming-identity-after-enabling",
     metaTitle: "Reclaiming Your Identity After Years of Enabling",
     metaDescription: "Years of enabling can erase who you are. Learn how families can reclaim their identity, rebuild a sense of self, and find life beyond addiction.",
+  },
+  {
+    id: "157",
+    title: "When Worry Becomes Your Full-Time Job: Managing Anxiety as a Family Member of Someone With Addiction",
+    excerpt: "When a loved one struggles with addiction, anxiety becomes your constant companion. Learn why it happens, how to recognize it, and practical steps to manage worry so you can keep living.",
+    category: "Family Support",
+    categories: ["Family Support", "Self-Care", "Codependency", "Enabling"],
+    readTime: "10 min read",
+    date: "May 25, 2026",
+    image: managingAnxietyFamilyImage,
+    slug: "managing-anxiety-family-addiction",
+    metaTitle: "Managing Anxiety as a Family Member of an Addict",
+    metaDescription: "When a loved one struggles with addiction, anxiety becomes constant. Learn why it happens and practical steps to manage worry so you can keep living.",
   }
 ];
