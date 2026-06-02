@@ -2,6 +2,7 @@ import addictionFamilyCommunicationImage from "@/assets/addiction-family-communi
 import holdLimitsPushesBackImage from "@/assets/hold-limits-addicted-pushes-back.jpg";
 import reclaimingIdentityImage from "@/assets/reclaiming-identity-after-enabling.jpg";
 import managingAnxietyFamilyImage from "@/assets/managing-anxiety-family-addiction.jpg";
+import enablingCostToFamilyMemberImage from "@/assets/enabling-cost-to-family-member.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2123,5 +2124,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "managing-anxiety-family-addiction",
     metaTitle: "Managing Anxiety as a Family Member of an Addict",
     metaDescription: "When a loved one struggles with addiction, anxiety becomes constant. Learn why it happens and practical steps to manage worry so you can keep living.",
+  },
+  {
+    id: "158",
+    title: "Enabling Addiction Is Costing You More Than You Know",
+    excerpt: "Enabling a loved one's addiction changes you too. Learn how chronic enabling affects your health, identity, and relationships — and what to do instead.",
+    category: "Family Support",
+    categories: ["Family Support", "Enabling", "Codependency", "Self-Care"],
+    readTime: "9 min read",
+    date: "June 2, 2026",
+    image: enablingCostToFamilyMemberImage,
+    slug: "enabling-cost-to-family-member",
+    metaTitle: "Enabling Addiction: The Hidden Cost to Family Members",
+    metaDescription: "Enabling a loved one's addiction changes you too. Learn how chronic enabling affects your health, identity, and relationships — and what to do instead.",
   }
 ];
