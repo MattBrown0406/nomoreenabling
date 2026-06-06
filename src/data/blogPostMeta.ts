@@ -3,6 +3,7 @@ import holdLimitsPushesBackImage from "@/assets/hold-limits-addicted-pushes-back
 import reclaimingIdentityImage from "@/assets/reclaiming-identity-after-enabling.jpg";
 import managingAnxietyFamilyImage from "@/assets/managing-anxiety-family-addiction.jpg";
 import enablingCostToFamilyMemberImage from "@/assets/enabling-cost-to-family-member.jpg";
+import overFunctioningTrapImage from "@/assets/over-functioning-trap-addiction-families.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2137,5 +2138,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "enabling-cost-to-family-member",
     metaTitle: "Enabling Addiction: The Hidden Cost to Family Members",
     metaDescription: "Enabling a loved one's addiction changes you too. Learn how chronic enabling affects your health, identity, and relationships — and what to do instead.",
+  },
+  {
+    id: "159",
+    title: "When You Do More So They Don't Have To: The Over-Functioning Trap in Addiction Families",
+    excerpt: "Over-functioning in addiction families looks like love — but it removes the very consequences that motivate change. Learn how to recognize it and start stepping back.",
+    category: "Family Support",
+    categories: ["Family Support", "Enabling", "Codependency", "Self-Care"],
+    readTime: "10 min read",
+    date: "June 6, 2026",
+    image: overFunctioningTrapImage,
+    slug: "over-functioning-trap-addiction-families",
+    metaTitle: "Over-Functioning in Addiction Families: The Hidden Trap",
+    metaDescription: "Learn how over-functioning in addiction families enables your loved one's addiction—and what to do instead. Practical guidance for families.",
   }
 ];
