@@ -8901,7 +8901,7 @@ It's free. It takes five minutes. And it exists because no family should have to
 
 *Matt Brown is a professional interventionist with over 20 years of experience helping families navigate addiction. He is the founder of [Freedom Interventions](https://freedominterventions.com), host of [The Party Wreckers Podcast](https://partywreckers.com), and creator of the Recovery Roadmap on [SoberHelpline.com](https://soberhelpline.com/roadmap).*
 
-*If your family needs help now, call **(541) 838-6009** for a free consultation.*`,
+*If your family needs help now, call **(541) 306-5757** for a free consultation.*`,
     image: eightStagesFamilyAddictionImage,
     date: "March 5, 2025",
     readTime: "12 min read",

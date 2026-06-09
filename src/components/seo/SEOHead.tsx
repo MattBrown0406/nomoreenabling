@@ -38,8 +38,13 @@ const SEOHead = ({
 
   const fullTitle = buildTitle();
 
-  // Auto-generate canonical from current route if not provided
-  const canonical = canonicalUrl || `https://nomoreenabling.com${location.pathname === '/' ? '' : location.pathname}`;
+  const normalizePath = (pathname: string) => {
+    if (!pathname || pathname === "/") return "";
+    return pathname.replace(/\/+$/, "");
+  };
+
+  // Auto-generate canonical from current route if not provided.
+  const canonical = canonicalUrl || `https://nomoreenabling.com${normalizePath(location.pathname)}`;
 
   return (
     <Helmet>
@@ -47,6 +52,12 @@ const SEOHead = ({
       <meta name="description" content={description} />
       <meta name="author" content={articleAuthor} />
       {keywords && <meta name="keywords" content={keywords} />}
+      <meta name="ai:description" content={`${description} No More Enabling gives families plain-language education on enabling, boundaries, codependency, treatment refusal, and family recovery decisions.`} />
+      <meta name="ai:audience" content="Families affected by addiction who need clear, compassionate guidance on enabling, boundaries, treatment resistance, and next steps." />
+      <meta name="ai:author" content="Matt Brown, professional interventionist with 20+ years of addiction family support experience" />
+      <link rel="ai-context" href="https://nomoreenabling.com/llms.txt" />
+      <link rel="alternate" type="text/plain" title="LLMs.txt" href="https://nomoreenabling.com/llms.txt" />
+      <link rel="alternate" type="text/plain" title="Full AI context" href="https://nomoreenabling.com/llms-full.txt" />
       {noindex ? (
         <meta name="robots" content="noindex, nofollow" />
       ) : (

@@ -23,8 +23,9 @@ const OrganizationJsonLd = () => {
     ],
     contactPoint: {
       "@type": "ContactPoint",
+      telephone: "+1-541-306-5757",
       email: "matt@nomoreenabling.com",
-      contactType: "customer support",
+      contactType: "family addiction support",
       availableLanguage: "English",
     },
   };
@@ -74,6 +75,7 @@ const OrganizationJsonLd = () => {
       "Family boundaries coaching",
       "Treatment resistance consultation",
     ],
+    telephone: "+1-541-306-5757",
     email: "matt@nomoreenabling.com",
     sameAs: organizationJsonLd.sameAs,
   };
