@@ -38,3 +38,6 @@ verify_jwt = false
 
 [functions.nme-revenue-report]
 verify_jwt = false
+
+[functions.record-article-metadata]
+verify_jwt = false

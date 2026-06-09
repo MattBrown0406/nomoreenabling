@@ -77,6 +77,33 @@ serve(async (req) => {
       );
     }
 
+    if (typeof subject !== "string" || subject.length > 300) {
+      return new Response(
+        JSON.stringify({ error: "Invalid subject" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+    if (typeof html_content !== "string" || html_content.length > 200_000) {
+      return new Response(
+        JSON.stringify({ error: "Invalid html_content" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Defense-in-depth HTML sanitization: strip <script>, <iframe>, <object>,
+    // <embed>, <link>, <meta>, <style>, and inline event handlers / javascript: URLs.
+    const sanitizeHtml = (input: string): string => {
+      let html = input;
+      html = html.replace(/<\s*(script|iframe|object|embed|link|meta|style)\b[^>]*>[\s\S]*?<\s*\/\s*\1\s*>/gi, "");
+      html = html.replace(/<\s*(script|iframe|object|embed|link|meta|style)\b[^>]*\/?>/gi, "");
+      html = html.replace(/\son[a-z]+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, "");
+      html = html.replace(/(href|src|xlink:href)\s*=\s*(['"]?)\s*javascript:[^'">\s]*\2/gi, '$1="#"');
+      return html;
+    };
+
+    const safeHtmlContent = sanitizeHtml(html_content);
+
+
     // Fetch all active subscribers (reusing the existing supabase client)
     const { data: subscribers, error: fetchError } = await supabase
       .from("subscribers")
@@ -113,11 +140,11 @@ serve(async (req) => {
     for (const subscriber of subscribers) {
       try {
         // Personalize content if first_name is available
-        let personalizedContent = html_content;
+        let personalizedContent = safeHtmlContent;
         if (subscriber.first_name) {
-          personalizedContent = html_content.replace(/{{first_name}}/g, subscriber.first_name);
+          personalizedContent = safeHtmlContent.replace(/{{first_name}}/g, subscriber.first_name);
         } else {
-          personalizedContent = html_content.replace(/{{first_name}}/g, "Friend");
+          personalizedContent = safeHtmlContent.replace(/{{first_name}}/g, "Friend");
         }
 
         const { error: sendError } = await resend.emails.send({

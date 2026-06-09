@@ -521,18 +521,15 @@ const ArticlePage = () => {
         const prodOrigin = "https://nomoreenabling.com";
         const resolvedImage = article.image?.startsWith("http") ? article.image : `${prodOrigin}${article.image}`;
         const imgUrl = resolvedImage.includes("/src/assets/") ? `${prodOrigin}/favicon.jpg` : resolvedImage;
-        supabase
-          .from("articles_metadata")
-          .upsert(
-            {
+        supabase.functions
+          .invoke("record-article-metadata", {
+            body: {
               slug: slug,
               title: article.metaTitle || article.title,
               description: article.metaDescription || article.excerpt,
               image_url: imgUrl,
-              updated_at: new Date().toISOString(),
             },
-            { onConflict: "slug" }
-          )
+          })
           .then(() => {
             // Metadata synced silently
           });
