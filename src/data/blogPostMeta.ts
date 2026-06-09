@@ -4,6 +4,7 @@ import reclaimingIdentityImage from "@/assets/reclaiming-identity-after-enabling
 import managingAnxietyFamilyImage from "@/assets/managing-anxiety-family-addiction.jpg";
 import enablingCostToFamilyMemberImage from "@/assets/enabling-cost-to-family-member.jpg";
 import overFunctioningTrapImage from "@/assets/over-functioning-trap-addiction-families.jpg";
+import emotionalNumbnessCodependencyImage from "@/assets/emotional-numbness-codependency-addiction-family.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2151,5 +2152,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "over-functioning-trap-addiction-families",
     metaTitle: "Over-Functioning in Addiction Families: The Hidden Trap",
     metaDescription: "Learn how over-functioning in addiction families enables your loved one's addiction—and what to do instead. Practical guidance for families.",
+  },
+  {
+    id: "160",
+    title: "When You Can't Feel Anything: Emotional Numbness, Codependency, and Loving Someone with Addiction",
+    excerpt: "Emotional numbness is one of the least-talked-about signs of codependency in families dealing with addiction. Learn why it happens and how to reconnect with your feelings.",
+    category: "Codependency",
+    categories: ["Codependency", "Family Support", "Self-Care", "Mental Health"],
+    readTime: "10 min read",
+    date: "June 9, 2026",
+    image: emotionalNumbnessCodependencyImage,
+    slug: "emotional-numbness-codependency-addiction-family",
+    metaTitle: "Emotional Numbness, Codependency & Addiction in Families",
+    metaDescription: "Learn why emotional numbness is a common sign of codependency in families dealing with addiction — and how to reconnect with your feelings and yourself.",
   }
 ];
