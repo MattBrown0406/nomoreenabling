@@ -5,6 +5,7 @@ import managingAnxietyFamilyImage from "@/assets/managing-anxiety-family-addicti
 import enablingCostToFamilyMemberImage from "@/assets/enabling-cost-to-family-member.jpg";
 import overFunctioningTrapImage from "@/assets/over-functioning-trap-addiction-families.jpg";
 import emotionalNumbnessCodependencyImage from "@/assets/emotional-numbness-codependency-addiction-family.jpg";
+import boundaryVsConsequenceImage from "@/assets/boundary-vs-consequence-addiction-family.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2165,5 +2166,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "emotional-numbness-codependency-addiction-family",
     metaTitle: "Emotional Numbness, Codependency & Addiction in Families",
     metaDescription: "Learn why emotional numbness is a common sign of codependency in families dealing with addiction — and how to reconnect with your feelings and yourself.",
+  },
+  {
+    id: "161",
+    title: "Boundary or Consequence? The Mix-Up That Keeps Families Stuck",
+    excerpt: "Confused about the difference between a boundary and a consequence with your addicted loved one? Learn how each works, and why mixing them up keeps families stuck.",
+    category: "Family Support",
+    categories: ["Family Support", "Boundaries", "Enabling", "Codependency"],
+    readTime: "9 min read",
+    date: "June 11, 2026",
+    image: boundaryVsConsequenceImage,
+    slug: "boundary-vs-consequence-addiction-family",
+    metaTitle: "Boundary vs Consequence in Addiction: What's the Difference?",
+    metaDescription: "Confused about the difference between a boundary and a consequence with your addicted loved one? Learn how each works, and why mixing them up keeps families stuck.",
   }
 ];
