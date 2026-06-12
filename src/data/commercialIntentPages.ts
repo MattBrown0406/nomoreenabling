@@ -86,9 +86,9 @@ export const commercialIntentPages: CommercialIntentPage[] = [
     slug: "family-addiction-coaching",
     eyebrow: "Family addiction coaching",
     title: "Family addiction coaching for families stuck in enabling, relapse, or treatment refusal",
-    metaTitle: "Family Addiction Coaching | Boundaries, Enabling & Treatment Refusal",
+    metaTitle: "Family Addiction Coaching for Boundaries & Enabling | No More Enabling",
     description:
-      "Private family addiction coaching for parents, spouses, and siblings who need help with enabling, boundaries, treatment refusal, relapse, money, and family alignment.",
+      "Private family addiction coaching for parents, spouses, and siblings who need a clear plan for enabling, boundaries, treatment refusal, relapse, money, and family alignment.",
     keywords:
       "family addiction coaching, addiction family coach, family recovery coaching, help for families of addicts, addiction boundaries coaching",
     audience:

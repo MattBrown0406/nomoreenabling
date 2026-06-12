@@ -51,8 +51,8 @@ const About = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead
-        title="Matt Brown Interventionist & Family Addiction Coaching | No More Enabling"
-        description="Meet Matt Brown, professional interventionist and family addiction coach. Get clear help for enabling, boundaries, treatment refusal, and loved-one addiction."
+        title="Matt Brown Interventionist Since 2004 | No More Enabling"
+        description="Meet Matt Brown, professional interventionist and family addiction coach since 2004. Private guidance for enabling, boundaries, treatment refusal, and family addiction decisions."
         canonicalUrl="https://nomoreenabling.com/about"
         keywords="Matt Brown interventionist, family addiction coaching, addiction family coach, professional interventionist, treatment refusal, enabling boundaries resource"
         articleAuthor="Matt Brown"
@@ -72,13 +72,20 @@ const About = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground">
-                Matt Brown interventionist and family addiction coach
+                Matt Brown interventionist since 2004
               </h1>
               <p className="mt-6 text-lg text-muted-foreground">
                 Families usually arrive here after too many arguments, rescues, promises, and sleepless nights. This site
                 gives them clear addiction-family guidance from a professional interventionist who knows how enabling,
                 fear, guilt, and treatment resistance actually work at home.
               </p>
+              <div className="mt-6 rounded-2xl border border-primary/20 bg-primary/5 p-5 text-left">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Direct answer</p>
+                <h2 className="mt-2 font-serif text-2xl font-bold text-foreground">Who is Matt Brown?</h2>
+                <p className="mt-3 text-muted-foreground leading-relaxed">
+                  Matt Brown is a professional interventionist and family addiction coach who has worked with families affected by addiction since 2004. No More Enabling is his education platform for families trying to stop rescuing, set boundaries they can hold, and decide when private coaching or intervention help is needed.
+                </p>
+              </div>
               <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
                 <Button asChild size="lg">
                   <Link to="/work-with-matt">
