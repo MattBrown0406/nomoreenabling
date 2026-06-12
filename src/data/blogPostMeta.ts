@@ -6,6 +6,7 @@ import enablingCostToFamilyMemberImage from "@/assets/enabling-cost-to-family-me
 import overFunctioningTrapImage from "@/assets/over-functioning-trap-addiction-families.jpg";
 import emotionalNumbnessCodependencyImage from "@/assets/emotional-numbness-codependency-addiction-family.jpg";
 import boundaryVsConsequenceImage from "@/assets/boundary-vs-consequence-addiction-family.jpg";
+import boundariesSelfishImage from "@/assets/boundaries-selfish-addicted-loved-one.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2179,5 +2180,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "boundary-vs-consequence-addiction-family",
     metaTitle: "Boundary vs Consequence in Addiction: What's the Difference?",
     metaDescription: "Confused about the difference between a boundary and a consequence with your addicted loved one? Learn how each works, and why mixing them up keeps families stuck.",
+  },
+  {
+    id: "162",
+    title: "Is Setting Boundaries Selfish? Why Saying No to an Addicted Loved One Is an Act of Love",
+    excerpt: "Wondering if setting boundaries with an addicted loved one is selfish? Learn why limits are an act of love, how to handle the guilt, and what to say.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Support", "Enabling", "Codependency"],
+    readTime: "9 min read",
+    date: "June 12, 2026",
+    image: boundariesSelfishImage,
+    slug: "boundaries-selfish-addicted-loved-one",
+    metaTitle: "Is Setting Boundaries Selfish? An Act of Love, Not Cruelty",
+    metaDescription: "Wondering if setting boundaries with an addicted loved one is selfish? Learn why limits are an act of love, how to handle the guilt, and what to say.",
   }
 ];
