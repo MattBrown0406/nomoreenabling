@@ -2,6 +2,7 @@ export type ArticleContentModule = { default: string };
 
 export const articleContentLoaders: Record<string, () => Promise<ArticleContentModule>> = {
   "boundaries-selfish-addicted-loved-one": () => import("./article-content/boundaries-selfish-addicted-loved-one"),
+  "healthy-boundaries-examples-addicted-loved-one": () => import("./article-content/healthy-boundaries-examples-addicted-loved-one"),
   "boundary-vs-punishment-addiction": () => import("./article-content/boundary-vs-punishment-addiction"),
   "boundary-vs-consequence-addiction-family": () => import("./article-content/boundary-vs-consequence-addiction-family"),
   "emotional-numbness-codependency-addiction-family": () => import("./article-content/emotional-numbness-codependency-addiction-family"),
