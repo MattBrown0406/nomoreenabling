@@ -7,6 +7,7 @@ import overFunctioningTrapImage from "@/assets/over-functioning-trap-addiction-f
 import emotionalNumbnessCodependencyImage from "@/assets/emotional-numbness-codependency-addiction-family.jpg";
 import boundaryVsConsequenceImage from "@/assets/boundary-vs-consequence-addiction-family.jpg";
 import boundariesSelfishImage from "@/assets/boundaries-selfish-addicted-loved-one.jpg";
+import boundaryVsPunishmentImage from "@/assets/boundary-vs-punishment-addiction.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2193,5 +2194,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "boundaries-selfish-addicted-loved-one",
     metaTitle: "Is Setting Boundaries Selfish? An Act of Love, Not Cruelty",
     metaDescription: "Wondering if setting boundaries with an addicted loved one is selfish? Learn why limits are an act of love, how to handle the guilt, and what to say.",
+  },
+  {
+    id: "163",
+    title: "Is It a Boundary or a Punishment? How to Tell the Difference With an Addicted Loved One",
+    excerpt: "Struggling to tell if your limit is a boundary or a punishment? Learn the real difference and how to set boundaries that protect you both.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Support", "Enabling", "Codependency"],
+    readTime: "9 min read",
+    date: "June 14, 2026",
+    image: boundaryVsPunishmentImage,
+    slug: "boundary-vs-punishment-addiction",
+    metaTitle: "Boundary or Punishment? How to Tell the Difference",
+    metaDescription: "Struggling to tell if your limit is a boundary or a punishment? Learn the real difference and how to set boundaries that protect you both.",
   }
 ];
