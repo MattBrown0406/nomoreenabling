@@ -8,6 +8,7 @@ import emotionalNumbnessCodependencyImage from "@/assets/emotional-numbness-code
 import boundaryVsConsequenceImage from "@/assets/boundary-vs-consequence-addiction-family.jpg";
 import boundariesSelfishImage from "@/assets/boundaries-selfish-addicted-loved-one.jpg";
 import boundaryVsPunishmentImage from "@/assets/boundary-vs-punishment-addiction.jpg";
+import healthyBoundariesExamplesImage from "@/assets/healthy-boundaries-examples-addicted-loved-one.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2207,5 +2208,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "boundary-vs-punishment-addiction",
     metaTitle: "Boundary or Punishment? How to Tell the Difference",
     metaDescription: "Struggling to tell if your limit is a boundary or a punishment? Learn the real difference and how to set boundaries that protect you both.",
+  },
+  {
+    id: "164",
+    title: "What Healthy Boundaries With an Addicted Loved One Actually Look Like",
+    excerpt: "Not sure what a healthy boundary actually looks like? Real-life examples of boundaries families can set with an addicted loved one — without guilt.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Support", "Enabling", "Codependency"],
+    readTime: "8 min read",
+    date: "June 15, 2026",
+    image: healthyBoundariesExamplesImage,
+    slug: "healthy-boundaries-examples-addicted-loved-one",
+    metaTitle: "Healthy Boundaries With an Addicted Loved One: Examples",
+    metaDescription: "Not sure what a healthy boundary actually looks like? Real-life examples of boundaries families can set with an addicted loved one — without guilt.",
   }
 ];
