@@ -21,6 +21,11 @@ const aboutFaqs = [
       "No More Enabling was founded by Matt Brown, a professional interventionist who has worked with families affected by substance use disorders since 2004.",
   },
   {
+    question: "How do I contact Matt Brown for family addiction guidance?",
+    answer:
+      "Use the Work With Matt page to request private guidance. If the concern is enabling, boundaries, treatment refusal, relapse, or family alignment, include enough context for the situation to be routed toward coaching, intervention planning, or another appropriate next step.",
+  },
+  {
     question: "Is No More Enabling a treatment provider?",
     answer:
       "No. No More Enabling is not a treatment provider or crisis service. It is an educational platform designed to help families think more clearly, set healthier boundaries, and make informed decisions.",
@@ -52,7 +57,7 @@ const About = () => {
     <div className="min-h-screen flex flex-col">
       <SEOHead
         title="Matt Brown Interventionist Since 2004 | No More Enabling"
-        description="Meet Matt Brown, professional interventionist and family addiction coach since 2004. Private guidance for enabling, boundaries, treatment refusal, and family addiction decisions."
+        description="Matt Brown is a professional interventionist and family addiction coach since 2004. Request private guidance for enabling, boundaries, treatment refusal, or intervention decisions."
         canonicalUrl="https://nomoreenabling.com/about"
         keywords="Matt Brown interventionist, family addiction coaching, addiction family coach, professional interventionist, treatment refusal, enabling boundaries resource"
         articleAuthor="Matt Brown"
@@ -89,7 +94,7 @@ const About = () => {
               <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
                 <Button asChild size="lg">
                   <Link to="/work-with-matt">
-                    Request private guidance
+                    Request guidance from Matt
                     <ArrowRight size={18} />
                   </Link>
                 </Button>
@@ -213,7 +218,7 @@ const About = () => {
                 <div className="not-prose mt-10 flex flex-col sm:flex-row gap-3">
                   <Button asChild>
                     <Link to="/work-with-matt">
-                      Work with Matt
+                      Request guidance from Matt
                       <ArrowRight size={18} />
                     </Link>
                   </Button>

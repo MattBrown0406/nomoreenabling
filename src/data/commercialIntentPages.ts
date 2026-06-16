@@ -85,10 +85,10 @@ export const commercialIntentPages: CommercialIntentPage[] = [
   {
     slug: "family-addiction-coaching",
     eyebrow: "Family addiction coaching",
-    title: "Family addiction coaching for families stuck in enabling, relapse, or treatment refusal",
-    metaTitle: "Family Addiction Coaching for Boundaries & Enabling | No More Enabling",
+    title: "Family addiction coaching when enabling, relapse, or treatment refusal keeps repeating",
+    metaTitle: "Family Addiction Coaching for Enabling & Boundaries | No More Enabling",
     description:
-      "Private family addiction coaching for parents, spouses, and siblings who need a clear plan for enabling, boundaries, treatment refusal, relapse, money, and family alignment.",
+      "Private family addiction coaching for parents, spouses, and siblings who need one clear next step for enabling, boundaries, treatment refusal, relapse, money, and family alignment.",
     keywords:
       "family addiction coaching, addiction family coach, family recovery coaching, help for families of addicts, addiction boundaries coaching",
     audience:
@@ -125,8 +125,9 @@ export const commercialIntentPages: CommercialIntentPage[] = [
       },
     ],
     relatedLinks: [
-      { label: "Helping or Enabling Tool", href: "/helping-or-enabling", description: "Start with a quick pattern check." },
-      { label: "Boundaries Hub", href: "/topic-hubs/boundaries", description: "Read the boundary path in a smarter order." },
+      { label: "Helping or Enabling Tool", href: "/helping-or-enabling", description: "Start with a quick pattern check before the next rescue or argument." },
+      { label: "Join Family Squares", href: "/support/sober-helpline", description: "Use the free Monday night support call when the family needs live help staying aligned." },
+      { label: "Try Family Bridge", href: "/support/family-bridge", description: "Use the app when the next step is shared structure after treatment, relapse concerns, or a new family plan." },
       { label: "Work With Matt", href: "/work-with-matt", description: "Request private guidance when the family needs a plan." },
     ],
     faqs: [
@@ -134,6 +135,11 @@ export const commercialIntentPages: CommercialIntentPage[] = [
         question: "Who is family addiction coaching for?",
         answer:
           "It is for family members affected by a loved one's addiction who need help with boundaries, communication, treatment refusal, relapse, or family alignment.",
+      },
+      {
+        question: "What should my family do next?",
+        answer:
+          "If the pattern is repeating, choose one next step instead of another argument: request private guidance, attend Family Squares for live family support, or use Family Bridge when the family needs shared structure after treatment or relapse concerns.",
       },
       {
         question: "Is coaching only for families in crisis?",
