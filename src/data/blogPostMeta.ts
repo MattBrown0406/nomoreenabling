@@ -9,6 +9,7 @@ import boundaryVsConsequenceImage from "@/assets/boundary-vs-consequence-addicti
 import boundariesSelfishImage from "@/assets/boundaries-selfish-addicted-loved-one.jpg";
 import boundaryVsPunishmentImage from "@/assets/boundary-vs-punishment-addiction.jpg";
 import healthyBoundariesExamplesImage from "@/assets/healthy-boundaries-examples-addicted-loved-one.jpg";
+import settingBoundariesAfterYearsEnablingImage from "@/assets/setting-boundaries-after-years-enabling.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2221,5 +2222,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "healthy-boundaries-examples-addicted-loved-one",
     metaTitle: "Healthy Boundaries With an Addicted Loved One: Examples",
     metaDescription: "Not sure what a healthy boundary actually looks like? Real-life examples of boundaries families can set with an addicted loved one — without guilt.",
+  },
+  {
+    id: "165",
+    title: "How to Set a Boundary When You've Been Enabling for Years",
+    excerpt: "If you've been enabling for years, setting a new boundary feels impossible. Here's how to do it clearly, calmly, and without blowing everything up.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Support", "Enabling", "Codependency"],
+    readTime: "9 min read",
+    date: "June 17, 2026",
+    image: settingBoundariesAfterYearsEnablingImage,
+    slug: "setting-boundaries-after-years-enabling",
+    metaTitle: "How to Set a Boundary After Years of Enabling",
+    metaDescription: "If you've been enabling for years, setting a new boundary feels impossible. Here's how to do it clearly, calmly, and without blowing everything up.",
   }
 ];
