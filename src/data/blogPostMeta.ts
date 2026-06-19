@@ -10,6 +10,7 @@ import boundariesSelfishImage from "@/assets/boundaries-selfish-addicted-loved-o
 import boundaryVsPunishmentImage from "@/assets/boundary-vs-punishment-addiction.jpg";
 import healthyBoundariesExamplesImage from "@/assets/healthy-boundaries-examples-addicted-loved-one.jpg";
 import settingBoundariesAfterYearsEnablingImage from "@/assets/setting-boundaries-after-years-enabling.jpg";
+import guiltAfterHoldingBoundaryImage from "@/assets/guilt-after-holding-boundary-addicted-loved-one.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2235,5 +2236,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "setting-boundaries-after-years-enabling",
     metaTitle: "How to Set a Boundary After Years of Enabling",
     metaDescription: "If you've been enabling for years, setting a new boundary feels impossible. Here's how to do it clearly, calmly, and without blowing everything up.",
+  },
+  {
+    id: "166",
+    title: "After You Hold a Boundary: Navigating the Guilt, Doubt, and Second-Guessing",
+    excerpt: "Held a boundary with your addicted loved one and now feel wracked with guilt? Learn why second-guessing is normal and how to stay the course.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Support", "Enabling", "Codependency"],
+    readTime: "9 min read",
+    date: "June 19, 2026",
+    image: guiltAfterHoldingBoundaryImage,
+    slug: "guilt-after-holding-boundary-addicted-loved-one",
+    metaTitle: "Guilt After Setting Boundaries With Addicted Loved One",
+    metaDescription: "Held a boundary with your addicted loved one and now feel wracked with guilt? Learn why second-guessing is normal and how to stay the course.",
   }
 ];
