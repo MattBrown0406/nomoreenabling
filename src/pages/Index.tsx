@@ -322,7 +322,7 @@ const Index = () => {
                     className="block rounded-2xl border border-border bg-background p-4 hover:border-primary/40 transition-colors"
                     onClick={() => trackGAConversion("family_squares_click", { source: "homepage_support_lane" })}
                   >
-                    <p className="font-medium text-foreground">Sober Helpline bridge and Family Squares</p>
+                    <p className="font-medium text-foreground">Sober Helpline and Family Squares</p>
                     <p className="text-sm text-muted-foreground mt-1">A guided handoff into free Monday support, private consultation, or intervention readiness.</p>
                   </a>
                   <a
