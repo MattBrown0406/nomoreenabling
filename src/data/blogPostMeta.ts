@@ -12,6 +12,7 @@ import healthyBoundariesExamplesImage from "@/assets/healthy-boundaries-examples
 import settingBoundariesAfterYearsEnablingImage from "@/assets/setting-boundaries-after-years-enabling.jpg";
 import guiltAfterHoldingBoundaryImage from "@/assets/guilt-after-holding-boundary-addicted-loved-one.jpg";
 import boundariesAddictedLovedOneLiesImage from "@/assets/boundaries-addicted-loved-one-lies.jpg";
+import ambiguousLossGrievingImage from "@/assets/ambiguous-loss-grieving-addicted-loved-one.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2263,5 +2264,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "boundaries-addicted-loved-one-lies",
     metaTitle: "Boundaries With an Addicted Loved One Who Lies",
     metaDescription: "Worried any boundary you set will just get lied around? Learn how to build limits with an addicted loved one that hold even when honesty is gone.",
+  },
+  {
+    id: "168",
+    title: "Ambiguous Loss: How to Grieve a Loved One Who's Still Alive",
+    excerpt: "Addiction creates grief with no funeral. Learn what ambiguous loss is, why it wears families down, and how to grieve someone who's still alive.",
+    category: "Family Support",
+    categories: ["Family Support", "Codependency", "Boundaries"],
+    readTime: "8 min read",
+    date: "June 22, 2026",
+    image: ambiguousLossGrievingImage,
+    slug: "ambiguous-loss-grieving-addicted-loved-one",
+    metaTitle: "Ambiguous Loss: Grieving a Loved One With Addiction",
+    metaDescription: "Addiction creates grief with no funeral. Learn what ambiguous loss is, why it wears families down, and how to grieve someone who's still alive.",
   }
 ];
