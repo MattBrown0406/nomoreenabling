@@ -85,10 +85,10 @@ export const commercialIntentPages: CommercialIntentPage[] = [
   {
     slug: "family-addiction-coaching",
     eyebrow: "Family addiction coaching",
-    title: "Family addiction coaching when enabling, relapse, or treatment refusal keeps repeating",
-    metaTitle: "Family Addiction Coaching for Enabling & Boundaries | No More Enabling",
+    title: "Family addiction coaching for enabling, relapse, and treatment refusal",
+    metaTitle: "Family Addiction Coaching for Families | No More Enabling",
     description:
-      "Private family addiction coaching for parents, spouses, and siblings who need one clear next step for enabling, boundaries, treatment refusal, relapse, money, and family alignment.",
+      "Private family addiction coaching for parents, spouses, and siblings who need a clear next step for enabling, boundaries, treatment refusal, relapse, money, and family alignment.",
     keywords:
       "family addiction coaching, addiction family coach, family recovery coaching, help for families of addicts, addiction boundaries coaching",
     audience:
@@ -98,7 +98,7 @@ export const commercialIntentPages: CommercialIntentPage[] = [
     defaultConcern: "We need family addiction coaching",
     leadIntent: "family-addiction-coaching",
     trustProof: [
-      "Led by a professional interventionist with family addiction experience since 2004",
+      "Family addiction coaching led by Matt Brown, a professional interventionist with experience since 2004",
       "Focused on family systems, not shame or lectures",
       "Useful before, during, or after treatment decisions",
       "Designed to turn article insight into decisions the family can hold",
@@ -132,14 +132,14 @@ export const commercialIntentPages: CommercialIntentPage[] = [
     ],
     faqs: [
       {
+        question: "What should my family do next if addiction keeps driving the same crisis?",
+        answer:
+          "Choose one grounded next step instead of another argument: request private guidance for coaching, attend Family Squares for live family support, or use Family Bridge when the family needs shared structure after treatment or relapse concerns.",
+      },
+      {
         question: "Who is family addiction coaching for?",
         answer:
           "It is for family members affected by a loved one's addiction who need help with boundaries, communication, treatment refusal, relapse, or family alignment.",
-      },
-      {
-        question: "What should my family do next?",
-        answer:
-          "If the pattern is repeating, choose one next step instead of another argument: request private guidance, attend Family Squares for live family support, or use Family Bridge when the family needs shared structure after treatment or relapse concerns.",
       },
       {
         question: "Is coaching only for families in crisis?",

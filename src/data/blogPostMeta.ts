@@ -1546,8 +1546,8 @@ export const blogPostsMeta: BlogPostMeta[] = [
     date: "May 1, 2026",
     image: settingLimitsAddictedLovedOneImage,
     slug: "paying-rent-for-addicted-adult-child",
-    metaTitle: "Paying Rent for an Addicted Adult Child",
-    metaDescription: "Should you pay rent for an addicted adult child? Learn when housing support helps, when it enables addiction, and how to set a clear boundary.",
+    metaTitle: "Should You Pay Rent for an Addicted Adult Child?",
+    metaDescription: "Parent guidance on paying rent for an addicted adult child: when housing support helps, when it enables addiction, and the next boundary to set.",
   },
   {
     id: "113",

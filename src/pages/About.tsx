@@ -56,8 +56,8 @@ const About = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead
-        title="Matt Brown Interventionist Since 2004 | No More Enabling"
-        description="Matt Brown is a professional interventionist and family addiction coach since 2004. Request private guidance for enabling, boundaries, treatment refusal, or intervention decisions."
+        title="Matt Brown Interventionist | Family Addiction Help Since 2004"
+        description="Matt Brown is a professional interventionist and family addiction coach. Request private guidance for enabling, boundaries, treatment refusal, or intervention decisions."
         canonicalUrl="https://nomoreenabling.com/about"
         keywords="Matt Brown interventionist, family addiction coaching, addiction family coach, professional interventionist, treatment refusal, enabling boundaries resource"
         articleAuthor="Matt Brown"
@@ -88,7 +88,7 @@ const About = () => {
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Direct answer</p>
                 <h2 className="mt-2 font-serif text-2xl font-bold text-foreground">Who is Matt Brown?</h2>
                 <p className="mt-3 text-muted-foreground leading-relaxed">
-                  Matt Brown is a professional interventionist and family addiction coach who has worked with families affected by addiction since 2004. No More Enabling is his education platform for families trying to stop rescuing, set boundaries they can hold, and decide when private coaching or intervention help is needed.
+                  Matt Brown is a professional interventionist and family addiction coach who has worked with families affected by addiction since 2004. If your family is stuck in enabling, treatment refusal, relapse, or a possible intervention decision, the next step is to request private guidance so the situation can be routed toward coaching, intervention planning, or another appropriate support path.
                 </p>
               </div>
               <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">

@@ -2,6 +2,8 @@ export default `
       <p>Paying rent for an addicted adult child can feel like the only thing standing between your child and homelessness. That fear is powerful. Most parents do not write the check because they think it is a perfect solution. They write it because the alternative feels unbearable.</p>
       <p>But when rent support repeats without recovery, accountability, or change, it can become one of the strongest forms of financial enabling. Housing can stabilize recovery. It can also stabilize active addiction. The difference is structure.</p>
 
+      <p><strong>Next step for parents:</strong> before paying again, decide whether this rent payment supports a recovery plan or protects the addiction from consequences. If the family is divided, frightened, or being pressured for an immediate answer, use <a href="/family-addiction-coaching">family addiction coaching</a> or <a href="/addiction-intervention-for-adult-child">adult child intervention guidance</a> to build one clear housing and treatment plan.</p>
+
       <h2>Why Rent Is Such A Hard Boundary</h2>
       <p>Rent is not like spending money. It carries the weight of shelter, safety, and survival. Parents often think, "If I do not pay, where will they go?" That question deserves compassion. It also deserves a plan that is bigger than another emergency payment.</p>
       <p>Families need to separate two different goals: preventing immediate harm and funding an unchanged pattern. Sometimes a short-term housing decision is necessary. But if every month becomes another rescue, rent support may be protecting addiction from the consequences that could push the system toward help.</p>

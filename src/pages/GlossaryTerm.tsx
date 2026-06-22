@@ -35,8 +35,8 @@ export default function GlossaryTerm() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <SEOHead
-        title={`${term.term} Definition`}
-        description={`${term.term}: ${term.plainDefinition}`}
+        title={`${term.term} Definition for Addiction Families`}
+        description={`${term.term}: ${term.plainDefinition} Learn what the family should do next.`}
         canonicalUrl={canonicalUrl}
         keywords={`${term.term}, ${term.term} definition, addiction family glossary`}
       />
@@ -74,6 +74,14 @@ export default function GlossaryTerm() {
               <p className="text-sm font-semibold uppercase tracking-wide text-primary">Plain answer</p>
               <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{term.expandedAnswer}</p>
             </article>
+
+            <section className="mt-8 rounded-2xl border border-primary/20 bg-primary/5 p-6 md:p-8">
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary">What to do next</p>
+              <h2 className="mt-2 font-serif text-2xl font-bold text-foreground">Turn the definition into one clear family action</h2>
+              <p className="mt-3 leading-relaxed text-muted-foreground">
+                If this term describes what is happening at home, do not stop at the definition. Use the related guidance below to choose the next step: check the pattern, get family coaching, attend live family support, or use Family Bridge when the family needs shared structure after treatment, relapse concerns, or a new boundary plan.
+              </p>
+            </section>
 
             <section className="mt-8 rounded-2xl border border-border bg-card p-6 md:p-8">
               <h2 className="font-serif text-2xl font-bold text-foreground">Related guidance</h2>
