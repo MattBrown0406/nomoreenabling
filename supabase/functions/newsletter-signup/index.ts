@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { enqueueSpineEvent } from "../_shared/spine.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -262,6 +263,16 @@ serve(async (req) => {
         console.error('Background Mailchimp sync error:', e)
       );
     }
+
+    await enqueueSpineEvent("lead_captured", {
+      email: sanitizedEmail,
+      name: sanitizedFirstName,
+      props: {
+        source: sanitizedSource,
+        assessment_result: sanitizedResult ?? null,
+        lead_magnet: sanitizedLeadMagnet ?? null,
+      },
+    });
 
     return new Response(
       JSON.stringify({ success: true, error: alreadySubscribed ? 'already_subscribed' : undefined }),

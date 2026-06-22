@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { enqueueSpineEvent } from "../_shared/spine.ts";
 
 const ALLOWED_ORIGINS = [
   'https://nomoreenabling.lovable.app',
@@ -175,12 +176,14 @@ serve(async (req) => {
 
     if (response.ok) {
       console.log('Subscription successful');
+      await enqueueSpineEvent("lead_captured", { email: sanitizedEmail, name: sanitizedFirstName ?? null });
       return new Response(
         JSON.stringify({ success: true, message: 'Successfully subscribed!' }),
         { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     } else if (response.status === 400 && data.title === 'Member Exists') {
       console.log('Subscriber already exists');
+      await enqueueSpineEvent("lead_captured", { email: sanitizedEmail, name: sanitizedFirstName ?? null });
       return new Response(
         JSON.stringify({ success: true, message: 'You are already subscribed!' }),
         { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }

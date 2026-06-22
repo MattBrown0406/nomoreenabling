@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { enqueueSpineEvent } from "../_shared/spine.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -330,6 +331,15 @@ serve(async (req) => {
       }
     } catch (confirmationError) {
       console.error("Confirmation email failed:", confirmationError);
+    }
+
+    if (source !== "advertiser-inquiry") {
+      await enqueueSpineEvent("lead_captured", {
+        email: safeEmail,
+        name: safeName,
+        phone: phone ?? null,
+        props: { source, lead_tier: leadTier, lead_intent: leadIntent ?? null },
+      });
     }
 
     return new Response(JSON.stringify({ success: true }), {
