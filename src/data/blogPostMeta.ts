@@ -11,6 +11,7 @@ import boundaryVsPunishmentImage from "@/assets/boundary-vs-punishment-addiction
 import healthyBoundariesExamplesImage from "@/assets/healthy-boundaries-examples-addicted-loved-one.jpg";
 import settingBoundariesAfterYearsEnablingImage from "@/assets/setting-boundaries-after-years-enabling.jpg";
 import guiltAfterHoldingBoundaryImage from "@/assets/guilt-after-holding-boundary-addicted-loved-one.jpg";
+import boundariesAddictedLovedOneLiesImage from "@/assets/boundaries-addicted-loved-one-lies.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2249,5 +2250,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "guilt-after-holding-boundary-addicted-loved-one",
     metaTitle: "Guilt After Setting Boundaries With Addicted Loved One",
     metaDescription: "Held a boundary with your addicted loved one and now feel wracked with guilt? Learn why second-guessing is normal and how to stay the course.",
+  },
+  {
+    id: "167",
+    title: "Setting Boundaries With an Addicted Loved One Who Lies",
+    excerpt: "Worried any boundary you set will just get lied around? Learn how to build limits with an addicted loved one that hold even when honesty is gone.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Support", "Enabling", "Codependency"],
+    readTime: "8 min read",
+    date: "June 20, 2026",
+    image: boundariesAddictedLovedOneLiesImage,
+    slug: "boundaries-addicted-loved-one-lies",
+    metaTitle: "Boundaries With an Addicted Loved One Who Lies",
+    metaDescription: "Worried any boundary you set will just get lied around? Learn how to build limits with an addicted loved one that hold even when honesty is gone.",
   }
 ];
