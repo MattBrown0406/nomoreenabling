@@ -41,3 +41,6 @@ verify_jwt = false
 
 [functions.record-article-metadata]
 verify_jwt = false
+
+[functions.drain-spine-outbox]
+verify_jwt = false
