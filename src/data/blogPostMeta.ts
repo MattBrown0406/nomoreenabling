@@ -12,6 +12,7 @@ import healthyBoundariesExamplesImage from "@/assets/healthy-boundaries-examples
 import settingBoundariesAfterYearsEnablingImage from "@/assets/setting-boundaries-after-years-enabling.jpg";
 import guiltAfterHoldingBoundaryImage from "@/assets/guilt-after-holding-boundary-addicted-loved-one.jpg";
 import boundariesAddictedLovedOneLiesImage from "@/assets/boundaries-addicted-loved-one-lies.jpg";
+import ambiguousLossGrievingImage from "@/assets/ambiguous-loss-grieving-addicted-loved-one.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
