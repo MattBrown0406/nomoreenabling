@@ -20,7 +20,7 @@ import { trackGAConversion } from "@/lib/gaConversions";
 import { withOwnedUtm } from "@/lib/ownedLinks";
 import mattHeadshot from "@/assets/matt-brown-headshot.jpeg";
 import freedomLogo from "@/assets/freedom-interventions-logo.jpg";
-import soberHelplineLogo from "@/assets/sober-helpline-logo.png";
+import soberHelplineLogo from "@/assets/sober-helpline-logo.svg";
 import familyBridgeLogo from "@/assets/family-bridge-logo.png";
 import partyWreckersLogo from "@/assets/party-wreckers-logo.jpg";
 
