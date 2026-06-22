@@ -49,7 +49,7 @@ const PartyWreckersBanner = ({ size = "leaderboard" }: PartyWreckersBannerProps)
           <div className="flex md:flex-col gap-4 md:gap-2 text-center px-4">
             <div className="flex items-center gap-2">
               <Headphones className="w-4 h-4 text-[#c4a77d]" />
-              <span className="text-white font-bold">75+</span>
+              <span className="text-white font-bold">80+</span>
               <span className="text-white/60 text-xs">Episodes</span>
             </div>
             <div className="flex items-center gap-2">
@@ -105,7 +105,7 @@ const PartyWreckersBanner = ({ size = "leaderboard" }: PartyWreckersBannerProps)
           <div className="text-center">
             <div className="flex items-center justify-center gap-1">
               <Headphones className="w-3.5 h-3.5 text-[#c4a77d]" />
-              <p className="text-white font-bold text-lg">75+</p>
+              <p className="text-white font-bold text-lg">80+</p>
             </div>
             <p className="text-white/60 text-xs">Episodes</p>
           </div>
