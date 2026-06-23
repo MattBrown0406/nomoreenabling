@@ -13,6 +13,7 @@ import settingBoundariesAfterYearsEnablingImage from "@/assets/setting-boundarie
 import guiltAfterHoldingBoundaryImage from "@/assets/guilt-after-holding-boundary-addicted-loved-one.jpg";
 import boundariesAddictedLovedOneLiesImage from "@/assets/boundaries-addicted-loved-one-lies.jpg";
 import ambiguousLossGrievingImage from "@/assets/ambiguous-loss-grieving-addicted-loved-one.jpg";
+import resentmentTowardAddictedLovedOneImage from "@/assets/resentment-toward-addicted-loved-one.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2277,5 +2278,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "ambiguous-loss-grieving-addicted-loved-one",
     metaTitle: "Ambiguous Loss: Grieving a Loved One With Addiction",
     metaDescription: "Addiction creates grief with no funeral. Learn what ambiguous loss is, why it wears families down, and how to grieve someone who's still alive.",
+  },
+  {
+    id: "169",
+    title: "Resentment Toward an Addicted Loved One: Why It Builds and How to Let It Go",
+    excerpt: "Resentment toward an addicted loved one is normal, not a moral failing. Learn why it builds and how to release it without abandoning yourself.",
+    category: "Family Support",
+    categories: ["Family Support", "Codependency", "Boundaries"],
+    readTime: "8 min read",
+    date: "June 23, 2026",
+    image: resentmentTowardAddictedLovedOneImage,
+    slug: "resentment-toward-addicted-loved-one",
+    metaTitle: "Resentment Toward an Addicted Loved One: How to Let Go",
+    metaDescription: "Resentment toward an addicted loved one is normal, not a moral failing. Learn why it builds and how to release it without abandoning yourself.",
   }
 ];
