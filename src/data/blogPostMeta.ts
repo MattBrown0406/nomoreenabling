@@ -14,6 +14,7 @@ import guiltAfterHoldingBoundaryImage from "@/assets/guilt-after-holding-boundar
 import boundariesAddictedLovedOneLiesImage from "@/assets/boundaries-addicted-loved-one-lies.jpg";
 import ambiguousLossGrievingImage from "@/assets/ambiguous-loss-grieving-addicted-loved-one.jpg";
 import resentmentTowardAddictedLovedOneImage from "@/assets/resentment-toward-addicted-loved-one.jpg";
+import livingYourOwnLifeImage from "@/assets/living-your-own-life-loved-one-addiction.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2291,5 +2292,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "resentment-toward-addicted-loved-one",
     metaTitle: "Resentment Toward an Addicted Loved One: How to Let Go",
     metaDescription: "Resentment toward an addicted loved one is normal, not a moral failing. Learn why it builds and how to release it without abandoning yourself.",
+  },
+  {
+    id: "170",
+    title: "Is It Okay to Live Your Own Life When a Loved One Is Struggling With Addiction?",
+    excerpt: "Feeling guilty for living your life while a loved one battles addiction? Learn why your wellbeing matters and how to reclaim it without abandoning them.",
+    category: "Family Support",
+    categories: ["Family Support", "Codependency", "Boundaries"],
+    readTime: "8 min read",
+    date: "June 24, 2026",
+    image: livingYourOwnLifeImage,
+    slug: "living-your-own-life-loved-one-addiction",
+    metaTitle: "Living Your Own Life When a Loved One Has Addiction",
+    metaDescription: "Feeling guilty for living your life while a loved one battles addiction? Learn why your wellbeing matters and how to reclaim it without abandoning them.",
   }
 ];
