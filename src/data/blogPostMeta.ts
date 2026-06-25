@@ -15,6 +15,7 @@ import boundariesAddictedLovedOneLiesImage from "@/assets/boundaries-addicted-lo
 import ambiguousLossGrievingImage from "@/assets/ambiguous-loss-grieving-addicted-loved-one.jpg";
 import resentmentTowardAddictedLovedOneImage from "@/assets/resentment-toward-addicted-loved-one.jpg";
 import livingYourOwnLifeImage from "@/assets/living-your-own-life-loved-one-addiction.jpg";
+import managingAngerResentmentImage from "@/assets/managing-anger-resentment-families-addiction.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2305,5 +2306,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "living-your-own-life-loved-one-addiction",
     metaTitle: "Living Your Own Life When a Loved One Has Addiction",
     metaDescription: "Feeling guilty for living your life while a loved one battles addiction? Learn why your wellbeing matters and how to reclaim it without abandoning them.",
+  },
+  {
+    id: "171",
+    title: "How to Manage Anger and Resentment When You Love Someone With Addiction",
+    excerpt: "Anger and resentment are normal when you love someone with addiction. Learn practical, compassionate ways to manage these feelings and protect your well-being.",
+    category: "Family Support",
+    categories: ["Family Support", "Codependency", "Boundaries"],
+    readTime: "8 min read",
+    date: "June 25, 2026",
+    image: managingAngerResentmentImage,
+    slug: "managing-anger-resentment-families-addiction",
+    metaTitle: "Managing Anger and Resentment in Addiction Families",
+    metaDescription: "Anger and resentment are normal when you love someone with addiction. Learn practical, compassionate ways to manage these feelings and protect your well-being.",
   }
 ];
