@@ -1,6 +1,7 @@
 export type ArticleContentModule = { default: string };
 
 export const articleContentLoaders: Record<string, () => Promise<ArticleContentModule>> = {
+  "managing-anger-resentment-families-addiction": () => import("./article-content/managing-anger-resentment-families-addiction"),
   "living-your-own-life-loved-one-addiction": () => import("./article-content/living-your-own-life-loved-one-addiction"),
   "resentment-toward-addicted-loved-one": () => import("./article-content/resentment-toward-addicted-loved-one"),
   "ambiguous-loss-grieving-addicted-loved-one": () => import("./article-content/ambiguous-loss-grieving-addicted-loved-one"),
