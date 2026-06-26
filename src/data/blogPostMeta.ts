@@ -16,6 +16,7 @@ import ambiguousLossGrievingImage from "@/assets/ambiguous-loss-grieving-addicte
 import resentmentTowardAddictedLovedOneImage from "@/assets/resentment-toward-addicted-loved-one.jpg";
 import livingYourOwnLifeImage from "@/assets/living-your-own-life-loved-one-addiction.jpg";
 import managingAngerResentmentImage from "@/assets/managing-anger-resentment-families-addiction.jpg";
+import aftercareAddictionRecoveryImage from "@/assets/aftercare-addiction-recovery-family-guide.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2319,5 +2320,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "managing-anger-resentment-families-addiction",
     metaTitle: "Managing Anger and Resentment in Addiction Families",
     metaDescription: "Anger and resentment are normal when you love someone with addiction. Learn practical, compassionate ways to manage these feelings and protect your well-being.",
+  },
+  {
+    id: "172",
+    title: "Aftercare in Addiction Recovery: A Family Guide to Supporting Without Enabling",
+    excerpt: "Aftercare in addiction recovery is the support a loved one needs after treatment. Learn how families can help without enabling — a warm, practical guide.",
+    category: "Recovery",
+    categories: ["Recovery", "Family Support", "Boundaries", "Enabling"],
+    readTime: "8 min read",
+    date: "June 26, 2026",
+    image: aftercareAddictionRecoveryImage,
+    slug: "aftercare-addiction-recovery-family-guide",
+    metaTitle: "Aftercare in Addiction Recovery: Family Guide",
+    metaDescription: "Aftercare in addiction recovery is the support a loved one needs after treatment. Learn how families can help without enabling. A warm guide by Matt Brown.",
   }
 ];
