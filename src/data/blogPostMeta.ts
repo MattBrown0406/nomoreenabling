@@ -17,6 +17,7 @@ import resentmentTowardAddictedLovedOneImage from "@/assets/resentment-toward-ad
 import livingYourOwnLifeImage from "@/assets/living-your-own-life-loved-one-addiction.jpg";
 import managingAngerResentmentImage from "@/assets/managing-anger-resentment-families-addiction.jpg";
 import aftercareAddictionRecoveryImage from "@/assets/aftercare-addiction-recovery-family-guide.jpg";
+import rebuildingFamilyRelationshipsImage from "@/assets/rebuilding-family-relationships-after-addiction-recovery.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
