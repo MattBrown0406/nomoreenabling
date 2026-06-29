@@ -56,8 +56,8 @@ const About = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead
-        title="Matt Brown Interventionist | Family Addiction Help Since 2004"
-        description="Matt Brown is a professional interventionist and family addiction coach. Request private guidance for enabling, boundaries, treatment refusal, or intervention decisions."
+        title="Matt Brown Interventionist | Private Family Addiction Guidance"
+        description="Matt Brown is a professional interventionist and family addiction coach. Learn his background and request private guidance for treatment refusal, enabling, boundaries, or intervention decisions."
         canonicalUrl="https://nomoreenabling.com/about"
         keywords="Matt Brown interventionist, family addiction coaching, addiction family coach, professional interventionist, treatment refusal, enabling boundaries resource"
         articleAuthor="Matt Brown"
@@ -77,7 +77,7 @@ const About = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground">
-                Matt Brown interventionist since 2004
+                Matt Brown, professional interventionist and family addiction coach
               </h1>
               <p className="mt-6 text-lg text-muted-foreground">
                 Families usually arrive here after too many arguments, rescues, promises, and sleepless nights. This site
@@ -88,7 +88,7 @@ const About = () => {
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Direct answer</p>
                 <h2 className="mt-2 font-serif text-2xl font-bold text-foreground">Who is Matt Brown?</h2>
                 <p className="mt-3 text-muted-foreground leading-relaxed">
-                  Matt Brown is a professional interventionist and family addiction coach who has worked with families affected by addiction since 2004. If your family is stuck in enabling, treatment refusal, relapse, or a possible intervention decision, the next step is to request private guidance so the situation can be routed toward coaching, intervention planning, or another appropriate support path.
+                  Matt Brown is a professional interventionist and family addiction coach who has worked with families affected by addiction since 2004. If your family is stuck in enabling, treatment refusal, relapse, or a possible intervention decision, the next step is to request private guidance so the situation can be routed toward coaching, Monday night family support, Family Bridge structure, intervention planning, or another appropriate support path.
                 </p>
               </div>
               <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">

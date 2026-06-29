@@ -85,14 +85,14 @@ export const commercialIntentPages: CommercialIntentPage[] = [
   {
     slug: "family-addiction-coaching",
     eyebrow: "Family addiction coaching",
-    title: "Family addiction coaching for enabling, relapse, and treatment refusal",
-    metaTitle: "Family Addiction Coaching for Families | No More Enabling",
+    title: "Family addiction coaching when you need to know what to do next",
+    metaTitle: "Family Addiction Coaching for Enabling & Boundaries",
     description:
-      "Private family addiction coaching for parents, spouses, and siblings who need a clear next step for enabling, boundaries, treatment refusal, relapse, money, and family alignment.",
+      "Private family addiction coaching for enabling, boundaries, treatment refusal, relapse, money decisions, and one clear next step for your family.",
     keywords:
       "family addiction coaching, addiction family coach, family recovery coaching, help for families of addicts, addiction boundaries coaching",
     audience:
-      "parents, spouses, siblings, and loved ones who need practical guidance before the next crisis, relapse, money request, or treatment argument.",
+      "parents, spouses, siblings, and loved ones searching for family addiction coaching before the next crisis, relapse, money request, boundary breakdown, or treatment argument.",
     urgency: "steady",
     primaryOffer: "coaching",
     defaultConcern: "We need family addiction coaching",
@@ -121,20 +121,20 @@ export const commercialIntentPages: CommercialIntentPage[] = [
       },
       {
         title: "Build the next right step",
-        body: "The work is practical: what to say, what to stop doing, what to prepare, and when to move toward treatment planning or intervention support.",
+        body: "The work is practical: what to say, what to stop doing, what to prepare, and when to move toward treatment planning, intervention support, Monday night family support, or Family Bridge structure.",
       },
     ],
     relatedLinks: [
-      { label: "Helping or Enabling Tool", href: "/helping-or-enabling", description: "Start with a quick pattern check before the next rescue or argument." },
-      { label: "Join Family Squares", href: "/support/sober-helpline", description: "Use the free Monday night support call when the family needs live help staying aligned." },
-      { label: "Try Family Bridge", href: "/support/family-bridge", description: "Use the app when the next step is shared structure after treatment, relapse concerns, or a new family plan." },
-      { label: "Work With Matt", href: "/work-with-matt", description: "Request private guidance when the family needs a plan." },
+      { label: "Check if you are helping or enabling", href: "/helping-or-enabling", description: "Start with a quick pattern check before the next rescue, money decision, or argument." },
+      { label: "Join the free Monday Family Squares call", href: "/support/sober-helpline", description: "Use the Monday night support call when the family needs live help staying aligned." },
+      { label: "Use Family Bridge for shared structure", href: "/support/family-bridge", description: "Use the app when the next step is coordinated follow-through after treatment, relapse concerns, or a new family plan." },
+      { label: "Request private coaching from Matt", href: "/work-with-matt", description: "Share what is happening when your family needs a specific plan instead of more guessing." },
     ],
     faqs: [
       {
         question: "What should my family do next if addiction keeps driving the same crisis?",
         answer:
-          "Choose one grounded next step instead of another argument: request private guidance for coaching, attend Family Squares for live family support, or use Family Bridge when the family needs shared structure after treatment or relapse concerns.",
+          "Choose one grounded next step instead of another argument: request private family addiction coaching from Matt, attend the free Monday Family Squares call for live support, or use Family Bridge when the family needs shared structure after treatment, relapse concerns, or a new boundary plan.",
       },
       {
         question: "Who is family addiction coaching for?",
