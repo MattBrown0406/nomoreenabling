@@ -17,6 +17,7 @@ import resentmentTowardAddictedLovedOneImage from "@/assets/resentment-toward-ad
 import livingYourOwnLifeImage from "@/assets/living-your-own-life-loved-one-addiction.jpg";
 import managingAngerResentmentImage from "@/assets/managing-anger-resentment-families-addiction.jpg";
 import aftercareAddictionRecoveryImage from "@/assets/aftercare-addiction-recovery-family-guide.jpg";
+import rebuildingFamilyRelationshipsImage from "@/assets/rebuilding-family-relationships-after-addiction-recovery.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2333,5 +2334,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "aftercare-addiction-recovery-family-guide",
     metaTitle: "Aftercare in Addiction Recovery: Family Guide",
     metaDescription: "Aftercare in addiction recovery is the support a loved one needs after treatment. Learn how families can help without enabling. A warm guide by Matt Brown.",
+  },
+  {
+    id: "173",
+    title: "Rebuilding Family Relationships After Addiction: A Guide for Families",
+    excerpt: "When a loved one gets sober, the family doesn't automatically heal. Learn how to rebuild family relationships after addiction — without falling back into old patterns.",
+    category: "Recovery",
+    categories: ["Recovery", "Family Support", "Boundaries"],
+    readTime: "9 min read",
+    date: "June 29, 2026",
+    image: rebuildingFamilyRelationshipsImage,
+    slug: "rebuilding-family-relationships-after-addiction-recovery",
+    metaTitle: "Rebuilding Family Relationships After Addiction",
+    metaDescription: "When a loved one gets sober, the family doesn't automatically heal. Learn how to rebuild family relationships after addiction without old patterns.",
   }
 ];
