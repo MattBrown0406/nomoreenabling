@@ -18,6 +18,7 @@ import livingYourOwnLifeImage from "@/assets/living-your-own-life-loved-one-addi
 import managingAngerResentmentImage from "@/assets/managing-anger-resentment-families-addiction.jpg";
 import aftercareAddictionRecoveryImage from "@/assets/aftercare-addiction-recovery-family-guide.jpg";
 import rebuildingFamilyRelationshipsImage from "@/assets/rebuilding-family-relationships-after-addiction-recovery.jpg";
+import whenToDoInterventionImage from "@/assets/when-to-do-intervention-loved-one.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2347,5 +2348,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "rebuilding-family-relationships-after-addiction-recovery",
     metaTitle: "Rebuilding Family Relationships After Addiction",
     metaDescription: "When a loved one gets sober, the family doesn't automatically heal. Learn how to rebuild family relationships after addiction without old patterns.",
+  },
+  {
+    id: "174",
+    title: "When Your Help Becomes a Holding Pattern: Knowing When to Do an Intervention for a Loved One",
+    excerpt: "When does helping cross into delaying treatment? Learn the signs that enabling has run its course and it's time to consider an intervention for a loved one.",
+    category: "Intervention",
+    categories: ["Intervention", "Enabling", "Family Support"],
+    readTime: "8 min read",
+    date: "June 30, 2026",
+    image: whenToDoInterventionImage,
+    slug: "when-to-do-intervention-loved-one",
+    metaTitle: "When to Do an Intervention for a Loved One",
+    metaDescription: "When does helping cross into delaying treatment? Learn the signs that enabling has run its course and it's time to consider an intervention for a loved one.",
   }
 ];
