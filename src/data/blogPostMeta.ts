@@ -20,6 +20,7 @@ import aftercareAddictionRecoveryImage from "@/assets/aftercare-addiction-recove
 import rebuildingFamilyRelationshipsImage from "@/assets/rebuilding-family-relationships-after-addiction-recovery.jpg";
 import whenToDoInterventionImage from "@/assets/when-to-do-intervention-loved-one.jpg";
 import enablingAdultChildAddictionImage from "@/assets/enabling-adult-child-addiction.jpg";
+import enablingSiblingsAddictionImage from "@/assets/enabling-siblings-addiction.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2375,5 +2376,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "enabling-adult-child-addiction",
     metaTitle: "Enabling an Adult Child's Addiction: Recognize & Stop",
     metaDescription: "Enabling an adult child's addiction feels like love, but it protects the addiction. Learn the signs and how to stop, without shame.",
+  },
+  {
+    id: "176",
+    title: "Enabling a Sibling's Addiction: Why Brothers and Sisters Cover for Each Other",
+    excerpt: "Covering for a brother or sister feels like loyalty, but it may be enabling a sibling's addiction. Learn how to stop covering without losing them.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Support", "Boundaries"],
+    readTime: "8 min read",
+    date: "July 5, 2026",
+    image: enablingSiblingsAddictionImage,
+    slug: "enabling-siblings-addiction",
+    metaTitle: "Enabling a Sibling's Addiction: Why We Cover",
+    metaDescription: "Covering for a brother or sister feels like loyalty, but it may be enabling a sibling's addiction. Learn how to stop covering without losing them.",
   }
 ];
