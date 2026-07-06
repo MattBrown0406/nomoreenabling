@@ -35,10 +35,22 @@ export default function GlossaryTerm() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <SEOHead
-        title={`${term.term} Definition for Addiction Families`}
-        description={`${term.term}: ${term.plainDefinition} Learn what the family should do next.`}
+        title={
+          term.slug === "enabling"
+            ? "Enabling Meaning & Definition for Addiction Families"
+            : `${term.term} Definition for Addiction Families`
+        }
+        description={
+          term.slug === "enabling"
+            ? "What does enabling mean in addiction? Learn the plain definition, common family patterns, and the next step to stop rescuing without abandoning your loved one."
+            : `${term.term}: ${term.plainDefinition} Learn what the family should do next.`
+        }
         canonicalUrl={canonicalUrl}
-        keywords={`${term.term}, ${term.term} definition, addiction family glossary`}
+        keywords={
+          term.slug === "enabling"
+            ? "enabling, enabling meaning, enabling definition, define enabling, addiction family glossary"
+            : `${term.term}, ${term.term} definition, addiction family glossary`
+        }
       />
       <DefinedTermJsonLd term={term} />
       <BreadcrumbJsonLd
@@ -62,7 +74,7 @@ export default function GlossaryTerm() {
               Addiction family glossary
             </span>
             <h1 className="max-w-4xl font-serif text-4xl font-bold leading-tight text-foreground md:text-5xl">
-              What is {term.term.toLowerCase()}?
+              {term.slug === "enabling" ? "What does enabling mean in addiction?" : `What is ${term.term.toLowerCase()}?`}
             </h1>
             <p className="mt-6 max-w-3xl text-xl text-foreground">{term.plainDefinition}</p>
           </div>
@@ -79,7 +91,9 @@ export default function GlossaryTerm() {
               <p className="text-sm font-semibold uppercase tracking-wide text-primary">What to do next</p>
               <h2 className="mt-2 font-serif text-2xl font-bold text-foreground">Turn the definition into one clear family action</h2>
               <p className="mt-3 leading-relaxed text-muted-foreground">
-                If this term describes what is happening at home, do not stop at the definition. Use the related guidance below to choose the next step: check the pattern, get family coaching, attend live family support, or use Family Bridge when the family needs shared structure after treatment, relapse concerns, or a new boundary plan.
+                {term.slug === "enabling"
+                  ? "If enabling describes what is happening at home, do not stop at the definition. The next move is to choose one action the family can hold: check the pattern, request family addiction coaching, attend live Monday family support, or use Family Bridge when the family needs shared structure after treatment, relapse concerns, or a new boundary plan."
+                  : "If this term describes what is happening at home, do not stop at the definition. Use the related guidance below to choose the next step: check the pattern, get family coaching, attend live family support, or use Family Bridge when the family needs shared structure after treatment, relapse concerns, or a new boundary plan."}
               </p>
             </section>
 

@@ -2,6 +2,8 @@ export default `
       <p>If your loved one is using drugs in your house, you may feel trapped between fear and guilt. You may worry that if you set a boundary, they will be homeless or unsafe. You may also know that allowing active use in the home is making everyone unsafe.</p>
       <p>Your home can be loving and still have rules. Addiction does not get unlimited access to the household.</p>
 
+      <p><strong>Next step for the household:</strong> if drugs are being used, stored, sold, or brought into your home, decide today what has to change for safety. If you need help turning that into a treatment, housing, or intervention plan, start with <a href="/intervention-help">intervention help for families</a> or <a href="/family-addiction-coaching">family addiction coaching</a> before another crisis sets the rules for you.</p>
+
       <h2>Active Use In The Home Changes The Whole Environment</h2>
       <p>Drug use in the home can bring overdose risk, unknown visitors, legal exposure, theft, conflict, unsafe storage, child exposure, and emotional trauma. Even when the person is not trying to hurt anyone, the environment changes.</p>
       <p>If children are present, the safety bar must be higher, not lower.</p>
@@ -27,4 +29,7 @@ export default `
 
       <h3>What if they say they have nowhere to go?</h3>
       <p>You can offer recovery-oriented options such as treatment, detox, sober living, or assessment without allowing active use in the home.</p>
+
+      <h2>Where To Go From Here</h2>
+      <p>If the home is unsafe or the family is divided about what to do next, get outside support before the next confrontation. Use <a href="/intervention-help">intervention help</a> when treatment refusal and safety risks are escalating, or <a href="/family-addiction-coaching">family addiction coaching</a> when you need a clear home boundary the family can actually hold.</p>
     `;

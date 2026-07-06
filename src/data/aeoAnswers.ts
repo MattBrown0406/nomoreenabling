@@ -428,12 +428,12 @@ export const glossaryTerms: GlossaryTerm[] = [
   {
     slug: "enabling",
     term: "Enabling",
-    plainDefinition: "Enabling means help that protects addiction from consequences and keeps the family stuck in the same crisis pattern instead of moving toward treatment, honesty, or recovery.",
-    expandedAnswer: "Enabling usually starts as love, fear, guilt, or crisis management. It becomes harmful when the family repeatedly softens reality, covers consequences, provides money or housing without accountability, or keeps the addiction system comfortable enough to continue. The next step is not a bigger lecture; it is one clear family action: check the pattern, stop the rescue that is feeding the addiction, and get support for boundaries the family can actually hold.",
+    plainDefinition: "Enabling means helping in a way that protects addiction from consequences and keeps the family stuck in the same crisis pattern instead of moving toward treatment, honesty, or recovery.",
+    expandedAnswer: "Enabling usually starts as love, fear, guilt, or crisis management. It becomes harmful when the family repeatedly softens reality, covers consequences, provides money or housing without accountability, or keeps the addiction system comfortable enough to continue. If you are asking what enabling means because the pattern is happening at home, the next step is not a bigger lecture. Name the rescue behavior, stop the help that is feeding active addiction, and get support for a boundary the family can actually hold.",
     relatedLinks: [
       { label: "Check if you are helping or enabling", href: "/helping-or-enabling" },
       { label: "Enabling Answer Center", href: "/enabling-answer-center" },
-      { label: "Get family addiction coaching", href: "/family-addiction-coaching" },
+      { label: "Get family addiction coaching for the next step", href: "/family-addiction-coaching" },
       { label: "Use Family Bridge for shared follow-through", href: "/support/family-bridge" },
     ],
   },

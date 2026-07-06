@@ -1906,8 +1906,8 @@ export const blogPostsMeta: BlogPostMeta[] = [
     date: "May 1, 2026",
     image: familyEnablingFallsApartImage,
     slug: "loved-one-using-drugs-in-my-house",
-    metaTitle: "My Loved One Is Using Drugs in My House",
-    metaDescription: "If a loved one is using drugs in your house, learn how to set home boundaries, respond to overdose risk, and offer treatment support.",
+    metaTitle: "Loved One Using Drugs in Your House? What to Do Next",
+    metaDescription: "If a loved one is using drugs in your house, set a clear safety boundary, respond to overdose risk, and know when to get family coaching or intervention help.",
   },
   {
     id: "140",

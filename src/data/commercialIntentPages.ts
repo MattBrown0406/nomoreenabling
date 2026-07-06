@@ -85,10 +85,10 @@ export const commercialIntentPages: CommercialIntentPage[] = [
   {
     slug: "family-addiction-coaching",
     eyebrow: "Family addiction coaching",
-    title: "Family addiction coaching when you need to know what to do next",
+    title: "Family addiction coaching for enabling, boundaries, and the next right step",
     metaTitle: "Family Addiction Coaching for Enabling & Boundaries",
     description:
-      "Private family addiction coaching for enabling, boundaries, treatment refusal, relapse, money decisions, and one clear next step for your family.",
+      "Private family addiction coaching for enabling, boundaries, treatment refusal, relapse, money decisions, and one clear next step before the next crisis.",
     keywords:
       "family addiction coaching, addiction family coach, family recovery coaching, help for families of addicts, addiction boundaries coaching",
     audience:
@@ -108,7 +108,7 @@ export const commercialIntentPages: CommercialIntentPage[] = [
       "Boundaries are clear in your head but collapse in real conversations",
       "Relapse, money, housing, or treatment questions keep taking over the family",
       "Different family members are making different promises or threats",
-      "You need a calmer plan before deciding whether intervention is necessary",
+      "You need a calmer plan before deciding whether coaching, Monday family support, Family Bridge, or intervention help is the right next step",
     ],
     process: [
       {
@@ -134,7 +134,7 @@ export const commercialIntentPages: CommercialIntentPage[] = [
       {
         question: "What should my family do next if addiction keeps driving the same crisis?",
         answer:
-          "Choose one grounded next step instead of another argument: request private family addiction coaching from Matt, attend the free Monday Family Squares call for live support, or use Family Bridge when the family needs shared structure after treatment, relapse concerns, or a new boundary plan.",
+          "Choose one grounded next step instead of another argument: request private family addiction coaching from Matt when you need a specific plan, attend the free Monday Family Squares call when you need live support, or use Family Bridge when the family needs shared structure after treatment, relapse concerns, or a new boundary plan.",
       },
       {
         question: "Who is family addiction coaching for?",
