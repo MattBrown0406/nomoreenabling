@@ -21,6 +21,7 @@ import rebuildingFamilyRelationshipsImage from "@/assets/rebuilding-family-relat
 import whenToDoInterventionImage from "@/assets/when-to-do-intervention-loved-one.jpg";
 import enablingAdultChildAddictionImage from "@/assets/enabling-adult-child-addiction.jpg";
 import enablingSiblingsAddictionImage from "@/assets/enabling-siblings-addiction.jpg";
+import parentificationAddictedFamiliesImage from "@/assets/parentification-addicted-families.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -2389,5 +2390,18 @@ export const blogPostsMeta: BlogPostMeta[] = [
     slug: "enabling-siblings-addiction",
     metaTitle: "Enabling a Sibling's Addiction: Why We Cover",
     metaDescription: "Covering for a brother or sister feels like loyalty, but it may be enabling a sibling's addiction. Learn how to stop covering without losing them.",
+  },
+  {
+    id: "177",
+    title: "Parentification in Addicted Families: When Children Become the Caretakers",
+    excerpt: "Parentification in addicted families teaches kids to caretake adults. Learn the signs, how it fuels adult enabling, and how to heal.",
+    category: "Family Support",
+    categories: ["Family Support", "Codependency", "Enabling"],
+    readTime: "8 min read",
+    date: "July 6, 2026",
+    image: parentificationAddictedFamiliesImage,
+    slug: "parentification-addicted-families",
+    metaTitle: "Parentification in Addicted Families: Signs & Healing",
+    metaDescription: "Parentification in addicted families teaches kids to caretake adults. Learn the signs, how it fuels adult enabling, and how to heal.",
   }
 ];
