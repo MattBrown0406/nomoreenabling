@@ -22,6 +22,7 @@ import whenToDoInterventionImage from "@/assets/when-to-do-intervention-loved-on
 import enablingAdultChildAddictionImage from "@/assets/enabling-adult-child-addiction.jpg";
 import enablingSiblingsAddictionImage from "@/assets/enabling-siblings-addiction.jpg";
 import parentificationAddictedFamiliesImage from "@/assets/parentification-addicted-families.jpg";
+import familyRolesInAddictionImage from "@/assets/family-roles-in-addiction.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -145,6 +146,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "family-roles-in-addiction",
+    title: "Family Roles in Addiction: Which One Have You Been Playing?",
+    excerpt: "Addiction reshapes every family into predictable roles — the hero, the scapegoat, the caretaker. Learn which one you've been playing and how to step out.",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Codependency", "Enabling", "Recovery"],
+    readTime: "10 min read",
+    date: "July 8, 2026",
+    image: familyRolesInAddictionImage,
+    slug: "family-roles-in-addiction",
+    metaTitle: "Family Roles in Addiction: Which One Are You Playing? | No More Enabling",
+    metaDescription: "Addiction reshapes every family into predictable roles — the hero, the scapegoat, the caretaker. Learn which one you've been playing and how to step out.",
+  },
   {
     id: "1",
     title: "What to Do When Your Addicted Loved One Keeps Breaking Your Boundaries",
