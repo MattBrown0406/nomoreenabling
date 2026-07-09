@@ -23,6 +23,7 @@ import enablingAdultChildAddictionImage from "@/assets/enabling-adult-child-addi
 import enablingSiblingsAddictionImage from "@/assets/enabling-siblings-addiction.jpg";
 import parentificationAddictedFamiliesImage from "@/assets/parentification-addicted-families.jpg";
 import familyRolesInAddictionImage from "@/assets/family-roles-in-addiction.jpg";
+import walkingOnEggshellsImage from "@/assets/walking-on-eggshells-addicted-loved-one.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -146,6 +147,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "walking-on-eggshells-addicted-loved-one",
+    title: "Walking on Eggshells Around an Addicted Loved One: How Fear Took Over Your Home",
+    excerpt: "Walking on eggshells around an addicted loved one? Learn why fear-based communication develops, how it enables addiction, and how to speak honestly again.",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Codependency", "Enabling", "Recovery"],
+    readTime: "9 min read",
+    date: "July 9, 2026",
+    image: walkingOnEggshellsImage,
+    slug: "walking-on-eggshells-addicted-loved-one",
+    metaTitle: "Walking on Eggshells Around an Addicted Loved One | No More Enabling",
+    metaDescription: "Walking on eggshells around an addicted loved one? Learn why fear-based communication develops, how it enables addiction, and how to speak honestly again.",
+  },
   {
     id: "family-roles-in-addiction",
     title: "Family Roles in Addiction: Which One Have You Been Playing?",
