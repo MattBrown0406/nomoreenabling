@@ -148,6 +148,19 @@ export interface BlogPostMeta {
 
 export const blogPostsMeta: BlogPostMeta[] = [
   {
+    id: "walking-on-eggshells-addicted-loved-one",
+    title: "Walking on Eggshells Around an Addicted Loved One: How Fear Took Over Your Home",
+    excerpt: "Walking on eggshells around an addicted loved one? Learn why fear-based communication develops, how it enables addiction, and how to speak honestly again.",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Codependency", "Enabling", "Recovery"],
+    readTime: "9 min read",
+    date: "July 9, 2026",
+    image: walkingOnEggshellsImage,
+    slug: "walking-on-eggshells-addicted-loved-one",
+    metaTitle: "Walking on Eggshells Around an Addicted Loved One | No More Enabling",
+    metaDescription: "Walking on eggshells around an addicted loved one? Learn why fear-based communication develops, how it enables addiction, and how to speak honestly again.",
+  },
+  {
     id: "family-roles-in-addiction",
     title: "Family Roles in Addiction: Which One Have You Been Playing?",
     excerpt: "Addiction reshapes every family into predictable roles — the hero, the scapegoat, the caretaker. Learn which one you've been playing and how to step out.",
