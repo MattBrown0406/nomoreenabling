@@ -1,0 +1,1 @@
+CREATE POLICY "Admins can view spine outbox" ON public.spine_outbox FOR SELECT TO authenticated USING (public.has_role(auth.uid(), 'admin'));
