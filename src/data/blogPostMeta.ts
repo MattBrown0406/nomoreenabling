@@ -23,6 +23,7 @@ import enablingAdultChildAddictionImage from "@/assets/enabling-adult-child-addi
 import enablingSiblingsAddictionImage from "@/assets/enabling-siblings-addiction.jpg";
 import parentificationAddictedFamiliesImage from "@/assets/parentification-addicted-families.jpg";
 import familyRolesInAddictionImage from "@/assets/family-roles-in-addiction.jpg";
+import walkingOnEggshellsImage from "@/assets/walking-on-eggshells-addicted-loved-one.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
