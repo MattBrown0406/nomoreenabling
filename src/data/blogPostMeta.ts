@@ -24,6 +24,7 @@ import enablingSiblingsAddictionImage from "@/assets/enabling-siblings-addiction
 import parentificationAddictedFamiliesImage from "@/assets/parentification-addicted-families.jpg";
 import familyRolesInAddictionImage from "@/assets/family-roles-in-addiction.jpg";
 import walkingOnEggshellsImage from "@/assets/walking-on-eggshells-addicted-loved-one.jpg";
+import typesOfBoundariesImage from "@/assets/types-of-boundaries-addicted-loved-one.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -147,6 +148,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "types-of-boundaries-addicted-loved-one",
+    title: "The 5 Types of Boundaries Every Family Needs With an Addicted Loved One",
+    excerpt: "Emotional, financial, physical, time, and communication boundaries — the 5 types of boundaries every family needs with an addicted loved one, explained.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Dynamics", "Enabling", "Codependency", "Recovery"],
+    readTime: "9 min read",
+    date: "July 11, 2026",
+    image: typesOfBoundariesImage,
+    slug: "types-of-boundaries-addicted-loved-one",
+    metaTitle: "5 Types of Boundaries With an Addicted Loved One | No More Enabling",
+    metaDescription: "Emotional, financial, physical, time, and communication boundaries — the 5 types of boundaries every family needs with an addicted loved one, explained.",
+  },
   {
     id: "walking-on-eggshells-addicted-loved-one",
     title: "Walking on Eggshells Around an Addicted Loved One: How Fear Took Over Your Home",
