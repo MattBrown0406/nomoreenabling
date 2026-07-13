@@ -2,6 +2,8 @@ export default `
       <p>Nobody has known your brother or sister longer than you have. You shared a bedroom wall, a last name, and a childhood full of secrets you kept for each other. So when addiction entered the picture, covering for them didn't feel like a decision. It felt like being a good sibling.</p>
       <p>If you've been quietly lending money, smoothing things over with your parents, or holding information the rest of the family doesn't have, you're not a bad person. But enabling a sibling's addiction is one of the least talked-about patterns in families, and it deserves an honest look. Here's what sibling enabling looks like, why it's so hard to see, and how to stop without abandoning someone you love.</p>
 
+      <p><strong>What to do next:</strong> before you lend more money, keep another major secret, or cover another consequence, write down the one behavior you will stop. If you need help telling the family and holding that decision without turning it into a fight, <a href="/family-addiction-coaching">request family addiction coaching</a> and bring the specific pattern that keeps repeating.</p>
+
       <h2>What Does Enabling a Sibling's Addiction Look Like?</h2>
       <p>Enabling means protecting someone from the natural consequences of their addiction, which unintentionally makes it easier for the addiction to continue. Between siblings, it usually looks less like writing checks and more like keeping secrets and running interference.</p>
       <p>Some of the most common sibling enabling behaviors include:</p>
@@ -40,8 +42,9 @@ export default `
       <p>You can also bring the rest of the family into alignment. Siblings often see the addiction more clearly than parents do, which makes you a powerful voice for getting everyone on the same page. When a family stops working against itself, the odds of a loved one accepting help go up dramatically.</p>
       <p>Being a good sibling was never about keeping the secret. It was about being the person who tells the truth when everyone else is too scared to, and who stays. You can be both.</p>
 
-      <h2>You Don't Have to Figure This Out Alone</h2>
-      <p>If you're navigating a brother or sister's addiction, support built for families can change everything. <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">Sober Helpline</a> offers one-on-one family coaching and a community where you can learn how to stop enabling and start helping. And if your family is ready to take a bigger step, <a href="https://freedominterventions.com" target="_blank" rel="noopener noreferrer">Freedom Interventions</a> provides professional intervention services that bring the whole family into one clear, loving message.</p>
+      <h2>Choose the Next Step for Your Family</h2>
+      <p>If the family is divided about secrets, money, or consequences, the clearest next step is to <a href="/family-addiction-coaching">request family addiction coaching</a> and build one plan everyone can hold. For a free live starting point, join the <a href="/support/sober-helpline">Monday night Family Squares support path</a>.</p>
+      <p>When siblings and parents already have a boundary or recovery plan but keep making separate promises, <a href="/support/family-bridge">use the FamilyBridge App for shared follow-through</a>. If addiction is escalating, treatment keeps being refused, or informal conversations have failed, move to <a href="/intervention-help">professional intervention guidance</a> instead of staging another family confrontation alone.</p>
 
       <h2>Frequently Asked Questions</h2>
       <h3>Is keeping my sibling's addiction secret from my parents enabling?</h3>

@@ -47,6 +47,7 @@ export default function CommercialIntentPage({ pageSlug }: CommercialIntentPageP
 
   const canonicalUrl = `https://nomoreenabling.com/${page.slug}`;
   const directAnswer = page.faqs[0];
+  const primaryCtaLabel = page.slug === "family-addiction-coaching" ? "Request family coaching" : "Request private guidance";
 
   const trackPageCta = (label: string, href: string) => {
     trackGAConversion("money_page_cta_click", {
@@ -111,8 +112,8 @@ export default function CommercialIntentPage({ pageSlug }: CommercialIntentPageP
               )}
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
                 <Button size="lg" asChild>
-                  <a href="#consultation-form" onClick={() => trackPageCta("Request private guidance", "#consultation-form")}>
-                    Request private guidance
+                  <a href="#consultation-form" onClick={() => trackPageCta(primaryCtaLabel, "#consultation-form")}>
+                    {primaryCtaLabel}
                     <ArrowRight className="h-4 w-4" />
                   </a>
                 </Button>
@@ -223,8 +224,8 @@ export default function CommercialIntentPage({ pageSlug }: CommercialIntentPageP
                   If this page describes your family, the useful next move is to share enough context for Matt to understand the pattern and route the situation.
                 </p>
                 <Button className="w-full mt-5" asChild>
-                  <a href="#consultation-form" onClick={() => trackPageCta("Sidebar request guidance", "#consultation-form")}>
-                    Request guidance
+                  <a href="#consultation-form" onClick={() => trackPageCta(`Sidebar ${primaryCtaLabel.toLowerCase()}`, "#consultation-form")}>
+                    {primaryCtaLabel}
                   </a>
                 </Button>
                 <div className="mt-5 rounded-xl bg-destructive/10 border border-destructive/20 p-4 text-sm text-muted-foreground">

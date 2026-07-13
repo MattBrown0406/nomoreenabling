@@ -85,10 +85,10 @@ export const commercialIntentPages: CommercialIntentPage[] = [
   {
     slug: "family-addiction-coaching",
     eyebrow: "Family addiction coaching",
-    title: "Family addiction coaching for enabling, boundaries, and the next right step",
-    metaTitle: "Family Addiction Coaching for Enabling & Boundaries",
+    title: "Family addiction coaching with Matt Brown for enabling and boundaries",
+    metaTitle: "Family Addiction Coaching With Matt Brown",
     description:
-      "Private family addiction coaching for enabling, boundaries, treatment refusal, relapse, money decisions, and one clear next step before the next crisis.",
+      "Get private family addiction coaching from Matt Brown for enabling, boundaries, treatment refusal, relapse, money decisions, and a clear next step.",
     keywords:
       "family addiction coaching, addiction family coach, family recovery coaching, help for families of addicts, addiction boundaries coaching",
     audience:
@@ -132,9 +132,9 @@ export const commercialIntentPages: CommercialIntentPage[] = [
     ],
     faqs: [
       {
-        question: "What should my family do next if addiction keeps driving the same crisis?",
+        question: "What is the next step if my family needs addiction coaching?",
         answer:
-          "Choose one grounded next step instead of another argument: request private family addiction coaching from Matt when you need a specific plan, attend the free Monday Family Squares call when you need live support, or use Family Bridge when the family needs shared structure after treatment, relapse concerns, or a new boundary plan.",
+          "Request private family addiction coaching from Matt and describe the pattern that keeps repeating. He can help you identify the first boundary, conversation, or family decision to make before the next crisis.",
       },
       {
         question: "Who is family addiction coaching for?",
