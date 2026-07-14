@@ -25,6 +25,7 @@ import parentificationAddictedFamiliesImage from "@/assets/parentification-addic
 import familyRolesInAddictionImage from "@/assets/family-roles-in-addiction.jpg";
 import walkingOnEggshellsImage from "@/assets/walking-on-eggshells-addicted-loved-one.jpg";
 import typesOfBoundariesImage from "@/assets/types-of-boundaries-addicted-loved-one.jpg";
+import whyBoundariesHelpImage from "@/assets/why-boundaries-help-addicted-loved-one.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -148,6 +149,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "why-boundaries-help-your-addicted-loved-one",
+    title: "Why Boundaries Help Your Addicted Loved One (Even When It Feels Like Abandonment)",
+    excerpt: "Worried that setting boundaries means abandoning your addicted loved one? Learn why boundaries help an addicted loved one move toward recovery.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Dynamics", "Enabling", "Codependency", "Recovery"],
+    readTime: "9 min read",
+    date: "July 13, 2026",
+    image: whyBoundariesHelpImage,
+    slug: "why-boundaries-help-your-addicted-loved-one",
+    metaTitle: "Why Boundaries Help Your Addicted Loved One | No More Enabling",
+    metaDescription: "Worried that setting boundaries means abandoning your addicted loved one? Learn why boundaries help an addicted loved one move toward recovery.",
+  },
   {
     id: "types-of-boundaries-addicted-loved-one",
     title: "The 5 Types of Boundaries Every Family Needs With an Addicted Loved One",
