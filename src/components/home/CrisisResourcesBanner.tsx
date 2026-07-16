@@ -32,16 +32,16 @@ const CrisisResourcesBanner = () => {
             </span>
 
             <a
-              href="tel:+15413065757"
+              href="tel:+14582988002"
               className="flex items-center gap-1.5 text-foreground hover:text-primary transition-colors font-semibold"
               onClick={() => {
                 if (typeof window !== "undefined" && typeof window.gtag === "function") {
-                  window.gtag("event", "phone_call_click", { source: "crisis_banner", phone: "541-306-5757" });
+                  window.gtag("event", "phone_call_click", { source: "crisis_banner", phone: "458-298-8002" });
                 }
               }}
             >
               <Phone className="h-3.5 w-3.5" />
-              <span>Family support: 541-306-5757</span>
+              <span>Family support: 458-298-8002</span>
             </a>
           </div>
         </div>
