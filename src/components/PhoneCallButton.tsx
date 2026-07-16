@@ -2,8 +2,8 @@ import { Phone } from "lucide-react";
 import { Button, type ButtonProps } from "@/components/ui/button";
 import { trackGAConversion } from "@/lib/gaConversions";
 
-export const PHONE_NUMBER_DISPLAY = "541-306-5757";
-export const PHONE_NUMBER_TEL = "+15413065757";
+export const PHONE_NUMBER_DISPLAY = "458-298-8002";
+export const PHONE_NUMBER_TEL = "+14582988002";
 
 interface PhoneCallButtonProps extends Omit<ButtonProps, "asChild" | "onClick"> {
   source: string;
