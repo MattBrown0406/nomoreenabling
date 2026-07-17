@@ -1,4 +1,4 @@
-const GA_MEASUREMENT_ID = "G-Y3CM6RCELZ";
+const GA_MEASUREMENT_ID = "G-T8Q605D5GN";
 
 type GtagParams = Record<string, string | number | boolean | undefined>;
 
