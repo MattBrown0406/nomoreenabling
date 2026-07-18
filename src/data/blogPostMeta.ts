@@ -27,6 +27,7 @@ import walkingOnEggshellsImage from "@/assets/walking-on-eggshells-addicted-love
 import typesOfBoundariesImage from "@/assets/types-of-boundaries-addicted-loved-one.jpg";
 import whyBoundariesHelpImage from "@/assets/why-boundaries-help-addicted-loved-one.jpg";
 import whenAddictTestsBoundariesImage from "@/assets/when-addict-tests-your-boundaries.jpg";
+import preparingToSetBoundariesImage from "@/assets/preparing-to-set-boundaries-addicted-loved-one.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -150,6 +151,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "preparing-to-set-boundaries-addicted-loved-one",
+    title: "Preparing to Set Boundaries with an Addicted Loved One: Why the Work Happens Before the Conversation",
+    excerpt: "Most boundaries fail because they were decided mid-crisis. Learn how preparing to set boundaries with an addicted loved one makes them stick.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Dynamics", "Enabling", "Codependency", "Recovery"],
+    readTime: "9 min read",
+    date: "July 18, 2026",
+    image: preparingToSetBoundariesImage,
+    slug: "preparing-to-set-boundaries-addicted-loved-one",
+    metaTitle: "Preparing to Set Boundaries With an Addicted Loved One | No More Enabling",
+    metaDescription: "Most boundaries fail because they were decided mid-crisis. Learn how preparing to set boundaries with an addicted loved one makes them stick.",
+  },
   {
     id: "when-addict-tests-your-boundaries",
     title: "When an Addict Tests Your Boundaries: How to Hold the Line Without Breaking",
