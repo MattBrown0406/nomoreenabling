@@ -26,6 +26,7 @@ import familyRolesInAddictionImage from "@/assets/family-roles-in-addiction.jpg"
 import walkingOnEggshellsImage from "@/assets/walking-on-eggshells-addicted-loved-one.jpg";
 import typesOfBoundariesImage from "@/assets/types-of-boundaries-addicted-loved-one.jpg";
 import whyBoundariesHelpImage from "@/assets/why-boundaries-help-addicted-loved-one.jpg";
+import whenAddictTestsBoundariesImage from "@/assets/when-addict-tests-your-boundaries.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -149,6 +150,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "when-addict-tests-your-boundaries",
+    title: "When an Addict Tests Your Boundaries: How to Hold the Line Without Breaking",
+    excerpt: "When an addict tests your boundaries, escalation usually means the limit registered. Learn why testing happens and how to hold steady without folding.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Dynamics", "Enabling", "Codependency", "Recovery"],
+    readTime: "9 min read",
+    date: "July 17, 2026",
+    image: whenAddictTestsBoundariesImage,
+    slug: "when-addict-tests-your-boundaries",
+    metaTitle: "When an Addict Tests Your Boundaries: How to Hold the Line | No More Enabling",
+    metaDescription: "When an addict tests your boundaries, escalation usually means the limit registered. Learn why testing happens and how to hold steady without folding.",
+  },
   {
     id: "why-boundaries-help-your-addicted-loved-one",
     title: "Why Boundaries Help Your Addicted Loved One (Even When It Feels Like Abandonment)",
