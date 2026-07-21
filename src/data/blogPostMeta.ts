@@ -28,6 +28,7 @@ import typesOfBoundariesImage from "@/assets/types-of-boundaries-addicted-loved-
 import whyBoundariesHelpImage from "@/assets/why-boundaries-help-addicted-loved-one.jpg";
 import whenAddictTestsBoundariesImage from "@/assets/when-addict-tests-your-boundaries.jpg";
 import preparingToSetBoundariesImage from "@/assets/preparing-to-set-boundaries-addicted-loved-one.jpg";
+import boundariesFarAwayImage from "@/assets/boundaries-addicted-loved-one-far-away.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -151,6 +152,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "boundaries-addicted-loved-one-far-away",
+    title: "Setting Boundaries With an Addicted Loved One Who Lives Far Away",
+    excerpt: "Setting boundaries with an addicted loved one who lives far away is possible. Learn how to hold limits by phone, manage money requests, and stay sane from a distance.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Dynamics", "Enabling", "Codependency", "Recovery"],
+    readTime: "9 min read",
+    date: "July 20, 2026",
+    image: boundariesFarAwayImage,
+    slug: "boundaries-addicted-loved-one-far-away",
+    metaTitle: "Setting Boundaries With an Addicted Loved One Far Away | No More Enabling",
+    metaDescription: "Setting boundaries with an addicted loved one who lives far away is possible. Learn how to hold limits by phone, manage money requests, and stay sane from a distance.",
+  },
   {
     id: "preparing-to-set-boundaries-addicted-loved-one",
     title: "Preparing to Set Boundaries with an Addicted Loved One: Why the Work Happens Before the Conversation",
