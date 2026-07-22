@@ -29,6 +29,7 @@ import whyBoundariesHelpImage from "@/assets/why-boundaries-help-addicted-loved-
 import whenAddictTestsBoundariesImage from "@/assets/when-addict-tests-your-boundaries.jpg";
 import preparingToSetBoundariesImage from "@/assets/preparing-to-set-boundaries-addicted-loved-one.jpg";
 import boundariesFarAwayImage from "@/assets/boundaries-addicted-loved-one-far-away.jpg";
+import detachingWithLoveStopAbsorbingImage from "@/assets/detaching-with-love-stop-absorbing-addiction.jpg";
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
 import alcoholismEmotionalSafetyImage from "@/assets/alcoholism-emotional-safety-home.jpg";
@@ -152,6 +153,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "detaching-with-love-stop-absorbing-addiction",
+    title: "Detaching With Love: How to Stop Absorbing Your Loved One's Addiction Without Abandoning Them",
+    excerpt: "Detaching with love means stepping out of the chaos of a loved one's addiction without stepping away from them. Learn what it is and how to practice it.",
+    category: "Codependency",
+    categories: ["Codependency", "Boundaries", "Family Dynamics", "Enabling", "Recovery"],
+    readTime: "9 min read",
+    date: "July 22, 2026",
+    image: detachingWithLoveStopAbsorbingImage,
+    slug: "detaching-with-love-stop-absorbing-addiction",
+    metaTitle: "Detaching With Love: Stop Absorbing Their Addiction | No More Enabling",
+    metaDescription: "Detaching with love means stepping out of the chaos of a loved one's addiction without stepping away from them. Learn what it is and how to practice it.",
+  },
   {
     id: "boundaries-addicted-loved-one-far-away",
     title: "Setting Boundaries With an Addicted Loved One Who Lives Far Away",
