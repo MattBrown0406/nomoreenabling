@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useMemo, useEffect, useState } from "react";
 import AdSpace from "@/components/ads/AdSpace";
+import GoogleAdSense from "@/components/ads/GoogleAdSense";
 import PersonalizedSuggestions from "@/components/suggestions/PersonalizedSuggestions";
 import { blogPostsMeta } from "@/data/blogPostMeta";
 import { supabase } from "@/integrations/supabase/client";
