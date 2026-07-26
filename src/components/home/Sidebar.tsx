@@ -84,6 +84,10 @@ const Sidebar = () => {
         <AdSpace size="sidebar" placementKey="homepage_sidebar" />
       </div>
 
+      {/* Google AdSense — home sidebar */}
+      <GoogleAdSense slotKey="homeSidebar" format="auto" minHeight={250} />
+
+
       <div className="bg-card rounded-xl p-6 shadow-card border border-border/60">
         <h3 className="font-serif text-xl font-bold text-foreground mb-2">
           Start Here
