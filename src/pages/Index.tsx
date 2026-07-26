@@ -385,6 +385,10 @@ const Index = () => {
             <AdSpace size="leaderboard" placementKey="article_bottom_leaderboard" />
           </div>
 
+          <div className="container mx-auto px-4 py-4">
+            <GoogleAdSense slotKey="homeMid" format="auto" minHeight={100} />
+          </div>
+
           <section className="container mx-auto px-4 py-12">
             <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
