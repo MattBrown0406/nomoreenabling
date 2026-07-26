@@ -164,6 +164,10 @@ const Index = () => {
         <main className="flex-grow" role="main">
           <HeroSection />
 
+          <div className="container mx-auto px-4 pt-4">
+            <GoogleAdSense slotKey="homeTop" format="auto" minHeight={100} />
+          </div>
+
           <section className="container mx-auto px-4 pt-8 pb-10">
             <div className="max-w-6xl mx-auto">
               <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
