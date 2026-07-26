@@ -11,6 +11,7 @@ import NewsletterSection from "@/components/home/NewsletterSection";
 import BlogCard from "@/components/blog/BlogCard";
 import Sidebar from "@/components/home/Sidebar";
 import AdSpace from "@/components/ads/AdSpace";
+import GoogleAdSense from "@/components/ads/GoogleAdSense";
 import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BadgeDollarSign, CheckCircle2, HeartHandshake, Route, ShieldAlert } from "lucide-react";
@@ -162,6 +163,10 @@ const Index = () => {
 
         <main className="flex-grow" role="main">
           <HeroSection />
+
+          <div className="container mx-auto px-4 pt-4">
+            <GoogleAdSense slotKey="homeTop" format="auto" minHeight={100} />
+          </div>
 
           <section className="container mx-auto px-4 pt-8 pb-10">
             <div className="max-w-6xl mx-auto">
@@ -383,6 +388,10 @@ const Index = () => {
 
           <div className="container mx-auto px-4 py-6">
             <AdSpace size="leaderboard" placementKey="article_bottom_leaderboard" />
+          </div>
+
+          <div className="container mx-auto px-4 py-4">
+            <GoogleAdSense slotKey="homeMid" format="auto" minHeight={100} />
           </div>
 
           <section className="container mx-auto px-4 py-12">

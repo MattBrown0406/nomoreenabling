@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BlogCard from "@/components/blog/BlogCard";
 import AdSpace from "@/components/ads/AdSpace";
+import GoogleAdSense from "@/components/ads/GoogleAdSense";
 import { Input } from "@/components/ui/input";
 import { blogPostsMeta } from "@/data/blogPostMeta";
 import { Search, ArrowRight } from "lucide-react";
@@ -165,7 +166,8 @@ const Articles = () => {
           </div>
         </section>
 
-        <div className="container mx-auto px-4 py-6">
+        <div className="container mx-auto px-4 py-6 space-y-4">
+          <GoogleAdSense slotKey="articlesTop" format="auto" minHeight={100} />
           <AdSpace size="leaderboard" placementKey="article_bottom_leaderboard" />
         </div>
 
@@ -197,6 +199,10 @@ const Articles = () => {
                 </button>
               </div>
             )}
+
+            <div className="mt-10">
+              <GoogleAdSense slotKey="articlesBottom" format="auto" minHeight={100} />
+            </div>
           </div>
         </section>
       </main>

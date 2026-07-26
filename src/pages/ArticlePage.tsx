@@ -7,6 +7,7 @@ import { blogPostsMeta } from "@/data/blogPostMeta";
 import { articleContentLoaders } from "@/data/articleContentLoaders";
 import { topicHubs } from "@/data/topicHubs";
 import AdSpace from "@/components/ads/AdSpace";
+import GoogleAdSense from "@/components/ads/GoogleAdSense";
 import RelatedArticleCallout from "@/components/blog/RelatedArticleCallout";
 import ArticleStickyCTA from "@/components/blog/ArticleStickyCTA";
 import { Button } from "@/components/ui/button";
@@ -910,24 +911,33 @@ const ArticlePage = () => {
                   </button>
                 </div>
 
-                <div className="mb-8">
+                <div className="mb-8 space-y-4">
                   <AdSpace size="leaderboard" placementKey="article_top_leaderboard" />
+                  <GoogleAdSense slotKey="articleTop" format="auto" minHeight={100} />
                 </div>
 
                 {articleContent ? (
                   <div className="prose prose-lg max-w-none text-foreground/90 prose-headings:font-serif prose-headings:text-foreground prose-p:text-foreground/90 prose-li:text-foreground/90 prose-strong:text-foreground">
-                    {articleSections.map((section, index) => (
-                      <div key={index}>
-                        {index === Math.floor(articleSections.length / 2) && midArticleSuggestion && (
-                          <RelatedArticleCallout
-                            title={midArticleSuggestion.title}
-                            slug={midArticleSuggestion.slug}
-                            excerpt={midArticleSuggestion.excerpt}
-                          />
-                        )}
-                        <div dangerouslySetInnerHTML={{ __html: section }} />
-                      </div>
-                    ))}
+                    {articleSections.map((section, index) => {
+                      const midIndex = Math.floor(articleSections.length / 2);
+                      return (
+                        <div key={index}>
+                          {index === midIndex && midArticleSuggestion && (
+                            <RelatedArticleCallout
+                              title={midArticleSuggestion.title}
+                              slug={midArticleSuggestion.slug}
+                              excerpt={midArticleSuggestion.excerpt}
+                            />
+                          )}
+                          {index === midIndex && (
+                            <div className="my-8 not-prose">
+                              <GoogleAdSense slotKey="articleInline" format="auto" minHeight={250} />
+                            </div>
+                          )}
+                          <div dangerouslySetInnerHTML={{ __html: section }} />
+                        </div>
+                      );
+                    })}
                   </div>
                 ) : (
                   <div className="rounded-2xl border border-border bg-secondary/30 p-6 text-muted-foreground">
@@ -1003,6 +1013,9 @@ const ArticlePage = () => {
                     </div>
                   </div>
                   <AdSpace size="leaderboard" placementKey="article_bottom_leaderboard" />
+                  <div className="mt-6">
+                    <GoogleAdSense slotKey="articleBottom" format="auto" minHeight={100} />
+                  </div>
                 </div>
               </article>
 
@@ -1065,6 +1078,7 @@ const ArticlePage = () => {
                   </Link>
                 </div>
                 <AdSpace size="sidebar" placementKey="article_sidebar" />
+                <GoogleAdSense slotKey="articleSidebar" format="auto" minHeight={250} />
               </div>
             </aside>
           </div>
