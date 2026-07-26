@@ -385,35 +385,55 @@ const AdminAnalytics = () => {
   };
 
   const fetchAdClicks = async () => {
-    let query = supabase.from('ad_clicks').select('ad_name, clicked_at');
-
+    let sinceIso: string | null = null;
     if (timeRange !== 'all') {
       const days = timeRange === '7d' ? 7 : timeRange === '30d' ? 30 : 90;
       const since = new Date();
       since.setDate(since.getDate() - days);
-      query = query.gte('clicked_at', since.toISOString());
+      sinceIso = since.toISOString();
     }
 
-    const { data, error } = await query;
+    const pageSize = 1000;
+    const clickCounts: Record<string, number> = {};
+    let total = 0;
+    let from = 0;
+    let hadError = false;
 
-    if (error || !data) {
+    while (true) {
+      let query = supabase
+        .from('ad_clicks')
+        .select('ad_name', { count: 'exact' })
+        .range(from, from + pageSize - 1);
+      if (sinceIso) query = query.gte('clicked_at', sinceIso);
+
+      const { data, error, count } = await query;
+      if (error || !data) {
+        hadError = true;
+        break;
+      }
+      data.forEach((c) => {
+        clickCounts[c.ad_name] = (clickCounts[c.ad_name] || 0) + 1;
+      });
+      total = count ?? total + data.length;
+      if (data.length < pageSize) break;
+      from += pageSize;
+      if (from > 100000) break;
+    }
+
+    if (hadError) {
       setAdClicks([]);
       setTotalAdClicks(0);
       return;
     }
-
-    const clickCounts: Record<string, number> = {};
-    data.forEach((click) => {
-      clickCounts[click.ad_name] = (clickCounts[click.ad_name] || 0) + 1;
-    });
 
     const clickStats = Object.entries(clickCounts)
       .map(([ad_name, clicks]) => ({ ad_name, clicks }))
       .sort((a, b) => b.clicks - a.clicks);
 
     setAdClicks(clickStats);
-    setTotalAdClicks(data.length);
+    setTotalAdClicks(total);
   };
+
 
   const fetchFunnelAnalytics = async () => {
     let eventQuery = supabase
@@ -498,30 +518,49 @@ const AdminAnalytics = () => {
   const fetchAnalytics = async () => {
     setLoading(true);
 
-    let query = supabase.from('article_views').select('article_slug, viewed_at');
-
+    let sinceIso: string | null = null;
     if (timeRange !== 'all') {
       const days = timeRange === '7d' ? 7 : timeRange === '30d' ? 30 : 90;
       const since = new Date();
       since.setDate(since.getDate() - days);
-      query = query.gte('viewed_at', since.toISOString());
+      sinceIso = since.toISOString();
     }
 
-    const { data, error } = await query;
+    // Page through all rows — Supabase caps a single request at 1000.
+    const pageSize = 1000;
+    const viewCounts: Record<string, number> = {};
+    let total = 0;
+    let from = 0;
+    let fetchError: unknown = null;
 
-    if (error) {
-      console.error('Error fetching analytics:', error);
+    while (true) {
+      let query = supabase
+        .from('article_views')
+        .select('article_slug', { count: 'exact' })
+        .range(from, from + pageSize - 1);
+      if (sinceIso) query = query.gte('viewed_at', sinceIso);
+
+      const { data, error, count } = await query;
+      if (error) {
+        fetchError = error;
+        break;
+      }
+      const rows = data ?? [];
+      rows.forEach((v) => {
+        viewCounts[v.article_slug] = (viewCounts[v.article_slug] || 0) + 1;
+      });
+      total = count ?? total + rows.length;
+      if (rows.length < pageSize) break;
+      from += pageSize;
+      if (from > 100000) break; // hard safety cap
+    }
+
+    if (fetchError) {
+      console.error('Error fetching analytics:', fetchError);
       setLoading(false);
       return;
     }
 
-    // Count views per article
-    const viewCounts: Record<string, number> = {};
-    (data || []).forEach((view) => {
-      viewCounts[view.article_slug] = (viewCounts[view.article_slug] || 0) + 1;
-    });
-
-    // Map to article info
     const articleStats: ArticleStat[] = blogPostsMeta.map((post) => ({
       slug: post.slug,
       title: post.title,
@@ -531,7 +570,7 @@ const AdminAnalytics = () => {
     }));
 
     setStats(articleStats);
-    setTotalViews((data || []).length);
+    setTotalViews(total);
     setLoading(false);
   };
 
