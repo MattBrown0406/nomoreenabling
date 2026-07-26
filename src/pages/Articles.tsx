@@ -199,6 +199,10 @@ const Articles = () => {
                 </button>
               </div>
             )}
+
+            <div className="mt-10">
+              <GoogleAdSense slotKey="articlesBottom" format="auto" minHeight={100} />
+            </div>
           </div>
         </section>
       </main>
