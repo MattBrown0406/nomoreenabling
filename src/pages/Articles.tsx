@@ -166,7 +166,8 @@ const Articles = () => {
           </div>
         </section>
 
-        <div className="container mx-auto px-4 py-6">
+        <div className="container mx-auto px-4 py-6 space-y-4">
+          <GoogleAdSense slotKey="articlesTop" format="auto" minHeight={100} />
           <AdSpace size="leaderboard" placementKey="article_bottom_leaderboard" />
         </div>
 

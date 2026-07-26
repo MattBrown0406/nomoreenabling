@@ -7,6 +7,7 @@ import { blogPostsMeta } from "@/data/blogPostMeta";
 import { articleContentLoaders } from "@/data/articleContentLoaders";
 import { topicHubs } from "@/data/topicHubs";
 import AdSpace from "@/components/ads/AdSpace";
+import GoogleAdSense from "@/components/ads/GoogleAdSense";
 import RelatedArticleCallout from "@/components/blog/RelatedArticleCallout";
 import ArticleStickyCTA from "@/components/blog/ArticleStickyCTA";
 import { Button } from "@/components/ui/button";
