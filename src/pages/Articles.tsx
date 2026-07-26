@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BlogCard from "@/components/blog/BlogCard";
 import AdSpace from "@/components/ads/AdSpace";
+import GoogleAdSense from "@/components/ads/GoogleAdSense";
 import { Input } from "@/components/ui/input";
 import { blogPostsMeta } from "@/data/blogPostMeta";
 import { Search, ArrowRight } from "lucide-react";
