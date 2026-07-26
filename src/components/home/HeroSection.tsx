@@ -1,158 +1,176 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, BadgeDollarSign, CheckCircle2, HeartHandshake, ShieldAlert, Users } from "lucide-react";
+import { ArrowRight, BookOpenCheck, HeartHandshake, Route, ShieldAlert } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/family-trauma-after-addiction.jpg";
+
 import PhoneCallButton from "@/components/PhoneCallButton";
+import { trackGAConversion } from "@/lib/gaConversions";
+import "./HeroSection.css";
 
-const trustPoints = [
-  "20+ years of intervention experience",
-  "Direct guidance for families under stress",
-  "Clear next steps instead of vague encouragement",
-];
-
-const routeTiles = [
+const nextSteps = [
   {
-    title: "Enabling help",
-    description: "Sort helping, rescuing, money, boundaries, and guilt.",
-    href: "/start-here",
+    eyebrow: "NAME THE PATTERN",
+    title: "Helping or enabling?",
+    description: "See where care has quietly turned into rescue, protection, or control.",
+    cta: "Use the free tool",
+    href: "/helping-or-enabling",
     icon: HeartHandshake,
-    className: "border-amber-200/70 bg-amber-50/95 text-amber-950",
+    event: "helping_or_enabling_click",
   },
   {
-    title: "Intervention guidance",
-    description: "For refusal, escalation, relapse, or family division.",
+    eyebrow: "CHANGE YOUR PART",
+    title: "Build a boundary",
+    description: "Create limits you can explain clearly and actually hold under pressure.",
+    cta: "Open the boundaries course",
+    href: "/boundaries-course",
+    icon: Route,
+    event: "boundaries_course_click",
+  },
+  {
+    eyebrow: "RISK IS RISING",
+    title: "Get professional direction",
+    description: "Know when addiction has moved beyond another family conversation.",
+    cta: "Explore intervention help",
     href: "/intervention-help",
     icon: ShieldAlert,
-    className: "border-red-200/70 bg-red-50/95 text-red-950",
+    event: "intervention_help_click",
   },
-  {
-    title: "Family support",
-    description: "Use assessment, support calls, and calmer next steps.",
-    href: "/family-situation-assessment",
-    icon: Users,
-    className: "border-emerald-200/70 bg-emerald-50/95 text-emerald-950",
-  },
-  {
-    title: "Advertise",
-    description: "Reach families and recovery decision-makers ethically.",
-    href: "/advertise/media-kit",
-    icon: BadgeDollarSign,
-    className: "border-sky-200/70 bg-sky-50/95 text-sky-950",
-  },
-];
+] as const;
 
 const HeroSection = () => {
   const scrollToNewsletter = () => {
-    const element = document.getElementById("newsletter");
-    element?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("newsletter")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="relative overflow-hidden bg-maroon">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${heroImage})` }}
-        aria-hidden="true"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-background" aria-hidden="true" />
+    <section className="nme-hero" aria-labelledby="nme-hero-title">
+      <div className="nme-paper-noise" aria-hidden="true" />
+      <div className="nme-hero-inner">
+        <div className="nme-hero-main">
+          <div className="nme-hero-copy">
+            <div className="nme-hero-eyebrow">
+              <span className="nme-stop-mark">NO</span>
+              <span>Helping should not cost you your whole life</span>
+            </div>
 
-      <div className="container mx-auto px-4 relative pt-16 pb-8 md:pt-24 md:pb-10">
-        <div className="max-w-5xl mx-auto text-center">
-          <span className="inline-block px-4 py-1.5 bg-white/15 text-white rounded-full text-sm font-medium mb-6 animate-fade-up backdrop-blur-sm border border-white/20">
-            Family guidance for addiction and enabling
-          </span>
+            <h1 id="nme-hero-title">
+              Break the cycle
+              <span>without abandoning the person you love.</span>
+            </h1>
 
-          <h1
-            className="font-serif text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight animate-fade-up"
-            style={{ animationDelay: "0.1s" }}
-          >
-            Stop guessing what to do next
-          </h1>
+            <p className="nme-hero-lead">
+              Learn where helping ends and enabling begins—then take the next step with boundaries that protect your family and leave room for real change.
+            </p>
 
-          <p
-            className="mt-6 text-lg md:text-xl text-white/85 max-w-3xl mx-auto animate-fade-up"
-            style={{ animationDelay: "0.2s" }}
-          >
-            No More Enabling helps families move from search panic into the right lane:
-            enabling education, intervention guidance, family support, or a private next-step consultation.
-          </p>
-          <div
-            className="flex flex-col sm:flex-row gap-4 justify-center mt-10 animate-fade-up"
-            style={{ animationDelay: "0.3s" }}
-          >
-            <Button variant="hero" size="lg" asChild>
-              <Link to="/family-situation-assessment">
-                Take the family assessment
-                <ArrowRight size={18} />
+            <div className="nme-hero-actions">
+              <Link
+                to="/family-situation-assessment"
+                className="nme-hero-button nme-hero-button-primary"
+                onClick={() => trackGAConversion("assessment_started", { source: "homepage_animated_hero" })}
+              >
+                Find my next step
+                <ArrowRight aria-hidden="true" />
               </Link>
-            </Button>
-            <Button
-              variant="hero-outline"
-              size="lg"
-              className="border-white/40 bg-white/10 text-white hover:bg-white hover:text-maroon"
-              asChild
-            >
-              <Link to="/intervention-help">
-                Intervention help
+              <Link
+                to="/start-here"
+                className="nme-hero-button nme-hero-button-secondary"
+                onClick={() => trackGAConversion("start_here_click", { source: "homepage_animated_hero" })}
+              >
+                <BookOpenCheck aria-hidden="true" />
+                Start with enabling help
               </Link>
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-white/40 bg-white/10 text-white hover:bg-white hover:text-maroon"
-              asChild
-            >
-              <Link to="/family-addiction-coaching">
-                Family coaching
-              </Link>
-            </Button>
-            <PhoneCallButton
-              source="hero_section"
-              size="lg"
-              variant="hero-outline"
-              className="border-white bg-white text-maroon hover:bg-white/90 hover:text-maroon"
-            />
+            </div>
+
+            <div className="nme-hero-contact-row">
+              <PhoneCallButton
+                source="homepage_animated_hero"
+                size="lg"
+                variant="hero-outline"
+                className="nme-hero-phone"
+              />
+              <button type="button" onClick={scrollToNewsletter} className="nme-email-link">
+                Prefer email? Get practical guidance.
+              </button>
+            </div>
+
+            <div className="nme-hero-trust">
+              <span><i aria-hidden="true" />No shame</span>
+              <span><i aria-hidden="true" />No forced abandonment</span>
+              <span><i aria-hidden="true" />No more carrying it alone</span>
+            </div>
           </div>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm animate-fade-up" style={{ animationDelay: "0.35s" }}>
-            {trustPoints.map((point) => (
-              <div key={point} className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-white/85 backdrop-blur-sm">
-                <CheckCircle2 className="h-4 w-4 text-white" />
-                <span>{point}</span>
-              </div>
-            ))}
-          </div>
+          <div className="nme-cycle-scene" aria-label="An animated cycle of crisis, rescue, relief, and repetition interrupted by a firm boundary">
+            <div className="nme-cycle-ring" aria-hidden="true" />
+            <div className="nme-cycle-current" aria-hidden="true" />
+            <div className="nme-cycle-dot" aria-hidden="true" />
 
-          <p className="mt-5 text-sm text-white/75 animate-fade-up" style={{ animationDelay: "0.4s" }}>
-            Prefer email? <button onClick={scrollToNewsletter} className="text-white underline underline-offset-4 hover:text-white/80">Get practical family guidance by email</button>.
-          </p>
+            <div className="nme-cycle-node nme-node-crisis">
+              <small>01</small>
+              <strong>Crisis</strong>
+              <span>Something blows up.</span>
+            </div>
+            <div className="nme-cycle-node nme-node-rescue">
+              <small>02</small>
+              <strong>Rescue</strong>
+              <span>You absorb it.</span>
+            </div>
+            <div className="nme-cycle-node nme-node-relief">
+              <small>03</small>
+              <strong>Relief</strong>
+              <span>The pressure drops.</span>
+            </div>
+            <div className="nme-cycle-node nme-node-repeat">
+              <small>04</small>
+              <strong>Repeat</strong>
+              <span>Nothing changes.</span>
+            </div>
+
+            <div className="nme-cycle-center">
+              <span>THE PATTERN CAN CHANGE</span>
+              <strong>Your part is where<br />change begins.</strong>
+            </div>
+
+            <div className="nme-boundary-gate" aria-hidden="true">
+              <span>SET A BOUNDARY</span>
+            </div>
+
+            <div className="nme-exit-path" aria-hidden="true">
+              <span className="nme-exit-line" />
+              <span className="nme-exit-arrow">→</span>
+            </div>
+
+            <div className="nme-different-response">
+              <small>A DIFFERENT RESPONSE</small>
+              <strong>Care without carrying</strong>
+              <span>Clear boundary</span>
+              <span>Natural consequence</span>
+              <span>Support real recovery</span>
+            </div>
+          </div>
         </div>
 
-        <div className="mt-12 grid gap-3 md:grid-cols-4 animate-fade-up" style={{ animationDelay: "0.45s" }}>
-          {routeTiles.map((tile) => {
-            const Icon = tile.icon;
-            return (
+        <div className="nme-next-steps" aria-label="Choose your starting point">
+          <div className="nme-next-heading">
+            <span>Choose the part you can change today</span>
+            <small>You do not have to solve the addiction before you begin helping differently.</small>
+          </div>
+          <div className="nme-next-grid">
+            {nextSteps.map((step) => (
               <Link
-                key={tile.href}
-                to={tile.href}
-                className={`group rounded-2xl border p-4 shadow-card transition-all hover:-translate-y-1 hover:shadow-hover ${tile.className}`}
+                key={step.href}
+                to={step.href}
+                className="nme-next-card"
+                onClick={() => trackGAConversion(step.event, { source: "homepage_animated_hero", label: step.title })}
               >
-                <div className="flex items-start gap-3">
-                  <div className="rounded-xl bg-white/70 p-2">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h2 className="font-serif text-xl font-bold">{tile.title}</h2>
-                    <p className="mt-1 text-sm opacity-80">{tile.description}</p>
-                    <p className="mt-3 text-sm font-semibold inline-flex items-center gap-1">
-                      Start here
-                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                    </p>
-                  </div>
-                </div>
+                <span className="nme-next-icon"><step.icon aria-hidden="true" /></span>
+                <span className="nme-next-copy">
+                  <small>{step.eyebrow}</small>
+                  <strong>{step.title}</strong>
+                  <em>{step.description}</em>
+                </span>
+                <span className="nme-next-arrow" aria-label={step.cta}><ArrowRight aria-hidden="true" /></span>
               </Link>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </div>
     </section>
