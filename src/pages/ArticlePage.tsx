@@ -1013,6 +1013,9 @@ const ArticlePage = () => {
                     </div>
                   </div>
                   <AdSpace size="leaderboard" placementKey="article_bottom_leaderboard" />
+                  <div className="mt-6">
+                    <GoogleAdSense slotKey="articleBottom" format="auto" minHeight={100} />
+                  </div>
                 </div>
               </article>
 
@@ -1075,6 +1078,7 @@ const ArticlePage = () => {
                   </Link>
                 </div>
                 <AdSpace size="sidebar" placementKey="article_sidebar" />
+                <GoogleAdSense slotKey="articleSidebar" format="auto" minHeight={250} />
               </div>
             </aside>
           </div>
