@@ -1,4 +1,6 @@
 import { useRef, useState } from "react";
+import PostSubmitSubscribe from "@/components/newsletter/PostSubmitSubscribe";
+
 import { Loader2, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
