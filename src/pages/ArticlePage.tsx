@@ -967,6 +967,12 @@ const ArticlePage = () => {
                   </div>
                 )}
 
+                <div className="mt-10">
+                  <ArticleEndSubscribe articleSlug={article?.slug} category={article?.category} />
+                </div>
+
+
+
                 <div className="mt-10 pt-8 border-t border-border">
                   <TrustedResourceList
                     resources={trustedResources}
