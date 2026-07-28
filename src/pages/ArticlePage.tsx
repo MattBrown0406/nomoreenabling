@@ -924,6 +924,7 @@ const ArticlePage = () => {
                   <div className="prose prose-lg max-w-none text-foreground/90 prose-headings:font-serif prose-headings:text-foreground prose-p:text-foreground/90 prose-li:text-foreground/90 prose-strong:text-foreground">
                     {articleSections.map((section, index) => {
                       const midIndex = Math.floor(articleSections.length / 2);
+                      const courseIndex = Math.floor(articleSections.length * 0.6);
                       return (
                         <div key={index}>
                           {index === midIndex && midArticleSuggestion && (
@@ -938,10 +939,16 @@ const ArticlePage = () => {
                               <GoogleAdSense slotKey="articleInline" format="auto" minHeight={250} />
                             </div>
                           )}
+                          {!leadMagnet && index === courseIndex && index !== midIndex && (
+                            <div className="my-8 not-prose">
+                              <BoundariesCourseCallout source="article_mid" compact />
+                            </div>
+                          )}
                           <div dangerouslySetInnerHTML={{ __html: section }} />
                         </div>
                       );
                     })}
+
                   </div>
                 ) : (
                   <div className="rounded-2xl border border-border bg-secondary/30 p-6 text-muted-foreground">
