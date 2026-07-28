@@ -182,7 +182,7 @@ const ConsultationRequestForm = ({
           <h3 className="font-serif text-2xl font-bold text-foreground">Your note is in.</h3>
           <p className="mt-2 text-muted-foreground">Matt will review it and follow up personally as soon as possible.</p>
         </div>
-        <PostSubmitSubscribe email={submitted.email} firstName={submitted.firstName} source={`post_${source}`} />
+        <PostSubmitSubscribe defaultEmail={submitted.email} defaultFirstName={submitted.firstName} source={source} />
       </div>
     );
   }
