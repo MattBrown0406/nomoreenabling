@@ -13,6 +13,9 @@ import Sidebar from "@/components/home/Sidebar";
 import AdSpace from "@/components/ads/AdSpace";
 import GoogleAdSense from "@/components/ads/GoogleAdSense";
 import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
+import SoftHomeOptin from "@/components/newsletter/SoftHomeOptin";
+import BoundariesCourseCallout from "@/components/newsletter/BoundariesCourseCallout";
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BadgeDollarSign, CheckCircle2, HeartHandshake, Route, ShieldAlert } from "lucide-react";
 import { blogPostsMeta } from "@/data/blogPostMeta";
