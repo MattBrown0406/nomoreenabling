@@ -64,7 +64,7 @@ const NewsletterSection = () => {
     
     try {
       const { data, error } = await supabase.functions.invoke('newsletter-signup', {
-        body: { email, first_name: firstName || null, _t: loadedAt.current }
+        body: { email, first_name: firstName || null, source: `newsletter_hero_${variant}`, _t: loadedAt.current }
       });
 
       if (error) {
@@ -84,6 +84,11 @@ const NewsletterSection = () => {
           variant: "destructive",
         });
       } else {
+        markSubscribed();
+        void trackFunnelEvent("email_capture_success", {
+          source: `newsletter_hero_${variant}`,
+          metadata: { variant, placement: "newsletter_hero" },
+        });
         toast({
           title: "Welcome aboard!",
           description: "You've successfully subscribed to our newsletter.",
@@ -101,6 +106,7 @@ const NewsletterSection = () => {
       setIsSubmitting(false);
     }
   };
+
 
   return (
     <section id="newsletter" className="py-16 bg-primary text-primary-foreground">
