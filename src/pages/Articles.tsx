@@ -210,7 +210,9 @@ const Articles = () => {
       </main>
 
       <Footer />
+      <ExitIntentModal />
     </div>
+
   );
 };
 
