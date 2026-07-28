@@ -117,8 +117,9 @@ const NewsletterSection = () => {
           </div>
           
           <h2 className="font-serif text-3xl md:text-4xl font-bold">
-            Get practical family guidance by email
+            {copy.headline}
           </h2>
+
           
           <p className="mt-4 text-primary-foreground/80 text-lg">
             Join the list for direct guidance on enabling, family boundaries, treatment resistance, relapse, and how to help without making the pattern worse.
