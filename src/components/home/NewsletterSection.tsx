@@ -4,13 +4,38 @@ import { Input } from "@/components/ui/input";
 import { Mail, Lock } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import SocialProofLine from "@/components/newsletter/SocialProofLine";
+import { useAbVariant, markSubscribed } from "@/hooks/useAbVariant";
+import { trackFunnelEvent } from "@/lib/funnelAnalytics";
+
+const COPY = {
+  A: {
+    headline: "Get practical family guidance by email",
+    button: "Get the emails",
+  },
+  B: {
+    headline: "Get the free Boundaries email course",
+    button: "Send me lesson 1",
+  },
+} as const;
 
 const NewsletterSection = () => {
+  const variant = useAbVariant("newsletter_hero", ["A", "B"] as const);
+  const copy = COPY[variant];
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const loadedAt = useRef(Date.now());
+
+  useEffect(() => {
+    void trackFunnelEvent("email_capture_attempt", {
+      source: "newsletter_hero_view",
+      metadata: { variant, placement: "newsletter_hero_view" },
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
