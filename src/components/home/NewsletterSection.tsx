@@ -161,10 +161,15 @@ const NewsletterSection = () => {
                 className="whitespace-nowrap"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Subscribing..." : "Get the emails"}
+                {isSubmitting ? "Subscribing..." : copy.button}
               </Button>
             </div>
           </form>
+
+          <div className="mt-6">
+            <SocialProofLine variant="dark" />
+          </div>
+
           
           <div className="mt-6 rounded-xl border border-primary-foreground/15 bg-primary-foreground/5 p-4 text-left text-sm text-primary-foreground/80">
             <p className="font-medium text-primary-foreground mb-2">What you’ll get:</p>
