@@ -130,8 +130,21 @@ const AdvertiserInquiryForm = () => {
     }
   };
 
+  if (submitted) {
+    return (
+      <div className="rounded-2xl border border-border bg-card p-6 md:p-8 space-y-5">
+        <div>
+          <h3 className="font-serif text-2xl font-bold text-foreground">Inquiry sent.</h3>
+          <p className="mt-2 text-muted-foreground">Matt will review the sponsor fit and follow up shortly.</p>
+        </div>
+        <PostSubmitSubscribe defaultEmail={submitted.email} defaultFirstName={submitted.firstName} source="advertiser_inquiry" />
+      </div>
+    );
+  }
+
   return (
     <form onSubmit={handleSubmit} className="rounded-2xl border border-border bg-card p-6 md:p-8 space-y-5">
+
       <input
         type="text"
         name="url"
