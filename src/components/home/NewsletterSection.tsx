@@ -4,13 +4,38 @@ import { Input } from "@/components/ui/input";
 import { Mail, Lock } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import SocialProofLine from "@/components/newsletter/SocialProofLine";
+import { useAbVariant, markSubscribed } from "@/hooks/useAbVariant";
+import { trackFunnelEvent } from "@/lib/funnelAnalytics";
+
+const COPY = {
+  A: {
+    headline: "Get practical family guidance by email",
+    button: "Get the emails",
+  },
+  B: {
+    headline: "Get the free Boundaries email course",
+    button: "Send me lesson 1",
+  },
+} as const;
 
 const NewsletterSection = () => {
+  const variant = useAbVariant("newsletter_hero", ["A", "B"] as const);
+  const copy = COPY[variant];
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const loadedAt = useRef(Date.now());
+
+  useEffect(() => {
+    void trackFunnelEvent("email_capture_attempt", {
+      source: "newsletter_hero_view",
+      metadata: { variant, placement: "newsletter_hero_view" },
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,7 +64,7 @@ const NewsletterSection = () => {
     
     try {
       const { data, error } = await supabase.functions.invoke('newsletter-signup', {
-        body: { email, first_name: firstName || null, _t: loadedAt.current }
+        body: { email, first_name: firstName || null, source: `newsletter_hero_${variant}`, _t: loadedAt.current }
       });
 
       if (error) {
@@ -59,6 +84,11 @@ const NewsletterSection = () => {
           variant: "destructive",
         });
       } else {
+        markSubscribed();
+        void trackFunnelEvent("email_capture_success", {
+          source: `newsletter_hero_${variant}`,
+          metadata: { variant, placement: "newsletter_hero" },
+        });
         toast({
           title: "Welcome aboard!",
           description: "You've successfully subscribed to our newsletter.",
@@ -77,6 +107,7 @@ const NewsletterSection = () => {
     }
   };
 
+
   return (
     <section id="newsletter" className="py-16 bg-primary text-primary-foreground">
       <div className="container mx-auto px-4">
@@ -86,8 +117,9 @@ const NewsletterSection = () => {
           </div>
           
           <h2 className="font-serif text-3xl md:text-4xl font-bold">
-            Get practical family guidance by email
+            {copy.headline}
           </h2>
+
           
           <p className="mt-4 text-primary-foreground/80 text-lg">
             Join the list for direct guidance on enabling, family boundaries, treatment resistance, relapse, and how to help without making the pattern worse.
@@ -129,10 +161,15 @@ const NewsletterSection = () => {
                 className="whitespace-nowrap"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Subscribing..." : "Get the emails"}
+                {isSubmitting ? "Subscribing..." : copy.button}
               </Button>
             </div>
           </form>
+
+          <div className="mt-6">
+            <SocialProofLine variant="dark" />
+          </div>
+
           
           <div className="mt-6 rounded-xl border border-primary-foreground/15 bg-primary-foreground/5 p-4 text-left text-sm text-primary-foreground/80">
             <p className="font-medium text-primary-foreground mb-2">What you’ll get:</p>

@@ -32,7 +32,11 @@ import { getArticleBridgeLink } from "@/data/articleBridgeLinks";
 import { answerDetailPath, getAeoArticleAnswer, getNextBestAnswerLinks } from "@/data/aeoAnswers";
 import { getTrustedResourcesForTags } from "@/data/trustedResources";
 import TrustedResourceList from "@/components/TrustedResourceList";
+import ArticleEndSubscribe from "@/components/newsletter/ArticleEndSubscribe";
+import ExitIntentModal from "@/components/newsletter/ExitIntentModal";
+import BoundariesCourseCallout from "@/components/newsletter/BoundariesCourseCallout";
 import mattHeadshot from "@/assets/matt-brown-headshot.jpeg";
+
 
 const XIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -920,6 +924,7 @@ const ArticlePage = () => {
                   <div className="prose prose-lg max-w-none text-foreground/90 prose-headings:font-serif prose-headings:text-foreground prose-p:text-foreground/90 prose-li:text-foreground/90 prose-strong:text-foreground">
                     {articleSections.map((section, index) => {
                       const midIndex = Math.floor(articleSections.length / 2);
+                      const courseIndex = Math.floor(articleSections.length * 0.6);
                       return (
                         <div key={index}>
                           {index === midIndex && midArticleSuggestion && (
@@ -934,10 +939,16 @@ const ArticlePage = () => {
                               <GoogleAdSense slotKey="articleInline" format="auto" minHeight={250} />
                             </div>
                           )}
+                          {!leadMagnet && index === courseIndex && index !== midIndex && (
+                            <div className="my-8 not-prose">
+                              <BoundariesCourseCallout source="article_mid" compact />
+                            </div>
+                          )}
                           <div dangerouslySetInnerHTML={{ __html: section }} />
                         </div>
                       );
                     })}
+
                   </div>
                 ) : (
                   <div className="rounded-2xl border border-border bg-secondary/30 p-6 text-muted-foreground">
@@ -955,6 +966,12 @@ const ArticlePage = () => {
                     />
                   </div>
                 )}
+
+                <div className="mt-10">
+                  <ArticleEndSubscribe articleSlug={article?.slug} category={article?.category} />
+                </div>
+
+
 
                 <div className="mt-10 pt-8 border-t border-border">
                   <TrustedResourceList
@@ -1086,7 +1103,9 @@ const ArticlePage = () => {
       </main>
 
       <Footer />
+      <ExitIntentModal articleSlug={article?.slug} />
     </div>
+
   );
 };
 

@@ -1,4 +1,6 @@
 import { useRef, useState } from "react";
+import PostSubmitSubscribe from "@/components/newsletter/PostSubmitSubscribe";
+
 import { Loader2, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -42,8 +44,10 @@ const ConsultationRequestForm = ({
   submitLabel = "Request guidance",
 }: ConsultationRequestFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState<{ email: string; firstName: string } | null>(null);
   const [honeypot, setHoneypot] = useState("");
   const loadedAt = useRef(Date.now());
+
 
   const [form, setForm] = useState({
     name: "",
@@ -148,6 +152,7 @@ const ConsultationRequestForm = ({
         title: "Request sent",
         description: "Thank you. Matt will review your note and follow up as soon as possible.",
       });
+      setSubmitted({ email: trimmed.email, firstName: trimmed.name.split(" ")[0] || "" });
       setForm({
         name: "",
         email: "",
@@ -158,6 +163,7 @@ const ConsultationRequestForm = ({
         urgency: "",
         message: "",
       });
+
     } catch (error) {
       toast({
         title: "Something went wrong",
@@ -169,8 +175,21 @@ const ConsultationRequestForm = ({
     }
   };
 
+  if (submitted) {
+    return (
+      <div className="rounded-2xl border border-border bg-card p-6 md:p-8 space-y-5">
+        <div>
+          <h3 className="font-serif text-2xl font-bold text-foreground">Your note is in.</h3>
+          <p className="mt-2 text-muted-foreground">Matt will review it and follow up personally as soon as possible.</p>
+        </div>
+        <PostSubmitSubscribe defaultEmail={submitted.email} defaultFirstName={submitted.firstName} source={source} />
+      </div>
+    );
+  }
+
   return (
     <form onSubmit={handleSubmit} className="rounded-2xl border border-border bg-card p-6 md:p-8 space-y-5">
+
       <input
         type="text"
         name="website"

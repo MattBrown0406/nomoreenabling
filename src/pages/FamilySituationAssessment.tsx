@@ -576,7 +576,7 @@ export default function FamilySituationAssessment() {
                       {answeredCount} of {questions.length} answered. Your recommended path appears here as soon as the assessment is complete.
                     </p>
                   </>
-                ) : (
+                ) : result.warning || captureComplete ? (
                   <>
                     {result.warning && (
                       <div className="mb-5 rounded-xl border border-destructive/20 bg-destructive/10 p-4">
@@ -618,66 +618,91 @@ export default function FamilySituationAssessment() {
                       Retake assessment
                     </Button>
                   </>
+                ) : (
+                  <>
+                    <h2 className="font-serif text-2xl font-bold text-foreground mt-2">Your route is ready</h2>
+                    <p className="mt-3 text-muted-foreground">
+                      Enter your email below to reveal your recommended path and get the 7-day stabilization plan sent to your inbox.
+                    </p>
+                    <div className="mt-4 rounded-xl bg-secondary/30 p-3 text-sm text-muted-foreground">
+                      Includes a preset opt-in to the free Boundaries email course — language, scripts, and family agreements you can actually use.
+                    </div>
+                  </>
                 )}
               </div>
 
-              {result && (
+              {result && !captureComplete && !result.warning && (
                 <div className="mt-5 rounded-2xl border border-primary/20 bg-primary/5 p-6">
                   <Mail className="h-5 w-5 text-primary" />
-                  <h2 className="font-serif text-xl font-bold text-foreground mt-3">Get the 7-day stabilization plan</h2>
+                  <h2 className="font-serif text-xl font-bold text-foreground mt-3">See your route + 7-day plan</h2>
                   <p className="mt-2 text-sm text-muted-foreground">
                     Save this route and join the email list for practical family guidance around boundaries, treatment resistance, relapse, and next steps.
                   </p>
-                  {captureComplete ? (
-                    <div className="mt-5 rounded-xl border border-primary/20 bg-background p-4">
-                      <p className="font-medium text-foreground">You are set.</p>
-                      <p className="mt-1 text-sm text-muted-foreground">Your result is below, and your inbox will get the follow-up guidance.</p>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleSubmit} className="mt-5 space-y-3">
-                      <input
-                        type="text"
-                        name="website"
-                        value={honeypot}
-                        onChange={(event) => setHoneypot(event.target.value)}
-                        className="absolute -left-[9999px] opacity-0"
-                        tabIndex={-1}
-                        autoComplete="off"
+                  <form onSubmit={handleSubmit} className="mt-5 space-y-3">
+                    <input
+                      type="text"
+                      name="website"
+                      value={honeypot}
+                      onChange={(event) => setHoneypot(event.target.value)}
+                      className="absolute -left-[9999px] opacity-0"
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                    <div>
+                      <Label htmlFor="assessment-first-name">First name</Label>
+                      <Input
+                        id="assessment-first-name"
+                        value={firstName}
+                        onChange={(event) => setFirstName(event.target.value)}
+                        placeholder="Optional"
+                        className="mt-1"
                       />
-                      <div>
-                        <Label htmlFor="assessment-first-name">First name</Label>
-                        <Input
-                          id="assessment-first-name"
-                          value={firstName}
-                          onChange={(event) => setFirstName(event.target.value)}
-                          placeholder="Optional"
-                          className="mt-1"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="assessment-email">Email</Label>
-                        <Input
-                          id="assessment-email"
-                          type="email"
-                          value={email}
-                          onChange={(event) => setEmail(event.target.value)}
-                          placeholder="you@example.com"
-                          className="mt-1"
-                          required
-                        />
-                      </div>
-                      <Button type="submit" className="w-full" disabled={isSubmitting}>
-                        {isSubmitting ? "Saving..." : "Send my plan"}
-                      </Button>
-                    </form>
-                  )}
+                    </div>
+                    <div>
+                      <Label htmlFor="assessment-email">Email</Label>
+                      <Input
+                        id="assessment-email"
+                        type="email"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
+                        placeholder="you@example.com"
+                        className="mt-1"
+                        required
+                      />
+                    </div>
+                    <Button type="submit" className="w-full" disabled={isSubmitting}>
+                      {isSubmitting ? "Saving..." : "Reveal my route + send plan"}
+                    </Button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        void trackFunnelEvent("email_capture_failure", {
+                          source: "family_situation_assessment",
+                          assessmentResult: result.id,
+                          metadata: { skipped: true, no_email: true },
+                        });
+                        setCaptureComplete(true);
+                      }}
+                      className="w-full text-center text-xs text-muted-foreground hover:text-foreground underline underline-offset-2"
+                    >
+                      Skip for now — just show my route
+                    </button>
+                  </form>
+                </div>
+              )}
+
+              {result && captureComplete && (
+                <div className="mt-5 rounded-2xl border border-primary/20 bg-primary/5 p-4">
+                  <p className="font-medium text-foreground">You are set.</p>
+                  <p className="mt-1 text-sm text-muted-foreground">Your inbox will get the follow-up guidance.</p>
                 </div>
               )}
             </aside>
+
           </div>
         </section>
 
-        {result && (
+        {result && captureComplete && (
           <section className="container mx-auto px-4 pb-16">
             <div className="rounded-2xl border border-border bg-card p-6 md:p-8">
               <p className="text-sm uppercase tracking-wide text-primary font-medium">Your 7-day focus</p>

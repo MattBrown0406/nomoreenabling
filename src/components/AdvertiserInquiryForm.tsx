@@ -1,4 +1,6 @@
 import { useRef, useState } from "react";
+import PostSubmitSubscribe from "@/components/newsletter/PostSubmitSubscribe";
+
 import { Loader2, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,8 +21,10 @@ const budgetOptions = [
 
 const AdvertiserInquiryForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState<{ email: string; firstName: string } | null>(null);
   const [honeypot, setHoneypot] = useState("");
   const loadedAt = useRef(Date.now());
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -104,6 +108,7 @@ const AdvertiserInquiryForm = () => {
         title: "Inquiry sent",
         description: "Thank you. Matt will review the fit and follow up.",
       });
+      setSubmitted({ email: trimmed.email, firstName: trimmed.name.split(" ")[0] || "" });
       setForm({
         name: "",
         email: "",
@@ -113,6 +118,7 @@ const AdvertiserInquiryForm = () => {
         budget: "",
         message: "",
       });
+
     } catch {
       toast({
         title: "Something went wrong",
@@ -124,8 +130,21 @@ const AdvertiserInquiryForm = () => {
     }
   };
 
+  if (submitted) {
+    return (
+      <div className="rounded-2xl border border-border bg-card p-6 md:p-8 space-y-5">
+        <div>
+          <h3 className="font-serif text-2xl font-bold text-foreground">Inquiry sent.</h3>
+          <p className="mt-2 text-muted-foreground">Matt will review the sponsor fit and follow up shortly.</p>
+        </div>
+        <PostSubmitSubscribe defaultEmail={submitted.email} defaultFirstName={submitted.firstName} source="advertiser_inquiry" />
+      </div>
+    );
+  }
+
   return (
     <form onSubmit={handleSubmit} className="rounded-2xl border border-border bg-card p-6 md:p-8 space-y-5">
+
       <input
         type="text"
         name="url"
