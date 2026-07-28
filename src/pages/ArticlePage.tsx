@@ -32,7 +32,11 @@ import { getArticleBridgeLink } from "@/data/articleBridgeLinks";
 import { answerDetailPath, getAeoArticleAnswer, getNextBestAnswerLinks } from "@/data/aeoAnswers";
 import { getTrustedResourcesForTags } from "@/data/trustedResources";
 import TrustedResourceList from "@/components/TrustedResourceList";
+import ArticleEndSubscribe from "@/components/newsletter/ArticleEndSubscribe";
+import ExitIntentModal from "@/components/newsletter/ExitIntentModal";
+import BoundariesCourseCallout from "@/components/newsletter/BoundariesCourseCallout";
 import mattHeadshot from "@/assets/matt-brown-headshot.jpeg";
+
 
 const XIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
