@@ -44,8 +44,10 @@ const ConsultationRequestForm = ({
   submitLabel = "Request guidance",
 }: ConsultationRequestFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState<{ email: string; firstName: string } | null>(null);
   const [honeypot, setHoneypot] = useState("");
   const loadedAt = useRef(Date.now());
+
 
   const [form, setForm] = useState({
     name: "",
