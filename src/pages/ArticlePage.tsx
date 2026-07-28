@@ -1103,7 +1103,9 @@ const ArticlePage = () => {
       </main>
 
       <Footer />
+      <ExitIntentModal articleSlug={article?.slug} />
     </div>
+
   );
 };
 
