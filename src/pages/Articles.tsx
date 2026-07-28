@@ -3,6 +3,8 @@ import { Link, useSearchParams } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BlogCard from "@/components/blog/BlogCard";
+import ExitIntentModal from "@/components/newsletter/ExitIntentModal";
+
 import AdSpace from "@/components/ads/AdSpace";
 import GoogleAdSense from "@/components/ads/GoogleAdSense";
 import { Input } from "@/components/ui/input";
