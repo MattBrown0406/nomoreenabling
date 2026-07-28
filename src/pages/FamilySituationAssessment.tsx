@@ -702,7 +702,7 @@ export default function FamilySituationAssessment() {
           </div>
         </section>
 
-        {result && (
+        {result && captureComplete && (
           <section className="container mx-auto px-4 pb-16">
             <div className="rounded-2xl border border-border bg-card p-6 md:p-8">
               <p className="text-sm uppercase tracking-wide text-primary font-medium">Your 7-day focus</p>
