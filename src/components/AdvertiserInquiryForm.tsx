@@ -108,6 +108,7 @@ const AdvertiserInquiryForm = () => {
         title: "Inquiry sent",
         description: "Thank you. Matt will review the fit and follow up.",
       });
+      setSubmitted({ email: trimmed.email, firstName: trimmed.name.split(" ")[0] || "" });
       setForm({
         name: "",
         email: "",
@@ -117,6 +118,7 @@ const AdvertiserInquiryForm = () => {
         budget: "",
         message: "",
       });
+
     } catch {
       toast({
         title: "Something went wrong",
