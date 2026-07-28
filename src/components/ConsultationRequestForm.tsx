@@ -152,6 +152,7 @@ const ConsultationRequestForm = ({
         title: "Request sent",
         description: "Thank you. Matt will review your note and follow up as soon as possible.",
       });
+      setSubmitted({ email: trimmed.email, firstName: trimmed.name.split(" ")[0] || "" });
       setForm({
         name: "",
         email: "",
@@ -162,6 +163,7 @@ const ConsultationRequestForm = ({
         urgency: "",
         message: "",
       });
+
     } catch (error) {
       toast({
         title: "Something went wrong",
