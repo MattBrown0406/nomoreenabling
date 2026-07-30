@@ -31,6 +31,7 @@ import preparingToSetBoundariesImage from "@/assets/preparing-to-set-boundaries-
 import boundariesFarAwayImage from "@/assets/boundaries-addicted-loved-one-far-away.jpg";
 import detachingWithLoveStopAbsorbingImage from "@/assets/detaching-with-love-stop-absorbing-addiction.jpg";
 import lovedOneRefusesTreatmentImage from "@/assets/loved-one-refuses-treatment-what-next.jpg";
+import whatToDoWhenLovedOneRelapsesImage from "@/assets/what-to-do-when-a-loved-one-relapses.jpg";
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
@@ -155,6 +156,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "what-to-do-when-a-loved-one-relapses",
+    title: "What to Do When a Loved One Relapses (Without Going Back to Enabling)",
+    excerpt: "Wondering what to do when a loved one relapses? A compassionate guide to responding with support and clear limits instead of falling back into enabling.",
+    category: "Recovery",
+    categories: ["Recovery", "Enabling", "Boundaries", "Family Dynamics"],
+    readTime: "9 min read",
+    date: "July 30, 2026",
+    image: whatToDoWhenLovedOneRelapsesImage,
+    slug: "what-to-do-when-a-loved-one-relapses",
+    metaTitle: "What to Do When a Loved One Relapses",
+    metaDescription: "Wondering what to do when a loved one relapses? A guide to responding with support and clear limits instead of falling back into enabling.",
+  },
   {
     id: "loved-one-refuses-treatment-what-next",
     title: "When a Loved One Refuses Treatment: What Families Can Do Next Without Enabling",
