@@ -188,4 +188,5 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "no-boundaries-addicted-loved-one": () => import("./article-content/no-boundaries-addicted-loved-one"),
   "why-boundaries-protect-addicted-loved-one": () => import("./article-content/why-boundaries-protect-addicted-loved-one"),
   "family-same-page-addiction-boundaries": () => import("./article-content/family-same-page-addiction-boundaries"),
+  "what-to-do-when-a-loved-one-relapses": () => import("./article-content/what-to-do-when-a-loved-one-relapses"),
 };
