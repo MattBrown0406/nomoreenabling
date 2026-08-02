@@ -21,6 +21,7 @@ const staticRoutes = [
   "/answers",
   "/enabling-answer-center",
   "/glossary",
+  "/the-mirror",
   "/family-situation-assessment",
   "/topic-hubs",
   "/work-with-matt",
