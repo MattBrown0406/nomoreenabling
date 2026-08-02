@@ -1,3 +1,4 @@
+import { Button, type ButtonProps } from "@/components/ui/button";
 import { trackGAConversion } from "@/lib/gaConversions";
 
 export const WHATSAPP_NUMBER = "5038362136";
@@ -14,77 +15,44 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-interface WhatsAppButtonProps {
+interface WhatsAppButtonProps extends Omit<ButtonProps, "asChild" | "onClick"> {
   source: string;
   label?: string;
-  className?: string;
-  iconOnly?: boolean;
-  variant?: "floating" | "inline" | "footer";
+  showIcon?: boolean;
 }
 
 const WhatsAppButton = ({
   source,
-  label = "Message on WhatsApp",
+  label,
+  showIcon = true,
+  variant = "default",
+  size = "default",
   className,
-  iconOnly = false,
-  variant = "floating",
+  ...rest
 }: WhatsAppButtonProps) => {
   const handleClick = () => {
     trackGAConversion("whatsapp_click", { source, phone: WHATSAPP_NUMBER });
   };
 
-  if (variant === "floating") {
-    return (
-      <a
-        href={WHATSAPP_HREF}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={handleClick}
-        aria-label={`Message us on WhatsApp at ${WHATSAPP_NUMBER}`}
-        className={
-          className ??
-          "fixed bottom-6 left-6 z-50 flex items-center justify-center h-14 w-14 rounded-full bg-[#25D366] text-white shadow-lg hover:shadow-xl transition-all hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-        }
-      >
-        <WhatsAppIcon className="h-7 w-7" />
-      </a>
-    );
-  }
-
-  if (variant === "footer") {
-    return (
-      <a
-        href={WHATSAPP_HREF}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={handleClick}
-        className={
-          className ??
-          "inline-flex items-center gap-2 text-muted-foreground hover:text-[#25D366] transition-colors"
-        }
-        aria-label={`Message us on WhatsApp at ${WHATSAPP_NUMBER}`}
-      >
-        <WhatsAppIcon className="h-5 w-5" />
-        <span>WhatsApp</span>
-      </a>
-    );
-  }
-
   return (
-    <a
-      href={WHATSAPP_HREF}
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={handleClick}
-      className={
-        className ??
-        "inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-4 py-2 text-sm font-medium text-white hover:bg-[#128C7E] transition-colors"
-      }
-      aria-label={iconOnly ? `Message us on WhatsApp at ${WHATSAPP_NUMBER}` : label}
+    <Button
+      variant={variant}
+      size={size}
+      className={className}
+      asChild
+      {...rest}
     >
-      <WhatsAppIcon className="h-5 w-5" />
-      {!iconOnly && <span>{label}</span>}
-    </a>
+      <a
+        href={WHATSAPP_HREF}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={handleClick}
+        aria-label={`Message us on WhatsApp at ${WHATSAPP_NUMBER}`}
+      >
+        {showIcon && <WhatsAppIcon className="h-4 w-4" />}
+        {label ?? "WhatsApp"}
+      </a>
+    </Button>
   );
 };
 
