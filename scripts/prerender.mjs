@@ -87,6 +87,25 @@ try {
   }
 
   console.log(`✅ Prerendered ${prerenderRoutes.length} routes`);
+
+  // Emit a machine-readable blog feed used by the weekly digest email function.
+  const { blogPostsMeta } = await vite.ssrLoadModule("/src/data/blogPostMeta.ts");
+  const feed = blogPostsMeta.map((post) => ({
+    slug: post.slug,
+    title: post.title,
+    excerpt: post.excerpt,
+    category: post.category,
+    readTime: post.readTime,
+    date: post.date,
+    url: `https://nomoreenabling.com/blog/${post.slug}`,
+    image: replaceAssetPaths(`https://nomoreenabling.com${String(post.image)}`, manifest),
+  }));
+  await fs.writeFile(
+    path.join(distDir, "blog-feed.json"),
+    JSON.stringify({ generated_at: new Date().toISOString(), posts: feed }, null, 2),
+    "utf8",
+  );
+  console.log(`✅ Wrote blog-feed.json (${feed.length} posts)`);
 } finally {
   await vite.close();
 }
