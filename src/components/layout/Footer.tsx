@@ -46,6 +46,9 @@ const Footer = () => {
                 <Youtube size={20} />
               </a>
             </nav>
+            <div className="mt-4">
+              <WhatsAppButton source="footer" variant="footer" />
+            </div>
           </div>
 
           {/* Quick Links */}
