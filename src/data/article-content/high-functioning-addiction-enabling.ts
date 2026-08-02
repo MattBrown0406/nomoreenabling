@@ -26,7 +26,7 @@ export default `
         <li>You explain their absence with a reason you know is not the real reason.</li>
         <li>You tell yourself it is not that bad, because compared to other stories, it is not.</li>
       </ul>
-      <p>None of those appear on a standard list of <a href="/articles/subtle-enabling-behaviors-families-miss">subtle enabling behaviors</a>. All of them do the same job. They keep the system stable so the using does not have to change. If your effort absorbs the cost, the cost is not landing where it belongs.</p>
+      <p>None of those appear on a standard list of subtle enabling behaviors, but they do the same job — the kind of <a href="/articles/enabling-hides-behind-good-intentions">enabling that hides behind good intentions</a>. They keep the system stable so the using does not have to change. If your effort absorbs the cost, the cost is not landing where it belongs.</p>
 
       <h2>The Standard You Are Using Is the Wrong One</h2>
       <p>Most families measure addiction against catastrophe. Has he lost the job yet? Has she gotten a DUI yet? As long as the answer is no, the concern gets tabled. This is how high-functioning addiction enabling runs for a decade or more.</p>
