@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { MessageCircle, X, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
 const ContactFormWidget = () => {
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [loadTime] = useState(Date.now());
@@ -17,6 +19,8 @@ const ContactFormWidget = () => {
   const [honeypot, setHoneypot] = useState("");
   const formRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+  const isEmbedRoute = location.pathname.startsWith("/the-mirror/embed");
+
 
   // Close on outside click
   useEffect(() => {
