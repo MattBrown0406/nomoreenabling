@@ -5,6 +5,7 @@ import type { CommercialIntentPage } from "@/data/commercialIntentPages";
 import { trackGAConversion } from "@/lib/gaConversions";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import PhoneCallButton from "@/components/PhoneCallButton";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 interface CommercialIntentCTAProps {
   page: CommercialIntentPage;
@@ -65,6 +66,7 @@ const CommercialIntentCTA = ({ page, source, articleSlug, hubSlug, compact = fal
               </Link>
             </Button>
             <PhoneCallButton source={`commercial_intent_${source}_${page.slug}`} variant="coral" />
+            <WhatsAppButton source={`commercial_intent_${source}_${page.slug}`} variant="coral" className="bg-[#25D366] text-white hover:bg-[#128C7E] hover:text-white border-none" label="WhatsApp" />
           </div>
         </div>
       </div>
