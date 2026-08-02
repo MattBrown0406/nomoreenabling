@@ -81,6 +81,8 @@ const ContactFormWidget = () => {
     }
   };
 
+  if (isEmbedRoute) return null;
+
   return (
     <div ref={formRef} className="fixed bottom-6 right-6 z-50">
       {/* Form panel */}
