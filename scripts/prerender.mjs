@@ -97,7 +97,7 @@ try {
     category: post.category,
     readTime: post.readTime,
     date: post.date,
-    url: `https://nomoreenabling.com/blog/${post.slug}`,
+    url: `https://nomoreenabling.com/articles/${post.slug}`,
     image: replaceAssetPaths(`https://nomoreenabling.com${String(post.image)}`, manifest),
   }));
   await fs.writeFile(
