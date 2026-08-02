@@ -23,6 +23,7 @@ import StartHere from "./pages/StartHere";
 import TopicHubs from "./pages/TopicHubs";
 import TopicHubDetail from "./pages/TopicHubDetail";
 import WorkWithMatt from "./pages/WorkWithMatt";
+import TrustedTools from "./pages/TrustedTools";
 import CommercialIntentPage from "./pages/CommercialIntentPage";
 import FamilySituationAssessment from "./pages/FamilySituationAssessment";
 import SupportBridge from "./pages/SupportBridge";
@@ -70,6 +71,7 @@ export const AppRoutes = () => (
       <Route path="/topic-hubs" element={<TopicHubs />} />
       <Route path="/topic-hubs/:slug" element={<TopicHubDetail />} />
       <Route path="/work-with-matt" element={<WorkWithMatt />} />
+      <Route path="/trusted-tools" element={<TrustedTools />} />
       <Route path="/intervention-help" element={<CommercialIntentPage pageSlug="intervention-help" />} />
       <Route path="/family-addiction-coaching" element={<CommercialIntentPage pageSlug="family-addiction-coaching" />} />
       <Route path="/addiction-intervention-for-adult-child" element={<CommercialIntentPage pageSlug="addiction-intervention-for-adult-child" />} />

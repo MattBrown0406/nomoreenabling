@@ -24,6 +24,7 @@ const staticRoutes = [
   "/family-situation-assessment",
   "/topic-hubs",
   "/work-with-matt",
+  "/trusted-tools",
   "/privacy",
   "/terms",
   "/cookies",
