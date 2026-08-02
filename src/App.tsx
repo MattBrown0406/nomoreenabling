@@ -46,6 +46,7 @@ export const AppRoutes = () => (
     <SocialShareUrlGuard />
     <OrganizationJsonLd />
     <ContactFormWidget />
+    <WhatsAppButton source="global_floating" variant="floating" />
     <Routes>
       <Route path="/" element={<Index />} />
       <Route path="/articles" element={<Articles />} />
