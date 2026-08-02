@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import SEOHead from "@/components/seo/SEOHead";
 import EnablingMirror, { type MirrorLang } from "@/components/mirror/EnablingMirror";
 
 const MirrorEmbed = () => {
@@ -13,7 +14,13 @@ const MirrorEmbed = () => {
 
   return (
     <>
-      <EnablingMirror lang={lang} embedMode showAttribution showLanguageToggle />
+      <SEOHead
+        title="The Enabling Mirror (embed)"
+        description="Embeddable interactive diagram of the enabling cycle in families affected by addiction."
+        canonicalUrl="https://nomoreenabling.com/the-mirror"
+        noindex
+      />
+      <EnablingMirror key={lang} lang={lang} embedMode showAttribution showLanguageToggle />
     </>
   );
 };
