@@ -40,6 +40,7 @@ const Header = () => {
     { name: "For Treatment Centers & Recovery Brands", href: "/advertise/media-kit", highlight: true },
     { name: "Free Boundaries Course", href: "/boundaries-course", highlight: false },
     { name: "Helping or Enabling? Tool", href: "/helping-or-enabling" },
+    { name: "The Enabling Mirror (interactive)", href: "/the-mirror" },
     { name: "Signs You Need Professional Help", href: "/professional-guidance-signs" },
     { name: "Why Families Need Support", href: "/why-families-need-support" },
     { name: "A Grounding Reminder", href: "/grounding-reminder" },
