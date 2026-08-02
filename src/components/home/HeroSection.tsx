@@ -2,6 +2,7 @@ import { ArrowRight, BookOpenCheck, HeartHandshake, Route, ShieldAlert } from "l
 import { Link } from "react-router-dom";
 
 import PhoneCallButton from "@/components/PhoneCallButton";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { trackGAConversion } from "@/lib/gaConversions";
 import "./HeroSection.css";
 
@@ -85,6 +86,13 @@ const HeroSection = () => {
                 size="lg"
                 variant="hero-outline"
                 className="nme-hero-phone"
+              />
+              <WhatsAppButton
+                source="homepage_animated_hero"
+                size="lg"
+                variant="outline"
+                className="nme-hero-whatsapp border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white"
+                label="WhatsApp"
               />
               <button type="button" onClick={scrollToNewsletter} className="nme-email-link">
                 Prefer email? Get practical guidance.
