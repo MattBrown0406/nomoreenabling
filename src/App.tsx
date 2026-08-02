@@ -33,6 +33,8 @@ import Answers from "./pages/Answers";
 import AnswerDetail from "./pages/AnswerDetail";
 import Glossary from "./pages/Glossary";
 import GlossaryTerm from "./pages/GlossaryTerm";
+import TheMirror from "./pages/TheMirror";
+import MirrorEmbed from "./pages/MirrorEmbed";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import CookiePolicy from "./pages/CookiePolicy";
