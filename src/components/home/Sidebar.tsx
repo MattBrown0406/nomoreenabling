@@ -50,7 +50,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     const fetchPopularPosts = async () => {
-      const { data, error } = await fetchArticleViewCounts("get_article_view_counts", { limit_count: 6 });
+      const { data, error } = await fetchArticleViewCounts(6);
 
       if (error || !data || data.length === 0) {
         setPopularPosts(newestPosts);
