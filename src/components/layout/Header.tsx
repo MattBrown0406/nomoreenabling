@@ -167,6 +167,7 @@ const Header = () => {
                   <Link to="/advertise/media-kit" className="text-primary hover:text-primary/80 transition-colors font-semibold" onClick={() => setIsMenuOpen(false)}>For Treatment Centers & Recovery Brands</Link>
                   <Link to="/boundaries-course" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Free Boundaries Course</Link>
                   <Link to="/helping-or-enabling" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Helping or Enabling? Tool</Link>
+                  <Link to="/the-mirror" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>The Enabling Mirror (interactive)</Link>
                   <Link to="/professional-guidance-signs" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Signs You Need Professional Help</Link>
                   <Link to="/why-families-need-support" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>Why Families Need Support</Link>
                   <Link to="/grounding-reminder" className="text-muted-foreground hover:text-foreground transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>A Grounding Reminder</Link>
