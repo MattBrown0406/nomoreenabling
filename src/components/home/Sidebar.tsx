@@ -18,7 +18,8 @@ interface ArticleViewCountRow {
 }
 
 const fetchArticleViewCounts = async (limit_count: number) => {
-  const { data, error } = await supabase.rpc("get_article_view_counts", { limit_count });
+  const rpc = (supabase.rpc as unknown) as (fn: string, args?: Record<string, unknown>) => Promise<{ data: unknown; error: unknown }>;
+  const { data, error } = await rpc("get_article_view_counts", { limit_count });
   return { data: data as ArticleViewCountRow[] | null, error: error as unknown };
 };
 
