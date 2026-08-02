@@ -17,10 +17,11 @@ interface ArticleViewCountRow {
   article_slug: string;
 }
 
-const fetchArticleViewCounts = supabase.rpc as unknown as (
-  fn: "get_article_view_counts",
-  args: { limit_count: number }
-) => Promise<{ data: ArticleViewCountRow[] | null; error: unknown }>;
+const fetchArticleViewCounts = async (limit_count: number) => {
+  const rpc = (supabase.rpc as unknown) as (fn: string, args?: Record<string, unknown>) => Promise<{ data: unknown; error: unknown }>;
+  const { data, error } = await rpc("get_article_view_counts", { limit_count });
+  return { data: data as ArticleViewCountRow[] | null, error: error as unknown };
+};
 
 const Sidebar = () => {
   const [popularPosts, setPopularPosts] = useState<PopularPost[]>([]);
@@ -49,7 +50,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     const fetchPopularPosts = async () => {
-      const { data, error } = await fetchArticleViewCounts("get_article_view_counts", { limit_count: 6 });
+      const { data, error } = await fetchArticleViewCounts(6);
 
       if (error || !data || data.length === 0) {
         setPopularPosts(newestPosts);
