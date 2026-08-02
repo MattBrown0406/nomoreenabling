@@ -123,6 +123,7 @@ const Header = () => {
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-2">
             <PhoneCallButton source="header_desktop" size="sm" />
+            <WhatsAppButton source="header_desktop" size="sm" variant="outline" className="border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white" />
             <Button variant="hero-outline" size="sm" onClick={scrollToNewsletter}>
               Get the emails
             </Button>
