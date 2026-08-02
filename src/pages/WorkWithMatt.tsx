@@ -122,7 +122,7 @@ export default function WorkWithMatt() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <SEOHead
-        title="Family Addiction Coaching and Intervention Guidance"
+        title="Work With Matt Brown for Family Addiction Coaching and Intervention Guidance"
         description="Work with interventionist Matt Brown for family addiction coaching, boundary planning, treatment refusal guidance, and professional intervention next steps."
         canonicalUrl="https://nomoreenabling.com/work-with-matt"
         keywords="family addiction coaching, addiction interventionist, family intervention guidance, treatment refusal help, addiction family consultant, Matt Brown interventionist"

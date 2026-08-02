@@ -5,6 +5,8 @@ export interface TopicHub {
   description: string;
   intro: string;
   bestFor: string;
+  directAnswer?: string;
+  firstMoves?: string[];
   categories: string[];
   featuredSlugs: string[];
   primaryCta: { label: string; href: string };
@@ -23,6 +25,12 @@ export const topicHubs: TopicHub[] = [
     description: "Guidance for parents trying to support an addicted adult child without funding, housing, or rescuing the pattern that keeps repeating.",
     intro: "This hub is for parents whose adult child is struggling with addiction and whose family keeps getting pulled into money, housing, treatment refusal, relapse, or crisis decisions.",
     bestFor: "Best when you are asking how to stay loving without becoming the safety net for active addiction.",
+    directAnswer: "Support your adult child in ways that point toward treatment, honesty, work, and safety. Pull back from money, housing, excuses, or rescue that repeatedly protects active addiction from consequences.",
+    firstMoves: [
+      "List the money, housing, transportation, and crisis help you are providing now.",
+      "Decide which supports require treatment, honesty, sobriety, or clear home rules.",
+      "Get the adults in the family aligned before the next rescue decision or treatment argument.",
+    ],
     categories: ["Adult Child Addiction", "Enabling", "Boundaries", "Family Support"],
     featuredSlugs: [
       "how-to-stop-enabling-adult-child-addiction",
@@ -62,6 +70,12 @@ export const topicHubs: TopicHub[] = [
     description: "A practical hub for families deciding when to stop giving cash, paying rent, covering bills, or absorbing financial consequences tied to addiction.",
     intro: "This hub is for parents, spouses, siblings, and friends who keep getting pulled into money requests, rent emergencies, unpaid bills, legal costs, and promises that this will be the last time.",
     bestFor: "Best when you need to help without becoming the financial safety net that keeps the addiction cycle alive.",
+    directAnswer: "Money becomes enabling when it repeatedly removes consequences without moving the person toward treatment, accountability, or safety. If support stays financial, it should be specific, transparent, and tied to recovery-supporting conditions.",
+    firstMoves: [
+      "Pause any cash transfer long enough to decide what consequence it would remove.",
+      "Shift from open-ended rescue to concrete support tied to treatment, food, transport, or safety.",
+      "Write down the financial boundary before the next urgent call so guilt does not make the decision for you.",
+    ],
     categories: ["Financial Enabling", "Enabling", "Boundaries", "Family Support"],
     featuredSlugs: [
       "should-i-give-money-to-someone-with-addiction",
@@ -101,6 +115,12 @@ export const topicHubs: TopicHub[] = [
     description: "Guidance for families facing rehab refusal, denied addiction problems, repeated broken promises, and the question of when intervention becomes necessary.",
     intro: "This hub is for families who know their loved one needs help but keep hearing no, not yet, I can handle it, or you are overreacting.",
     bestFor: "Best when conversations about treatment keep failing and the family needs a calmer, more structured next move.",
+    directAnswer: "Do not make the family plan depend on your loved one saying yes today. Families can still align boundaries, stop rescue patterns, prepare treatment options, and decide whether intervention guidance is needed.",
+    firstMoves: [
+      "Stop repeating the same argument and document what has already been tried.",
+      "Prepare one or two real treatment options before the next conversation.",
+      "Decide what the family will change if refusal continues instead of waiting for a better promise.",
+    ],
     categories: ["Treatment Resistance", "Intervention", "Family Support", "Boundaries"],
     featuredSlugs: [
       "what-to-do-when-someone-refuses-rehab",
@@ -180,6 +200,12 @@ export const topicHubs: TopicHub[] = [
     description: "Guidance for partners living with addiction in the home, setting boundaries, protecting children, and deciding what safety and recovery require.",
     intro: "This hub is for husbands, wives, and partners trying to stay grounded when addiction has entered the relationship, the home, the finances, or the parenting system.",
     bestFor: "Best when you are asking how to love someone without surrendering your safety, children, money, or sense of reality.",
+    directAnswer: "Spouse boundaries should protect safety, truth, money, children, and emotional stability. The goal is not to control your partner. The goal is to stop adapting your whole household around the addiction.",
+    firstMoves: [
+      "Name the concrete impacts on money, parenting, sleep, trust, and emotional safety.",
+      "Choose one boundary that defines what you will do if the pattern continues.",
+      "Get support before the next confrontation if you keep collapsing under guilt, fear, or minimization.",
+    ],
     categories: ["Spouse or Partner Addiction", "Relationships", "Boundaries", "Family Support"],
     featuredSlugs: [
       "living-with-an-alcoholic-spouse",
@@ -297,6 +323,12 @@ export const topicHubs: TopicHub[] = [
     description: "See how codependency forms, why it feels like love, and how to recover your footing without abandoning your loved one.",
     intro: "This hub is for family members whose lives have become organized around monitoring, fixing, or emotionally managing someone else.",
     bestFor: "Best when exhaustion, guilt, hypervigilance, and over-functioning have become normal.",
+    directAnswer: "Codependency in addiction families is over-responsibility for another person's emotions, choices, or recovery. It often feels like love, but it slowly pulls your identity, peace, and decision-making into the addiction.",
+    firstMoves: [
+      "Notice where your day is organized around monitoring, fixing, or preventing someone else's consequences.",
+      "Separate care and contact from over-functioning, emotional rescue, and constant checking.",
+      "Move from identity recognition into one practical boundary or support change you can hold this week.",
+    ],
     categories: ["Codependency", "Enabling", "Self-Worth", "Family Dynamics"],
     featuredSlugs: [
       "when-codependency-feels-like-love",

@@ -1739,8 +1739,8 @@ export const blogPostsMeta: BlogPostMeta[] = [
     date: "May 1, 2026",
     image: financialEnablingAddictionImage,
     slug: "financial-boundaries-with-addiction",
-    metaTitle: "Financial Boundaries With Addiction",
-    metaDescription: "Learn how to set financial boundaries with addiction, stop repeated rescue, and offer support that points toward recovery instead of enabling.",
+    metaTitle: "Financial Boundaries With Addiction: What to Pay For vs What to Stop",
+    metaDescription: "Learn how to set financial boundaries with addiction around cash, bills, and rent, stop repeated rescue, and offer support that points toward recovery instead of enabling.",
   },
   {
     id: "114",

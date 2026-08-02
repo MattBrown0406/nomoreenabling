@@ -701,6 +701,23 @@ const HelpingOrEnabling = () => {
                     </div>
                   )}
 
+                  <div className="rounded-2xl border border-border bg-card p-6 no-print">
+                    <p className="text-sm uppercase tracking-wide text-primary font-medium">Want help holding the boundary?</p>
+                    <h3 className="font-serif text-2xl font-bold text-foreground mt-2">Get private family guidance from Matt</h3>
+                    <p className="mt-3 text-sm text-muted-foreground">
+                      If the same decision keeps repeating, the fastest way to stop spiraling is to get a steadier plan for money, housing,
+                      boundaries, and follow-through.
+                    </p>
+                    <div className="mt-5 flex flex-col sm:flex-row gap-3">
+                      <Button variant="hero" asChild>
+                        <Link to="/work-with-matt">Work with Matt</Link>
+                      </Button>
+                      <Button variant="outline" asChild>
+                        <Link to="/family-situation-assessment">Take the assessment</Link>
+                      </Button>
+                    </div>
+                  </div>
+
                   {/* Alternative action prompt */}
                   <div className="pt-6 border-t border-border space-y-4">
                     <h3 className="font-semibold text-foreground">

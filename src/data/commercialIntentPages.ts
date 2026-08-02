@@ -284,10 +284,10 @@ export const commercialIntentPages: CommercialIntentPage[] = [
   {
     slug: "what-to-do-when-they-refuse-treatment",
     eyebrow: "Treatment refusal",
-    title: "What to do when someone refuses addiction treatment",
-    metaTitle: "What to Do When Someone Refuses Addiction Treatment",
+    title: "What to do when someone refuses rehab or addiction treatment",
+    metaTitle: "What to Do When Someone Refuses Rehab or Addiction Treatment",
     description:
-      "A practical next-step page for families facing addiction treatment refusal, denial, repeated promises, and the question of whether intervention help is needed.",
+      "A practical next-step page for families facing rehab refusal, treatment denial, repeated promises, and the question of whether coaching or intervention help is needed.",
     keywords:
       "what to do when someone refuses addiction treatment, refuses rehab, loved one refuses treatment, treatment refusal addiction, family plan refusal",
     audience:

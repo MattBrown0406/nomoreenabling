@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom";
+import { CheckCircle2 } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SEOHead from "@/components/seo/SEOHead";
@@ -138,6 +139,24 @@ export default function TopicHubDetail() {
                 </div>
               </div>
             </div>
+
+            {hub.directAnswer && (
+              <section className="rounded-2xl border border-primary/20 bg-primary/5 p-6">
+                <p className="text-sm uppercase tracking-wide text-primary font-medium">Direct answer</p>
+                <h2 className="font-serif text-2xl font-bold text-foreground mt-2">The shortest useful answer for this pattern</h2>
+                <p className="mt-4 text-lg leading-relaxed text-foreground">{hub.directAnswer}</p>
+                {hub.firstMoves && hub.firstMoves.length > 0 && (
+                  <div className="mt-6 grid gap-3">
+                    {hub.firstMoves.map((move) => (
+                      <div key={move} className="flex gap-3 rounded-xl bg-background/80 p-4">
+                        <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <p className="text-muted-foreground">{move}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </section>
+            )}
 
             <section className="rounded-2xl border border-border bg-card p-6">
               <p className="text-sm uppercase tracking-wide text-primary font-medium">Pillar guide</p>
