@@ -12,6 +12,8 @@ import BlogCard from "@/components/blog/BlogCard";
 import Sidebar from "@/components/home/Sidebar";
 import AdSpace from "@/components/ads/AdSpace";
 import GoogleAdSense from "@/components/ads/GoogleAdSense";
+import SoberHelplineAppBanner from "@/components/ads/SoberHelplineAppBanner";
+
 import CoachingInterventionCTA from "@/components/CoachingInterventionCTA";
 import SoftHomeOptin from "@/components/newsletter/SoftHomeOptin";
 import BoundariesCourseCallout from "@/components/newsletter/BoundariesCourseCallout";
@@ -174,9 +176,14 @@ const Index = () => {
             </div>
           </div>
 
+          <div className="container mx-auto px-4 pt-6">
+            <SoberHelplineAppBanner />
+          </div>
+
           <div className="container mx-auto px-4 pt-4">
             <GoogleAdSense slotKey="homeTop" format="auto" minHeight={100} />
           </div>
+
 
 
           <section className="container mx-auto px-4 pt-8 pb-10">
