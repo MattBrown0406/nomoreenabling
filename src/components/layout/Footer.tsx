@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Instagram, Facebook, Youtube } from "lucide-react";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import logo from "@/assets/logo.jpg";
 
 const TikTokIcon = ({ size = 20 }: { size?: number }) => (
