@@ -65,6 +65,8 @@ export const AppRoutes = () => (
       <Route path="/family-system-notes" element={<FamilySystemNotes />} />
       <Route path="/boundaries-course" element={<BoundariesCourse />} />
       <Route path="/start-here" element={<StartHere />} />
+      <Route path="/the-mirror" element={<TheMirror />} />
+      <Route path="/the-mirror/embed" element={<MirrorEmbed />} />
       <Route path="/answers" element={<Answers />} />
       <Route path="/answers/:answerSlug" element={<AnswerDetail />} />
       <Route path="/enabling-answer-center" element={<EnablingAnswerCenter />} />
