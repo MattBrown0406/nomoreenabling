@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { withOwnedUtm } from "@/lib/ownedLinks";
 import PhoneCallButton from "@/components/PhoneCallButton";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 interface CoachingInterventionCTAProps {
   variant?: "compact" | "wide";
@@ -61,6 +62,7 @@ const CoachingInterventionCTA = ({ variant = "wide", articleSlug }: CoachingInte
         </p>
         <div className="mt-5 flex flex-col sm:flex-row gap-3">
           <PhoneCallButton source={`coaching_intervention_cta_${variant}`} variant="coral" />
+          <WhatsAppButton source={`coaching_intervention_cta_${variant}`} variant="coral" className="bg-[#25D366] text-white hover:bg-[#128C7E] hover:text-white border-none" label="WhatsApp" />
           <Button asChild>
             <Link to="/work-with-matt">
               Request guidance

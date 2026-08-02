@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { Instagram, Facebook, Youtube } from "lucide-react";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import logo from "@/assets/logo.jpg";
 
 const TikTokIcon = ({ size = 20 }: { size?: number }) => (
@@ -46,9 +45,6 @@ const Footer = () => {
                 <Youtube size={20} />
               </a>
             </nav>
-            <div className="mt-4">
-              <WhatsAppButton source="footer" variant="footer" />
-            </div>
           </div>
 
           {/* Quick Links */}

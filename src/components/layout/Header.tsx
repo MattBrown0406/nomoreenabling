@@ -12,6 +12,7 @@ import logo from "@/assets/logo.jpg";
 import { trackGAConversion } from "@/lib/gaConversions";
 import { withOwnedUtm } from "@/lib/ownedLinks";
 import PhoneCallButton from "@/components/PhoneCallButton";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -122,6 +123,7 @@ const Header = () => {
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-2">
             <PhoneCallButton source="header_desktop" size="sm" />
+            <WhatsAppButton source="header_desktop" size="sm" variant="outline" className="border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white" />
             <Button variant="hero-outline" size="sm" onClick={scrollToNewsletter}>
               Get the emails
             </Button>
@@ -184,6 +186,7 @@ const Header = () => {
                 </div>
               </div>
               <PhoneCallButton source="header_mobile" size="default" className="mt-2 w-full" />
+              <WhatsAppButton source="header_mobile" size="default" className="mt-2 w-full border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white" variant="outline" />
               <Button variant="hero-outline" size="default" className="w-full" onClick={scrollToNewsletter}>
                 Get the emails
               </Button>
