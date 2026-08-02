@@ -32,6 +32,7 @@ import boundariesFarAwayImage from "@/assets/boundaries-addicted-loved-one-far-a
 import detachingWithLoveStopAbsorbingImage from "@/assets/detaching-with-love-stop-absorbing-addiction.jpg";
 import lovedOneRefusesTreatmentImage from "@/assets/loved-one-refuses-treatment-what-next.jpg";
 import whatToDoWhenLovedOneRelapsesImage from "@/assets/what-to-do-when-a-loved-one-relapses.jpg";
+import highFunctioningAddictionEnablingImage from "@/assets/high-functioning-addiction-enabling.jpg";
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
@@ -156,6 +157,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "high-functioning-addiction-enabling",
+    title: "High-Functioning Addiction: How Enabling Hides When Everything Still Looks Fine",
+    excerpt: "When a loved one still works and pays the bills, enabling hides in plain sight. How high-functioning addiction enabling works, and how to stop.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Dynamics", "Boundaries", "Intervention"],
+    readTime: "9 min read",
+    date: "August 2, 2026",
+    image: highFunctioningAddictionEnablingImage,
+    slug: "high-functioning-addiction-enabling",
+    metaTitle: "High-Functioning Addiction: When Enabling Hides",
+    metaDescription: "When a loved one still works and pays the bills, enabling hides in plain sight. How high-functioning addiction enabling works, and how to stop.",
+  },
   {
     id: "what-to-do-when-a-loved-one-relapses",
     title: "What to Do When a Loved One Relapses (Without Going Back to Enabling)",
