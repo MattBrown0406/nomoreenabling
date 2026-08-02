@@ -5,7 +5,7 @@ export const MIRROR_EMBED_ORIGIN = "https://nomoreenabling.com";
  * Paste the full video link (https://www.tiktok.com/@mattbrowninterventionist/video/...)
  * and the page will render the real TikTok embed instead of the profile card.
  */
-export const MIRROR_TIKTOK_VIDEO_URL = "";
+export const MIRROR_TIKTOK_VIDEO_URL: string = "";
 export const MIRROR_TIKTOK_PROFILE_URL = "https://www.tiktok.com/@mattbrowninterventionist";
 
 export const getMirrorEmbedCode = (lang: "en" | "es") =>
