@@ -186,6 +186,7 @@ const Header = () => {
                 </div>
               </div>
               <PhoneCallButton source="header_mobile" size="default" className="mt-2 w-full" />
+              <WhatsAppButton source="header_mobile" size="default" className="mt-2 w-full border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white" variant="outline" />
               <Button variant="hero-outline" size="default" className="w-full" onClick={scrollToNewsletter}>
                 Get the emails
               </Button>
