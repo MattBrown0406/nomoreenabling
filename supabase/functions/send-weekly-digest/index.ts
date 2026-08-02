@@ -14,7 +14,7 @@ const SITE_URL = "https://nomoreenabling.com";
 const FEED_URL = `${SITE_URL}/blog-feed.json`;
 const MEETING_URL = "https://soberhelpline.com/monday-zoom-registration";
 const SOBER_HELPLINE_APP_URL = "https://apps.apple.com/us/app/sober-helpline/id6780034996";
-const FAMILY_BRIDGE_APP_URL = "https://apps.apple.com/us/app/family-bridge/id6749169719";
+const FAMILY_BRIDGE_APP_URL = "https://familybridgeapp.com";
 const COACHING_URL =
   "https://www.freedominterventions.com/book-intervention-consultation#booking";
 
@@ -148,7 +148,7 @@ const buildEmailHtml = (posts: FeedPost[], rangeLabel: string) => `
                 <p style="margin:0 0 6px 0;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#9fd8d6;">Sponsored &middot; Family Bridge App</p>
                 <h3 style="margin:0 0 10px 0;font-size:20px;color:#ffffff;">Stay aligned as a family, without the chaos</h3>
                 <p style="margin:0 0 14px 0;font-size:15px;line-height:1.6;color:#d3ecec;">Family Bridge helps families coordinate support, track agreements, and keep everyone on the same page instead of working against each other.</p>
-                <a href="${FAMILY_BRIDGE_APP_URL}" style="display:inline-block;background:#ffffff;color:#0f5f63;text-decoration:none;font-size:15px;font-weight:700;padding:12px 22px;border-radius:8px;">Download Family Bridge</a>
+                <a href="${FAMILY_BRIDGE_APP_URL}" style="display:inline-block;background:#ffffff;color:#0f5f63;text-decoration:none;font-size:15px;font-weight:700;padding:12px 22px;border-radius:8px;">Get the Family Bridge app</a>
                 <p style="margin:18px 0 12px 0;font-size:15px;line-height:1.6;color:#d3ecec;">Want help applying any of this to your own family? I offer one-on-one consultations for families deciding what to do next.</p>
                 <a href="${COACHING_URL}" style="display:inline-block;border:1px solid #ffffff;color:#ffffff;text-decoration:none;font-size:15px;font-weight:600;padding:11px 20px;border-radius:8px;">Book a consultation with Matt</a>
               </td></tr>
