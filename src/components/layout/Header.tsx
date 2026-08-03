@@ -24,6 +24,7 @@ const Header = () => {
     { name: "Start Here", href: "/start-here" },
     { name: "Answers", href: "/answers" },
     { name: "Articles", href: "/articles" },
+    { name: "Free Tools", href: "/tools" },
     { name: "Work With Matt", href: "/work-with-matt" },
     { name: "Advertise", href: "/advertise/media-kit" },
     { name: "About", href: "/about" },
