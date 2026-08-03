@@ -1661,7 +1661,7 @@ export const blogPostsMeta: BlogPostMeta[] = [
     image: settingLimitsAddictedLovedOneImage,
     slug: "should-i-let-addicted-adult-child-live-at-home",
     metaTitle: "Should I Let My Addicted Adult Child Live at Home?",
-    metaDescription: "Should your addicted adult child live at home? Learn when housing helps, when it enables addiction, and what boundaries protect the household.",
+    metaDescription: "Should your addicted adult child live at home? Use 7 safety and recovery rules, then choose a housing plan your family can actually hold.",
   },
   {
     id: "109",

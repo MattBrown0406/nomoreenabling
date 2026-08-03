@@ -2,6 +2,8 @@ export default `
       <p>One of the hardest questions a parent can face is whether to let an addicted adult child live at home. The question is rarely theoretical. Usually something has already happened: they lost housing, left treatment, got kicked out by a partner, ran out of money, or called in panic with nowhere to go.</p>
       <p>In that moment, "no" can feel unbearable. But "yes" without structure can put the whole household back inside the addiction cycle.</p>
 
+      <p><strong>Direct answer:</strong> only say yes when the home can be safe and the arrangement includes written recovery expectations and consequences the family will follow. If you are being pressured to decide today or the adults disagree, <a href="/family-addiction-coaching">request family addiction coaching</a> before promising housing. Build one plan first; do not negotiate separate deals in the middle of a crisis.</p>
+
       <h2>The Real Question Is Not Just Housing</h2>
       <p>The question is not only, "Can they live here?" The better question is, "What conditions would make this home safe, honest, and recovery-oriented for everyone involved?"</p>
       <p>If the answer is unclear, pause. Housing is not neutral when addiction is active. The home can become a place of recovery support, or it can become a place where the family absorbs more chaos.</p>
@@ -54,7 +56,11 @@ export default `
 
       <h2>A More Honest Kind Of Help</h2>
       <p>Letting an addicted adult child live at home is not automatically enabling. Refusing to let them live at home is not automatically abandonment. The difference is structure, safety, honesty, and follow-through.</p>
-      <p>If your family cannot agree on the conditions or consequences, get help before you decide. A family coach or interventionist can help you sort through what is loving, what is safe, and what is simply fear wearing a caring face.</p>
+      <p>If your family cannot agree on the conditions or consequences, get help before you decide. <a href="/family-addiction-coaching">Family addiction coaching</a> can help you sort through what is loving, what is safe, and what is simply fear wearing a caring face. If treatment is repeatedly refused or the home is becoming unsafe, use <a href="/addiction-intervention-for-adult-child">adult child intervention guidance</a> rather than staging another confrontation alone.</p>
+
+      <h2>What Should the Family Do Next?</h2>
+      <p>Write the seven rules above and the consequence for each broken agreement before you offer the room. Have every adult decision-maker review the same plan. If you cannot agree or follow through, pause the move-in decision and <a href="/family-addiction-coaching">request coaching for one workable housing plan</a>.</p>
+      <p>If your adult child is returning from treatment and the family already has an aftercare or home agreement, <a href="/support/family-bridge">use Family Bridge for shared expectations and follow-through</a>. It is not emergency monitoring or a substitute for treatment. It is a secondary step for keeping an agreed recovery plan organized.</p>
 
       <h2>Frequently Asked Questions</h2>
       <h3>Should I let my addicted adult child live at home?</h3>
