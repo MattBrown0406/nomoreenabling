@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useEnrollGuard } from "@/lib/enrollGuard";
 import { Link } from "react-router-dom";
 import { CheckCircle, Clock, Mail, ArrowRight, Flame } from "lucide-react";
 import Header from "@/components/layout/Header";
@@ -38,6 +39,7 @@ const BoundariesCourse = () => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { honeypotProps, guardFields } = useEnrollGuard();
   const [isEnrolled, setIsEnrolled] = useState(false);
   const { toast } = useToast();
 
@@ -60,7 +62,8 @@ const BoundariesCourse = () => {
         body: { 
           email, 
           first_name: firstName || null,
-          course_name: 'boundaries'
+          course_name: 'boundaries',
+          ...guardFields(),
         },
       });
 
@@ -183,6 +186,7 @@ const BoundariesCourse = () => {
                         Start Learning Today
                       </h2>
                       <form onSubmit={handleSubmit} className="space-y-4">
+              <input {...honeypotProps} />
                         <div>
                           <Input
                             type="text"

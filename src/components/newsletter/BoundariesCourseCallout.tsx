@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useEnrollGuard } from "@/lib/enrollGuard";
 import { BookOpen, CheckCircle2, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -32,6 +33,7 @@ const BoundariesCourseCallout = ({ source, headline, subhead, compact = false }:
   const [firstName, setFirstName] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { honeypotProps, guardFields } = useEnrollGuard();
   const [isEnrolled, setIsEnrolled] = useState(false);
   const loadedAt = useRef(Date.now());
 
@@ -60,6 +62,7 @@ const BoundariesCourseCallout = ({ source, headline, subhead, compact = false }:
           first_name: firstName.trim() || null,
           course_name: "boundaries",
           source,
+          ...guardFields(),
         },
       });
       if (error) throw error;
@@ -124,6 +127,7 @@ const BoundariesCourseCallout = ({ source, headline, subhead, compact = false }:
           </ul>
 
           <form onSubmit={handleSubmit} className="mt-5 grid gap-3">
+          <input {...honeypotProps} />
             <div className="absolute left-[-9999px]" aria-hidden="true">
               <Input
                 type="text"

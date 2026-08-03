@@ -39,6 +39,28 @@ const sanitizeString = (str: string | null | undefined, maxLength: number): stri
   return str.trim().slice(0, maxLength);
 };
 
+// ── Anti-abuse guards ─────────────────────────────────────────────────────────
+// Layer 1: per-IP rate limit (hard 429 — stops volume).
+// Layer 2: honeypot field `website` (bots fill it; humans never see it).
+// Layer 3: time trap `form_ms` (a real person takes >3s to type an email).
+// Honeypot/time-trap failures return a FAKE success so bots learn nothing.
+// form_ms is only enforced when present so pre-guard cached bundles keep
+// working; once all clients ship the field, this can be made strict.
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const MIN_FORM_MS = 3000;
+
+const clientIp = (req: Request): string =>
+  req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+  req.headers.get('cf-connecting-ip') ||
+  'unknown';
+
+const fakeSuccess = () =>
+  new Response(
+    JSON.stringify({ success: true }),
+    { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+  );
+
 const COURSE_INFO = {
   boundaries: {
     name: "Boundaries: Removing the Oxygen from the Fire of Addiction",
@@ -156,7 +178,22 @@ serve(async (req) => {
   }
 
   try {
-    const { email, first_name, course_name = 'boundaries' } = await req.json();
+    const body = await req.json();
+    const { email, first_name, course_name = 'boundaries' } = body;
+
+    // Layer 2+3: honeypot and time trap — silently discard, report success.
+    const honeypot = typeof body.website === 'string' ? body.website.trim() : '';
+    if (honeypot.length > 0) {
+      console.log('course-enroll: honeypot tripped, dropping silently');
+      return fakeSuccess();
+    }
+    if (body.form_ms !== undefined) {
+      const formMs = Number(body.form_ms);
+      if (!Number.isFinite(formMs) || formMs < MIN_FORM_MS) {
+        console.log('course-enroll: time trap tripped, dropping silently');
+        return fakeSuccess();
+      }
+    }
 
     if (!email || typeof email !== 'string') {
       return new Response(
@@ -196,6 +233,30 @@ serve(async (req) => {
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    // Layer 1: per-IP rate limit — hard stop for scripted volume.
+    const ip = clientIp(req);
+    const windowStart = new Date(Date.now() - RATE_LIMIT_WINDOW_MS).toISOString();
+    const { count: recentAttempts } = await supabase
+      .from('course_enroll_attempts')
+      .select('id', { count: 'exact', head: true })
+      .eq('ip', ip)
+      .gte('created_at', windowStart);
+
+    if ((recentAttempts ?? 0) >= RATE_LIMIT_MAX) {
+      console.log(`course-enroll: rate limit hit for ip bucket (count=${recentAttempts})`);
+      return new Response(
+        JSON.stringify({ error: 'Too many attempts. Please try again in a few minutes.' }),
+        { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    await supabase.from('course_enroll_attempts').insert({ ip });
+    // Opportunistic pruning keeps the table tiny; failures are harmless.
+    void supabase
+      .from('course_enroll_attempts')
+      .delete()
+      .lt('created_at', new Date(Date.now() - 6 * RATE_LIMIT_WINDOW_MS).toISOString());
 
     console.log(`Processing course enrollment for: ${sanitizedEmail}, course: ${course_name}`);
 

@@ -6,6 +6,7 @@ import SEOHead from "@/components/seo/SEOHead";
 import { Button } from "@/components/ui/button";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { supabase } from "@/integrations/supabase/client";
+import { useEnrollGuard } from "@/lib/enrollGuard";
 
 /**
  * The Enabling Cost Calculator — a private, client-side tally of what
@@ -63,6 +64,7 @@ const MoneyPlanCapture = () => {
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [state, setState] = useState<CaptureState>("idle");
+  const { honeypotProps, guardFields } = useEnrollGuard();
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -73,7 +75,7 @@ const MoneyPlanCapture = () => {
     void trackFunnelEvent("email_capture_attempt", { source: "calculator_money_plan" });
     try {
       const { data, error } = await supabase.functions.invoke("course-enroll", {
-        body: { email: trimmed, first_name: firstName.trim() || null, course_name: "money-plan" },
+        body: { email: trimmed, first_name: firstName.trim() || null, course_name: "money-plan", ...guardFields() },
       });
       if (error) {
         // FunctionsHttpError: read the body for the already_enrolled case.
@@ -121,6 +123,7 @@ const MoneyPlanCapture = () => {
 
   return (
     <form onSubmit={submit} className="mt-8 rounded-2xl border-2 border-primary/30 bg-card p-7">
+      <input {...honeypotProps} />
       <div className="text-xs font-extrabold uppercase tracking-[0.15em] text-accent">Free · 5 short emails</div>
       <h3 className="mt-1 font-serif text-2xl font-bold text-foreground">
         Get the Money Plan: 5 days to stop the bleed
