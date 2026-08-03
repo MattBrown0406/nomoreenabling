@@ -77,6 +77,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/press" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Press & Media
+                </Link>
+              </li>
+              <li>
                 <a href="mailto:matt@nomoreenabling.com" className="text-muted-foreground hover:text-foreground transition-colors">
                   Contact
                 </a>

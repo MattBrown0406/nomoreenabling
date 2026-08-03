@@ -50,3 +50,6 @@ verify_jwt = false
 
 [functions.send-money-plan-email]
 verify_jwt = false
+
+[functions.refresh-press-feed]
+verify_jwt = false

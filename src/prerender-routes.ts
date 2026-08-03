@@ -28,6 +28,7 @@ const staticRoutes = [
   "/trusted-tools",
   "/enabling-cost-calculator",
   "/tools",
+  "/press",
   "/privacy",
   "/terms",
   "/cookies",
