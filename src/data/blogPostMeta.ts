@@ -33,6 +33,7 @@ import detachingWithLoveStopAbsorbingImage from "@/assets/detaching-with-love-st
 import lovedOneRefusesTreatmentImage from "@/assets/loved-one-refuses-treatment-what-next.jpg";
 import whatToDoWhenLovedOneRelapsesImage from "@/assets/what-to-do-when-a-loved-one-relapses.jpg";
 import highFunctioningAddictionEnablingImage from "@/assets/high-functioning-addiction-enabling.jpg";
+import coveringForAnAddictImage from "@/assets/covering-for-an-addict-enabling.jpg";
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
@@ -157,6 +158,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "covering-for-an-addict-enabling",
+    title: "Covering for an Addict: Why Protecting Their Reputation Keeps Them Sick",
+    excerpt: "Covering for an addict feels like loyalty, but it hides the problem and delays help. Learn what covering looks like and how to stop, with compassion.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Dynamics", "Boundaries"],
+    readTime: "9 min read",
+    date: "August 3, 2026",
+    image: coveringForAnAddictImage,
+    slug: "covering-for-an-addict-enabling",
+    metaTitle: "Covering for an Addict: Why It Keeps Them Sick",
+    metaDescription: "Covering for an addict feels like loyalty, but it hides the problem and delays help. Learn what covering looks like and how to stop, with compassion.",
+  },
   {
     id: "high-functioning-addiction-enabling",
     title: "High-Functioning Addiction: How Enabling Hides When Everything Still Looks Fine",
