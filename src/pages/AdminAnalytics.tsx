@@ -311,6 +311,9 @@ const AdminAnalytics = () => {
   const [adClicks, setAdClicks] = useState<AdClickStat[]>([]);
   const [totalAdClicks, setTotalAdClicks] = useState(0);
   const [funnelEvents, setFunnelEvents] = useState<FunnelEventRow[]>([]);
+  const [calculatorMonthly, setCalculatorMonthly] = useState<
+    { month: string; clicks: number; completions: number }[]
+  >([]);
   const [assessmentLeads, setAssessmentLeads] = useState<AssessmentLeadRow[]>([]);
   const [consultationLeads, setConsultationLeads] = useState<ConsultationLeadRow[]>([]);
   const [consultationFollowups, setConsultationFollowups] = useState<ConsultationFollowupRow[]>([]);
@@ -462,6 +465,36 @@ const AdminAnalytics = () => {
         })),
       );
     }
+
+    // Enabling Cost Calculator — month-by-month usage for the last 6 calendar
+    // months, independent of the time-range picker above.
+    const calcSince = new Date();
+    calcSince.setMonth(calcSince.getMonth() - 5);
+    calcSince.setDate(1);
+    calcSince.setHours(0, 0, 0, 0);
+    const { data: calcData } = await supabase
+      .from('funnel_events')
+      .select('event_name, created_at')
+      .in('event_name', ['calculator_cta_click', 'calculator_completed'])
+      .gte('created_at', calcSince.toISOString())
+      .limit(10000);
+
+    const monthKey = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+    const monthLabel = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    const calcBuckets = new Map<string, { month: string; clicks: number; completions: number }>();
+    for (let i = 5; i >= 0; i -= 1) {
+      const d = new Date();
+      d.setDate(1);
+      d.setMonth(d.getMonth() - i);
+      calcBuckets.set(monthKey(d), { month: monthLabel(d), clicks: 0, completions: 0 });
+    }
+    for (const row of calcData ?? []) {
+      const bucket = calcBuckets.get(monthKey(new Date(row.created_at)));
+      if (!bucket) continue;
+      if (row.event_name === 'calculator_cta_click') bucket.clicks += 1;
+      else bucket.completions += 1;
+    }
+    setCalculatorMonthly([...calcBuckets.values()].reverse());
 
     const { data: leadData, error: leadError } = await supabase
       .from('assessment_leads')
@@ -2372,6 +2405,39 @@ const AdminAnalytics = () => {
                             </div>
                             <div className="h-2 rounded-full bg-muted overflow-hidden">
                               <div className="h-full bg-primary" style={{ width: `${percentage}%` }} />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-serif text-lg">Enabling Cost Calculator</CardTitle>
+                  <p className="text-muted-foreground text-sm">
+                    Homepage button clicks and completed calculations, by month (last 6 months).
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  {calculatorMonthly.every((m) => m.clicks === 0 && m.completions === 0) ? (
+                    <p className="text-muted-foreground text-sm">No calculator activity recorded yet.</p>
+                  ) : (
+                    <div className="space-y-3">
+                      {calculatorMonthly.map((m) => {
+                        const maxClicks = Math.max(1, ...calculatorMonthly.map((x) => x.clicks));
+                        return (
+                          <div key={m.month}>
+                            <div className="flex justify-between gap-3 text-sm mb-1">
+                              <span className="font-medium text-foreground">{m.month}</span>
+                              <span className="text-muted-foreground">
+                                {m.clicks.toLocaleString()} clicks · {m.completions.toLocaleString()} completed
+                              </span>
+                            </div>
+                            <div className="h-2 rounded-full bg-muted overflow-hidden">
+                              <div className="h-full bg-primary" style={{ width: `${(m.clicks / maxClicks) * 100}%` }} />
                             </div>
                           </div>
                         );

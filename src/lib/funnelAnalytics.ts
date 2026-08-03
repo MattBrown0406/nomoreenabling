@@ -19,7 +19,9 @@ export type FunnelEventName =
   | "advertiser_inquiry"
   | "sponsor_impression"
   | "bridge_page_click"
-  | "outbound_offer_click";
+  | "outbound_offer_click"
+  | "calculator_cta_click"
+  | "calculator_completed";
 
 interface FunnelEventProperties {
   source?: string;

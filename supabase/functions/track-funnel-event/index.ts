@@ -26,6 +26,8 @@ const allowedEvents = new Set([
   "sponsor_impression",
   "bridge_page_click",
   "outbound_offer_click",
+  "calculator_cta_click",
+  "calculator_completed",
 ]);
 
 const sanitizeText = (value: unknown, maxLength = 255): string | null => {

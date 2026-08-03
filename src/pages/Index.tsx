@@ -23,6 +23,7 @@ import { ArrowRight, BadgeDollarSign, CheckCircle2, HeartHandshake, Route, Shiel
 import { blogPostsMeta } from "@/data/blogPostMeta";
 import SEOHead from "@/components/seo/SEOHead";
 import { trackGAConversion } from "@/lib/gaConversions";
+import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { withOwnedUtm } from "@/lib/ownedLinks";
 import mattHeadshot from "@/assets/matt-brown-headshot.jpeg";
 import freedomLogo from "@/assets/freedom-interventions-logo.jpg";
@@ -169,6 +170,38 @@ const Index = () => {
 
         <main className="flex-grow" role="main">
           <HeroSection />
+
+          {/* Enabling Cost Calculator — the site's interactive hook, tracked
+              via calculator_cta_click so the admin dashboard can report
+              month-by-month clicks. */}
+          <div className="container mx-auto px-4 pt-6">
+            <div className="max-w-6xl mx-auto">
+              <Link
+                to="/enabling-cost-calculator"
+                onClick={() => void trackFunnelEvent("calculator_cta_click", { source: "home_below_hero" })}
+                className="group flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-primary/25 bg-primary/5 p-6 transition-colors hover:bg-primary/10"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="rounded-full bg-primary/10 p-3">
+                    <BadgeDollarSign className="h-7 w-7 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-extrabold uppercase tracking-[0.15em] text-accent">Free 2-minute tool</p>
+                    <h2 className="mt-1 font-serif text-2xl font-bold text-foreground">
+                      The Enabling Cost Calculator
+                    </h2>
+                    <p className="mt-1 max-w-xl text-sm text-muted-foreground">
+                      What has protecting the addiction cost your family in the last 12 months?
+                      Add it up privately — nothing you enter is saved or sent.
+                    </p>
+                  </div>
+                </div>
+                <span className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-bold text-primary-foreground">
+                  Add it up <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            </div>
+          </div>
 
           <div className="container mx-auto px-4 pt-6">
             <div className="max-w-6xl mx-auto">

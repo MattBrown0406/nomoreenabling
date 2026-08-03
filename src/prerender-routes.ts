@@ -26,6 +26,7 @@ const staticRoutes = [
   "/topic-hubs",
   "/work-with-matt",
   "/trusted-tools",
+  "/enabling-cost-calculator",
   "/privacy",
   "/terms",
   "/cookies",
