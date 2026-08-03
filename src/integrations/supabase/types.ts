@@ -544,6 +544,24 @@ export type Database = {
         }
         Relationships: []
       }
+      press_feed: {
+        Row: {
+          episodes: Json
+          id: number
+          updated_at: string
+        }
+        Insert: {
+          episodes?: Json
+          id?: number
+          updated_at?: string
+        }
+        Update: {
+          episodes?: Json
+          id?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       spine_outbox: {
         Row: {
           attempts: number
