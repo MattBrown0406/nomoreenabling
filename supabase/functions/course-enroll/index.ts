@@ -96,6 +96,57 @@ const COURSE_INFO = {
       </body>
       </html>
     `,
+    cadenceDays: 7,
+    welcomeDeliversFirstLesson: false,
+  },
+  "money-plan": {
+    name: "The Money Plan",
+    totalLessons: 5,
+    cadenceDays: 1,
+    welcomeDeliversFirstLesson: true,
+    welcomeSubject: "Day 1: The Pause Rule — read this before the next request",
+    welcomeHtml: (firstName: string | null) => `
+      <!DOCTYPE html>
+      <html>
+      <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+      <body style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #1a1a1a; line-height: 1.7;">
+        <div style="text-align: center; margin-bottom: 30px;">
+          <h1 style="color: #932a2a; font-size: 24px; margin-bottom: 4px;">No More Enabling</h1>
+          <p style="color: #888; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;">The Money Plan · Day 1 of 5</p>
+        </div>
+
+        <h2 style="font-size: 22px; margin-bottom: 20px;">${firstName ? `${firstName}, you` : 'You'} just looked at a hard number.</h2>
+
+        <p>Most families never add it up. You did. That takes more courage than it sounds like — and it means you're ready for what comes next.</p>
+
+        <p>Over the next five days I'm going to give you a short, practical plan for stopping the financial bleed without abandoning the person you love. One email a day. Each one takes about three minutes.</p>
+
+        <h3 style="color: #932a2a; margin-top: 30px;">Day 1: The Pause Rule</h3>
+
+        <p>Here it is: <strong>from today forward, no money decision gets made during the phone call.</strong></p>
+
+        <p>Every dollar in the number you calculated was moved under pressure — a crisis, a deadline, a voice you love saying "I need it tonight." Urgency is the addiction's best salesman. The Pause Rule takes urgency off the table:</p>
+
+        <p style="padding: 15px; background: #faf5f5; border-left: 3px solid #932a2a; font-style: italic;">
+          "I hear you. I'm not deciding anything on this call. I'll get back to you tomorrow."
+        </p>
+
+        <p>That's the whole move. You don't have to say no yet. You don't have to argue, explain, or defend. You just have to not decide <em>right now</em>. A real emergency survives 24 hours of thought. A manipulation usually doesn't.</p>
+
+        <p><strong>Today's assignment:</strong> say the pause line out loud three times. Yes, actually out loud — the first time you say it can't be the moment the phone rings.</p>
+
+        <p>Tomorrow: the exact script for the next money request.</p>
+
+        <p>With you in this,<br><strong>Matt Brown</strong><br><span style="color:#888;font-size:14px;">Interventionist · NoMoreEnabling.com</span></p>
+
+        <hr style="margin: 30px 0; border: none; border-top: 1px solid #e5e5e5;">
+        <p style="font-size: 12px; color: #666; text-align: center;">
+          You're receiving this because you asked for the Money Plan after using the Enabling Cost Calculator.<br>
+          <a href="https://nomoreenabling.com" style="color: #932a2a;">NoMoreEnabling.com</a>
+        </p>
+      </body>
+      </html>
+    `,
   },
 };
 
@@ -148,9 +199,10 @@ serve(async (req) => {
 
     console.log(`Processing course enrollment for: ${sanitizedEmail}, course: ${course_name}`);
 
-    // Calculate next email date (1 week from now)
+    // Cadence is per-course: weekly for the boundaries course, daily for the
+    // Money Plan (whose welcome email delivers Day 1 immediately).
     const nextEmailAt = new Date();
-    nextEmailAt.setDate(nextEmailAt.getDate() + 7);
+    nextEmailAt.setDate(nextEmailAt.getDate() + courseInfo.cadenceDays);
 
     const { error } = await supabase
       .from('course_enrollments')

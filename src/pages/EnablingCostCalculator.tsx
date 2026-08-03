@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import SEOHead from "@/components/seo/SEOHead";
 import { Button } from "@/components/ui/button";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
+import { supabase } from "@/integrations/supabase/client";
 
 /**
  * The Enabling Cost Calculator — a private, client-side tally of what
@@ -50,6 +51,116 @@ const EQUIVALENTS: { unit: number; label: (n: number) => string }[] = [
 ];
 
 const fmt = (n: number) => "$" + Math.round(n).toLocaleString("en-US");
+
+type CaptureState = "idle" | "sending" | "done" | "already" | "error";
+
+/**
+ * The Money Plan capture — shown on the calculator results screen, the warmest
+ * moment on the site. Enrolls via course-enroll (course_name: "money-plan");
+ * Day 1 arrives instantly, Days 2-5 arrive daily via the money-plan cron.
+ */
+const MoneyPlanCapture = () => {
+  const [firstName, setFirstName] = useState("");
+  const [email, setEmail] = useState("");
+  const [state, setState] = useState<CaptureState>("idle");
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (state === "sending") return;
+    const trimmed = email.trim();
+    if (!trimmed) return;
+    setState("sending");
+    void trackFunnelEvent("email_capture_attempt", { source: "calculator_money_plan" });
+    try {
+      const { data, error } = await supabase.functions.invoke("course-enroll", {
+        body: { email: trimmed, first_name: firstName.trim() || null, course_name: "money-plan" },
+      });
+      if (error) {
+        // FunctionsHttpError: read the body for the already_enrolled case.
+        const ctx = (error as { context?: Response }).context;
+        let code = "";
+        try {
+          code = ctx ? ((await ctx.json()) as { error?: string }).error ?? "" : "";
+        } catch {
+          code = "";
+        }
+        if (code === "already_enrolled") {
+          setState("already");
+          return;
+        }
+        void trackFunnelEvent("email_capture_failure", { source: "calculator_money_plan" });
+        setState("error");
+        return;
+      }
+      if (data && (data as { success?: boolean }).success) {
+        void trackFunnelEvent("email_capture_success", { source: "calculator_money_plan" });
+        setState("done");
+        return;
+      }
+      setState("error");
+    } catch {
+      void trackFunnelEvent("email_capture_failure", { source: "calculator_money_plan" });
+      setState("error");
+    }
+  };
+
+  if (state === "done" || state === "already") {
+    return (
+      <div className="mt-8 rounded-2xl border border-green-700/30 bg-green-700/5 p-7 text-center">
+        <h3 className="font-serif text-2xl font-bold text-foreground">
+          {state === "done" ? "Day 1 is on its way to your inbox." : "You're already on the plan."}
+        </h3>
+        <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
+          {state === "done"
+            ? "The Pause Rule arrives in the next few minutes — read it before the next request comes. Days 2 through 5 arrive each morning after."
+            : "Check your inbox (and spam folder) — the five days of the Money Plan are already headed your way."}
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={submit} className="mt-8 rounded-2xl border-2 border-primary/30 bg-card p-7">
+      <div className="text-xs font-extrabold uppercase tracking-[0.15em] text-accent">Free · 5 short emails</div>
+      <h3 className="mt-1 font-serif text-2xl font-bold text-foreground">
+        Get the Money Plan: 5 days to stop the bleed
+      </h3>
+      <p className="mt-2 max-w-xl text-sm text-muted-foreground">
+        Day 1 — the Pause Rule — lands in your inbox immediately. Then one short email a day:
+        the script for the next request, what to fund instead, getting your spouse aligned, and
+        when it's time for more. Written by Matt, from the interventions where this works.
+      </p>
+      <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+        <input
+          type="text"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          placeholder="First name (optional)"
+          className="rounded-lg border-[1.5px] border-border bg-background px-4 py-3 text-[15px] text-foreground focus:border-primary focus:outline-none sm:w-44"
+        />
+        <input
+          type="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email address"
+          className="flex-1 rounded-lg border-[1.5px] border-border bg-background px-4 py-3 text-[15px] text-foreground focus:border-primary focus:outline-none"
+        />
+        <Button type="submit" disabled={state === "sending"} className="rounded-full px-7 py-6 text-[15px] font-bold">
+          {state === "sending" ? "Sending…" : "Send me Day 1"}
+        </Button>
+      </div>
+      {state === "error" && (
+        <p className="mt-2 text-sm text-primary">
+          That didn't go through — check the address and try again.
+        </p>
+      )}
+      <p className="mt-3 text-xs text-muted-foreground">
+        Your calculator numbers are never attached to your email — they stay on this page. Unsubscribe anytime.
+      </p>
+    </form>
+  );
+};
 
 const EnablingCostCalculator = () => {
   const [values, setValues] = useState<Record<string, number>>({});
@@ -230,8 +341,10 @@ const EnablingCostCalculator = () => {
                 </p>
               </div>
 
+              <MoneyPlanCapture />
+
               <div className="mt-8 flex flex-wrap justify-center gap-3">
-                <Button asChild className="rounded-full px-7 py-6 text-[15px] font-bold">
+                <Button asChild variant="outline" className="rounded-full border-2 border-primary px-7 py-6 text-[15px] font-bold text-primary">
                   <Link to="/topic-hubs/financial-enabling">Get the Financial Boundaries Script — free</Link>
                 </Button>
                 <Button asChild variant="outline" className="rounded-full border-2 border-primary px-7 py-6 text-[15px] font-bold text-primary">
