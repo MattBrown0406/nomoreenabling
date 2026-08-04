@@ -34,6 +34,7 @@ import lovedOneRefusesTreatmentImage from "@/assets/loved-one-refuses-treatment-
 import whatToDoWhenLovedOneRelapsesImage from "@/assets/what-to-do-when-a-loved-one-relapses.jpg";
 import highFunctioningAddictionEnablingImage from "@/assets/high-functioning-addiction-enabling.jpg";
 import coveringForAnAddictImage from "@/assets/covering-for-an-addict-enabling.jpg";
+import rescueReflexImage from "@/assets/rescue-reflex-rescuing-addicted-loved-one.jpg";
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
