@@ -160,6 +160,19 @@ export interface BlogPostMeta {
 
 export const blogPostsMeta: BlogPostMeta[] = [
   {
+    id: "rescue-reflex-rescuing-addicted-loved-one",
+    title: "The Rescue Reflex: Why You Keep Rescuing Your Addicted Loved One (and How to Stop)",
+    excerpt: "Keep rescuing an addicted loved one from every crisis? Learn why the rescue reflex feels like love, how it quietly enables addiction, and how to stop it.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Dynamics", "Boundaries"],
+    readTime: "9 min read",
+    date: "August 4, 2026",
+    image: rescueReflexImage,
+    slug: "rescue-reflex-rescuing-addicted-loved-one",
+    metaTitle: "The Rescue Reflex: Rescuing an Addicted Loved One",
+    metaDescription: "Keep rescuing an addicted loved one from every crisis? Learn why the rescue reflex feels like love, how it enables addiction, and how to stop.",
+  },
+  {
     id: "covering-for-an-addict-enabling",
     title: "Covering for an Addict: Why Protecting Their Reputation Keeps Them Sick",
     excerpt: "Covering for an addict feels like loyalty, but it hides the problem and delays help. Learn what covering looks like and how to stop, with compassion.",
