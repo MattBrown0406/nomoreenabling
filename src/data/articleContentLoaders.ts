@@ -190,5 +190,6 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "family-same-page-addiction-boundaries": () => import("./article-content/family-same-page-addiction-boundaries"),
   "what-to-do-when-a-loved-one-relapses": () => import("./article-content/what-to-do-when-a-loved-one-relapses"),
   "high-functioning-addiction-enabling": () => import("./article-content/high-functioning-addiction-enabling"),
+  "rescue-reflex-rescuing-addicted-loved-one": () => import("./article-content/rescue-reflex-rescuing-addicted-loved-one"),
   "covering-for-an-addict-enabling": () => import("./article-content/covering-for-an-addict-enabling"),
 };
