@@ -35,6 +35,7 @@ import whatToDoWhenLovedOneRelapsesImage from "@/assets/what-to-do-when-a-loved-
 import highFunctioningAddictionEnablingImage from "@/assets/high-functioning-addiction-enabling.jpg";
 import coveringForAnAddictImage from "@/assets/covering-for-an-addict-enabling.jpg";
 import rescueReflexImage from "@/assets/rescue-reflex-rescuing-addicted-loved-one.jpg";
+import keepingThePeaceAvoidingConflictImage from "@/assets/keeping-peace-avoiding-conflict-enabling-addiction.jpg";
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
@@ -159,6 +160,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "keeping-the-peace-avoiding-conflict-enabling-addiction",
+    title: "Keeping the Peace: How Avoiding Conflict With an Addicted Loved One Becomes Enabling",
+    excerpt: "Avoiding conflict with an addicted loved one can quietly become enabling. Learn why silence feels safer, what it costs, and how to speak up with love.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Dynamics", "Communication", "Boundaries"],
+    readTime: "8 min read",
+    date: "August 5, 2026",
+    image: keepingThePeaceAvoidingConflictImage,
+    slug: "keeping-the-peace-avoiding-conflict-enabling-addiction",
+    metaTitle: "Avoiding Conflict With an Addicted Loved One",
+    metaDescription: "Avoiding conflict with an addicted loved one can quietly become enabling. Learn why silence feels safer, what it costs, and how to speak up with love.",
+  },
   {
     id: "rescue-reflex-rescuing-addicted-loved-one",
     title: "The Rescue Reflex: Why You Keep Rescuing Your Addicted Loved One (and How to Stop)",

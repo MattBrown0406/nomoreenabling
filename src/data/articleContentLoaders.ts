@@ -192,4 +192,5 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "high-functioning-addiction-enabling": () => import("./article-content/high-functioning-addiction-enabling"),
   "rescue-reflex-rescuing-addicted-loved-one": () => import("./article-content/rescue-reflex-rescuing-addicted-loved-one"),
   "covering-for-an-addict-enabling": () => import("./article-content/covering-for-an-addict-enabling"),
+  "keeping-the-peace-avoiding-conflict-enabling-addiction": () => import("./article-content/keeping-the-peace-avoiding-conflict-enabling-addiction"),
 };
