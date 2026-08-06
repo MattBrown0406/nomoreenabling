@@ -1,6 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import { enqueueSpineEvent } from "../_shared/spine.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -14,6 +13,56 @@ const looksLikeHumanSubmission = (website: unknown, formMs: unknown): boolean =>
   if (typeof website !== 'string' || website.trim() !== '') return false;
   if (typeof formMs !== 'number' || !Number.isFinite(formMs)) return false;
   return formMs >= MIN_FORM_MS && formMs <= MAX_FORM_MS;
+};
+
+type TurnstileValidation = {
+  success: boolean;
+  hostname?: string;
+  action?: string;
+  'error-codes'?: string[];
+};
+
+const verifyTurnstile = async (req: Request, token: unknown): Promise<boolean> => {
+  const secret = Deno.env.get('TURNSTILE_SECRET_KEY');
+  if (!secret) throw new Error('TURNSTILE_SECRET_KEY is not configured');
+  if (typeof token !== 'string' || token.length < 1 || token.length > 2048) return false;
+
+  const body = new FormData();
+  body.set('secret', secret);
+  body.set('response', token);
+  const remoteIp = req.headers.get('CF-Connecting-IP');
+  if (remoteIp) body.set('remoteip', remoteIp);
+  body.set('idempotency_key', crypto.randomUUID());
+
+  const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    body,
+  });
+  if (!response.ok) {
+    throw new Error(`Turnstile Siteverify returned ${response.status}`);
+  }
+
+  const result = await response.json() as TurnstileValidation;
+  const allowedHostnames = new Set(
+    (Deno.env.get('TURNSTILE_ALLOWED_HOSTNAMES') || 'nomoreenabling.com,www.nomoreenabling.com')
+      .split(',')
+      .map((hostname: string) => hostname.trim().toLowerCase())
+      .filter(Boolean),
+  );
+  const hostnameAllowed = typeof result.hostname === 'string'
+    && allowedHostnames.has(result.hostname.toLowerCase());
+  const actionAllowed = result.action === 'newsletter_signup';
+
+  if (!result.success || !hostnameAllowed || !actionAllowed) {
+    console.log('Turnstile rejected newsletter signup', {
+      errors: result['error-codes'] || [],
+      hostname: result.hostname || null,
+      action: result.action || null,
+    });
+    return false;
+  }
+
+  return true;
 };
 
 const isValidEmail = (email: string): boolean => {
@@ -61,54 +110,55 @@ const isDisposableEmail = (email: string): boolean => {
   return domain ? DISPOSABLE_DOMAINS.has(domain) : false;
 };
 
-// Sync contact to Mailchimp
-const syncToMailchimp = async (email: string, firstName: string | null, tags: string[] = []): Promise<void> => {
+type MailchimpOptInResult = 'pending_confirmation' | 'already_subscribed_or_pending';
+
+const mailchimpRequest = async (
+  url: string,
+  apiKey: string,
+  init: RequestInit = {},
+): Promise<Response> => fetch(url, {
+  ...init,
+  headers: {
+    'Authorization': `Basic ${btoa(`anystring:${apiKey}`)}`,
+    'Content-Type': 'application/json',
+    ...(init.headers || {}),
+  },
+});
+
+// Ask Mailchimp to send its confirmation email. No subscriber or HubSpot/spine
+// record is created until Mailchimp calls our confirmed-subscribe webhook.
+const requestMailchimpDoubleOptIn = async (
+  email: string,
+  firstName: string | null,
+  tags: string[] = [],
+): Promise<MailchimpOptInResult> => {
   const apiKey = Deno.env.get('MAILCHIMP_API_KEY');
   const audienceId = Deno.env.get('MAILCHIMP_AUDIENCE_ID');
-  
-  if (!apiKey || !audienceId) {
-    console.log('Mailchimp credentials not configured, skipping sync');
-    return;
+  if (!apiKey || !audienceId) throw new Error('Mailchimp credentials are not configured');
+
+  const datacenter = apiKey.split('-').pop();
+  if (!datacenter) throw new Error('Mailchimp API key has no datacenter suffix');
+
+  const url = `https://${datacenter}.api.mailchimp.com/3.0/lists/${audienceId}/members`;
+  const subscriberData: Record<string, unknown> = {
+    email_address: email,
+    status: 'pending',
+  };
+  if (firstName) subscriberData.merge_fields = { FNAME: firstName };
+  if (tags.length > 0) subscriberData.tags = tags;
+
+  const response = await mailchimpRequest(url, apiKey, {
+    method: 'POST',
+    body: JSON.stringify(subscriberData),
+  });
+  if (response.ok) return 'pending_confirmation';
+
+  const data = await response.json().catch(() => ({})) as { title?: string };
+  if (response.status === 400 && data.title === 'Member Exists') {
+    return 'already_subscribed_or_pending';
   }
 
-  try {
-    const datacenter = apiKey.split('-').pop();
-    const url = `https://${datacenter}.api.mailchimp.com/3.0/lists/${audienceId}/members`;
-
-    const subscriberData: Record<string, unknown> = {
-      email_address: email,
-      status: 'subscribed',
-    };
-
-    if (firstName) {
-      subscriberData.merge_fields = { FNAME: firstName };
-    }
-
-    if (tags.length > 0) {
-      subscriberData.tags = tags;
-    }
-
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Basic ${btoa(`anystring:${apiKey}`)}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(subscriberData),
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      console.log('Successfully synced to Mailchimp');
-    } else if (response.status === 400 && data.title === 'Member Exists') {
-      console.log('Contact already exists in Mailchimp');
-    } else {
-      console.error('Mailchimp sync error:', response.status, data);
-    }
-  } catch (error) {
-    console.error('Error syncing to Mailchimp:', error);
-  }
+  throw new Error(`Mailchimp pending member creation failed with ${response.status}`);
 };
 
 serve(async (req) => {
@@ -131,6 +181,7 @@ serve(async (req) => {
       page_path,
       website,
       form_ms,
+      turnstile_token,
     } = await req.json();
 
     // Enforce the honeypot and dwell-time checks here, not only in React. Bots
@@ -170,6 +221,14 @@ serve(async (req) => {
       );
     }
 
+    const turnstilePassed = await verifyTurnstile(req, turnstile_token);
+    if (!turnstilePassed) {
+      return new Response(
+        JSON.stringify({ error: 'security_verification_failed' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
     const sanitizedFirstName = sanitizeString(first_name, 100);
     const sanitizedSource = sanitizeString(source, 120);
     const sanitizedResult = sanitizeString(result, 80);
@@ -184,81 +243,14 @@ serve(async (req) => {
       && ASSESSMENT_RESULTS.has(sanitizedResult);
     const isLeadMagnetSignup = sanitizedSource === 'lead_magnet' && !!sanitizedLeadMagnet;
 
-    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+    const supabaseUrl = Deno.env.get('SUPABASE_URL');
+    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+    if (!supabaseUrl || !supabaseServiceKey) {
+      throw new Error('Supabase service credentials are not configured');
+    }
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    console.log('Processing newsletter signup');
-
-    const { error } = await supabase
-      .from('subscribers')
-      .insert({ 
-        email: sanitizedEmail, 
-        first_name: sanitizedFirstName 
-      });
-
-    let alreadySubscribed = false;
-
-    if (error) {
-      if (error.code === '23505') {
-        alreadySubscribed = true;
-      } else {
-        console.error('Database error:', error.message);
-        throw error;
-      }
-    }
-
-    if (isAssessmentSignup) {
-      const safeAnswers = typeof answers === 'object' && answers !== null ? answers : {};
-      const { error: assessmentError } = await supabase
-        .from('assessment_leads')
-        .upsert(
-          {
-            email: sanitizedEmail,
-            first_name: sanitizedFirstName,
-            source: sanitizedSource,
-            assessment_result: sanitizedResult,
-            recommended_offer: sanitizedRecommendedOffer,
-            answers: safeAnswers,
-            last_result_at: new Date().toISOString(),
-            updated_at: new Date().toISOString(),
-          },
-          { onConflict: 'email' },
-        );
-
-      if (assessmentError) {
-        console.error('Assessment lead capture error:', assessmentError.message);
-      }
-    }
-
-    if (isLeadMagnetSignup) {
-      const leadMagnetCapturedAt = new Date().toISOString();
-      const { error: leadMagnetError } = await supabase
-        .from('lead_magnet_downloads')
-        .upsert(
-          {
-            email: sanitizedEmail,
-            first_name: sanitizedFirstName,
-            lead_magnet_slug: sanitizedLeadMagnet,
-            lead_magnet_source: sanitizedLeadMagnetSource,
-            article_slug: sanitizedArticleSlug,
-            hub_slug: sanitizedHubSlug,
-            page_path: sanitizedPagePath,
-            metadata: {
-              source: sanitizedSource,
-              lead_magnet_source: sanitizedLeadMagnetSource,
-              mailchimp_tag: normalizeTag(`lead_magnet_${sanitizedLeadMagnet}`),
-            },
-            downloaded_at: leadMagnetCapturedAt,
-            updated_at: leadMagnetCapturedAt,
-          },
-          { onConflict: 'email,lead_magnet_slug' },
-        );
-
-      if (leadMagnetError) {
-        console.error('Lead magnet capture error:', leadMagnetError.message);
-      }
-    }
+    console.log('Processing Turnstile-verified newsletter opt-in');
 
     const mailchimpTags = [
       sanitizedSource ? normalizeTag(sanitizedSource) : null,
@@ -267,24 +259,54 @@ serve(async (req) => {
       isLeadMagnetSignup && sanitizedLeadMagnetSource ? normalizeTag(`source_${sanitizedLeadMagnetSource}`) : null,
     ].filter((tag): tag is string => Boolean(tag));
 
-    if (!alreadySubscribed || mailchimpTags.length > 0) {
-      syncToMailchimp(sanitizedEmail, sanitizedFirstName, mailchimpTags).catch(e =>
-        console.error('Background Mailchimp sync error:', e)
-      );
-    }
+    // This is private, short-lived correlation state—not a subscriber or CRM
+    // record. Mailchimp confirmation consumes it before trusted side effects run.
+    const safeAnswers = typeof answers === 'object' && answers !== null && !Array.isArray(answers)
+      ? answers
+      : {};
+    const optInContext = {
+      source: sanitizedSource,
+      assessment_result: isAssessmentSignup ? sanitizedResult : null,
+      recommended_offer: isAssessmentSignup ? sanitizedRecommendedOffer : null,
+      answers: isAssessmentSignup ? safeAnswers : {},
+      lead_magnet: isLeadMagnetSignup ? sanitizedLeadMagnet : null,
+      lead_magnet_source: isLeadMagnetSignup ? sanitizedLeadMagnetSource : null,
+      article_slug: isLeadMagnetSignup ? sanitizedArticleSlug : null,
+      hub_slug: isLeadMagnetSignup ? sanitizedHubSlug : null,
+      page_path: sanitizedPagePath,
+      lead_magnet_tag: isLeadMagnetSignup && sanitizedLeadMagnet
+        ? normalizeTag(`lead_magnet_${sanitizedLeadMagnet}`)
+        : null,
+    };
 
-    await enqueueSpineEvent("lead_captured", {
-      email: sanitizedEmail,
-      name: sanitizedFirstName,
-      props: {
-        source: sanitizedSource,
-        assessment_result: sanitizedResult ?? null,
-        lead_magnet: sanitizedLeadMagnet ?? null,
-      },
-    });
+    const { error: attemptError } = await supabase
+      .from('newsletter_optin_attempts')
+      .upsert(
+        {
+          email: sanitizedEmail,
+          first_name: sanitizedFirstName,
+          context: optInContext,
+          created_at: new Date().toISOString(),
+          expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+          confirmed_at: null,
+          mailchimp_member_id: null,
+        },
+        { onConflict: 'email' },
+      );
+    if (attemptError) throw attemptError;
+
+    const optInStatus = await requestMailchimpDoubleOptIn(
+      sanitizedEmail,
+      sanitizedFirstName,
+      mailchimpTags,
+    );
 
     return new Response(
-      JSON.stringify({ success: true, error: alreadySubscribed ? 'already_subscribed' : undefined }),
+      JSON.stringify({
+        success: true,
+        status: optInStatus,
+        confirmation_required: optInStatus === 'pending_confirmation',
+      }),
       { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
 

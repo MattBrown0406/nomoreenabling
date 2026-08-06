@@ -7,7 +7,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { trackGAConversion } from "@/lib/gaConversions";
 import SocialProofLine from "./SocialProofLine";
-import { markSubscribed } from "@/hooks/useAbVariant";
+import NewsletterTurnstile from "./NewsletterTurnstile";
+import useNewsletterTurnstile from "@/hooks/useNewsletterTurnstile";
 
 interface Props {
   articleSlug?: string;
@@ -21,6 +22,7 @@ const ArticleEndSubscribe = ({ articleSlug, category }: Props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const loadedAt = useRef(Date.now());
+  const { turnstileToken, setTurnstileToken, turnstileResetKey, resetTurnstile } = useNewsletterTurnstile();
 
   const contextLabel = category ? `families dealing with ${category.toLowerCase()}` : "families like this";
 
@@ -33,6 +35,10 @@ const ArticleEndSubscribe = ({ articleSlug, category }: Props) => {
     }
     if (Date.now() - loadedAt.current < 3000) {
       setDone(true);
+      return;
+    }
+    if (!turnstileToken) {
+      toast({ title: "Please complete the security check.", variant: "destructive" });
       return;
     }
 
@@ -53,12 +59,12 @@ const ArticleEndSubscribe = ({ articleSlug, category }: Props) => {
           _t: loadedAt.current,
           website: honeypot,
           form_ms: Date.now() - loadedAt.current,
+          turnstile_token: turnstileToken,
         },
       });
       if (error && data?.error !== "already_subscribed") throw error;
 
       setDone(true);
-      markSubscribed();
       void trackFunnelEvent("email_capture_success", {
         source: "article_end",
         articleSlug,
@@ -66,10 +72,11 @@ const ArticleEndSubscribe = ({ articleSlug, category }: Props) => {
       });
       trackGAConversion("newsletter_signup", { placement: "article_end", article_slug: articleSlug });
       toast({
-        title: data?.error === "already_subscribed" ? "Already on the list." : "You are subscribed.",
-        description: "Look for a welcome email from Matt.",
+        title: "Check your inbox to confirm.",
+        description: "You will join the list only after clicking Mailchimp’s confirmation link.",
       });
     } catch {
+      resetTurnstile();
       void trackFunnelEvent("email_capture_failure", {
         source: "article_end",
         articleSlug,
@@ -92,11 +99,11 @@ const ArticleEndSubscribe = ({ articleSlug, category }: Props) => {
           {done ? <CheckCircle2 className="h-5 w-5" /> : <Mail className="h-5 w-5" />}
         </div>
         <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground mt-4">
-          {done ? "You are on the list." : `Get weekly guidance for ${contextLabel}`}
+          {done ? "Confirm your email." : `Get weekly guidance for ${contextLabel}`}
         </h2>
         <p className="mt-3 text-muted-foreground">
           {done
-            ? "Look for a welcome email from Matt. Reply to it anytime — real inbox, real reply."
+            ? "Check your inbox and click Mailchimp’s confirmation link before weekly emails begin."
             : "Every Sunday, one short email with practical family guidance on boundaries, enabling, relapse, and next steps."}
         </p>
 
@@ -127,10 +134,14 @@ const ArticleEndSubscribe = ({ articleSlug, category }: Props) => {
                 required
                 className="flex-1"
               />
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" disabled={isSubmitting || !turnstileToken}>
                 {isSubmitting ? "Subscribing..." : "Get the emails"}
               </Button>
             </div>
+            <NewsletterTurnstile
+              resetKey={turnstileResetKey}
+              onTokenChange={setTurnstileToken}
+            />
           </form>
         )}
 

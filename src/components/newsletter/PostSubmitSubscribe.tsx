@@ -6,7 +6,8 @@ import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { trackGAConversion } from "@/lib/gaConversions";
-import { markSubscribed } from "@/hooks/useAbVariant";
+import NewsletterTurnstile from "./NewsletterTurnstile";
+import useNewsletterTurnstile from "@/hooks/useNewsletterTurnstile";
 
 interface Props {
   source: string; // "consultation_form" | "advertiser_form"
@@ -19,11 +20,16 @@ const PostSubmitSubscribe = ({ source, defaultEmail = "", defaultFirstName = "" 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const loadedAt = useRef(Date.now());
+  const { turnstileToken, setTurnstileToken, turnstileResetKey, resetTurnstile } = useNewsletterTurnstile();
 
   if (dismissed) return null;
 
   const subscribe = async () => {
     if (!defaultEmail) return;
+    if (!turnstileToken) {
+      toast({ title: "Please complete the security check.", variant: "destructive" });
+      return;
+    }
     setIsSubmitting(true);
     void trackFunnelEvent("email_capture_attempt", {
       source: `post_submit_${source}`,
@@ -38,21 +44,22 @@ const PostSubmitSubscribe = ({ source, defaultEmail = "", defaultFirstName = "" 
           _t: loadedAt.current,
           website: "",
           form_ms: Math.max(Date.now() - loadedAt.current, 3000),
+          turnstile_token: turnstileToken,
         },
       });
       if (error && data?.error !== "already_subscribed") throw error;
       setSubscribed(true);
-      markSubscribed();
       void trackFunnelEvent("email_capture_success", {
         source: `post_submit_${source}`,
         metadata: { placement: source, alreadySubscribed: data?.error === "already_subscribed" },
       });
       trackGAConversion("newsletter_signup", { placement: `post_submit_${source}` });
       toast({
-        title: data?.error === "already_subscribed" ? "Already on the list." : "Subscribed.",
-        description: "Look for a welcome email from Matt.",
+        title: "Check your inbox to confirm.",
+        description: "You will join the list after clicking the confirmation link.",
       });
     } catch {
+      resetTurnstile();
       toast({
         title: "Could not subscribe",
         description: "Please try from the newsletter box on the homepage.",
@@ -71,11 +78,11 @@ const PostSubmitSubscribe = ({ source, defaultEmail = "", defaultFirstName = "" 
         </div>
         <div className="min-w-0 flex-1">
           <h3 className="font-serif text-xl font-bold text-foreground">
-            {subscribed ? "You are on the list." : "One more thing"}
+            {subscribed ? "Confirm your email." : "One more thing"}
           </h3>
           <p className="mt-2 text-sm text-muted-foreground">
             {subscribed
-              ? "You will get weekly family guidance from Matt. Reply anytime — it goes to a real inbox."
+              ? "Check your inbox and click the confirmation link before weekly emails begin."
               : "Would you also like weekly family support articles? One short email, every Sunday."}
           </p>
 
@@ -91,13 +98,17 @@ const PostSubmitSubscribe = ({ source, defaultEmail = "", defaultFirstName = "" 
                 />
               )}
               <div className="flex flex-wrap gap-3">
-                <Button onClick={subscribe} disabled={isSubmitting || !defaultEmail}>
+                <Button onClick={subscribe} disabled={isSubmitting || !defaultEmail || !turnstileToken}>
                   {isSubmitting ? "Adding..." : "Yes, subscribe me"}
                 </Button>
                 <Button variant="ghost" onClick={() => setDismissed(true)}>
                   No thanks
                 </Button>
               </div>
+              <NewsletterTurnstile
+                resetKey={turnstileResetKey}
+                onTokenChange={setTurnstileToken}
+              />
             </div>
           )}
         </div>

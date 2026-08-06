@@ -5,7 +5,9 @@ import { Mail, Lock } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import SocialProofLine from "@/components/newsletter/SocialProofLine";
-import { useAbVariant, markSubscribed } from "@/hooks/useAbVariant";
+import NewsletterTurnstile from "@/components/newsletter/NewsletterTurnstile";
+import useNewsletterTurnstile from "@/hooks/useNewsletterTurnstile";
+import { useAbVariant } from "@/hooks/useAbVariant";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 
 const COPY = {
@@ -27,6 +29,7 @@ const NewsletterSection = () => {
   const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const loadedAt = useRef(Date.now());
+  const { turnstileToken, setTurnstileToken, turnstileResetKey, resetTurnstile } = useNewsletterTurnstile();
 
   useEffect(() => {
     void trackFunnelEvent("email_capture_attempt", {
@@ -59,6 +62,10 @@ const NewsletterSection = () => {
       });
       return;
     }
+    if (!turnstileToken) {
+      toast({ title: "Please complete the security check.", variant: "destructive" });
+      return;
+    }
 
     setIsSubmitting(true);
     
@@ -71,6 +78,7 @@ const NewsletterSection = () => {
           _t: loadedAt.current,
           website: honeypot,
           form_ms: Date.now() - loadedAt.current,
+          turnstile_token: turnstileToken,
         }
       });
 
@@ -91,19 +99,19 @@ const NewsletterSection = () => {
           variant: "destructive",
         });
       } else {
-        markSubscribed();
         void trackFunnelEvent("email_capture_success", {
           source: `newsletter_hero_${variant}`,
           metadata: { variant, placement: "newsletter_hero" },
         });
         toast({
-          title: "Welcome aboard!",
-          description: "You've successfully subscribed to our newsletter.",
+          title: "Check your inbox to confirm.",
+          description: "You will join the list after clicking Mailchimp’s confirmation link.",
         });
         setEmail("");
         setFirstName("");
       }
     } catch (error) {
+      resetTurnstile();
       toast({
         title: "Something went wrong",
         description: "Please try again later.",
@@ -166,11 +174,15 @@ const NewsletterSection = () => {
                 variant="coral" 
                 size="default" 
                 className="whitespace-nowrap"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !turnstileToken}
               >
                 {isSubmitting ? "Subscribing..." : copy.button}
               </Button>
             </div>
+            <NewsletterTurnstile
+              resetKey={turnstileResetKey}
+              onTokenChange={setTurnstileToken}
+            />
           </form>
 
           <div className="mt-6">

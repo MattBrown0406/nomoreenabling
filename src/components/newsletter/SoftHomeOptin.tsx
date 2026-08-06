@@ -6,7 +6,8 @@ import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { trackGAConversion } from "@/lib/gaConversions";
-import { markSubscribed } from "@/hooks/useAbVariant";
+import NewsletterTurnstile from "./NewsletterTurnstile";
+import useNewsletterTurnstile from "@/hooks/useNewsletterTurnstile";
 
 const SoftHomeOptin = () => {
   const [email, setEmail] = useState("");
@@ -14,6 +15,7 @@ const SoftHomeOptin = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const loadedAt = useRef(Date.now());
+  const { turnstileToken, setTurnstileToken, turnstileResetKey, resetTurnstile } = useNewsletterTurnstile();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,6 +25,10 @@ const SoftHomeOptin = () => {
     }
     if (Date.now() - loadedAt.current < 3000) {
       setDone(true);
+      return;
+    }
+    if (!turnstileToken) {
+      toast({ title: "Please complete the security check.", variant: "destructive" });
       return;
     }
     setIsSubmitting(true);
@@ -38,21 +44,22 @@ const SoftHomeOptin = () => {
           _t: loadedAt.current,
           website: honeypot,
           form_ms: Date.now() - loadedAt.current,
+          turnstile_token: turnstileToken,
         },
       });
       if (error && data?.error !== "already_subscribed") throw error;
       setDone(true);
-      markSubscribed();
       void trackFunnelEvent("email_capture_success", {
         source: "home_soft_optin",
         metadata: { placement: "home_soft_optin" },
       });
       trackGAConversion("newsletter_signup", { placement: "home_soft_optin" });
       toast({
-        title: data?.error === "already_subscribed" ? "Already on the list." : "Subscribed.",
-        description: "Look for a welcome email from Matt.",
+        title: "Check your inbox to confirm.",
+        description: "You will join the list after clicking the confirmation link.",
       });
     } catch {
+      resetTurnstile();
       toast({
         title: "Something went wrong",
         description: "Please try again in a moment.",
@@ -71,7 +78,7 @@ const SoftHomeOptin = () => {
             <Mail className="mt-0.5 h-4 w-4 text-primary flex-shrink-0" />
             <p className="text-sm text-foreground">
               {done ? (
-                <span className="font-medium">Thanks — check your inbox for a welcome email.</span>
+                <span className="font-medium">Thanks — check your inbox and confirm your subscription.</span>
               ) : (
                 <>
                   <span className="font-medium">Not in crisis?</span>{" "}
@@ -102,9 +109,14 @@ const SoftHomeOptin = () => {
                 required
                 className="flex-1 md:w-64 h-9"
               />
-              <Button size="sm" type="submit" disabled={isSubmitting}>
+              <Button size="sm" type="submit" disabled={isSubmitting || !turnstileToken}>
                 {isSubmitting ? "..." : "Subscribe"}
               </Button>
+              <NewsletterTurnstile
+                resetKey={turnstileResetKey}
+                onTokenChange={setTurnstileToken}
+                className="flex min-h-0 w-full justify-center md:w-auto"
+              />
             </form>
           )}
         </div>

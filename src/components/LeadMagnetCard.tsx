@@ -8,6 +8,8 @@ import type { LeadMagnet } from "@/data/leadMagnets";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { trackGAConversion } from "@/lib/gaConversions";
 import { withOwnedUtm } from "@/lib/ownedLinks";
+import NewsletterTurnstile from "@/components/newsletter/NewsletterTurnstile";
+import useNewsletterTurnstile from "@/hooks/useNewsletterTurnstile";
 
 interface LeadMagnetCardProps {
   magnet: LeadMagnet;
@@ -30,6 +32,7 @@ const LeadMagnetCard = ({ magnet, source, articleSlug, hubSlug, compact = false 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
   const loadedAt = useRef(Date.now());
+  const { turnstileToken, setTurnstileToken, turnstileResetKey, resetTurnstile } = useNewsletterTurnstile();
 
   const eventMetadata = {
     leadMagnet: magnet.slug,
@@ -43,6 +46,10 @@ const LeadMagnetCard = ({ magnet, source, articleSlug, hubSlug, compact = false 
 
     if (honeypot) {
       setIsUnlocked(true);
+      return;
+    }
+    if (!turnstileToken) {
+      toast({ title: "Please complete the security check.", variant: "destructive" });
       return;
     }
 
@@ -69,6 +76,7 @@ const LeadMagnetCard = ({ magnet, source, articleSlug, hubSlug, compact = false 
           _t: loadedAt.current,
           website: honeypot,
           form_ms: Date.now() - loadedAt.current,
+          turnstile_token: turnstileToken,
         },
       });
 
@@ -77,6 +85,10 @@ const LeadMagnetCard = ({ magnet, source, articleSlug, hubSlug, compact = false 
       setIsUnlocked(true);
       setEmail("");
       setFirstName("");
+      toast({
+        title: "Check your inbox to confirm.",
+        description: "Your tool is available now; confirm your email before weekly emails begin.",
+      });
 
       void trackFunnelEvent("lead_magnet_signup", {
         source: "lead_magnet",
@@ -99,6 +111,7 @@ const LeadMagnetCard = ({ magnet, source, articleSlug, hubSlug, compact = false 
         metadata: eventMetadata,
       });
     } catch {
+      resetTurnstile();
       void trackFunnelEvent("email_capture_failure", {
         source: "lead_magnet",
         articleSlug,
@@ -168,10 +181,14 @@ const LeadMagnetCard = ({ magnet, source, articleSlug, hubSlug, compact = false 
                 onChange={(event) => setEmail(event.target.value)}
                 required
               />
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" disabled={isSubmitting || !turnstileToken}>
                 {isSubmitting ? "Unlocking..." : magnet.formTitle}
               </Button>
             </div>
+            <NewsletterTurnstile
+              resetKey={turnstileResetKey}
+              onTokenChange={setTurnstileToken}
+            />
           </form>
 
           <div className="mt-4 flex items-start gap-2 text-xs text-muted-foreground">

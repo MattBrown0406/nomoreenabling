@@ -22,6 +22,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { getSupportOffer, type SupportOfferSlug } from "@/data/supportOffers";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { trackGAConversion } from "@/lib/gaConversions";
+import NewsletterTurnstile from "@/components/newsletter/NewsletterTurnstile";
+import useNewsletterTurnstile from "@/hooks/useNewsletterTurnstile";
 
 type OutcomeId = "safety" | "intervention" | "boundaries" | "after-treatment" | "support";
 
@@ -351,6 +353,7 @@ export default function FamilySituationAssessment() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [captureComplete, setCaptureComplete] = useState(false);
   const loadedAt = useRef(Date.now());
+  const { turnstileToken, setTurnstileToken, turnstileResetKey, resetTurnstile } = useNewsletterTurnstile();
   const startedTracked = useRef(false);
   const completedTracked = useRef(false);
 
@@ -416,6 +419,10 @@ export default function FamilySituationAssessment() {
       setCaptureComplete(true);
       return;
     }
+    if (!turnstileToken) {
+      toast({ title: "Please complete the security check.", variant: "destructive" });
+      return;
+    }
 
     setIsSubmitting(true);
     void trackFunnelEvent("email_capture_attempt", {
@@ -436,6 +443,7 @@ export default function FamilySituationAssessment() {
           _t: loadedAt.current,
           website: honeypot,
           form_ms: Date.now() - loadedAt.current,
+          turnstile_token: turnstileToken,
         },
       });
 
@@ -452,12 +460,13 @@ export default function FamilySituationAssessment() {
         offer_slug: offer?.slug,
       });
       toast({
-        title: data?.error === "already_subscribed" ? "You are already on the list." : "Your plan is saved.",
-        description: "Use the result below now, and watch your inbox for practical family guidance.",
+        title: "Check your inbox to confirm.",
+        description: "Use the result below now, then confirm your email before follow-up guidance begins.",
       });
       setEmail("");
       setFirstName("");
     } catch {
+      resetTurnstile();
       void trackFunnelEvent("email_capture_failure", {
         source: "family_situation_assessment",
         assessmentResult: result.id,
@@ -477,6 +486,7 @@ export default function FamilySituationAssessment() {
     setAnswers({});
     setCaptureComplete(false);
     loadedAt.current = Date.now();
+    resetTurnstile();
     startedTracked.current = false;
     completedTracked.current = false;
   };
@@ -672,7 +682,11 @@ export default function FamilySituationAssessment() {
                         required
                       />
                     </div>
-                    <Button type="submit" className="w-full" disabled={isSubmitting}>
+                    <NewsletterTurnstile
+                      resetKey={turnstileResetKey}
+                      onTokenChange={setTurnstileToken}
+                    />
+                    <Button type="submit" className="w-full" disabled={isSubmitting || !turnstileToken}>
                       {isSubmitting ? "Saving..." : "Reveal my route + send plan"}
                     </Button>
                     <button
@@ -695,8 +709,8 @@ export default function FamilySituationAssessment() {
 
               {result && captureComplete && (
                 <div className="mt-5 rounded-2xl border border-primary/20 bg-primary/5 p-4">
-                  <p className="font-medium text-foreground">You are set.</p>
-                  <p className="mt-1 text-sm text-muted-foreground">Your inbox will get the follow-up guidance.</p>
+                  <p className="font-medium text-foreground">Your route is ready.</p>
+                  <p className="mt-1 text-sm text-muted-foreground">Confirm the email in your inbox before follow-up guidance begins.</p>
                 </div>
               )}
             </aside>
