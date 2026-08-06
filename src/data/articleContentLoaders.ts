@@ -193,4 +193,6 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "rescue-reflex-rescuing-addicted-loved-one": () => import("./article-content/rescue-reflex-rescuing-addicted-loved-one"),
   "covering-for-an-addict-enabling": () => import("./article-content/covering-for-an-addict-enabling"),
   "keeping-the-peace-avoiding-conflict-enabling-addiction": () => import("./article-content/keeping-the-peace-avoiding-conflict-enabling-addiction"),
+  "generational-codependency-addiction-families": () => import("./article-content/generational-codependency-addiction-families"),
 };
+

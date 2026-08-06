@@ -36,6 +36,8 @@ import highFunctioningAddictionEnablingImage from "@/assets/high-functioning-add
 import coveringForAnAddictImage from "@/assets/covering-for-an-addict-enabling.jpg";
 import rescueReflexImage from "@/assets/rescue-reflex-rescuing-addicted-loved-one.jpg";
 import keepingThePeaceAvoidingConflictImage from "@/assets/keeping-peace-avoiding-conflict-enabling-addiction.jpg";
+import generationalCodependencyImage from "@/assets/generational-codependency-addiction-families.jpg";
+
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
