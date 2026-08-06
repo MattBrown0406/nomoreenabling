@@ -7,6 +7,15 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+const MIN_FORM_MS = 2500;
+const MAX_FORM_MS = 6 * 60 * 60 * 1000;
+
+const looksLikeHumanSubmission = (website: unknown, formMs: unknown): boolean => {
+  if (typeof website !== 'string' || website.trim() !== '') return false;
+  if (typeof formMs !== 'number' || !Number.isFinite(formMs)) return false;
+  return formMs >= MIN_FORM_MS && formMs <= MAX_FORM_MS;
+};
+
 const isValidEmail = (email: string): boolean => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email) && email.length <= 255;
@@ -120,8 +129,20 @@ serve(async (req) => {
       article_slug,
       hub_slug,
       page_path,
-      _t,
+      website,
+      form_ms,
     } = await req.json();
+
+    // Enforce the honeypot and dwell-time checks here, not only in React. Bots
+    // can otherwise POST directly to this public Edge Function. Return generic
+    // success so an automated sender cannot tell which guard it tripped.
+    if (!looksLikeHumanSubmission(website, form_ms)) {
+      console.log('Bot guard rejected newsletter signup');
+      return new Response(
+        JSON.stringify({ success: true }),
+        { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
 
     // Validate email
     if (!email || typeof email !== 'string') {
@@ -147,18 +168,6 @@ serve(async (req) => {
         JSON.stringify({ error: 'Please use a permanent email address' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
-    }
-
-    // Time-based check: if timestamp missing or form submitted in under 2 seconds, reject silently
-    if (_t && typeof _t === 'number') {
-      const elapsed = Date.now() - _t;
-      if (elapsed < 2000) {
-        console.log('Bot detected: form submitted too quickly');
-        return new Response(
-          JSON.stringify({ success: true }),
-          { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-        );
-      }
     }
 
     const sanitizedFirstName = sanitizeString(first_name, 100);

@@ -51,6 +51,8 @@ const ArticleEndSubscribe = ({ articleSlug, category }: Props) => {
           source: "article_end",
           article_slug: articleSlug ?? null,
           _t: loadedAt.current,
+          website: honeypot,
+          form_ms: Date.now() - loadedAt.current,
         },
       });
       if (error && data?.error !== "already_subscribed") throw error;

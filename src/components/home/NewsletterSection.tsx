@@ -64,7 +64,14 @@ const NewsletterSection = () => {
     
     try {
       const { data, error } = await supabase.functions.invoke('newsletter-signup', {
-        body: { email, first_name: firstName || null, source: `newsletter_hero_${variant}`, _t: loadedAt.current }
+        body: {
+          email,
+          first_name: firstName || null,
+          source: `newsletter_hero_${variant}`,
+          _t: loadedAt.current,
+          website: honeypot,
+          form_ms: Date.now() - loadedAt.current,
+        }
       });
 
       if (error) {

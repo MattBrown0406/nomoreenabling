@@ -434,6 +434,8 @@ export default function FamilySituationAssessment() {
           recommended_offer: offer?.slug,
           answers,
           _t: loadedAt.current,
+          website: honeypot,
+          form_ms: Date.now() - loadedAt.current,
         },
       });
 

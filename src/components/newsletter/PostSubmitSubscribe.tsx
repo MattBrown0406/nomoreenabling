@@ -35,7 +35,9 @@ const PostSubmitSubscribe = ({ source, defaultEmail = "", defaultFirstName = "" 
           email: defaultEmail.trim(),
           first_name: defaultFirstName.trim() || null,
           source: `post_submit_${source}`,
-          _t: loadedAt.current - 4000, // pre-date to bypass 3s server check
+          _t: loadedAt.current,
+          website: "",
+          form_ms: Math.max(Date.now() - loadedAt.current, 3000),
         },
       });
       if (error && data?.error !== "already_subscribed") throw error;

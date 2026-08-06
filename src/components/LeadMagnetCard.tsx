@@ -67,6 +67,8 @@ const LeadMagnetCard = ({ magnet, source, articleSlug, hubSlug, compact = false 
           hub_slug: hubSlug ?? null,
           page_path: window.location.pathname,
           _t: loadedAt.current,
+          website: honeypot,
+          form_ms: Date.now() - loadedAt.current,
         },
       });
 

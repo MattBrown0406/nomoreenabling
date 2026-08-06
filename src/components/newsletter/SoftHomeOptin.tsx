@@ -36,6 +36,8 @@ const SoftHomeOptin = () => {
           email: email.trim(),
           source: "home_soft_optin",
           _t: loadedAt.current,
+          website: honeypot,
+          form_ms: Date.now() - loadedAt.current,
         },
       });
       if (error && data?.error !== "already_subscribed") throw error;
