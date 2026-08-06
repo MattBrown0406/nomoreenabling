@@ -36,6 +36,8 @@ import highFunctioningAddictionEnablingImage from "@/assets/high-functioning-add
 import coveringForAnAddictImage from "@/assets/covering-for-an-addict-enabling.jpg";
 import rescueReflexImage from "@/assets/rescue-reflex-rescuing-addicted-loved-one.jpg";
 import keepingThePeaceAvoidingConflictImage from "@/assets/keeping-peace-avoiding-conflict-enabling-addiction.jpg";
+import generationalCodependencyImage from "@/assets/generational-codependency-addiction-families.jpg";
+
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
 import familiesLoseThemselvesImage from "@/assets/families-lose-themselves-helping.jpg";
@@ -161,7 +163,21 @@ export interface BlogPostMeta {
 
 export const blogPostsMeta: BlogPostMeta[] = [
   {
+    id: "generational-codependency-addiction-families",
+    title: "Generational Codependency: How These Patterns Get Passed Down in Addiction Families — and How to Break the Cycle",
+    excerpt: "Codependency often runs in families long before addiction arrives. Learn how generational codependency develops and how to break the cycle for your kids.",
+    category: "Codependency",
+    categories: ["Codependency", "Family Dynamics", "Boundaries"],
+    readTime: "8 min read",
+    date: "August 6, 2026",
+    image: generationalCodependencyImage,
+    slug: "generational-codependency-addiction-families",
+    metaTitle: "Generational Codependency in Addiction Families",
+    metaDescription: "Codependency often runs in families long before addiction arrives. Learn how generational codependency develops and how to break the cycle for your kids.",
+  },
+  {
     id: "keeping-the-peace-avoiding-conflict-enabling-addiction",
+
     title: "Keeping the Peace: How Avoiding Conflict With an Addicted Loved One Becomes Enabling",
     excerpt: "Avoiding conflict with an addicted loved one can quietly become enabling. Learn why silence feels safer, what it costs, and how to speak up with love.",
     category: "Enabling",
