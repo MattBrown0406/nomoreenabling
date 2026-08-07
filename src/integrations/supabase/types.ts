@@ -544,6 +544,81 @@ export type Database = {
         }
         Relationships: []
       }
+      lead_magnet_downloads: {
+        Row: {
+          article_slug: string | null
+          downloaded_at: string
+          email: string
+          first_name: string | null
+          hub_slug: string | null
+          id: string
+          lead_magnet_slug: string
+          lead_magnet_source: string | null
+          metadata: Json
+          page_path: string | null
+          updated_at: string
+        }
+        Insert: {
+          article_slug?: string | null
+          downloaded_at?: string
+          email: string
+          first_name?: string | null
+          hub_slug?: string | null
+          id?: string
+          lead_magnet_slug: string
+          lead_magnet_source?: string | null
+          metadata?: Json
+          page_path?: string | null
+          updated_at?: string
+        }
+        Update: {
+          article_slug?: string | null
+          downloaded_at?: string
+          email?: string
+          first_name?: string | null
+          hub_slug?: string | null
+          id?: string
+          lead_magnet_slug?: string
+          lead_magnet_source?: string | null
+          metadata?: Json
+          page_path?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      newsletter_optin_attempts: {
+        Row: {
+          confirmed_at: string | null
+          context: Json
+          created_at: string
+          email: string
+          expires_at: string
+          first_name: string | null
+          id: string
+          mailchimp_member_id: string | null
+        }
+        Insert: {
+          confirmed_at?: string | null
+          context?: Json
+          created_at?: string
+          email: string
+          expires_at?: string
+          first_name?: string | null
+          id?: string
+          mailchimp_member_id?: string | null
+        }
+        Update: {
+          confirmed_at?: string | null
+          context?: Json
+          created_at?: string
+          email?: string
+          expires_at?: string
+          first_name?: string | null
+          id?: string
+          mailchimp_member_id?: string | null
+        }
+        Relationships: []
+      }
       press_feed: {
         Row: {
           episodes: Json
@@ -568,6 +643,7 @@ export type Database = {
           created_at: string
           event_name: string
           id: number
+          idempotency_key: string | null
           last_error: string | null
           payload: Json
           sent_at: string | null
@@ -578,6 +654,7 @@ export type Database = {
           created_at?: string
           event_name: string
           id?: never
+          idempotency_key?: string | null
           last_error?: string | null
           payload?: Json
           sent_at?: string | null
@@ -588,6 +665,7 @@ export type Database = {
           created_at?: string
           event_name?: string
           id?: never
+          idempotency_key?: string | null
           last_error?: string | null
           payload?: Json
           sent_at?: string | null
@@ -678,6 +756,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      finalize_confirmed_newsletter_optin: {
+        Args: {
+          p_email: string
+          p_first_name: string
+          p_mailchimp_member_id: string
+        }
+        Returns: Json
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
