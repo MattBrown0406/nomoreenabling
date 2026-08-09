@@ -37,6 +37,7 @@ import coveringForAnAddictImage from "@/assets/covering-for-an-addict-enabling.j
 import rescueReflexImage from "@/assets/rescue-reflex-rescuing-addicted-loved-one.jpg";
 import keepingThePeaceAvoidingConflictImage from "@/assets/keeping-peace-avoiding-conflict-enabling-addiction.jpg";
 import generationalCodependencyImage from "@/assets/generational-codependency-addiction-families.jpg";
+import lostChildRoleImage from "@/assets/lost-child-role-addicted-families.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
@@ -162,6 +163,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "lost-child-role-addicted-families",
+    title: "The Lost Child Role in Addicted Families: When Being \"The Easy One\" Comes at a Cost",
+    excerpt: "The lost child role in addicted families hides real pain behind quiet compliance. Learn how this role forms, what it costs, and how to heal from it.",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Codependency", "Healing"],
+    readTime: "8 min read",
+    date: "August 9, 2026",
+    image: lostChildRoleImage,
+    slug: "lost-child-role-addicted-families",
+    metaTitle: "The Lost Child Role in Addicted Families",
+    metaDescription: "The lost child role in addicted families hides real pain behind quiet compliance. Learn how this role forms, what it costs, and how to heal from it.",
+  },
   {
     id: "generational-codependency-addiction-families",
     title: "Generational Codependency: How These Patterns Get Passed Down in Addiction Families — and How to Break the Cycle",

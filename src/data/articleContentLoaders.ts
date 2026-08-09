@@ -194,5 +194,6 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "covering-for-an-addict-enabling": () => import("./article-content/covering-for-an-addict-enabling"),
   "keeping-the-peace-avoiding-conflict-enabling-addiction": () => import("./article-content/keeping-the-peace-avoiding-conflict-enabling-addiction"),
   "generational-codependency-addiction-families": () => import("./article-content/generational-codependency-addiction-families"),
+  "lost-child-role-addicted-families": () => import("./article-content/lost-child-role-addicted-families"),
 };
 
