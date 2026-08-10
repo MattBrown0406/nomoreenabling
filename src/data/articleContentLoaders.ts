@@ -195,5 +195,6 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "keeping-the-peace-avoiding-conflict-enabling-addiction": () => import("./article-content/keeping-the-peace-avoiding-conflict-enabling-addiction"),
   "generational-codependency-addiction-families": () => import("./article-content/generational-codependency-addiction-families"),
   "lost-child-role-addicted-families": () => import("./article-content/lost-child-role-addicted-families"),
+  "family-hero-role-addiction": () => import("./article-content/family-hero-role-addiction"),
 };
 

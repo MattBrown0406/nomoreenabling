@@ -38,6 +38,7 @@ import rescueReflexImage from "@/assets/rescue-reflex-rescuing-addicted-loved-on
 import keepingThePeaceAvoidingConflictImage from "@/assets/keeping-peace-avoiding-conflict-enabling-addiction.jpg";
 import generationalCodependencyImage from "@/assets/generational-codependency-addiction-families.jpg";
 import lostChildRoleImage from "@/assets/lost-child-role-addicted-families.jpg";
+import familyHeroRoleImage from "@/assets/family-hero-role-addiction.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
