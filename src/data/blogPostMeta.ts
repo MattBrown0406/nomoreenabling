@@ -165,6 +165,19 @@ export interface BlogPostMeta {
 
 export const blogPostsMeta: BlogPostMeta[] = [
   {
+    id: "family-hero-role-addiction",
+    title: "The Family Hero Role in Addiction: When Being the Strong One Is Keeping Everyone Stuck",
+    excerpt: "The family hero role in addiction looks like strength, but it quietly keeps the whole family stuck. Learn the signs and how to step out of it.",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Codependency", "Enabling"],
+    readTime: "8 min read",
+    date: "August 10, 2026",
+    image: familyHeroRoleImage,
+    slug: "family-hero-role-addiction",
+    metaTitle: "The Family Hero Role in Addiction",
+    metaDescription: "The family hero role in addiction looks like strength, but it quietly keeps the whole family stuck. Learn the signs and how to step out of it.",
+  },
+  {
     id: "lost-child-role-addicted-families",
     title: "The Lost Child Role in Addicted Families: When Being \"The Easy One\" Comes at a Cost",
     excerpt: "The lost child role in addicted families hides real pain behind quiet compliance. Learn how this role forms, what it costs, and how to heal from it.",
