@@ -39,6 +39,7 @@ import keepingThePeaceAvoidingConflictImage from "@/assets/keeping-peace-avoidin
 import generationalCodependencyImage from "@/assets/generational-codependency-addiction-families.jpg";
 import lostChildRoleImage from "@/assets/lost-child-role-addicted-families.jpg";
 import familyHeroRoleImage from "@/assets/family-hero-role-addiction.jpg";
+import boundaryVsPunishmentLovedOneImage from "@/assets/boundary-vs-punishment-addicted-loved-one.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
@@ -164,6 +165,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "boundary-vs-punishment-addicted-loved-one",
+    title: "Boundary or Punishment? The Difference That Changes Everything With an Addicted Loved One",
+    excerpt: "Learn the difference between a boundary and a punishment when a loved one struggles with addiction \u2014 and how to set limits that protect you without controlling them.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Support", "Enabling"],
+    readTime: "8 min read",
+    date: "August 11, 2026",
+    image: boundaryVsPunishmentLovedOneImage,
+    slug: "boundary-vs-punishment-addicted-loved-one",
+    metaTitle: "Boundary or Punishment? The Key Difference",
+    metaDescription: "Learn the difference between a boundary and a punishment with an addicted loved one \u2014 and how to set limits that protect you without controlling them.",
+  },
   {
     id: "family-hero-role-addiction",
     title: "The Family Hero Role in Addiction: When Being the Strong One Is Keeping Everyone Stuck",
