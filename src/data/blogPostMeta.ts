@@ -167,6 +167,19 @@ export interface BlogPostMeta {
 
 export const blogPostsMeta: BlogPostMeta[] = [
   {
+    id: "will-boundaries-push-addicted-loved-one-away",
+    title: "Will Setting Boundaries With an Addicted Loved One Push Them Away?",
+    excerpt: "Afraid that setting boundaries with an addicted loved one will push them away? Learn why healthy boundaries protect the relationship instead of ending it.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Support", "Enabling"],
+    readTime: "8 min read",
+    date: "August 12, 2026",
+    image: willBoundariesPushAwayImage,
+    slug: "will-boundaries-push-addicted-loved-one-away",
+    metaTitle: "Will Boundaries Push an Addicted Loved One Away?",
+    metaDescription: "Afraid boundaries will push your addicted loved one away? Learn why healthy boundaries protect the relationship instead of ending it.",
+  },
+  {
     id: "boundary-vs-punishment-addicted-loved-one",
     title: "Boundary or Punishment? The Difference That Changes Everything With an Addicted Loved One",
     excerpt: "Learn the difference between a boundary and a punishment when a loved one struggles with addiction \u2014 and how to set limits that protect you without controlling them.",
