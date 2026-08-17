@@ -36,6 +36,7 @@ const answerPages = [
   "call-an-interventionist",
   "what-to-say-refuses-rehab",
   "family-disagrees-boundaries",
+  "two-households",
   "boundaries-vs-ultimatums",
   "loved-one-overdosed-what-now",
   "family-meeting-before-confronting-addiction",
@@ -60,6 +61,7 @@ export interface SitemapInput {
 const staticPages: { path: string; priority: string; changefreq: string }[] = [
   { path: "/", priority: "1.0", changefreq: "weekly" },
   { path: "/start-here", priority: "0.95", changefreq: "monthly" },
+  { path: "/two-households", priority: "0.9", changefreq: "monthly" },
   { path: "/the-mirror", priority: "0.9", changefreq: "monthly" },
   { path: "/work-with-matt", priority: "0.95", changefreq: "monthly" },
   { path: "/enabling-answer-center", priority: "0.95", changefreq: "monthly" },

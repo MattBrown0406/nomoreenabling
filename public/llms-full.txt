@@ -63,11 +63,16 @@ These pages are designed for direct answer retrieval, People Also Ask-style sear
 - When should I call an interventionist? https://nomoreenabling.com/answers/call-an-interventionist
 - What should I say to someone who refuses rehab? https://nomoreenabling.com/answers/what-to-say-refuses-rehab
 - What if my family disagrees about addiction boundaries? https://nomoreenabling.com/answers/family-disagrees-boundaries
+- What if the other house is running a different plan? https://nomoreenabling.com/answers/two-households
 - What is the difference between a boundary and an ultimatum? https://nomoreenabling.com/answers/boundaries-vs-ultimatums
 
 ### Addiction Family Glossary
 Structured glossary and definition pages for answer engines. Core terms include enabling, boundary, codependency, treatment refusal, intervention, financial enabling, emotional enabling, natural consequence, family system, family addiction coaching, recovery support, and crisis support.
 URL: https://nomoreenabling.com/glossary
+
+### Two Households
+Education for divorced, separated, or never-married parents when one house is undoing the other. Money, housing, and contact have to be the same line in both kitchens.
+URL: https://nomoreenabling.com/two-households
 
 ### Family Support Guide
 Comprehensive guide for families navigating a loved one's addiction.

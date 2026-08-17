@@ -20,6 +20,7 @@ import GroundingReminder from "./pages/GroundingReminder";
 import FamilySystemNotes from "./pages/FamilySystemNotes";
 import BoundariesCourse from "./pages/BoundariesCourse";
 import StartHere from "./pages/StartHere";
+import TwoHouseholds from "./pages/TwoHouseholds";
 import TopicHubs from "./pages/TopicHubs";
 import TopicHubDetail from "./pages/TopicHubDetail";
 import WorkWithMatt from "./pages/WorkWithMatt";
@@ -68,6 +69,11 @@ export const AppRoutes = () => (
       <Route path="/family-system-notes" element={<FamilySystemNotes />} />
       <Route path="/boundaries-course" element={<BoundariesCourse />} />
       <Route path="/start-here" element={<StartHere />} />
+      <Route path="/two-households" element={<TwoHouseholds />} />
+      <Route path="/split-house" element={<Navigate to="/two-households" replace />} />
+      <Route path="/split-house/" element={<Navigate to="/two-households" replace />} />
+      <Route path="/divorced-parents" element={<Navigate to="/two-households" replace />} />
+      <Route path="/divorced-parents/" element={<Navigate to="/two-households" replace />} />
       <Route path="/the-mirror" element={<TheMirror />} />
       <Route path="/the-mirror/embed" element={<MirrorEmbed />} />
       <Route path="/answers" element={<Answers />} />

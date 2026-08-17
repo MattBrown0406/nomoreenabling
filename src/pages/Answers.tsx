@@ -137,6 +137,20 @@ export default function Answers() {
 
         <section className="border-b border-border bg-background">
           <div className="container mx-auto px-4 py-10">
+            <Link
+              to="/two-households"
+              className="mb-6 block rounded-2xl border border-border bg-card p-5 transition-colors hover:border-primary/40 md:p-6"
+            >
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary">Two households</p>
+              <h2 className="mt-2 font-serif text-2xl font-bold text-foreground">The other house is running a different plan.</h2>
+              <p className="mt-2 max-w-3xl text-muted-foreground">
+                You held the line. They paid the rent, handed over the keys, or said “just this weekend.” Money, housing, and contact have to be the same line in both kitchens.
+              </p>
+              <p className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                Open the two-households page
+                <ArrowRight className="h-4 w-4" />
+              </p>
+            </Link>
             <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 md:p-8">
               <div className="mb-6 max-w-3xl">
                 <p className="text-sm font-semibold uppercase tracking-wide text-primary">Cross-site money path</p>

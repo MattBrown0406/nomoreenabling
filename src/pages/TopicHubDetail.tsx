@@ -128,6 +128,17 @@ export default function TopicHubDetail() {
               <h2 className="font-serif text-2xl font-bold text-foreground">What this hub is for</h2>
               <p className="mt-3 text-muted-foreground">{hub.intro}</p>
               <p className="mt-3 text-foreground font-medium">{hub.bestFor}</p>
+              {hub.slug === "family-dynamics" && (
+                <Link
+                  to="/two-households"
+                  className="mt-5 block rounded-xl border border-border bg-background p-4 transition-colors hover:border-primary/40"
+                >
+                  <p className="font-medium text-foreground">The other house is running a different plan.</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Split, divorced, or never-married parents: money, housing, and contact have to be the same line in both kitchens.
+                  </p>
+                </Link>
+              )}
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-xl bg-secondary/40 p-4">
                   <p className="text-sm font-medium text-foreground">Start here if…</p>
