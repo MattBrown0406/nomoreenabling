@@ -41,6 +41,7 @@ import lostChildRoleImage from "@/assets/lost-child-role-addicted-families.jpg";
 import familyHeroRoleImage from "@/assets/family-hero-role-addiction.jpg";
 import boundaryVsPunishmentLovedOneImage from "@/assets/boundary-vs-punishment-addicted-loved-one.jpg";
 import willBoundariesPushAwayImage from "@/assets/will-boundaries-push-addicted-loved-one-away.jpg";
+import holdBoundaryInTheMomentImage from "@/assets/hold-boundary-in-the-moment-addicted-loved-one.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
@@ -166,6 +167,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "hold-boundary-in-the-moment-addicted-loved-one",
+    title: "How to Hold a Boundary in the Moment When Your Loved One Catches You Off Guard",
+    excerpt: "Learn how to hold a boundary in the moment when an addicted loved one asks for help unexpectedly \u2014 scripts, delay tactics, and how to recover if you cave.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Support", "Enabling"],
+    readTime: "8 min read",
+    date: "August 16, 2026",
+    image: holdBoundaryInTheMomentImage,
+    slug: "hold-boundary-in-the-moment-addicted-loved-one",
+    metaTitle: "How to Hold a Boundary in the Moment",
+    metaDescription: "How to hold a boundary in the moment when an addicted loved one asks for help unexpectedly \u2014 scripts, delay tactics, and how to recover if you cave.",
+  },
   {
     id: "will-boundaries-push-addicted-loved-one-away",
     title: "Will Setting Boundaries With an Addicted Loved One Push Them Away?",
