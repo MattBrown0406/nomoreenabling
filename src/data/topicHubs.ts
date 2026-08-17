@@ -384,6 +384,7 @@ export const topicHubs: TopicHub[] = [
       "Why does our home feel organized around one person's addiction?",
       "How do family roles change around substance use?",
       "What should the family work on while someone is in treatment?",
+      "What if the other house is running a different plan?",
     ],
     guideSections: [
       {

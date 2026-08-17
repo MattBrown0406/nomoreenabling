@@ -53,6 +53,11 @@ const situationShortcuts = [
     href: "/answers/stop-giving-money",
   },
   {
+    label: "The other house is running a different plan",
+    detail: "You held the line. The other parent paid rent, handed over the keys, or said just this weekend.",
+    href: "/two-households",
+  },
+  {
     label: "I think we need intervention",
     detail: "The situation has outgrown ordinary family talks and needs structure.",
     href: "/answers/call-an-interventionist",
@@ -195,7 +200,7 @@ export default function StartHere() {
                 These are the high-intent questions families usually search before they become coaching, intervention, or support leads.
               </p>
             </div>
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {situationShortcuts.map((situation) => (
                 <Link
                   key={situation.href}

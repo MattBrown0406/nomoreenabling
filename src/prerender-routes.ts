@@ -18,6 +18,7 @@ const staticRoutes = [
   "/family-system-notes",
   "/boundaries-course",
   "/start-here",
+  "/two-households",
   "/answers",
   "/enabling-answer-center",
   "/glossary",
