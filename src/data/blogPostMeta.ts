@@ -41,6 +41,7 @@ import lostChildRoleImage from "@/assets/lost-child-role-addicted-families.jpg";
 import familyHeroRoleImage from "@/assets/family-hero-role-addiction.jpg";
 import boundaryVsPunishmentLovedOneImage from "@/assets/boundary-vs-punishment-addicted-loved-one.jpg";
 import willBoundariesPushAwayImage from "@/assets/will-boundaries-push-addicted-loved-one-away.jpg";
+import holdBoundaryInTheMomentImage from "@/assets/hold-boundary-in-the-moment-addicted-loved-one.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
