@@ -42,6 +42,7 @@ import familyHeroRoleImage from "@/assets/family-hero-role-addiction.jpg";
 import boundaryVsPunishmentLovedOneImage from "@/assets/boundary-vs-punishment-addicted-loved-one.jpg";
 import willBoundariesPushAwayImage from "@/assets/will-boundaries-push-addicted-loved-one-away.jpg";
 import holdBoundaryInTheMomentImage from "@/assets/hold-boundary-in-the-moment-addicted-loved-one.jpg";
+import resetBoundaryAfterGaveInImage from "@/assets/reset-a-boundary-after-you-gave-in.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
@@ -167,6 +168,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "reset-a-boundary-after-you-gave-in",
+    title: "How to Reset a Boundary With an Addicted Loved One After You Gave In",
+    excerpt: "You gave in and broke your own boundary with an addicted loved one. Here's how to reset a boundary without shame, and make the next one actually stick.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Support", "Enabling"],
+    readTime: "8 min read",
+    date: "August 19, 2026",
+    image: resetBoundaryAfterGaveInImage,
+    slug: "reset-a-boundary-after-you-gave-in",
+    metaTitle: "How to Reset a Boundary After You Gave In",
+    metaDescription: "You broke your own boundary with an addicted loved one. Here's how to reset a boundary without shame, and make the next one actually stick.",
+  },
   {
     id: "hold-boundary-in-the-moment-addicted-loved-one",
     title: "How to Hold a Boundary in the Moment When Your Loved One Catches You Off Guard",
