@@ -3,7 +3,7 @@ import OrganizationJsonLd from "@/components/seo/OrganizationJsonLd";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import type { ReactNode } from "react";
 import Index from "./pages/Index";
 import About from "./pages/About";
@@ -46,6 +46,15 @@ import NotFound from "./pages/NotFound";
 import ContactFormWidget from "@/components/ContactFormWidget";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import SocialShareUrlGuard from "@/components/SocialShareUrlGuard";
+import {
+  legacyPageRedirects,
+  resolveLegacyArticleSlug,
+} from "@/lib/legacyRedirects";
+
+const LegacyArticleRedirect = () => {
+  const { slug = "" } = useParams<{ slug: string }>();
+  return <Navigate to={`/articles/${resolveLegacyArticleSlug(slug)}`} replace />;
+};
 
 export const AppRoutes = () => (
   <>
@@ -55,6 +64,11 @@ export const AppRoutes = () => (
     <ContactFormWidget />
     <Routes>
       <Route path="/" element={<Index />} />
+      {Object.entries(legacyPageRedirects).map(([from, to]) => (
+        <Route key={from} path={from} element={<Navigate to={to} replace />} />
+      ))}
+      <Route path="/article/:slug" element={<LegacyArticleRedirect />} />
+      <Route path="/blog/:slug" element={<LegacyArticleRedirect />} />
       <Route path="/articles" element={<Articles />} />
       <Route path="/articles/:slug" element={<ArticlePage />} />
       <Route path="/category/:slug" element={<Category />} />
