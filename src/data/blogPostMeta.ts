@@ -170,6 +170,19 @@ export interface BlogPostMeta {
 
 export const blogPostsMeta: BlogPostMeta[] = [
   {
+    id: "how-to-stop-worrying-about-addicted-loved-one",
+    title: "How to Stop Worrying About Your Addicted Loved One (Without Loving Them Less)",
+    excerpt: "How to stop worrying about your addicted loved one without loving them less \u2014 practical steps for families to reclaim sleep, focus, and peace.",
+    category: "Family Support",
+    categories: ["Family Support", "Self-Care", "Boundaries"],
+    readTime: "9 min read",
+    date: "August 22, 2026",
+    image: stopWorryingAddictedLovedOneImage,
+    slug: "how-to-stop-worrying-about-addicted-loved-one",
+    metaTitle: "How to Stop Worrying About an Addicted Loved One",
+    metaDescription: "How to stop worrying about your addicted loved one without loving them less. Practical steps for families to reclaim sleep, focus, and peace.",
+  },
+  {
     id: "reset-a-boundary-after-you-gave-in",
     title: "How to Reset a Boundary With an Addicted Loved One After You Gave In",
     excerpt: "You gave in and broke your own boundary with an addicted loved one. Here's how to reset a boundary without shame, and make the next one actually stick.",
