@@ -156,7 +156,12 @@ export default function AnswerDetail() {
         canonicalUrl={canonicalUrl}
         keywords={`${answer.question}, ${answer.tags.join(", ")}, addiction family answer`}
       />
-      <QAPageJsonLd question={answer.question} answer={answer.shortAnswer} url={canonicalUrl} />
+      <QAPageJsonLd
+        question={answer.question}
+        answer={answer.shortAnswer}
+        url={canonicalUrl}
+        datePublished={answer.datePublished}
+      />
       <FAQJsonLd
         faqs={[
           { question: answer.question, answer: answer.shortAnswer },
@@ -189,7 +194,7 @@ export default function AnswerDetail() {
                 <h1 className="max-w-4xl font-serif text-4xl font-bold leading-tight text-foreground md:text-5xl">
                   {answer.question}
                 </h1>
-                <div className="mt-8 rounded-2xl border border-primary/20 bg-primary/5 p-6">
+                <div id="accepted-answer" className="mt-8 scroll-mt-24 rounded-2xl border border-primary/20 bg-primary/5 p-6">
                   <p className="text-sm font-semibold uppercase tracking-wide text-primary">Direct answer</p>
                   <p className="mt-3 text-xl leading-relaxed text-foreground">{answer.shortAnswer}</p>
                 </div>

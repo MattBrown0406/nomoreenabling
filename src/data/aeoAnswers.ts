@@ -5,6 +5,7 @@ export interface AeoAnswer {
   id: string;
   question: string;
   shortAnswer: string;
+  datePublished: string;
   category: string;
   href: string;
   nextStep: string;
@@ -39,6 +40,7 @@ export interface ComparisonAnswer {
 export const aeoAnswers: AeoAnswer[] = [
   {
     id: "helping-or-enabling",
+    datePublished: "2026-05-09",
     question: "How do I know if I am helping or enabling?",
     shortAnswer: "Helping supports responsibility, truth, treatment, and repair. Enabling protects addiction from consequences, usually through money, excuses, housing, secrecy, or emotional rescue.",
     category: "Enabling",
@@ -56,6 +58,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "stop-enabling-without-abandoning",
+    datePublished: "2026-05-09",
     question: "How do I stop enabling without abandoning someone I love?",
     shortAnswer: "Stop doing what protects the addiction, but stay available for recovery-supporting action. The goal is not less love. The goal is cleaner support.",
     category: "Enabling",
@@ -67,6 +70,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "first-boundary",
+    datePublished: "2026-05-09",
     question: "What is the first boundary a family should set?",
     shortAnswer: "Start with the behavior that is costing the most safety, honesty, money, or stability. A boundary should define what you will do if the behavior continues.",
     category: "Boundaries",
@@ -78,6 +82,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "boundary-broken",
+    datePublished: "2026-05-09",
     question: "What should I do when an addicted loved one breaks a boundary?",
     shortAnswer: "Do not renegotiate the boundary in the heat of the moment. Follow through calmly, document the pattern, and review whether the boundary was specific enough to hold.",
     category: "Boundaries",
@@ -89,6 +94,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "money-help",
+    datePublished: "2026-05-09",
     question: "Should I give money to someone with addiction?",
     shortAnswer: "Money becomes enabling when it removes consequences, funds instability, or keeps the person from facing the reality of the addiction. Recovery-supporting help should be specific, transparent, and tied to treatment or safety.",
     category: "Financial enabling",
@@ -100,6 +106,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "pay-rent",
+    datePublished: "2026-05-09",
     question: "Should I pay rent for my addicted adult child?",
     shortAnswer: "Paying rent may be enabling when it preserves active addiction without treatment, accountability, or a recovery plan. Housing support needs clear conditions and safety limits.",
     category: "Adult child addiction",
@@ -111,6 +118,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "adult-child-home",
+    datePublished: "2026-05-09",
     question: "Should I let my addicted adult child live at home?",
     shortAnswer: "The question is not only whether they can live at home. The question is what conditions protect safety, recovery, children, money, and the rest of the family.",
     category: "Adult child addiction",
@@ -122,6 +130,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "refuses-treatment",
+    datePublished: "2026-05-09",
     question: "What should I do when someone refuses addiction treatment?",
     shortAnswer: "Stop making the entire plan depend on their yes. The family can align, change rescue patterns, prepare options, and decide whether coaching or intervention guidance is needed.",
     category: "Treatment refusal",
@@ -133,6 +142,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "intervention-needed",
+    datePublished: "2026-05-09",
     question: "When is an addiction intervention necessary?",
     shortAnswer: "Intervention may be appropriate when treatment is repeatedly refused, consequences are escalating, safety risk is rising, or the family cannot stay aligned without professional structure.",
     category: "Intervention",
@@ -144,6 +154,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "alcohol-minimized",
+    datePublished: "2026-05-09",
     question: "What if my loved one says their drinking is normal?",
     shortAnswer: "Do not debate the label. Name the impact on safety, trust, parenting, work, money, driving, and emotional stability. Functioning does not erase harm.",
     category: "Alcohol",
@@ -155,6 +166,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "spouse-addiction",
+    datePublished: "2026-05-09",
     question: "How do I set boundaries with an addicted spouse?",
     shortAnswer: "Spouse boundaries must protect safety, money, children, emotional stability, and truth. A boundary is what you will do if the pattern continues, not a threat to control your partner.",
     category: "Spouse addiction",
@@ -166,6 +178,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "relapse-response",
+    datePublished: "2026-05-09",
     question: "How should a family respond to relapse without enabling?",
     shortAnswer: "Respond to relapse with safety, honesty, and structure. Do not erase the consequence, rewrite the story, or rebuild the old rescue pattern.",
     category: "Relapse",
@@ -177,6 +190,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "after-rehab-boundaries",
+    datePublished: "2026-05-09",
     question: "What boundaries should families set after rehab?",
     shortAnswer: "After rehab, boundaries should clarify housing, money, meetings, treatment follow-through, communication, relapse response, and what the family will not return to.",
     category: "After treatment",
@@ -188,6 +202,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "codependency-definition",
+    datePublished: "2026-05-09",
     question: "What is codependency in addiction families?",
     shortAnswer: "Codependency is the pattern where a family member becomes over-responsible for another person's addiction, emotions, consequences, or recovery.",
     category: "Codependency",
@@ -199,6 +214,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "professional-guidance",
+    datePublished: "2026-05-09",
     question: "When should a family get professional guidance?",
     shortAnswer: "Get professional guidance when safety risk, treatment refusal, repeated relapse, family division, or collapsed boundaries make the next step too important to improvise.",
     category: "Professional guidance",
@@ -210,6 +226,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "family-assessment",
+    datePublished: "2026-05-09",
     question: "What is the fastest way to choose the right next step?",
     shortAnswer: "Use the family situation assessment to route the concern into education, free support, coaching, or intervention guidance.",
     category: "Next step",
@@ -221,6 +238,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "am-i-enabling-adult-child",
+    datePublished: "2026-05-09",
     question: "Am I enabling my addicted adult child?",
     shortAnswer: "You may be enabling if your help repeatedly shields your adult child from addiction-related consequences, especially through money, housing, excuses, cleanup, or crisis rescue without treatment or accountability.",
     category: "Adult child addiction",
@@ -238,6 +256,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "should-i-kick-addicted-child-out",
+    datePublished: "2026-05-09",
     question: "Should I kick my addicted adult child out?",
     shortAnswer: "Do not make the housing decision as a sudden punishment. Decide what conditions protect safety, sobriety, children, money, and the household, then make the next step clear and realistic.",
     category: "Adult child addiction",
@@ -249,6 +268,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "spouse-wont-stop-drinking",
+    datePublished: "2026-05-09",
     question: "What do I do if my spouse will not stop drinking?",
     shortAnswer: "Stop trying to win a debate about whether the drinking is bad enough. Name the impact, protect money and children, stop covering consequences, and decide whether family coaching or intervention planning is needed.",
     category: "Alcohol",
@@ -260,6 +280,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "stop-giving-money",
+    datePublished: "2026-05-09",
     question: "How do I stop giving money to someone with addiction?",
     shortAnswer: "Stop by replacing open-ended money with clear recovery-supporting offers. You can pay a provider directly, offer a ride to treatment, or help with a specific safety need without handing over cash.",
     category: "Financial enabling",
@@ -271,6 +292,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "using-drugs-in-my-house",
+    datePublished: "2026-05-09",
     question: "What should I do if my loved one is using drugs in my house?",
     shortAnswer: "Treat drug use in the home as a safety issue, not just a behavior issue. Protect children, medications, vehicles, valuables, and your own stability, then set a boundary the household can actually enforce.",
     category: "Safety",
@@ -282,6 +304,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "call-an-interventionist",
+    datePublished: "2026-05-09",
     question: "When should I call an interventionist?",
     shortAnswer: "Call an interventionist when treatment is being refused, risk is escalating, the family is divided, or ordinary conversations have become another part of the cycle.",
     category: "Intervention",
@@ -293,6 +316,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "what-to-say-refuses-rehab",
+    datePublished: "2026-05-09",
     question: "What should I say to someone who refuses rehab?",
     shortAnswer: "Keep it short, specific, and focused on impact. Avoid arguing about labels. State what you see, what you are willing to support, and what you will no longer protect.",
     category: "Treatment refusal",
@@ -304,6 +328,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "family-disagrees-boundaries",
+    datePublished: "2026-05-09",
     question: "What if my family disagrees about addiction boundaries?",
     shortAnswer: "Family disagreement often keeps addiction protected. Start by aligning around safety, money, children, and what nobody will cover up anymore, even if everyone is not ready for the same boundary.",
     category: "Family dynamics",
@@ -315,6 +340,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "two-households",
+    datePublished: "2026-08-17",
     question: "What if the other house is running a different plan?",
     shortAnswer: "Two houses. One disease. If one parent pays rent and the other hands over the keys, nothing holds. Money, housing, and contact have to be the same line in both kitchens. You cannot control the other house. You can stop being the second rescue.",
     category: "Family dynamics",
@@ -335,6 +361,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "boundaries-vs-ultimatums",
+    datePublished: "2026-05-09",
     question: "What is the difference between a boundary and an ultimatum?",
     shortAnswer: "A boundary defines what you will do to protect safety, honesty, money, or stability. An ultimatum tries to force someone else to change through pressure or threat.",
     category: "Boundaries",
@@ -346,6 +373,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "loved-one-overdosed-what-now",
+    datePublished: "2026-05-11",
     question: "What should a family do after a loved one overdoses?",
     shortAnswer: "Treat an overdose as a medical and family-system emergency. After immediate medical care, the family should stop minimizing the risk, align quickly, prepare treatment options, and get professional guidance before the next crisis.",
     category: "Safety",
@@ -367,6 +395,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "family-meeting-before-confronting-addiction",
+    datePublished: "2026-05-11",
     question: "Should our family meet before confronting someone about addiction?",
     shortAnswer: "Yes. Families should align before a major conversation whenever safety, treatment refusal, money, housing, or children are involved. A divided family usually gives addiction more room to maneuver.",
     category: "Family dynamics",
@@ -387,6 +416,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "treatment-bed-ready-refuses-to-go",
+    datePublished: "2026-05-11",
     question: "What if treatment is available but my loved one refuses to go?",
     shortAnswer: "A treatment option does not help if the family has no plan for refusal. Stop pleading in the moment, align the family, clarify boundaries, and decide whether the situation now needs intervention structure.",
     category: "Treatment refusal",
@@ -407,6 +437,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "addiction-affecting-children-home",
+    datePublished: "2026-05-11",
     question: "What should I do if addiction is affecting children in the home?",
     shortAnswer: "When children are affected, the question changes from comfort to protection. The family needs immediate clarity around safety, exposure, emotional harm, supervision, transportation, and what adults will no longer excuse.",
     category: "Safety",
@@ -427,6 +458,7 @@ export const aeoAnswers: AeoAnswer[] = [
   },
   {
     id: "how-fast-should-family-act-addiction-crisis",
+    datePublished: "2026-05-11",
     question: "How fast should a family act when addiction is getting worse?",
     shortAnswer: "Act as soon as risk, refusal, or family exhaustion is escalating. You do not need to wait for a dramatic rock bottom. The first action may be support, coaching, assessment, or intervention planning.",
     category: "Next step",
