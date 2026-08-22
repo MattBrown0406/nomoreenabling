@@ -43,6 +43,7 @@ import boundaryVsPunishmentLovedOneImage from "@/assets/boundary-vs-punishment-a
 import willBoundariesPushAwayImage from "@/assets/will-boundaries-push-addicted-loved-one-away.jpg";
 import holdBoundaryInTheMomentImage from "@/assets/hold-boundary-in-the-moment-addicted-loved-one.jpg";
 import resetBoundaryAfterGaveInImage from "@/assets/reset-a-boundary-after-you-gave-in.jpg";
+import stopWorryingAddictedLovedOneImage from "@/assets/how-to-stop-worrying-about-addicted-loved-one.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
