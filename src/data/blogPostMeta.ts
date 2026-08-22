@@ -43,6 +43,7 @@ import boundaryVsPunishmentLovedOneImage from "@/assets/boundary-vs-punishment-a
 import willBoundariesPushAwayImage from "@/assets/will-boundaries-push-addicted-loved-one-away.jpg";
 import holdBoundaryInTheMomentImage from "@/assets/hold-boundary-in-the-moment-addicted-loved-one.jpg";
 import resetBoundaryAfterGaveInImage from "@/assets/reset-a-boundary-after-you-gave-in.jpg";
+import stopWorryingAddictedLovedOneImage from "@/assets/how-to-stop-worrying-about-addicted-loved-one.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
@@ -168,6 +169,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "how-to-stop-worrying-about-addicted-loved-one",
+    title: "How to Stop Worrying About Your Addicted Loved One (Without Loving Them Less)",
+    excerpt: "How to stop worrying about your addicted loved one without loving them less \u2014 practical steps for families to reclaim sleep, focus, and peace.",
+    category: "Family Support",
+    categories: ["Family Support", "Self-Care", "Boundaries"],
+    readTime: "9 min read",
+    date: "August 22, 2026",
+    image: stopWorryingAddictedLovedOneImage,
+    slug: "how-to-stop-worrying-about-addicted-loved-one",
+    metaTitle: "How to Stop Worrying About an Addicted Loved One",
+    metaDescription: "How to stop worrying about your addicted loved one without loving them less. Practical steps for families to reclaim sleep, focus, and peace.",
+  },
   {
     id: "reset-a-boundary-after-you-gave-in",
     title: "How to Reset a Boundary With an Addicted Loved One After You Gave In",
