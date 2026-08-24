@@ -44,6 +44,7 @@ import willBoundariesPushAwayImage from "@/assets/will-boundaries-push-addicted-
 import holdBoundaryInTheMomentImage from "@/assets/hold-boundary-in-the-moment-addicted-loved-one.jpg";
 import resetBoundaryAfterGaveInImage from "@/assets/reset-a-boundary-after-you-gave-in.jpg";
 import stopWorryingAddictedLovedOneImage from "@/assets/how-to-stop-worrying-about-addicted-loved-one.jpg";
+import familyIsolationRebuildingSupportImage from "@/assets/family-isolation-addiction-rebuilding-support.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
@@ -169,6 +170,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "family-isolation-addiction-rebuilding-support",
+    title: "Family Isolation and Addiction: Why You Pulled Away — and How to Rebuild Your Support System",
+    excerpt: "Family isolation and addiction go hand in hand. Learn why families pull away, what it costs you, and how to rebuild a support system that holds.",
+    category: "Family Support",
+    categories: ["Family Support", "Self-Care", "Codependency"],
+    readTime: "9 min read",
+    date: "August 24, 2026",
+    image: familyIsolationRebuildingSupportImage,
+    slug: "family-isolation-addiction-rebuilding-support",
+    metaTitle: "Family Isolation and Addiction: How to Rebuild",
+    metaDescription: "Family isolation and addiction go hand in hand. Learn why families pull away, what it costs you, and how to rebuild a support system that holds.",
+  },
   {
     id: "how-to-stop-worrying-about-addicted-loved-one",
     title: "How to Stop Worrying About Your Addicted Loved One (Without Loving Them Less)",
