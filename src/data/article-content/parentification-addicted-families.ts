@@ -3,6 +3,8 @@ export default `
       <p>And if you're reading this now because someone you love is struggling with addiction, there's a good chance that old role never really ended. It just changed addresses.</p>
       <p>None of this means something is wrong with you. It means you adapted to an impossible situation with the only tools a child has: vigilance, competence, and love. This article isn't about blame. It's about seeing the pattern clearly — because the caretaking that protected you as a child may be the same pattern exhausting you, and enabling your loved one, today.</p>
 
+      <p><strong>What to do next:</strong> name one responsibility you are carrying for your addicted loved one that belongs to them, and do not automatically fix it today. If guilt makes that feel impossible, <a href="/family-addiction-coaching">request family addiction coaching</a> and bring that one specific pattern so you can build a boundary you can hold.</p>
+
       <h2>What Is Parentification?</h2>
       <p>Parentification is what happens when a child takes on the responsibilities of an adult — emotionally, practically, or both — because the adults in the home can't or don't. In families affected by addiction, this role reversal is extremely common: the addiction consumes the parents' attention, and a child quietly steps into the gap.</p>
       <p>There are two forms. Instrumental parentification is practical: cooking, paying bills, getting younger siblings to school. Emotional parentification is heavier and harder to see: becoming a parent's confidant, referee, or emotional support system. A ten-year-old shouldn't know how to talk a parent out of a rage or monitor how much someone has had to drink. Parentified kids do.</p>
@@ -52,7 +54,8 @@ export default `
 
       <h2>You Were Never Supposed to Carry This</h2>
       <p>The child who held your family together deserved protection, not a job. And the adult reading this deserves a life that isn't organized around someone else's addiction. Letting go of the caretaker role doesn't mean you love your person any less — it means you're finally including yourself among the people worth taking care of. Start small, stay decided, and let someone help you for a change.</p>
-      <p>If you're ready for guidance, <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">Sober Helpline</a> offers family coaching and education built for exactly this — untangling old roles, setting limits that hold, and getting your life back. And if your loved one's addiction has reached the point where the family can't safely wait any longer, <a href="https://freedominterventions.com" target="_blank" rel="noopener noreferrer">Freedom Interventions</a> can help you plan a professional intervention.</p>
+      <p>If you're ready to change the pattern, the clearest next step is to <a href="/family-addiction-coaching">request family addiction coaching</a> and work on the responsibility or boundary that keeps pulling you back into the caretaker role. You can also start with the free <a href="/support/sober-helpline">Monday night Family Squares support meeting</a>.</p>
+      <p>If the family already has a boundary or recovery plan but needs shared follow-through, <a href="/support/family-bridge">use the FamilyBridge App to keep expectations and communication in one place</a>. If treatment is repeatedly refused or the situation is escalating beyond what the family can safely manage, seek <a href="/intervention-help">professional intervention guidance</a> rather than trying to carry the crisis alone.</p>
 
       <h2>Frequently Asked Questions About Parentification</h2>
       <h3>What is parentification in simple terms?</h3>

@@ -2706,7 +2706,7 @@ export const blogPostsMeta: BlogPostMeta[] = [
   {
     id: "177",
     title: "Parentification in Addicted Families: When Children Become the Caretakers",
-    excerpt: "Parentification in addicted families teaches kids to caretake adults. Learn the signs, how it fuels adult enabling, and how to heal.",
+    excerpt: "Were you the child who held an addicted family together? Learn the signs of parentification, how caretaking becomes adult enabling, and what to do next.",
     category: "Family Support",
     categories: ["Family Support", "Codependency", "Enabling"],
     readTime: "8 min read",
@@ -2714,6 +2714,6 @@ export const blogPostsMeta: BlogPostMeta[] = [
     image: parentificationAddictedFamiliesImage,
     slug: "parentification-addicted-families",
     metaTitle: "Parentification in Addicted Families: Signs & Healing",
-    metaDescription: "Parentification in addicted families teaches kids to caretake adults. Learn the signs, how it fuels adult enabling, and how to heal.",
+    metaDescription: "Were you the child who held an addicted family together? Learn parentification signs, why caretaking becomes adult enabling, and what to do next.",
   }
 ];
