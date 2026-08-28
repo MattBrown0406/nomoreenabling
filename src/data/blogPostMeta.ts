@@ -45,6 +45,7 @@ import holdBoundaryInTheMomentImage from "@/assets/hold-boundary-in-the-moment-a
 import resetBoundaryAfterGaveInImage from "@/assets/reset-a-boundary-after-you-gave-in.jpg";
 import stopWorryingAddictedLovedOneImage from "@/assets/how-to-stop-worrying-about-addicted-loved-one.jpg";
 import familyIsolationRebuildingSupportImage from "@/assets/family-isolation-addiction-rebuilding-support.jpg";
+import comesHomeFromRehabFirst30DaysImage from "@/assets/loved-one-comes-home-from-rehab-first-30-days.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
@@ -170,6 +171,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "loved-one-comes-home-from-rehab-first-30-days",
+    title: "When Your Loved One Comes Home From Rehab: How to Support the First 30 Days Without Enabling",
+    excerpt: "When your loved one comes home from rehab, the first 30 days set the tone. Here's how families support early recovery without slipping back into enabling.",
+    category: "Recovery",
+    categories: ["Recovery", "Family Support", "Enabling"],
+    readTime: "9 min read",
+    date: "August 27, 2026",
+    image: comesHomeFromRehabFirst30DaysImage,
+    slug: "loved-one-comes-home-from-rehab-first-30-days",
+    metaTitle: "When Your Loved One Comes Home From Rehab",
+    metaDescription: "When your loved one comes home from rehab, the first 30 days set the tone. How families support early recovery without slipping back into enabling.",
+  },
   {
     id: "family-isolation-addiction-rebuilding-support",
     title: "Family Isolation and Addiction: Why You Pulled Away — and How to Rebuild Your Support System",
