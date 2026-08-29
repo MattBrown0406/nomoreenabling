@@ -131,6 +131,7 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "saying-no-loved-one-addiction": () => import("./article-content/saying-no-loved-one-addiction"),
   "caregiver-burnout-addiction-family": () => import("./article-content/caregiver-burnout-addiction-family"),
   "support-recovery-without-enabling": () => import("./article-content/support-recovery-without-enabling"),
+  "supporting-recovery-without-enabling": () => import("./article-content/supporting-recovery-without-enabling"),
   "what-happens-in-addiction-treatment-families": () => import("./article-content/what-happens-in-addiction-treatment-families"),
   "when-is-it-time-for-a-professional-intervention": () => import("./article-content/when-is-it-time-for-a-professional-intervention"),
   "rebuilding-trust-addicted-loved-one-recovery": () => import("./article-content/rebuilding-trust-addicted-loved-one-recovery"),
