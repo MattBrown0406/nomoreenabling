@@ -204,5 +204,6 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "generational-codependency-addiction-families": () => import("./article-content/generational-codependency-addiction-families"),
   "lost-child-role-addicted-families": () => import("./article-content/lost-child-role-addicted-families"),
   "family-hero-role-addiction": () => import("./article-content/family-hero-role-addiction"),
+  "when-recovery-doesnt-look-like-you-expected": () => import("./article-content/when-recovery-doesnt-look-like-you-expected"),
 };
 
