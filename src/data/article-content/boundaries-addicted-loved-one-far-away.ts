@@ -16,7 +16,7 @@ export default `
         <li><strong>Crisis response:</strong> "I will not book last-minute flights to rescue you from a situation created by using. I will always help you get to treatment."</li>
         <li><strong>Visits:</strong> "You're welcome to visit when you're sober. I won't host you while you're actively using."</li>
       </ul>
-      <p>Notice the pattern. Each one names what you will and won't do — not what they must do. That's <a href="/article/boundary-vs-punishment-addiction">the difference between a boundary and an ultimatum</a>, and it matters even more at a distance, where you have no way to enforce anything on their end.</p>
+      <p>Notice the pattern. Each one names what you will and won't do — not what they must do. That's <a href="/articles/boundary-vs-punishment-addiction">the difference between a boundary and an ultimatum</a>, and it matters even more at a distance, where you have no way to enforce anything on their end.</p>
 
       <h2>How Do You Handle Money Requests From Far Away?</h2>
       <p>The short answer: slow everything down, and stop sending money directly. Urgency is the engine of long-distance enabling — almost every request arrives as an emergency that must be solved in the next hour. It almost never must be.</p>

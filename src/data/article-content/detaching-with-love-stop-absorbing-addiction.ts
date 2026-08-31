@@ -10,14 +10,14 @@ export default `
       <ul>
         <li>It is not cutting someone off, going silent, or withdrawing affection to punish them.</li>
         <li>It is not indifference. You will still care deeply — you're just no longer drowning alongside them.</li>
-        <li>It is not giving up on recovery. It often makes recovery more likely, because your loved one finally experiences the weight of their own choices.</li>
+        <li>It is not giving up on recovery. It stops the family from automatically absorbing consequences, but it cannot guarantee what your loved one chooses next.</li>
       </ul>
       <p>When you're entangled, the addiction has two victims. When you detach with love, it has one — and one ally standing on solid ground, able to help when help is wanted.</p>
 
       <h2>Why Is Detaching So Hard for Families?</h2>
       <p>Detaching is hard because everything in you screams that letting go equals losing them. Fear, guilt, and habit form a loop: you fear what happens if you stop managing things, you feel guilty when you pull back, and years of crisis have trained you to respond to every emergency.</p>
       <p>There's also a painful piece underneath: for many family members, caretaking has become an identity. After years of monitoring, rescuing, and worrying, the anxiety starts to feel like the love itself. Letting go of the vigilance can feel like letting go of the relationship — even though they were never the same thing.</p>
-      <p>And let's name the fear no one says out loud: What if I detach and they die? That fear is real and deserves respect. But here's what two decades of intervention work has taught me: your hypervigilance has never once controlled the outcome. It only felt like it did.</p>
+      <p>And let's name the fear no one says out loud: What if I detach and they die? That fear is real and deserves respect. Hypervigilance may feel protective, but it cannot guarantee another adult's safety or control the course of addiction.</p>
       <p>Detachment doesn't create the risk — the addiction created the risk. Detachment just stops pretending you were ever holding it back.</p>
 
       <h2>What Does Detaching With Love Look Like in Practice?</h2>
@@ -68,5 +68,5 @@ export default `
       <p>Name it, expect it, and don't obey it. Guilt is the residue of an old belief that your job is to prevent your loved one's pain. Talk about it with people who understand — a support group, a family coach, a therapist. Guilt fades with practice; the peace on the other side of it does not.</p>
 
       <h2>You Don't Have to Figure This Out Alone</h2>
-      <p>Detaching with love is simple to describe and hard to live. At <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">family coaching at SoberHelpline.com</a>, we help you practice these changes in your real relationships — with support, not shame. And if your loved one's addiction has reached the point where a structured intervention may be needed, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> can help your family take that step with experience and care.</p>
+      <p>Detaching with love is simple to describe and hard to live. At <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">family coaching at SoberHelpline.com</a>, we help you practice these changes in your real relationships — with support, not shame. And if your loved one's addiction has reached the point where a structured intervention may be needed, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> can help your family take that step with experience and care.</p>
     `;

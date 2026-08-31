@@ -1,6 +1,6 @@
 export default `
       <p>You did everything you were supposed to do. You encouraged treatment. You held your limits. You watched your loved one walk through the doors of a program, and you exhaled — maybe for the first time in years. Then came the relapse. And suddenly you're back in a place you promised yourself you'd never return to: afraid, heartbroken, and completely unsure what to do next.</p>
-      <p>First, a hard and necessary truth: relapse is common. Research consistently shows that 40–60% of people in recovery experience at least one relapse. That doesn't make it hurt less. It doesn't mean progress wasn't made. But it does mean your response in this moment matters more than you might realize — because how you react will either move things forward or slide them back.</p>
+      <p>First, a hard and necessary truth: relapse is common. The <a href="https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/treatment-recovery" target="_blank" rel="noopener noreferrer">National Institute on Drug Abuse</a> reports relapse rates of roughly 40–60% for substance use disorders. That doesn't make it hurt less or mean progress wasn't made. Your response cannot control the outcome, but it can protect your safety, limits, and ability to offer appropriate support.</p>
       <p>This article is for the family member who wants to respond with love but is terrified of making things worse. You can hold compassion and clear limits at the same time. Here's how.</p>
 
       <h2>What Is a Relapse — and What It Doesn't Mean</h2>

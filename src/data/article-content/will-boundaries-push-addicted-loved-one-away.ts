@@ -1,7 +1,7 @@
 export default `
       <p>If you love someone who struggles with addiction, there is probably one fear that has stopped you from setting boundaries with an addicted loved one more than any other: the fear that they will leave. That they will stop calling. That they will use more, disappear, or get hurt — and that it will be your fault.</p>
       <p>That fear makes sense. You are not weak for feeling it. You have watched this person pull away before, and you have learned that keeping them close sometimes feels like the only way to keep them alive. So you say yes when you mean no. You soften every limit the moment it gets tested.</p>
-      <p>Here is the truth this article is built on: healthy boundaries rarely end relationships. Addiction ends relationships. Boundaries are usually the thing that makes an ongoing relationship possible. Let's walk through why — and what to do with the fear.</p>
+      <p>Healthy boundaries can strain or change a relationship, especially when old rescue patterns are challenged. They do not guarantee closeness or recovery. Their purpose is to protect what you can control: your safety, your participation, and the conditions under which connection remains possible.</p>
 
       <h2>Why Does Setting a Boundary Feel Like Abandonment?</h2>
       <p>Setting a boundary feels like abandonment because, for years, closeness and caretaking have been fused together in your relationship. If love has always looked like rescuing — paying the bill, smoothing the crisis, absorbing the consequence — then stepping back from rescuing can feel like stepping back from love itself. It isn't. But your nervous system doesn't know that yet.</p>

@@ -169,12 +169,12 @@ const blogPostsRaw: BlogPost[] = [
       <h2>Taking Care of Yourself Is Not Optional</h2>
       <p>When you are focused on managing an addicted loved one's behavior, it is easy to lose track of your own wellbeing entirely. But your ability to hold limits — to stay consistent and grounded — depends directly on how well you're caring for yourself.</p>
       <p>You are allowed to be exhausted. You are allowed to be angry. You are allowed to need help. Reaching out to a family recovery coach or support group is not weakness — it is strategy. The families who navigate addiction most effectively are the ones who get support early, not after they've hit rock bottom themselves.</p>
-      <p><a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers educational resources and coaching support specifically for families. Whether you're trying to understand what's happening with your loved one or need someone to talk through next steps, it is a resource built for exactly where you are right now.</p>
+      <p><a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers educational resources and coaching support specifically for families. Whether you're trying to understand what's happening with your loved one or need someone to talk through next steps, it is a resource built for exactly where you are right now.</p>
 
       <h2>You Are Not Failing — You Are Learning</h2>
       <p>If your addicted loved one keeps breaking your boundaries, please hear this: you are not doing it wrong. You are up against one of the most powerful forces in human psychology, and you are still showing up. That matters.</p>
       <p>Boundaries in the context of addiction are rarely a one-time conversation. They are a practice — a daily choice to love someone without losing yourself in the process. Every time you hold the line, even imperfectly, you are communicating something important: that you value yourself, that your words have meaning, and that real change is possible.</p>
-      <p>If you're ready for more support, visit <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> to connect with resources designed specifically for families. And if your loved one is resistant to getting help and the situation feels urgent, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> can walk you through what a professional intervention looks like and whether it might be right for your family.</p>
+      <p>If you're ready for more support, visit <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> to connect with resources designed specifically for families. And if your loved one is resistant to getting help and the situation feels urgent, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> can walk you through what a professional intervention looks like and whether it might be right for your family.</p>
 
       <h2>Frequently Asked Questions</h2>
 
@@ -9522,7 +9522,7 @@ It's free. It takes five minutes. And it exists because no family should have to
 
       <h3>2. Get Support for Yourself — Not Just for Them</h3>
       <p>Most family members only seek help in service of getting their loved one into treatment. But breaking codependency requires focusing on your own healing. Al-Anon, Nar-Anon, and SMART Recovery Family & Friends are free support groups specifically designed for families. A therapist who specializes in addiction and codependency can also be transformative.</p>
-      <p>Resources like <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offer family coaching and education that can help you understand what you're dealing with and what steps to take next — without judgment.</p>
+      <p>Resources like <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offer family coaching and education that can help you understand what you're dealing with and what steps to take next — without judgment.</p>
 
       <h3>3. Let Consequences Happen</h3>
       <p>This may be the hardest step of all. Allowing your loved one to face the natural consequences of their choices feels cruel — but it is one of the most loving things you can do. Consequences are not punishment; they are information. They are the signal that often leads people toward wanting help.</p>
@@ -9547,7 +9547,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <h2>You Deserve to Heal, Too</h2>
       <p>Breaking the codependency cycle is not about abandoning the person you love. It's about choosing a relationship with them that is healthier — one where you are not carrying what they need to carry, and where their recovery belongs to them, not to you.</p>
       <p>This work is hard. It is also possible. And you don't have to start from scratch alone. Whether you're looking for education, coaching, or professional intervention support, help is available — and taking that first step toward your own healing is one of the most important things you can do for your entire family.</p>
-      <p>Visit <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> to connect with family coaches and find educational resources about codependency and addiction. If your loved one is resistant to help and you need professional intervention support, reach out to <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a>.</p>
+      <p>Visit <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> to connect with family coaches and find educational resources about codependency and addiction. If your loved one is resistant to help and you need professional intervention support, reach out to <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a>.</p>
 
       <h2>Frequently Asked Questions</h2>
 
@@ -9555,7 +9555,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <p>The codependency cycle is a repeating pattern in which a family member steps in to manage, rescue, or cover for a loved one struggling with addiction. Each rescue removes natural consequences, making it easier for the addiction to continue. The cycle persists because both parties — often unknowingly — rely on it to cope with the chaos of addiction.</p>
 
       <h3>How do I stop being codependent with an addict?</h3>
-      <p>Stopping codependency starts with recognizing your specific enabling behaviors and getting support for yourself, not just your loved one. Key steps include attending Al-Anon or Nar-Anon meetings, working with a therapist or family coach, allowing natural consequences to occur, and focusing on rebuilding your own life and identity. Resources like <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offer guidance designed for families.</p>
+      <p>Stopping codependency starts with recognizing your specific enabling behaviors and getting support for yourself, not just your loved one. Key steps include attending Al-Anon or Nar-Anon meetings, working with a therapist or family coach, allowing natural consequences to occur, and focusing on rebuilding your own life and identity. Resources like <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offer guidance designed for families.</p>
 
       <h3>Can you break the codependency cycle without the addict changing?</h3>
       <p>Yes — and this is one of the most important things families need to understand. You can change your own codependent patterns regardless of whether your loved one chooses to get help. Your healing is not dependent on theirs. In fact, changing your behavior often shifts the dynamic in ways that can motivate your loved one to seek treatment.</p>
@@ -9669,7 +9669,7 @@ It's free. It takes five minutes. And it exists because no family should have to
 
       <p>The first step is education and support. Learning more about how codependency works, and finding people who understand what you're going through, makes an enormous difference.</p>
 
-      <p>If you'd like to learn more about codependency and how to begin changing these patterns, <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers free education and coaching support for families navigating addiction.</p>
+      <p>If you'd like to learn more about codependency and how to begin changing these patterns, <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers free education and coaching support for families navigating addiction.</p>
 
       <p>If your loved one is in active addiction and resistant to help, a professional intervention may be the most compassionate next step. <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> works with families to create structured, evidence-based interventions that open the door to treatment.</p>
 
@@ -9691,7 +9691,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <p>Yes, though it requires intentional effort. Recovery from codependency involves learning to set and hold boundaries, reconnecting with your own needs and identity, and getting support from a therapist or peer group like Al-Anon. You don't have to leave a relationship to begin changing your role in it — but the work is harder without some distance or professional support.</p>
 
       <h3>How do I know if I need professional help for codependency?</h3>
-      <p>If codependent patterns are significantly affecting your quality of life, your health, your other relationships, or your sense of self — professional support is worth pursuing. A therapist who specializes in addiction and family systems can help. <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> also offers coaching and guidance for families who aren't sure where to start.</p>
+      <p>If codependent patterns are significantly affecting your quality of life, your health, your other relationships, or your sense of self — professional support is worth pursuing. A therapist who specializes in addiction and family systems can help. <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> also offers coaching and guidance for families who aren't sure where to start.</p>
 
       <p><em>Published on NoMoreEnabling.com | Content is for informational purposes and does not constitute medical advice. If you or a loved one are in crisis, please contact SAMHSA's National Helpline: 1-800-662-4357.</em></p>
     `,
@@ -9776,7 +9776,7 @@ It's free. It takes five minutes. And it exists because no family should have to
 
       <p>This is not about giving up on your loved one. This is about recognizing that your love is real, your exhaustion is real, and the patterns that have developed in your family have made both of your lives harder. It is about choosing a different kind of love—one that holds firm, allows consequences, and says with every action: <em>I believe you are capable of getting better, and I will no longer stand between you and that possibility.</em></p>
 
-      <p>If you're ready to stop the rescue cycle and get real support, visit <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> for education, coaching, and family guidance. If your loved one is resistant and you believe a professional intervention may be necessary, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> has certified interventionists who can walk your family through this process with compassion and expertise.</p>
+      <p>If you're ready to stop the rescue cycle and get real support, visit <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> for education, coaching, and family guidance. If your loved one is resistant and you believe a professional intervention may be necessary, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> has certified interventionists who can walk your family through this process with compassion and expertise.</p>
 
       <h2>Frequently Asked Questions</h2>
 
@@ -9793,7 +9793,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <p>Yes, and this is one of the most common fears families have. It's important to understand that stepping back from rescuing is not the same as withdrawing love. Many families find that establishing firm limits and allowing consequences to stand actually opens the door to more honest, real conversations—and ultimately leads to their loved one seeking help.</p>
 
       <h3>Where can I get support for codependency and family addiction?</h3>
-      <p><a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers education, resources, and coaching for families navigating addiction. If your loved one is resistant to treatment and you need professional intervention support, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> connects families with certified professional interventionists.</p>
+      <p><a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers education, resources, and coaching for families navigating addiction. If your loved one is resistant to treatment and you need professional intervention support, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> connects families with certified professional interventionists.</p>
 
       <p><em>Published on NoMoreEnabling.com | Content is for informational purposes and does not constitute medical advice. If you or a loved one are in crisis, please contact SAMHSA's National Helpline: 1-800-662-4357.</em></p>
     `,
@@ -9870,11 +9870,11 @@ It's free. It takes five minutes. And it exists because no family should have to
       <p>Here's something that often surprises families: healthy boundaries are not just self-protective. They can also be a powerful motivator for the person struggling with addiction.</p>
       <p>Addiction thrives in an environment where consequences are buffered. When loved ones absorb the financial, social, and emotional fallout of someone's substance use, they are — unintentionally — making it easier for that person to keep using. Boundaries allow natural consequences to emerge. And natural consequences are often the clearest signal that something needs to change.</p>
       <p>This isn't about punishment or "tough love" in the old, harsh sense of the phrase. It's about honesty. When you stop protecting someone from the reality of their choices, you give them a more truthful picture of their situation. For many people in addiction, that clarity is a turning point.</p>
-      <p>If your loved one is resistant to help and you're not sure where to turn, a professional intervention may be the next step. <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers free education and coaching support for families navigating this process. If you need structured, professional intervention help, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> specializes in working with resistant loved ones to guide them toward treatment.</p>
+      <p>If your loved one is resistant to help and you're not sure where to turn, a professional intervention may be the next step. <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers free education and coaching support for families navigating this process. If you need structured, professional intervention help, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> specializes in working with resistant loved ones to guide them toward treatment.</p>
 
       <h2>You Deserve Support Too</h2>
       <p>Setting boundaries is emotionally exhausting, especially if you've spent years in a pattern of over-functioning. It's completely normal to struggle with guilt, second-guessing, and grief as you make these changes. You don't have to do this alone.</p>
-      <p>Al-Anon and Nar-Anon are free peer support groups specifically for families affected by addiction. A therapist who specializes in addiction family systems can also provide invaluable support. And <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers coaching and guidance for families who want expert help navigating the boundary-setting process in real time.</p>
+      <p>Al-Anon and Nar-Anon are free peer support groups specifically for families affected by addiction. A therapist who specializes in addiction family systems can also provide invaluable support. And <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers coaching and guidance for families who want expert help navigating the boundary-setting process in real time.</p>
       <p>Learning to set boundaries is one of the most meaningful things you can do — for your loved one and for yourself. It's not easy, and it doesn't happen overnight. But every step in this direction is a step toward a healthier life for your whole family.</p>
 
       <h2>Frequently Asked Questions</h2>
@@ -9895,11 +9895,11 @@ It's free. It takes five minutes. And it exists because no family should have to
       <p>An ultimatum is designed to force someone else to change their behavior. A boundary is about what you will do, regardless of their choices. The key difference is ownership: ultimatums place all the power in the other person's hands, while boundaries keep the power with you. "Get sober or I'll leave" is an ultimatum. "I'm not able to stay in a relationship where active addiction is present" is a boundary.</p>
 
       <h3>Where can I get help setting boundaries with my addicted loved one?</h3>
-      <p><a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> provides free resources and coaching for families navigating addiction. If your loved one is resistant and you're considering a professional intervention, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> offers experienced intervention services to help guide your loved one toward treatment.</p>
+      <p><a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> provides free resources and coaching for families navigating addiction. If your loved one is resistant and you're considering a professional intervention, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> offers experienced intervention services to help guide your loved one toward treatment.</p>
 
       <h2>You're Not Alone in This</h2>
       <p>If today is the day you're finally ready to stop managing someone else's addiction at the cost of your own life, that's a courageous place to be. Setting boundaries won't be perfect. You'll stumble, second-guess yourself, and probably have to re-set the same limits more than once. That's okay. What matters is that you keep going.</p>
-      <p>Visit <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> for free guidance, coaching, and support as you navigate this journey. And if your loved one is resistant to getting help on their own, the team at <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> can walk you through the intervention process with care, expertise, and real results.</p>
+      <p>Visit <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> for free guidance, coaching, and support as you navigate this journey. And if your loved one is resistant to getting help on their own, the team at <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> can walk you through the intervention process with care, expertise, and real results.</p>
 
       <p><em>Published on NoMoreEnabling.com | Content is for informational purposes and does not constitute medical advice. If you or a loved one are in crisis, please contact SAMHSA's National Helpline: 1-800-662-4357.</em></p>
     `,
@@ -10606,7 +10606,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <p>Yes — and this is one of the most important distinctions for families to learn. Genuine support means being honest, being present, and allowing your loved one to face consequences while making clear that you love them and want them to get help. It's the difference between removing pain and witnessing it with them. The second kind of support is harder — and far more effective.</p>
 
       <h3>Ready to Break the Cycle?</h3>
-      <p>If you recognize yourself in what you've read, you don't have to figure this out alone. <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching and education designed specifically for people in your situation — practical, non-shaming support from people who understand addiction dynamics from the inside out. Coaching sessions are available at $150/hour, or join the membership community for $44.99/month and access ongoing resources, support, and the free Monday night Family Squares calls.</p>
+      <p>If you recognize yourself in what you've read, you don't have to figure this out alone. <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching and education designed specifically for people in your situation — practical, non-shaming support from people who understand addiction dynamics from the inside out. Coaching sessions are available at $150/hour, or join the membership community for $44.99/month and access ongoing resources, support, and the free Monday night Family Squares calls.</p>
       <p>If you're at a point where your loved one's addiction has become a safety crisis and you're wondering whether a professional intervention is the right next step, visit <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> to learn more about how the intervention process works and what it could mean for your family.</p>
     `
   },
@@ -10676,7 +10676,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <p>That's not giving up. That's finally loving them clearly.</p>
 
       <h2>Ready for Support That Actually Helps?</h2>
-      <p>If you're recognizing codependent patterns in your relationship with an addicted loved one and you're ready to do something different, <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching and education built specifically for this moment. Whether you start with a free Monday night Family Squares call or a one-on-one coaching session, you don't have to figure this out alone.</p>
+      <p>If you're recognizing codependent patterns in your relationship with an addicted loved one and you're ready to do something different, <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching and education built specifically for this moment. Whether you start with a free Monday night Family Squares call or a one-on-one coaching session, you don't have to figure this out alone.</p>
       <p>If your situation has escalated and you're considering a professional intervention, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> provides compassionate, experienced guidance for families at that crossroads.</p>
 
       <h2>Frequently Asked Questions</h2>
@@ -10693,7 +10693,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <p>It commonly looks like paying bills or legal fees, making excuses to extended family, doing things the adult child is capable of doing themselves, or restructuring your entire life around their needs and crises. These actions often feel like parenting — but when applied to an adult in active addiction, they tend to sustain the problem rather than address it.</p>
 
       <h3>Where can I get help for codependency related to a loved one's addiction?</h3>
-      <p>Al-Anon family groups are a widely available free resource. Individual therapy with an addiction-informed counselor is also highly effective. For more structured guidance, <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching and a membership community designed for exactly this situation. If the crisis has escalated to the point of needing professional intervention, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> can help.</p>
+      <p>Al-Anon family groups are a widely available free resource. Individual therapy with an addiction-informed counselor is also highly effective. For more structured guidance, <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching and a membership community designed for exactly this situation. If the crisis has escalated to the point of needing professional intervention, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> can help.</p>
     `
   },
   {
@@ -10749,7 +10749,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <ul>
         <li>Attending an Al-Anon meeting, where the room is full of people who understand because they're living it too.</li>
         <li>Working with a therapist who specializes in family systems and addiction, someone who can help you see the patterns from the outside.</li>
-        <li>Calling a family coach through a resource like <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a>, where you can talk through what's happening without judgment.</li>
+        <li>Calling a family coach through a resource like <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a>, where you can talk through what's happening without judgment.</li>
         <li>Having an honest conversation with one trusted person in your life — a sibling, a close friend, a pastor or spiritual advisor.</li>
       </ul>
       <p>None of these require you to go public. They just require you to stop carrying it entirely alone.</p>
@@ -10767,7 +10767,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <p>That's enough to start.</p>
 
       <h2>You Don't Have to Keep This Secret Alone</h2>
-      <p>If you've been managing a family member's addiction in silence, <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching and education specifically designed for people in your situation. Coaches who understand addiction, codependency, and family systems can help you build clarity and a practical path forward — without judgment.</p>
+      <p>If you've been managing a family member's addiction in silence, <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching and education specifically designed for people in your situation. Coaches who understand addiction, codependency, and family systems can help you build clarity and a practical path forward — without judgment.</p>
       <p>If you're at a point where you believe your loved one needs professional help to create a turning point, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> works with families to design compassionate, structured interventions that open the door to treatment.</p>
       <p>Talking about it — with the right person, in the right context — is one of the most powerful things you can do. Not just for them. For you.</p>
 
@@ -10847,7 +10847,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <p>You don't have to figure this out alone. Help exists, and you deserve to use it.</p>
 
       <h2>Ready to Take the Next Step?</h2>
-      <p>If you're struggling to set limits or break enabling patterns, <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers one-on-one family coaching with experienced professionals who specialize in exactly this. Coaching sessions are available at $150/hour for non-members, or $125/hour as a SoberHelpline member — and membership includes access to a supportive community of families who understand what you're going through.</p>
+      <p>If you're struggling to set limits or break enabling patterns, <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers one-on-one family coaching with experienced professionals who specialize in exactly this. Coaching sessions are available at $150/hour for non-members, or $125/hour as a SoberHelpline member — and membership includes access to a supportive community of families who understand what you're going through.</p>
       <p>If your situation has reached a crisis point and professional intervention support is needed, visit <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> to learn how a trained interventionist can help guide your family through the process with care and experience.</p>
 
       <h2>Frequently Asked Questions</h2>
@@ -10930,7 +10930,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <h2>You Do Not Have to Choose Between Loving Them and Protecting Yourself</h2>
       <p>Boundaries with an addicted loved one are not the end of the relationship. They are often the beginning of a more honest one. They are a signal to your loved one — and to yourself — that the current arrangement is not sustainable, and that you care too much about both of you to keep pretending otherwise.</p>
       <p>That kind of love is harder than the kind that just says yes. It requires you to tolerate discomfort, uncertainty, and sometimes anger directed at you. But it is also the kind of love that can actually change something. The kind that says: <em>I see you. I am not leaving. And I am not going to keep helping you stay sick.</em></p>
-      <p>If you are ready to start doing that work and you want support along the way, visit <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> for family coaching and education resources. If you believe your loved one is at a point where a professional intervention may be the right next step, the team at <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> can help you understand your options.</p>
+      <p>If you are ready to start doing that work and you want support along the way, visit <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> for family coaching and education resources. If you believe your loved one is at a point where a professional intervention may be the right next step, the team at <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> can help you understand your options.</p>
 
       <h2>Frequently Asked Questions</h2>
       <h3>Are boundaries with an addicted loved one selfish?</h3>
@@ -10949,7 +10949,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <p>Boundaries do not make someone get sober. Only the person struggling can make that choice. But consistent family limits can change the conditions around the addiction — removing cushions that reduce the felt consequences of using and giving the person a more accurate picture of where things stand. That shift in conditions is often part of what moves someone toward asking for help.</p>
 
       <h3>Where can I get help setting limits with a family member who struggles with addiction?</h3>
-      <p><a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching and a membership community with live support calls specifically for families navigating this. If you believe a professional intervention may be needed, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> provides experienced guidance through that process.</p>
+      <p><a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching and a membership community with live support calls specifically for families navigating this. If you believe a professional intervention may be needed, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> provides experienced guidance through that process.</p>
     `
   },
   {
@@ -11039,7 +11039,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <h2>You Don't Have to Get This Perfect</h2>
       <p>The first time you try to say this, it won't come out exactly right. That's okay. The fact that you said it at all — that you stopped managing everyone else's feelings long enough to tell your own truth — matters more than the wording.</p>
       <p>Boundaries aren't a one-time speech. They're a practice. Each conversation makes the next one a little clearer, a little calmer, a little more like who you actually are.</p>
-      <p>If you need support as you navigate this — whether it's coaching, community, or guidance on next steps — <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family education and one-on-one coaching with people who have walked this road. If you're at the point where your loved one needs professional intervention, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> is available to help you move forward with a clear, compassionate plan.</p>
+      <p>If you need support as you navigate this — whether it's coaching, community, or guidance on next steps — <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family education and one-on-one coaching with people who have walked this road. If you're at the point where your loved one needs professional intervention, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> is available to help you move forward with a clear, compassionate plan.</p>
       <p>You've carried this long enough alone. You don't have to keep doing that.</p>
 
       <h2>Frequently Asked Questions</h2>
@@ -11141,7 +11141,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <h2>You Are Not Alone in This</h2>
       <p>What you're doing is genuinely hard. You're trying to hold a line with someone you love, under pressure, while carrying guilt, fear, and exhaustion that most people around you will never fully understand. That's not a small thing.</p>
       <p>And you don't have to figure it out alone. Families who are navigating addiction deserve support too — not just information, but real, practical guidance from someone who's been on both sides of this.</p>
-      <p>If you need ongoing support as you navigate this, <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching, community, and weekly support calls specifically designed for people in your situation. If the situation has escalated to the point where you're wondering whether a professional intervention might be necessary, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> is a resource for exactly that.</p>
+      <p>If you need ongoing support as you navigate this, <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching, community, and weekly support calls specifically designed for people in your situation. If the situation has escalated to the point where you're wondering whether a professional intervention might be necessary, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> is a resource for exactly that.</p>
       <p>You've already done something hard by setting the boundary. The next step is staying decided — not because it's easy, but because you know it matters.</p>
 
       <h2>Frequently Asked Questions</h2>
@@ -11248,7 +11248,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <p>There is a quiet kind of courage in holding a limit when your loved one is hurting and you're not sure you're doing the right thing. It doesn't look like strength from the outside. It usually looks like sitting still while everything in you wants to fix it.</p>
       <p>But here is what experience with families shows, again and again: the limit you hold today — even imperfectly, even through guilt — is often what creates the opening for something to change. Not because it punishes your loved one into recovery. Because it stops the system from working the way it always has.</p>
       <p>You are allowed to stay decided. You are allowed to love someone deeply and still not rescue them from consequences they created. You are allowed to feel terrible about it and keep going anyway.</p>
-      <p>If you'd like support from a professional who works with families in exactly this place, the team at <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers coaching built around these moments. And if you're starting to wonder whether a more structured intervention is the right next step, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> is a place to start that conversation.</p>
+      <p>If you'd like support from a professional who works with families in exactly this place, the team at <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers coaching built around these moments. And if you're starting to wonder whether a more structured intervention is the right next step, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> is a place to start that conversation.</p>
 
       <h2>Frequently Asked Questions</h2>
 
@@ -11349,7 +11349,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <p>That's not giving up. That's growing up — and sometimes, it's the most powerful thing you can do for everyone involved.</p>
 
       <h2>Ready for Your Own Support?</h2>
-      <p>If you're ready to stop absorbing someone else's addiction and start building your own stability, <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching, education, and a membership community designed exactly for where you are right now. Free Monday night family support calls are a low-pressure place to start.</p>
+      <p>If you're ready to stop absorbing someone else's addiction and start building your own stability, <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching, education, and a membership community designed exactly for where you are right now. Free Monday night family support calls are a low-pressure place to start.</p>
       <p>If your loved one's situation has escalated and you're wondering whether a professional intervention might help, visit <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> to learn about the process and what families can expect.</p>
 
       <h2>Frequently Asked Questions About Detaching With Love</h2>
@@ -11447,7 +11447,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <p>You don't have to have it figured out to walk through the door. You just have to walk through it.</p>
 
       <h2>Ready to Take the Next Step?</h2>
-      <p>If you're looking for family coaching, education, and peer support beyond Al-Anon, <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers one-on-one coaching with Matt Brown, along with a membership community of families navigating exactly what you're facing.</p>
+      <p>If you're looking for family coaching, education, and peer support beyond Al-Anon, <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers one-on-one coaching with Matt Brown, along with a membership community of families navigating exactly what you're facing.</p>
       <p>If you believe your loved one may need professional intervention, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> provides compassionate, experienced intervention services — led by Matt Brown, with 23 years in recovery and over 20 years helping families just like yours.</p>
       <p>You don't have to do this alone.</p>
 
@@ -11559,7 +11559,7 @@ It's free. It takes five minutes. And it exists because no family should have to
       <p>Preparing for your loved one's return from treatment isn't a one-day checklist. It's an ongoing commitment to showing up differently than you did before.</p>
       <p>You can't control whether they stay sober. That is their work. What you can control is whether the environment you create — the expectations you communicate, the limits you hold, the support you offer, and the self-care you practice — reflects someone who is also doing the work.</p>
       <p>That matters more than you know. Not just for them. For you.</p>
-      <p>If you're looking for guidance as you navigate this transition, <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching and education resources designed specifically for moments like this one. And if you're sensing your loved one isn't quite ready — or if the situation has escalated to a point where you need more structured support — <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> can help you understand your options.</p>
+      <p>If you're looking for guidance as you navigate this transition, <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching and education resources designed specifically for moments like this one. And if you're sensing your loved one isn't quite ready — or if the situation has escalated to a point where you need more structured support — <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> can help you understand your options.</p>
       <p>You've come a long way. Keep going.</p>
 
       <h2>Frequently Asked Questions: Preparing for Your Loved One's Return from Treatment</h2>

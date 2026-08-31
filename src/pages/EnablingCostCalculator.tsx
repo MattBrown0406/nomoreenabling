@@ -43,13 +43,6 @@ const CATEGORIES: { key: LineItem["category"]; title: string; sub: string }[] = 
   { key: "legal", title: "Legal & damage", sub: "What the consequences cost when they landed on you — in the last 12 months." },
 ];
 
-// Rough national estimates, deliberately conservative.
-const EQUIVALENTS: { unit: number; label: (n: number) => string }[] = [
-  { unit: 3500, label: (n) => `month${n === 1 ? "" : "s"} of intensive outpatient treatment` },
-  { unit: 1500, label: (n) => `month${n === 1 ? "" : "s"} in a quality sober living home` },
-  { unit: 150, label: (n) => `session${n === 1 ? "" : "s"} with an addiction-trained therapist` },
-  { unit: 2500, label: (n) => `professionally guided family intervention${n === 1 ? "" : "s"}` },
-];
 
 const fmt = (n: number) => "$" + Math.round(n).toLocaleString("en-US");
 
@@ -184,12 +177,6 @@ const EnablingCostCalculator = () => {
     [values],
   );
 
-  const equivalents = useMemo(
-    () =>
-      EQUIVALENTS.map((e) => ({ n: Math.floor(total / e.unit), label: e.label }))
-        .filter((e) => e.n >= 1),
-    [total],
-  );
 
   const reveal = () => {
     if (total <= 0) return;
@@ -296,34 +283,16 @@ const EnablingCostCalculator = () => {
                 <div className="text-xs font-extrabold uppercase tracking-[0.2em] text-accent">Your number</div>
                 <div className="mt-2 font-serif text-6xl font-bold tabular-nums text-primary">{fmt(total)}</div>
                 <p className="mx-auto mt-3 max-w-xl text-[17px] text-foreground">
-                  That's what protecting the addiction from consequences has cost{" "}
+                  That's what your family reported spending in response to addiction-related situations{" "}
                   <strong>in the last 12 months alone</strong> — about{" "}
-                  <strong>{fmt(total / 12)}</strong> every month. And it bought the addiction time,
-                  not your loved one help.
+                  <strong>{fmt(total / 12)}</strong> every month. This total does not prove that every expense caused or sustained addiction.
                 </p>
                 <p className="mx-auto mt-5 max-w-lg rounded-xl bg-foreground px-6 py-4 text-background">
-                  If nothing changes:{" "}
+                  If spending continued at exactly the same pace, the arithmetic projection would be{" "}
                   <strong className="font-serif text-xl">{fmt(total * 5)}</strong> over the next five years.
                 </p>
               </div>
 
-              <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                {(equivalents.length > 0
-                  ? equivalents
-                  : [{ n: 0, label: () => "Every dollar could be pointing toward recovery instead of protecting the pattern" }]
-                ).map((e, idx) => (
-                  <div key={idx} className="rounded-2xl border border-border bg-card p-5 text-center">
-                    <div className="font-serif text-3xl font-bold text-primary">
-                      {e.n > 0 ? e.n.toLocaleString("en-US") : "Every dollar"}
-                    </div>
-                    <div className="mt-1 text-[13px] leading-snug text-muted-foreground">{e.label(e.n)}</div>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-3 text-center text-xs italic text-muted-foreground">
-                What one year of enabling could have funded instead. Rough national estimates — real
-                costs vary by state, program, and insurance.
-              </p>
 
               <div className="mt-8 rounded-2xl border border-primary/20 bg-primary/5 p-7 text-[15.5px] leading-relaxed">
                 <p>
@@ -336,8 +305,7 @@ const EnablingCostCalculator = () => {
                 <p className="mt-3">
                   Here's the part that matters:{" "}
                   <strong className="text-primary">
-                    this number stops growing the day the money starts pointing toward recovery
-                    instead of away from consequences.
+                    this number can change when the family changes what it is willing to fund.
                   </strong>{" "}
                   Not by cutting them off. By changing what you'll fund — treatment, assessment, a
                   ride to a meeting — and what you won't.

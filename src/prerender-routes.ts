@@ -3,6 +3,7 @@ import { topicHubs } from "@/data/topicHubs";
 import { supportOffers } from "@/data/supportOffers";
 import { commercialIntentPages } from "@/data/commercialIntentPages";
 import { answerDetailPaths, glossaryTermPaths } from "@/data/aeoAnswers";
+import { legacyArticleSlugRedirects, legacyPageRedirects } from "@/lib/legacyRedirects";
 
 const staticRoutes = [
   "/",
@@ -33,6 +34,9 @@ const staticRoutes = [
   "/privacy",
   "/terms",
   "/cookies",
+  "/admin",
+  "/the-mirror/embed",
+  "/404",
 ];
 
 const categoryRoutes = Array.from(
@@ -49,3 +53,19 @@ const supportRoutes = supportOffers.map((offer) => `/support/${offer.slug}`);
 const commercialIntentRoutes = commercialIntentPages.map((page) => `/${page.slug}`);
 
 export const prerenderRoutes = [...staticRoutes, ...answerDetailPaths, ...glossaryTermPaths, ...commercialIntentRoutes, ...categoryRoutes, ...articleRoutes, ...topicHubRoutes, ...supportRoutes];
+
+export const prerenderAliases: Record<string, string> = {
+  ...legacyPageRedirects,
+  ...Object.fromEntries(
+    blogPostsMeta.flatMap((post) => [
+      [`/article/${post.slug}`, `/articles/${post.slug}`],
+      [`/blog/${post.slug}`, `/articles/${post.slug}`],
+    ]),
+  ),
+  ...Object.fromEntries(
+    Object.entries(legacyArticleSlugRedirects).flatMap(([from, to]) => [
+      [`/article/${from}`, `/articles/${to}`],
+      [`/blog/${from}`, `/articles/${to}`],
+    ]),
+  ),
+};

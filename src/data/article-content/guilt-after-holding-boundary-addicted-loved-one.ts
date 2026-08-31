@@ -41,7 +41,7 @@ export default `
       <p>Holding a limit doesn't have to mean no contact. You can reach out with a brief, warm message: "I love you. I'm not going anywhere. This doesn't change anything about how much I care." That is different from "I've reconsidered, here's what I can do instead." Know the difference before you reach out.</p>
 
       <h3>Let the discomfort be there</h3>
-      <p>The guilt and the doubt are uncomfortable — and they will pass if you don't act on them. Every time you hold a limit through the discomfort, it gets slightly easier. Every time you cave to end the discomfort, it gets harder. For more on this, see our piece on <a href="/article/hold-limits-addicted-pushes-back">holding limits when they push back</a>.</p>
+      <p>The guilt and the doubt are uncomfortable — and they will pass if you don't act on them. Every time you hold a limit through the discomfort, it gets slightly easier. Every time you cave to end the discomfort, it gets harder. For more on this, see our piece on <a href="/articles/hold-limits-addicted-pushes-back">holding limits when they push back</a>.</p>
 
       <h2>When Is It Appropriate to Revisit a Boundary?</h2>
       <p>Not all limits are set perfectly the first time, and reconsidering one is sometimes appropriate. The key is knowing the difference between adjusting thoughtfully and caving under pressure.</p>

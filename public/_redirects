@@ -1,8 +1,61 @@
 # Canonicalize No More Enabling URLs for search engines.
-# Cloudflare Pages / Netlify-style hosts read this file at deploy time.
+# Path redirects use Cloudflare Pages' supported [source] [destination] [code] format.
+# Domain-level canonicalization is configured in Cloudflare, not in this file.
 
-http://nomoreenabling.com/* https://nomoreenabling.com/:splat 301
-http://www.nomoreenabling.com/* https://nomoreenabling.com/:splat 301
-https://www.nomoreenabling.com/* https://nomoreenabling.com/:splat 301
+/split-house /two-households 301
+/divorced-parents /two-households 301
+/are-you-an-enabler /helping-or-enabling 301
+/help-an-addict /family-support-guide 301
+/enabling-after-treatment /articles/hidden-role-enabling-addiction 301
+/powerlessness /articles/letting-go-without-collapse 301
+/forgiveness-in-addiction /articles/family-trauma-after-addiction 301
+/how-to-support-someone-in-drug-rehab /family-support-guide 301
+/author/rzimmers /about 301
+/author/ericbutton /about 301
+/providers /advertise 301
+/detaching-with-love-addiction-family /articles/detaching-with-love-addiction-family 301
+/enabling-cycle-addiction-families /articles/enabling-cycle-addiction-families 301
+/how-to-set-boundaries-with-addicted-loved-one /articles/how-to-set-boundaries-with-addicted-loved-one 301
+/what-is-enabling-in-addiction /articles/how-to-stop-enabling-an-addict 301
+/articles/addiction-family-communication /articles/addiction-reshapes-family-communication 301
+/articles/addiction-changes-communication /articles/addiction-changes-family-communication 301
+/articles/codependency-endurance-love /articles/families-confuse-endurance-with-love-codependency 301
+/articles/emotional-distance-families-help /articles/emotional-distance-before-families-seek-help 301
+/articles/families-lose-themselves-helping /articles/families-lose-themselves-trying-to-help 301
+/articles/peacekeeping-self-sacrifice /articles/enabling-hides-behind-good-intentions 301
+/articles/letting-go-control-abandonment /articles/letting-go-control-feels-like-abandonment 301
+/articles/enabling-peacekeeping /articles/enabling-masquerades-as-peacekeeping 301
+/articles/keeping-peace-addiction /articles/keeping-peace-teaches-addiction-to-stay 301
+/articles/letting-go-not-abandonment /articles/letting-go-is-not-abandonment 301
 
-/* /index.html 200
+/article/addiction-family-communication /articles/addiction-reshapes-family-communication 301
+/blog/addiction-family-communication /articles/addiction-reshapes-family-communication 301
+/article/addiction-changes-communication /articles/addiction-changes-family-communication 301
+/blog/addiction-changes-communication /articles/addiction-changes-family-communication 301
+/article/codependency-endurance-love /articles/families-confuse-endurance-with-love-codependency 301
+/blog/codependency-endurance-love /articles/families-confuse-endurance-with-love-codependency 301
+/article/emotional-distance-families-help /articles/emotional-distance-before-families-seek-help 301
+/blog/emotional-distance-families-help /articles/emotional-distance-before-families-seek-help 301
+/article/families-lose-themselves-helping /articles/families-lose-themselves-trying-to-help 301
+/blog/families-lose-themselves-helping /articles/families-lose-themselves-trying-to-help 301
+/article/peacekeeping-self-sacrifice /articles/enabling-hides-behind-good-intentions 301
+/blog/peacekeeping-self-sacrifice /articles/enabling-hides-behind-good-intentions 301
+/article/letting-go-control-abandonment /articles/letting-go-control-feels-like-abandonment 301
+/blog/letting-go-control-abandonment /articles/letting-go-control-feels-like-abandonment 301
+/article/enabling-peacekeeping /articles/enabling-masquerades-as-peacekeeping 301
+/blog/enabling-peacekeeping /articles/enabling-masquerades-as-peacekeeping 301
+/article/keeping-peace-addiction /articles/keeping-peace-teaches-addiction-to-stay 301
+/blog/keeping-peace-addiction /articles/keeping-peace-teaches-addiction-to-stay 301
+/article/letting-go-not-abandonment /articles/letting-go-is-not-abandonment 301
+/blog/letting-go-not-abandonment /articles/letting-go-is-not-abandonment 301
+/article/caved-on-boundary-how-to-reset-addiction-family /articles/what-to-do-when-addicted-loved-one-breaks-boundaries 301
+/blog/caved-on-boundary-how-to-reset-addiction-family /articles/what-to-do-when-addicted-loved-one-breaks-boundaries 301
+/article/guilt-after-setting-boundaries-addicted-loved-one /articles/guilt-after-holding-boundary-addicted-loved-one 301
+/blog/guilt-after-setting-boundaries-addicted-loved-one /articles/guilt-after-holding-boundary-addicted-loved-one 301
+/article/what-is-enabling-in-addiction /articles/how-to-stop-enabling-an-addict 301
+/blog/what-is-enabling-in-addiction /articles/how-to-stop-enabling-an-addict 301
+
+/article/:slug /articles/:slug 301
+/blog/:slug /articles/:slug 301
+
+# Cloudflare Pages serves the emitted top-level 404.html for unmatched paths.

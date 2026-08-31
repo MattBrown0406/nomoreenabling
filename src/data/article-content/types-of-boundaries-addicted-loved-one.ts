@@ -18,7 +18,7 @@ export default `
 
       <h2>2. Financial Boundaries: Where Enabling Most Often Hides</h2>
       <p>A financial boundary is a clear limit on what you will and will not pay for. This is where enabling most often hides, because money feels like love and withholding it feels like abandonment.</p>
-      <p>It is not. Money given to active addiction is not support — it is fuel. And "money" includes more than cash: covering rent again, paying the phone bill again, bailing them out, handing over gas money you suspect is not for gas. If this is the boundary that feels most urgent, our deeper piece on <a href="/article/financial-boundaries-with-addiction">financial limits with an addicted loved one</a> walks through it step by step.</p>
+      <p>It is not. Money given to active addiction is not support — it is fuel. And "money" includes more than cash: covering rent again, paying the phone bill again, bailing them out, handing over gas money you suspect is not for gas. If this is the boundary that feels most urgent, our deeper piece on <a href="/articles/financial-boundaries-with-addiction">financial limits with an addicted loved one</a> walks through it step by step.</p>
       <p>A financial boundary sounds like this:</p>
       <ul>
         <li>"I won't give you cash. I will buy groceries with you, and I will pay a treatment deposit directly."</li>
@@ -56,7 +56,7 @@ export default `
 
       <h2>Which Boundary Should You Set First?</h2>
       <p>Start with the one that is costing you the most right now. For most families, that is either financial (the money is bleeding out) or emotional (you are bleeding out). Pick one boundary, in one category, and make it small enough that you can actually hold it.</p>
-      <p>A small boundary you keep will change your family more than five big ones you abandon by Friday. The goal is not perfection; it is a pattern your loved one can finally count on — one where love stays constant and the enabling doesn't. And remember, a limit is not the same as a penalty — if that distinction still feels blurry, read our piece on <a href="/article/boundary-vs-punishment-addiction">whether it's a boundary or a punishment</a>.</p>
+      <p>A small boundary you keep will change your family more than five big ones you abandon by Friday. The goal is not perfection; it is a pattern your loved one can finally count on — one where love stays constant and the enabling doesn't. And remember, a limit is not the same as a penalty — if that distinction still feels blurry, read our piece on <a href="/articles/boundary-vs-punishment-addiction">whether it's a boundary or a punishment</a>.</p>
 
       <h2>You Don't Have to Figure This Out Alone</h2>
       <p>If you are realizing that one — or all five — of these boundaries is missing in your home, that is not a reason for shame. It is a starting point. Families who learn to set and keep boundaries change the entire system around the addiction, and that change is often the pressure that finally moves a loved one toward help.</p>

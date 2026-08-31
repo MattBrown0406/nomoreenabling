@@ -1,51 +1,21 @@
-import appStoreBadge from "@/assets/app-store-badge.svg";
-import googlePlayBadge from "@/assets/google-play-badge.png";
-
-const APP_STORE_URL = "https://apps.apple.com/app/id6744403069";
+const FAMILY_BRIDGE_URL = "https://familybridgeapp.com";
 
 interface AppStoreBadgeProps {
   className?: string;
   height?: number;
 }
 
-const AppStoreBadge = ({ className = "", height = 48 }: AppStoreBadgeProps) => {
-  const iosWidth = Math.round(height * 2.9916);
-  const androidHeight = Math.round(height * 1.18);
-  const androidWidth = Math.round(androidHeight * 2.584);
-
-  return (
-    <div className={`inline-flex flex-wrap items-center gap-3 ${className}`}>
-      <a
-        href={APP_STORE_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-block hover:opacity-80 transition-opacity"
-        aria-label="Download FamilyBridge on the App Store"
-      >
-        <img
-          src={appStoreBadge}
-          alt="Download on the App Store"
-          width={iosWidth}
-          height={height}
-          style={{ height: `${height}px`, width: "auto" }}
-        />
-      </a>
-      <div className="inline-flex flex-col items-center gap-0.5">
-        <div className="relative opacity-50 grayscale cursor-not-allowed">
-          <img
-            src={googlePlayBadge}
-            alt="Get it on Google Play"
-            width={androidWidth}
-            height={androidHeight}
-            style={{ height: `${androidHeight}px`, width: "auto" }}
-          />
-        </div>
-        <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
-          Coming Soon
-        </span>
-      </div>
-    </div>
-  );
-};
+const AppStoreBadge = ({ className = "", height = 48 }: AppStoreBadgeProps) => (
+  <a
+    href={FAMILY_BRIDGE_URL}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={`inline-flex items-center justify-center rounded-lg bg-[#0d4a4a] px-5 font-semibold text-white transition-opacity hover:opacity-90 ${className}`}
+    style={{ minHeight: `${height}px` }}
+    aria-label="Learn about the Family Bridge app"
+  >
+    Learn about Family Bridge
+  </a>
+);
 
 export default AppStoreBadge;

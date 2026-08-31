@@ -33,10 +33,7 @@ const toOutputPaths = (route) => {
 
   const cleanRoute = route.replace(/^\//, "").replace(/\/+$/, "");
 
-  return [
-    path.join(distDir, cleanRoute, "index.html"),
-    path.join(distDir, `${cleanRoute}.html`),
-  ];
+  return [path.join(distDir, cleanRoute, "index.html")];
 };
 
 const stripDefaultSeoTags = (template) => {
@@ -73,7 +70,7 @@ try {
   const template = await fs.readFile(path.join(distDir, "index.html"), "utf8");
   const manifest = JSON.parse(await fs.readFile(path.join(distDir, ".vite", "manifest.json"), "utf8"));
   const { render } = await vite.ssrLoadModule("/src/entry-server.tsx");
-  const { prerenderRoutes } = await vite.ssrLoadModule("/src/prerender-routes.ts");
+  const { prerenderRoutes, prerenderAliases } = await vite.ssrLoadModule("/src/prerender-routes.ts");
 
   for (const route of prerenderRoutes) {
     const result = await render(route);
@@ -87,6 +84,25 @@ try {
   }
 
   console.log(`✅ Prerendered ${prerenderRoutes.length} routes`);
+
+  const notFoundHtml = await fs.readFile(path.join(distDir, "404", "index.html"), "utf8");
+  await fs.writeFile(path.join(distDir, "404.html"), notFoundHtml, "utf8");
+
+  let aliasCount = 0;
+  for (const [alias, target] of Object.entries(prerenderAliases)) {
+    const targetPath = toOutputPaths(target)[0];
+    try {
+      const targetHtml = await fs.readFile(targetPath, "utf8");
+      for (const outputPath of toOutputPaths(alias)) {
+        await fs.mkdir(path.dirname(outputPath), { recursive: true });
+        await fs.writeFile(outputPath, targetHtml, "utf8");
+      }
+      aliasCount += 1;
+    } catch {
+      throw new Error(`Cannot prerender alias ${alias}: canonical target ${target} was not generated.`);
+    }
+  }
+  console.log(`✅ Prerendered ${aliasCount} canonical aliases`);
 
   // Emit a machine-readable blog feed used by the weekly digest email function.
   const { blogPostsMeta } = await vite.ssrLoadModule("/src/data/blogPostMeta.ts");

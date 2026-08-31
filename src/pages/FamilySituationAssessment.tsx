@@ -227,11 +227,11 @@ const outcomes: Record<OutcomeId, AssessmentOutcome> = {
     title: "You are in a safety-first situation",
     description:
       "The next move should reduce immediate risk before the family tries another emotional conversation. Treat safety as the first decision, not as a side note.",
-    routeLabel: "Safety and intervention guidance",
-    offerSlug: "freedom-interventions",
+    routeLabel: "Safety and emergency guidance",
+    offerSlug: "sober-helpline",
     secondaryLabel: "Read the crisis and safety hub",
     secondaryHref: "/topic-hubs/crisis-and-safety",
-    warning: "If someone is in immediate danger, call emergency services. In the U.S., call or text 988 for suicide or mental health crisis support.",
+    warning: "If someone is in immediate danger or may be overdosing, call 911 now. In the U.S., call or text 988 for suicide or mental health crisis support. Resolve immediate risk before considering any commercial service.",
     plan: [
       "Write down the specific safety concern in plain language.",
       "Decide who is physically safest to contact first.",
@@ -382,7 +382,7 @@ export default function FamilySituationAssessment() {
     return outcomes[winner];
   }, [answers, isComplete]);
 
-  const offer = result ? getSupportOffer(result.offerSlug) : null;
+  const offer = result && result.id !== "safety" ? getSupportOffer(result.offerSlug) : null;
 
   useEffect(() => {
     if (!result || completedTracked.current) return;
@@ -392,13 +392,12 @@ export default function FamilySituationAssessment() {
       source: "family_situation_assessment",
       assessmentResult: result.id,
       offerSlug: result.offerSlug,
-      metadata: { answers },
     });
     trackGAConversion("assessment_completed", {
       assessment_result: result.id,
       offer_slug: result.offerSlug,
     });
-  }, [answers, result]);
+  }, [result]);
 
   const handleAnswer = (questionId: string, value: string) => {
     if (!startedTracked.current) {
@@ -522,12 +521,15 @@ export default function FamilySituationAssessment() {
                 <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl">
                   Answer five questions and get routed into the right path: safety, intervention readiness, boundaries, after-treatment structure, or live support.
                 </p>
+                <p className="mt-4 text-sm text-muted-foreground max-w-3xl">
+                  This is an educational routing tool, not a diagnosis or clinically validated screening instrument. Its result is a conversation aid and does not determine treatment or level of care.
+                </p>
               </div>
               <div className="rounded-2xl border border-primary/20 bg-card p-6">
                 <ShieldAlert className="h-6 w-6 text-primary" />
                 <p className="mt-3 font-semibold text-foreground">Not a crisis service</p>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  If someone is in immediate danger, call emergency services. In the U.S., call or text 988 for suicide or mental health crisis support.
+                  If someone is in immediate danger or may be overdosing, call 911. In the U.S., call or text 988 for suicide or mental health crisis support.
                 </p>
               </div>
             </div>

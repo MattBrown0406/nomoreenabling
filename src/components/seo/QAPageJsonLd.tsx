@@ -17,31 +17,23 @@ const QAPageJsonLd = ({
 }: QAPageJsonLdProps) => {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "QAPage",
-    mainEntity: {
-      "@type": "Question",
-      name: question,
-      text: question,
-      answerCount: 1,
-      url,
-      datePublished,
-      author: {
-        "@type": "Organization",
-        name: "No More Enabling",
-        url: "https://nomoreenabling.com",
-      },
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: answer,
-        url: `${url}#accepted-answer`,
-        datePublished,
-        upvoteCount: 0,
-        author: {
-          "@type": "Person",
-          name: authorName,
-          url: "https://nomoreenabling.com/about",
-        },
-      },
+    "@type": "Article",
+    headline: question,
+    articleBody: answer,
+    datePublished,
+    author: {
+      "@type": "Person",
+      name: authorName,
+      url: "https://nomoreenabling.com/about",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "No More Enabling",
+      url: "https://nomoreenabling.com",
     },
   };
 

@@ -33,7 +33,7 @@ const ArticleJsonLd = ({
     image: image,
     thumbnailUrl: image,
     datePublished: datePublished,
-    dateModified: dateModified || datePublished,
+    ...(dateModified ? { dateModified } : {}),
     articleSection,
     keywords,
     wordCount,

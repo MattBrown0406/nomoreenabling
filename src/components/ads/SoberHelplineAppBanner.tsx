@@ -1,5 +1,5 @@
 import { MessagesSquare, Video, PlayCircle, Headphones } from "lucide-react";
-import soberHelplineLogo from "@/assets/sober-helpline-logo.svg";
+const soberHelplineLogo = "/sober-helpline-logo.svg";
 import appStoreBadge from "@/assets/app-store-badge.svg";
 import { trackAdClick } from "@/lib/trackAdClick";
 import { trackGAConversion } from "@/lib/gaConversions";

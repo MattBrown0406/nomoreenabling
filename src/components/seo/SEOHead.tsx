@@ -1,5 +1,7 @@
 import { Helmet } from "react-helmet";
 import { useLocation } from "react-router-dom";
+import { isNoIndexRoute } from "@/lib/indexability";
+import { fitSeoDescription, fitSeoTitle } from "@/lib/seoText";
 
 interface SEOHeadProps {
   title: string;
@@ -37,6 +39,9 @@ const SEOHead = ({
   };
 
   const fullTitle = buildTitle();
+  const optimizedTitle = location.pathname.startsWith("/articles/") ? fullTitle : fitSeoTitle(fullTitle);
+  const optimizedDescription = fitSeoDescription(description);
+  const effectiveNoIndex = noindex || isNoIndexRoute(location.pathname);
 
   const normalizePath = (pathname: string) => {
     if (!pathname || pathname === "/") return "";
@@ -48,8 +53,8 @@ const SEOHead = ({
 
   return (
     <Helmet>
-      <title>{fullTitle}</title>
-      <meta name="description" content={description} />
+      <title>{optimizedTitle}</title>
+      <meta name="description" content={optimizedDescription} />
       <meta name="author" content={articleAuthor} />
       {keywords && <meta name="keywords" content={keywords} />}
       <meta name="ai:description" content={`${description} No More Enabling gives families plain-language education on enabling, boundaries, codependency, treatment refusal, and family recovery decisions.`} />
@@ -58,7 +63,7 @@ const SEOHead = ({
       <link rel="ai-context" href="https://nomoreenabling.com/llms.txt" />
       <link rel="alternate" type="text/plain" title="LLMs.txt" href="https://nomoreenabling.com/llms.txt" />
       <link rel="alternate" type="text/plain" title="Full AI context" href="https://nomoreenabling.com/llms-full.txt" />
-      {noindex ? (
+      {effectiveNoIndex ? (
         <meta name="robots" content="noindex, nofollow" />
       ) : (
         <meta name="robots" content="index, follow" />
@@ -66,8 +71,8 @@ const SEOHead = ({
       <link rel="canonical" href={canonical} />
 
       {/* Open Graph */}
-      <meta property="og:title" content={fullTitle} />
-      <meta property="og:description" content={description} />
+      <meta property="og:title" content={optimizedTitle} />
+      <meta property="og:description" content={optimizedDescription} />
       <meta property="og:type" content={ogType} />
       <meta property="og:url" content={canonical} />
       <meta property="og:image" content={ogImage} />
@@ -93,8 +98,8 @@ const SEOHead = ({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@NoMoreEnabling" />
       <meta name="twitter:url" content={canonical} />
-      <meta name="twitter:title" content={fullTitle} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:title" content={optimizedTitle} />
+      <meta name="twitter:description" content={optimizedDescription} />
       <meta name="twitter:image" content={ogImage} />
       <meta name="twitter:image:alt" content={ogImageAlt} />
     </Helmet>

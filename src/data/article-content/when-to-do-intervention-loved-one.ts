@@ -56,7 +56,7 @@ export default `
       <p>Anger is common and usually temporary. It's often a reaction to losing the comfort that enabling provided, not a sign you did something wrong. A well-planned intervention stays calm and loving even when your loved one pushes back, and a professional interventionist can help the family hold steady through that moment.</p>
 
       <h3>Do I need a professional to hold an intervention?</h3>
-      <p>Not always, but professional help significantly improves the odds, especially when there's a history of crisis, mental health concerns, or family conflict. A trained interventionist prepares the family, keeps the conversation focused and compassionate, and arranges a direct path into treatment so momentum isn't lost.</p>
+      <p>Not always, but professional help can add structure when there is a history of crisis, mental health concerns, or family conflict. A trained interventionist can prepare the family, keep the conversation focused, and arrange treatment options in advance. No professional can guarantee that treatment will be accepted.</p>
 
       <h3>What if my loved one still refuses help after everything?</h3>
       <p>Refusal is not the end of the road. Sometimes the seed gets planted and is acted on later. In the meantime, you can keep your boundaries, keep the door to treatment open, and keep taking care of yourself. Your steadiness and your wellbeing matter regardless of the choices they make.</p>

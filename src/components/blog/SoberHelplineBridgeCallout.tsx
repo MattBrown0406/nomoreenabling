@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { buildSoberHelplineBridgeUrl, type ArticleBridgeLink } from "@/data/articleBridgeLinks";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
-import soberHelplineLogo from "@/assets/sober-helpline-logo.svg";
+const soberHelplineLogo = "/sober-helpline-logo.svg";
 
 interface SoberHelplineBridgeCalloutProps {
   bridgeLink: ArticleBridgeLink;

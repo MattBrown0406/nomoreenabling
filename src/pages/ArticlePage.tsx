@@ -734,7 +734,7 @@ const ArticlePage = () => {
                     treatment resistance, relapse, and boundary breakdowns since 2004.
                   </p>
                   <p className="text-muted-foreground mt-2 text-sm">
-                    Author and reviewer: Matt Brown, professional interventionist and family addiction coach.
+                    Author and editorial reviewer: Matt Brown, professional interventionist and family addiction coach. Medical claims require separate qualified clinical review.
                   </p>
                   <div className="mt-3 flex flex-wrap gap-3 text-sm">
                     <Link to="/about" className="text-primary hover:underline">About Matt Brown</Link>

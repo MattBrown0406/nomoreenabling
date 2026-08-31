@@ -10,7 +10,7 @@ export default `
         <li><strong>Punishment:</strong> "You're grounded for using. No phone for two weeks, as a consequence for what you did."</li>
         <li><strong>Boundary:</strong> "I'm not going to be in the house when you're using. If that happens, I'll go stay at my sister's for the night."</li>
       </ul>
-      <p>Notice the punishment focuses on controlling your loved one's actions and adds a penalty on top of what's already happening. The boundary focuses on what you will do to take care of yourself. You can't control whether your loved one uses. You can control whether you stay in the room for it. If you're still untangling these ideas, our piece on <a href="/article/boundary-vs-consequence-addiction-family">boundary vs. consequence</a> goes deeper.</p>
+      <p>Notice the punishment focuses on controlling your loved one's actions and adds a penalty on top of what's already happening. The boundary focuses on what you will do to take care of yourself. You can't control whether your loved one uses. You can control whether you stay in the room for it. If you're still untangling these ideas, our piece on <a href="/articles/boundary-vs-consequence-addiction-family">boundary vs. consequence</a> goes deeper.</p>
 
       <h2>Why Does This Distinction Matter So Much?</h2>
       <p>It matters because punishments tend to escalate the conflict, while boundaries tend to de-escalate it — even when your loved one doesn't like either one. When you punish, you've made yourself the judge and your loved one the defendant. That dynamic invites arguing, negotiating, and rebellion, because now there's a verdict to fight.</p>

@@ -55,10 +55,11 @@ export interface SitemapInput {
   categories?: string[];
   topicHubs?: string[];
   supportOffers?: string[];
+  lastmods?: Record<string, string>;
 }
 
 // Static pages with their priorities and change frequencies
-const staticPages: { path: string; priority: string; changefreq: string }[] = [
+export const staticPages: { path: string; priority: string; changefreq: string }[] = [
   { path: "/", priority: "1.0", changefreq: "weekly" },
   { path: "/start-here", priority: "0.95", changefreq: "monthly" },
   { path: "/two-households", priority: "0.9", changefreq: "monthly" },
@@ -99,6 +100,10 @@ const staticPages: { path: string; priority: string; changefreq: string }[] = [
   { path: "/why-families-need-support", priority: "0.8", changefreq: "monthly" },
   { path: "/grounding-reminder", priority: "0.7", changefreq: "monthly" },
   { path: "/family-system-notes", priority: "0.7", changefreq: "monthly" },
+  { path: "/trusted-tools", priority: "0.75", changefreq: "monthly" },
+  { path: "/enabling-cost-calculator", priority: "0.8", changefreq: "monthly" },
+  { path: "/tools", priority: "0.8", changefreq: "monthly" },
+  { path: "/press", priority: "0.6", changefreq: "monthly" },
   { path: "/privacy", priority: "0.5", changefreq: "monthly" },
   { path: "/terms", priority: "0.5", changefreq: "monthly" },
   { path: "/cookies", priority: "0.5", changefreq: "monthly" },
@@ -139,37 +144,45 @@ export function generateSitemapXml(input: SitemapInput | string[]): string {
       loc: `${DOMAIN}${page.path}`,
       changefreq: page.changefreq,
       priority: page.priority,
+      lastmod: toLastMod(normalizedInput.lastmods?.[page.path]),
     }));
   }
 
   for (const category of normalizedInput.categories ?? []) {
+    const route = `/category/${category}`;
     urls.push(formatUrl({
-      loc: `${DOMAIN}/category/${category}`,
+      loc: `${DOMAIN}${route}`,
       changefreq: "weekly",
       priority: "0.75",
+      lastmod: toLastMod(normalizedInput.lastmods?.[route]),
     }));
   }
 
   for (const hub of normalizedInput.topicHubs ?? []) {
+    const route = `/topic-hubs/${hub}`;
     urls.push(formatUrl({
-      loc: `${DOMAIN}/topic-hubs/${hub}`,
+      loc: `${DOMAIN}${route}`,
       changefreq: "monthly",
       priority: "0.8",
+      lastmod: toLastMod(normalizedInput.lastmods?.[route]),
     }));
   }
 
   for (const offer of normalizedInput.supportOffers ?? []) {
+    const route = `/support/${offer}`;
     urls.push(formatUrl({
-      loc: `${DOMAIN}/support/${offer}`,
+      loc: `${DOMAIN}${route}`,
       changefreq: "monthly",
       priority: "0.75",
+      lastmod: toLastMod(normalizedInput.lastmods?.[route]),
     }));
   }
 
   for (const article of normalizedInput.articles) {
+    const route = `/articles/${article.slug}`;
     urls.push(formatUrl({
-      loc: `${DOMAIN}/articles/${article.slug}`,
-      lastmod: toLastMod(article.date),
+      loc: `${DOMAIN}${route}`,
+      lastmod: toLastMod(normalizedInput.lastmods?.[route] || article.date),
       changefreq: "monthly",
       priority: "0.7",
     }));

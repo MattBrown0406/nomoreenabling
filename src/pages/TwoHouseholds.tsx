@@ -102,7 +102,7 @@ export default function TwoHouseholds() {
     <div className="min-h-screen bg-background flex flex-col">
       <SEOHead
         title="The Other House Is Undoing It"
-        description="Two houses. One disease. If one parent pays rent and the other hands over the keys, nothing holds. Money, housing, and contact have to be the same line in both kitchens."
+        description="Separated or divorced parents need one consistent plan for money, housing, and contact when addiction exploits the gap between two homes. Build a boundary both kitchens can hold."
         canonicalUrl="https://nomoreenabling.com/two-households"
         keywords="divorced parents addiction, split household enabling, two households addiction, separated parents boundaries, never-married parents enabling"
       />

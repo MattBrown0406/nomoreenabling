@@ -23,7 +23,7 @@ export default `
 
       <h3>What Do You Do When You Catch the Lie?</h3>
       <p>When you catch the lie, name it plainly, once, without a lecture, and go straight back to the boundary you already set. "I know that's not what happened. The answer is still no." That's the whole script. Anything longer turns into a debate you can't win, because you're arguing with someone whose priority in that moment is the substance, not the relationship.</p>
-      <p>This is also where most boundaries quietly die — in the exhaustion of having the same argument for the fifth time that week. Decide now that you won't argue the facts. You'll just repeat the boundary and follow through. Short and consistent beats long and convincing. If you're still wrestling with the <a href="/article/guilt-after-holding-boundary-addicted-loved-one">guilt after setting a boundary</a>, that's normal — and separate from whether the boundary is right.</p>
+      <p>This is also where most boundaries quietly die — in the exhaustion of having the same argument for the fifth time that week. Decide now that you won't argue the facts. You'll just repeat the boundary and follow through. Short and consistent beats long and convincing. If you're still wrestling with the <a href="/articles/guilt-after-holding-boundary-addicted-loved-one">guilt after setting a boundary</a>, that's normal — and separate from whether the boundary is right.</p>
 
       <h3>How Do You Protect Your Own Trust While Holding the Boundary?</h3>
       <p>You protect your trust by separating it from your love. You can love your loved one completely and still not believe most of what they tell you right now. Those are two different muscles, and addiction only damages one of them.</p>

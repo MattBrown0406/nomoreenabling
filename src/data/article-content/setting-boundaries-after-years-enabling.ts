@@ -31,7 +31,7 @@ export default `
         <li>"I've been thinking about this for months and…"</li>
         <li>"I just can't keep doing this and I've talked to my therapist and…"</li>
       </ul>
-      <p>The more you explain, the more you invite debate. A limit isn't a proposal. You're not presenting it for a vote. If you're still untangling what counts as a limit at all, our piece on <a href="/article/boundary-vs-punishment-addiction">boundary vs. punishment</a> walks through the distinction.</p>
+      <p>The more you explain, the more you invite debate. A limit isn't a proposal. You're not presenting it for a vote. If you're still untangling what counts as a limit at all, our piece on <a href="/articles/boundary-vs-punishment-addiction">boundary vs. punishment</a> walks through the distinction.</p>
 
       <h2>Handling the Reaction Without Backing Down</h2>
       <p>Here's what usually happens next: they react. Maybe they get angry. Maybe they cry. Maybe they say you've abandoned them, that you don't love them, that they have nowhere else to turn. Maybe they go quiet and disappear for a few days.</p>
@@ -44,7 +44,7 @@ export default `
       <h3>Acknowledge the difficulty without changing the decision</h3>
       <p>"I know this is hard" is not the same as "okay, fine, I'll help." You can say both truths at once: this is painful AND you're not changing course.</p>
       <h3>Don't justify your limit repeatedly</h3>
-      <p>Once you've said it, you don't need to keep explaining it. If they push back, the response can be simple: "I've already told you what I'm going to do. I'm not going to change it." Repetition is not the same as weakness — as long as your behavior matches your words. For more on this, see <a href="/article/hold-limits-addicted-pushes-back">how to hold limits when they push back</a>.</p>
+      <p>Once you've said it, you don't need to keep explaining it. If they push back, the response can be simple: "I've already told you what I'm going to do. I'm not going to change it." Repetition is not the same as weakness — as long as your behavior matches your words. For more on this, see <a href="/articles/hold-limits-addicted-pushes-back">how to hold limits when they push back</a>.</p>
 
       <h2>What About Your Own Guilt?</h2>
       <p>The hardest part of setting a limit after years of enabling isn't the other person's reaction. It's yours.</p>

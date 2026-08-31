@@ -80,7 +80,7 @@ export default `
       <h2>You Can Stop the Cycle</h2>
       <p>The enabling cycle is powerful, but it is not permanent. It is a pattern — and patterns, once recognized, can be changed. You did not create your loved one's addiction. You cannot cure it. But you do have the ability to stop being the mechanism that makes it easier to continue.</p>
       <p>That is an act of love. One of the harder ones. But love nonetheless.</p>
-      <p>You don't have to figure this out alone. If you're ready to get support for yourself while your loved one is struggling, <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching, education, and a community of people who understand exactly where you are. If you believe a formal intervention may be needed, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> is here to help you assess your options and move forward with confidence.</p>
+      <p>You don't have to figure this out alone. If you're ready to get support for yourself while your loved one is struggling, <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers family coaching, education, and a community of people who understand exactly where you are. If you believe a formal intervention may be needed, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> is here to help you assess your options and move forward with confidence.</p>
 
       <h2>Frequently Asked Questions About the Enabling Cycle</h2>
 
@@ -100,7 +100,7 @@ export default `
       <p>Delay your response. Saying "I need to think about this and I'll call you back" is not a refusal — it's a pause. Use that pause to consult a plan you've made in advance, call your therapist or a supportive friend, and let your rational brain re-engage before you act. Most enabling happens in the first few minutes of a crisis.</p>
 
       <h3>Where can I get support for myself while my loved one is struggling?</h3>
-      <p>Al-Anon is a free resource available in most communities. <a href="https://www.soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers professional family coaching and an online community specifically for families navigating a loved one's addiction. If you believe your loved one needs a structured intervention, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> provides professional guidance for families who are ready to act.</p>
+      <p>Al-Anon is a free resource available in most communities. <a href="https://soberhelpline.com" target="_blank" rel="noopener noreferrer">SoberHelpline.com</a> offers professional family coaching and an online community specifically for families navigating a loved one's addiction. If you believe your loved one needs a structured intervention, <a href="https://www.freedominterventions.com" target="_blank" rel="noopener noreferrer">FreedomInterventions.com</a> provides professional guidance for families who are ready to act.</p>
 
       <p><em>Published on NoMoreEnabling.com | Content is for informational purposes and does not constitute medical advice. If you or a loved one are in crisis, please contact SAMHSA's National Helpline: 1-800-662-4357.</em></p>
     `;

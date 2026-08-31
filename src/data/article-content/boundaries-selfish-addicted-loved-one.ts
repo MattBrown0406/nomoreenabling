@@ -10,7 +10,7 @@ export default `
       <p>That distinction matters. Guilt is not a reliable signal that you've harmed someone. Sometimes it's just the sound of an old rule breaking.</p>
 
       <h2>What Is a Boundary Actually For?</h2>
-      <p>A boundary is a limit you set on what you will do, fund, tolerate, or participate in — it controls your behavior, not theirs. That's the part most families miss, and it's the reason boundaries get mistaken for selfishness or punishment. If you've ever blurred the two, it helps to understand <a href="/article/boundary-vs-consequence-addiction-family">the difference between a boundary and a consequence</a>.</p>
+      <p>A boundary is a limit you set on what you will do, fund, tolerate, or participate in — it controls your behavior, not theirs. That's the part most families miss, and it's the reason boundaries get mistaken for selfishness or punishment. If you've ever blurred the two, it helps to understand <a href="/articles/boundary-vs-consequence-addiction-family">the difference between a boundary and a consequence</a>.</p>
       <p>"You can't drink anymore" is not a boundary. You can't enforce it, and trying to turns you into the police. "I won't be in the house when you're drinking" is a boundary. It tells the truth about what you'll do, and it leaves the other person's choices in their own hands — where they've always been anyway.</p>
       <p>Looked at this way, a boundary isn't a wall you build against someone you love. It's a clear statement of reality:</p>
       <ul>
