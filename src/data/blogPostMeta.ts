@@ -47,6 +47,7 @@ import stopWorryingAddictedLovedOneImage from "@/assets/how-to-stop-worrying-abo
 import familyIsolationRebuildingSupportImage from "@/assets/family-isolation-addiction-rebuilding-support.jpg";
 import comesHomeFromRehabFirst30DaysImage from "@/assets/loved-one-comes-home-from-rehab-first-30-days.jpg";
 import supportingRecoveryWithoutEnablingImage from "@/assets/supporting-recovery-without-enabling.jpg";
+import whenRecoveryDoesntLookExpectedImage from "@/assets/when-recovery-doesnt-look-like-you-expected.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
@@ -172,6 +173,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "when-recovery-doesnt-look-like-you-expected",
+    title: "When Your Loved One's Recovery Doesn't Look Like You Expected",
+    excerpt: "Your loved one is sober, but recovery looks nothing like you pictured. Here's how families adjust expectations without enabling or losing hope.",
+    category: "Recovery",
+    categories: ["Recovery", "Family Support", "Enabling"],
+    readTime: "10 min read",
+    date: "August 29, 2026",
+    image: whenRecoveryDoesntLookExpectedImage,
+    slug: "when-recovery-doesnt-look-like-you-expected",
+    metaTitle: "When Recovery Doesn't Look Like You Expected",
+    metaDescription: "Your loved one is sober, but recovery looks nothing like you pictured. Here's how families adjust expectations without enabling or losing hope.",
+  },
   {
     id: "supporting-recovery-without-enabling",
     title: "Supporting Recovery Without Enabling: How to Help Without Becoming the Sobriety Police",
