@@ -1,5 +1,7 @@
 export default `
       <p>Few questions create more guilt for families than this one: should I give money to someone with addiction? The answer is rarely simple, because the request usually arrives wrapped in fear. Rent is due. The phone is about to be shut off. They need gas. They say they are hungry. They promise this is the last time.</p>
+      <p><strong>Direct answer:</strong> do not send unrestricted cash when active addiction makes its use uncertain or when your money repeatedly removes consequences. If you choose to help, pay a verified provider or meet a specific need directly, with a limit decided before the next request.</p>
+      <p><strong>What to do next:</strong> pause the transfer and write down one money boundary your family can hold. If the same financial crisis keeps returning, <a href="/family-addiction-coaching">request family addiction coaching</a> before another bailout. If your family already has a recovery or boundary plan but needs shared follow-through, <a href="/support/family-bridge">use the FamilyBridge App together</a>.</p>
       <p>Money feels practical, but in an addiction cycle it often becomes emotional. Families are not only deciding whether to send funds. They are deciding whether they can tolerate the anxiety, anger, or fear that may follow if they say no.</p>
 
       <h2>Why Money Requests Feel So Urgent</h2>

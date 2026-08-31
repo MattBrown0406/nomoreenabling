@@ -1911,8 +1911,8 @@ export const blogPostsMeta: BlogPostMeta[] = [
     date: "May 1, 2026",
     image: financialEnablingAddictionImage,
     slug: "should-i-give-money-to-someone-with-addiction",
-    metaTitle: "Should I Give Money to Someone With Addiction?",
-    metaDescription: "Should you give money to someone with addiction? Learn when cash becomes enabling, what to do instead, and how to offer recovery-focused support.",
+    metaTitle: "Should I Give Money During Addiction? What to Do",
+    metaDescription: "Should you give money to someone with addiction? See when cash becomes enabling, safer ways to help, and the next family boundary to set before you pay.",
   },
   {
     id: "112",
