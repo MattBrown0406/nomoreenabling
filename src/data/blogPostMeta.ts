@@ -48,6 +48,7 @@ import familyIsolationRebuildingSupportImage from "@/assets/family-isolation-add
 import comesHomeFromRehabFirst30DaysImage from "@/assets/loved-one-comes-home-from-rehab-first-30-days.jpg";
 import supportingRecoveryWithoutEnablingImage from "@/assets/supporting-recovery-without-enabling.jpg";
 import whenRecoveryDoesntLookExpectedImage from "@/assets/when-recovery-doesnt-look-like-you-expected.jpg";
+import doingEverythingForAddictedLovedOneImage from "@/assets/doing-everything-for-an-addicted-loved-one.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
@@ -173,6 +174,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "doing-everything-for-an-addicted-loved-one",
+    title: "When Helping Becomes Taking Over: Doing Everything for an Addicted Loved One",
+    excerpt: "Doing everything for an addicted loved one feels like love, but it can quietly become enabling. Learn how to tell the difference and hand responsibility back.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Support", "Boundaries"],
+    readTime: "10 min read",
+    date: "September 1, 2026",
+    image: doingEverythingForAddictedLovedOneImage,
+    slug: "doing-everything-for-an-addicted-loved-one",
+    metaTitle: "Doing Everything for an Addicted Loved One",
+    metaDescription: "Doing everything for an addicted loved one feels like love, but it can quietly become enabling. Learn how to tell the difference and start handing responsibility back.",
+  },
   {
     id: "when-recovery-doesnt-look-like-you-expected",
     title: "When Your Loved One's Recovery Doesn't Look Like You Expected",
