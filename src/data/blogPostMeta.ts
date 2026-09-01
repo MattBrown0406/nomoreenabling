@@ -48,6 +48,7 @@ import familyIsolationRebuildingSupportImage from "@/assets/family-isolation-add
 import comesHomeFromRehabFirst30DaysImage from "@/assets/loved-one-comes-home-from-rehab-first-30-days.jpg";
 import supportingRecoveryWithoutEnablingImage from "@/assets/supporting-recovery-without-enabling.jpg";
 import whenRecoveryDoesntLookExpectedImage from "@/assets/when-recovery-doesnt-look-like-you-expected.jpg";
+import doingEverythingForAddictedLovedOneImage from "@/assets/doing-everything-for-an-addicted-loved-one.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
