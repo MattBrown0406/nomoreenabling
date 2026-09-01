@@ -175,6 +175,19 @@ export interface BlogPostMeta {
 
 export const blogPostsMeta: BlogPostMeta[] = [
   {
+    id: "doing-everything-for-an-addicted-loved-one",
+    title: "When Helping Becomes Taking Over: Doing Everything for an Addicted Loved One",
+    excerpt: "Doing everything for an addicted loved one feels like love, but it can quietly become enabling. Learn how to tell the difference and hand responsibility back.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Support", "Boundaries"],
+    readTime: "10 min read",
+    date: "September 1, 2026",
+    image: doingEverythingForAddictedLovedOneImage,
+    slug: "doing-everything-for-an-addicted-loved-one",
+    metaTitle: "Doing Everything for an Addicted Loved One",
+    metaDescription: "Doing everything for an addicted loved one feels like love, but it can quietly become enabling. Learn how to tell the difference and start handing responsibility back.",
+  },
+  {
     id: "when-recovery-doesnt-look-like-you-expected",
     title: "When Your Loved One's Recovery Doesn't Look Like You Expected",
     excerpt: "Your loved one is sober, but recovery looks nothing like you pictured. Here's how families adjust expectations without enabling or losing hope.",
