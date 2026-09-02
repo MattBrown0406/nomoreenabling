@@ -176,6 +176,19 @@ export interface BlogPostMeta {
 
 export const blogPostsMeta: BlogPostMeta[] = [
   {
+    id: "enabling-out-of-fear",
+    title: "Enabling Out of Fear: When Being Afraid of Losing Them Keeps You Stuck",
+    excerpt: "Enabling out of fear is the most common and least talked-about form of enabling. Learn how fear keeps families stuck, and what to do instead.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Support", "Boundaries"],
+    readTime: "9 min read",
+    date: "September 2, 2026",
+    image: enablingOutOfFearImage,
+    slug: "enabling-out-of-fear",
+    metaTitle: "Enabling Out of Fear in Addicted Families",
+    metaDescription: "Enabling out of fear is the most common and least talked-about form of enabling. Learn how fear keeps families stuck, and what to do instead.",
+  },
+  {
     id: "doing-everything-for-an-addicted-loved-one",
     title: "When Helping Becomes Taking Over: Doing Everything for an Addicted Loved One",
     excerpt: "Doing everything for an addicted loved one feels like love, but it can quietly become enabling. Learn how to tell the difference and hand responsibility back.",
