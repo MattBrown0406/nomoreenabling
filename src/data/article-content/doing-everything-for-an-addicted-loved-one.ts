@@ -14,7 +14,7 @@ export default `
         <li><strong>Managing their emotions</strong> — monitoring their mood, adjusting the household so they don't get upset</li>
         <li><strong>Managing their legal or medical fallout</strong> — hiring the attorney, negotiating with the landlord, refilling the prescription</li>
       </ul>
-      <p>None of these are wrong every time. All of them become a problem when they are the pattern rather than the exception. If you're still sorting out which is which, it helps to start with <a href="/articles/how-to-recognize-enabling-behaviors-in-yourself">recognizing enabling behaviors in yourself</a>.</p>
+      <p>None of these are wrong every time. All of them become a problem when they are the pattern rather than the exception. If you're still sorting out which is which, it helps to start with <a href="/articles/enabling-vs-helping-stop-enabling-support-real-recovery">telling enabling apart from helping</a>.</p>
 
       <h2>Why Do Families End Up Taking Over?</h2>
       <p>Families take over because the short-term math is compelling. Stepping in produces immediate relief; stepping back produces immediate fear. When someone you love is using substances, the risks are real, so your nervous system chooses relief every time.</p>
