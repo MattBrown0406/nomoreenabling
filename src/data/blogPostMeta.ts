@@ -49,6 +49,7 @@ import comesHomeFromRehabFirst30DaysImage from "@/assets/loved-one-comes-home-fr
 import supportingRecoveryWithoutEnablingImage from "@/assets/supporting-recovery-without-enabling.jpg";
 import whenRecoveryDoesntLookExpectedImage from "@/assets/when-recovery-doesnt-look-like-you-expected.jpg";
 import doingEverythingForAddictedLovedOneImage from "@/assets/doing-everything-for-an-addicted-loved-one.jpg";
+import enablingOutOfFearImage from "@/assets/enabling-out-of-fear.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
@@ -174,6 +175,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "enabling-out-of-fear",
+    title: "Enabling Out of Fear: When Being Afraid of Losing Them Keeps You Stuck",
+    excerpt: "Enabling out of fear is the most common and least talked-about form of enabling. Learn how fear keeps families stuck, and what to do instead.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Support", "Boundaries"],
+    readTime: "9 min read",
+    date: "September 2, 2026",
+    image: enablingOutOfFearImage,
+    slug: "enabling-out-of-fear",
+    metaTitle: "Enabling Out of Fear in Addicted Families",
+    metaDescription: "Enabling out of fear is the most common and least talked-about form of enabling. Learn how fear keeps families stuck, and what to do instead.",
+  },
   {
     id: "doing-everything-for-an-addicted-loved-one",
     title: "When Helping Becomes Taking Over: Doing Everything for an Addicted Loved One",
