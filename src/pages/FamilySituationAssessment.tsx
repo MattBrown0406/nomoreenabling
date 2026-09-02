@@ -606,8 +606,8 @@ export default function FamilySituationAssessment() {
                       <p className="text-sm font-medium text-foreground">Recommended route</p>
                       <p className="mt-1 text-sm text-muted-foreground">{result.routeLabel}</p>
                     </div>
-                    {offer && (
-                      <div className="mt-5 grid gap-3">
+                    <div className="mt-5 grid gap-3">
+                      {offer && (
                         <Button asChild>
                           <Link
                             to={`/support/${offer.slug}`}
@@ -624,9 +624,9 @@ export default function FamilySituationAssessment() {
                             <ArrowRight className="h-4 w-4" />
                           </Link>
                         </Button>
-                        <AssessmentButtonLink href={result.secondaryHref}>{result.secondaryLabel}</AssessmentButtonLink>
-                      </div>
-                    )}
+                      )}
+                      <AssessmentButtonLink href={result.secondaryHref}>{result.secondaryLabel}</AssessmentButtonLink>
+                    </div>
                     <Button variant="ghost" className="mt-4 w-full" onClick={resetAssessment}>
                       <RotateCcw className="h-4 w-4" />
                       Retake assessment
