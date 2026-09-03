@@ -177,6 +177,19 @@ export interface BlogPostMeta {
 
 export const blogPostsMeta: BlogPostMeta[] = [
   {
+    id: "checking-on-an-addicted-loved-one",
+    title: "Is Constantly Checking on an Addicted Loved One Enabling?",
+    excerpt: "Constantly texting, tracking, and checking on an addicted loved one feels like love. Here's how it can become enabling, and what to do instead.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Support", "Boundaries"],
+    readTime: "9 min read",
+    date: "September 3, 2026",
+    image: checkingOnAddictedLovedOneImage,
+    slug: "checking-on-an-addicted-loved-one",
+    metaTitle: "Is Checking on an Addicted Loved One Enabling?",
+    metaDescription: "Constantly texting, tracking, and checking on an addicted loved one feels like love. Here's how it can become enabling, and what to do instead.",
+  },
+  {
     id: "enabling-out-of-fear",
     title: "Enabling Out of Fear: When Being Afraid of Losing Them Keeps You Stuck",
     excerpt: "Enabling out of fear is the most common and least talked-about form of enabling. Learn how fear keeps families stuck, and what to do instead.",
