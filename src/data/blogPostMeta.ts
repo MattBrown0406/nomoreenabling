@@ -50,6 +50,7 @@ import supportingRecoveryWithoutEnablingImage from "@/assets/supporting-recovery
 import whenRecoveryDoesntLookExpectedImage from "@/assets/when-recovery-doesnt-look-like-you-expected.jpg";
 import doingEverythingForAddictedLovedOneImage from "@/assets/doing-everything-for-an-addicted-loved-one.jpg";
 import enablingOutOfFearImage from "@/assets/enabling-out-of-fear.jpg";
+import checkingOnAddictedLovedOneImage from "@/assets/checking-on-an-addicted-loved-one.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
