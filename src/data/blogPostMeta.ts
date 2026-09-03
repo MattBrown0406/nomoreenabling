@@ -50,6 +50,7 @@ import supportingRecoveryWithoutEnablingImage from "@/assets/supporting-recovery
 import whenRecoveryDoesntLookExpectedImage from "@/assets/when-recovery-doesnt-look-like-you-expected.jpg";
 import doingEverythingForAddictedLovedOneImage from "@/assets/doing-everything-for-an-addicted-loved-one.jpg";
 import enablingOutOfFearImage from "@/assets/enabling-out-of-fear.jpg";
+import checkingOnAddictedLovedOneImage from "@/assets/checking-on-an-addicted-loved-one.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
@@ -175,6 +176,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "checking-on-an-addicted-loved-one",
+    title: "Is Constantly Checking on an Addicted Loved One Enabling?",
+    excerpt: "Constantly texting, tracking, and checking on an addicted loved one feels like love. Here's how it can become enabling, and what to do instead.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Support", "Boundaries"],
+    readTime: "9 min read",
+    date: "September 3, 2026",
+    image: checkingOnAddictedLovedOneImage,
+    slug: "checking-on-an-addicted-loved-one",
+    metaTitle: "Is Checking on an Addicted Loved One Enabling?",
+    metaDescription: "Constantly texting, tracking, and checking on an addicted loved one feels like love. Here's how it can become enabling, and what to do instead.",
+  },
   {
     id: "enabling-out-of-fear",
     title: "Enabling Out of Fear: When Being Afraid of Losing Them Keeps You Stuck",
