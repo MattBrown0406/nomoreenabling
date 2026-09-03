@@ -290,16 +290,21 @@ serve(async (req) => {
     // Send welcome email
     try {
       const emailResponse = await resend.emails.send({
-        from: "No More Enabling <onboarding@resend.dev>",
+        from: "No More Enabling <contact@nomoreenabling.com>",
         to: [sanitizedEmail],
         subject: courseInfo.welcomeSubject,
         html: courseInfo.welcomeHtml(sanitizedFirstName),
       });
-      console.log('Welcome email sent:', emailResponse);
+      if (emailResponse.error) {
+        console.error('Welcome email rejected by provider:', emailResponse.error);
+      } else {
+        console.log('Welcome email sent:', emailResponse.data?.id);
+      }
     } catch (emailError) {
       console.error('Failed to send welcome email:', emailError);
       // Don't fail the enrollment if email fails
     }
+
 
     console.log('Successfully enrolled:', sanitizedEmail);
 

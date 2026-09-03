@@ -404,12 +404,14 @@ serve(async (req) => {
       const lesson = BOUNDARIES_LESSONS[lessonIndex];
 
       try {
-        await resend.emails.send({
-          from: "No More Enabling <onboarding@resend.dev>",
+        const emailResponse = await resend.emails.send({
+          from: "No More Enabling <contact@nomoreenabling.com>",
           to: [enrollment.email],
           subject: lesson.subject,
           html: lesson.html(enrollment.first_name),
         });
+        if (emailResponse.error) throw new Error(JSON.stringify(emailResponse.error));
+
 
         // Calculate next email date
         const nextEmailAt = new Date();
