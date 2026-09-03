@@ -4,7 +4,7 @@ export default `
 
       <h2>Why Does Checking on an Addicted Loved One Feel So Necessary?</h2>
       <p>Constant checking feels necessary because it briefly turns fear into action. When you can't stop the addiction, monitoring gives you something to do with the panic, and for a few minutes it works. The problem is that the relief never lasts, so the checking has to happen again and again.</p>
-      <p>This is the same loop that drives most enabling behaviors. A painful feeling shows up, you take an action that makes it fade, and the brain files that action under "this helps." Location sharing, read receipts, and rapid-fire texts are just newer tools for a very old pattern — the same one behind <a href="/articles/the-rescue-reflex">the rescue reflex</a>.</p>
+      <p>This is the same loop that drives most enabling behaviors. A painful feeling shows up, you take an action that makes it fade, and the brain files that action under "this helps." Location sharing, read receipts, and rapid-fire texts are just newer tools for a very old pattern — the same one behind <a href="/articles/rescue-reflex-rescuing-addicted-loved-one">the rescue reflex</a>.</p>
 
       <h2>How Does Monitoring Become Enabling?</h2>
       <p>Monitoring becomes enabling when it quietly takes over a job that belongs to your loved one: managing their own safety and facing their own consequences. Enabling, in plain terms, is anything that makes it easier for a person to keep using without feeling the full weight of that choice. Constant surveillance can do exactly that.</p>
