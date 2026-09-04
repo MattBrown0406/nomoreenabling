@@ -1,6 +1,7 @@
 export type ArticleContentModule = { default: string };
 
 export const articleContentLoaders: Record<string, () => Promise<ArticleContentModule>> = {
+  "why-do-i-keep-enabling-hidden-payoffs": () => import("./article-content/why-do-i-keep-enabling-hidden-payoffs"),
   "checking-on-an-addicted-loved-one": () => import("./article-content/checking-on-an-addicted-loved-one"),
   "enabling-out-of-fear": () => import("./article-content/enabling-out-of-fear"),
   "doing-everything-for-an-addicted-loved-one": () => import("./article-content/doing-everything-for-an-addicted-loved-one"),

@@ -51,6 +51,7 @@ import whenRecoveryDoesntLookExpectedImage from "@/assets/when-recovery-doesnt-l
 import doingEverythingForAddictedLovedOneImage from "@/assets/doing-everything-for-an-addicted-loved-one.jpg";
 import enablingOutOfFearImage from "@/assets/enabling-out-of-fear.jpg";
 import checkingOnAddictedLovedOneImage from "@/assets/checking-on-an-addicted-loved-one.jpg";
+import whyDoIKeepEnablingImage from "@/assets/why-do-i-keep-enabling-hidden-payoffs.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
@@ -176,6 +177,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "why-do-i-keep-enabling-hidden-payoffs",
+    title: "Why Do I Keep Enabling? The Hidden Payoffs That Keep Families Stuck",
+    excerpt: "Why do I keep enabling my addicted loved one when I know better? The answer is the hidden payoff. Learn the five quiet rewards of enabling and how to stop.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Support", "Boundaries"],
+    readTime: "9 min read",
+    date: "September 4, 2026",
+    image: whyDoIKeepEnablingImage,
+    slug: "why-do-i-keep-enabling-hidden-payoffs",
+    metaTitle: "Why Do I Keep Enabling? Hidden Payoffs",
+    metaDescription: "Why do I keep enabling my addicted loved one when I know better? The answer is the hidden payoff. Learn the five quiet rewards of enabling and how to stop.",
+  },
   {
     id: "checking-on-an-addicted-loved-one",
     title: "Is Constantly Checking on an Addicted Loved One Enabling?",
