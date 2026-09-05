@@ -14,7 +14,7 @@ export default `
 
       <h2>Is Setting a Boundary the Same as Abandoning Them?</h2>
       <p>No. Abandonment is withdrawing love and connection. A boundary is withdrawing participation in the addiction while keeping love and connection fully available. The two can feel similar from the inside, especially at first, but they lead to completely different places.</p>
-      <p>A useful way to see <a href="/blog/boundary-vs-punishment-addiction">the difference between a boundary and a punishment</a> is to look at what stays and what goes:</p>
+      <p>A useful way to see <a href="/articles/boundary-vs-punishment-addiction">the difference between a boundary and a punishment</a> is to look at what stays and what goes:</p>
       <ul>
         <li><strong>What goes:</strong> paying debts caused by substance use, lying to cover for missed obligations, providing money that funds the addiction, tolerating abusive or unsafe behavior in your home.</li>
         <li><strong>What stays:</strong> phone calls, meals together when they are sober, saying "I love you," celebrating their wins, and a standing offer to support treatment the moment they are ready.</li>

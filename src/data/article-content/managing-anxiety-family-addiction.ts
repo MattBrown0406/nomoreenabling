@@ -67,13 +67,13 @@ export default `<p>You check your phone before your feet hit the floor. You run 
 
 <h2>When Your Anxiety Is Driving Enabling Behaviors</h2>
 
-<p>Here's a connection that's worth sitting with: a lot of <a href="/enabling-cycle-addiction-families">enabling behavior</a> is anxiety management in disguise.</p>
+<p>Here's a connection that's worth sitting with: a lot of <a href="/articles/enabling-cycle-addiction-families">enabling behavior</a> is anxiety management in disguise.</p>
 
 <p>When you give money to stop a crisis, you're trying to reduce your anxiety. When you call in sick for them so they don't lose their job, you're managing your anxiety about what happens next. When you stay quiet instead of having a hard conversation, you're avoiding the anxiety of conflict.</p>
 
 <p>These strategies work in the short term. The immediate anxiety goes down — and that relief is exactly what makes enabling so persistent. It's reinforced every time it works.</p>
 
-<p>Managing anxiety as a family member of an addict sometimes means sitting with a temporary spike in discomfort — tolerating the harder feeling that comes from not rescuing — because you know the rescue is making things worse long term. Learning <a href="/detaching-with-love-addiction-family">detaching with love</a> is not easy. It's one of the harder things you'll do. But it becomes more manageable with support and practice.</p>
+<p>Managing anxiety as a family member of an addict sometimes means sitting with a temporary spike in discomfort — tolerating the harder feeling that comes from not rescuing — because you know the rescue is making things worse long term. Learning <a href="/articles/detaching-with-love-addiction-family">detaching with love</a> is not easy. It's one of the harder things you'll do. But it becomes more manageable with support and practice.</p>
 
 <h2>Taking Care of Yourself Is Not Giving Up on Them</h2>
 

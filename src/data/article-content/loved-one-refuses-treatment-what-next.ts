@@ -83,7 +83,7 @@ export default `
       <p>That reaction is common and usually temporary. Anger is easier to feel than shame, so it tends to come out first. Stay steady, keep your tone warm, and let time and consistency do the rest. Most families report the relationship recovers once recovery begins.</p>
 
       <h3>How do I know if I'm setting a boundary or punishing them?</h3>
-      <p>A boundary protects you and requires nothing from them; a punishment is designed to make them feel something. "I won't give you money" is a boundary. "I won't speak to you until you apologize" is leverage. Boundaries stay in place whether or not they change. For more, read <a href="/blog/boundary-vs-punishment-addiction">the difference between a boundary and a punishment</a>.</p>
+      <p>A boundary protects you and requires nothing from them; a punishment is designed to make them feel something. "I won't give you money" is a boundary. "I won't speak to you until you apologize" is leverage. Boundaries stay in place whether or not they change. For more, read <a href="/articles/boundary-vs-punishment-addiction">the difference between a boundary and a punishment</a>.</p>
 
       <h3>Where can my family get help while we wait?</h3>
       <p>Start with a family support group like Al-Anon or Nar-Anon, and consider working with a coach or therapist who specializes in addiction and family systems. <a href="https://soberhelpline.com" target="_blank" rel="noopener">SoberHelpline.com</a> offers family coaching and education specifically for families in this position.</p>

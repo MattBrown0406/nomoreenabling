@@ -640,14 +640,17 @@ export const comparisonAnswers: ComparisonAnswer[] = [
   },
 ];
 
-export const getAeoArticleAnswer = (article: BlogPostMeta): AeoAnswer => {
+// Returns null when nothing matches. Falling back to aeoAnswers[0] put the
+// "How do I know if I am helping or enabling?" direct answer (and its FAQPage
+// schema) on unrelated articles such as fentanyl or Delta-8 guides.
+export const getAeoArticleAnswer = (article: BlogPostMeta): AeoAnswer | null => {
   const haystack = `${article.title} ${article.excerpt} ${article.categories.join(" ")}`.toLowerCase();
 
   const matchingAnswer = aeoAnswers.find((answer) =>
     answer.tags.some((tag) => haystack.includes(tag)),
   );
 
-  return matchingAnswer ?? aeoAnswers[0];
+  return matchingAnswer ?? null;
 };
 
 export const getNextBestAnswerLinks = (article: BlogPostMeta): AeoAnswer[] => {

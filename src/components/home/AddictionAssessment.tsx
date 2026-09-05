@@ -201,6 +201,13 @@ const getSeverityLevel = (score: number, dsmCriteriaMet: number): SeverityLevel 
   return "severe";
 };
 
+// The first five sections map to DSM-5 style criteria. Derive the total from
+// the data so the results label can never read "12 of 11".
+const DSM_SECTION_COUNT = 5;
+const DSM_CRITERIA_TOTAL = sections
+  .slice(0, DSM_SECTION_COUNT)
+  .reduce((acc, section) => acc + section.questions.length, 0);
+
 const AddictionAssessment = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>({});
@@ -226,10 +233,10 @@ const AddictionAssessment = () => {
   const calculateResults = () => {
     const totalScore = Object.values(answers).reduce((acc, val) => acc + val, 0);
     
-    // Count DSM-5 criteria met (first 5 sections, 11 questions)
+    // Count DSM-5 criteria met across the clinical sections.
     // A criterion is "met" if the answer is 2 (Often) or 3 (Almost Always)
     let dsmCriteriaMet = 0;
-    for (let section = 0; section < 5; section++) {
+    for (let section = 0; section < DSM_SECTION_COUNT; section++) {
       const sectionQuestions = sections[section].questions;
       for (let q = 0; q < sectionQuestions.length; q++) {
         const answer = answers[`${section}-${q}`];
@@ -371,7 +378,7 @@ const AddictionAssessment = () => {
                    "Severe"}
                 </div>
                 <span className="text-sm text-muted-foreground">
-                  {dsmCriteriaMet} of 11 clinical criteria indicated
+                  {dsmCriteriaMet} of {DSM_CRITERIA_TOTAL} clinical criteria indicated
                 </span>
               </div>
               

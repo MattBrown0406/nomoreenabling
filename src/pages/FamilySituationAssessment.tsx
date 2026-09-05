@@ -21,6 +21,7 @@ import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { getSupportOffer, type SupportOfferSlug } from "@/data/supportOffers";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
+import { friendlyInvokeError, readInvokeError } from "@/lib/invokeError";
 import { trackGAConversion } from "@/lib/gaConversions";
 import NewsletterTurnstile from "@/components/newsletter/NewsletterTurnstile";
 import useNewsletterTurnstile from "@/hooks/useNewsletterTurnstile";
@@ -446,7 +447,7 @@ export default function FamilySituationAssessment() {
         },
       });
 
-      if (error && data?.error !== "already_subscribed") throw error;
+      if (error) throw error;
 
       setCaptureComplete(true);
       void trackFunnelEvent("email_capture_success", {
@@ -464,16 +465,18 @@ export default function FamilySituationAssessment() {
       });
       setEmail("");
       setFirstName("");
-    } catch {
+    } catch (err) {
       resetTurnstile();
+      const serverMessage = friendlyInvokeError(await readInvokeError(err));
       void trackFunnelEvent("email_capture_failure", {
         source: "family_situation_assessment",
         assessmentResult: result.id,
         offerSlug: offer?.slug,
+        metadata: { reason: serverMessage },
       });
       toast({
-        title: "Something went wrong",
-        description: "Your result is still available below. Please try the email form again later.",
+        title: serverMessage ? "Could not subscribe" : "Something went wrong",
+        description: serverMessage ?? "Your result is still available below. Please try the email form again later.",
         variant: "destructive",
       });
     } finally {

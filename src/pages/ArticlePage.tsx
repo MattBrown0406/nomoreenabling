@@ -453,13 +453,16 @@ const ArticlePage = () => {
     });
   };
 
+  // Emit a calendar date (YYYY-MM-DD) rather than toISOString(): parsing
+  // "September 4, 2026" as local midnight and converting to UTC shifts the
+  // published date back a day on any build machine east of UTC.
   const getISODate = (dateStr: string) => {
-    try {
-      const date = new Date(dateStr);
-      return date.toISOString();
-    } catch {
-      return new Date().toISOString();
-    }
+    const date = new Date(dateStr);
+    if (Number.isNaN(date.getTime())) return new Date().toISOString().slice(0, 10);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
   };
 
   useEffect(() => {
@@ -496,7 +499,11 @@ const ArticlePage = () => {
       return;
     }
 
-    setArticleContent((current) => (article?.slug === slug ? current : null));
+    // Clear the previous article's body immediately on slug change so the
+    // old HTML/TOC/FAQ schema never renders under the new title while the
+    // next chunk loads. (`article` is derived from `slug`, so comparing the
+    // two was always true.)
+    setArticleContent(null);
 
     loadArticleContent()
       .then((module) => {
@@ -523,18 +530,10 @@ const ArticlePage = () => {
         // View recorded silently
       });
       if (article) {
-        const prodOrigin = "https://nomoreenabling.com";
-        const resolvedImage = article.image?.startsWith("http") ? article.image : `${prodOrigin}${article.image}`;
-        const imgUrl = resolvedImage.includes("/src/assets/") ? `${prodOrigin}/favicon.jpg` : resolvedImage;
+        // The function looks the slug up in the build-time blog feed; the
+        // client never supplies the title/description/image.
         supabase.functions
-          .invoke("record-article-metadata", {
-            body: {
-              slug: slug,
-              title: article.metaTitle || article.title,
-              description: article.metaDescription || article.excerpt,
-              image_url: imgUrl,
-            },
-          })
+          .invoke("record-article-metadata", { body: { slug } })
           .then(() => {
             // Metadata synced silently
           });

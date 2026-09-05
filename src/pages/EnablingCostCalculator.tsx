@@ -87,7 +87,12 @@ const MoneyPlanCapture = () => {
         setState("error");
         return;
       }
-      if (data && (data as { success?: boolean }).success) {
+      const result = (data ?? {}) as { success?: boolean; already_enrolled?: boolean };
+      if (result.already_enrolled) {
+        setState("already");
+        return;
+      }
+      if (result.success) {
         void trackFunnelEvent("email_capture_success", { source: "calculator_money_plan" });
         setState("done");
         return;

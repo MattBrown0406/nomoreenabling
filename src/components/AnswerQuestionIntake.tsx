@@ -86,6 +86,8 @@ const AnswerQuestionIntake = ({
           lead_tier: "nurture",
           lead_reasons: ["Submitted a family recovery question"],
           page_path: pagePath || null,
+          hp_field: honeypot,
+          form_ms: Date.now() - loadedAt.current,
         },
       });
 

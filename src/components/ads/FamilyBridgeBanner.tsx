@@ -1,3 +1,4 @@
+import type { KeyboardEvent, MouseEvent } from "react";
 import familyBridgeLogo from "@/assets/family-bridge-logo.png";
 import { Brain, Shield, MessageSquare, TrendingUp, Pill, MapPin, DollarSign, FileText } from "lucide-react";
 import { trackAdClick } from "@/lib/trackAdClick";
@@ -16,11 +17,33 @@ const FamilyBridgeBanner = ({ size = "leaderboard" }: FamilyBridgeBannerProps) =
     content: `family_bridge_${size}`,
   });
 
+  // The banner body used to record an ad click without navigating anywhere
+  // (only the badge was a link). Make the whole card open the app site, but
+  // let clicks on the inner badge anchor proceed on their own so nothing
+  // opens twice.
+  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
+    trackAdClick("FamilyBridge");
+    if ((event.target as HTMLElement).closest("a")) return;
+    window.open(href, "_blank", "noopener,noreferrer");
+  };
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== "Enter" || event.target !== event.currentTarget) return;
+    trackAdClick("FamilyBridge");
+    window.open(href, "_blank", "noopener,noreferrer");
+  };
+  const interactiveProps = {
+    role: "link" as const,
+    tabIndex: 0,
+    onClick: handleClick,
+    onKeyDown: handleKeyDown,
+    "aria-label": "Learn about the Family Bridge app",
+  };
+
   if (isLeaderboard) {
     return (
       <div
-        className="block bg-gradient-to-r from-[#0d4a4a] via-[#0f5f5f] to-[#0d4a4a] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 max-w-4xl mx-auto border border-[#2a9d8f]/30"
-        onClick={() => trackAdClick("FamilyBridge")}
+        className="block cursor-pointer bg-gradient-to-r from-[#0d4a4a] via-[#0f5f5f] to-[#0d4a4a] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 max-w-4xl mx-auto border border-[#2a9d8f]/30"
+        {...interactiveProps}
       >
         <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 p-4 md:p-6">
           {/* Logo */}
@@ -72,8 +95,8 @@ const FamilyBridgeBanner = ({ size = "leaderboard" }: FamilyBridgeBannerProps) =
   // Sidebar version
   return (
     <div
-      className="block bg-gradient-to-br from-[#0d4a4a] to-[#0f5f5f] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 border border-[#2a9d8f]/30"
-      onClick={() => trackAdClick("FamilyBridge")}
+      className="block cursor-pointer bg-gradient-to-br from-[#0d4a4a] to-[#0f5f5f] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 border border-[#2a9d8f]/30"
+      {...interactiveProps}
     >
       <div className="p-4">
         {/* Logo */}

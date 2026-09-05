@@ -361,11 +361,10 @@ const AdminAnalytics = () => {
     });
     
     if (data === true) {
+      // The [timeRange, isAdmin] effect below runs the analytics fetches once
+      // isAdmin flips; calling them here too doubled every query on login.
       setIsAdmin(true);
-      fetchAnalytics();
       fetchCounts();
-      fetchAdClicks();
-      fetchFunnelAnalytics();
     } else {
       setIsAdmin(false);
       setLoading(false);
@@ -468,10 +467,12 @@ const AdminAnalytics = () => {
 
     // Enabling Cost Calculator — month-by-month usage for the last 6 calendar
     // months, independent of the time-range picker above.
+    // Move to the 1st BEFORE stepping months back: on the 31st, setMonth()
+    // overflowed ("Apr 31" -> May 1) and dropped the oldest month's events.
     const calcSince = new Date();
-    calcSince.setMonth(calcSince.getMonth() - 5);
     calcSince.setDate(1);
     calcSince.setHours(0, 0, 0, 0);
+    calcSince.setMonth(calcSince.getMonth() - 5);
     const { data: calcData } = await supabase
       .from('funnel_events')
       .select('event_name, created_at')

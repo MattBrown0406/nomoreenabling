@@ -63,7 +63,13 @@ const ContactFormWidget = () => {
     setIsSubmitting(true);
     try {
       const { data, error } = await supabase.functions.invoke("send-contact-form", {
-        body: { name: trimmedName, email: trimmedEmail, message: trimmedMessage },
+        body: {
+          name: trimmedName,
+          email: trimmedEmail,
+          message: trimmedMessage,
+          hp_field: honeypot,
+          form_ms: Date.now() - loadTime,
+        },
       });
 
       if (error) throw error;

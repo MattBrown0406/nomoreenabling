@@ -25,7 +25,7 @@ export default `
       <p>Minimizing reframes the situation as smaller than you know it to be. Bargaining offers a future promise in exchange for a present concession. Both are efforts to get you to move the line — and they rarely come with follow-through.</p>
 
       <h3>Recruiting Others</h3>
-      <p>Sometimes your loved one goes around you — to grandparents, siblings, or family friends who don't have the full picture. These people, acting from love and partial information, can inadvertently become pressure agents. This is one reason <a href="/blog/family-same-page-addiction-boundaries">getting your family aligned</a> matters so much.</p>
+      <p>Sometimes your loved one goes around you — to grandparents, siblings, or family friends who don't have the full picture. These people, acting from love and partial information, can inadvertently become pressure agents. This is one reason <a href="/articles/family-same-page-addiction-boundaries">getting your family aligned</a> matters so much.</p>
 
       <h2>How to Stay Grounded When the Pressure Hits</h2>
       <p>Staying grounded doesn't mean being cold or robotic. It means being able to hold your clarity while staying connected to your love for the person. Here are the practices that actually help.</p>
@@ -42,7 +42,7 @@ export default `
       <p>First, name what's happening internally. "I'm about to give in because I can't stand seeing them hurt." Naming it doesn't make it disappear, but it creates a small gap between the feeling and the action.</p>
       <p>Second, ask yourself one question: Is this decision coming from clarity, or from the need to make the discomfort stop right now? If it's the latter, wait. Even 20 minutes can shift the emotional temperature enough to reconnect with your original reasoning.</p>
       <p>Third, remind yourself what the limit is for. You didn't set it to punish. You set it because the previous arrangement wasn't working — not for them, and not for you. Going back to that reasoning isn't cruelty. It's memory.</p>
-      <p>And if you do cave — which happens, and which doesn't make you a failure — the next step isn't shame. It's returning to the limit as soon as you can. If you need a fuller reset, here's <a href="/blog/caved-on-boundary-how-to-reset-addiction-family">how to reset after you've caved on a limit</a>. Slipping isn't the same as quitting.</p>
+      <p>And if you do cave — which happens, and which doesn't make you a failure — the next step isn't shame. It's returning to the limit as soon as you can. If you need a fuller reset, here's <a href="/articles/what-to-do-when-addicted-loved-one-breaks-boundaries">how to reset after you've caved on a limit</a>. Slipping isn't the same as quitting.</p>
 
       <h2>Holding Firm Is an Act of Love — Even When It Doesn't Feel Like It</h2>
       <p>Here is the thing that family members almost never hear early enough: holding a limit with an addicted loved one is one of the more loving things you can do.</p>

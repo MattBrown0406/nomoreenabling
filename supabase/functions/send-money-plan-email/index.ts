@@ -14,6 +14,13 @@ import { Resend } from "https://esm.sh/resend@2.0.0";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
@@ -53,7 +60,7 @@ const LESSONS: Lesson[] = [
     subject: "Day 2: The exact script for the next money request",
     html: (firstName) =>
       shell("Day 2", `
-        <h2 style="font-size: 22px;">${firstName ? `${firstName}, the` : "The"} next request is coming.</h2>
+        <h2 style="font-size: 22px;">${firstName ? `${escapeHtml(firstName)}, the` : "The"} next request is coming.</h2>
         <p>You know it is. Maybe tonight, maybe next month — but the phone will ring, and the ask will come wrapped in an emergency. Yesterday you learned to pause. Today you get the words for what comes after the pause.</p>
         <h3 style="color: #932a2a; margin-top: 26px;">The script</h3>
         ${quote("I love you, and I'm not giving cash anymore. If you want help with treatment, an assessment, or a ride to a meeting, I'm all in — today. But I won't fund anything else while the addiction is running the show.")}
@@ -71,7 +78,7 @@ const LESSONS: Lesson[] = [
     html: (firstName) =>
       shell("Day 3", `
         <h2 style="font-size: 22px;">"No more cash" doesn't mean "no more help."</h2>
-        <p>${firstName ? `${firstName}, this` : "This"} is the part most families never hear: stopping the money is only half the move. The other half is redirecting it — because your instinct to help is not the problem. Where the help lands is.</p>
+        <p>${firstName ? `${escapeHtml(firstName)}, this` : "This"} is the part most families never hear: stopping the money is only half the move. The other half is redirecting it — because your instinct to help is not the problem. Where the help lands is.</p>
         <h3 style="color: #932a2a; margin-top: 26px;">The green-light list</h3>
         <p>Paid <em>directly to the provider</em>, never as cash through their hands:</p>
         <p>✅ A treatment program, detox bed, or clinical assessment<br>
@@ -94,7 +101,7 @@ const LESSONS: Lesson[] = [
     html: (firstName) =>
       shell("Day 4", `
         <h2 style="font-size: 22px;">A boundary only one parent holds isn't a boundary.</h2>
-        <p>It's a doorway — and the addiction will find it. ${firstName ? `${firstName}, if` : "If"} you say no and someone else in the family quietly says yes, nothing you've built this week survives. Grandma's "little bit to tide him over" undoes all of it.</p>
+        <p>It's a doorway — and the addiction will find it. ${firstName ? `${escapeHtml(firstName)}, if` : "If"} you say no and someone else in the family quietly says yes, nothing you've built this week survives. Grandma's "little bit to tide him over" undoes all of it.</p>
         <p>So today isn't about your loved one. It's about the meeting you need to have with the other adults — spouse, ex, grandparents, siblings.</p>
         <h3 style="color: #932a2a; margin-top: 26px;">How to have it</h3>
         <p><strong>Don't open with the rules. Open with the number.</strong> Show them what you calculated. Not as an accusation — as information the family has never actually looked at together.</p>
@@ -109,7 +116,7 @@ const LESSONS: Lesson[] = [
     subject: "Day 5: When it's time for more than a plan",
     html: (firstName) =>
       shell("Day 5", `
-        <h2 style="font-size: 22px;">${firstName ? `${firstName}, let's` : "Let's"} be honest about what this week was.</h2>
+        <h2 style="font-size: 22px;">${firstName ? `${escapeHtml(firstName)}, let's` : "Let's"} be honest about what this week was.</h2>
         <p>The Pause Rule, the script, the green-light list, the family agreement — those will stop the bleed. For some families, that shift alone changes everything: the addiction runs out of easy fuel, and the person you love starts feeling the weight of their own choices for the first time in years.</p>
         <p>And for some families, it surfaces the truth: the money was never the real problem. It was the part of the problem you could measure.</p>
         <h3 style="color: #932a2a; margin-top: 26px;">Signs it's time for more</h3>
@@ -186,8 +193,12 @@ serve(async (req) => {
         if (emailResponse.error) throw new Error(JSON.stringify(emailResponse.error));
 
 
-        const nextEmailAt = new Date();
-        nextEmailAt.setDate(nextEmailAt.getDate() + 1);
+        // Anchor the next send to the SCHEDULED time, not the actual send
+        // time. Using "now" pushes next_email_at a few seconds past the daily
+        // cron tick, so every enrollment silently skipped a day.
+        const scheduledAt = enrollment.next_email_at ? new Date(enrollment.next_email_at) : new Date();
+        const nextEmailAt = new Date(Number.isNaN(scheduledAt.getTime()) ? Date.now() : scheduledAt.getTime());
+        nextEmailAt.setUTCDate(nextEmailAt.getUTCDate() + 1);
         const isLast = lessonIndex === LESSONS.length - 1;
 
         await supabase

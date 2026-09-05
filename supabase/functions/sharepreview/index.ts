@@ -33,6 +33,13 @@ serve(async (req: Request) => {
       }
     }
 
+    if (slug && !/^[a-z0-9-]{1,160}$/.test(slug)) {
+      return new Response(JSON.stringify({ error: "Invalid slug" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     if (!slug) {
       return new Response(JSON.stringify({ error: "Missing slug parameter" }), {
         status: 400,
@@ -85,7 +92,7 @@ serve(async (req: Request) => {
   <meta name="twitter:description" content="${escapeHtml(data.description)}" />
   <meta name="twitter:image" content="${escapeHtml(imageUrl)}" />
   <meta http-equiv="refresh" content="0; url=${escapeHtml(articleUrl)}" />
-  <script>window.location.replace("${articleUrl}");</script>
+  <script>window.location.replace(${JSON.stringify(articleUrl)});</script>
 </head>
 <body>
   <p>Redirecting to <a href="${escapeHtml(articleUrl)}">${escapeHtml(data.title)}</a>...</p>

@@ -5,6 +5,13 @@ import { enqueueSpineEvent } from "../_shared/spine.ts";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
@@ -79,7 +86,7 @@ const COURSE_INFO = {
         </div>
         
         <h2 style="font-size: 22px; color: #1a1a1a; margin-bottom: 20px;">
-          ${firstName ? `Welcome, ${firstName}!` : 'Welcome!'}
+          ${firstName ? `Welcome, ${escapeHtml(firstName)}!` : 'Welcome!'}
         </h2>
         
         <p>You've just taken an important step.</p>
@@ -137,7 +144,7 @@ const COURSE_INFO = {
           <p style="color: #888; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;">The Money Plan · Day 1 of 5</p>
         </div>
 
-        <h2 style="font-size: 22px; margin-bottom: 20px;">${firstName ? `${firstName}, you` : 'You'} just looked at a hard number.</h2>
+        <h2 style="font-size: 22px; margin-bottom: 20px;">${firstName ? `${escapeHtml(firstName)}, you` : 'You'} just looked at a hard number.</h2>
 
         <p>Most families never add it up. You did. That takes more courage than it sounds like — and it means you're ready for what comes next.</p>
 
@@ -253,10 +260,12 @@ serve(async (req) => {
 
     await supabase.from('course_enroll_attempts').insert({ ip });
     // Opportunistic pruning keeps the table tiny; failures are harmless.
-    void supabase
+    // (A PostgrestBuilder only runs when awaited — `void` never executed it.)
+    const { error: pruneError } = await supabase
       .from('course_enroll_attempts')
       .delete()
       .lt('created_at', new Date(Date.now() - 6 * RATE_LIMIT_WINDOW_MS).toISOString());
+    if (pruneError) console.warn('course-enroll: prune failed:', pruneError.message);
 
     console.log(`Processing course enrollment for: ${sanitizedEmail}, course: ${course_name}`);
 
@@ -278,9 +287,11 @@ serve(async (req) => {
     if (error) {
       if (error.code === '23505') {
         console.log('Already enrolled:', sanitizedEmail);
+        // 200 rather than 409: supabase.functions.invoke() turns non-2xx into
+        // an error with data=null, so the client could never read this flag.
         return new Response(
-          JSON.stringify({ error: 'already_enrolled' }),
-          { status: 409, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+          JSON.stringify({ success: true, already_enrolled: true }),
+          { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         );
       }
       console.error('Database error:', error.message);

@@ -103,7 +103,11 @@ export const AdminCrmPanel = () => {
 
   const toggleSelect = (id: string) => {
     const s = new Set(selectedIds);
-    s.has(id) ? s.delete(id) : s.add(id);
+    if (s.has(id)) {
+      s.delete(id);
+    } else {
+      s.add(id);
+    }
     setSelectedIds(s);
   };
 

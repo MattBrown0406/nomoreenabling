@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
+import { friendlyInvokeError, readInvokeError } from "@/lib/invokeError";
 import { trackGAConversion } from "@/lib/gaConversions";
 import NewsletterTurnstile from "./NewsletterTurnstile";
 import useNewsletterTurnstile from "@/hooks/useNewsletterTurnstile";
@@ -47,22 +48,23 @@ const PostSubmitSubscribe = ({ source, defaultEmail = "", defaultFirstName = "" 
           turnstile_token: turnstileToken,
         },
       });
-      if (error && data?.error !== "already_subscribed") throw error;
+      if (error) throw error;
       setSubscribed(true);
       void trackFunnelEvent("email_capture_success", {
         source: `post_submit_${source}`,
-        metadata: { placement: source, alreadySubscribed: data?.error === "already_subscribed" },
+        metadata: { placement: source, alreadySubscribed: data?.status === "already_subscribed" },
       });
       trackGAConversion("newsletter_signup", { placement: `post_submit_${source}` });
       toast({
         title: "Check your inbox to confirm.",
         description: "You will join the list after clicking the confirmation link.",
       });
-    } catch {
+    } catch (err) {
       resetTurnstile();
+      const serverMessage = friendlyInvokeError(await readInvokeError(err));
       toast({
         title: "Could not subscribe",
-        description: "Please try from the newsletter box on the homepage.",
+        description: serverMessage ?? "Please try from the newsletter box on the homepage.",
         variant: "destructive",
       });
     } finally {

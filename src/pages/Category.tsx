@@ -27,6 +27,12 @@ const Category = () => {
   
   const categoryName = useMemo(() => {
     if (!slug) return "";
+    // Use the real category label from the data so hyphenated names
+    // ("Self-Care") and conjunctions ("Crisis and Safety") render correctly.
+    const match = blogPostsMeta
+      .flatMap((post) => post.categories)
+      .find((category) => category.toLowerCase().replace(/\s+/g, "-") === slug.toLowerCase());
+    if (match) return match;
     return slug
       .split("-")
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))

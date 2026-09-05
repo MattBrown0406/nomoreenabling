@@ -124,6 +124,8 @@ const ConsultationRequestForm = ({
           lead_tier: leadScore.tier,
           lead_reasons: leadScore.reasons,
           page_path: typeof window === "undefined" ? null : window.location.pathname,
+          hp_field: honeypot,
+          form_ms: Date.now() - loadedAt.current,
         },
       });
 

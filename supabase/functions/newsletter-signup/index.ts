@@ -110,7 +110,12 @@ const isDisposableEmail = (email: string): boolean => {
   return domain ? DISPOSABLE_DOMAINS.has(domain) : false;
 };
 
-type MailchimpOptInResult = 'pending_confirmation' | 'already_subscribed_or_pending';
+type MailchimpOptInResult = 'pending_confirmation' | 'already_subscribed' | 'already_pending';
+
+const md5Hex = async (value: string): Promise<string> => {
+  const digest = await crypto.subtle.digest('MD5', new TextEncoder().encode(value));
+  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
+};
 
 const mailchimpRequest = async (
   url: string,
@@ -131,7 +136,7 @@ const requestMailchimpDoubleOptIn = async (
   email: string,
   firstName: string | null,
   tags: string[] = [],
-): Promise<MailchimpOptInResult> => {
+): Promise<{ status: MailchimpOptInResult; memberId: string | null }> => {
   const apiKey = Deno.env.get('MAILCHIMP_API_KEY');
   const audienceId = Deno.env.get('MAILCHIMP_AUDIENCE_ID');
   if (!apiKey || !audienceId) throw new Error('Mailchimp credentials are not configured');
@@ -151,11 +156,29 @@ const requestMailchimpDoubleOptIn = async (
     method: 'POST',
     body: JSON.stringify(subscriberData),
   });
-  if (response.ok) return 'pending_confirmation';
+  if (response.ok) return { status: 'pending_confirmation', memberId: null };
 
   const data = await response.json().catch(() => ({})) as { title?: string };
   if (response.status === 400 && data.title === 'Member Exists') {
-    return 'already_subscribed_or_pending';
+    // Mailchimp will not re-send a confirmation to an existing member, so the
+    // confirmed-subscribe webhook never fires. Look the member up so an
+    // already-confirmed subscriber can be finalized directly.
+    const memberUrl = `${url}/${await md5Hex(email.toLowerCase())}`;
+    const memberResponse = await mailchimpRequest(memberUrl, apiKey, { method: 'GET' });
+    if (memberResponse.ok) {
+      const member = await memberResponse.json().catch(() => ({})) as { id?: string; status?: string };
+      if (member.status === 'subscribed') {
+        if (tags.length > 0) {
+          // Best effort: keep segmentation tags current for existing members.
+          await mailchimpRequest(`${memberUrl}/tags`, apiKey, {
+            method: 'POST',
+            body: JSON.stringify({ tags: tags.map((name) => ({ name, status: 'active' })) }),
+          }).catch(() => undefined);
+        }
+        return { status: 'already_subscribed', memberId: member.id ?? null };
+      }
+    }
+    return { status: 'already_pending', memberId: null };
   }
 
   throw new Error(`Mailchimp pending member creation failed with ${response.status}`);
@@ -295,17 +318,30 @@ serve(async (req) => {
       );
     if (attemptError) throw attemptError;
 
-    const optInStatus = await requestMailchimpDoubleOptIn(
+    const optIn = await requestMailchimpDoubleOptIn(
       sanitizedEmail,
       sanitizedFirstName,
       mailchimpTags,
     );
 
+    if (optIn.status === 'already_subscribed') {
+      // Already confirmed in Mailchimp: run the same finalization the webhook
+      // would, so lead magnet / assessment records and the spine event land.
+      const { error: finalizeError } = await supabase.rpc('finalize_confirmed_newsletter_optin', {
+        p_email: sanitizedEmail,
+        p_first_name: sanitizedFirstName,
+        p_mailchimp_member_id: optIn.memberId,
+      });
+      if (finalizeError) {
+        console.error('finalize_confirmed_newsletter_optin failed for existing member:', finalizeError.message);
+      }
+    }
+
     return new Response(
       JSON.stringify({
         success: true,
-        status: optInStatus,
-        confirmation_required: optInStatus === 'pending_confirmation',
+        status: optIn.status,
+        confirmation_required: optIn.status === 'pending_confirmation',
       }),
       { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );

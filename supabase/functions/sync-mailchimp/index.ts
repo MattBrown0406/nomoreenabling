@@ -12,6 +12,40 @@ serve(async (req) => {
   }
 
   try {
+    // Admin-only: this function reads every subscriber and pushes them to
+    // Mailchimp. verify_jwt alone is not enough (the public anon key is a JWT).
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader) {
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+    const token = authHeader.replace('Bearer ', '').trim();
+    const { data: userData, error: userError } = await supabase.auth.getUser(token);
+    if (userError || !userData.user) {
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+    const { data: roleData } = await supabase
+      .from('user_roles')
+      .select('role')
+      .eq('user_id', userData.user.id)
+      .eq('role', 'admin')
+      .maybeSingle();
+    if (!roleData) {
+      return new Response(
+        JSON.stringify({ error: 'Forbidden: Admin access required' }),
+        { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
     const apiKey = Deno.env.get('MAILCHIMP_API_KEY');
     const audienceId = Deno.env.get('MAILCHIMP_AUDIENCE_ID');
 
@@ -21,10 +55,6 @@ serve(async (req) => {
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
-
-    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
     // Fetch all active subscribers
     const { data: subscribers, error: fetchError } = await supabase
@@ -83,7 +113,7 @@ serve(async (req) => {
           console.log(`Already exists: ${subscriber.email}`);
         } else {
           errorCount++;
-          errors.push(`${subscriber.email}: ${data.detail || 'Unknown error'}`);
+          errors.push(data.detail || 'Unknown error');
           console.error(`Failed: ${subscriber.email}`, data);
         }
 
@@ -92,7 +122,7 @@ serve(async (req) => {
       } catch (error: unknown) {
         errorCount++;
         const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-        errors.push(`${subscriber.email}: ${errorMessage}`);
+        errors.push(errorMessage);
         console.error(`Error syncing ${subscriber.email}:`, error);
       }
     }
@@ -104,7 +134,7 @@ serve(async (req) => {
         success: true, 
         synced: syncedCount, 
         errors: errorCount,
-        errorDetails: errors.slice(0, 10) // Return first 10 errors
+        errorDetails: errors.slice(0, 10) // Return first 10 errors (no addresses)
       }),
       { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );

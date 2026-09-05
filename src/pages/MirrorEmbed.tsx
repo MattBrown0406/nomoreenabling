@@ -17,7 +17,6 @@ const MirrorEmbed = () => {
       <SEOHead
         title="The Enabling Mirror (embed)"
         description="Embeddable interactive diagram of the enabling cycle in families affected by addiction."
-        canonicalUrl="https://nomoreenabling.com/the-mirror"
         noindex
       />
       <EnablingMirror key={lang} lang={lang} embedMode showAttribution showLanguageToggle />

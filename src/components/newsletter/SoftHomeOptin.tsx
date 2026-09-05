@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
+import { friendlyInvokeError, readInvokeError } from "@/lib/invokeError";
 import { trackGAConversion } from "@/lib/gaConversions";
 import NewsletterTurnstile from "./NewsletterTurnstile";
 import useNewsletterTurnstile from "@/hooks/useNewsletterTurnstile";
@@ -47,7 +48,7 @@ const SoftHomeOptin = () => {
           turnstile_token: turnstileToken,
         },
       });
-      if (error && data?.error !== "already_subscribed") throw error;
+      if (error) throw error;
       setDone(true);
       void trackFunnelEvent("email_capture_success", {
         source: "home_soft_optin",
@@ -58,11 +59,12 @@ const SoftHomeOptin = () => {
         title: "Check your inbox to confirm.",
         description: "You will join the list after clicking the confirmation link.",
       });
-    } catch {
+    } catch (err) {
       resetTurnstile();
+      const serverMessage = friendlyInvokeError(await readInvokeError(err));
       toast({
-        title: "Something went wrong",
-        description: "Please try again in a moment.",
+        title: serverMessage ? "Could not subscribe" : "Something went wrong",
+        description: serverMessage ?? "Please try again in a moment.",
         variant: "destructive",
       });
     } finally {

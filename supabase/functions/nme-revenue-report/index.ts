@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { fetchAllRows } from "../_shared/paginate.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -67,13 +68,23 @@ serve(async (req) => {
     const windowDays = 30;
     const since = new Date(Date.now() - windowDays * 24 * 60 * 60 * 1000).toISOString();
 
-    const [eventsRes, consultRes, advRes] = await Promise.all([
-      supabase
-        .from("funnel_events")
-        .select("event_name, page_path, target_href, offer_slug, metadata, created_at")
-        .gte("created_at", since)
-        .order("created_at", { ascending: false })
-        .limit(10000),
+    // `.limit(10000)` is silently capped at PostgREST max-rows (1000), so
+    // page through instead or every tally is wrong past 1000 events.
+    const [events, consultRes, advRes] = await Promise.all([
+      fetchAllRows<{
+        event_name: string | null;
+        page_path: string | null;
+        target_href: string | null;
+        offer_slug: string | null;
+        metadata: Record<string, unknown> | null;
+        created_at: string;
+      }>(() =>
+        supabase
+          .from("funnel_events")
+          .select("event_name, page_path, target_href, offer_slug, metadata, created_at")
+          .gte("created_at", since)
+          .order("created_at", { ascending: false })
+      ),
       supabase
         .from("consultation_leads")
         .select("id", { count: "exact", head: true })
@@ -84,9 +95,6 @@ serve(async (req) => {
         .gte("created_at", since),
     ]);
 
-    if (eventsRes.error) throw eventsRes.error;
-
-    const events = eventsRes.data ?? [];
 
     let pageViews = 0;
     let revenueIntent = 0;
@@ -98,7 +106,7 @@ serve(async (req) => {
     for (const e of events) {
       const name = (e.event_name ?? "").toLowerCase();
       eventNames.push(e.event_name ?? "unknown");
-      pages.push(e.page_path ?? null as any);
+      pages.push(e.page_path ?? null);
       dests.push(extractDestination(e as Record<string, unknown>));
 
       const blob = `${name} ${(e.target_href ?? "")} ${(e.offer_slug ?? "")} ${JSON.stringify(e.metadata ?? {})}`.toLowerCase();
