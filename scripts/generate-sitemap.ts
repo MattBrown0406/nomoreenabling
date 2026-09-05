@@ -11,39 +11,9 @@
 
 const DOMAIN = "https://nomoreenabling.com";
 
-const answerPages = [
-  "helping-or-enabling",
-  "stop-enabling-without-abandoning",
-  "first-boundary",
-  "boundary-broken",
-  "money-help",
-  "pay-rent",
-  "adult-child-home",
-  "refuses-treatment",
-  "intervention-needed",
-  "alcohol-minimized",
-  "spouse-addiction",
-  "relapse-response",
-  "after-rehab-boundaries",
-  "codependency-definition",
-  "professional-guidance",
-  "family-assessment",
-  "am-i-enabling-adult-child",
-  "should-i-kick-addicted-child-out",
-  "spouse-wont-stop-drinking",
-  "stop-giving-money",
-  "using-drugs-in-my-house",
-  "call-an-interventionist",
-  "what-to-say-refuses-rehab",
-  "family-disagrees-boundaries",
-  "two-households",
-  "boundaries-vs-ultimatums",
-  "loved-one-overdosed-what-now",
-  "family-meeting-before-confronting-addiction",
-  "treatment-bed-ready-refuses-to-go",
-  "addiction-affecting-children-home",
-  "how-fast-should-family-act-addiction-crisis",
-];
+// Derived from the same data the router and prerenderer use, so a new answer
+// or glossary entry can never be prerendered yet missing from the sitemap.
+import { answerDetailPaths, glossaryTermPaths } from "../src/data/aeoAnswers";
 
 export interface SitemapArticle {
   slug: string;
@@ -76,20 +46,9 @@ export const staticPages: { path: string; priority: string; changefreq: string }
   { path: "/articles", priority: "0.9", changefreq: "weekly" },
   { path: "/topic-hubs", priority: "0.85", changefreq: "monthly" },
   { path: "/answers", priority: "0.95", changefreq: "monthly" },
-  ...answerPages.map((slug) => ({ path: `/answers/${slug}`, priority: "0.85", changefreq: "monthly" })),
+  ...answerDetailPaths.map((path) => ({ path, priority: "0.85", changefreq: "monthly" })),
   { path: "/glossary", priority: "0.85", changefreq: "monthly" },
-  { path: "/glossary/enabling", priority: "0.8", changefreq: "monthly" },
-  { path: "/glossary/boundary", priority: "0.8", changefreq: "monthly" },
-  { path: "/glossary/codependency", priority: "0.8", changefreq: "monthly" },
-  { path: "/glossary/treatment-refusal", priority: "0.8", changefreq: "monthly" },
-  { path: "/glossary/intervention", priority: "0.8", changefreq: "monthly" },
-  { path: "/glossary/financial-enabling", priority: "0.8", changefreq: "monthly" },
-  { path: "/glossary/emotional-enabling", priority: "0.8", changefreq: "monthly" },
-  { path: "/glossary/natural-consequence", priority: "0.8", changefreq: "monthly" },
-  { path: "/glossary/family-system", priority: "0.8", changefreq: "monthly" },
-  { path: "/glossary/family-addiction-coaching", priority: "0.8", changefreq: "monthly" },
-  { path: "/glossary/recovery-support", priority: "0.8", changefreq: "monthly" },
-  { path: "/glossary/crisis-support", priority: "0.8", changefreq: "monthly" },
+  ...glossaryTermPaths.map((path) => ({ path, priority: "0.8", changefreq: "monthly" })),
   { path: "/about", priority: "0.8", changefreq: "monthly" },
   { path: "/advertise", priority: "0.7", changefreq: "monthly" },
   { path: "/advertise/media-kit", priority: "0.7", changefreq: "monthly" },

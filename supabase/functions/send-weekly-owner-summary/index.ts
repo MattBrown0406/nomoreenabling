@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { fetchAllRows } from "../_shared/paginate.ts";
 import { Resend } from "https://esm.sh/resend@2.0.0";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
@@ -182,9 +183,28 @@ serve(async (req) => {
     }
 
     const body = req.method === "POST" ? await req.json().catch(() => ({})) : {};
-    const periodEndDate = body.periodEnd ? new Date(body.periodEnd) : new Date();
-    const periodStartDate = body.periodStart ? new Date(body.periodStart) : new Date(periodEndDate);
-    if (!body.periodStart) periodStartDate.setDate(periodStartDate.getDate() - 7);
+    const parseDate = (value: unknown): Date | null => {
+      if (typeof value !== "string" || !value.trim()) return null;
+      const parsed = new Date(value);
+      return Number.isNaN(parsed.getTime()) ? null : parsed;
+    };
+    const requestedEnd = parseDate(body.periodEnd);
+    const requestedStart = parseDate(body.periodStart);
+    if ((body.periodEnd && !requestedEnd) || (body.periodStart && !requestedStart)) {
+      return new Response(
+        JSON.stringify({ error: "periodStart/periodEnd must be valid ISO dates" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
+    }
+    const periodEndDate = requestedEnd ?? new Date();
+    const periodStartDate = requestedStart ?? new Date(periodEndDate);
+    if (!requestedStart) periodStartDate.setDate(periodStartDate.getDate() - 7);
+    if (periodStartDate >= periodEndDate) {
+      return new Response(
+        JSON.stringify({ error: "periodStart must be before periodEnd" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
+    }
 
     const periodStart = periodStartDate.toISOString();
     const periodEnd = periodEndDate.toISOString();
@@ -240,12 +260,16 @@ serve(async (req) => {
         .select("page_path, source")
         .gte("created_at", periodStart)
         .lt("created_at", periodEnd),
-      supabase
-        .from("funnel_events")
-        .select("event_name, page_path, metadata")
-        .gte("created_at", periodStart)
-        .lt("created_at", periodEnd)
-        .in("event_name", ["answer_question_submit", "answer_page_view", "answer_page_click", "official_resource_click"]),
+      // Paged: PostgREST caps unpaged selects at 1000 rows.
+      fetchAllRows<{ event_name: string; page_path: string | null; metadata: unknown }>(() =>
+        supabase
+          .from("funnel_events")
+          .select("event_name, page_path, metadata")
+          .gte("created_at", periodStart)
+          .lt("created_at", periodEnd)
+          .in("event_name", ["answer_question_submit", "answer_page_view", "answer_page_click", "official_resource_click"])
+          .order("created_at", { ascending: true })
+      ).then((data) => ({ data, error: null as null })),
       supabase
         .from("advertiser_inquiries")
         .select("name, email, company, sponsor_type, monthly_budget, pipeline_status, next_action, created_at")

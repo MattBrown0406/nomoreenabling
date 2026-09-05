@@ -114,7 +114,10 @@ try {
     readTime: post.readTime,
     date: post.date,
     url: `https://nomoreenabling.com/articles/${post.slug}`,
-    image: replaceAssetPaths(`https://nomoreenabling.com${String(post.image)}`, manifest),
+    // Some posts use an absolute (external) image URL; only prefix site-relative paths.
+    image: /^https?:\/\//i.test(String(post.image))
+      ? String(post.image)
+      : replaceAssetPaths(`https://nomoreenabling.com${String(post.image)}`, manifest),
   }));
   await fs.writeFile(
     path.join(distDir, "blog-feed.json"),

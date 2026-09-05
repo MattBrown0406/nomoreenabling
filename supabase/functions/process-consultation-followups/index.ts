@@ -66,7 +66,11 @@ const verifyAdmin = async (req: Request, supabase: ReturnType<typeof createClien
   if (automationSecret && requestedSecret === automationSecret) return true;
   if (!authHeader) return false;
 
-  const token = authHeader.replace("Bearer ", "");
+  const token = authHeader.replace("Bearer ", "").trim();
+  // pg_cron calls with the service-role key (same pattern as the other crons).
+  const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+  if (serviceKey && token === serviceKey) return true;
+
   const { data: userData, error: userError } = await supabase.auth.getUser(token);
 
   if (userError || !userData.user) return false;
@@ -127,16 +131,24 @@ serve(async (req) => {
             leadState?.followups_paused_at ||
             ["booked", "closed", "lost"].includes(leadState?.pipeline_status || "")
           ) {
+            // Mark it skipped so it stops being re-fetched every run and stops
+            // counting as a "due" follow-up in the owner summary.
+            await supabase
+              .from("consultation_followup_queue")
+              .update({ skipped_at: now })
+              .eq("id", followup.id);
             continue;
           }
         }
 
-        await resend.emails.send({
+        // resend@2 resolves { data, error } instead of throwing on API errors.
+        const { error: sendError } = await resend.emails.send({
           from: "No More Enabling <contact@nomoreenabling.com>",
           to: [followup.email],
           subject: followup.subject,
           html: renderEmail(followup),
         });
+        if (sendError) throw new Error(sendError.message || JSON.stringify(sendError));
 
         await supabase
           .from("consultation_followup_queue")

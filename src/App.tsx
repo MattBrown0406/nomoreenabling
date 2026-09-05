@@ -46,6 +46,7 @@ import NotFound from "./pages/NotFound";
 import ContactFormWidget from "@/components/ContactFormWidget";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import SocialShareUrlGuard from "@/components/SocialShareUrlGuard";
+import ScrollToTop from "@/components/ScrollToTop";
 import {
   legacyPageRedirects,
   resolveLegacyArticleSlug,
@@ -59,6 +60,7 @@ const LegacyArticleRedirect = () => {
 export const AppRoutes = () => (
   <>
     <GoogleAnalytics />
+    <ScrollToTop />
     <SocialShareUrlGuard />
     <OrganizationJsonLd />
     <ContactFormWidget />
@@ -140,9 +142,10 @@ export const AppRoutes = () => (
   </>
 );
 
-export const AppShell = ({ router }: { router: ReactNode }) => {
-  const queryClient = new QueryClient();
+// Module scope so a re-render of the shell can never discard the query cache.
+const queryClient = new QueryClient();
 
+export const AppShell = ({ router }: { router: ReactNode }) => {
   return (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>

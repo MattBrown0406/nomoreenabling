@@ -63,7 +63,7 @@ export default `<p>Most conversations about enabling focus on the person with th
 
 <p>One of the most common mistakes families make when they first learn about enabling is trying to stop all of it immediately. They draw hard lines, issue ultimatums, and then collapse under the weight of guilt when their loved one suffers a consequence. The cycle continues.</p>
 
-<p>The more honest starting point is awareness. Before you change behavior, it helps to <a href="/blog/holding-boundaries-addicted-loved-one-guilt">see it clearly — to name what you've been doing</a>, understand why, and recognize what it's cost you. Not with self-punishment, but with honesty.</p>
+<p>The more honest starting point is awareness. Before you change behavior, it helps to <a href="/articles/holding-boundaries-addicted-loved-one-guilt">see it clearly — to name what you've been doing</a>, understand why, and recognize what it's cost you. Not with self-punishment, but with honesty.</p>
 
 <p>A few questions worth sitting with:</p>
 

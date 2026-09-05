@@ -36,10 +36,18 @@ const addLinkedInButton = () => {
   const shareLabel = Array.from(document.querySelectorAll("span"))
     .find((element) => element.textContent?.trim() === "Share:");
   const toolbar = shareLabel?.parentElement;
-  if (!toolbar || toolbar.querySelector("[data-nme-linkedin-share]")) return;
+  if (!toolbar) return;
+
+  const shareHref = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonicalUrl)}`;
+  const existing = toolbar.querySelector<HTMLAnchorElement>("[data-nme-linkedin-share]");
+  if (existing) {
+    // The toolbar DOM survives article-to-article navigation; keep the URL current.
+    if (existing.href !== shareHref) existing.href = shareHref;
+    return;
+  }
 
   const link = document.createElement("a");
-  link.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonicalUrl)}`;
+  link.href = shareHref;
   link.target = "_blank";
   link.rel = "noopener noreferrer";
   link.title = "Share on LinkedIn";

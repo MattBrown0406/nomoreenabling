@@ -6,6 +6,7 @@ import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import type { LeadMagnet } from "@/data/leadMagnets";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
+import { friendlyInvokeError, readInvokeError } from "@/lib/invokeError";
 import { trackGAConversion } from "@/lib/gaConversions";
 import { withOwnedUtm } from "@/lib/ownedLinks";
 import NewsletterTurnstile from "@/components/newsletter/NewsletterTurnstile";
@@ -94,7 +95,7 @@ const LeadMagnetCard = ({ magnet, source, articleSlug, hubSlug, compact = false 
         source: "lead_magnet",
         articleSlug,
         targetHref: magnet.slug,
-        metadata: { ...eventMetadata, alreadySubscribed: data?.error === "already_subscribed" },
+        metadata: { ...eventMetadata, alreadySubscribed: data?.status === "already_subscribed" },
       });
 
       trackGAConversion("lead_magnet_signup", {
@@ -110,18 +111,19 @@ const LeadMagnetCard = ({ magnet, source, articleSlug, hubSlug, compact = false 
         targetHref: magnet.slug,
         metadata: eventMetadata,
       });
-    } catch {
+    } catch (err) {
       resetTurnstile();
+      const serverMessage = friendlyInvokeError(await readInvokeError(err));
       void trackFunnelEvent("email_capture_failure", {
         source: "lead_magnet",
         articleSlug,
         targetHref: magnet.slug,
-        metadata: eventMetadata,
+        metadata: { ...eventMetadata, reason: serverMessage },
       });
 
       toast({
-        title: "Something went wrong",
-        description: "Please try again in a moment.",
+        title: serverMessage ? "Could not subscribe" : "Something went wrong",
+        description: serverMessage ?? "Please try again in a moment.",
         variant: "destructive",
       });
     } finally {

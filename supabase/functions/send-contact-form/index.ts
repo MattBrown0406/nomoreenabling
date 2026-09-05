@@ -32,6 +32,83 @@ const sanitizeJsonArray = (value: unknown): string[] => {
     .slice(0, 6);
 };
 
+// Server-side bot guard. The React forms already enforce a honeypot and a
+// minimum dwell time, but anything can POST straight to this function, and
+// every accepted request emails Matt, emails the requester, queues two
+// follow-up emails, and pushes a lead to HubSpot. `form_ms` is only enforced
+// when present so bundles cached before this change keep working.
+const MIN_FORM_MS = 2500;
+const MAX_FORM_MS = 6 * 60 * 60 * 1000;
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+
+const looksLikeHumanSubmission = (payload: Record<string, unknown>): boolean => {
+  const honeypot = payload.hp_field;
+  if (typeof honeypot === "string" && honeypot.trim() !== "") return false;
+  if (payload.form_ms !== undefined) {
+    const formMs = Number(payload.form_ms);
+    if (!Number.isFinite(formMs) || formMs < MIN_FORM_MS || formMs > MAX_FORM_MS) return false;
+  }
+  return true;
+};
+
+const clientIp = (req: Request): string =>
+  req.headers.get("cf-connecting-ip") ||
+  req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+  "unknown";
+
+// Mirror of src/lib/leadScoring.ts. The client still sends its score for
+// display, but the stored/emailed tier is computed here so a caller cannot
+// mark themselves "priority".
+const includesAny = (value: string, terms: string[]) => terms.some((term) => value.includes(term));
+
+const scoreLead = (input: {
+  source?: string | null;
+  relationship?: string | null;
+  concern?: string | null;
+  treatmentHistory?: string | null;
+  urgency?: string | null;
+  message?: string | null;
+  leadIntent?: string | null;
+  pagePath?: string | null;
+}) => {
+  const haystack = [
+    input.source, input.relationship, input.concern, input.treatmentHistory,
+    input.urgency, input.message, input.leadIntent, input.pagePath,
+  ].filter(Boolean).join(" ").toLowerCase();
+
+  let score = 20;
+  const reasons: string[] = [];
+  if (includesAny(haystack, ["safety", "unsafe", "violence", "threat", "911", "overdose", "suicide", "self-harm", "driving"])) {
+    score += 35; reasons.push("Safety or crisis language");
+  }
+  if (includesAny(haystack, ["intervention", "refuses", "refusal", "refuse", "won't go", "will not go", "treatment resistance"])) {
+    score += 25; reasons.push("Treatment refusal or intervention intent");
+  }
+  if (includesAny(haystack, ["adult child", "son", "daughter", "spouse", "husband", "wife", "partner"])) {
+    score += 12; reasons.push("Close family decision-maker");
+  }
+  if (includesAny(haystack, ["relapse", "rehab", "detox", "treatment", "outpatient", "sober living"])) {
+    score += 10; reasons.push("Treatment history or recovery transition");
+  }
+  if (includesAny(haystack, ["money", "rent", "bills", "housing", "legal", "stealing", "theft"])) {
+    score += 10; reasons.push("Consequences affecting money, housing, or safety");
+  }
+  if (includesAny(haystack, ["getting worse", "soon", "urgent", "escalating", "considering a professional intervention"])) {
+    score += 10; reasons.push("Time-sensitive language");
+  }
+  if (includesAny(haystack, ["consultation", "work-with-matt", "intervention-help", "alcohol-intervention", "family-addiction-consultation"])) {
+    score += 8; reasons.push("High-intent page source");
+  }
+  const normalizedScore = Math.max(0, Math.min(score, 100));
+  const tier: "priority" | "warm" | "nurture" = normalizedScore >= 70 ? "priority" : normalizedScore >= 45 ? "warm" : "nurture";
+  return {
+    score: normalizedScore,
+    tier,
+    reasons: reasons.length ? reasons.slice(0, 4) : ["General family support request"],
+  };
+};
+
 const escapeHtml = (value: string) =>
   value
     .replace(/&/g, "&amp;")
@@ -145,8 +222,23 @@ serve(async (req) => {
       throw new Error("RESEND_API_KEY is not configured");
     }
 
-    const payload = await req.json();
+    const payload = await req.json().catch(() => null);
+    if (!payload || typeof payload !== "object") {
+      return new Response(JSON.stringify({ error: "Invalid body" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
     const { name, email, message } = payload;
+
+    // Honeypot / dwell-time failures get a fake success so bots learn nothing.
+    if (!looksLikeHumanSubmission(payload)) {
+      console.log("send-contact-form: bot guard tripped, dropping silently");
+      return new Response(JSON.stringify({ success: true }), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     // Validation
     if (!name || typeof name !== "string" || name.trim().length === 0 || name.length > 100) {
@@ -173,9 +265,6 @@ serve(async (req) => {
     const safeEmail = email.trim().toLowerCase();
     const safeMessage = message.trim().replace(/[<>]/g, "");
     const source = sanitizeText(payload.source, 120) || "contact-form";
-    const leadScore = sanitizeNumber(payload.lead_score) ?? 20;
-    const leadTier = sanitizeText(payload.lead_tier, 40) || "nurture";
-    const leadReasons = sanitizeJsonArray(payload.lead_reasons);
     const leadIntent = sanitizeText(payload.lead_intent, 120);
     const phone = sanitizeText(payload.phone, 80);
     const relationship = sanitizeText(payload.relationship, 120);
@@ -184,9 +273,36 @@ serve(async (req) => {
     const urgency = sanitizeText(payload.urgency, 240);
     const pagePath = sanitizeText(payload.page_path, 500);
     const isQuestionIntake = source.includes("question-intake");
+
+    // Score server-side; never trust lead_score / lead_tier from the client.
+    const computedScore = isQuestionIntake
+      ? { score: sanitizeNumber(payload.lead_score) ?? 12, tier: "nurture", reasons: sanitizeJsonArray(payload.lead_reasons) }
+      : scoreLead({ source, relationship, concern, treatmentHistory, urgency, message: safeMessage, leadIntent, pagePath });
+    const leadScore = computedScore.score;
+    const leadTier = computedScore.tier;
+    const leadReasons = computedScore.reasons.length ? computedScore.reasons : ["General family support request"];
+
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
     const supabase = supabaseUrl && supabaseServiceKey ? createClient(supabaseUrl, supabaseServiceKey) : null;
+
+    // Per-IP rate limit (shares the course_enroll_attempts bucket table).
+    if (supabase) {
+      const ip = clientIp(req);
+      const windowStart = new Date(Date.now() - RATE_LIMIT_WINDOW_MS).toISOString();
+      const { count: recentAttempts } = await supabase
+        .from("course_enroll_attempts")
+        .select("id", { count: "exact", head: true })
+        .eq("ip", `contact:${ip}`)
+        .gte("created_at", windowStart);
+      if ((recentAttempts ?? 0) >= RATE_LIMIT_MAX) {
+        return new Response(JSON.stringify({ error: "Too many requests. Please try again in a few minutes." }), {
+          status: 429,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      await supabase.from("course_enroll_attempts").insert({ ip: `contact:${ip}` });
+    }
 
     if (supabase && source === "advertiser-inquiry") {
       const { error } = await supabase.from("advertiser_inquiries").insert({

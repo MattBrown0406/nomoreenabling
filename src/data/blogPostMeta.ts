@@ -1574,7 +1574,7 @@ export const blogPostsMeta: BlogPostMeta[] = [
     category: "Enabling",
     categories: ["Enabling", "Boundaries", "Codependency", "Family Dynamics", "Recovery"],
     readTime: "12 min read",
-    date: "2026-03-08",
+    date: "March 8, 2026",
     image: howToStopEnablingImage,
     slug: "how-to-stop-enabling-an-addict",
     metaTitle: "How to Stop Enabling an Addict, Family Guide | No More Enabling",

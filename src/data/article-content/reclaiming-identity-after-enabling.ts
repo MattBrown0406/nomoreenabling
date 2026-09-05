@@ -5,7 +5,7 @@ export default `
       <p>Reclaiming your identity after years of enabling is not a luxury or an act of selfishness. It is, in many ways, the most important thing you can do — for your own health and, counterintuitively, for your loved one too.</p>
 
       <h2>What Enabling Does to Your Sense of Self</h2>
-      <p><a href="/blog/what-is-enabling-in-addiction">Enabling</a> is more than just covering for someone or giving them money when you shouldn't. It's a relationship pattern — a way of organizing your inner world around another person's chaos.</p>
+      <p><a href="/articles/how-to-stop-enabling-an-addict">Enabling</a> is more than just covering for someone or giving them money when you shouldn't. It's a relationship pattern — a way of organizing your inner world around another person's chaos.</p>
       <p>Over time, that reorganization changes you. Your moods begin to track theirs. Your energy goes toward managing their consequences. Your decisions get filtered through a single question: <em>Will this make things worse for them?</em></p>
       <p>Psychologists call this <strong>enmeshment</strong> — when the emotional boundaries between you and another person dissolve to the point where you can no longer clearly distinguish your own needs, feelings, and identity from theirs. By the time most families recognize enabling, they're not just managing someone else's addiction. They've lost their own story.</p>
       <p>Common signs you've lost yourself in the enabling pattern:</p>
@@ -39,7 +39,7 @@ export default `
       <p>Reentry doesn't require explanation. It just requires showing up.</p>
 
       <h3>4. Get Support That's Actually for You</h3>
-      <p><a href="/blog/al-anon-for-families-of-addicts">Al-Anon</a> is a great starting point — especially for understanding the patterns and connecting with others who get it. But individual therapy, particularly with someone who specializes in family systems and codependency, can help you go deeper.</p>
+      <p><a href="/articles/al-anon-for-families-of-addicts">Al-Anon</a> is a great starting point — especially for understanding the patterns and connecting with others who get it. But individual therapy, particularly with someone who specializes in family systems and codependency, can help you go deeper.</p>
       <p>This is <em>your</em> recovery. Parallel to your loved one's, but separate from it. You deserve support designed specifically to help you get your life back.</p>
 
       <h2>The Identity Question Underneath All of It</h2>
@@ -51,7 +51,7 @@ export default `
       <h2>You Don't Have to Figure It Out All at Once</h2>
       <p>Reclaiming your identity after enabling is not a project with a deadline. It's a slow return. Some days you'll feel like yourself again. Other days you'll get pulled back into old patterns — and that's okay.</p>
       <p>What matters is that you stay in the process. That you treat your own healing with the same seriousness you've given everyone else's for so long.</p>
-      <p>You showed up for your loved one for years. It's time to show up for yourself. Practices like <a href="/blog/detaching-with-love-addiction-family">detaching with love</a> can help you stay connected to your loved one without losing yourself in their addiction.</p>
+      <p>You showed up for your loved one for years. It's time to show up for yourself. Practices like <a href="/articles/detaching-with-love-addiction-family">detaching with love</a> can help you stay connected to your loved one without losing yourself in their addiction.</p>
 
       <h2>Frequently Asked Questions</h2>
 

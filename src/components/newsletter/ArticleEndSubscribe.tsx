@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
+import { friendlyInvokeError, readInvokeError } from "@/lib/invokeError";
 import { trackGAConversion } from "@/lib/gaConversions";
 import SocialProofLine from "./SocialProofLine";
 import NewsletterTurnstile from "./NewsletterTurnstile";
@@ -62,29 +63,30 @@ const ArticleEndSubscribe = ({ articleSlug, category }: Props) => {
           turnstile_token: turnstileToken,
         },
       });
-      if (error && data?.error !== "already_subscribed") throw error;
+      if (error) throw error;
 
       setDone(true);
       void trackFunnelEvent("email_capture_success", {
         source: "article_end",
         articleSlug,
-        metadata: { placement: "article_end", alreadySubscribed: data?.error === "already_subscribed" },
+        metadata: { placement: "article_end", alreadySubscribed: data?.status === "already_subscribed" },
       });
       trackGAConversion("newsletter_signup", { placement: "article_end", article_slug: articleSlug });
       toast({
         title: "Check your inbox to confirm.",
         description: "You will join the list only after clicking Mailchimp’s confirmation link.",
       });
-    } catch {
+    } catch (err) {
       resetTurnstile();
+      const serverMessage = friendlyInvokeError(await readInvokeError(err));
       void trackFunnelEvent("email_capture_failure", {
         source: "article_end",
         articleSlug,
-        metadata: { placement: "article_end" },
+        metadata: { placement: "article_end", reason: serverMessage },
       });
       toast({
-        title: "Something went wrong",
-        description: "Please try again in a moment.",
+        title: serverMessage ? "Could not subscribe" : "Something went wrong",
+        description: serverMessage ?? "Please try again in a moment.",
         variant: "destructive",
       });
     } finally {

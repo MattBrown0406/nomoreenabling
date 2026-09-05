@@ -4,6 +4,13 @@ import { Resend } from "https://esm.sh/resend@2.0.0";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
@@ -126,9 +133,16 @@ serve(async (req) => {
     console.log(`Sending newsletter to ${subscribers.length} subscribers`);
 
     // Prepare from address
-    const fromAddress = from_email 
-      ? `${from_name || "No More Enabling"} <${from_email}>`
-      : "No More Enabling <onboarding@resend.dev>";
+    // onboarding@resend.dev only delivers to the Resend account owner, so a
+    // blast without from_email would fail for every subscriber. Only allow
+    // senders on the verified domain.
+    const safeFromEmail = typeof from_email === "string" && /^[a-z0-9._-]+@nomoreenabling\.com$/i.test(from_email.trim())
+      ? from_email.trim()
+      : "contact@nomoreenabling.com";
+    const safeFromName = typeof from_name === "string" && from_name.trim()
+      ? from_name.trim().replace(/[<>"\r\n]/g, "").slice(0, 80)
+      : "No More Enabling";
+    const fromAddress = `${safeFromName} <${safeFromEmail}>`;
 
     // Send emails to all subscribers
     const results = {
@@ -142,7 +156,7 @@ serve(async (req) => {
         // Personalize content if first_name is available
         let personalizedContent = safeHtmlContent;
         if (subscriber.first_name) {
-          personalizedContent = safeHtmlContent.replace(/{{first_name}}/g, subscriber.first_name);
+          personalizedContent = safeHtmlContent.replace(/{{first_name}}/g, escapeHtml(subscriber.first_name));
         } else {
           personalizedContent = safeHtmlContent.replace(/{{first_name}}/g, "Friend");
         }

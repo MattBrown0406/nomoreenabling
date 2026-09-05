@@ -17,7 +17,7 @@ export default `
         <li>Giving money you know might go toward substances — because the alternative (watching them suffer, or ask someone else) feels worse.</li>
         <li>Staying silent when you know you should speak — because every time you've said something, it ended in a fight.</li>
       </ul>
-      <p>None of these impulses are shameful. They are <a href="/what-is-enabling-in-addiction">what enabling actually looks like</a> when love doesn't know what else to do. The problem isn't the love. It's the behavior the love is driving — and what that behavior communicates to the person who needs to make a change.</p>
+      <p>None of these impulses are shameful. They are <a href="/articles/how-to-stop-enabling-an-addict">what enabling actually looks like</a> when love doesn't know what else to do. The problem isn't the love. It's the behavior the love is driving — and what that behavior communicates to the person who needs to make a change.</p>
 
       <h2>Why Good Intentions Don't Protect Your Loved One</h2>
       <p>Here's the painful truth: when you cushion the fall, the fall doesn't happen. And for many people in addiction, the fall — the real, undeniable experience of consequences — is what eventually creates the opening for change.</p>

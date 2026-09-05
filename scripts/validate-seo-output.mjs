@@ -82,6 +82,26 @@ for (const url of urls) {
   if (route.startsWith("/answers/") && schemaTypes.includes("QAPage")) issues.push(`${route}: editorial answer still uses QAPage schema.`);
 }
 
+// Every indexable prerendered page that is its own canonical must be in the
+// sitemap (catches routes added to the router/prerender list but not here).
+const walkHtml = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+  const full = path.join(dir, entry.name);
+  return entry.isDirectory() ? walkHtml(full) : entry.name === "index.html" ? [full] : [];
+});
+const sitemapSet = new Set(urls);
+for (const file of walkHtml(distDir)) {
+  const route = "/" + path.relative(distDir, path.dirname(file)).split(path.sep).filter(Boolean).join("/");
+  const html = fs.readFileSync(file, "utf8");
+  const robots = extractAll(html, /<meta[^>]+name="robots"[^>]+content="([^"]*)"[^>]*>/g);
+  const canonicals = extractAll(html, /<link[^>]+rel="canonical"[^>]+href="([^"]*)"[^>]*>/g);
+  const selfUrl = route === "/" ? `${SITE_URL}/` : `${SITE_URL}${route}`;
+  const isCanonicalSelf = canonicals.length === 1 && canonicals[0].replace(/\/$/, "") === selfUrl.replace(/\/$/, "");
+  const isIndexable = robots.length === 1 && !robots[0].toLowerCase().includes("noindex");
+  if (isIndexable && isCanonicalSelf && !sitemapSet.has(selfUrl) && !sitemapSet.has(selfUrl.replace(/\/$/, ""))) {
+    issues.push(`${route}: indexable prerendered page is missing from the sitemap.`);
+  }
+}
+
 for (const [title, routes] of titleMap) if (routes.length > 1) issues.push(`Duplicate title on ${routes.join(", ")}: ${title}`);
 for (const [description, routes] of descriptionMap) if (routes.length > 1) issues.push(`Duplicate description on ${routes.join(", ")}.`);
 

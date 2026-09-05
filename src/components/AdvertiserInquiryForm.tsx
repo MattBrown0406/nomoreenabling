@@ -86,6 +86,8 @@ const AdvertiserInquiryForm = () => {
           sponsor_type: trimmed.sponsorType,
           monthly_budget: trimmed.budget,
           page_path: typeof window === "undefined" ? null : window.location.pathname,
+          hp_field: honeypot,
+          form_ms: Date.now() - loadedAt.current,
         },
       });
 

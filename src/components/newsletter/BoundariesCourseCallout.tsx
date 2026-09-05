@@ -71,11 +71,11 @@ const BoundariesCourseCallout = ({ source, headline, subhead, compact = false }:
       markSubscribed();
       void trackFunnelEvent("email_capture_success", {
         source: `boundaries_course_${source}`,
-        metadata: { placement: source, alreadyEnrolled: data?.error === "already_enrolled" },
+        metadata: { placement: source, alreadyEnrolled: Boolean(data?.already_enrolled) },
       });
       trackGAConversion("boundaries_course_enroll", { placement: source });
       toast({
-        title: data?.error === "already_enrolled" ? "You are already enrolled" : "You are in.",
+        title: data?.already_enrolled ? "You are already enrolled" : "You are in.",
         description: "Check your inbox — the first lesson is on its way.",
       });
     } catch {

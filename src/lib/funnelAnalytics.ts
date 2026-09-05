@@ -8,6 +8,7 @@ export type FunnelEventName =
   | "assessment_started"
   | "assessment_completed"
   | "assessment_route_click"
+  | "email_capture_view"
   | "email_capture_attempt"
   | "email_capture_success"
   | "email_capture_failure"

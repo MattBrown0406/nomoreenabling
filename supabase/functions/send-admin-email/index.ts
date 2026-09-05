@@ -58,12 +58,13 @@ serve(async (req) => {
     const errors: string[] = [];
     for (const to of recipients) {
       try {
-        await resend.emails.send({
+        const { error: sendError } = await resend.emails.send({
           from: "No More Enabling <contact@nomoreenabling.com>",
           to: [to],
           subject,
           html,
         });
+        if (sendError) throw new Error(sendError.message || JSON.stringify(sendError));
         sent++;
       } catch (e) {
         failed++;

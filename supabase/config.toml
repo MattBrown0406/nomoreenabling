@@ -12,11 +12,8 @@ verify_jwt = false
 [functions.send-newsletter]
 verify_jwt = true
 
-[functions.mailchimp-subscribe]
-verify_jwt = false
-
 [functions.sync-mailchimp]
-verify_jwt = false
+verify_jwt = true
 
 [functions.course-enroll]
 verify_jwt = false
@@ -46,13 +43,16 @@ verify_jwt = false
 verify_jwt = false
 
 [functions.drain-spine-outbox]
-verify_jwt = false
+verify_jwt = true
 
 [functions.send-weekly-digest]
 verify_jwt = false
 
 [functions.send-money-plan-email]
-verify_jwt = false
+verify_jwt = true
 
 [functions.refresh-press-feed]
-verify_jwt = false
+verify_jwt = true
+
+[functions.send-admin-email]
+verify_jwt = true

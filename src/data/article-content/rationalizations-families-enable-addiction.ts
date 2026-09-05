@@ -22,7 +22,7 @@ export default `
       <h2>"I Don't Want to Push Them Away"</h2>
       <p>This rationalization is rooted in love, and it's worth honoring that. The fear of rupturing the relationship — of becoming the enemy, of your loved one walking out of your life — is legitimate and painful.</p>
       <p>But here's what the research and the clinical experience consistently show: the relationship is already being destroyed by the addiction. What families often protect by staying quiet and compliant is not the real relationship — it's a surface version of it, held together by avoidance and accommodation.</p>
-      <p>Setting <a href="/how-to-set-boundaries-with-addicted-loved-one">a limit with someone you love</a> is not abandonment. Done with love and consistency, it's one of the clearest messages you can send: <em>I love you too much to keep participating in your destruction.</em></p>
+      <p>Setting <a href="/articles/how-to-set-boundaries-with-addicted-loved-one">a limit with someone you love</a> is not abandonment. Done with love and consistency, it's one of the clearest messages you can send: <em>I love you too much to keep participating in your destruction.</em></p>
       <p>Will it feel that way to them at first? Probably not. But love doesn't always feel like love in the moment.</p>
 
       <h2>"This Time Is Different"</h2>
@@ -51,7 +51,7 @@ export default `
       <h2>Frequently Asked Questions</h2>
 
       <h3>Is it really enabling if I'm just trying to keep my loved one safe?</h3>
-      <p>It depends on the pattern. A single act of help isn't automatically <a href="/what-is-enabling-in-addiction">enabling</a>. Enabling is a repeated pattern in which your assistance reliably protects your loved one from the natural consequences of their addiction — making it easier for the addiction to continue. If your help has become a consistent buffer between them and accountability, it's worth examining honestly.</p>
+      <p>It depends on the pattern. A single act of help isn't automatically <a href="/articles/how-to-stop-enabling-an-addict">enabling</a>. Enabling is a repeated pattern in which your assistance reliably protects your loved one from the natural consequences of their addiction — making it easier for the addiction to continue. If your help has become a consistent buffer between them and accountability, it's worth examining honestly.</p>
 
       <h3>How do I know if my reasoning is a rationalization or a genuine exception?</h3>
       <p>Ask yourself whether you've used this exact reasoning before — and whether the outcome was different. Genuine exceptions are rare and specific. Rationalizations tend to be reusable: they show up every time a limit gets close. If the same logic appears every crisis, it's a pattern, not an exception.</p>

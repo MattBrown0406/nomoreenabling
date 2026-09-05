@@ -233,7 +233,7 @@ const Index = () => {
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div className="rounded-2xl border border-border bg-card p-4">
-                    <p className="text-3xl font-bold text-foreground">143</p>
+                    <p className="text-3xl font-bold text-foreground">{blogPostsMeta.length}</p>
                     <p className="text-sm text-muted-foreground">Search-focused family education articles</p>
                   </div>
                   <div className="rounded-2xl border border-border bg-card p-4">

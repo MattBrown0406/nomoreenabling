@@ -29,7 +29,7 @@ const ExitIntentModal = ({ articleSlug }: Props) => {
         /* ignore */
       }
       setOpen(true);
-      void trackFunnelEvent("email_capture_attempt", {
+      void trackFunnelEvent("email_capture_view", {
         source: "exit_intent",
         articleSlug,
         metadata: { placement: "exit_intent" },

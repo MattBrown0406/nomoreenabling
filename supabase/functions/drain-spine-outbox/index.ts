@@ -22,6 +22,15 @@ serve(async (req) => {
       status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }
+  // Cron/service callers only. verify_jwt accepts the public anon key too, so
+  // check the bearer explicitly.
+  const authHeader = req.headers.get("Authorization") ?? "";
+  if (authHeader !== `Bearer ${serviceKey}`) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), {
+      status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  }
+
   if (!hubUrl || !hubKey) {
     return new Response(JSON.stringify({ error: "HUB_INGEST_URL / HUB_INGEST_KEY not configured" }), {
       status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -43,9 +52,25 @@ serve(async (req) => {
     });
   }
 
-  const results = { processed: 0, sent: 0, failed: 0 };
+  const results = { processed: 0, sent: 0, failed: 0, skipped: 0 };
 
   for (const row of rows ?? []) {
+    // Claim the row with a compare-and-swap on `attempts` so two overlapping
+    // runs (slow cron tick, manual trigger) cannot both POST the same event.
+    const previousAttempts = row.attempts ?? 0;
+    const nextAttempts = previousAttempts + 1;
+    const { data: claimed } = await supabase
+      .from("spine_outbox")
+      .update({ attempts: nextAttempts })
+      .eq("id", row.id)
+      .eq("attempts", previousAttempts)
+      .in("status", ["pending", "failed"])
+      .select("id");
+    if (!claimed || claimed.length === 0) {
+      results.skipped++;
+      continue;
+    }
+
     results.processed++;
     try {
       const resp = await fetch(hubUrl, {
@@ -56,13 +81,13 @@ serve(async (req) => {
       if (resp.ok) {
         await supabase.from("spine_outbox").update({
           status: "sent", sent_at: new Date().toISOString(),
-          attempts: (row.attempts ?? 0) + 1, last_error: null,
+          attempts: nextAttempts, last_error: null,
         }).eq("id", row.id);
         results.sent++;
       } else {
         const text = await resp.text().catch(() => "");
         await supabase.from("spine_outbox").update({
-          status: "failed", attempts: (row.attempts ?? 0) + 1,
+          status: "failed", attempts: nextAttempts,
           last_error: `HTTP ${resp.status}: ${text.slice(0, 500)}`,
         }).eq("id", row.id);
         results.failed++;
@@ -70,7 +95,7 @@ serve(async (req) => {
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
       await supabase.from("spine_outbox").update({
-        status: "failed", attempts: (row.attempts ?? 0) + 1,
+        status: "failed", attempts: nextAttempts,
         last_error: message.slice(0, 500),
       }).eq("id", row.id);
       results.failed++;

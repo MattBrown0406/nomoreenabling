@@ -14,6 +14,7 @@ const allowedEvents = new Set([
   "assessment_started",
   "assessment_completed",
   "assessment_route_click",
+  "email_capture_view",
   "email_capture_attempt",
   "email_capture_success",
   "email_capture_failure",
@@ -29,6 +30,8 @@ const allowedEvents = new Set([
   "calculator_cta_click",
   "calculator_completed",
 ]);
+
+const MAX_METADATA_BYTES = 4096;
 
 const sanitizeText = (value: unknown, maxLength = 255): string | null => {
   if (typeof value !== "string") return null;
@@ -49,7 +52,13 @@ serve(async (req) => {
   }
 
   try {
-    const payload = await req.json();
+    const payload = await req.json().catch(() => null);
+    if (!payload || typeof payload !== "object") {
+      return new Response(
+        JSON.stringify({ error: "Invalid body" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
+    }
     const eventName = sanitizeText(payload.event_name, 80);
 
     if (!eventName || !allowedEvents.has(eventName)) {
@@ -63,9 +72,15 @@ serve(async (req) => {
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    const metadata = typeof payload.metadata === "object" && payload.metadata !== null
+    const metadata = typeof payload.metadata === "object" && payload.metadata !== null && !Array.isArray(payload.metadata)
       ? payload.metadata
       : {};
+    if (JSON.stringify(metadata).length > MAX_METADATA_BYTES) {
+      return new Response(
+        JSON.stringify({ error: "Metadata too large" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
+    }
 
     const { error } = await supabase.from("funnel_events").insert({
       event_name: eventName,

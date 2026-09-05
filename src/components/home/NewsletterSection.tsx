@@ -9,6 +9,7 @@ import NewsletterTurnstile from "@/components/newsletter/NewsletterTurnstile";
 import useNewsletterTurnstile from "@/hooks/useNewsletterTurnstile";
 import { useAbVariant } from "@/hooks/useAbVariant";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
+import { friendlyInvokeError, readInvokeError } from "@/lib/invokeError";
 
 const COPY = {
   A: {
@@ -32,7 +33,7 @@ const NewsletterSection = () => {
   const { turnstileToken, setTurnstileToken, turnstileResetKey, resetTurnstile } = useNewsletterTurnstile();
 
   useEffect(() => {
-    void trackFunnelEvent("email_capture_attempt", {
+    void trackFunnelEvent("email_capture_view", {
       source: "newsletter_hero_view",
       metadata: { variant, placement: "newsletter_hero_view" },
     });
@@ -83,20 +84,21 @@ const NewsletterSection = () => {
       });
 
       if (error) {
+        // Non-2xx responses arrive as `error` with data=null; read the body so
+        // "Please use a permanent email address" etc. reach the reader.
+        const serverMessage = friendlyInvokeError(await readInvokeError(error));
+        if (serverMessage) {
+          toast({ title: "Could not subscribe", description: serverMessage, variant: "destructive" });
+          resetTurnstile();
+          return;
+        }
         throw error;
       }
 
-      if (data?.error === 'already_subscribed') {
+      if (data?.status === 'already_subscribed') {
         toast({
           title: "Already subscribed!",
           description: "This email is already on our list.",
-          variant: "destructive",
-        });
-      } else if (data?.error) {
-        toast({
-          title: "Validation error",
-          description: data.error,
-          variant: "destructive",
         });
       } else {
         void trackFunnelEvent("email_capture_success", {

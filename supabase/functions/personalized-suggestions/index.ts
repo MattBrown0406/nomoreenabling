@@ -24,8 +24,39 @@ serve(async (req) => {
   }
 
   try {
-    const { articlesRead, assessmentScore, assessmentLevel, situation, availableArticles }: SuggestionRequest = await req.json();
-    
+    const raw = await req.json().catch(() => null) as Partial<SuggestionRequest> | null;
+    if (!raw || typeof raw !== "object") {
+      return new Response(JSON.stringify({ error: "Invalid body" }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Validate and bound the input: this endpoint is public and every call
+    // spends AI credits, so cap sizes and never trust the shape.
+    const articlesRead = Array.isArray(raw.articlesRead)
+      ? raw.articlesRead.filter((s): s is string => typeof s === "string").slice(0, 100)
+      : [];
+    const availableArticles = Array.isArray(raw.availableArticles)
+      ? raw.availableArticles
+        .filter((a) => a && typeof a === "object" && typeof a.slug === "string" && typeof a.title === "string")
+        .slice(0, 60)
+        .map((a) => ({
+          slug: a.slug.slice(0, 160),
+          title: a.title.slice(0, 200),
+          excerpt: typeof a.excerpt === "string" ? a.excerpt.slice(0, 300) : "",
+          categories: Array.isArray(a.categories) ? a.categories.filter((c): c is string => typeof c === "string").slice(0, 6) : [],
+        }))
+      : [];
+    const situation = typeof raw.situation === "string" ? raw.situation.slice(0, 1000) : undefined;
+    const assessmentScore = typeof raw.assessmentScore === "number" && Number.isFinite(raw.assessmentScore) ? raw.assessmentScore : undefined;
+    const assessmentLevel = typeof raw.assessmentLevel === "string" ? raw.assessmentLevel.slice(0, 40) : undefined;
+
+    if (availableArticles.length === 0) {
+      return new Response(JSON.stringify({ error: "availableArticles is required" }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) {
       throw new Error("LOVABLE_API_KEY is not configured");
@@ -156,8 +187,9 @@ Guidelines:
 
   } catch (error) {
     console.error("Error in personalized-suggestions:", error);
+    // Never echo internal error text (it can include configuration details).
     return new Response(
-      JSON.stringify({ error: error instanceof Error ? error.message : "Unknown error" }),
+      JSON.stringify({ error: "Unable to generate suggestions right now" }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }

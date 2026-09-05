@@ -69,7 +69,7 @@ const BoundariesCourse = () => {
 
       if (error) throw error;
 
-      if (data?.error === 'already_enrolled') {
+      if (data?.already_enrolled) {
         toast({
           title: "Already enrolled",
           description: "You're already enrolled in this course. Check your email for lessons!",

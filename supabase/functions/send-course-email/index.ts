@@ -4,6 +4,13 @@ import { Resend } from "https://esm.sh/resend@2.0.0";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
@@ -30,7 +37,7 @@ const BOUNDARIES_LESSONS = [
           Why Boundaries Feel Like Abandonment (But Aren't)
         </h2>
         
-        ${firstName ? `<p>Hi ${firstName},</p>` : ''}
+        ${firstName ? `<p>Hi ${escapeHtml(firstName)},</p>` : ''}
         
         <p>When you set a boundary with someone struggling with addiction, they often react as though you've abandoned them. And worse—you might <em>feel</em> like you have.</p>
         
@@ -98,7 +105,7 @@ const BOUNDARIES_LESSONS = [
           The Difference Between Boundaries and Ultimatums
         </h2>
         
-        ${firstName ? `<p>Hi ${firstName},</p>` : ''}
+        ${firstName ? `<p>Hi ${escapeHtml(firstName)},</p>` : ''}
         
         <p>Families often confuse these two things—and the confusion keeps everyone stuck.</p>
         
@@ -177,7 +184,7 @@ const BOUNDARIES_LESSONS = [
           What Boundaries Actually Protect
         </h2>
         
-        ${firstName ? `<p>Hi ${firstName},</p>` : ''}
+        ${firstName ? `<p>Hi ${escapeHtml(firstName)},</p>` : ''}
         
         <p>Most people think boundaries exist to protect <em>you</em> from the person with addiction.</p>
         
@@ -254,7 +261,7 @@ const BOUNDARIES_LESSONS = [
           Holding Boundaries When It Hurts
         </h2>
         
-        ${firstName ? `<p>Hi ${firstName},</p>` : ''}
+        ${firstName ? `<p>Hi ${escapeHtml(firstName)},</p>` : ''}
         
         <p>Setting a boundary is hard. Keeping it is harder.</p>
         
@@ -342,29 +349,31 @@ serve(async (req) => {
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    // Verify the caller is an admin
-    const token = authHeader.replace('Bearer ', '');
-    const { data: userData, error: userError } = await supabase.auth.getUser(token);
-    
-    if (userError || !userData.user) {
-      return new Response(
-        JSON.stringify({ error: 'Invalid token' }),
-        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
-    }
+    // Accept the service-role bearer (pg_cron) or an admin user session.
+    const token = authHeader.replace('Bearer ', '').trim();
+    if (token !== supabaseServiceKey) {
+      const { data: userData, error: userError } = await supabase.auth.getUser(token);
 
-    const { data: roleData } = await supabase
-      .from('user_roles')
-      .select('role')
-      .eq('user_id', userData.user.id)
-      .eq('role', 'admin')
-      .single();
+      if (userError || !userData.user) {
+        return new Response(
+          JSON.stringify({ error: 'Invalid token' }),
+          { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
 
-    if (!roleData) {
-      return new Response(
-        JSON.stringify({ error: 'Admin access required' }),
-        { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+      const { data: roleData } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', userData.user.id)
+        .eq('role', 'admin')
+        .maybeSingle();
+
+      if (!roleData) {
+        return new Response(
+          JSON.stringify({ error: 'Admin access required' }),
+          { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
     }
 
     // Get all enrollments due for an email
@@ -413,9 +422,11 @@ serve(async (req) => {
         if (emailResponse.error) throw new Error(JSON.stringify(emailResponse.error));
 
 
-        // Calculate next email date
-        const nextEmailAt = new Date();
-        nextEmailAt.setDate(nextEmailAt.getDate() + 7);
+        // Anchor the next lesson to the scheduled time rather than "now" so
+        // send latency never pushes it past the next cron tick.
+        const scheduledAt = enrollment.next_email_at ? new Date(enrollment.next_email_at) : new Date();
+        const nextEmailAt = new Date(Number.isNaN(scheduledAt.getTime()) ? Date.now() : scheduledAt.getTime());
+        nextEmailAt.setUTCDate(nextEmailAt.getUTCDate() + 7);
 
         const isLastLesson = lessonIndex === BOUNDARIES_LESSONS.length - 1;
 
