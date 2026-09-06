@@ -1,5 +1,5 @@
-import type { BlogPostMeta } from "@/data/blogPostMeta";
-import type { CommercialIntentPage } from "@/data/commercialIntentPages";
+import type { BlogPostMeta } from "./blogPostMeta";
+import type { CommercialIntentPage } from "./commercialIntentPages";
 
 export interface AeoAnswer {
   id: string;
@@ -668,7 +668,7 @@ export const getNextBestAnswerLinks = (article: BlogPostMeta): AeoAnswer[] => {
 };
 
 export const getCommercialHowToSteps = (page: CommercialIntentPage) =>
-  page.process.map((step) => ({
+  page.process.map((step: CommercialIntentPage["process"][number]) => ({
     name: step.title,
     text: step.body,
   }));
