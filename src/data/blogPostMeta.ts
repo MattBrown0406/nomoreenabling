@@ -52,6 +52,7 @@ import doingEverythingForAddictedLovedOneImage from "@/assets/doing-everything-f
 import enablingOutOfFearImage from "@/assets/enabling-out-of-fear.jpg";
 import checkingOnAddictedLovedOneImage from "@/assets/checking-on-an-addicted-loved-one.jpg";
 import whyDoIKeepEnablingImage from "@/assets/why-do-i-keep-enabling-hidden-payoffs.jpg";
+import lecturingAddictedLovedOneImage from "@/assets/lecturing-addicted-loved-one-enabling.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
@@ -177,6 +178,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "lecturing-addicted-loved-one-enabling",
+    title: "Why Lecturing an Addicted Loved One Is a Form of Enabling",
+    excerpt: "Lecturing an addicted loved one feels like doing something. Learn why nagging and empty threats quietly enable addiction, and what to say and do instead.",
+    category: "Enabling",
+    categories: ["Enabling", "Boundaries", "Family Dynamics"],
+    readTime: "8 min read",
+    date: "September 5, 2026",
+    image: lecturingAddictedLovedOneImage,
+    slug: "lecturing-addicted-loved-one-enabling",
+    metaTitle: "Is Lecturing an Addicted Loved One Enabling?",
+    metaDescription: "Lecturing an addicted loved one feels like doing something. Learn why nagging and empty threats quietly enable addiction, and what to say and do instead.",
+  },
   {
     id: "why-do-i-keep-enabling-hidden-payoffs",
     title: "Why Do I Keep Enabling? The Hidden Payoffs That Keep Families Stuck",
