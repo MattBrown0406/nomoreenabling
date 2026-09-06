@@ -1,5 +1,15 @@
-import type { BlogPostMeta } from "./blogPostMeta";
-import type { CommercialIntentPage } from "./commercialIntentPages";
+interface AeoArticleSource {
+  title: string;
+  excerpt: string;
+  categories: string[];
+}
+
+interface CommercialHowToSource {
+  process: Array<{
+    title: string;
+    body: string;
+  }>;
+}
 
 export interface AeoAnswer {
   id: string;
@@ -643,7 +653,7 @@ export const comparisonAnswers: ComparisonAnswer[] = [
 // Returns null when nothing matches. Falling back to aeoAnswers[0] put the
 // "How do I know if I am helping or enabling?" direct answer (and its FAQPage
 // schema) on unrelated articles such as fentanyl or Delta-8 guides.
-export const getAeoArticleAnswer = (article: BlogPostMeta): AeoAnswer | null => {
+export const getAeoArticleAnswer = (article: AeoArticleSource): AeoAnswer | null => {
   const haystack = `${article.title} ${article.excerpt} ${article.categories.join(" ")}`.toLowerCase();
 
   const matchingAnswer = aeoAnswers.find((answer) =>
@@ -653,7 +663,7 @@ export const getAeoArticleAnswer = (article: BlogPostMeta): AeoAnswer | null => 
   return matchingAnswer ?? null;
 };
 
-export const getNextBestAnswerLinks = (article: BlogPostMeta): AeoAnswer[] => {
+export const getNextBestAnswerLinks = (article: AeoArticleSource): AeoAnswer[] => {
   const haystack = `${article.title} ${article.excerpt} ${article.categories.join(" ")}`.toLowerCase();
   const scored = aeoAnswers.map((answer) => ({
     answer,
@@ -667,8 +677,8 @@ export const getNextBestAnswerLinks = (article: BlogPostMeta): AeoAnswer[] => {
     .slice(0, 4);
 };
 
-export const getCommercialHowToSteps = (page: CommercialIntentPage) =>
-  page.process.map((step: CommercialIntentPage["process"][number]) => ({
+export const getCommercialHowToSteps = (page: CommercialHowToSource) =>
+  page.process.map((step: CommercialHowToSource["process"][number]) => ({
     name: step.title,
     text: step.body,
   }));
