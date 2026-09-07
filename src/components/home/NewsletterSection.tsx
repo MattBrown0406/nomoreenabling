@@ -29,7 +29,13 @@ const NewsletterSection = () => {
   const [firstName, setFirstName] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const loadedAt = useRef(Date.now());
+  // Dwell timer starts on first interaction, not at mount — a tab left open
+  // for hours must never look like a stale submission.
+  const startedAt = useRef<number | null>(null);
+  const markStarted = () => {
+    if (startedAt.current === null) startedAt.current = Date.now();
+  };
+  const startedOrNow = () => startedAt.current ?? Date.now();
   const { turnstileToken, setTurnstileToken, turnstileResetKey, resetTurnstile } = useNewsletterTurnstile();
 
   useEffect(() => {
@@ -55,7 +61,7 @@ const NewsletterSection = () => {
     }
 
     // Time-based check — reject if submitted within 3 seconds of render
-    const elapsed = Date.now() - loadedAt.current;
+    const elapsed = Date.now() - startedOrNow();
     if (elapsed < 3000) {
       toast({
         title: "Welcome aboard!",
@@ -76,7 +82,7 @@ const NewsletterSection = () => {
           email,
           first_name: firstName || null,
           source: `newsletter_hero_${variant}`,
-          _t: loadedAt.current,
+          _t: startedOrNow(),
           website: honeypot,
           form_ms: Date.now() - loadedAt.current,
           turnstile_token: turnstileToken,

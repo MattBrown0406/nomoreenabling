@@ -15,7 +15,13 @@ const SoftHomeOptin = () => {
   const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [done, setDone] = useState(false);
-  const loadedAt = useRef(Date.now());
+  // Dwell timer starts on first interaction, not at mount — a tab left open
+  // for hours must never look like a stale submission.
+  const startedAt = useRef<number | null>(null);
+  const markStarted = () => {
+    if (startedAt.current === null) startedAt.current = Date.now();
+  };
+  const startedOrNow = () => startedAt.current ?? Date.now();
   const { turnstileToken, setTurnstileToken, turnstileResetKey, resetTurnstile } = useNewsletterTurnstile();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -24,7 +30,7 @@ const SoftHomeOptin = () => {
       setDone(true);
       return;
     }
-    if (Date.now() - loadedAt.current < 3000) {
+    if (Date.now() - startedOrNow() < 3000) {
       setDone(true);
       return;
     }
@@ -42,9 +48,9 @@ const SoftHomeOptin = () => {
         body: {
           email: email.trim(),
           source: "home_soft_optin",
-          _t: loadedAt.current,
+          _t: startedOrNow(),
           website: honeypot,
-          form_ms: Date.now() - loadedAt.current,
+          form_ms: Date.now() - startedOrNow(),
           turnstile_token: turnstileToken,
         },
       });
@@ -92,7 +98,7 @@ const SoftHomeOptin = () => {
             </p>
           </div>
           {!done && (
-            <form onSubmit={handleSubmit} className="flex w-full md:w-auto gap-2">
+            <form onSubmit={handleSubmit} onFocusCapture={markStarted} className="flex w-full md:w-auto gap-2">
               <div className="absolute left-[-9999px]" aria-hidden="true">
                 <Input
                   type="text"

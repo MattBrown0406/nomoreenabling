@@ -22,7 +22,13 @@ const ArticleEndSubscribe = ({ articleSlug, category }: Props) => {
   const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [done, setDone] = useState(false);
-  const loadedAt = useRef(Date.now());
+  // Dwell timer starts on first interaction, not at mount — a tab left open
+  // for hours must never look like a stale submission.
+  const startedAt = useRef<number | null>(null);
+  const markStarted = () => {
+    if (startedAt.current === null) startedAt.current = Date.now();
+  };
+  const startedOrNow = () => startedAt.current ?? Date.now();
   const { turnstileToken, setTurnstileToken, turnstileResetKey, resetTurnstile } = useNewsletterTurnstile();
 
   const contextLabel = category ? `families dealing with ${category.toLowerCase()}` : "families like this";
@@ -34,7 +40,7 @@ const ArticleEndSubscribe = ({ articleSlug, category }: Props) => {
       setDone(true);
       return;
     }
-    if (Date.now() - loadedAt.current < 3000) {
+    if (Date.now() - startedOrNow() < 3000) {
       setDone(true);
       return;
     }
@@ -57,9 +63,9 @@ const ArticleEndSubscribe = ({ articleSlug, category }: Props) => {
           first_name: firstName.trim() || null,
           source: "article_end",
           article_slug: articleSlug ?? null,
-          _t: loadedAt.current,
+          _t: startedOrNow(),
           website: honeypot,
-          form_ms: Date.now() - loadedAt.current,
+          form_ms: Date.now() - startedOrNow(),
           turnstile_token: turnstileToken,
         },
       });
@@ -110,7 +116,7 @@ const ArticleEndSubscribe = ({ articleSlug, category }: Props) => {
         </p>
 
         {!done && (
-          <form onSubmit={handleSubmit} className="mt-6 max-w-md mx-auto grid gap-3">
+          <form onSubmit={handleSubmit} onFocusCapture={markStarted} className="mt-6 max-w-md mx-auto grid gap-3">
             <div className="absolute left-[-9999px]" aria-hidden="true">
               <Input
                 type="text"
