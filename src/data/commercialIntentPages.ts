@@ -92,7 +92,7 @@ export const commercialIntentPages: CommercialIntentPage[] = [
     keywords:
       "family addiction coaching, addiction family coach, family recovery coaching, help for families of addicts, addiction boundaries coaching",
     audience:
-      "parents, spouses, siblings, and loved ones searching for family addiction coaching before the next crisis, relapse, money request, boundary breakdown, or treatment argument.",
+      "parents, spouses, siblings, and other loved ones who need help deciding what to say, what financial or housing support to offer, and how to follow through on boundaries when addiction affects the family.",
     urgency: "steady",
     primaryOffer: "coaching",
     defaultConcern: "We need family addiction coaching",
@@ -127,10 +127,15 @@ export const commercialIntentPages: CommercialIntentPage[] = [
     relatedLinks: [
       { label: "Check if you are helping or enabling", href: "/helping-or-enabling", description: "Start with a quick pattern check before the next rescue, money decision, or argument." },
       { label: "Join the free Monday Family Squares call", href: "/support/sober-helpline", description: "Use the Monday night support call when the family needs live help staying aligned." },
-      { label: "Use Family Bridge for shared structure", href: "/support/family-bridge", description: "Use the app when the next step is coordinated follow-through after treatment, relapse concerns, or a new family plan." },
+      { label: "Get the FamilyBridge App", href: "/support/family-bridge", description: "Already have a family plan? Explore the app for shared follow-through after treatment, relapse concerns, or new boundaries." },
       { label: "Request private coaching from Matt", href: "/work-with-matt", description: "Share what is happening when your family needs a specific plan instead of more guessing." },
     ],
     faqs: [
+      {
+        question: "What is family addiction coaching?",
+        answer:
+          "Family addiction coaching helps parents, spouses, siblings, and other loved ones respond to addiction with clearer boundaries, communication, and shared decisions. With Matt Brown, the focus is on your family's response to money requests, housing, relapse, or treatment refusal, not on controlling another person's recovery. Coaching is educational and consultative, not therapy or addiction treatment. To begin, use the coaching request form below and describe the decision your family is facing.",
+      },
       {
         question: "What is the next step if my family needs addiction coaching?",
         answer:

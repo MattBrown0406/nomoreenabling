@@ -157,8 +157,8 @@ const Index = () => {
   return (
     <>
       <SEOHead
-        title="Support Families Affected by Addiction | No More Enabling"
-        description="Practical guidance for families dealing with addiction, enabling, and boundary breakdowns. Get clear articles, tools, and next steps that hold up under stress."
+        title="Family Addiction Support & Boundaries | No More Enabling"
+        description="Helping or enabling a loved one with addiction? Get practical boundary guidance from Matt Brown, request family coaching, or join free Monday night family support."
         canonicalUrl="https://nomoreenabling.com/"
         keywords="family addiction support, enabling addiction, boundaries with addiction, help vs enabling, codependency family recovery"
       />
