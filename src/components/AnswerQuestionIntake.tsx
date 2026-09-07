@@ -19,7 +19,12 @@ const AnswerQuestionIntake = ({
   contextQuestion,
   contextPath,
 }: AnswerQuestionIntakeProps) => {
-  const loadedAt = useRef(Date.now());
+  // Dwell timer starts on first interaction with the form, not at mount —
+  // a tab left open for hours must never look like a stale submission.
+  const startedAt = useRef<number | null>(null);
+  const markStarted = () => {
+    if (startedAt.current === null) startedAt.current = Date.now();
+  };
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [honeypot, setHoneypot] = useState("");
   const [form, setForm] = useState({
@@ -36,7 +41,7 @@ const AnswerQuestionIntake = ({
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (honeypot || Date.now() - loadedAt.current < 2500) {
+    if (honeypot || Date.now() - (startedAt.current ?? Date.now()) < 2500) {
       toast({ title: "Question received", description: "Thank you. We will review it for future answers." });
       return;
     }
@@ -87,7 +92,7 @@ const AnswerQuestionIntake = ({
           lead_reasons: ["Submitted a family recovery question"],
           page_path: pagePath || null,
           hp_field: honeypot,
-          form_ms: Date.now() - loadedAt.current,
+          form_ms: Date.now() - (startedAt.current ?? Date.now()),
         },
       });
 
@@ -120,7 +125,7 @@ const AnswerQuestionIntake = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-2xl border border-primary/20 bg-primary/5 p-6 md:p-8">
+    <form onSubmit={handleSubmit} onFocusCapture={markStarted} className="rounded-2xl border border-primary/20 bg-primary/5 p-6 md:p-8">
       <input
         type="text"
         name="company"

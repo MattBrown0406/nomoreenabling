@@ -23,7 +23,12 @@ const AdvertiserInquiryForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState<{ email: string; firstName: string } | null>(null);
   const [honeypot, setHoneypot] = useState("");
-  const loadedAt = useRef(Date.now());
+  // Dwell timer starts on first interaction with the form, not at mount —
+  // a tab left open for hours must never look like a stale submission.
+  const startedAt = useRef<number | null>(null);
+  const markStarted = () => {
+    if (startedAt.current === null) startedAt.current = Date.now();
+  };
 
   const [form, setForm] = useState({
     name: "",
@@ -42,7 +47,7 @@ const AdvertiserInquiryForm = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (honeypot || Date.now() - loadedAt.current < 3000) {
+    if (honeypot || Date.now() - (startedAt.current ?? Date.now()) < 3000) {
       toast({ title: "Inquiry received", description: "Thank you. We will review the sponsor fit shortly." });
       return;
     }
@@ -87,7 +92,7 @@ const AdvertiserInquiryForm = () => {
           monthly_budget: trimmed.budget,
           page_path: typeof window === "undefined" ? null : window.location.pathname,
           hp_field: honeypot,
-          form_ms: Date.now() - loadedAt.current,
+          form_ms: Date.now() - (startedAt.current ?? Date.now()),
         },
       });
 
@@ -145,7 +150,7 @@ const AdvertiserInquiryForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-2xl border border-border bg-card p-6 md:p-8 space-y-5">
+    <form onSubmit={handleSubmit} onFocusCapture={markStarted} className="rounded-2xl border border-border bg-card p-6 md:p-8 space-y-5">
 
       <input
         type="text"

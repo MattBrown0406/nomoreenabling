@@ -195,7 +195,7 @@ const ConsultationRequestForm = ({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-2xl border border-border bg-card p-6 md:p-8 space-y-5">
+    <form onSubmit={handleSubmit} onFocusCapture={markStarted} className="rounded-2xl border border-border bg-card p-6 md:p-8 space-y-5">
 
       <input
         type="text"
