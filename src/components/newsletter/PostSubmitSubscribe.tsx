@@ -20,7 +20,13 @@ const PostSubmitSubscribe = ({ source, defaultEmail = "", defaultFirstName = "" 
   const [subscribed, setSubscribed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [dismissed, setDismissed] = useState(false);
-  const loadedAt = useRef(Date.now());
+  // Dwell timer starts on first interaction, not at mount — a tab left open
+  // for hours must never look like a stale submission.
+  const startedAt = useRef<number | null>(null);
+  const markStarted = () => {
+    if (startedAt.current === null) startedAt.current = Date.now();
+  };
+  const startedOrNow = () => startedAt.current ?? Date.now();
   const { turnstileToken, setTurnstileToken, turnstileResetKey, resetTurnstile } = useNewsletterTurnstile();
 
   if (dismissed) return null;
@@ -42,9 +48,9 @@ const PostSubmitSubscribe = ({ source, defaultEmail = "", defaultFirstName = "" 
           email: defaultEmail.trim(),
           first_name: defaultFirstName.trim() || null,
           source: `post_submit_${source}`,
-          _t: loadedAt.current,
+          _t: startedOrNow(),
           website: "",
-          form_ms: Math.max(Date.now() - loadedAt.current, 3000),
+          form_ms: Math.max(Date.now() - startedOrNow(), 3000),
           turnstile_token: turnstileToken,
         },
       });
@@ -73,7 +79,7 @@ const PostSubmitSubscribe = ({ source, defaultEmail = "", defaultFirstName = "" 
   };
 
   return (
-    <div className="rounded-2xl border border-primary/20 bg-primary/5 p-5 md:p-6">
+    <div className="rounded-2xl border border-primary/20 bg-primary/5 p-5 md:p-6" onFocusCapture={markStarted}>
       <div className="flex items-start gap-3">
         <div className="mt-1 rounded-full bg-primary/10 p-2 text-primary">
           {subscribed ? <CheckCircle2 className="h-5 w-5" /> : <Mail className="h-5 w-5" />}

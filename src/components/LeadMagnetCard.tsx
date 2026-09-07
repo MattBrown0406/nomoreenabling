@@ -32,7 +32,13 @@ const LeadMagnetCard = ({ magnet, source, articleSlug, hubSlug, compact = false 
   const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
-  const loadedAt = useRef(Date.now());
+  // Dwell timer starts on first interaction, not at mount — a tab left open
+  // for hours must never look like a stale submission.
+  const startedAt = useRef<number | null>(null);
+  const markStarted = () => {
+    if (startedAt.current === null) startedAt.current = Date.now();
+  };
+  const startedOrNow = () => startedAt.current ?? Date.now();
   const { turnstileToken, setTurnstileToken, turnstileResetKey, resetTurnstile } = useNewsletterTurnstile();
 
   const eventMetadata = {
@@ -74,9 +80,9 @@ const LeadMagnetCard = ({ magnet, source, articleSlug, hubSlug, compact = false 
           article_slug: articleSlug ?? null,
           hub_slug: hubSlug ?? null,
           page_path: window.location.pathname,
-          _t: loadedAt.current,
+          _t: startedOrNow(),
           website: honeypot,
-          form_ms: Date.now() - loadedAt.current,
+          form_ms: Date.now() - startedOrNow(),
           turnstile_token: turnstileToken,
         },
       });
@@ -158,7 +164,7 @@ const LeadMagnetCard = ({ magnet, source, articleSlug, hubSlug, compact = false 
             ))}
           </div>
 
-          <form onSubmit={handleSubmit} className="mt-5 grid gap-3">
+          <form onSubmit={handleSubmit} onFocusCapture={markStarted} className="mt-5 grid gap-3">
             <div className="absolute left-[-9999px]" aria-hidden="true">
               <Input
                 type="text"
