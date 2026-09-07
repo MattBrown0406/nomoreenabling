@@ -99,6 +99,11 @@ const HeroSection = () => {
               </button>
             </div>
 
+            <a href="/next-step" className="block mt-5 rounded-lg border border-primary/30 bg-background p-4 text-foreground hover:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
+              <strong className="block">Not ready to call?</strong>
+              <span className="underline">Make a plan for your next step</span>
+            </a>
+
             <div className="nme-hero-trust">
               <span><i aria-hidden="true" />No shame</span>
               <span><i aria-hidden="true" />No forced abandonment</span>

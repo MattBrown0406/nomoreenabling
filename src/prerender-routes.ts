@@ -7,6 +7,7 @@ import { legacyArticleSlugRedirects, legacyPageRedirects } from "@/lib/legacyRed
 
 const staticRoutes = [
   "/",
+  "/next-step",
   "/about",
   "/articles",
   "/advertise",

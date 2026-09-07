@@ -3,7 +3,9 @@ import OrganizationJsonLd from "@/components/seo/OrganizationJsonLd";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import NextStep from "./pages/NextStep";
 import type { ReactNode } from "react";
 import Index from "./pages/Index";
 import About from "./pages/About";
@@ -57,7 +59,17 @@ const LegacyArticleRedirect = () => {
   return <Navigate to={`/articles/${resolveLegacyArticleSlug(slug)}`} replace />;
 };
 
-export const AppRoutes = () => (
+export const AppRoutes = () => {
+  const { pathname } = useLocation();
+  const isPrivateGuide = pathname.replace(/\/+$/, "").toLowerCase() === "/next-step";
+  // A fresh document is required: removing an ad/analytics element cannot
+  // undo listeners installed by a third-party script on a previous SPA page.
+  const needsCleanDocument = isPrivateGuide && typeof window !== "undefined" && typeof window.gtag === "function";
+  useEffect(() => {
+    if (needsCleanDocument) window.location.replace("/next-step");
+  }, [needsCleanDocument]);
+  if (isPrivateGuide) return needsCleanDocument ? <p>Opening private guide…</p> : <NextStep />;
+  return (
   <>
     <GoogleAnalytics />
     <ScrollToTop />
@@ -140,7 +152,8 @@ export const AppRoutes = () => (
       <Route path="*" element={<NotFound />} />
     </Routes>
   </>
-);
+  );
+};
 
 // Module scope so a re-render of the shell can never discard the query cache.
 const queryClient = new QueryClient();

@@ -1,0 +1,12 @@
+.next-step-page { overflow-wrap: anywhere; line-height: 1.65; }
+.next-step-shell { width: min(100% - 2rem, 52rem); margin-inline: auto; }
+.next-step-choice { min-height: 48px; padding: .8rem 1rem; border: 1px solid hsl(var(--border)); border-radius: .6rem; text-align: left; font-weight: 600; color: hsl(var(--foreground)); background: hsl(var(--background)); white-space: normal; }
+.next-step-choice:hover { border-color: hsl(var(--primary)); background: hsl(var(--secondary)); }
+.next-step-page :is(a, button):focus-visible { outline: 3px solid hsl(var(--primary)); outline-offset: 4px; }
+.next-step-page h2:focus { outline: none; }
+@media print {
+  .next-step-page { color: black; background: white; }
+  .next-step-shell { width: 100%; }
+  .next-step-page header, .next-step-page footer, .next-step-controls, .next-step-contact { display: none !important; }
+  .next-step-page section, .next-step-page aside { border-color: #888; box-shadow: none; }
+}

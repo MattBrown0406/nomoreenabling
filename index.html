@@ -9,19 +9,30 @@
     <title>No More Enabling — Addiction, Boundaries & Family Recovery</title>
     <meta name="description" content="Education and support for families affected by addiction and enabling. 100+ free articles on boundaries, codependency, and recovery. Start your own healing." />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T8Q605D5GN"></script>
+    <!-- Never load third-party fonts, analytics or ads on the private guide. All
+         links into the guide use full-document navigation for isolation. -->
     <script>
+      if (window.location.pathname.replace(/\/+$/, '').toLowerCase() !== '/next-step') {
+      const fonts = document.createElement('link');
+      fonts.rel = 'stylesheet';
+      fonts.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap';
+      document.head.appendChild(fonts);
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-T8Q605D5GN');
+      window.gtag = function(){window.dataLayer.push(arguments);};
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-T8Q605D5GN');
+      const analytics = document.createElement('script');
+      analytics.async = true;
+      analytics.src = 'https://www.googletagmanager.com/gtag/js?id=G-T8Q605D5GN';
+      document.head.appendChild(analytics);
+      const ads = document.createElement('script');
+      ads.async = true;
+      ads.crossOrigin = 'anonymous';
+      ads.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4711693967004790';
+      document.head.appendChild(ads);
+      }
     </script>
 
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4711693967004790"
-     crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-4711693967004790" />
   </head>
 
