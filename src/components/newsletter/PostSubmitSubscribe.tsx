@@ -79,7 +79,7 @@ const PostSubmitSubscribe = ({ source, defaultEmail = "", defaultFirstName = "" 
   };
 
   return (
-    <div className="rounded-2xl border border-primary/20 bg-primary/5 p-5 md:p-6">
+    <div className="rounded-2xl border border-primary/20 bg-primary/5 p-5 md:p-6" onFocusCapture={markStarted}>
       <div className="flex items-start gap-3">
         <div className="mt-1 rounded-full bg-primary/10 p-2 text-primary">
           {subscribed ? <CheckCircle2 className="h-5 w-5" /> : <Mail className="h-5 w-5" />}
