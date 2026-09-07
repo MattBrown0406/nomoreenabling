@@ -53,6 +53,7 @@ import enablingOutOfFearImage from "@/assets/enabling-out-of-fear.jpg";
 import checkingOnAddictedLovedOneImage from "@/assets/checking-on-an-addicted-loved-one.jpg";
 import whyDoIKeepEnablingImage from "@/assets/why-do-i-keep-enabling-hidden-payoffs.jpg";
 import lecturingAddictedLovedOneImage from "@/assets/lecturing-addicted-loved-one-enabling.jpg";
+import parentsDisagreeImage from "@/assets/parents-disagree-about-childs-addiction.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
@@ -178,6 +179,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "parents-disagree-about-childs-addiction",
+    title: "Good Cop, Bad Cop: What to Do When Parents Disagree About a Child's Addiction",
+    excerpt: "When parents disagree about a child's addiction, the split becomes the problem. Learn why good cop/bad cop happens and how to get back on the same side.",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Boundaries", "Enabling"],
+    readTime: "9 min read",
+    date: "September 7, 2026",
+    image: parentsDisagreeImage,
+    slug: "parents-disagree-about-childs-addiction",
+    metaTitle: "When Parents Disagree About a Child's Addiction",
+    metaDescription: "When parents disagree about a child's addiction, the split becomes the problem. Learn why good cop/bad cop happens and how to get back on the same side.",
+  },
   {
     id: "lecturing-addicted-loved-one-enabling",
     title: "Why Lecturing an Addicted Loved One Is a Form of Enabling",
