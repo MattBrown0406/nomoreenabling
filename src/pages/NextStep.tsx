@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import SEOHead from "@/components/seo/SEOHead";
 import logo from "@/assets/logo.jpg";
 import "./NextStep.css";
+import NextStepFollowUp from "@/components/NextStepFollowUp";
 
 const safety = "In the U.S., call 911 for immediate danger or a suspected overdose. Call or text 988 for a suicide or mental health crisis. Outside the U.S., use your local emergency or crisis service. Do not wait for a contact-form reply.";
 const paths = [
@@ -91,7 +92,7 @@ export default function NextStep() {
       <p className="text-primary font-semibold">Not ready to call?</p>
       <h1 className="font-serif text-3xl sm:text-5xl font-bold mt-3">Make a plan for your next step</h1>
       <p className="mt-5 text-lg">Care without carrying it all. Choose what would help today; get a practical guide before deciding whether to contact anyone.</p>
-      <p className="mt-4 text-sm">No sign-in or contact details needed. Your choices stay in this page’s memory—not in a URL, browser storage, or sent to us. No analytics, ads, session replay, or chat run on this guide. Reset or reload clears your choices. Your visit may still appear in browser history and standard server logs. Downloads stay on your device; use care on shared devices.</p>
+      <p className="mt-4 text-sm">No sign-in or contact details needed. Your choices stay in this page’s memory—not in a URL or browser storage. They are only sent to Matt if you submit the optional follow-up form and separately choose to share them. No analytics, ads, session replay, or chat run on this guide. Reset or reload clears your choices. Your visit may still appear in browser history and standard server logs. Downloads stay on your device; use care on shared devices.</p>
       <aside aria-label="Urgent help" className="my-7 rounded-xl border-2 border-primary/40 bg-secondary p-5">
         <h2 className="font-serif text-xl font-bold">Urgent help comes first</h2>
         <p className="mt-2">In the U.S., <a className="underline font-bold" href="tel:911">call 911</a> for immediate danger or a suspected overdose. <a className="underline font-bold" href="tel:988">Call 988</a> or <a className="underline font-bold" href="sms:988">text 988</a> for a suicide or mental health crisis. Outside the U.S., use local emergency services. Do not wait for a guide or contact-form reply.</p>
@@ -109,6 +110,7 @@ export default function NextStep() {
           <p className="text-sm">Educational guidance, not a diagnosis, medical advice, or an emergency service. No guide can guarantee an outcome.</p>
           <div className="next-step-controls flex flex-wrap gap-3"><button className="next-step-choice" onClick={download}>Download text guide</button><button className="next-step-choice" onClick={() => window.print()}>Print guide</button></div>
           <p role="status" className="text-sm">{feedback}</p>
+          <NextStepFollowUp key={`${path}-${choice}`} guideSummary={`${selected.label}\n${selected.choices[choice]}`} />
           <aside className="next-step-contact border-t border-border pt-5"><h3 className="font-bold">Contact is optional</h3><p className="my-3">If you want a personal follow-up, the link below opens Freedom Interventions’ existing contact form, where you can request a callback. You leave this private guide; that site’s privacy practices apply. No guide choices or answers are sent with the link. Nothing is submitted until you complete that form.</p><a href="https://freedominterventions.com/contact" rel="noreferrer" className="underline font-semibold">Open Freedom Interventions contact form (optional)</a></aside>
         </article>}
         {selected && <nav className="next-step-controls mt-7 flex flex-wrap gap-4" aria-label="Guide controls"><button className="next-step-choice" onClick={() => { if (guide) setChoice(null); else setPath(null); }}>Back</button><button className="next-step-choice" onClick={() => { setChoice(null); setPath(null); }}>Reset guide</button></nav>}
