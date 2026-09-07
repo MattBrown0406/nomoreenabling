@@ -46,7 +46,12 @@ const ConsultationRequestForm = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState<{ email: string; firstName: string } | null>(null);
   const [honeypot, setHoneypot] = useState("");
-  const loadedAt = useRef(Date.now());
+  // Dwell timer starts on first interaction with the form, not at mount —
+  // a tab left open for hours must never look like a stale submission.
+  const startedAt = useRef<number | null>(null);
+  const markStarted = () => {
+    if (startedAt.current === null) startedAt.current = Date.now();
+  };
 
 
   const [form, setForm] = useState({
@@ -67,7 +72,7 @@ const ConsultationRequestForm = ({
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (honeypot || Date.now() - loadedAt.current < 3000) {
+    if (honeypot || Date.now() - (startedAt.current ?? Date.now()) < 3000) {
       toast({ title: "Request received", description: "Thank you. We will review your note shortly." });
       return;
     }
@@ -125,7 +130,7 @@ const ConsultationRequestForm = ({
           lead_reasons: leadScore.reasons,
           page_path: typeof window === "undefined" ? null : window.location.pathname,
           hp_field: honeypot,
-          form_ms: Date.now() - loadedAt.current,
+          form_ms: Date.now() - (startedAt.current ?? Date.now()),
         },
       });
 
