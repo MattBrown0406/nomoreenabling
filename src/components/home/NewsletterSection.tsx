@@ -84,7 +84,7 @@ const NewsletterSection = () => {
           source: `newsletter_hero_${variant}`,
           _t: startedOrNow(),
           website: honeypot,
-          form_ms: Date.now() - loadedAt.current,
+          form_ms: Date.now() - startedOrNow(),
           turnstile_token: turnstileToken,
         }
       });
@@ -148,7 +148,7 @@ const NewsletterSection = () => {
             Join the list for direct guidance on enabling, family boundaries, treatment resistance, relapse, and how to help without making the pattern worse.
           </p>
           
-          <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-3 max-w-md mx-auto">
+          <form onSubmit={handleSubmit} onFocusCapture={markStarted} className="mt-8 flex flex-col gap-3 max-w-md mx-auto">
             {/* Honeypot field - hidden from humans, visible to bots */}
             <div className="absolute left-[-9999px]" aria-hidden="true">
               <Input
