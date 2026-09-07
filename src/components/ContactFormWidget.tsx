@@ -12,7 +12,12 @@ const ContactFormWidget = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [loadTime] = useState(Date.now());
+  // Dwell timer starts on first interaction with the form, not at mount —
+  // a tab left open for hours must never look like a stale submission.
+  const startedAtRef = useRef<number | null>(null);
+  const markStarted = () => {
+    if (startedAtRef.current === null) startedAtRef.current = Date.now();
+  };
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -39,8 +44,8 @@ const ContactFormWidget = () => {
     // Honeypot check
     if (honeypot) return;
 
-    // Time-based spam check
-    if (Date.now() - loadTime < 3000) {
+    // Time-based spam check (measured from first interaction with the form)
+    if (Date.now() - (startedAtRef.current ?? Date.now()) < 3000) {
       toast({ title: "Please wait a moment before submitting.", variant: "destructive" });
       return;
     }
@@ -68,7 +73,7 @@ const ContactFormWidget = () => {
           email: trimmedEmail,
           message: trimmedMessage,
           hp_field: honeypot,
-          form_ms: Date.now() - loadTime,
+          form_ms: Date.now() - (startedAtRef.current ?? Date.now()),
         },
       });
 
@@ -105,7 +110,7 @@ const ContactFormWidget = () => {
             </button>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-3 p-4">
+          <form onSubmit={handleSubmit} onFocusCapture={markStarted} className="space-y-3 p-4">
             {/* Honeypot */}
             <input
               type="text"
