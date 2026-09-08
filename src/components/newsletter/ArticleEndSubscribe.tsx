@@ -41,16 +41,13 @@ const ArticleEndSubscribe = ({ articleSlug, category }: Props) => {
       setDone(true);
       return;
     }
-    if (Date.now() - startedOrNow() < 3000) {
-      setDone(true);
-      return;
-    }
     if (!turnstileToken) {
       toast({ title: "Please complete the security check.", variant: "destructive" });
       return;
     }
 
     setIsSubmitting(true);
+    await awaitMinDwell(startedAt.current, 3000);
     void trackFunnelEvent("email_capture_attempt", {
       source: "article_end",
       articleSlug,
@@ -66,7 +63,7 @@ const ArticleEndSubscribe = ({ articleSlug, category }: Props) => {
           article_slug: articleSlug ?? null,
           _t: startedOrNow(),
           website: honeypot,
-          form_ms: Date.now() - startedOrNow(),
+          form_ms: dwellMs(startedAt.current, 3000),
           turnstile_token: turnstileToken,
         },
       });

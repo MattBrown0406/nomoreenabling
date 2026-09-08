@@ -31,15 +31,12 @@ const SoftHomeOptin = () => {
       setDone(true);
       return;
     }
-    if (Date.now() - startedOrNow() < 3000) {
-      setDone(true);
-      return;
-    }
     if (!turnstileToken) {
       toast({ title: "Please complete the security check.", variant: "destructive" });
       return;
     }
     setIsSubmitting(true);
+    await awaitMinDwell(startedAt.current, 3000);
     void trackFunnelEvent("email_capture_attempt", {
       source: "home_soft_optin",
       metadata: { placement: "home_soft_optin" },
@@ -51,7 +48,7 @@ const SoftHomeOptin = () => {
           source: "home_soft_optin",
           _t: startedOrNow(),
           website: honeypot,
-          form_ms: Date.now() - startedOrNow(),
+          form_ms: dwellMs(startedAt.current, 3000),
           turnstile_token: turnstileToken,
         },
       });
