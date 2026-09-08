@@ -1,3 +1,4 @@
+import { awaitMinDwell, dwellMs } from "@/lib/formDwell";
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -60,22 +61,17 @@ const NewsletterSection = () => {
       return;
     }
 
-    // Time-based check — reject if submitted within 3 seconds of render
-    const elapsed = Date.now() - startedOrNow();
-    if (elapsed < 3000) {
-      toast({
-        title: "Welcome aboard!",
-        description: "You've successfully subscribed to our newsletter.",
-      });
-      return;
-    }
     if (!turnstileToken) {
       toast({ title: "Please complete the security check.", variant: "destructive" });
       return;
     }
 
     setIsSubmitting(true);
-    
+
+    // Fast (autofilled/pasted) submissions are real: wait out the dwell window
+    // instead of silently dropping them.
+    await awaitMinDwell(startedAt.current, 3000);
+
     try {
       const { data, error } = await supabase.functions.invoke('newsletter-signup', {
         body: {
@@ -84,7 +80,7 @@ const NewsletterSection = () => {
           source: `newsletter_hero_${variant}`,
           _t: startedOrNow(),
           website: honeypot,
-          form_ms: Date.now() - startedOrNow(),
+          form_ms: dwellMs(startedAt.current, 3000),
           turnstile_token: turnstileToken,
         }
       });

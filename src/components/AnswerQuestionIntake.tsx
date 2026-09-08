@@ -1,3 +1,4 @@
+import { awaitMinDwell, dwellMs } from "@/lib/formDwell";
 import { useRef, useState } from "react";
 import { HelpCircle, Loader2, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -41,7 +42,7 @@ const AnswerQuestionIntake = ({
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (honeypot || Date.now() - (startedAt.current ?? Date.now()) < 2500) {
+    if (honeypot) {
       toast({ title: "Question received", description: "Thank you. We will review it for future answers." });
       return;
     }
@@ -77,6 +78,7 @@ const AnswerQuestionIntake = ({
       .join("\n");
 
     setIsSubmitting(true);
+    await awaitMinDwell(startedAt.current, 3000);
     try {
       const { error } = await supabase.functions.invoke("send-contact-form", {
         body: {
@@ -92,7 +94,7 @@ const AnswerQuestionIntake = ({
           lead_reasons: ["Submitted a family recovery question"],
           page_path: pagePath || null,
           hp_field: honeypot,
-          form_ms: Date.now() - (startedAt.current ?? Date.now()),
+          form_ms: dwellMs(startedAt.current, 3000),
         },
       });
 

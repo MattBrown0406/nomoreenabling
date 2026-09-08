@@ -1,3 +1,4 @@
+import { awaitMinDwell, dwellMs } from "@/lib/formDwell";
 import { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { MessageCircle, X, Send, Loader2 } from "lucide-react";
@@ -45,10 +46,6 @@ const ContactFormWidget = () => {
     if (honeypot) return;
 
     // Time-based spam check (measured from first interaction with the form)
-    if (Date.now() - (startedAtRef.current ?? Date.now()) < 3000) {
-      toast({ title: "Please wait a moment before submitting.", variant: "destructive" });
-      return;
-    }
 
     // Basic validation
     const trimmedName = name.trim();
@@ -66,6 +63,7 @@ const ContactFormWidget = () => {
     }
 
     setIsSubmitting(true);
+    await awaitMinDwell(startedAtRef.current, 3000);
     try {
       const { data, error } = await supabase.functions.invoke("send-contact-form", {
         body: {
@@ -73,7 +71,7 @@ const ContactFormWidget = () => {
           email: trimmedEmail,
           message: trimmedMessage,
           hp_field: honeypot,
-          form_ms: Date.now() - (startedAtRef.current ?? Date.now()),
+          form_ms: dwellMs(startedAtRef.current, 3000),
         },
       });
 

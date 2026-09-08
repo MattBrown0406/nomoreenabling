@@ -1,3 +1,4 @@
+import { awaitMinDwell, dwellMs } from "@/lib/formDwell";
 import { useRef, useState } from "react";
 import { ArrowRight, CheckCircle2, Download, Lock, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -62,6 +63,8 @@ const LeadMagnetCard = ({ magnet, source, articleSlug, hubSlug, compact = false 
 
     setIsSubmitting(true);
 
+    await awaitMinDwell(startedAt.current, 3000);
+
     void trackFunnelEvent("email_capture_attempt", {
       source: "lead_magnet",
       articleSlug,
@@ -82,7 +85,7 @@ const LeadMagnetCard = ({ magnet, source, articleSlug, hubSlug, compact = false 
           page_path: window.location.pathname,
           _t: startedOrNow(),
           website: honeypot,
-          form_ms: Date.now() - startedOrNow(),
+          form_ms: dwellMs(startedAt.current, 3000),
           turnstile_token: turnstileToken,
         },
       });
