@@ -47,7 +47,7 @@ const AdvertiserInquiryForm = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (honeypot || Date.now() - (startedAt.current ?? Date.now()) < 3000) {
+    if (honeypot) {
       toast({ title: "Inquiry received", description: "Thank you. We will review the sponsor fit shortly." });
       return;
     }
@@ -67,6 +67,7 @@ const AdvertiserInquiryForm = () => {
     }
 
     setIsSubmitting(true);
+    await awaitMinDwell(startedAt.current, 3000);
     try {
       const structuredMessage = [
         "Advertiser inquiry from No More Enabling",
@@ -92,7 +93,7 @@ const AdvertiserInquiryForm = () => {
           monthly_budget: trimmed.budget,
           page_path: typeof window === "undefined" ? null : window.location.pathname,
           hp_field: honeypot,
-          form_ms: Date.now() - (startedAt.current ?? Date.now()),
+          form_ms: dwellMs(startedAt.current, 3000),
         },
       });
 

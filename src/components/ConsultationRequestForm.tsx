@@ -72,7 +72,7 @@ const ConsultationRequestForm = ({
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (honeypot || Date.now() - (startedAt.current ?? Date.now()) < 3000) {
+    if (honeypot) {
       toast({ title: "Request received", description: "Thank you. We will review your note shortly." });
       return;
     }
@@ -112,6 +112,7 @@ const ConsultationRequestForm = ({
     });
 
     setIsSubmitting(true);
+    await awaitMinDwell(startedAt.current, 3000);
     try {
       const { error } = await supabase.functions.invoke("send-contact-form", {
         body: {
@@ -130,7 +131,7 @@ const ConsultationRequestForm = ({
           lead_reasons: leadScore.reasons,
           page_path: typeof window === "undefined" ? null : window.location.pathname,
           hp_field: honeypot,
-          form_ms: Date.now() - (startedAt.current ?? Date.now()),
+          form_ms: dwellMs(startedAt.current, 3000),
         },
       });
 
