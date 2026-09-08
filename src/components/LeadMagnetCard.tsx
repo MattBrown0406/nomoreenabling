@@ -1,3 +1,4 @@
+import { awaitMinDwell, dwellMs } from "@/lib/formDwell";
 import { useRef, useState } from "react";
 import { ArrowRight, CheckCircle2, Download, Lock, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
