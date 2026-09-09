@@ -54,6 +54,7 @@ import checkingOnAddictedLovedOneImage from "@/assets/checking-on-an-addicted-lo
 import whyDoIKeepEnablingImage from "@/assets/why-do-i-keep-enabling-hidden-payoffs.jpg";
 import lecturingAddictedLovedOneImage from "@/assets/lecturing-addicted-loved-one-enabling.jpg";
 import parentsDisagreeImage from "@/assets/parents-disagree-about-childs-addiction.jpg";
+import familyMascotRoleImage from "@/assets/family-mascot-role-addiction-humor.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
@@ -179,6 +180,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "family-mascot-role-addiction-humor",
+    title: "The Family Mascot Role in Addiction: When Humor Is Doing the Heavy Lifting",
+    excerpt: "The family mascot uses humor to keep the room okay. Learn how the role develops in addicted families and how to help them put the act down.",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Enabling", "Codependency"],
+    readTime: "8 min read",
+    date: "September 9, 2026",
+    image: familyMascotRoleImage,
+    slug: "family-mascot-role-addiction-humor",
+    metaTitle: "The Family Mascot Role in Addiction",
+    metaDescription: "Learn how the family mascot role in addiction develops, why humor becomes a survival tool, and how to help the mascot put the act down.",
+  },
   {
     id: "parents-disagree-about-childs-addiction",
     title: "Good Cop, Bad Cop: What to Do When Parents Disagree About a Child's Addiction",
