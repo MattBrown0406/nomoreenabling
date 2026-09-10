@@ -55,6 +55,7 @@ import whyDoIKeepEnablingImage from "@/assets/why-do-i-keep-enabling-hidden-payo
 import lecturingAddictedLovedOneImage from "@/assets/lecturing-addicted-loved-one-enabling.jpg";
 import parentsDisagreeImage from "@/assets/parents-disagree-about-childs-addiction.jpg";
 import familyMascotRoleImage from "@/assets/family-mascot-role-addiction-humor.jpg";
+import familyRolesInRecoveryImage from "@/assets/family-roles-in-recovery-after-sober.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
