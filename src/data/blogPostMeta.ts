@@ -55,6 +55,7 @@ import whyDoIKeepEnablingImage from "@/assets/why-do-i-keep-enabling-hidden-payo
 import lecturingAddictedLovedOneImage from "@/assets/lecturing-addicted-loved-one-enabling.jpg";
 import parentsDisagreeImage from "@/assets/parents-disagree-about-childs-addiction.jpg";
 import familyMascotRoleImage from "@/assets/family-mascot-role-addiction-humor.jpg";
+import familyRolesInRecoveryImage from "@/assets/family-roles-in-recovery-after-sober.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
@@ -180,6 +181,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "family-roles-in-recovery-after-sober",
+    title: "Family Roles in Recovery: Why Everything Feels Off After Your Loved One Gets Sober",
+    excerpt: "Your loved one got sober and the family feels worse, not better. Learn why family roles in recovery shift and how to grow with the change.",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Recovery", "Codependency"],
+    readTime: "9 min read",
+    date: "September 10, 2026",
+    image: familyRolesInRecoveryImage,
+    slug: "family-roles-in-recovery-after-sober",
+    metaTitle: "Family Roles in Recovery After Sobriety",
+    metaDescription: "Your loved one got sober and the family feels worse, not better. Learn why family roles in recovery shift and how families can grow with it.",
+  },
   {
     id: "family-mascot-role-addiction-humor",
     title: "The Family Mascot Role in Addiction: When Humor Is Doing the Heavy Lifting",
