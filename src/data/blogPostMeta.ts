@@ -182,6 +182,19 @@ export interface BlogPostMeta {
 
 export const blogPostsMeta: BlogPostMeta[] = [
   {
+    id: "family-roles-in-recovery-after-sober",
+    title: "Family Roles in Recovery: Why Everything Feels Off After Your Loved One Gets Sober",
+    excerpt: "Your loved one got sober and the family feels worse, not better. Learn why family roles in recovery shift and how to grow with the change.",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Recovery", "Codependency"],
+    readTime: "9 min read",
+    date: "September 10, 2026",
+    image: familyRolesInRecoveryImage,
+    slug: "family-roles-in-recovery-after-sober",
+    metaTitle: "Family Roles in Recovery After Sobriety",
+    metaDescription: "Your loved one got sober and the family feels worse, not better. Learn why family roles in recovery shift and how families can grow with it.",
+  },
+  {
     id: "family-mascot-role-addiction-humor",
     title: "The Family Mascot Role in Addiction: When Humor Is Doing the Heavy Lifting",
     excerpt: "The family mascot uses humor to keep the room okay. Learn how the role develops in addicted families and how to help them put the act down.",
