@@ -1,6 +1,7 @@
 export type ArticleContentModule = { default: string };
 
 export const articleContentLoaders: Record<string, () => Promise<ArticleContentModule>> = {
+  "why-boundaries-matter-with-an-addicted-loved-one": () => import("./article-content/why-boundaries-matter-with-an-addicted-loved-one"),
   "family-roles-in-recovery-after-sober": () => import("./article-content/family-roles-in-recovery-after-sober"),
   "family-mascot-role-addiction-humor": () => import("./article-content/family-mascot-role-addiction-humor"),
   "parents-disagree-about-childs-addiction": () => import("./article-content/parents-disagree-about-childs-addiction"),

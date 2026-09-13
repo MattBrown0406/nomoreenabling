@@ -56,6 +56,7 @@ import lecturingAddictedLovedOneImage from "@/assets/lecturing-addicted-loved-on
 import parentsDisagreeImage from "@/assets/parents-disagree-about-childs-addiction.jpg";
 import familyMascotRoleImage from "@/assets/family-mascot-role-addiction-humor.jpg";
 import familyRolesInRecoveryImage from "@/assets/family-roles-in-recovery-after-sober.jpg";
+import whyBoundariesMatterImage from "@/assets/why-boundaries-matter-with-an-addicted-loved-one.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
@@ -181,6 +182,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "why-boundaries-matter-with-an-addicted-loved-one",
+    title: "Why Boundaries Matter With an Addicted Loved One (Even When Nothing Seems to Change)",
+    excerpt: "Held the line and nothing changed? Here's what a boundary actually does — for you, for your loved one, and for the rest of your family.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Enabling", "Family Dynamics"],
+    readTime: "8 min read",
+    date: "September 13, 2026",
+    image: whyBoundariesMatterImage,
+    slug: "why-boundaries-matter-with-an-addicted-loved-one",
+    metaTitle: "Why Boundaries Matter With an Addicted Loved One",
+    metaDescription: "Wondering why boundaries matter with an addicted loved one when they don't seem to change anything? Here's what a boundary actually does.",
+  },
   {
     id: "family-roles-in-recovery-after-sober",
     title: "Family Roles in Recovery: Why Everything Feels Off After Your Loved One Gets Sober",
