@@ -1,0 +1,863 @@
+{
+  "requestedHost": "NoMoreENabling.com",
+  "canonicalOrigin": "https://nomoreenabling.com",
+  "date": "2026-09-13",
+  "baseCommit": "e822b2dad3952b2ef03a2d3419a1f57ae946a179",
+  "publication": "pending Lovable Share \u2192 Publish; not inferred from source sync",
+  "property": "sc-domain:nomoreenabling.com",
+  "windows": {
+    "current28": {
+      "start": "2026-08-15",
+      "end": "2026-09-11",
+      "totals": [
+        {
+          "clicks": 15,
+          "impressions": 776,
+          "ctr": 0.019329896907216496,
+          "position": 31.15463917525773
+        }
+      ]
+    },
+    "previous28": {
+      "start": "2026-07-18",
+      "end": "2026-08-14",
+      "totals": [
+        {
+          "clicks": 13,
+          "impressions": 585,
+          "ctr": 0.022222222222222223,
+          "position": 35.62051282051282
+        }
+      ]
+    },
+    "context90": {
+      "start": "2026-06-14",
+      "end": "2026-09-11",
+      "totals": [
+        {
+          "clicks": 35,
+          "impressions": 1923,
+          "ctr": 0.018200728029121163,
+          "position": 36.28705148205928
+        }
+      ]
+    }
+  },
+  "states": [
+    {
+      "state": "Oregon",
+      "statePage": null,
+      "sitemapMatches": [],
+      "sourceMentions": [],
+      "namedStateQueryPageRows": {
+        "current28": [],
+        "previous28": [],
+        "context90": []
+      },
+      "decision": "No regional page to revise; preserve national educational positioning; no doorway page created."
+    },
+    {
+      "state": "Washington",
+      "statePage": null,
+      "sitemapMatches": [],
+      "sourceMentions": [],
+      "namedStateQueryPageRows": {
+        "current28": [],
+        "previous28": [],
+        "context90": []
+      },
+      "decision": "No regional page to revise; preserve national educational positioning; no doorway page created."
+    },
+    {
+      "state": "Idaho",
+      "statePage": null,
+      "sitemapMatches": [],
+      "sourceMentions": [],
+      "namedStateQueryPageRows": {
+        "current28": [],
+        "previous28": [],
+        "context90": []
+      },
+      "decision": "No regional page to revise; preserve national educational positioning; no doorway page created."
+    },
+    {
+      "state": "California",
+      "statePage": null,
+      "sitemapMatches": [],
+      "sourceMentions": [],
+      "namedStateQueryPageRows": {
+        "current28": [],
+        "previous28": [],
+        "context90": []
+      },
+      "decision": "No regional page to revise; preserve national educational positioning; no doorway page created."
+    },
+    {
+      "state": "Nevada",
+      "statePage": null,
+      "sitemapMatches": [],
+      "sourceMentions": [],
+      "namedStateQueryPageRows": {
+        "current28": [],
+        "previous28": [],
+        "context90": []
+      },
+      "decision": "No regional page to revise; preserve national educational positioning; no doorway page created."
+    },
+    {
+      "state": "Arizona",
+      "statePage": null,
+      "sitemapMatches": [],
+      "sourceMentions": [],
+      "namedStateQueryPageRows": {
+        "current28": [],
+        "previous28": [],
+        "context90": []
+      },
+      "decision": "No regional page to revise; preserve national educational positioning; no doorway page created."
+    },
+    {
+      "state": "Utah",
+      "statePage": null,
+      "sitemapMatches": [],
+      "sourceMentions": [],
+      "namedStateQueryPageRows": {
+        "current28": [],
+        "previous28": [],
+        "context90": []
+      },
+      "decision": "No regional page to revise; preserve national educational positioning; no doorway page created."
+    }
+  ],
+  "changes": [
+    {
+      "route": "/work-with-matt",
+      "before": {
+        "title": "Work With Matt Brown for Family Addict... | No More Enabling",
+        "description": "Work with interventionist Matt Brown for family addiction coaching, boundary planning, treatment refusal guidance, and professional intervention next steps.",
+        "canonicals": [
+          "https://nomoreenabling.com/work-with-matt"
+        ],
+        "h1": [
+          "Turn the family chaos into a next-step plan"
+        ],
+        "robots": [
+          "index, follow"
+        ],
+        "schema": [
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "No More Enabling",
+            "url": "https://nomoreenabling.com",
+            "logo": "https://nomoreenabling.com/favicon.jpg",
+            "description": "Educational resource for families affected by addiction, codependency, and enabling behaviors. Founded by interventionist Matt Brown.",
+            "founder": {
+              "@type": "Person",
+              "name": "Matt Brown",
+              "jobTitle": "Professional Interventionist",
+              "url": "https://nomoreenabling.com/about"
+            },
+            "sameAs": [
+              "https://www.tiktok.com/@mattbrowninterventionist",
+              "https://www.instagram.com/mattbrowninterventionist/",
+              "https://www.facebook.com/mbrownsober",
+              "https://www.youtube.com/@ThePartyWreckers"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+1-458-298-8002",
+              "email": "matt@nomoreenabling.com",
+              "contactType": "family addiction support",
+              "availableLanguage": "English"
+            }
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "No More Enabling",
+            "url": "https://nomoreenabling.com",
+            "description": "Practical education for families trying to stop enabling addiction without losing themselves in the process.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "No More Enabling"
+            },
+            "inLanguage": "en-US",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://nomoreenabling.com/articles?q={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "name": "Matt Brown Addiction Family Coaching and Intervention Guidance",
+            "url": "https://nomoreenabling.com/work-with-matt",
+            "image": "https://nomoreenabling.com/favicon.jpg",
+            "description": "Family coaching and professional intervention guidance for families navigating addiction, enabling, boundaries, treatment resistance, and relapse patterns.",
+            "founder": {
+              "@type": "Person",
+              "name": "Matt Brown",
+              "jobTitle": "Professional Interventionist"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "United States"
+            },
+            "serviceType": [
+              "Family addiction coaching",
+              "Addiction intervention guidance",
+              "Family boundaries coaching",
+              "Treatment resistance consultation"
+            ],
+            "telephone": "+1-458-298-8002",
+            "email": "matt@nomoreenabling.com",
+            "sameAs": [
+              "https://www.tiktok.com/@mattbrowninterventionist",
+              "https://www.instagram.com/mattbrowninterventionist/",
+              "https://www.facebook.com/mbrownsober",
+              "https://www.youtube.com/@ThePartyWreckers"
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Who is family addiction coaching for?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Family addiction coaching is for parents, spouses, siblings, adult children, and other loved ones who need help responding to addiction, relapse, treatment refusal, codependency, enabling, or boundary breakdowns."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is this the same as a professional intervention?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Not always. Some families need coaching and planning before an intervention is appropriate. Others are already facing safety risks, treatment refusal, or repeated relapse and may need formal intervention guidance."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What happens after I request guidance?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Matt reviews the information you share, looks for the level of support that fits the situation, and follows up with a next step. If a higher level of intervention support is needed, he can help point the family toward that path."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can families get help even if their loved one refuses treatment?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Families can often begin changing the conditions around addiction before the loved one agrees to help. Coaching can support family alignment, safer boundaries, and clearer planning."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is this a crisis service?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. No More Enabling is not a crisis service. If someone is in immediate danger, call 911 or 988 in the United States. The consultation form is for non-emergency family guidance and planning."
+                }
+              }
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://nomoreenabling.com"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Work With Matt",
+                "item": "https://nomoreenabling.com/work-with-matt"
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "title": "Work With Matt Brown for Family Addict... | No More Enabling",
+        "description": "Work with interventionist Matt Brown for family addiction coaching, boundary planning, treatment refusal guidance, and professional intervention next steps.",
+        "canonicals": [
+          "https://nomoreenabling.com/work-with-matt"
+        ],
+        "h1": [
+          "Turn the family chaos into a next-step plan"
+        ],
+        "robots": [
+          "index, follow"
+        ],
+        "schema": [
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "No More Enabling",
+            "url": "https://nomoreenabling.com",
+            "logo": "https://nomoreenabling.com/favicon.jpg",
+            "description": "Educational resource for families affected by addiction, codependency, and enabling behaviors. Founded by interventionist Matt Brown.",
+            "founder": {
+              "@type": "Person",
+              "name": "Matt Brown",
+              "jobTitle": "Professional Interventionist",
+              "url": "https://nomoreenabling.com/about"
+            },
+            "sameAs": [
+              "https://www.tiktok.com/@mattbrowninterventionist",
+              "https://www.instagram.com/mattbrowninterventionist/",
+              "https://www.facebook.com/mbrownsober",
+              "https://www.youtube.com/@ThePartyWreckers"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+1-458-298-8002",
+              "email": "matt@nomoreenabling.com",
+              "contactType": "family addiction support",
+              "availableLanguage": "English"
+            }
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "No More Enabling",
+            "url": "https://nomoreenabling.com",
+            "description": "Practical education for families trying to stop enabling addiction without losing themselves in the process.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "No More Enabling"
+            },
+            "inLanguage": "en-US",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://nomoreenabling.com/articles?q={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "name": "Matt Brown Addiction Family Coaching and Intervention Guidance",
+            "url": "https://nomoreenabling.com/work-with-matt",
+            "image": "https://nomoreenabling.com/favicon.jpg",
+            "description": "Family coaching and professional intervention guidance for families navigating addiction, enabling, boundaries, treatment resistance, and relapse patterns.",
+            "founder": {
+              "@type": "Person",
+              "name": "Matt Brown",
+              "jobTitle": "Professional Interventionist"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "United States"
+            },
+            "serviceType": [
+              "Family addiction coaching",
+              "Addiction intervention guidance",
+              "Family boundaries coaching",
+              "Treatment resistance consultation"
+            ],
+            "telephone": "+1-458-298-8002",
+            "email": "matt@nomoreenabling.com",
+            "sameAs": [
+              "https://www.tiktok.com/@mattbrowninterventionist",
+              "https://www.instagram.com/mattbrowninterventionist/",
+              "https://www.facebook.com/mbrownsober",
+              "https://www.youtube.com/@ThePartyWreckers"
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Who is family addiction coaching for?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Family addiction coaching is for parents, spouses, siblings, adult children, and other loved ones who need help responding to addiction, relapse, treatment refusal, codependency, enabling, or boundary breakdowns."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is this the same as a professional intervention?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Not always. Some families need coaching and planning before an intervention is appropriate. Others are already facing safety risks, treatment refusal, or repeated relapse and may need formal intervention guidance."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What happens after I request guidance?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Matt reviews the information you share, looks for the level of support that fits the situation, and follows up with a next step. If a higher level of intervention support is needed, he can help point the family toward that path."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can families get help even if their loved one refuses treatment?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Families can often begin changing the conditions around addiction before the loved one agrees to help. Coaching can support family alignment, safer boundaries, and clearer planning."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is this a crisis service?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. No More Enabling is not a crisis service. If someone is in immediate danger, call 911 or 988 in the United States. The consultation form is for non-emergency family guidance and planning."
+                }
+              }
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://nomoreenabling.com"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Work With Matt",
+                "item": "https://nomoreenabling.com/work-with-matt"
+              }
+            ]
+          }
+        ]
+      },
+      "change": "Three contextual education links before unchanged consultation form; no metadata or existing body rewrite."
+    },
+    {
+      "route": "/intervention-help",
+      "before": {
+        "title": "Addiction Intervention Help for Families | No More Enabling",
+        "description": "Learn when addiction intervention help may be appropriate, what families should prepare, and how to request private guidance from Matt Brown.",
+        "canonicals": [
+          "https://nomoreenabling.com/intervention-help"
+        ],
+        "h1": [
+          "Addiction intervention help for families who need a structured plan"
+        ],
+        "robots": [
+          "index, follow"
+        ],
+        "schema": [
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "No More Enabling",
+            "url": "https://nomoreenabling.com",
+            "logo": "https://nomoreenabling.com/favicon.jpg",
+            "description": "Educational resource for families affected by addiction, codependency, and enabling behaviors. Founded by interventionist Matt Brown.",
+            "founder": {
+              "@type": "Person",
+              "name": "Matt Brown",
+              "jobTitle": "Professional Interventionist",
+              "url": "https://nomoreenabling.com/about"
+            },
+            "sameAs": [
+              "https://www.tiktok.com/@mattbrowninterventionist",
+              "https://www.instagram.com/mattbrowninterventionist/",
+              "https://www.facebook.com/mbrownsober",
+              "https://www.youtube.com/@ThePartyWreckers"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+1-458-298-8002",
+              "email": "matt@nomoreenabling.com",
+              "contactType": "family addiction support",
+              "availableLanguage": "English"
+            }
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "No More Enabling",
+            "url": "https://nomoreenabling.com",
+            "description": "Practical education for families trying to stop enabling addiction without losing themselves in the process.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "No More Enabling"
+            },
+            "inLanguage": "en-US",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://nomoreenabling.com/articles?q={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "name": "Matt Brown Addiction Family Coaching and Intervention Guidance",
+            "url": "https://nomoreenabling.com/work-with-matt",
+            "image": "https://nomoreenabling.com/favicon.jpg",
+            "description": "Family coaching and professional intervention guidance for families navigating addiction, enabling, boundaries, treatment resistance, and relapse patterns.",
+            "founder": {
+              "@type": "Person",
+              "name": "Matt Brown",
+              "jobTitle": "Professional Interventionist"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "United States"
+            },
+            "serviceType": [
+              "Family addiction coaching",
+              "Addiction intervention guidance",
+              "Family boundaries coaching",
+              "Treatment resistance consultation"
+            ],
+            "telephone": "+1-458-298-8002",
+            "email": "matt@nomoreenabling.com",
+            "sameAs": [
+              "https://www.tiktok.com/@mattbrowninterventionist",
+              "https://www.instagram.com/mattbrowninterventionist/",
+              "https://www.facebook.com/mbrownsober",
+              "https://www.youtube.com/@ThePartyWreckers"
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How do I know if my family needs an intervention?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "An intervention may be appropriate when treatment is repeatedly refused, consequences are escalating, safety is deteriorating, or the family cannot stay aligned long enough to create a clear plan."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can Matt help if my loved one refuses treatment?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. The family can still prepare, align, set boundaries, and decide whether professional intervention guidance is appropriate even before the loved one agrees to help."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is this a crisis service?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. If someone is in immediate danger, call 911. If there is suicidal thinking or threat of self-harm in the United States, call or text 988."
+                }
+              }
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "How to approach intervention help",
+            "description": "Learn when addiction intervention help may be appropriate, what families should prepare, and how to request private guidance from Matt Brown.",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Clarify the real risk",
+                "text": "Before an intervention is planned, the family needs a grounded picture of substance use, safety, mental health concerns, treatment history, and the consequences already unfolding."
+              },
+              {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Align the family system",
+                "text": "Interventions fail when the family sends mixed messages. The first work is often helping the family stop arguing with each other long enough to create a consistent plan."
+              },
+              {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Choose the right level of help",
+                "text": "Some situations need coaching and preparation. Others need formal intervention support. The goal is to match the plan to the risk instead of forcing one answer onto every family."
+              }
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Matt Brown",
+            "url": "https://nomoreenabling.com/about",
+            "image": "https://nomoreenabling.com/assets/matt-brown-headshot-CnsD3BkS.jpeg",
+            "jobTitle": "Professional Interventionist",
+            "description": "Matt Brown is a professional interventionist and founder of No More Enabling, helping families navigate addiction, treatment resistance, relapse, and recovery planning since 2004.",
+            "knowsAbout": [
+              "Addiction intervention",
+              "Family addiction support",
+              "Treatment resistance",
+              "Family boundaries",
+              "Recovery planning",
+              "Codependency and enabling"
+            ],
+            "founder": {
+              "@type": "Organization",
+              "name": "No More Enabling",
+              "url": "https://nomoreenabling.com"
+            },
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Freedom Interventions",
+              "url": "https://freedominterventions.com"
+            },
+            "sameAs": [
+              "https://www.tiktok.com/@mattbrowninterventionist",
+              "https://www.instagram.com/mattbrowninterventionist/",
+              "https://www.facebook.com/mbrownsober",
+              "https://www.youtube.com/@ThePartyWreckers"
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://nomoreenabling.com"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Intervention help",
+                "item": "https://nomoreenabling.com/intervention-help"
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "title": "Addiction Intervention Help for Families | No More Enabling",
+        "description": "Learn when addiction intervention help may be appropriate, what families should prepare, and how to request private guidance from Matt Brown.",
+        "canonicals": [
+          "https://nomoreenabling.com/intervention-help"
+        ],
+        "h1": [
+          "Addiction intervention help for families who need a structured plan"
+        ],
+        "robots": [
+          "index, follow"
+        ],
+        "schema": [
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "No More Enabling",
+            "url": "https://nomoreenabling.com",
+            "logo": "https://nomoreenabling.com/favicon.jpg",
+            "description": "Educational resource for families affected by addiction, codependency, and enabling behaviors. Founded by interventionist Matt Brown.",
+            "founder": {
+              "@type": "Person",
+              "name": "Matt Brown",
+              "jobTitle": "Professional Interventionist",
+              "url": "https://nomoreenabling.com/about"
+            },
+            "sameAs": [
+              "https://www.tiktok.com/@mattbrowninterventionist",
+              "https://www.instagram.com/mattbrowninterventionist/",
+              "https://www.facebook.com/mbrownsober",
+              "https://www.youtube.com/@ThePartyWreckers"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+1-458-298-8002",
+              "email": "matt@nomoreenabling.com",
+              "contactType": "family addiction support",
+              "availableLanguage": "English"
+            }
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "No More Enabling",
+            "url": "https://nomoreenabling.com",
+            "description": "Practical education for families trying to stop enabling addiction without losing themselves in the process.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "No More Enabling"
+            },
+            "inLanguage": "en-US",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://nomoreenabling.com/articles?q={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "name": "Matt Brown Addiction Family Coaching and Intervention Guidance",
+            "url": "https://nomoreenabling.com/work-with-matt",
+            "image": "https://nomoreenabling.com/favicon.jpg",
+            "description": "Family coaching and professional intervention guidance for families navigating addiction, enabling, boundaries, treatment resistance, and relapse patterns.",
+            "founder": {
+              "@type": "Person",
+              "name": "Matt Brown",
+              "jobTitle": "Professional Interventionist"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "United States"
+            },
+            "serviceType": [
+              "Family addiction coaching",
+              "Addiction intervention guidance",
+              "Family boundaries coaching",
+              "Treatment resistance consultation"
+            ],
+            "telephone": "+1-458-298-8002",
+            "email": "matt@nomoreenabling.com",
+            "sameAs": [
+              "https://www.tiktok.com/@mattbrowninterventionist",
+              "https://www.instagram.com/mattbrowninterventionist/",
+              "https://www.facebook.com/mbrownsober",
+              "https://www.youtube.com/@ThePartyWreckers"
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How do I know if my family needs an intervention?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "An intervention may be appropriate when treatment is repeatedly refused, consequences are escalating, safety is deteriorating, or the family cannot stay aligned long enough to create a clear plan."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can Matt help if my loved one refuses treatment?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. The family can still prepare, align, set boundaries, and decide whether professional intervention guidance is appropriate even before the loved one agrees to help."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is this a crisis service?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. If someone is in immediate danger, call 911. If there is suicidal thinking or threat of self-harm in the United States, call or text 988."
+                }
+              }
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "How to approach intervention help",
+            "description": "Learn when addiction intervention help may be appropriate, what families should prepare, and how to request private guidance from Matt Brown.",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Clarify the real risk",
+                "text": "Before an intervention is planned, the family needs a grounded picture of substance use, safety, mental health concerns, treatment history, and the consequences already unfolding."
+              },
+              {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Align the family system",
+                "text": "The first work is often helping the family stop arguing with each other long enough to create a consistent plan."
+              },
+              {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Choose the right level of help",
+                "text": "Some situations need coaching and preparation. Others need formal intervention support. The goal is to match the plan to the risk instead of forcing one answer onto every family."
+              }
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Matt Brown",
+            "url": "https://nomoreenabling.com/about",
+            "image": "https://nomoreenabling.com/assets/matt-brown-headshot-CnsD3BkS.jpeg",
+            "jobTitle": "Professional Interventionist",
+            "description": "Matt Brown is a professional interventionist and founder of No More Enabling, helping families navigate addiction, treatment resistance, relapse, and recovery planning since 2004.",
+            "knowsAbout": [
+              "Addiction intervention",
+              "Family addiction support",
+              "Treatment resistance",
+              "Family boundaries",
+              "Recovery planning",
+              "Codependency and enabling"
+            ],
+            "founder": {
+              "@type": "Organization",
+              "name": "No More Enabling",
+              "url": "https://nomoreenabling.com"
+            },
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Freedom Interventions",
+              "url": "https://freedominterventions.com"
+            },
+            "sameAs": [
+              "https://www.tiktok.com/@mattbrowninterventionist",
+              "https://www.instagram.com/mattbrowninterventionist/",
+              "https://www.facebook.com/mbrownsober",
+              "https://www.youtube.com/@ThePartyWreckers"
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://nomoreenabling.com"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Intervention help",
+                "item": "https://nomoreenabling.com/intervention-help"
+              }
+            ]
+          }
+        ]
+      },
+      "change": "Delete only \u201cInterventions fail when the family sends mixed messages.\u201d; preserve surrounding advice, FAQs, crisis language and metadata."
+    }
+  ],
+  "cooldown": {
+    "metadataDays": 28,
+    "bodyDays": 60,
+    "start": "actual verified public publication",
+    "enforcement": "documented review instruction only; cron unchanged",
+    "exception": "Owner-approved deletion of one unsupported absolute assertion; navigation-only addition does not rewrite existing substantive body. No new health advice."
+  }
+}

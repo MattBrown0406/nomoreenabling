@@ -52,7 +52,7 @@ export const commercialIntentPages: CommercialIntentPage[] = [
       },
       {
         title: "Align the family system",
-        body: "Interventions fail when the family sends mixed messages. The first work is often helping the family stop arguing with each other long enough to create a consistent plan.",
+        body: "The first work is often helping the family stop arguing with each other long enough to create a consistent plan.",
       },
       {
         title: "Choose the right level of help",

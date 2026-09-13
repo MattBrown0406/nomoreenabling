@@ -268,6 +268,26 @@ export default function WorkWithMatt() {
           </div>
         </section>
 
+        <section id="education-options" aria-labelledby="education-options-title" className="container mx-auto px-4 pb-12">
+          <div className="rounded-3xl border border-border bg-card p-6 md:p-8">
+            <h2 id="education-options-title" className="font-serif text-3xl font-bold text-foreground">Not ready to request guidance?</h2>
+            <p className="mt-3 max-w-3xl text-muted-foreground">
+              You can keep learning without submitting a consultation request. Start with the question that brought you here, then return when you want to discuss your family's situation.
+            </p>
+            <nav aria-label="Family education before a consultation" className="mt-5 grid gap-4 md:grid-cols-3">
+              <Link to="/helping-or-enabling" className="rounded-xl border border-border p-4 text-primary hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+                Check the difference between helping and enabling
+              </Link>
+              <Link to="/glossary/enabling" className="rounded-xl border border-border p-4 text-primary hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+                Read the definition of enabling
+              </Link>
+              <Link to="/topic-hubs/financial-enabling" className="rounded-xl border border-border p-4 text-primary hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+                Explore the money and rent reading guide
+              </Link>
+            </nav>
+          </div>
+        </section>
+
         <section id="consultation-form" className="container mx-auto px-4 pb-16">
           <div className="grid gap-8 lg:grid-cols-[1fr_0.7fr] lg:items-start">
             <ConsultationRequestForm
