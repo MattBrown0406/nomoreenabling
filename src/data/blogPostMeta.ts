@@ -56,6 +56,7 @@ import lecturingAddictedLovedOneImage from "@/assets/lecturing-addicted-loved-on
 import parentsDisagreeImage from "@/assets/parents-disagree-about-childs-addiction.jpg";
 import familyMascotRoleImage from "@/assets/family-mascot-role-addiction-humor.jpg";
 import familyRolesInRecoveryImage from "@/assets/family-roles-in-recovery-after-sober.jpg";
+import whyBoundariesMatterImage from "@/assets/why-boundaries-matter-with-an-addicted-loved-one.jpg";
 
 
 import codependencyAddictionFamiliesImage from "@/assets/codependency-addiction-families.jpg";
