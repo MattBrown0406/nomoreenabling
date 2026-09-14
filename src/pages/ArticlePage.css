@@ -1,0 +1,29 @@
+/* An article column can be much narrower than the viewport (desktop sidebar).
+   Let cards and controls use that available width, rather than min-content. */
+.article-column {
+  overflow-wrap: anywhere;
+}
+
+.article-column :is(.flex, .grid) > * {
+  min-width: 0;
+}
+
+.article-column .flex.flex-col {
+  flex-wrap: wrap;
+}
+
+.article-column :is(a, button).whitespace-nowrap {
+  white-space: normal;
+  height: auto;
+  min-height: 2.5rem;
+  max-width: 100%;
+  text-align: center;
+}
+
+.article-column form.grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.article-column input {
+  min-width: 0;
+}

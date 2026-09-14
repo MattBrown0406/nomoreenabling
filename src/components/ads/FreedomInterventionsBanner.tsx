@@ -24,13 +24,13 @@ const FreedomInterventionsBanner = ({ size = "sidebar" }: FreedomInterventionsBa
         onClick={() => trackAdClick("Freedom Interventions")}
         className="block bg-gradient-to-r from-[#1a365d] via-[#2c5282] to-[#1a365d] rounded-xl shadow-card overflow-hidden hover:shadow-lg transition-all duration-300 max-w-4xl mx-auto border border-[#3182ce]/30"
       >
-        <div className="flex flex-row items-center gap-6 p-4">
+        <div className="flex flex-wrap items-center justify-center gap-6 p-4">
           <img
             src={freedomLogo}
             alt="Freedom Interventions"
             className="h-28 w-auto rounded-lg border-2 border-white/20"
           />
-          <div className="flex-1">
+          <div className="flex-1 basis-52 min-w-0">
             <h3 className="text-white font-serif text-xl font-bold mb-1">
               Guiding Families to <span className="text-[#63b3ed]">Hope & Recovery</span>
             </h3>
