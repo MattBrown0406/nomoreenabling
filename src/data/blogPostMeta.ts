@@ -166,6 +166,7 @@ import preparingLovedOnesReturnImage from "@/assets/preparing-loved-ones-return-
 import respondToRelapseImage from "@/assets/respond-to-relapse-without-enabling.jpg";
 import talkToLovedOneTreatmentImage from "@/assets/talk-to-loved-one-about-addiction-treatment.jpg";
 import stoppingEnablingAbandonmentImage from "@/assets/stopping-enabling-feels-like-abandonment.jpg";
+import boundariesVsControlImage from "@/assets/boundaries-vs-control-addicted-loved-one.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -182,6 +183,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "boundaries-vs-control-addicted-loved-one",
+    title: "Boundaries vs. Control: How to Tell Which One You're Actually Using With an Addicted Loved One",
+    excerpt: "Is it a boundary, or are you trying to control them? Four questions that show the difference — and what to do when you spot control.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Enabling", "Codependency"],
+    readTime: "8 min read",
+    date: "September 14, 2026",
+    image: boundariesVsControlImage,
+    slug: "boundaries-vs-control-addicted-loved-one",
+    metaTitle: "Boundaries vs. Control With an Addicted Loved One",
+    metaDescription: "Is it a boundary, or are you trying to control your addicted loved one? Learn the difference between boundaries vs control and how to tell which you use.",
+  },
   {
     id: "why-boundaries-matter-with-an-addicted-loved-one",
     title: "Why Boundaries Matter With an Addicted Loved One (Even When Nothing Seems to Change)",
