@@ -36,7 +36,7 @@ const PersonJsonLd = ({ imageUrl }: PersonJsonLdProps) => {
       "https://www.tiktok.com/@mattbrowninterventionist",
       "https://www.instagram.com/mattbrowninterventionist/",
       "https://www.facebook.com/mbrownsober",
-      "https://www.youtube.com/@ThePartyWreckers",
+
     ],
   };
 

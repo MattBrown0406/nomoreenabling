@@ -15,12 +15,7 @@ const OrganizationJsonLd = () => {
       jobTitle: "Professional Interventionist",
       url: "https://nomoreenabling.com/about",
     },
-    sameAs: [
-      "https://www.tiktok.com/@mattbrowninterventionist",
-      "https://www.instagram.com/mattbrowninterventionist/",
-      "https://www.facebook.com/mbrownsober",
-      "https://www.youtube.com/@ThePartyWreckers",
-    ],
+
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+1-458-298-8002",
@@ -77,7 +72,7 @@ const OrganizationJsonLd = () => {
     ],
     telephone: "+1-458-298-8002",
     email: "matt@nomoreenabling.com",
-    sameAs: organizationJsonLd.sameAs,
+
   };
 
   return (

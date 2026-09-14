@@ -87,6 +87,26 @@ export default function GlossaryTerm() {
               <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{term.expandedAnswer}</p>
             </article>
 
+            {term.slug === "enabling" && (
+              <section aria-labelledby="enabling-examples-heading" className="mt-8 rounded-2xl border border-border bg-card p-6 md:p-8">
+                <h2 id="enabling-examples-heading" className="font-serif text-2xl font-bold text-foreground">
+                  See this pattern in real decisions
+                </h2>
+                <ul className="mt-4 list-disc space-y-3 pl-5">
+                  <li>
+                    <Link to="/articles/paying-rent-for-addicted-adult-child" className="text-primary underline underline-offset-4 hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+                      Paying rent for an addicted adult child
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/articles/should-i-give-money-to-someone-with-addiction" className="text-primary underline underline-offset-4 hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+                      Should I give money to someone with addiction?
+                    </Link>
+                  </li>
+                </ul>
+              </section>
+            )}
+
             <section className="mt-8 rounded-2xl border border-primary/20 bg-primary/5 p-6 md:p-8">
               <p className="text-sm font-semibold uppercase tracking-wide text-primary">What to do next</p>
               <h2 className="mt-2 font-serif text-2xl font-bold text-foreground">Turn the definition into one clear family action</h2>
