@@ -166,6 +166,7 @@ import preparingLovedOnesReturnImage from "@/assets/preparing-loved-ones-return-
 import respondToRelapseImage from "@/assets/respond-to-relapse-without-enabling.jpg";
 import talkToLovedOneTreatmentImage from "@/assets/talk-to-loved-one-about-addiction-treatment.jpg";
 import stoppingEnablingAbandonmentImage from "@/assets/stopping-enabling-feels-like-abandonment.jpg";
+import boundariesVsControlImage from "@/assets/boundaries-vs-control-addicted-loved-one.jpg";
 
 export interface BlogPostMeta {
   id: string;
