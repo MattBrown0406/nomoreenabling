@@ -167,6 +167,7 @@ import respondToRelapseImage from "@/assets/respond-to-relapse-without-enabling.
 import talkToLovedOneTreatmentImage from "@/assets/talk-to-loved-one-about-addiction-treatment.jpg";
 import stoppingEnablingAbandonmentImage from "@/assets/stopping-enabling-feels-like-abandonment.jpg";
 import boundariesVsControlImage from "@/assets/boundaries-vs-control-addicted-loved-one.jpg";
+import guiltSettingBoundariesImage from "@/assets/guilt-setting-boundaries-addicted-loved-one.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -183,6 +184,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "guilt-setting-boundaries-addicted-loved-one",
+    title: "Why Setting Boundaries With an Addicted Loved One Feels So Wrong (And Why It Isn't)",
+    excerpt: "You said no and the guilt hit hard. Here's why it shows up, how to tell healthy guilt from false guilt, and how to hold the line anyway.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Enabling", "Guilt & Shame"],
+    readTime: "8 min read",
+    date: "September 15, 2026",
+    image: guiltSettingBoundariesImage,
+    slug: "guilt-setting-boundaries-addicted-loved-one",
+    metaTitle: "Guilt Setting Boundaries With an Addicted Loved One",
+    metaDescription: "Feeling guilty about setting boundaries with an addicted loved one? Learn why the guilt shows up, what it really means, and how to hold a limit without shame.",
+  },
   {
     id: "boundaries-vs-control-addicted-loved-one",
     title: "Boundaries vs. Control: How to Tell Which One You're Actually Using With an Addicted Loved One",
