@@ -167,6 +167,7 @@ import respondToRelapseImage from "@/assets/respond-to-relapse-without-enabling.
 import talkToLovedOneTreatmentImage from "@/assets/talk-to-loved-one-about-addiction-treatment.jpg";
 import stoppingEnablingAbandonmentImage from "@/assets/stopping-enabling-feels-like-abandonment.jpg";
 import boundariesVsControlImage from "@/assets/boundaries-vs-control-addicted-loved-one.jpg";
+import guiltSettingBoundariesImage from "@/assets/guilt-setting-boundaries-addicted-loved-one.jpg";
 
 export interface BlogPostMeta {
   id: string;
