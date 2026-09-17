@@ -168,6 +168,7 @@ import talkToLovedOneTreatmentImage from "@/assets/talk-to-loved-one-about-addic
 import stoppingEnablingAbandonmentImage from "@/assets/stopping-enabling-feels-like-abandonment.jpg";
 import boundariesVsControlImage from "@/assets/boundaries-vs-control-addicted-loved-one.jpg";
 import guiltSettingBoundariesImage from "@/assets/guilt-setting-boundaries-addicted-loved-one.jpg";
+import sayNoMoneyRequestImage from "@/assets/how-to-say-no-when-addicted-loved-one-asks-for-money.jpg";
 
 export interface BlogPostMeta {
   id: string;

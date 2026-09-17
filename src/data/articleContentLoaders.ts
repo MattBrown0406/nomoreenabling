@@ -1,6 +1,7 @@
 export type ArticleContentModule = { default: string };
 
 export const articleContentLoaders: Record<string, () => Promise<ArticleContentModule>> = {
+  "how-to-say-no-when-addicted-loved-one-asks-for-money": () => import("./article-content/how-to-say-no-when-addicted-loved-one-asks-for-money"),
   "guilt-setting-boundaries-addicted-loved-one": () => import("./article-content/guilt-setting-boundaries-addicted-loved-one"),
   "boundaries-vs-control-addicted-loved-one": () => import("./article-content/boundaries-vs-control-addicted-loved-one"),
   "why-boundaries-matter-with-an-addicted-loved-one": () => import("./article-content/why-boundaries-matter-with-an-addicted-loved-one"),
