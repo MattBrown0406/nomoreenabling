@@ -168,6 +168,7 @@ import talkToLovedOneTreatmentImage from "@/assets/talk-to-loved-one-about-addic
 import stoppingEnablingAbandonmentImage from "@/assets/stopping-enabling-feels-like-abandonment.jpg";
 import boundariesVsControlImage from "@/assets/boundaries-vs-control-addicted-loved-one.jpg";
 import guiltSettingBoundariesImage from "@/assets/guilt-setting-boundaries-addicted-loved-one.jpg";
+import sayNoMoneyRequestImage from "@/assets/how-to-say-no-when-addicted-loved-one-asks-for-money.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -184,6 +185,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "how-to-say-no-when-addicted-loved-one-asks-for-money",
+    title: "How to Say No When an Addicted Loved One Asks for Money (Scripts That Actually Work)",
+    excerpt: "Word-for-word scripts for saying no to money requests, what to expect when they push back, and how to hold the line without guilt.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Enabling", "Guilt & Shame"],
+    readTime: "8 min read",
+    date: "September 17, 2026",
+    image: sayNoMoneyRequestImage,
+    slug: "how-to-say-no-when-addicted-loved-one-asks-for-money",
+    metaTitle: "How to Say No When an Addict Asks for Money",
+    metaDescription: "Learn how to say no when an addicted loved one asks for money — without guilt, arguments, or giving in. Real scripts, what to expect, and how to hold the line.",
+  },
   {
     id: "guilt-setting-boundaries-addicted-loved-one",
     title: "Why Setting Boundaries With an Addicted Loved One Feels So Wrong (And Why It Isn't)",
