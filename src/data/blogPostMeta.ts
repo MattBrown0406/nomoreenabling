@@ -169,6 +169,7 @@ import stoppingEnablingAbandonmentImage from "@/assets/stopping-enabling-feels-l
 import boundariesVsControlImage from "@/assets/boundaries-vs-control-addicted-loved-one.jpg";
 import guiltSettingBoundariesImage from "@/assets/guilt-setting-boundaries-addicted-loved-one.jpg";
 import sayNoMoneyRequestImage from "@/assets/how-to-say-no-when-addicted-loved-one-asks-for-money.jpg";
+import boundariesLivingInYourHomeImage from "@/assets/boundaries-addicted-loved-one-living-in-your-home.jpg";
 
 export interface BlogPostMeta {
   id: string;
