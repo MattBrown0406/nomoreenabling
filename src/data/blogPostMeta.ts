@@ -169,6 +169,7 @@ import stoppingEnablingAbandonmentImage from "@/assets/stopping-enabling-feels-l
 import boundariesVsControlImage from "@/assets/boundaries-vs-control-addicted-loved-one.jpg";
 import guiltSettingBoundariesImage from "@/assets/guilt-setting-boundaries-addicted-loved-one.jpg";
 import sayNoMoneyRequestImage from "@/assets/how-to-say-no-when-addicted-loved-one-asks-for-money.jpg";
+import boundariesLivingInYourHomeImage from "@/assets/boundaries-addicted-loved-one-living-in-your-home.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -185,6 +186,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "boundaries-addicted-loved-one-living-in-your-home",
+    title: "Setting Boundaries With an Addicted Loved One Living in Your Home",
+    excerpt: "When they live under your roof, the rules keep bending. Here's how to build a short list of house boundaries that protect your family and actually hold.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Enabling", "Family Dynamics"],
+    readTime: "8 min read",
+    date: "September 18, 2026",
+    image: boundariesLivingInYourHomeImage,
+    slug: "boundaries-addicted-loved-one-living-in-your-home",
+    metaTitle: "Boundaries With an Addicted Loved One at Home",
+    metaDescription: "Your addicted loved one lives under your roof and the rules keep bending. Here's how to set house boundaries that protect your family and actually hold.",
+  },
   {
     id: "how-to-say-no-when-addicted-loved-one-asks-for-money",
     title: "How to Say No When an Addicted Loved One Asks for Money (Scripts That Actually Work)",
