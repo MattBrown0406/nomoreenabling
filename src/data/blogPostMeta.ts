@@ -170,6 +170,7 @@ import boundariesVsControlImage from "@/assets/boundaries-vs-control-addicted-lo
 import guiltSettingBoundariesImage from "@/assets/guilt-setting-boundaries-addicted-loved-one.jpg";
 import sayNoMoneyRequestImage from "@/assets/how-to-say-no-when-addicted-loved-one-asks-for-money.jpg";
 import boundariesLivingInYourHomeImage from "@/assets/boundaries-addicted-loved-one-living-in-your-home.jpg";
+import makesPromisesImage from "@/assets/addicted-loved-one-makes-promises.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -186,6 +187,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "addicted-loved-one-makes-promises",
+    title: "When Your Addicted Loved One Makes Promises: How to Keep a Boundary Without Getting Talked Out of It",
+    excerpt: "Promises are how a boundary quietly disappears. Here's how to receive the promise warmly, keep the limit exactly where it was, and stop getting talked out of it.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Enabling", "Family Dynamics"],
+    readTime: "8 min read",
+    date: "September 19, 2026",
+    image: makesPromisesImage,
+    slug: "addicted-loved-one-makes-promises",
+    metaTitle: "When an Addicted Loved One Makes Promises",
+    metaDescription: "When your addicted loved one makes promises to get around a boundary, here's how to respond with love, keep the limit, and stop getting talked out of it.",
+  },
   {
     id: "boundaries-addicted-loved-one-living-in-your-home",
     title: "Setting Boundaries With an Addicted Loved One Living in Your Home",
