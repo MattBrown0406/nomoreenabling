@@ -654,7 +654,7 @@
   .nme-node-rescue { right: 0; }
   .nme-node-relief { left: 44%; bottom: 0; }
   .nme-boundary-gate { left: 332px; top: 136px; }
-  .nme-different-response { left: 138px; right: auto; top: 500px; bottom: auto; }
+  .nme-different-response { left: 138px; right: auto; top: 525px; bottom: auto; }
   .nme-next-steps { margin-top: 16px; }
   .nme-next-heading { padding: 16px 17px; }
   .nme-next-card { grid-template-columns: 42px minmax(0,1fr) 24px; padding: 17px 15px; }
