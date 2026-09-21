@@ -323,7 +323,7 @@
   font-size: 9px;
 }
 
-.nme-node-crisis { left: 50%; top: 58px; transform: translateX(-50%); }
+.nme-node-crisis { left: 42%; top: 58px; transform: translateX(-50%); }
 .nme-node-rescue { right: 8px; top: 50%; transform: translateY(-50%); }
 .nme-node-relief { left: 50%; bottom: 58px; transform: translateX(-50%); }
 .nme-node-repeat { left: 8px; top: 50%; transform: translateY(-50%); }
@@ -368,8 +368,8 @@
 .nme-boundary-gate {
   position: absolute;
   z-index: 10;
-  left: 322px;
-  top: 178px;
+  left: 350px;
+  top: 145px;
   right: auto;
   bottom: auto;
   width: 128px;
@@ -421,8 +421,8 @@
 .nme-different-response {
   position: absolute;
   z-index: 11;
-  right: 4px;
-  top: 4px;
+  right: -10px;
+  top: 0;
   bottom: auto;
   display: flex;
   width: 224px;
@@ -653,8 +653,8 @@
   .nme-node-repeat { left: 0; }
   .nme-node-rescue { right: 0; }
   .nme-node-relief { left: 44%; bottom: 0; }
-  .nme-boundary-gate { left: 286px; top: 158px; }
-  .nme-different-response { left: 130px; right: auto; top: 500px; bottom: auto; }
+  .nme-boundary-gate { left: 332px; top: 136px; }
+  .nme-different-response { left: 138px; right: auto; top: 500px; bottom: auto; }
   .nme-next-steps { margin-top: 16px; }
   .nme-next-heading { padding: 16px 17px; }
   .nme-next-card { grid-template-columns: 42px minmax(0,1fr) 24px; padding: 17px 15px; }
