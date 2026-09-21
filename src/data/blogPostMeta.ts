@@ -171,6 +171,7 @@ import guiltSettingBoundariesImage from "@/assets/guilt-setting-boundaries-addic
 import sayNoMoneyRequestImage from "@/assets/how-to-say-no-when-addicted-loved-one-asks-for-money.jpg";
 import boundariesLivingInYourHomeImage from "@/assets/boundaries-addicted-loved-one-living-in-your-home.jpg";
 import makesPromisesImage from "@/assets/addicted-loved-one-makes-promises.jpg";
+import firstAlAnonMeetingImage from "@/assets/what-to-expect-first-al-anon-meeting.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -187,6 +188,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "what-to-expect-first-al-anon-meeting",
+    title: "What to Expect at Your First Al-Anon Meeting: A Guide for Families of Addicted Loved Ones",
+    excerpt: "Curious about Al-Anon but hesitant to walk in? Here's what actually happens in the room, what you'll be asked to do (almost nothing), and how to tell if it's a fit.",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Boundaries", "Enabling"],
+    readTime: "8 min read",
+    date: "September 21, 2026",
+    image: firstAlAnonMeetingImage,
+    slug: "what-to-expect-first-al-anon-meeting",
+    metaTitle: "What to Expect at Your First Al-Anon Meeting",
+    metaDescription: "Thinking about Al-Anon meetings but not sure what to expect? Here's what actually happens, who it's for, and how to know if it's right for you.",
+  },
   {
     id: "addicted-loved-one-makes-promises",
     title: "When Your Addicted Loved One Makes Promises: How to Keep a Boundary Without Getting Talked Out of It",
