@@ -4,38 +4,10 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Mail, ArrowRight } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
-import FAQJsonLd from "@/components/seo/FAQJsonLd";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import PersonJsonLd from "@/components/seo/PersonJsonLd";
 import mattHeadshot from "@/assets/matt-brown-headshot.jpeg";
 
-const aboutFaqs = [
-  {
-    question: "What is No More Enabling?",
-    answer:
-      "No More Enabling is an educational resource for families affected by addiction, codependency, and enabling behaviors. It helps families understand patterns, make steadier decisions, and respond more clearly.",
-  },
-  {
-    question: "Who founded No More Enabling?",
-    answer:
-      "No More Enabling was founded by Matt Brown, a professional interventionist who has worked with families affected by substance use disorders since 2004.",
-  },
-  {
-    question: "How do I contact Matt Brown for family addiction guidance?",
-    answer:
-      "Use the Work With Matt page to request private guidance. If the concern is enabling, boundaries, treatment refusal, relapse, or family alignment, include enough context for the situation to be routed toward coaching, intervention planning, or another appropriate next step.",
-  },
-  {
-    question: "Is No More Enabling a treatment provider?",
-    answer:
-      "No. No More Enabling is not a treatment provider or crisis service. It is an educational platform designed to help families think more clearly, set healthier boundaries, and make informed decisions.",
-  },
-  {
-    question: "What topics does No More Enabling cover?",
-    answer:
-      "The site focuses on enabling vs helping, family boundaries and communication, codependency and family roles, intervention and treatment decisions, and supporting recovery without losing yourself.",
-  },
-];
 
 const principles = [
   {
@@ -62,7 +34,7 @@ const About = () => {
         keywords="Matt Brown interventionist, family addiction coaching, addiction family coach, professional interventionist, treatment refusal, enabling boundaries resource"
         articleAuthor="Matt Brown"
       />
-      <FAQJsonLd faqs={aboutFaqs} />
+      
       <PersonJsonLd imageUrl={`https://nomoreenabling.com${mattHeadshot}`} />
       <BreadcrumbJsonLd
         items={[
