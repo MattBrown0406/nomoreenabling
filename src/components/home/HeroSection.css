@@ -422,7 +422,7 @@
   position: absolute;
   z-index: 11;
   right: -10px;
-  top: 0;
+  top: -22px;
   bottom: auto;
   display: flex;
   width: 224px;
