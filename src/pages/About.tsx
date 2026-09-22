@@ -233,6 +233,24 @@ const About = () => {
           </div>
         </section>
 
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-2xl mx-auto">
+              <h2 className="font-serif text-3xl font-bold text-foreground text-center mb-10">
+                Common questions
+              </h2>
+              <div className="space-y-6">
+                {aboutFaqs.map((faq) => (
+                  <div key={faq.question}>
+                    <h3 className="font-serif text-lg font-semibold text-foreground">{faq.question}</h3>
+                    <p className="mt-2 text-muted-foreground leading-relaxed">{faq.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="py-16 bg-secondary">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
