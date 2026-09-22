@@ -64,6 +64,7 @@ const About = () => {
         articleAuthor="Matt Brown"
       />
       
+      <FAQJsonLd faqs={aboutFaqs} />
       <PersonJsonLd imageUrl={`https://nomoreenabling.com${mattHeadshot}`} />
       <BreadcrumbJsonLd
         items={[
