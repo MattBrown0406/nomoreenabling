@@ -172,6 +172,7 @@ import sayNoMoneyRequestImage from "@/assets/how-to-say-no-when-addicted-loved-o
 import boundariesLivingInYourHomeImage from "@/assets/boundaries-addicted-loved-one-living-in-your-home.jpg";
 import makesPromisesImage from "@/assets/addicted-loved-one-makes-promises.jpg";
 import firstAlAnonMeetingImage from "@/assets/what-to-expect-first-al-anon-meeting.jpg";
+import familyTherapyForAddictionImage from "@/assets/family-therapy-for-addiction.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -188,6 +189,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "family-therapy-for-addiction",
+    title: "Family Therapy for Addiction: Why You Need Help Even If Your Loved One Won't Go",
+    excerpt: "You don't have to wait for their treatment to start your own. Here's what family therapy for addiction actually involves, and how to find a therapist who gets it.",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Recovery", "Enabling"],
+    readTime: "9 min read",
+    date: "September 22, 2026",
+    image: familyTherapyForAddictionImage,
+    slug: "family-therapy-for-addiction",
+    metaTitle: "Family Therapy for Addiction",
+    metaDescription: "Family therapy for addiction helps you heal even if your loved one refuses treatment. Learn what it is, what to expect, and how to find the right therapist.",
+  },
   {
     id: "what-to-expect-first-al-anon-meeting",
     title: "What to Expect at Your First Al-Anon Meeting: A Guide for Families of Addicted Loved Ones",
