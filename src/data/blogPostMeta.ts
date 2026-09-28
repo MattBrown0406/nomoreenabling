@@ -173,6 +173,7 @@ import boundariesLivingInYourHomeImage from "@/assets/boundaries-addicted-loved-
 import makesPromisesImage from "@/assets/addicted-loved-one-makes-promises.jpg";
 import firstAlAnonMeetingImage from "@/assets/what-to-expect-first-al-anon-meeting.jpg";
 import familyTherapyForAddictionImage from "@/assets/family-therapy-for-addiction.jpg";
+import hopeOrEnablingImage from "@/assets/hope-or-enabling-supporting-recovery.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -189,6 +190,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "hope-or-enabling-supporting-recovery",
+    title: "Is It Hope or Is It Enabling? Supporting Recovery Without Sliding Back Into Old Patterns",
+    excerpt: "Your loved one is in recovery, and you're not sure how to help anymore. Here's how to tell support from enabling in recovery — and keep helping without old habits.",
+    category: "Enabling",
+    categories: ["Enabling", "Recovery", "Boundaries"],
+    readTime: "7 min read",
+    date: "September 27, 2026",
+    image: hopeOrEnablingImage,
+    slug: "hope-or-enabling-supporting-recovery",
+    metaTitle: "Hope or Enabling? Supporting Recovery",
+    metaDescription: "Learn how to tell the real difference between support and enabling in recovery, spot the warning signs, and keep helping without sliding into old habits.",
+  },
   {
     id: "family-therapy-for-addiction",
     title: "Family Therapy for Addiction: Why You Need Help Even If Your Loved One Won't Go",
