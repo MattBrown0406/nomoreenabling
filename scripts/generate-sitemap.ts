@@ -76,6 +76,15 @@ const toLastMod = (date?: string) => {
   return parsed.toISOString().slice(0, 10);
 };
 
+// XML text escaping preserves the actual route (including literal ampersands).
+// URL encoding or changing category slugs here would point at different pages.
+const escapeXmlText = (value: string) => value
+  .replace(/&/g, "&amp;")
+  .replace(/</g, "&lt;")
+  .replace(/>/g, "&gt;")
+  .replace(/"/g, "&quot;")
+  .replace(/'/g, "&apos;");
+
 const formatUrl = ({
   loc,
   changefreq,
@@ -87,7 +96,7 @@ const formatUrl = ({
   priority: string;
   lastmod?: string | null;
 }) => `  <url>
-    <loc>${loc}</loc>
+    <loc>${escapeXmlText(loc)}</loc>
 ${lastmod ? `    <lastmod>${lastmod}</lastmod>\n` : ""}    <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
   </url>`;

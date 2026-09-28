@@ -10,7 +10,12 @@ const robotsTxt = fs.readFileSync(path.join(root, "public/robots.txt"), "utf8");
 const redirects = fs.readFileSync(path.join(root, "public/_redirects"), "utf8");
 const issues = [];
 
-const urls = [...publicSitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+// Decode serialized XML/HTML entities once before URL/file comparisons.
+const decodeUrl = (value) => value.replace(/&(amp|lt|gt|quot|apos|#39|#x27);/g, (_, entity) => ({
+  amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", "#39": "'", "#x27": "'",
+})[entity]);
+const urls = [...publicSitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => decodeUrl(match[1]));
+if (/&(?!(?:amp|lt|gt|quot|apos|#\d+|#x[\da-fA-F]+);)/.test(publicSitemap)) issues.push("Sitemap contains unescaped ampersands.");
 const lastmods = [...publicSitemap.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((match) => match[1]);
 const extractAll = (html, regex) => [...html.matchAll(regex)].map((match) => match[1]?.trim() ?? "");
 const decodeHtml = (value) => value.replaceAll("&amp;", "&").replaceAll("&quot;", '"').replaceAll("&#x27;", "'").replaceAll("&#39;", "'");
@@ -45,8 +50,8 @@ for (const url of urls) {
   const html = fs.readFileSync(file, "utf8");
   const titles = extractAll(html, /<title[^>]*>([\s\S]*?)<\/title>/g);
   const descriptions = extractAll(html, /<meta[^>]+name="description"[^>]+content="([^"]*)"[^>]*>/g);
-  const canonicals = extractAll(html, /<link[^>]+rel="canonical"[^>]+href="([^"]*)"[^>]*>/g);
-  const ogUrls = extractAll(html, /<meta[^>]+property="og:url"[^>]+content="([^"]*)"[^>]*>/g);
+  const canonicals = extractAll(html, /<link[^>]+rel="canonical"[^>]+href="([^"]*)"[^>]*>/g).map(decodeUrl);
+  const ogUrls = extractAll(html, /<meta[^>]+property="og:url"[^>]+content="([^"]*)"[^>]*>/g).map(decodeUrl);
   const robots = extractAll(html, /<meta[^>]+name="robots"[^>]+content="([^"]*)"[^>]*>/g);
   const h1s = extractAll(html, /<h1[^>]*>([\s\S]*?)<\/h1>/g).map((value) => value.replace(/<[^>]+>/g, "").trim());
 
@@ -93,7 +98,7 @@ for (const file of walkHtml(distDir)) {
   const route = "/" + path.relative(distDir, path.dirname(file)).split(path.sep).filter(Boolean).join("/");
   const html = fs.readFileSync(file, "utf8");
   const robots = extractAll(html, /<meta[^>]+name="robots"[^>]+content="([^"]*)"[^>]*>/g);
-  const canonicals = extractAll(html, /<link[^>]+rel="canonical"[^>]+href="([^"]*)"[^>]*>/g);
+  const canonicals = extractAll(html, /<link[^>]+rel="canonical"[^>]+href="([^"]*)"[^>]*>/g).map(decodeUrl);
   const selfUrl = route === "/" ? `${SITE_URL}/` : `${SITE_URL}${route}`;
   const isCanonicalSelf = canonicals.length === 1 && canonicals[0].replace(/\/$/, "") === selfUrl.replace(/\/$/, "");
   const isIndexable = robots.length === 1 && !robots[0].toLowerCase().includes("noindex");
