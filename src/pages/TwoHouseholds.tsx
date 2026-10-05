@@ -4,7 +4,6 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SEOHead from "@/components/seo/SEOHead";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
-import FAQJsonLd from "@/components/seo/FAQJsonLd";
 import { Button } from "@/components/ui/button";
 import PhoneCallButton from "@/components/PhoneCallButton";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -79,23 +78,6 @@ const yourPart = [
   },
 ];
 
-const faqs = [
-  {
-    question: "What if the other parent is still paying rent or handing over the keys?",
-    answer:
-      "Two houses. One disease. If one parent pays rent and the other hands over the keys, nothing holds. You cannot control the other kitchen. You can stop being the second rescue. Money, housing, and contact have to be the same line in both houses, or the loved one will live where the rescue is.",
-  },
-  {
-    question: "Is this a custody issue or an enabling issue?",
-    answer:
-      "Divorced, separated, or never-married parents are a real case type, not a footnote. Custody language can be real. It can also be cover for a bailout. If one house is secretly undoing the other, that is how enabling works when there are two kitchens. This is not about who is the good parent. The disease uses the gap.",
-  },
-  {
-    question: "Should I send the kids to talk to the other parent?",
-    answer:
-      "No. Kids are not messengers and not the reason to cave. Do not put them in the middle of the 11pm argument or use them to carry a boundary the adults will not hold.",
-  },
-];
 
 export default function TwoHouseholds() {
   return (
@@ -106,7 +88,7 @@ export default function TwoHouseholds() {
         canonicalUrl="https://nomoreenabling.com/two-households"
         keywords="divorced parents addiction, split household enabling, two households addiction, separated parents boundaries, never-married parents enabling"
       />
-      <FAQJsonLd faqs={faqs} />
+      
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "https://nomoreenabling.com" },
