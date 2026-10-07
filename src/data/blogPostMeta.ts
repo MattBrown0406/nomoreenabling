@@ -174,6 +174,7 @@ import makesPromisesImage from "@/assets/addicted-loved-one-makes-promises.jpg";
 import firstAlAnonMeetingImage from "@/assets/what-to-expect-first-al-anon-meeting.jpg";
 import familyTherapyForAddictionImage from "@/assets/family-therapy-for-addiction.jpg";
 import hopeOrEnablingImage from "@/assets/hope-or-enabling-supporting-recovery.jpg";
+import codependencyVsInterdependenceImage from "@/assets/codependency-vs-interdependence-addiction-families.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -190,6 +191,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "codependency-vs-interdependence-addiction-families",
+    title: "Codependency vs. Interdependence: What Healthy Family Support Looks Like in Addiction",
+    excerpt: "The goal was never to love less. Here's the difference between codependency and interdependence, and how to support a loved one without losing yourself.",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Enabling", "Boundaries"],
+    readTime: "7 min read",
+    date: "October 7, 2026",
+    image: codependencyVsInterdependenceImage,
+    slug: "codependency-vs-interdependence-addiction-families",
+    metaTitle: "Codependency vs Interdependence in Addiction",
+    metaDescription: "Codependency vs interdependence: learn the difference, spot when helping crosses the line, and build healthy, loving support for a loved one with addiction.",
+  },
   {
     id: "hope-or-enabling-supporting-recovery",
     title: "Is It Hope or Is It Enabling? Supporting Recovery Without Sliding Back Into Old Patterns",
