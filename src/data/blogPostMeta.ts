@@ -175,6 +175,7 @@ import firstAlAnonMeetingImage from "@/assets/what-to-expect-first-al-anon-meeti
 import familyTherapyForAddictionImage from "@/assets/family-therapy-for-addiction.jpg";
 import hopeOrEnablingImage from "@/assets/hope-or-enabling-supporting-recovery.jpg";
 import codependencyVsInterdependenceImage from "@/assets/codependency-vs-interdependence-addiction-families.jpg";
+import dontTalkDontTrustImage from "@/assets/dont-talk-dont-trust-dont-feel-family-rules-addiction.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -191,6 +192,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "dont-talk-dont-trust-dont-feel-family-rules-addiction",
+    title: "Don't Talk, Don't Trust, Don't Feel: The Unspoken Family Rules of Addiction (and How to Break Them)",
+    excerpt: "No one agreed to the rules, but addiction families know them by heart. Learn how don't talk, don't trust, don't feel keeps enabling alive — and how to start breaking them.",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Enabling", "Codependency"],
+    readTime: "7 min read",
+    date: "October 8, 2026",
+    image: dontTalkDontTrustImage,
+    slug: "dont-talk-dont-trust-dont-feel-family-rules-addiction",
+    metaTitle: "Don't Talk, Don't Trust, Don't Feel: Family Rules",
+    metaDescription: "Don't talk, don't trust, don't feel: the silent rules addiction teaches families. Learn how they keep enabling alive and gentle ways to start breaking them.",
+  },
   {
     id: "codependency-vs-interdependence-addiction-families",
     title: "Codependency vs. Interdependence: What Healthy Family Support Looks Like in Addiction",
