@@ -175,6 +175,7 @@ import firstAlAnonMeetingImage from "@/assets/what-to-expect-first-al-anon-meeti
 import familyTherapyForAddictionImage from "@/assets/family-therapy-for-addiction.jpg";
 import hopeOrEnablingImage from "@/assets/hope-or-enabling-supporting-recovery.jpg";
 import codependencyVsInterdependenceImage from "@/assets/codependency-vs-interdependence-addiction-families.jpg";
+import chiefEnablerImage from "@/assets/chief-enabler-role-addiction-family.jpg";
 import dontTalkDontTrustImage from "@/assets/dont-talk-dont-trust-dont-feel-family-rules-addiction.jpg";
 
 export interface BlogPostMeta {
@@ -192,6 +193,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "chief-enabler-role-addiction-family",
+    title: "The Chief Enabler Role: When You're the One Holding Everything Together",
+    excerpt: "Are you the one who covers, explains, and holds it all together? Learn what the chief enabler role in addiction is and how to step out of it with love.",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Enabling", "Codependency"],
+    readTime: "7 min read",
+    date: "October 9, 2026",
+    image: chiefEnablerImage,
+    slug: "chief-enabler-role-addiction-family",
+    metaTitle: "The Chief Enabler Role in Addiction Families",
+    metaDescription: "Are you the one who covers, explains, and holds it all together? Learn what the chief enabler role in addiction is and how to step out of it with love.",
+  },
   {
     id: "dont-talk-dont-trust-dont-feel-family-rules-addiction",
     title: "Don't Talk, Don't Trust, Don't Feel: The Unspoken Family Rules of Addiction (and How to Break Them)",
