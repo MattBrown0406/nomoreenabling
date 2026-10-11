@@ -175,6 +175,7 @@ import firstAlAnonMeetingImage from "@/assets/what-to-expect-first-al-anon-meeti
 import familyTherapyForAddictionImage from "@/assets/family-therapy-for-addiction.jpg";
 import hopeOrEnablingImage from "@/assets/hope-or-enabling-supporting-recovery.jpg";
 import codependencyVsInterdependenceImage from "@/assets/codependency-vs-interdependence-addiction-families.jpg";
+import porousVsRigidImage from "@/assets/porous-vs-rigid-boundaries-addicted-loved-one.jpg";
 import chiefEnablerImage from "@/assets/chief-enabler-role-addiction-family.jpg";
 import dontTalkDontTrustImage from "@/assets/dont-talk-dont-trust-dont-feel-family-rules-addiction.jpg";
 
@@ -193,6 +194,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "porous-vs-rigid-boundaries-addicted-loved-one",
+    title: "Porous vs. Rigid Boundaries: Finding the Healthy Middle With an Addicted Loved One",
+    excerpt: "Porous vs. rigid boundaries: learn which pattern you fall into with an addicted loved one, why families swing between them, and how to find the healthy middle.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Enabling", "Family Dynamics"],
+    readTime: "7 min read",
+    date: "October 11, 2026",
+    image: porousVsRigidImage,
+    slug: "porous-vs-rigid-boundaries-addicted-loved-one",
+    metaTitle: "Porous vs. Rigid Boundaries With an Addicted Loved One",
+    metaDescription: "Porous vs. rigid boundaries: learn which pattern you fall into with an addicted loved one, why families swing between them, and how to find the healthy middle.",
+  },
   {
     id: "chief-enabler-role-addiction-family",
     title: "The Chief Enabler Role: When You're the One Holding Everything Together",
