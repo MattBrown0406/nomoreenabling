@@ -178,6 +178,7 @@ import codependencyVsInterdependenceImage from "@/assets/codependency-vs-interde
 import porousVsRigidImage from "@/assets/porous-vs-rigid-boundaries-addicted-loved-one.jpg";
 import chiefEnablerImage from "@/assets/chief-enabler-role-addiction-family.jpg";
 import dontTalkDontTrustImage from "@/assets/dont-talk-dont-trust-dont-feel-family-rules-addiction.jpg";
+import boundariesWithYourselfImage from "@/assets/boundaries-with-yourself-internal-boundaries.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -194,6 +195,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "boundaries-with-yourself-internal-boundaries-addicted-loved-one",
+    title: "Boundaries With Yourself: The Internal Boundaries That Make Every Other Limit Hold When a Loved One Is Addicted",
+    excerpt: "Boundaries with yourself are the quiet limits that make every other boundary hold. Learn what internal boundaries are and how families can start today.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Enabling", "Self-Care"],
+    readTime: "7 min read",
+    date: "October 12, 2026",
+    image: boundariesWithYourselfImage,
+    slug: "boundaries-with-yourself-internal-boundaries-addicted-loved-one",
+    metaTitle: "Boundaries With Yourself: Internal Boundaries for Families",
+    metaDescription: "Boundaries with yourself are the quiet limits that make every other boundary hold. Learn what internal boundaries are and how families can start today.",
+  },
   {
     id: "porous-vs-rigid-boundaries-addicted-loved-one",
     title: "Porous vs. Rigid Boundaries: Finding the Healthy Middle With an Addicted Loved One",
