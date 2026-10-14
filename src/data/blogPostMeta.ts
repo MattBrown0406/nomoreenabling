@@ -179,6 +179,7 @@ import porousVsRigidImage from "@/assets/porous-vs-rigid-boundaries-addicted-lov
 import chiefEnablerImage from "@/assets/chief-enabler-role-addiction-family.jpg";
 import dontTalkDontTrustImage from "@/assets/dont-talk-dont-trust-dont-feel-family-rules-addiction.jpg";
 import boundariesWithYourselfImage from "@/assets/boundaries-with-yourself-internal-boundaries.jpg";
+import boundaryVsRequestImage from "@/assets/boundary-vs-request-addicted-loved-one.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -195,6 +196,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "boundary-vs-request-addicted-loved-one",
+    title: "Boundary vs Request: Why \u201cPlease Stop Drinking\u201d Isn\u2019t a Boundary (and What Is)",
+    excerpt: "Asking them to stop isn't a boundary. Learn the boundary vs request difference and how to protect your peace when an addicted loved one keeps on using.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Enabling"],
+    readTime: "6 min read",
+    date: "October 14, 2026",
+    image: boundaryVsRequestImage,
+    slug: "boundary-vs-request-addicted-loved-one",
+    metaTitle: "Boundary vs Request: Why Asking Isn't a Boundary",
+    metaDescription: "Asking them to stop isn't a boundary. Learn the boundary vs request difference and how to protect your peace when an addicted loved one keeps on using.",
+  },
   {
     id: "boundaries-with-yourself-internal-boundaries-addicted-loved-one",
     title: "Boundaries With Yourself: The Internal Boundaries That Make Every Other Limit Hold When a Loved One Is Addicted",
