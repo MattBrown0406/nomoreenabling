@@ -1,6 +1,7 @@
 export type ArticleContentModule = { default: string };
 
 export const articleContentLoaders: Record<string, () => Promise<ArticleContentModule>> = {
+  "boundary-vs-request-addicted-loved-one": () => import("./article-content/boundary-vs-request-addicted-loved-one"),
   "boundaries-with-yourself-internal-boundaries-addicted-loved-one": () => import("./article-content/boundaries-with-yourself-internal-boundaries-addicted-loved-one"),
   "porous-vs-rigid-boundaries-addicted-loved-one": () => import("./article-content/porous-vs-rigid-boundaries-addicted-loved-one"),
   "hope-or-enabling-supporting-recovery": () => import("./article-content/hope-or-enabling-supporting-recovery"),
