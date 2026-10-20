@@ -180,6 +180,7 @@ import chiefEnablerImage from "@/assets/chief-enabler-role-addiction-family.jpg"
 import dontTalkDontTrustImage from "@/assets/dont-talk-dont-trust-dont-feel-family-rules-addiction.jpg";
 import boundariesWithYourselfImage from "@/assets/boundaries-with-yourself-internal-boundaries.jpg";
 import boundaryVsRequestImage from "@/assets/boundary-vs-request-addicted-loved-one.jpg";
+import angryAboutBoundariesImage from "@/assets/addicted-loved-one-angry-about-boundaries.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -196,6 +197,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "addicted-loved-one-angry-about-boundaries",
+    title: "Addicted Loved One Angry About Your Boundaries? How to Stay Calm and Hold the Line",
+    excerpt: "Is your addicted loved one angry about your boundaries? Learn why anger shows up, how to respond calmly, and how to hold your limit without guilt or fear.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Enabling"],
+    readTime: "7 min read",
+    date: "October 20, 2026",
+    image: angryAboutBoundariesImage,
+    slug: "addicted-loved-one-angry-about-boundaries",
+    metaTitle: "Loved One Angry About Your Boundaries? Stay Calm",
+    metaDescription: "Is your addicted loved one angry about your boundaries? Learn why anger shows up, how to respond calmly, and how to hold your limit without guilt or fear.",
+  },
   {
     id: "boundary-vs-request-addicted-loved-one",
     title: "Boundary vs Request: Why \u201cPlease Stop Drinking\u201d Isn\u2019t a Boundary (and What Is)",
