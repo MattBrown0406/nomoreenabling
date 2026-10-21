@@ -180,6 +180,7 @@ import chiefEnablerImage from "@/assets/chief-enabler-role-addiction-family.jpg"
 import dontTalkDontTrustImage from "@/assets/dont-talk-dont-trust-dont-feel-family-rules-addiction.jpg";
 import boundariesWithYourselfImage from "@/assets/boundaries-with-yourself-internal-boundaries.jpg";
 import boundaryVsRequestImage from "@/assets/boundary-vs-request-addicted-loved-one.jpg";
+import alAnonSponsorImage from "@/assets/how-to-find-an-al-anon-sponsor.jpg";
 import angryAboutBoundariesImage from "@/assets/addicted-loved-one-angry-about-boundaries.jpg";
 
 export interface BlogPostMeta {
@@ -197,6 +198,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "how-to-find-an-al-anon-sponsor",
+    title: "How to Find an Al-Anon Sponsor: Why Family Members of Addicts Need One Too",
+    excerpt: "What is an Al-Anon sponsor, and how do you find one? A gentle guide for families of addicts on choosing, asking, and working with a sponsor of your own.",
+    category: "Recovery Support",
+    categories: ["Recovery Support", "Self-Care"],
+    readTime: "6 min read",
+    date: "October 21, 2026",
+    image: alAnonSponsorImage,
+    slug: "how-to-find-an-al-anon-sponsor",
+    metaTitle: "How to Find an Al-Anon Sponsor as a Family Member",
+    metaDescription: "What is an Al-Anon sponsor, and how do you find one? A gentle guide for families of addicts on choosing, asking, and working with a sponsor of your own.",
+  },
   {
     id: "addicted-loved-one-angry-about-boundaries",
     title: "Addicted Loved One Angry About Your Boundaries? How to Stay Calm and Hold the Line",
