@@ -174,6 +174,7 @@ import makesPromisesImage from "@/assets/addicted-loved-one-makes-promises.jpg";
 import firstAlAnonMeetingImage from "@/assets/what-to-expect-first-al-anon-meeting.jpg";
 import familyTherapyForAddictionImage from "@/assets/family-therapy-for-addiction.jpg";
 import hopeOrEnablingImage from "@/assets/hope-or-enabling-supporting-recovery.jpg";
+import forgiveYourselfImage from "@/assets/how-to-forgive-yourself-for-enabling.jpg";
 import codependencyVsInterdependenceImage from "@/assets/codependency-vs-interdependence-addiction-families.jpg";
 import porousVsRigidImage from "@/assets/porous-vs-rigid-boundaries-addicted-loved-one.jpg";
 import chiefEnablerImage from "@/assets/chief-enabler-role-addiction-family.jpg";
@@ -198,6 +199,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "how-to-forgive-yourself-for-enabling",
+    title: "How to Forgive Yourself for Enabling a Loved One's Addiction",
+    excerpt: "Looking back at years of enabling can bring crushing guilt. Here's how to separate guilt from shame, take responsibility without self-punishment, and turn regret into lasting change.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Dynamics", "Boundaries"],
+    readTime: "8 min read",
+    date: "October 22, 2026",
+    image: forgiveYourselfImage,
+    slug: "how-to-forgive-yourself-for-enabling",
+    metaTitle: "How to Forgive Yourself for Enabling",
+    metaDescription: "Carrying guilt for enabling a loved one's addiction? Learn how to forgive yourself for enabling, release shame, and turn regret into healthy, lasting change.",
+  },
   {
     id: "how-to-find-an-al-anon-sponsor",
     title: "How to Find an Al-Anon Sponsor: Why Family Members of Addicts Need One Too",
