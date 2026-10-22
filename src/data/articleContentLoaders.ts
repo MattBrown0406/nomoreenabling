@@ -11,6 +11,7 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "dont-talk-dont-trust-dont-feel-family-rules-addiction": () => import("./article-content/dont-talk-dont-trust-dont-feel-family-rules-addiction"),
   "codependency-vs-interdependence-addiction-families": () => import("./article-content/codependency-vs-interdependence-addiction-families"),
   "family-therapy-for-addiction": () => import("./article-content/family-therapy-for-addiction"),
+  "how-to-forgive-yourself-for-enabling": () => import("./article-content/how-to-forgive-yourself-for-enabling"),
   "what-to-expect-first-al-anon-meeting": () => import("./article-content/what-to-expect-first-al-anon-meeting"),
   "addicted-loved-one-makes-promises": () => import("./article-content/addicted-loved-one-makes-promises"),
   "boundaries-addicted-loved-one-living-in-your-home": () => import("./article-content/boundaries-addicted-loved-one-living-in-your-home"),
