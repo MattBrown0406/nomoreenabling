@@ -183,6 +183,7 @@ import boundariesWithYourselfImage from "@/assets/boundaries-with-yourself-inter
 import boundaryVsRequestImage from "@/assets/boundary-vs-request-addicted-loved-one.jpg";
 import alAnonSponsorImage from "@/assets/how-to-find-an-al-anon-sponsor.jpg";
 import angryAboutBoundariesImage from "@/assets/addicted-loved-one-angry-about-boundaries.jpg";
+import recoveryPlanFamilyMembersImage from "@/assets/recovery-plan-for-family-members.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -199,6 +200,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "recovery-plan-for-family-members",
+    title: "How to Create a Recovery Plan for Family Members When a Loved One Is Addicted",
+    excerpt: "Your healing doesn't have to wait for your loved one. Build a one-page recovery plan with support people, weekly anchors, warning signs, and calm crisis steps.",
+    category: "Family Support",
+    categories: ["Family Support", "Recovery", "Boundaries"],
+    readTime: "6 min read",
+    date: "October 23, 2026",
+    image: recoveryPlanFamilyMembersImage,
+    slug: "recovery-plan-for-family-members",
+    metaTitle: "Recovery Plan for Family Members of an Addicted Loved One",
+    metaDescription: "Learn how to create a recovery plan for family members of an addicted loved one: support people, routines, warning signs, and crisis steps to reclaim your life.",
+  },
   {
     id: "how-to-forgive-yourself-for-enabling",
     title: "How to Forgive Yourself for Enabling a Loved One's Addiction",
