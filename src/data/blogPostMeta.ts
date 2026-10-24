@@ -184,6 +184,7 @@ import boundaryVsRequestImage from "@/assets/boundary-vs-request-addicted-loved-
 import alAnonSponsorImage from "@/assets/how-to-find-an-al-anon-sponsor.jpg";
 import angryAboutBoundariesImage from "@/assets/addicted-loved-one-angry-about-boundaries.jpg";
 import recoveryPlanFamilyMembersImage from "@/assets/recovery-plan-for-family-members.jpg";
+import losingYourselfReclaimLifeImage from "@/assets/losing-yourself-loved-ones-addiction-reclaim-your-life.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -200,6 +201,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "losing-yourself-loved-ones-addiction-reclaim-your-life",
+    title: "Losing Yourself in a Loved One's Addiction: How to Reclaim Your Life and Identity",
+    excerpt: "When a loved one's addiction becomes your whole life, your own needs can disappear. Recognize the signs and take small, gentle steps to reclaim your identity without abandoning them.",
+    category: "Family Support",
+    categories: ["Family Support", "Codependency", "Boundaries"],
+    readTime: "6 min read",
+    date: "October 24, 2026",
+    image: losingYourselfReclaimLifeImage,
+    slug: "losing-yourself-loved-ones-addiction-reclaim-your-life",
+    metaTitle: "Losing Yourself in a Loved One's Addiction: Reclaim Your Life",
+    metaDescription: "Lost yourself in a loved one's addiction? Learn the signs, why it happens, and gentle, practical steps to reclaim your life without abandoning the person you love.",
+  },
   {
     id: "recovery-plan-for-family-members",
     title: "How to Create a Recovery Plan for Family Members When a Loved One Is Addicted",
