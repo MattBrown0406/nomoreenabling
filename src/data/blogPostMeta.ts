@@ -184,6 +184,7 @@ import boundaryVsRequestImage from "@/assets/boundary-vs-request-addicted-loved-
 import alAnonSponsorImage from "@/assets/how-to-find-an-al-anon-sponsor.jpg";
 import angryAboutBoundariesImage from "@/assets/addicted-loved-one-angry-about-boundaries.jpg";
 import recoveryPlanFamilyMembersImage from "@/assets/recovery-plan-for-family-members.jpg";
+import leaveRehabEarlyImage from "@/assets/loved-one-wants-to-leave-rehab-early.jpg";
 import losingYourselfReclaimLifeImage from "@/assets/losing-yourself-loved-ones-addiction-reclaim-your-life.jpg";
 
 export interface BlogPostMeta {
@@ -201,6 +202,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "loved-one-wants-to-leave-rehab-early",
+    title: "When Your Loved One Wants to Leave Rehab Early: How to Respond Without Enabling",
+    excerpt: "Your loved one wants to leave rehab early and begs you to pick them up. Here's what to say, how to work with the treatment team, and how to avoid enabling.",
+    category: "Treatment Resistance",
+    categories: ["Treatment Resistance", "Enabling", "Boundaries"],
+    readTime: "7 min read",
+    date: "October 26, 2026",
+    image: leaveRehabEarlyImage,
+    slug: "loved-one-wants-to-leave-rehab-early",
+    metaTitle: "Loved One Wants to Leave Rehab Early? How to Respond",
+    metaDescription: "Your loved one wants to leave rehab early and begs you to pick them up. Here's what to say, how to work with the treatment team, and how to avoid enabling.",
+  },
   {
     id: "losing-yourself-loved-ones-addiction-reclaim-your-life",
     title: "Losing Yourself in a Loved One's Addiction: How to Reclaim Your Life and Identity",
