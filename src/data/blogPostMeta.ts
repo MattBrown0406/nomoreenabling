@@ -186,6 +186,7 @@ import angryAboutBoundariesImage from "@/assets/addicted-loved-one-angry-about-b
 import recoveryPlanFamilyMembersImage from "@/assets/recovery-plan-for-family-members.jpg";
 import leaveRehabEarlyImage from "@/assets/loved-one-wants-to-leave-rehab-early.jpg";
 import losingYourselfReclaimLifeImage from "@/assets/losing-yourself-loved-ones-addiction-reclaim-your-life.jpg";
+import familyRecoveryAgreementImage from "@/assets/family-recovery-agreement-after-rehab-without-enabling.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -202,6 +203,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "family-recovery-agreement-after-rehab-without-enabling",
+    title: "Family Recovery Agreement: How to Support Sobriety After Rehab Without Enabling",
+    excerpt: "A family recovery agreement helps you support a loved one after rehab without enabling. Learn what to include, how to discuss it, and how to make it work.",
+    category: "Recovery",
+    categories: ["Recovery", "Boundaries", "Enabling"],
+    readTime: "7 min read",
+    date: "October 28, 2026",
+    image: familyRecoveryAgreementImage,
+    slug: "family-recovery-agreement-after-rehab-without-enabling",
+    metaTitle: "Family Recovery Agreement: Support After Rehab",
+    metaDescription: "A family recovery agreement helps you support a loved one after rehab without enabling. Learn what to include, how to discuss it, and how to make it work.",
+  },
   {
     id: "loved-one-wants-to-leave-rehab-early",
     title: "When Your Loved One Wants to Leave Rehab Early: How to Respond Without Enabling",
