@@ -187,6 +187,7 @@ import recoveryPlanFamilyMembersImage from "@/assets/recovery-plan-for-family-me
 import leaveRehabEarlyImage from "@/assets/loved-one-wants-to-leave-rehab-early.jpg";
 import losingYourselfReclaimLifeImage from "@/assets/losing-yourself-loved-ones-addiction-reclaim-your-life.jpg";
 import familyRecoveryAgreementImage from "@/assets/family-recovery-agreement-after-rehab-without-enabling.jpg";
+import waitingForRockBottomImage from "@/assets/waiting-for-rock-bottom.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -203,6 +204,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "waiting-for-rock-bottom",
+    title: "Waiting for Rock Bottom: Why Your Family Doesn't Have to Watch Addiction Get Worse",
+    excerpt: "Is waiting for rock bottom the only way? Learn why families don't have to watch addiction get worse, and how to act early with love instead of enabling.",
+    category: "Family Support",
+    categories: ["Family Support", "Enabling", "Recovery"],
+    readTime: "8 min read",
+    date: "October 30, 2026",
+    image: waitingForRockBottomImage,
+    slug: "waiting-for-rock-bottom",
+    metaTitle: "Waiting for Rock Bottom? Why Families Don't Have To",
+    metaDescription: "Is waiting for rock bottom the only way? Learn why families don't have to watch addiction get worse, and how to act early with love instead of enabling.",
+  },
   {
     id: "family-recovery-agreement-after-rehab-without-enabling",
     title: "Family Recovery Agreement: How to Support Sobriety After Rehab Without Enabling",
