@@ -188,6 +188,7 @@ import leaveRehabEarlyImage from "@/assets/loved-one-wants-to-leave-rehab-early.
 import losingYourselfReclaimLifeImage from "@/assets/losing-yourself-loved-ones-addiction-reclaim-your-life.jpg";
 import familyRecoveryAgreementImage from "@/assets/family-recovery-agreement-after-rehab-without-enabling.jpg";
 import waitingForRockBottomImage from "@/assets/waiting-for-rock-bottom.jpg";
+import goingBackToRehabImage from "@/assets/going-back-to-rehab.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -204,6 +205,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "going-back-to-rehab",
+    title: "Going Back to Rehab: How Families Can Support Another Round of Treatment Without Enabling",
+    excerpt: "Is going back to rehab a second chance or more enabling? Learn how families can support repeat addiction treatment with love, clear limits, and a stronger plan.",
+    category: "Recovery",
+    categories: ["Recovery", "Family Support", "Enabling"],
+    readTime: "6 min read",
+    date: "October 31, 2026",
+    image: goingBackToRehabImage,
+    slug: "going-back-to-rehab",
+    metaTitle: "Going Back to Rehab: Support Without Enabling",
+    metaDescription: "Is going back to rehab a second chance or more enabling? Learn how families can support repeat addiction treatment with love, clear limits, and a stronger plan.",
+  },
   {
     id: "waiting-for-rock-bottom",
     title: "Waiting for Rock Bottom: Why Your Family Doesn't Have to Watch Addiction Get Worse",
