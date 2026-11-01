@@ -76,7 +76,11 @@ export const AppRoutes = () => {
     <SocialShareUrlGuard />
     <OrganizationJsonLd />
     <ContactFormWidget />
-    <Routes>
+    {/* Keyed by path so moving between two pages that share a component
+        (article -> article, hub -> hub, intent page -> intent page) remounts
+        it instead of carrying over form state, unlocked lead magnets, and
+        per-page tracking flags from the previous page. */}
+    <Routes key={pathname}>
       <Route path="/" element={<Index />} />
       {Object.entries(legacyPageRedirects).map(([from, to]) => (
         <Route key={from} path={from} element={<Navigate to={to} replace />} />

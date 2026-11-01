@@ -1,8 +1,8 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import { Resend } from "https://esm.sh/resend@2.0.0";
+import { fetchAllRows } from "../_shared/paginate.ts";
+import { sendBulkEmails } from "../_shared/bulkEmail.ts";
 
-const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
 const escapeHtml = (value: string) =>
   value
@@ -112,15 +112,14 @@ serve(async (req) => {
 
 
     // Fetch all active subscribers (reusing the existing supabase client)
-    const { data: subscribers, error: fetchError } = await supabase
-      .from("subscribers")
-      .select("email, first_name")
-      .eq("is_active", true);
-
-    if (fetchError) {
-      console.error("Error fetching subscribers:", fetchError.message);
-      throw fetchError;
-    }
+    // Page through: a plain select is capped at 1000 rows by PostgREST.
+    const subscribers = await fetchAllRows<{ email: string; first_name: string | null }>(() =>
+      supabase
+        .from("subscribers")
+        .select("email, first_name")
+        .eq("is_active", true)
+        .order("email", { ascending: true })
+    );
 
     if (!subscribers || subscribers.length === 0) {
       console.log("No active subscribers found");
@@ -144,44 +143,22 @@ serve(async (req) => {
       : "No More Enabling";
     const fromAddress = `${safeFromName} <${safeFromEmail}>`;
 
-    // Send emails to all subscribers
-    const results = {
-      successful: 0,
-      failed: 0,
-      errors: [] as string[],
-    };
+    const resendApiKey = Deno.env.get("RESEND_API_KEY");
+    if (!resendApiKey) throw new Error("RESEND_API_KEY is not configured");
 
-    for (const subscriber of subscribers) {
-      try {
-        // Personalize content if first_name is available
-        let personalizedContent = safeHtmlContent;
-        if (subscriber.first_name) {
-          personalizedContent = safeHtmlContent.replace(/{{first_name}}/g, escapeHtml(subscriber.first_name));
-        } else {
-          personalizedContent = safeHtmlContent.replace(/{{first_name}}/g, "Friend");
-        }
-
-        const { error: sendError } = await resend.emails.send({
-          from: fromAddress,
-          to: [subscriber.email],
-          subject: subject,
-          html: personalizedContent,
-        });
-
-        if (sendError) {
-          console.error(`Failed to send to ${subscriber.email}:`, sendError);
-          results.failed++;
-          results.errors.push(`${subscriber.email}: ${sendError.message}`);
-        } else {
-          console.log(`Successfully sent to ${subscriber.email}`);
-          results.successful++;
-        }
-      } catch (emailError: any) {
-        console.error(`Error sending to ${subscriber.email}:`, emailError);
-        results.failed++;
-        results.errors.push(`${subscriber.email}: ${emailError.message}`);
-      }
-    }
+    // Personalize content; {{first_name}} falls back to "Friend".
+    const results = await sendBulkEmails(
+      resendApiKey,
+      subscribers.map((subscriber) => ({
+        from: fromAddress,
+        to: subscriber.email,
+        subject,
+        html: safeHtmlContent.replace(
+          /{{first_name}}/g,
+          subscriber.first_name ? escapeHtml(subscriber.first_name) : "Friend",
+        ),
+      })),
+    );
 
     console.log(`Newsletter send complete. Success: ${results.successful}, Failed: ${results.failed}`);
 

@@ -20,7 +20,9 @@
       window.dataLayer = window.dataLayer || [];
       window.gtag = function(){window.dataLayer.push(arguments);};
       window.gtag('js', new Date());
-      window.gtag('config', 'G-T8Q605D5GN');
+      // Page views are sent by the app (GoogleAnalytics.tsx) on every route,
+      // including the first; letting config send one too double-counted landings.
+      window.gtag('config', 'G-T8Q605D5GN', { send_page_view: false });
       const analytics = document.createElement('script');
       analytics.async = true;
       analytics.src = 'https://www.googletagmanager.com/gtag/js?id=G-T8Q605D5GN';

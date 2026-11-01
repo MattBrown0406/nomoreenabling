@@ -60,7 +60,11 @@ const clientIp = (req: Request): string =>
 // Mirror of src/lib/leadScoring.ts. The client still sends its score for
 // display, but the stored/emailed tier is computed here so a caller cannot
 // mark themselves "priority".
-const includesAny = (value: string, terms: string[]) => terms.some((term) => value.includes(term));
+// Match terms at the start of a word so "rent" doesn't fire on "parent" or
+// "son" on "person"/"reason"/"lesson" (plurals like "sons" still match).
+const escapeRegExp = (term: string) => term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const includesAny = (value: string, terms: string[]) =>
+  terms.some((term) => new RegExp(`(?<![a-z0-9])${escapeRegExp(term)}`).test(value));
 
 const scoreLead = (input: {
   source?: string | null;
@@ -276,7 +280,7 @@ serve(async (req) => {
 
     // Score server-side; never trust lead_score / lead_tier from the client.
     const computedScore = isQuestionIntake
-      ? { score: sanitizeNumber(payload.lead_score) ?? 12, tier: "nurture", reasons: sanitizeJsonArray(payload.lead_reasons) }
+      ? { score: 12, tier: "nurture", reasons: sanitizeJsonArray(payload.lead_reasons) }
       : scoreLead({ source, relationship, concern, treatmentHistory, urgency, message: safeMessage, leadIntent, pagePath });
     const leadScore = computedScore.score;
     const leadTier = computedScore.tier;
@@ -380,6 +384,9 @@ serve(async (req) => {
       }
     }
 
+    // The lead and its follow-up queue are already saved. If the owner
+    // notification fails, don't report failure to the visitor: a resubmit
+    // would create a duplicate lead and a second follow-up sequence.
     await sendEmail({
       apiKey: RESEND_API_KEY,
       to: ["matt@nomoreenabling.com"],
@@ -407,6 +414,11 @@ serve(async (req) => {
         <p><strong>Message:</strong></p>
         <p>${escapeHtml(safeMessage).replace(/\n/g, "<br>")}</p>
       `,
+    }).catch((ownerEmailError) => {
+      console.error(
+        "send-contact-form: owner notification failed (lead already saved):",
+        ownerEmailError instanceof Error ? ownerEmailError.message : String(ownerEmailError),
+      );
     });
 
     try {

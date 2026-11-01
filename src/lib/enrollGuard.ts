@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from "react";
+import { awaitMinDwell, dwellMs } from "@/lib/formDwell";
 
 /**
  * Client half of the course-enroll anti-abuse guards.
@@ -8,17 +9,22 @@ import { useCallback, useRef, useState } from "react";
  * fields into the enroll request body — the server silently drops submissions
  * that trip either guard.
  */
+const MIN_DWELL_MS = 3000;
+
 export function useEnrollGuard() {
   const openedAtRef = useRef<number>(Date.now());
   const [honeypot, setHoneypot] = useState("");
 
-  const guardFields = useCallback(
-    () => ({
+  // Async: a real person who autofills and submits within the dwell window
+  // (common when the form appears in a modal) used to get a silent fake
+  // success from the server. Wait out the remainder instead of dropping them.
+  const guardFields = useCallback(async () => {
+    await awaitMinDwell(openedAtRef.current, MIN_DWELL_MS);
+    return {
       website: honeypot,
-      form_ms: Date.now() - openedAtRef.current,
-    }),
-    [honeypot],
-  );
+      form_ms: dwellMs(openedAtRef.current, MIN_DWELL_MS),
+    };
+  }, [honeypot]);
 
   const honeypotProps = {
     type: "text" as const,

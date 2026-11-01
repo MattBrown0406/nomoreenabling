@@ -45,23 +45,81 @@ const XIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+const formatInlineMarkdown = (text: string) =>
+  text
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_match, label: string, href: string) => {
+      if (/^https?:\/\//i.test(href)) {
+        return `<a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+      }
+      return `<a href="${href}">${label}</a>`;
+    });
+
+// Converts the subset of markdown used by the older article files: bold-only
+// lines and ##/### as headings, "- " / "1. " lists, **bold** and [links](/x).
+// Bold questions after a "Frequently Asked Questions" heading become <h3> so
+// the FAQ extractor (and FAQ schema) can find them and they stay out of the TOC.
 const convertMarkdownLikeContentToHtml = (content: string) => {
   const paragraphs = content
     .split("\n\n")
     .map((paragraph) => paragraph.trim())
     .filter(Boolean);
 
+  let inFaqSection = false;
+
   return paragraphs
     .map((paragraph) => {
-      if (paragraph.startsWith("**") && paragraph.endsWith("**")) {
-        return `<h2>${paragraph.replace(/\*\*/g, "")}</h2>`;
+      const headingMatch = paragraph.match(/^(#{2,3})\s+(.+)$/);
+      const boldHeading = !paragraph.includes("\n") && /^\*\*[^*]+\*\*$/.test(paragraph)
+        ? paragraph.replace(/\*\*/g, "").trim()
+        : null;
+      const headingText = headingMatch ? headingMatch[2].replace(/\*\*/g, "").trim() : boldHeading;
+
+      if (headingText) {
+        if (/^frequently asked questions/i.test(headingText)) {
+          inFaqSection = true;
+          return `<h2>${formatInlineMarkdown(headingText)}</h2>`;
+        }
+        const level = headingMatch?.[1] === "###" || (inFaqSection && headingText.endsWith("?")) ? "h3" : "h2";
+        return `<${level}>${formatInlineMarkdown(headingText)}</${level}>`;
       }
 
-      const inlineFormatted = paragraph
-        .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
-        .replace(/\n/g, "<br />");
+      // Group consecutive list lines into <ul>/<ol>; other lines stay paragraphs.
+      const blocks: string[] = [];
+      let textLines: string[] = [];
+      let listType: "ul" | "ol" | null = null;
+      let listItems: string[] = [];
+      const flushText = () => {
+        if (textLines.length) blocks.push(`<p>${textLines.map(formatInlineMarkdown).join("<br />")}</p>`);
+        textLines = [];
+      };
+      const flushList = () => {
+        if (listType && listItems.length) {
+          blocks.push(`<${listType}>${listItems.map((item) => `<li>${formatInlineMarkdown(item)}</li>`).join("")}</${listType}>`);
+        }
+        listType = null;
+        listItems = [];
+      };
 
-      return `<p>${inlineFormatted}</p>`;
+      for (const rawLine of paragraph.split("\n")) {
+        const line = rawLine.trim();
+        const bullet = line.match(/^[-*]\s+(.+)$/);
+        const numbered = line.match(/^\d+[.)]\s+(.+)$/);
+        const itemType = bullet ? "ul" : numbered ? "ol" : null;
+        if (itemType) {
+          flushText();
+          if (listType !== itemType) flushList();
+          listType = itemType;
+          listItems.push((bullet || numbered)![1]);
+        } else if (line) {
+          flushList();
+          textLines.push(line);
+        }
+      }
+      flushText();
+      flushList();
+
+      return blocks.join("");
     })
     .join("");
 };
@@ -967,7 +1025,8 @@ const ArticlePage = () => {
                   </div>
                 )}
 
-                <div className="mt-10">
+                {/* Target of the generic "#newsletter" article CTA. */}
+                <div id="newsletter" className="mt-10 scroll-mt-24">
                   <ArticleEndSubscribe articleSlug={article?.slug} category={article?.category} />
                 </div>
 

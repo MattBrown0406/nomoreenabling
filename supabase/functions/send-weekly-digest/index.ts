@@ -1,8 +1,8 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import { Resend } from "https://esm.sh/resend@2.0.0";
+import { fetchAllRows } from "../_shared/paginate.ts";
+import { sendBulkEmails } from "../_shared/bulkEmail.ts";
 
-const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -205,10 +205,23 @@ serve(async (req) => {
     const feed = (await feedResponse.json()) as { posts: FeedPost[] };
 
     const now = Date.now();
-    const cutoff = now - days * 24 * 60 * 60 * 1000;
+    // Feed dates are calendar dates ("October 26, 2026"). Use a half-open
+    // window of whole days, [today - days, today), so a post dated today is
+    // picked up by next week's run rather than skipped (if it deploys after
+    // the cron) or sent twice (if it was dated ahead).
+    const todayStart = new Date(now);
+    todayStart.setUTCHours(0, 0, 0, 0);
+    const windowEnd = todayStart.getTime();
+    const windowStart = windowEnd - days * 24 * 60 * 60 * 1000;
+    const calendarDay = (value: string) => {
+      const parsed = new Date(value);
+      if (Number.isNaN(parsed.getTime())) return Number.NaN;
+      // new Date("October 26, 2026") is local midnight; normalize to UTC.
+      return Date.UTC(parsed.getFullYear(), parsed.getMonth(), parsed.getDate());
+    };
     const recent = (feed.posts || [])
-      .map((post) => ({ post, time: new Date(post.date).getTime() }))
-      .filter(({ time }) => Number.isFinite(time) && time >= cutoff && time <= now + 86_400_000)
+      .map((post) => ({ post, time: calendarDay(post.date) }))
+      .filter(({ time }) => Number.isFinite(time) && time >= windowStart && time < windowEnd)
       .sort((a, b) => b.time - a.time)
       .map(({ post }) => post);
 
@@ -233,12 +246,14 @@ serve(async (req) => {
         ? `New this week: ${recent[0].title}`
         : `This week on No More Enabling: ${recent.length} new articles`;
 
-    const { data: subscribers, error: subscribersError } = await supabase
-      .from("subscribers")
-      .select("email, first_name")
-      .eq("is_active", true);
-
-    if (subscribersError) throw subscribersError;
+    // Page through: a plain select is capped at 1000 rows by PostgREST.
+    const subscribers = await fetchAllRows<{ email: string; first_name: string | null }>(() =>
+      supabase
+        .from("subscribers")
+        .select("email, first_name")
+        .eq("is_active", true)
+        .order("email", { ascending: true })
+    );
 
     if (dryRun) {
       return new Response(
@@ -247,44 +262,29 @@ serve(async (req) => {
           dry_run: true,
           subject,
           posts: recent.map((p) => ({ title: p.title, url: p.url, date: p.date })),
-          recipients: subscribers?.length ?? 0,
+          recipients: subscribers.length,
         }),
         { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
 
-    let successful = 0;
-    let failed = 0;
-    const errors: string[] = [];
+    const resendApiKey = Deno.env.get("RESEND_API_KEY");
+    if (!resendApiKey) throw new Error("RESEND_API_KEY is not configured");
 
-    for (const subscriber of subscribers ?? []) {
-      const personalized = html.replace(
-        /{{first_name}}/g,
-        escapeHtml(subscriber.first_name || "friend"),
-      );
-      try {
-        const { error: sendError } = await resend.emails.send({
-          from: "No More Enabling <contact@nomoreenabling.com>",
-          to: [subscriber.email as string],
-          subject,
-          html: personalized,
-        });
-        if (sendError) {
-          failed++;
-          errors.push(`${subscriber.email}: ${sendError.message}`);
-        } else {
-          successful++;
-        }
-      } catch (error) {
-        failed++;
-        errors.push(`${subscriber.email}: ${(error as Error).message}`);
-      }
-    }
+    const { successful, failed, errors } = await sendBulkEmails(
+      resendApiKey,
+      subscribers.map((subscriber) => ({
+        from: "No More Enabling <contact@nomoreenabling.com>",
+        to: subscriber.email,
+        subject,
+        html: html.replace(/{{first_name}}/g, escapeHtml(subscriber.first_name || "friend")),
+      })),
+    );
 
     await supabase.from("email_campaigns").insert({
       subject,
       body_html: html,
-      recipients: (subscribers ?? []).map((s) => s.email as string),
+      recipients: subscribers.map((s) => s.email),
       sent_count: successful,
       failed_count: failed,
       campaign_type: "weekly_digest",

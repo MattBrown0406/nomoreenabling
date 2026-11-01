@@ -1,7 +1,9 @@
 import { Button, type ButtonProps } from "@/components/ui/button";
 import { trackGAConversion } from "@/lib/gaConversions";
 
-export const WHATSAPP_NUMBER = "5038362136";
+// wa.me requires the full international number (country code 1 for the US);
+// without it 503 is read as El Salvador's country code.
+export const WHATSAPP_NUMBER = "15038362136";
 export const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (

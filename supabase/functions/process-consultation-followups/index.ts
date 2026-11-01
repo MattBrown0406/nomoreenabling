@@ -2,6 +2,8 @@ import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { Resend } from "https://esm.sh/resend@2.0.0";
 
+const MAX_SEND_ATTEMPTS = 3;
+
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
 const corsHeaders = {
@@ -106,7 +108,7 @@ serve(async (req) => {
     const now = new Date().toISOString();
     const { data: followups, error: fetchError } = await supabase
       .from("consultation_followup_queue")
-      .select("id, consultation_lead_id, email, name, subject, preview_text, body_markdown, primary_cta_label, primary_cta_href, sequence_step")
+      .select("id, consultation_lead_id, email, name, subject, preview_text, body_markdown, primary_cta_label, primary_cta_href, sequence_step, metadata")
       .is("sent_at", null)
       .is("skipped_at", null)
       .lte("scheduled_for", now)
@@ -180,9 +182,20 @@ serve(async (req) => {
       } catch (error) {
         errors++;
         const message = error instanceof Error ? error.message : "Unknown email error";
+        // Permanently failing rows (bad address, etc.) would otherwise be
+        // retried forever and, once 25 accumulate, starve every newer row out
+        // of the batch. Give up after MAX_SEND_ATTEMPTS and keep the error.
+        const metadata = (followup.metadata && typeof followup.metadata === "object" && !Array.isArray(followup.metadata))
+          ? followup.metadata as Record<string, unknown>
+          : {};
+        const attempts = (Number(metadata.send_attempts) || 0) + 1;
         await supabase
           .from("consultation_followup_queue")
-          .update({ error_message: message })
+          .update({
+            error_message: message,
+            metadata: { ...metadata, send_attempts: attempts },
+            ...(attempts >= MAX_SEND_ATTEMPTS ? { skipped_at: now } : {}),
+          })
           .eq("id", followup.id);
       }
     }

@@ -43,6 +43,9 @@ export const legacyPageRedirects: Record<string, string> = {
   "/articles/enabling-peacekeeping": "/articles/enabling-masquerades-as-peacekeeping",
   "/articles/keeping-peace-addiction": "/articles/keeping-peace-teaches-addiction-to-stay",
   "/articles/letting-go-not-abandonment": "/articles/letting-go-is-not-abandonment",
+  "/articles/caved-on-boundary-how-to-reset-addiction-family": "/articles/what-to-do-when-addicted-loved-one-breaks-boundaries",
+  "/articles/guilt-after-setting-boundaries-addicted-loved-one": "/articles/guilt-after-holding-boundary-addicted-loved-one",
+  "/articles/what-is-enabling-in-addiction": "/articles/how-to-stop-enabling-an-addict",
 };
 
 export const resolveLegacyArticleSlug = (slug: string) =>

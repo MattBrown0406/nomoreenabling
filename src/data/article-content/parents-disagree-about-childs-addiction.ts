@@ -21,7 +21,7 @@ export default `
       <h2>How Addiction Uses the Split</h2>
       <p>Addiction exploits parental disagreement by turning the gap between you into a resource. Your child doesn't have to be a master manipulator. They just have to be a person in pain who has learned which parent says yes.</p>
       <p>Dad says no more money. Mom gets a text the next morning: "Dad won't help me and I haven't eaten in two days." Mom sends forty dollars. Dad finds out and blows up at Mom. Now Mom is defending herself, Dad is furious, and the money is gone. Your child got what they needed without facing either of you.</p>
-      <p>Notice what happened to the consequence. There wasn't one. A limit only exists if it holds on both sides. A boundary with a back door is a suggestion, which is why <a href="/articles/how-to-set-boundaries-addicted-loved-one">setting boundaries</a> only works when both parents carry the same one.</p>
+      <p>Notice what happened to the consequence. There wasn't one. A limit only exists if it holds on both sides. A boundary with a back door is a suggestion, which is why <a href="/articles/how-to-set-boundaries-with-addicted-loved-one">setting boundaries</a> only works when both parents carry the same one.</p>
       <p>The harder truth: the addiction isn't the only thing benefiting. The soft parent gets to feel needed. The firm parent gets to feel right. Both of you get something out of your role, which is why it's so hard to give up.</p>
 
       <h2>What Does It Look Like When Parents Get on the Same Page?</h2>

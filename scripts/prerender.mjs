@@ -48,13 +48,25 @@ const injectPrerenderedHtml = (template, { html, head }, manifest) => {
   const renderedHead = replaceAssetPaths(head, manifest);
   const cleanedTemplate = stripDefaultSeoTags(template);
 
+  // Function replacers: a string replacement would treat "$&", "$$", "$'"
+  // etc. inside page content as substitution patterns and corrupt the page.
   return cleanedTemplate
-    .replace("<div id=\"root\"></div>", `<div id=\"root\">${renderedHtml}</div>`)
-    .replace("</head>", `${renderedHead}\n</head>`);
+    .replace("<div id=\"root\"></div>", () => `<div id=\"root\">${renderedHtml}</div>`)
+    .replace("</head>", () => `${renderedHead}\n</head>`);
 };
 
 const vite = await createServer({
   root,
+  // The SSR module graph otherwise runs with import.meta.env.DEV = true, so
+  // dev-only UI (e.g. "AdSense slot not configured" placeholders) was baked
+  // into the shipped HTML. The dev server derives DEV from NODE_ENV, which
+  // can't be flipped here (the JSX transform would still emit jsxDEV), so
+  // override the flags directly.
+  mode: "production",
+  define: {
+    "import.meta.env.DEV": "false",
+    "import.meta.env.PROD": "true",
+  },
   logLevel: "error",
   appType: "custom",
   optimizeDeps: { disabled: true },
@@ -67,7 +79,20 @@ const vite = await createServer({
 });
 
 try {
-  const template = await fs.readFile(path.join(distDir, "index.html"), "utf8");
+  // The first run overwrites dist/index.html with the prerendered home page,
+  // so keep the untouched Vite template aside and always render from it;
+  // otherwise re-running prerender injects every page into the home page.
+  const templatePath = path.join(distDir, ".vite", "index.template.html");
+  let template;
+  try {
+    template = await fs.readFile(templatePath, "utf8");
+  } catch {
+    template = await fs.readFile(path.join(distDir, "index.html"), "utf8");
+    if (!template.includes('<div id="root"></div>')) {
+      throw new Error("dist/index.html is already prerendered; rebuild with `vite build` before prerendering.");
+    }
+    await fs.writeFile(templatePath, template, "utf8");
+  }
   const manifest = JSON.parse(await fs.readFile(path.join(distDir, ".vite", "manifest.json"), "utf8"));
   const { render } = await vite.ssrLoadModule("/src/entry-server.tsx");
   const { prerenderRoutes, prerenderAliases } = await vite.ssrLoadModule("/src/prerender-routes.ts");

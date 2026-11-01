@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { fetchAllRows } from "../_shared/paginate.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -57,15 +58,14 @@ serve(async (req) => {
     }
 
     // Fetch all active subscribers
-    const { data: subscribers, error: fetchError } = await supabase
-      .from('subscribers')
-      .select('email, first_name')
-      .eq('is_active', true);
-
-    if (fetchError) {
-      console.error('Error fetching subscribers:', fetchError);
-      throw fetchError;
-    }
+    // Page through: a plain select is capped at 1000 rows by PostgREST.
+    const subscribers = await fetchAllRows<{ email: string; first_name: string | null }>(() =>
+      supabase
+        .from('subscribers')
+        .select('email, first_name')
+        .eq('is_active', true)
+        .order('email', { ascending: true })
+    );
 
     console.log(`Found ${subscribers?.length || 0} active subscribers to sync`);
 

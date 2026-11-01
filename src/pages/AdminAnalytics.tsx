@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import type { Session } from "@supabase/supabase-js";
 import { Button } from "@/components/ui/button";
@@ -290,7 +290,8 @@ const downloadCsv = (filename: string, rows: Array<Record<string, string | numbe
   link.href = url;
   link.download = filename;
   link.click();
-  URL.revokeObjectURL(url);
+  // Revoking synchronously can cancel the download in some browsers (Firefox).
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
 };
 
 const AdminAnalytics = () => {
@@ -330,6 +331,12 @@ const AdminAnalytics = () => {
   const [selectedLeadId, setSelectedLeadId] = useState<string | null>(null);
   const [leadActionLoading, setLeadActionLoading] = useState<string | null>(null);
   const [leadNoteDraft, setLeadNoteDraft] = useState("");
+  // Responses for a range the admin has since switched away from must not
+  // overwrite the newer range's numbers (a slow "All time" fetch finishing
+  // after "Last 7 days" used to win).
+  const timeRangeRef = useRef(timeRange);
+  timeRangeRef.current = timeRange;
+  const notesLeadIdRef = useRef<string | null>(null);
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -387,6 +394,7 @@ const AdminAnalytics = () => {
   };
 
   const fetchAdClicks = async () => {
+    const requestedRange = timeRange;
     let sinceIso: string | null = null;
     if (timeRange !== 'all') {
       const days = timeRange === '7d' ? 7 : timeRange === '30d' ? 30 : 90;
@@ -405,6 +413,8 @@ const AdminAnalytics = () => {
       let query = supabase
         .from('ad_clicks')
         .select('ad_name', { count: 'exact' })
+        // Offset paging needs a stable order or rows repeat/skip across pages.
+        .order('id', { ascending: true })
         .range(from, from + pageSize - 1);
       if (sinceIso) query = query.gte('clicked_at', sinceIso);
 
@@ -422,6 +432,8 @@ const AdminAnalytics = () => {
       if (from > 100000) break;
     }
 
+    if (timeRangeRef.current !== requestedRange) return;
+
     if (hadError) {
       setAdClicks([]);
       setTotalAdClicks(0);
@@ -438,20 +450,43 @@ const AdminAnalytics = () => {
 
 
   const fetchFunnelAnalytics = async () => {
-    let eventQuery = supabase
-      .from('funnel_events')
-      .select('event_name, created_at, page_path, source, article_slug, assessment_result, offer_slug, target_href, metadata');
-
+    const requestedRange = timeRange;
+    let sinceIso: string | null = null;
     if (timeRange !== 'all') {
       const days = timeRange === '7d' ? 7 : timeRange === '30d' ? 30 : 90;
       const since = new Date();
       since.setDate(since.getDate() - days);
-      eventQuery = eventQuery.gte('created_at', since.toISOString());
+      sinceIso = since.toISOString();
     }
 
-    const { data: eventData, error: eventError } = await eventQuery.order('created_at', { ascending: false }).limit(1000);
+    // A single request is capped at 1000 rows, which silently truncated every
+    // funnel metric for the longer ranges. Page through with a stable order.
+    const pageSize = 1000;
+    let eventData: Awaited<ReturnType<typeof buildEventPage>>['data'] = [];
+    let eventError: unknown = null;
+    function buildEventPage(from: number) {
+      let query = supabase
+        .from('funnel_events')
+        .select('event_name, created_at, page_path, source, article_slug, assessment_result, offer_slug, target_href, metadata')
+        .order('created_at', { ascending: false })
+        .order('id', { ascending: false })
+        .range(from, from + pageSize - 1);
+      if (sinceIso) query = query.gte('created_at', sinceIso);
+      return query;
+    }
+    for (let from = 0; from <= 50000; from += pageSize) {
+      const { data, error } = await buildEventPage(from);
+      if (error || !data) {
+        eventError = error ?? new Error('No funnel data');
+        break;
+      }
+      eventData = [...(eventData ?? []), ...data];
+      if (data.length < pageSize) break;
+    }
 
-    if (eventError || !eventData) {
+    if (timeRangeRef.current !== requestedRange) {
+      // A newer range is loading; leave its funnel numbers alone.
+    } else if (eventError || !eventData) {
       setFunnelEvents([]);
     } else {
       setFunnelEvents(
@@ -473,12 +508,19 @@ const AdminAnalytics = () => {
     calcSince.setDate(1);
     calcSince.setHours(0, 0, 0, 0);
     calcSince.setMonth(calcSince.getMonth() - 5);
-    const { data: calcData } = await supabase
-      .from('funnel_events')
-      .select('event_name, created_at')
-      .in('event_name', ['calculator_cta_click', 'calculator_completed'])
-      .gte('created_at', calcSince.toISOString())
-      .limit(10000);
+    const calcData: { event_name: string; created_at: string }[] = [];
+    for (let from = 0; from <= 50000; from += pageSize) {
+      const { data, error } = await supabase
+        .from('funnel_events')
+        .select('event_name, created_at')
+        .in('event_name', ['calculator_cta_click', 'calculator_completed'])
+        .gte('created_at', calcSince.toISOString())
+        .order('id', { ascending: true })
+        .range(from, from + pageSize - 1);
+      if (error || !data) break;
+      calcData.push(...data);
+      if (data.length < pageSize) break;
+    }
 
     const monthKey = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
     const monthLabel = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
@@ -550,6 +592,7 @@ const AdminAnalytics = () => {
   };
 
   const fetchAnalytics = async () => {
+    const requestedRange = timeRange;
     setLoading(true);
 
     let sinceIso: string | null = null;
@@ -571,6 +614,7 @@ const AdminAnalytics = () => {
       let query = supabase
         .from('article_views')
         .select('article_slug', { count: 'exact' })
+        .order('id', { ascending: true })
         .range(from, from + pageSize - 1);
       if (sinceIso) query = query.gte('viewed_at', sinceIso);
 
@@ -588,6 +632,8 @@ const AdminAnalytics = () => {
       from += pageSize;
       if (from > 100000) break; // hard safety cap
     }
+
+    if (timeRangeRef.current !== requestedRange) return;
 
     if (fetchError) {
       console.error('Error fetching analytics:', fetchError);
@@ -619,7 +665,12 @@ const AdminAnalytics = () => {
   useEffect(() => {
     const selectedLead = consultationLeads.find((lead) => lead.id === selectedLeadId);
     if (selectedLead) {
-      setLeadNoteDraft(selectedLead.admin_notes || "");
+      // Only load saved notes when a different lead is selected; every admin
+      // action refetches the lead list and used to wipe an unsaved draft.
+      if (notesLeadIdRef.current !== selectedLead.id) {
+        notesLeadIdRef.current = selectedLead.id;
+        setLeadNoteDraft(selectedLead.admin_notes || "");
+      }
     } else if (!selectedLeadId && consultationLeads.length > 0) {
       setSelectedLeadId(consultationLeads[0].id);
     }
@@ -705,10 +756,39 @@ const AdminAnalytics = () => {
     }
   };
 
+  // While a lead is paused (or booked/closed/lost) the hourly follow-up job
+  // marks its due rows skipped so they stop clogging the queue. Resuming must
+  // put the unsent rows back, spaced two days apart so a long pause doesn't
+  // release several emails in the same run.
+  const requeueSkippedFollowups = async (leadId: string) => {
+    const { data: rows, error } = await supabase
+      .from('consultation_followup_queue')
+      .select('id, scheduled_for')
+      .eq('consultation_lead_id', leadId)
+      .is('sent_at', null)
+      .order('scheduled_for', { ascending: true });
+    if (error) throw error;
+    const nowMs = Date.now();
+    const twoDaysMs = 2 * 24 * 60 * 60 * 1000;
+    let nextScheduledFor: string | null = null;
+    for (const [index, row] of (rows || []).entries()) {
+      const scheduledMs = Math.max(new Date(row.scheduled_for).getTime() || 0, nowMs + index * twoDaysMs);
+      const scheduledFor = new Date(scheduledMs).toISOString();
+      nextScheduledFor = nextScheduledFor ?? scheduledFor;
+      const { error: updateError } = await supabase
+        .from('consultation_followup_queue')
+        .update({ skipped_at: null, error_message: null, scheduled_for: scheduledFor })
+        .eq('id', row.id);
+      if (updateError) throw updateError;
+    }
+    return nextScheduledFor;
+  };
+
   const updateConsultationLead = async (
     lead: ConsultationLeadRow,
     patch: Partial<ConsultationLeadRow>,
     successMessage: string,
+    options: { requeueFollowups?: boolean } = {},
   ) => {
     setLeadActionLoading(lead.id);
     try {
@@ -718,6 +798,18 @@ const AdminAnalytics = () => {
         .eq('id', lead.id);
 
       if (error) throw error;
+
+      if (options.requeueFollowups) {
+        const nextFollowupAt = await requeueSkippedFollowups(lead.id);
+        const { error: leadError } = await supabase
+          .from('consultation_leads')
+          .update({
+            followup_status: nextFollowupAt ? "active" : "complete",
+            next_followup_at: nextFollowupAt,
+          })
+          .eq('id', lead.id);
+        if (leadError) throw leadError;
+      }
 
       toast({
         title: "Lead updated",
@@ -776,7 +868,9 @@ const AdminAnalytics = () => {
       patch.next_action = "close";
     }
 
-    updateConsultationLead(lead, patch, `Moved ${lead.name} to ${pipelineLabels[status]}.`);
+    updateConsultationLead(lead, patch, `Moved ${lead.name} to ${pipelineLabels[status]}.`, {
+      requeueFollowups: status === "active" && Boolean(lead.followups_paused_at),
+    });
   };
 
   const setLeadNextAction = (lead: ConsultationLeadRow, nextAction: string) => {
@@ -801,6 +895,7 @@ const AdminAnalytics = () => {
         last_admin_action_at: now,
       },
       isPaused ? "Automated follow-ups resumed." : "Automated follow-ups paused.",
+      { requeueFollowups: isPaused },
     );
   };
 

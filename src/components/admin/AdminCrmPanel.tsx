@@ -51,11 +51,27 @@ export const AdminCrmPanel = () => {
 
   const load = async () => {
     setLoading(true);
-    const [c, k] = await Promise.all([
-      supabase.from("crm_contacts").select("*").order("created_at", { ascending: false }),
+    // Page contacts: a single request is capped at 1000 rows.
+    const loadAllContacts = async () => {
+      const rows: Contact[] = [];
+      for (let from = 0; from <= 50000; from += 1000) {
+        const { data, error } = await supabase
+          .from("crm_contacts")
+          .select("*")
+          .order("created_at", { ascending: false })
+          .order("id", { ascending: true })
+          .range(from, from + 999);
+        if (error || !data) return rows.length ? rows : null;
+        rows.push(...(data as Contact[]));
+        if (data.length < 1000) break;
+      }
+      return rows;
+    };
+    const [contactRows, k] = await Promise.all([
+      loadAllContacts(),
       supabase.from("email_campaigns").select("*").order("created_at", { ascending: false }).limit(25),
     ]);
-    if (c.data) setContacts(c.data as Contact[]);
+    if (contactRows) setContacts(contactRows);
     if (k.data) setCampaigns(k.data as Campaign[]);
     setLoading(false);
   };
@@ -72,6 +88,13 @@ export const AdminCrmPanel = () => {
     if (!tagFilter) return contacts;
     return contacts.filter((c) => c.tags?.includes(tagFilter));
   }, [contacts, tagFilter]);
+
+  // Only contacts that are both selected and visible under the current tag
+  // filter receive a campaign; hidden selections used to be emailed too.
+  const selectedVisibleContacts = useMemo(
+    () => filteredContacts.filter((c) => selectedIds.has(c.id)),
+    [filteredContacts, selectedIds],
+  );
 
   const addContact = async () => {
     if (!newContact.name || !newContact.email) {
@@ -128,7 +151,7 @@ export const AdminCrmPanel = () => {
       if (!e) { toast({ title: "Recipient required", variant: "destructive" }); return; }
       recipients = [e];
     } else {
-      recipients = contacts.filter((c) => selectedIds.has(c.id)).map((c) => c.email);
+      recipients = selectedVisibleContacts.map((c) => c.email);
       if (recipients.length === 0) { toast({ title: "Select at least one contact", variant: "destructive" }); return; }
     }
 
@@ -170,7 +193,7 @@ export const AdminCrmPanel = () => {
           ) : (
             <div className="space-y-2">
               <div className="flex flex-wrap items-center gap-2">
-                <Label className="m-0">Recipients ({selectedIds.size} selected)</Label>
+                <Label className="m-0">Recipients ({selectedVisibleContacts.length} selected)</Label>
                 <Button size="sm" variant="ghost" onClick={selectAllVisible}>Select all visible</Button>
                 <Button size="sm" variant="ghost" onClick={clearSelection}>Clear</Button>
                 <select value={tagFilter} onChange={(e) => setTagFilter(e.target.value)} className="ml-auto text-sm border border-border rounded px-2 py-1 bg-background">
@@ -202,7 +225,7 @@ export const AdminCrmPanel = () => {
           </div>
           <Button onClick={sendEmail} disabled={sending}>
             <Send className="w-4 h-4 mr-2" />
-            {sending ? "Sending..." : mode === "single" ? "Send Email" : `Send Campaign (${selectedIds.size})`}
+            {sending ? "Sending..." : mode === "single" ? "Send Email" : `Send Campaign (${selectedVisibleContacts.length})`}
           </Button>
         </CardContent>
       </Card>

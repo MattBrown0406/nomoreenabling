@@ -353,6 +353,9 @@ export default function FamilySituationAssessment() {
   const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [captureComplete, setCaptureComplete] = useState(false);
+  // Skipping reveals the route too, but no email was given, so don't tell the
+  // reader to go confirm one.
+  const [captureSkipped, setCaptureSkipped] = useState(false);
   const loadedAt = useRef(Date.now());
   const { turnstileToken, setTurnstileToken, turnstileResetKey, resetTurnstile } = useNewsletterTurnstile();
   const startedTracked = useRef(false);
@@ -487,6 +490,7 @@ export default function FamilySituationAssessment() {
   const resetAssessment = () => {
     setAnswers({});
     setCaptureComplete(false);
+    setCaptureSkipped(false);
     loadedAt.current = Date.now();
     resetTurnstile();
     startedTracked.current = false;
@@ -702,6 +706,7 @@ export default function FamilySituationAssessment() {
                           assessmentResult: result.id,
                           metadata: { skipped: true, no_email: true },
                         });
+                        setCaptureSkipped(true);
                         setCaptureComplete(true);
                       }}
                       className="w-full text-center text-xs text-muted-foreground hover:text-foreground underline underline-offset-2"
@@ -715,7 +720,11 @@ export default function FamilySituationAssessment() {
               {result && captureComplete && (
                 <div className="mt-5 rounded-2xl border border-primary/20 bg-primary/5 p-4">
                   <p className="font-medium text-foreground">Your route is ready.</p>
-                  <p className="mt-1 text-sm text-muted-foreground">Confirm the email in your inbox before follow-up guidance begins.</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {captureSkipped
+                      ? "You can come back and add your email any time to get the 7-day plan."
+                      : "Confirm the email in your inbox before follow-up guidance begins."}
+                  </p>
                 </div>
               )}
             </aside>

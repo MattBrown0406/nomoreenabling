@@ -27,6 +27,7 @@ const cleanValue = (value: FormDataEntryValue | null, maxLength: number): string
 
 interface MailchimpMember {
   id?: string;
+  unique_email_id?: string;
   email_address?: string;
   status?: string;
   merge_fields?: Record<string, unknown>;
@@ -35,13 +36,13 @@ interface MailchimpMember {
 const fetchCanonicalMember = async (
   apiKey: string,
   audienceId: string,
-  memberId: string,
+  email: string,
 ): Promise<MailchimpMember> => {
   const dataCenter = apiKey.split('-').pop();
   if (!dataCenter || dataCenter === apiKey) throw new Error('Invalid Mailchimp API key format');
 
   const response = await fetch(
-    `https://${dataCenter}.api.mailchimp.com/3.0/lists/${encodeURIComponent(audienceId)}/members/${encodeURIComponent(memberId)}`,
+    `https://${dataCenter}.api.mailchimp.com/3.0/lists/${encodeURIComponent(audienceId)}/members/${encodeURIComponent(email)}`,
     {
       headers: {
         'Authorization': `Basic ${btoa(`apikey:${apiKey}`)}`,
@@ -106,10 +107,13 @@ serve(async (req) => {
       });
     }
 
-    const canonicalMember = await fetchCanonicalMember(apiKey, audienceId, memberId);
+    // The webhook's data[id] is Mailchimp's short unique_email_id, not the MD5
+    // subscriber hash the members endpoint expects, so look the member up by
+    // email (which Mailchimp accepts in place of the hash) and match either id.
+    const canonicalMember = await fetchCanonicalMember(apiKey, audienceId, email);
     const canonicalEmail = canonicalMember.email_address?.trim().toLowerCase();
     if (
-      canonicalMember.id !== memberId
+      (canonicalMember.id !== memberId && canonicalMember.unique_email_id !== memberId)
       || canonicalEmail !== email
       || canonicalMember.status !== 'subscribed'
     ) {
@@ -133,7 +137,7 @@ serve(async (req) => {
     const { data, error } = await supabase.rpc('finalize_confirmed_newsletter_optin', {
       p_email: email,
       p_first_name: firstName,
-      p_mailchimp_member_id: memberId,
+      p_mailchimp_member_id: canonicalMember.id ?? memberId,
     });
     if (error) throw error;
 

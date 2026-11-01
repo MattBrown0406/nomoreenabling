@@ -54,19 +54,55 @@ export function sitemapPlugin(): Plugin {
 
         const repoRoot = path.resolve(__dirname, "..");
         const today = new Date().toISOString().slice(0, 10);
-        const gitDateCache = new Map<string, string>();
-        const gitLastModified = (relativePath: string) => {
-          if (gitDateCache.has(relativePath)) return gitDateCache.get(relativePath)!;
-          const dirty = spawnSync("git", ["status", "--porcelain", "--", relativePath], { cwd: repoRoot, encoding: "utf8" }).stdout.trim();
-          if (dirty) {
-            gitDateCache.set(relativePath, today);
-            return today;
+        const isIsoDate = (value: string | undefined): value is string => Boolean(value && /^\d{4}-\d{2}-\d{2}$/.test(value));
+        const runGit = (args: string[]) => {
+          const result = spawnSync("git", args, { cwd: repoRoot, encoding: "utf8" });
+          // stdout is undefined when git isn't installed; never crash the build on it.
+          return { ok: result.status === 0, out: result.stdout?.trim() ?? "" };
+        };
+        // A shallow clone (the norm on build hosts) only has the latest commit,
+        // so `git log -1 -- <file>` returns that commit's date for EVERY file and
+        // every URL got the same lastmod. Only trust git with full history.
+        const gitHistoryUsable = (() => {
+          const shallow = runGit(["rev-parse", "--is-shallow-repository"]);
+          return shallow.ok && shallow.out === "false";
+        })();
+        // Fallback: the lastmod each URL had in the previously generated sitemap.
+        const previousLastmods = new Map<string, string>();
+        try {
+          const previousXml = fs.readFileSync(path.resolve(__dirname, "../public/sitemap.xml"), "utf-8");
+          for (const [, loc, lastmod] of previousXml.matchAll(/<loc>https:\/\/nomoreenabling\.com([^<]*)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/g)) {
+            previousLastmods.set((loc || "/").replace(/&amp;/g, "&"), lastmod);
           }
-          const result = spawnSync("git", ["log", "-1", "--format=%cs", "--", relativePath], { cwd: repoRoot, encoding: "utf8" });
-          const value = result.status === 0 ? result.stdout.trim() : "";
-          const date = /^\d{4}-\d{2}-\d{2}$/.test(value) ? value : today;
-          gitDateCache.set(relativePath, date);
-          return date;
+        } catch {
+          /* no previous sitemap */
+        }
+        const toIsoDate = (value: string | undefined) => {
+          if (!value) return undefined;
+          const parsed = new Date(value);
+          if (Number.isNaN(parsed.getTime())) return undefined;
+          return new Date(Date.UTC(parsed.getFullYear(), parsed.getMonth(), parsed.getDate())).toISOString().slice(0, 10);
+        };
+        const gitDateCache = new Map<string, string | undefined>();
+        const gitLastModified = (relativePath: string, routePath: string, fallbackDate?: string) => {
+          if (!gitDateCache.has(relativePath)) {
+            let date: string | undefined;
+            if (gitHistoryUsable) {
+              const dirty = runGit(["status", "--porcelain", "--", relativePath]).out;
+              if (dirty) {
+                date = today;
+              } else {
+                const value = runGit(["log", "-1", "--format=%cs", "--", relativePath]).out;
+                date = isIsoDate(value) ? value : undefined;
+              }
+            }
+            gitDateCache.set(relativePath, date);
+          }
+          const previous = previousLastmods.get(routePath);
+          return gitDateCache.get(relativePath)
+            ?? (isIsoDate(previous) ? previous : undefined)
+            ?? toIsoDate(fallbackDate)
+            ?? today;
         };
 
         const componentFiles = new Map<string, string>();
@@ -83,7 +119,7 @@ export function sitemapPlugin(): Plugin {
           let source = routeSourceFiles.get(page.path) || "src/App.tsx";
           if (page.path.startsWith("/answers/") || page.path.startsWith("/glossary/")) source = "src/data/aeoAnswers.ts";
           if (["/intervention-help", "/family-addiction-coaching", "/addiction-intervention-for-adult-child", "/alcohol-intervention-help", "/what-to-do-when-they-refuse-treatment", "/family-addiction-consultation"].includes(page.path)) source = "src/data/commercialIntentPages.ts";
-          lastmods[page.path] = gitLastModified(source);
+          lastmods[page.path] = gitLastModified(source, page.path);
         }
         for (const article of articles) {
           const sourceSlug = article.slug === "codependency-spouses-parents-siblings-addiction"
@@ -93,14 +129,11 @@ export function sitemapPlugin(): Plugin {
           if (!fs.existsSync(path.resolve(repoRoot, sourcePath))) {
             throw new Error(`Missing article content source for sitemap route: ${article.slug}`);
           }
-          lastmods[`/articles/${article.slug}`] = gitLastModified(sourcePath);
+          lastmods[`/articles/${article.slug}`] = gitLastModified(sourcePath, `/articles/${article.slug}`, article.date);
         }
-        const metaDate = gitLastModified("src/data/blogPostMeta.ts");
-        for (const category of categories) lastmods[`/category/${category}`] = metaDate;
-        const topicDate = gitLastModified("src/data/topicHubs.ts");
-        for (const hub of topicHubs) lastmods[`/topic-hubs/${hub}`] = topicDate;
-        const supportDate = gitLastModified("src/data/supportOffers.ts");
-        for (const offer of supportOffers) lastmods[`/support/${offer}`] = supportDate;
+        for (const category of categories) lastmods[`/category/${category}`] = gitLastModified("src/data/blogPostMeta.ts", `/category/${category}`);
+        for (const hub of topicHubs) lastmods[`/topic-hubs/${hub}`] = gitLastModified("src/data/topicHubs.ts", `/topic-hubs/${hub}`);
+        for (const offer of supportOffers) lastmods[`/support/${offer}`] = gitLastModified("src/data/supportOffers.ts", `/support/${offer}`);
 
         const xml = generateSitemapXml({
           articles,

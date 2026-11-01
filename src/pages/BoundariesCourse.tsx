@@ -63,7 +63,7 @@ const BoundariesCourse = () => {
           email, 
           first_name: firstName || null,
           course_name: 'boundaries',
-          ...guardFields(),
+          ...(await guardFields()),
         },
       });
 

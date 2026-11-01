@@ -22,7 +22,14 @@ const ExitIntentModal = ({ articleSlug }: Props) => {
       /* ignore */
     }
 
+    // Show at most once per session: without this guard every later exit
+    // gesture reopened the modal (and logged another view) after it closed.
+    let fired = false;
     const trigger = () => {
+      if (fired) return;
+      fired = true;
+      document.removeEventListener("mouseleave", onMouseLeave);
+      if (mobileTimer) window.clearTimeout(mobileTimer);
       try {
         window.sessionStorage.setItem(SESSION_KEY, "1");
       } catch {
@@ -43,11 +50,11 @@ const ExitIntentModal = ({ articleSlug }: Props) => {
       mobileTimer = window.setTimeout(trigger, 30000);
     }
 
-    const onMouseLeave = (e: MouseEvent) => {
+    function onMouseLeave(e: MouseEvent) {
       if (e.clientY <= 5 && !isMobile) {
         trigger();
       }
-    };
+    }
 
     document.addEventListener("mouseleave", onMouseLeave);
     return () => {

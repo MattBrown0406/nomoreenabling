@@ -57,9 +57,13 @@ const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const MIN_FORM_MS = 3000;
 
+// cf-connecting-ip is set by the edge and cannot be supplied by the caller;
+// the first X-Forwarded-For entry is client-controlled, so it is only a
+// last-resort fallback (otherwise a bot could rotate it to bypass the limit).
 const clientIp = (req: Request): string =>
-  req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
   req.headers.get('cf-connecting-ip') ||
+  req.headers.get('x-real-ip') ||
+  req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
   'unknown';
 
 const fakeSuccess = () =>
@@ -271,8 +275,12 @@ serve(async (req) => {
 
     // Cadence is per-course: weekly for the boundaries course, daily for the
     // Money Plan (whose welcome email delivers Day 1 immediately).
+    // Both drips run daily at 15:00 UTC. Pin the first lesson to 14:00 UTC on
+    // the target day so it is due at that day's tick; "now + N days" made
+    // anyone enrolling after 15:00 UTC miss it and wait an extra day.
     const nextEmailAt = new Date();
-    nextEmailAt.setDate(nextEmailAt.getDate() + courseInfo.cadenceDays);
+    nextEmailAt.setUTCHours(14, 0, 0, 0);
+    nextEmailAt.setUTCDate(nextEmailAt.getUTCDate() + courseInfo.cadenceDays);
 
     const { error } = await supabase
       .from('course_enrollments')

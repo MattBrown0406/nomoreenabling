@@ -427,6 +427,12 @@ serve(async (req) => {
         const scheduledAt = enrollment.next_email_at ? new Date(enrollment.next_email_at) : new Date();
         const nextEmailAt = new Date(Number.isNaN(scheduledAt.getTime()) ? Date.now() : scheduledAt.getTime());
         nextEmailAt.setUTCDate(nextEmailAt.getUTCDate() + 7);
+        // Enrollments that fell behind (e.g. created before this drip had a
+        // scheduler) would otherwise get one lesson per daily run until they
+        // caught up. Never schedule the next lesson less than a full cadence
+        // (minus an hour of tick slack) from now.
+        const minNextAt = Date.now() + 7 * 24 * 60 * 60 * 1000 - 60 * 60 * 1000;
+        if (nextEmailAt.getTime() < minNextAt) nextEmailAt.setTime(minNextAt);
 
         const isLastLesson = lessonIndex === BOUNDARIES_LESSONS.length - 1;
 

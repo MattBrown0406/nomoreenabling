@@ -97,10 +97,34 @@ const NewsletterSection = () => {
         throw error;
       }
 
+      // Variant B promises the Boundaries email course ("Send me lesson 1"),
+      // which newsletter-signup alone never delivered. Enroll them in it too.
+      let courseEnrolled = false;
+      if (variant === "B") {
+        const { error: enrollError } = await supabase.functions.invoke('course-enroll', {
+          body: {
+            email,
+            first_name: firstName || null,
+            course_name: "boundaries",
+            source: `newsletter_hero_${variant}`,
+            website: honeypot,
+            form_ms: dwellMs(startedAt.current, 3000),
+          },
+        });
+        courseEnrolled = !enrollError;
+        if (enrollError) console.warn("Boundaries course enrollment failed:", enrollError);
+      }
+
+      // Turnstile tokens are single-use; a second signup from this form (e.g.
+      // a spouse's address) would otherwise fail verification.
+      resetTurnstile();
+
       if (data?.status === 'already_subscribed') {
         toast({
           title: "Already subscribed!",
-          description: "This email is already on our list.",
+          description: courseEnrolled
+            ? "This email is already on our list. Lesson 1 of the Boundaries course is on its way."
+            : "This email is already on our list.",
         });
       } else {
         void trackFunnelEvent("email_capture_success", {
@@ -108,8 +132,10 @@ const NewsletterSection = () => {
           metadata: { variant, placement: "newsletter_hero" },
         });
         toast({
-          title: "Check your inbox to confirm.",
-          description: "You will join the list after clicking Mailchimp’s confirmation link.",
+          title: courseEnrolled ? "Lesson 1 is on its way." : "Check your inbox to confirm.",
+          description: courseEnrolled
+            ? "Check your inbox for the Boundaries course, and click Mailchimp’s confirmation link to join the newsletter."
+            : "You will join the list after clicking Mailchimp’s confirmation link.",
         });
         setEmail("");
         setFirstName("");

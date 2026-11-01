@@ -12,10 +12,14 @@ const SITE = "https://nomoreenabling.com";
 const TIMEZONE = "America/Los_Angeles";
 
 function formatLocalDateYYYYMMDD(date = new Date()) {
-  const yyyy = date.getFullYear();
-  const mm = String(date.getMonth() + 1).padStart(2, "0");
-  const dd = String(date.getDate()).padStart(2, "0");
-  return `${yyyy}-${mm}-${dd}`;
+  // Use the report's timezone, not the machine's (on a UTC host the date
+  // rolled over at 5pm Pacific).
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat("en-US", { timeZone: TIMEZONE, year: "numeric", month: "2-digit", day: "2-digit" })
+      .formatToParts(date)
+      .map((part) => [part.type, part.value]),
+  );
+  return `${parts.year}-${parts.month}-${parts.day}`;
 }
 
 function parseArgs(argv) {
@@ -91,7 +95,15 @@ function safeReadText(filePath) {
 }
 
 function escapePdfText(text) {
+  // The PDF uses a single-byte font and is written as latin1, so fold the
+  // usual typographic characters to ASCII and drop anything else. Multi-byte
+  // characters used to shift every byte offset and corrupt the xref table.
   return String(text)
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/[\u201C\u201D]/g, '"')
+    .replace(/[\u2013\u2014]/g, "-")
+    .replace(/\u2026/g, "...")
+    .replace(/[^\x09\x0A\x0D\x20-\x7E]/g, "?")
     .replaceAll("\\", "\\\\")
     .replaceAll("(", "\\(")
     .replaceAll(")", "\\)");
@@ -191,7 +203,7 @@ function writeSimplePdf({ outputPath, title, lines }) {
     }
     contentLines.push("ET");
     const contentStream = contentLines.join("\n") + "\n";
-    const contentObjNum = addObject(`<< /Length ${Buffer.byteLength(contentStream, "utf8")} >>\nstream\n${contentStream}endstream`);
+    const contentObjNum = addObject(`<< /Length ${Buffer.byteLength(contentStream, "latin1")} >>\nstream\n${contentStream}endstream`);
     contentObjNums.push(contentObjNum);
 
     const pageObjNum = addObject(
@@ -206,11 +218,11 @@ function writeSimplePdf({ outputPath, title, lines }) {
   // Serialize with offsets.
   let body = header;
   for (let i = 0; i < objects.length; i += 1) {
-    offsets.push(Buffer.byteLength(body, "utf8"));
+    offsets.push(Buffer.byteLength(body, "latin1"));
     body += `${i + 1} 0 obj\n${objects[i]}\nendobj\n`;
   }
 
-  const xrefStart = Buffer.byteLength(body, "utf8");
+  const xrefStart = Buffer.byteLength(body, "latin1");
   body += `xref\n0 ${objects.length + 1}\n`;
   body += `0000000000 65535 f \n`;
   for (let i = 1; i <= objects.length; i += 1) {

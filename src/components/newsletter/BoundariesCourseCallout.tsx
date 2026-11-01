@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useEnrollGuard } from "@/lib/enrollGuard";
 import { BookOpen, CheckCircle2, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -35,16 +35,11 @@ const BoundariesCourseCallout = ({ source, headline, subhead, compact = false }:
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { honeypotProps, guardFields } = useEnrollGuard();
   const [isEnrolled, setIsEnrolled] = useState(false);
-  const loadedAt = useRef(Date.now());
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
     if (honeypot) {
-      setIsEnrolled(true);
-      return;
-    }
-    if (Date.now() - loadedAt.current < 3000) {
       setIsEnrolled(true);
       return;
     }
@@ -62,7 +57,7 @@ const BoundariesCourseCallout = ({ source, headline, subhead, compact = false }:
           first_name: firstName.trim() || null,
           course_name: "boundaries",
           source,
-          ...guardFields(),
+          ...(await guardFields()),
         },
       });
       if (error) throw error;

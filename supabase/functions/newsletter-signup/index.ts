@@ -112,11 +112,6 @@ const isDisposableEmail = (email: string): boolean => {
 
 type MailchimpOptInResult = 'pending_confirmation' | 'already_subscribed' | 'already_pending';
 
-const md5Hex = async (value: string): Promise<string> => {
-  const digest = await crypto.subtle.digest('MD5', new TextEncoder().encode(value));
-  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
-};
-
 const mailchimpRequest = async (
   url: string,
   apiKey: string,
@@ -163,10 +158,21 @@ const requestMailchimpDoubleOptIn = async (
     // Mailchimp will not re-send a confirmation to an existing member, so the
     // confirmed-subscribe webhook never fires. Look the member up so an
     // already-confirmed subscriber can be finalized directly.
-    const memberUrl = `${url}/${await md5Hex(email.toLowerCase())}`;
+    // Mailchimp's member endpoint accepts the email address in place of the
+    // MD5 subscriber hash. Deno's WebCrypto has no MD5, so don't hash here.
+    const memberUrl = `${url}/${encodeURIComponent(email.toLowerCase())}`;
     const memberResponse = await mailchimpRequest(memberUrl, apiKey, { method: 'GET' });
     if (memberResponse.ok) {
       const member = await memberResponse.json().catch(() => ({})) as { id?: string; status?: string };
+      if (member.status === 'unsubscribed' || member.status === 'archived') {
+        // Re-request double opt-in; Mailchimp sends a fresh confirmation email
+        // when a previously unsubscribed member is moved back to pending.
+        const resubscribe = await mailchimpRequest(memberUrl, apiKey, {
+          method: 'PATCH',
+          body: JSON.stringify(subscriberData),
+        });
+        if (resubscribe.ok) return { status: 'pending_confirmation', memberId: null };
+      }
       if (member.status === 'subscribed') {
         if (tags.length > 0) {
           // Best effort: keep segmentation tags current for existing members.

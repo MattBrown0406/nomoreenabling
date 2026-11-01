@@ -70,7 +70,7 @@ serve(async (req) => {
 
     // `.limit(10000)` is silently capped at PostgREST max-rows (1000), so
     // page through instead or every tally is wrong past 1000 events.
-    const [events, consultRes, advRes] = await Promise.all([
+    const [events, consultRes, advRes, viewsRes] = await Promise.all([
       fetchAllRows<{
         event_name: string | null;
         page_path: string | null;
@@ -93,10 +93,16 @@ serve(async (req) => {
         .from("advertiser_inquiries")
         .select("id", { count: "exact", head: true })
         .gte("created_at", since),
+      // Page views are recorded in article_views, not funnel_events (there is
+      // no "page_view" funnel event), so count them there.
+      supabase
+        .from("article_views")
+        .select("id", { count: "exact", head: true })
+        .gte("viewed_at", since),
     ]);
 
 
-    let pageViews = 0;
+    const pageViews = viewsRes.count ?? 0;
     let revenueIntent = 0;
     let readiness = 0;
     const eventNames: string[] = [];
@@ -110,7 +116,6 @@ serve(async (req) => {
       dests.push(extractDestination(e as Record<string, unknown>));
 
       const blob = `${name} ${(e.target_href ?? "")} ${(e.offer_slug ?? "")} ${JSON.stringify(e.metadata ?? {})}`.toLowerCase();
-      if (name === "page_view") pageViews++;
       if (matchesAny(blob, REVENUE_INTENT_KEYWORDS)) revenueIntent++;
       if (matchesAny(blob, READINESS_KEYWORDS)) readiness++;
     }

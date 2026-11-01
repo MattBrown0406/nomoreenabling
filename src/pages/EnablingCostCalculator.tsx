@@ -68,7 +68,7 @@ const MoneyPlanCapture = () => {
     void trackFunnelEvent("email_capture_attempt", { source: "calculator_money_plan" });
     try {
       const { data, error } = await supabase.functions.invoke("course-enroll", {
-        body: { email: trimmed, first_name: firstName.trim() || null, course_name: "money-plan", ...guardFields() },
+        body: { email: trimmed, first_name: firstName.trim() || null, course_name: "money-plan", ...(await guardFields()) },
       });
       if (error) {
         // FunctionsHttpError: read the body for the already_enrolled case.

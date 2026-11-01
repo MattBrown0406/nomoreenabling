@@ -107,14 +107,14 @@ Guidelines:
 
     userPrompt += `**Available articles to recommend from:**\n`;
     for (const article of unreadArticles.slice(0, 20)) {
-      userPrompt += `- "${article.title}" (${article.categories.join(', ')}): ${article.excerpt.slice(0, 100)}...\n`;
+      userPrompt += `- slug: ${article.slug} | "${article.title}" (${article.categories.join(', ')}): ${article.excerpt.slice(0, 100)}...\n`;
     }
 
     userPrompt += `\nReturn your response as JSON with this structure:
 {
   "suggestions": [
     {
-      "slug": "article-slug-here",
+      "slug": "exact slug copied from the list above",
       "title": "Article Title",
       "reason": "One sentence explaining why this article would help them specifically"
     }
@@ -179,6 +179,25 @@ Guidelines:
         encouragement: "You're taking an important step by seeking information and support.",
       };
     }
+
+    // Only return suggestions that point at a real, unread article; the model
+    // occasionally invents slugs, and the client silently drops unknown ones.
+    const unreadBySlug = new Map(unreadArticles.map((a) => [a.slug, a]));
+    const validSuggestions = (Array.isArray(parsed?.suggestions) ? parsed.suggestions : [])
+      .filter((sug: { slug?: unknown }) => typeof sug?.slug === "string" && unreadBySlug.has(sug.slug))
+      .slice(0, 3);
+    parsed = {
+      suggestions: validSuggestions.length > 0
+        ? validSuggestions
+        : unreadArticles.slice(0, 3).map(a => ({
+          slug: a.slug,
+          title: a.title,
+          reason: "This article provides valuable insights for families navigating addiction.",
+        })),
+      encouragement: typeof parsed?.encouragement === "string"
+        ? parsed.encouragement
+        : "You're taking an important step by seeking information and support.",
+    };
 
     return new Response(JSON.stringify(parsed), {
       status: 200,
