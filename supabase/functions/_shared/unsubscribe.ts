@@ -7,10 +7,15 @@
 
 const SITE_URL = "https://nomoreenabling.com";
 
-const unsubscribeSecret = (): string => {
-  const secret = Deno.env.get("UNSUBSCRIBE_SECRET") || Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-  if (!secret) throw new Error("No unsubscribe signing secret is configured");
-  return secret;
+// Links already in inboxes must keep working (CAN-SPAM: at least 30 days), so
+// verification accepts a token signed with any configured secret: adding
+// UNSUBSCRIBE_SECRET later doesn't invalidate links signed with the
+// service-role key, and vice versa.
+const signingSecrets = (): string[] => {
+  const secrets = [Deno.env.get("UNSUBSCRIBE_SECRET"), Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")]
+    .filter((value): value is string => Boolean(value));
+  if (secrets.length === 0) throw new Error("No unsubscribe signing secret is configured");
+  return secrets;
 };
 
 const toHex = (buffer: ArrayBuffer) =>
@@ -32,10 +37,10 @@ export const base64UrlDecode = (value: string): string | null => {
   }
 };
 
-export const unsubscribeToken = async (email: string): Promise<string> => {
+export const unsubscribeToken = async (email: string, secret: string = signingSecrets()[0]): Promise<string> => {
   const key = await crypto.subtle.importKey(
     "raw",
-    new TextEncoder().encode(unsubscribeSecret()),
+    new TextEncoder().encode(secret),
     { name: "HMAC", hash: "SHA-256" },
     false,
     ["sign"],
@@ -48,14 +53,21 @@ export const unsubscribeToken = async (email: string): Promise<string> => {
   return toHex(signature);
 };
 
-export const verifyUnsubscribeToken = async (email: string, token: string): Promise<boolean> => {
-  const expected = await unsubscribeToken(email);
-  if (expected.length !== token.length) return false;
+const constantTimeEqual = (left: string, right: string): boolean => {
+  if (left.length !== right.length) return false;
   let mismatch = 0;
-  for (let index = 0; index < expected.length; index += 1) {
-    mismatch |= expected.charCodeAt(index) ^ token.charCodeAt(index);
+  for (let index = 0; index < left.length; index += 1) {
+    mismatch |= left.charCodeAt(index) ^ right.charCodeAt(index);
   }
   return mismatch === 0;
+};
+
+export const verifyUnsubscribeToken = async (email: string, token: string): Promise<boolean> => {
+  let valid = false;
+  for (const secret of signingSecrets()) {
+    if (constantTimeEqual(await unsubscribeToken(email, secret), token)) valid = true;
+  }
+  return valid;
 };
 
 export interface UnsubscribeLinks {
@@ -86,3 +98,50 @@ export const unsubscribeLinks = async (email: string): Promise<UnsubscribeLinks>
 /** Insert the footer before </body> when present, otherwise append it. */
 export const withUnsubscribeFooter = (html: string, footerHtml: string): string =>
   /<\/body>/i.test(html) ? html.replace(/<\/body>/i, () => `${footerHtml}</body>`) : `${html}${footerHtml}`;
+
+// Accepts any supabase-js client version used across the functions (their
+// generic parameters don't unify).
+// deno-lint-ignore no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AnySupabaseClient = any;
+
+const escapeLikePattern = (value: string) => value.replace(/[\\%_]/g, (char) => `\\${char}`);
+
+/**
+ * Mark an address as opted out. Matches case-insensitively (older rows may
+ * have mixed-case emails) and records a suppression row when the address has
+ * no subscriber row yet (e.g. a CRM contact), so later campaigns skip it.
+ */
+export const deactivateSubscriber = async (supabase: AnySupabaseClient, email: string) => {
+  const normalized = email.trim().toLowerCase();
+  const { data: updated, error } = await supabase
+    .from("subscribers")
+    .update({ is_active: false })
+    .ilike("email", escapeLikePattern(normalized))
+    .select("id");
+  if (error) throw error;
+  if (!updated || updated.length === 0) {
+    const { error: insertError } = await supabase
+      .from("subscribers")
+      .insert({ email: normalized, is_active: false });
+    // 23505: a row appeared concurrently; it will be deactivated on retry.
+    if (insertError && insertError.code !== "23505") throw insertError;
+  }
+};
+
+/** Lowercased emails that have opted out (subscribers.is_active = false). */
+export const fetchSuppressedEmails = async (supabase: AnySupabaseClient): Promise<Set<string>> => {
+  const suppressed = new Set<string>();
+  for (let from = 0; from <= 100000; from += 1000) {
+    const { data, error } = await supabase
+      .from("subscribers")
+      .select("email")
+      .eq("is_active", false)
+      .order("id", { ascending: true })
+      .range(from, from + 999);
+    if (error) throw error;
+    for (const row of data ?? []) suppressed.add(String(row.email).trim().toLowerCase());
+    if (!data || data.length < 1000) break;
+  }
+  return suppressed;
+};

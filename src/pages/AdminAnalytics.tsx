@@ -380,7 +380,7 @@ const AdminAnalytics = () => {
 
   const fetchCounts = async () => {
     const [subResult, enrollResult, assessmentResult, consultationResult, advertiserResult] = await Promise.all([
-      supabase.from('subscribers').select('id', { count: 'exact', head: true }),
+      supabase.from('subscribers').select('id', { count: 'exact', head: true }).eq('is_active', true),
       supabase.from('course_enrollments').select('id', { count: 'exact', head: true }),
       supabase.from('assessment_leads').select('id', { count: 'exact', head: true }),
       supabase.from('consultation_leads').select('id', { count: 'exact', head: true }),

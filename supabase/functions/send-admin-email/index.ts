@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { sendBulkEmails } from "../_shared/bulkEmail.ts";
+import { fetchSuppressedEmails, unsubscribeLinks, withUnsubscribeFooter } from "../_shared/unsubscribe.ts";
 
 
 const corsHeaders = {
@@ -57,23 +58,35 @@ serve(async (req) => {
     // and could outlive the function on larger campaigns).
     const resendApiKey = Deno.env.get("RESEND_API_KEY");
     if (!resendApiKey) throw new Error("RESEND_API_KEY is not configured");
-    const { successful: sent, failed, errors } = await sendBulkEmails(
-      resendApiKey,
-      recipients.map((to: string) => ({
+    // Multi-recipient campaigns are marketing mail: skip anyone who has opted
+    // out and give everyone else an unsubscribe link + one-click header.
+    // A single direct email to one person is sent as-is.
+    const isCampaign = recipients.length > 1;
+    const suppressed = isCampaign ? await fetchSuppressedEmails(supabase) : new Set<string>();
+    const deliverable = (recipients as string[]).filter((to) => !suppressed.has(String(to).trim().toLowerCase()));
+    const skipped = recipients.length - deliverable.length;
+    const messages = await Promise.all(deliverable.map(async (to) => {
+      if (!isCampaign) {
+        return { from: "No More Enabling <contact@nomoreenabling.com>", to, subject, html };
+      }
+      const unsub = await unsubscribeLinks(to);
+      return {
         from: "No More Enabling <contact@nomoreenabling.com>",
         to,
         subject,
-        html,
-      })),
-    );
+        html: withUnsubscribeFooter(html, unsub.footerHtml),
+        headers: unsub.headers,
+      };
+    }));
+    const { successful: sent, failed, errors } = await sendBulkEmails(resendApiKey, messages);
 
     await supabase.from("email_campaigns").insert({
-      subject, body_html: html, recipients, sent_count: sent, failed_count: failed,
+      subject, body_html: html, recipients: deliverable, sent_count: sent, failed_count: failed,
       campaign_type: recipients.length === 1 ? "single" : "campaign",
       created_by: userData.user.id, sent_at: new Date().toISOString(),
     });
 
-    return new Response(JSON.stringify({ success: true, sent, failed, errors }), {
+    return new Response(JSON.stringify({ success: true, sent, failed, skipped_unsubscribed: skipped, errors }), {
       status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (error) {

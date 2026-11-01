@@ -1,6 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import { base64UrlDecode, verifyUnsubscribeToken } from "../_shared/unsubscribe.ts";
+import { base64UrlDecode, deactivateSubscriber, verifyUnsubscribeToken } from "../_shared/unsubscribe.ts";
 
 // Opt-out endpoint for Resend-sent mail (newsletter, weekly digest, course
 // drips). Called by the /unsubscribe page (JSON body) and by mail clients via
@@ -16,6 +16,16 @@ const json = (body: unknown, status = 200) =>
 
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
+  if (req.method === "GET" || req.method === "HEAD") {
+    // Clients without RFC 8058 support open the List-Unsubscribe URL in a
+    // browser. Send them to the confirmation page; never unsubscribe on GET
+    // (link scanners prefetch URLs).
+    const query = new URL(req.url).search;
+    return new Response(null, {
+      status: 302,
+      headers: { ...corsHeaders, Location: `https://nomoreenabling.com/unsubscribe${query}`, "Referrer-Policy": "no-referrer" },
+    });
+  }
   if (req.method !== "POST") return json({ error: "Method not allowed" }, 405);
 
   try {
@@ -38,35 +48,44 @@ serve(async (req) => {
 
     const supabase = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
 
-    const { error: subscriberError } = await supabase
-      .from("subscribers")
-      .update({ is_active: false })
-      .eq("email", email);
-    if (subscriberError) throw subscriberError;
+    await deactivateSubscriber(supabase, email);
 
     const { error: courseError } = await supabase
       .from("course_enrollments")
       .update({ is_active: false, next_email_at: null })
-      .eq("email", email)
+      .ilike("email", email.replace(/[\\%_]/g, (char) => `\\${char}`))
       .eq("is_active", true);
     if (courseError) throw courseError;
 
-    // Best effort: mirror the opt-out in Mailchimp so its campaigns stop too.
+    // Mirror the opt-out in Mailchimp so its campaigns stop too. The local
+    // opt-out above is authoritative (newsletter-signup refuses to silently
+    // re-activate a locally unsubscribed address), so log failures rather than
+    // failing the reader's request.
     const apiKey = Deno.env.get("MAILCHIMP_API_KEY");
     const audienceId = Deno.env.get("MAILCHIMP_AUDIENCE_ID");
     const dataCenter = apiKey?.split("-").pop();
     if (apiKey && audienceId && dataCenter && dataCenter !== apiKey) {
-      await fetch(
-        `https://${dataCenter}.api.mailchimp.com/3.0/lists/${encodeURIComponent(audienceId)}/members/${encodeURIComponent(email)}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Authorization": `Basic ${btoa(`apikey:${apiKey}`)}`,
-            "Content-Type": "application/json",
+      try {
+        const mailchimpResponse = await fetch(
+          `https://${dataCenter}.api.mailchimp.com/3.0/lists/${encodeURIComponent(audienceId)}/members/${encodeURIComponent(email)}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Authorization": `Basic ${btoa(`apikey:${apiKey}`)}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ status: "unsubscribed" }),
           },
-          body: JSON.stringify({ status: "unsubscribed" }),
-        },
-      ).catch(() => undefined);
+        );
+        // 404: not a Mailchimp member (e.g. course-only or CRM contact).
+        if (!mailchimpResponse.ok && mailchimpResponse.status !== 404) {
+          console.error("unsubscribe: Mailchimp sync failed with", mailchimpResponse.status);
+        }
+      } catch (mailchimpError) {
+        console.error("unsubscribe: Mailchimp sync error:", mailchimpError instanceof Error ? mailchimpError.message : String(mailchimpError));
+      }
+    } else {
+      console.warn("unsubscribe: Mailchimp not configured; opt-out recorded locally only");
     }
 
     return json({ success: true });

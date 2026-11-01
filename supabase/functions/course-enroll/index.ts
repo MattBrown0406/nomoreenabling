@@ -293,7 +293,34 @@ serve(async (req) => {
         next_email_at: nextEmailAt.toISOString(),
       });
 
-    if (error) {
+    let reactivated = false;
+    if (error?.code === '23505') {
+      // UNIQUE(email, course_name): a reader who unsubscribed (is_active=false,
+      // not completed) and signs up again should restart the course, not be
+      // told they're "already enrolled" forever.
+      const { data: existing } = await supabase
+        .from('course_enrollments')
+        .select('id, is_active, completed_at')
+        .eq('email', sanitizedEmail)
+        .eq('course_name', course_name)
+        .maybeSingle();
+      if (existing && !existing.is_active && !existing.completed_at) {
+        const { error: reactivateError } = await supabase
+          .from('course_enrollments')
+          .update({
+            is_active: true,
+            current_lesson: 0,
+            first_name: sanitizedFirstName,
+            next_email_at: nextEmailAt.toISOString(),
+            last_email_sent_at: null,
+          })
+          .eq('id', existing.id);
+        if (reactivateError) throw reactivateError;
+        reactivated = true;
+      }
+    }
+
+    if (error && !reactivated) {
       if (error.code === '23505') {
         console.log('Already enrolled:', sanitizedEmail);
         // 200 rather than 409: supabase.functions.invoke() turns non-2xx into

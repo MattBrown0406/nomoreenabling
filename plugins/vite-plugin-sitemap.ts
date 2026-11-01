@@ -66,7 +66,18 @@ export function sitemapPlugin(): Plugin {
         // every URL got the same lastmod. Only trust git with full history.
         const gitHistoryUsable = (() => {
           const shallow = runGit(["rev-parse", "--is-shallow-repository"]);
-          return shallow.ok && shallow.out === "false";
+          if (!shallow.ok) return false;
+          if (shallow.out === "false") return true;
+          // Build hosts usually clone with --depth 1. Fetching the commit graph
+          // without file contents is cheap; if it works, real per-file dates
+          // are available. Set SITEMAP_SKIP_UNSHALLOW=1 to disable.
+          if (process.env.SITEMAP_SKIP_UNSHALLOW) return false;
+          const result = spawnSync("git", ["fetch", "--quiet", "--unshallow", "--filter=blob:none"], {
+            cwd: repoRoot,
+            encoding: "utf8",
+            timeout: 120_000,
+          });
+          return result.status === 0 && runGit(["rev-parse", "--is-shallow-repository"]).out === "false";
         })();
         // Fallback: the lastmod each URL had in the previously generated sitemap.
         const previousLastmods = new Map<string, string>();
@@ -105,8 +116,13 @@ export function sitemapPlugin(): Plugin {
         const changedInHead = new Set(
           runGit(["diff-tree", "--no-commit-id", "--name-only", "-r", "HEAD"]).out.split("\n").filter(Boolean),
         );
-        const fileHash = (relativePath: string) =>
-          createHash("sha1").update(fs.readFileSync(path.resolve(repoRoot, relativePath))).digest("hex");
+        // git's own object hash applies the repo's line-ending normalization,
+        // so a CRLF checkout doesn't look like an edit. Fall back to raw bytes.
+        const fileHash = (relativePath: string) => {
+          const gitHash = runGit(["hash-object", "--", relativePath]);
+          if (gitHash.ok && /^[0-9a-f]{40,64}$/.test(gitHash.out)) return gitHash.out;
+          return createHash("sha1").update(fs.readFileSync(path.resolve(repoRoot, relativePath))).digest("hex");
+        };
 
         const fileDateCache = new Map<string, string | undefined>();
         const fileLastModified = (relativePath: string): string | undefined => {
@@ -122,9 +138,10 @@ export function sitemapPlugin(): Plugin {
           } else if (changedInHead.has(relativePath)) {
             date = headCommitDate;
           } else if (manifest[relativePath]) {
-            // Unchanged since the manifest was written: keep its date. Changed:
-            // the change is in (at most) the checked-out commit.
-            date = manifest[relativePath].hash === hash ? manifest[relativePath].lastmod : headCommitDate;
+            // Without history we can't date an older change; keep the recorded
+            // date rather than re-dating it to whatever commit is deployed
+            // (which churned lastmod on every deploy).
+            date = manifest[relativePath].lastmod;
           }
           if (date) nextManifest[relativePath] = { hash, lastmod: date };
           fileDateCache.set(relativePath, date);

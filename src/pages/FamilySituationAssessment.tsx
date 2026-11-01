@@ -453,19 +453,9 @@ export default function FamilySituationAssessment() {
 
       if (error) throw error;
 
-      // The gate promises "a preset opt-in to the free Boundaries email
-      // course"; newsletter-signup alone never enrolled anyone. Best effort.
-      const { error: enrollError } = await supabase.functions.invoke("course-enroll", {
-        body: {
-          email,
-          first_name: firstName || null,
-          course_name: "boundaries",
-          source: "family_situation_assessment",
-          website: honeypot,
-          form_ms: dwellMs(loadedAt.current, 3000),
-        },
-      });
-      if (enrollError) console.warn("Boundaries course enrollment failed:", enrollError);
+      // The Boundaries course this gate promises is started by
+      // finalize_confirmed_newsletter_optin once the email is confirmed
+      // (double opt-in), not from the browser.
 
       setCaptureComplete(true);
       void trackFunnelEvent("email_capture_success", {

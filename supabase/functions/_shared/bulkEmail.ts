@@ -21,6 +21,9 @@ const BATCH_SIZE = 100;
 const PAUSE_BETWEEN_BATCHES_MS = 600;
 const MAX_RETRIES = 3;
 
+const toHex = (buffer: ArrayBuffer) =>
+  Array.from(new Uint8Array(buffer)).map((byte) => byte.toString(16).padStart(2, "0")).join("");
+
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const sendBulkEmails = async (
@@ -36,6 +39,13 @@ export const sendBulkEmails = async (
   for (let start = 0; start < emails.length; start += BATCH_SIZE) {
     const batch = emails.slice(start, start + BATCH_SIZE);
     if (start > 0) await sleep(PAUSE_BETWEEN_BATCHES_MS);
+    // Include the batch's recipients in the key: if the list changes between a
+    // run and a same-day re-run, a reused key with a different payload would
+    // be rejected by Resend (409) and counted as failed.
+    const recipientDigest = toHex(await crypto.subtle.digest(
+      "SHA-256",
+      new TextEncoder().encode(batch.map((email) => email.to.toLowerCase()).join(",")),
+    )).slice(0, 16);
 
     let response: Response | null = null;
     let networkError: string | null = null;
@@ -49,7 +59,7 @@ export const sendBulkEmails = async (
             // Report invalid recipients per message instead of failing the
             // whole batch of 100.
             "x-batch-validation": "permissive",
-            "Idempotency-Key": `${sendId}:${start / BATCH_SIZE}`.slice(0, 256),
+            "Idempotency-Key": `${sendId}:${start / BATCH_SIZE}:${recipientDigest}`.slice(0, 256),
           },
           body: JSON.stringify(batch.map((email) => ({ ...email, to: [email.to] }))),
         });

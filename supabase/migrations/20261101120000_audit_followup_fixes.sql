@@ -96,6 +96,8 @@ SELECT cron.schedule(
 --       second lead magnet / assessment lead_captured event was silently
 --       dropped. Key on the opt-in attempt instead (its created_at is reset
 --       on every new signup).
+--    c) Family-assessment signups are enrolled in the Boundaries course
+--       here, after double opt-in, instead of from the browser.
 --    b) An existing subscriber can be "finalized" without clicking a
 --       confirmation link (they are already confirmed in Mailchimp), so a
 --       third party submitting their address could rename them. Keep an
@@ -179,6 +181,28 @@ BEGIN
         answers = EXCLUDED.answers,
         last_result_at = EXCLUDED.last_result_at,
         updated_at = EXCLUDED.updated_at;
+  END IF;
+
+  -- The family assessment promises "a preset opt-in to the free Boundaries
+  -- email course". Start it only now that the address is confirmed: first
+  -- lesson at tomorrow's 15:00 UTC drip run (due from 14:00). A previous
+  -- enrollment that was unsubscribed (inactive, not completed) restarts.
+  IF v_source = 'family_situation_assessment' THEN
+    INSERT INTO public.course_enrollments (email, first_name, course_name, current_lesson, next_email_at)
+    VALUES (
+      lower(trim(p_email)),
+      COALESCE(NULLIF(trim(p_first_name), ''), v_attempt.first_name),
+      'boundaries',
+      0,
+      (date_trunc('day', v_now AT TIME ZONE 'UTC') + interval '38 hours') AT TIME ZONE 'UTC'
+    )
+    ON CONFLICT (email, course_name) DO UPDATE
+    SET is_active = true,
+        current_lesson = 0,
+        last_email_sent_at = NULL,
+        next_email_at = EXCLUDED.next_email_at
+    WHERE public.course_enrollments.is_active = false
+      AND public.course_enrollments.completed_at IS NULL;
   END IF;
 
   IF v_source = 'lead_magnet'

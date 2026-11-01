@@ -1,0 +1,6 @@
+# Cloudflare Pages response headers.
+# The unsubscribe link carries the reader's email and a token in its query;
+# never send it to the next page or third parties in the Referer header.
+/unsubscribe
+  Referrer-Policy: no-referrer
+  X-Robots-Tag: noindex

@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.3";
+import { deactivateSubscriber } from "../_shared/unsubscribe.ts";
 
 const jsonHeaders = { 'Content-Type': 'application/json' };
 
@@ -101,11 +102,7 @@ serve(async (req) => {
       const supabaseUrl = Deno.env.get('SUPABASE_URL');
       const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
       if (!supabaseUrl || !serviceRoleKey) throw new Error('Supabase service credentials are not configured');
-      const { error } = await createClient(supabaseUrl, serviceRoleKey)
-        .from('subscribers')
-        .update({ is_active: false })
-        .eq('email', email);
-      if (error) throw error;
+      await deactivateSubscriber(createClient(supabaseUrl, serviceRoleKey), email);
       return new Response(JSON.stringify({ success: true, deactivated: true }), { status: 200, headers: jsonHeaders });
     }
 

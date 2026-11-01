@@ -200,6 +200,21 @@ const requestMailchimpDoubleOptIn = async (
   throw new Error(`Mailchimp pending member creation failed with ${response.status}`);
 };
 
+// Move an existing member back to "pending" so Mailchimp sends a new
+// confirmation email (best effort).
+const requestMailchimpReconfirmation = async (email: string): Promise<void> => {
+  const apiKey = Deno.env.get('MAILCHIMP_API_KEY');
+  const audienceId = Deno.env.get('MAILCHIMP_AUDIENCE_ID');
+  const datacenter = apiKey?.split('-').pop();
+  if (!apiKey || !audienceId || !datacenter) return;
+  const memberUrl = `https://${datacenter}.api.mailchimp.com/3.0/lists/${audienceId}/members/${encodeURIComponent(email.toLowerCase())}`;
+  const response = await mailchimpRequest(memberUrl, apiKey, {
+    method: 'PATCH',
+    body: JSON.stringify({ status: 'pending' }),
+  }).catch(() => null);
+  if (!response?.ok) console.error('Mailchimp reconfirmation request failed:', response?.status);
+};
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -334,11 +349,26 @@ serve(async (req) => {
       );
     if (attemptError) throw attemptError;
 
-    const optIn = await requestMailchimpDoubleOptIn(
+    let optIn = await requestMailchimpDoubleOptIn(
       sanitizedEmail,
       sanitizedFirstName,
       mailchimpTags,
     );
+
+    if (optIn.status === 'already_subscribed') {
+      // Opted out locally (our unsubscribe link) but still "subscribed" in
+      // Mailchimp, e.g. if the Mailchimp sync failed. Finalizing here would
+      // silently re-activate them on anyone's say-so; require a fresh
+      // confirmation instead by moving the member back to pending.
+      const { data: localRows } = await supabase
+        .from('subscribers')
+        .select('is_active')
+        .ilike('email', sanitizedEmail.replace(/[\\%_]/g, (char) => `\\${char}`));
+      if ((localRows ?? []).some((row) => row.is_active === false)) {
+        await requestMailchimpReconfirmation(sanitizedEmail);
+        optIn = { status: 'pending_confirmation', memberId: null };
+      }
+    }
 
     if (optIn.status === 'already_subscribed') {
       // Already confirmed in Mailchimp: run the same finalization the webhook

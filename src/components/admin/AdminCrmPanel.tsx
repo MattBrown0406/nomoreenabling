@@ -165,7 +165,11 @@ export const AdminCrmPanel = () => {
       toast({ title: "Send failed", description: error.message, variant: "destructive" });
       return;
     }
-    toast({ title: `Sent to ${data?.sent ?? 0} recipient(s)`, description: data?.failed ? `${data.failed} failed` : undefined });
+    const notes = [
+      data?.failed ? `${data.failed} failed` : null,
+      data?.skipped_unsubscribed ? `${data.skipped_unsubscribed} skipped (unsubscribed)` : null,
+    ].filter(Boolean).join(" · ");
+    toast({ title: `Sent to ${data?.sent ?? 0} recipient(s)`, description: notes || undefined });
     setSubject(""); setBody(""); setSingleTo(""); clearSelection();
     load();
   };
