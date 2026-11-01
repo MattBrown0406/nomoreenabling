@@ -189,6 +189,7 @@ import losingYourselfReclaimLifeImage from "@/assets/losing-yourself-loved-ones-
 import familyRecoveryAgreementImage from "@/assets/family-recovery-agreement-after-rehab-without-enabling.jpg";
 import waitingForRockBottomImage from "@/assets/waiting-for-rock-bottom.jpg";
 import goingBackToRehabImage from "@/assets/going-back-to-rehab.jpg";
+import enablingAddictedParentImage from "@/assets/enabling-an-addicted-parent-adult-children-guide.jpg";
 
 export interface BlogPostMeta {
   id: string;
