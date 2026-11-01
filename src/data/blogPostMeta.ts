@@ -189,6 +189,7 @@ import losingYourselfReclaimLifeImage from "@/assets/losing-yourself-loved-ones-
 import familyRecoveryAgreementImage from "@/assets/family-recovery-agreement-after-rehab-without-enabling.jpg";
 import waitingForRockBottomImage from "@/assets/waiting-for-rock-bottom.jpg";
 import goingBackToRehabImage from "@/assets/going-back-to-rehab.jpg";
+import enablingAddictedParentImage from "@/assets/enabling-an-addicted-parent-adult-children-guide.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -205,6 +206,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "enabling-an-addicted-parent-adult-children-guide",
+    title: "Enabling an Addicted Parent: How Adult Children Can Recognize It and Start to Change",
+    excerpt: "Enabling an addicted parent often starts as love and duty. Learn the signs, why adult children enable, and how to change without guilt or abandoning them.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Support", "Codependency"],
+    readTime: "9 min read",
+    date: "November 1, 2026",
+    image: enablingAddictedParentImage,
+    slug: "enabling-an-addicted-parent-adult-children-guide",
+    metaTitle: "Enabling an Addicted Parent: Signs & How to Change",
+    metaDescription: "Enabling an addicted parent often starts as love and duty. Learn the signs, why adult children enable, and how to change without guilt or abandoning them.",
+  },
   {
     id: "going-back-to-rehab",
     title: "Going Back to Rehab: How Families Can Support Another Round of Treatment Without Enabling",
