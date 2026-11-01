@@ -560,11 +560,42 @@
   font-weight: 700;
 }
 
+.nme-convo-picker {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 7px;
+  max-width: 620px;
+  margin-top: 22px;
+}
+
+.nme-convo-pick {
+  padding: 7px 13px;
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 999px;
+  background: rgba(0,0,0,.16);
+  color: rgba(255,247,233,.82);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
+}
+
+.nme-convo-pick:hover { border-color: rgba(255,255,255,.5); color: #fff; }
+.nme-convo-pick:focus-visible { outline: 2px solid var(--nme-gold); outline-offset: 3px; }
+
+.nme-convo-pick.is-active {
+  border-color: var(--nme-gold);
+  background: var(--nme-gold);
+  color: #2a1012;
+}
+
 .nme-convo-control {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  margin-top: 22px;
+  margin-top: 12px;
   padding: 7px 13px;
   border: 1px solid rgba(255,255,255,.2);
   border-radius: 999px;
@@ -760,7 +791,8 @@
   .nme-hero h1 { font-size: 35px; line-height: 1.08; }
   .nme-hero-recognition { font-size: 19px; min-height: 2.7em; }
   .nme-convo-glow { width: 360px; height: 360px; }
-  .nme-phone { width: 286px; height: 540px; rotate: 0deg; }
+  .nme-phone { width: 290px; height: 580px; rotate: 0deg; }
+  .nme-bubble { font-size: 14px; }
   .nme-convo-note { position: relative; inset: auto; width: min(100%, 340px); margin-top: 12px; rotate: 0deg; }
   .nme-convo-note-old { position: absolute; top: 150px; left: 0; right: 0; width: 260px; margin: 0 auto; }
   .nme-hero-lead { margin-top: 21px; font-size: 16px; line-height: 1.63; }
