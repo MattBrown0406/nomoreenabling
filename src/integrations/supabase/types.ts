@@ -20,20 +20,34 @@ export type Database = {
           clicked_at: string
           id: string
           page_path: string | null
+          placement_key: string | null
+          sponsor_campaign_id: string | null
         }
         Insert: {
           ad_name: string
           clicked_at?: string
           id?: string
           page_path?: string | null
+          placement_key?: string | null
+          sponsor_campaign_id?: string | null
         }
         Update: {
           ad_name?: string
           clicked_at?: string
           id?: string
           page_path?: string | null
+          placement_key?: string | null
+          sponsor_campaign_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "ad_clicks_sponsor_campaign_id_fkey"
+            columns: ["sponsor_campaign_id"]
+            isOneToOne: false
+            referencedRelation: "sponsor_campaigns"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       advertiser_inquiries: {
         Row: {
@@ -673,6 +687,139 @@ export type Database = {
         }
         Relationships: []
       }
+      sponsor_campaigns: {
+        Row: {
+          campaign_name: string
+          created_at: string
+          creative_body: string | null
+          creative_headline: string
+          creative_image_url: string | null
+          ends_on: string | null
+          id: string
+          monthly_rate: number | null
+          placement_key: string
+          sponsor_id: string
+          starts_on: string | null
+          status: string
+          target_url: string
+          updated_at: string
+        }
+        Insert: {
+          campaign_name: string
+          created_at?: string
+          creative_body?: string | null
+          creative_headline: string
+          creative_image_url?: string | null
+          ends_on?: string | null
+          id?: string
+          monthly_rate?: number | null
+          placement_key: string
+          sponsor_id: string
+          starts_on?: string | null
+          status?: string
+          target_url: string
+          updated_at?: string
+        }
+        Update: {
+          campaign_name?: string
+          created_at?: string
+          creative_body?: string | null
+          creative_headline?: string
+          creative_image_url?: string | null
+          ends_on?: string | null
+          id?: string
+          monthly_rate?: number | null
+          placement_key?: string
+          sponsor_id?: string
+          starts_on?: string | null
+          status?: string
+          target_url?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sponsor_campaigns_sponsor_id_fkey"
+            columns: ["sponsor_id"]
+            isOneToOne: false
+            referencedRelation: "sponsors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sponsor_impressions: {
+        Row: {
+          article_slug: string | null
+          id: string
+          page_path: string | null
+          placement_key: string
+          sponsor_campaign_id: string | null
+          viewed_at: string
+        }
+        Insert: {
+          article_slug?: string | null
+          id?: string
+          page_path?: string | null
+          placement_key: string
+          sponsor_campaign_id?: string | null
+          viewed_at?: string
+        }
+        Update: {
+          article_slug?: string | null
+          id?: string
+          page_path?: string | null
+          placement_key?: string
+          sponsor_campaign_id?: string | null
+          viewed_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sponsor_impressions_sponsor_campaign_id_fkey"
+            columns: ["sponsor_campaign_id"]
+            isOneToOne: false
+            referencedRelation: "sponsor_campaigns"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sponsors: {
+        Row: {
+          category: string | null
+          contact_email: string | null
+          contact_name: string | null
+          created_at: string
+          id: string
+          name: string
+          notes: string | null
+          status: string
+          updated_at: string
+          website_url: string | null
+        }
+        Insert: {
+          category?: string | null
+          contact_email?: string | null
+          contact_name?: string | null
+          created_at?: string
+          id?: string
+          name: string
+          notes?: string | null
+          status?: string
+          updated_at?: string
+          website_url?: string | null
+        }
+        Update: {
+          category?: string | null
+          contact_email?: string | null
+          contact_name?: string | null
+          created_at?: string
+          id?: string
+          name?: string
+          notes?: string | null
+          status?: string
+          updated_at?: string
+          website_url?: string | null
+        }
+        Relationships: []
+      }
       subscribers: {
         Row: {
           email: string
@@ -763,6 +910,13 @@ export type Database = {
           p_mailchimp_member_id: string
         }
         Returns: Json
+      }
+      get_article_view_counts: {
+        Args: { limit_count?: number }
+        Returns: {
+          article_slug: string
+          view_count: number
+        }[]
       }
       has_role: {
         Args: {
