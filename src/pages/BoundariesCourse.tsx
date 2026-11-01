@@ -1,3 +1,4 @@
+import { COURSE_OPTED_OUT_MESSAGE, COURSE_OPTED_OUT_TITLE } from "@/lib/courseOptOut";
 import { useState } from "react";
 import { useEnrollGuard } from "@/lib/enrollGuard";
 import { Link } from "react-router-dom";
@@ -69,7 +70,9 @@ const BoundariesCourse = () => {
 
       if (error) throw error;
 
-      if (data?.already_enrolled) {
+      if (data?.opted_out) {
+        toast({ title: COURSE_OPTED_OUT_TITLE, description: COURSE_OPTED_OUT_MESSAGE });
+      } else if (data?.already_enrolled) {
         toast({
           title: "Already enrolled",
           description: "You're already enrolled in this course. Check your email for lessons!",

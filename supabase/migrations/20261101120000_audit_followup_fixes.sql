@@ -184,10 +184,12 @@ BEGIN
   END IF;
 
   -- The family assessment promises "a preset opt-in to the free Boundaries
-  -- email course". Start it only now that the address is confirmed: first
-  -- lesson at tomorrow's 15:00 UTC drip run (due from 14:00). A previous
-  -- enrollment that was unsubscribed (inactive, not completed) restarts.
-  IF v_source = 'family_situation_assessment' THEN
+  -- email course", and homepage newsletter variant B ("Send me lesson 1")
+  -- enrolls in it too. Start/restart it now that the address is confirmed:
+  -- first lesson at tomorrow's 15:00 UTC drip run (due from 14:00). An
+  -- enrollment the reader stopped (inactive, not completed) restarts; an
+  -- active one (variant B enrolls immediately as well) is left alone.
+  IF v_source IN ('family_situation_assessment', 'newsletter_hero_B') THEN
     INSERT INTO public.course_enrollments (email, first_name, course_name, current_lesson, next_email_at)
     VALUES (
       lower(trim(p_email)),

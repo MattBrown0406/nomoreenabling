@@ -128,6 +128,7 @@ export function sitemapPlugin(): Plugin {
         };
 
         const fileDateCache = new Map<string, string | undefined>();
+        const staleWithoutHistory: string[] = [];
         const fileLastModified = (relativePath: string): string | undefined => {
           if (fileDateCache.has(relativePath)) return fileDateCache.get(relativePath);
           const hash = fileHash(relativePath);
@@ -141,11 +142,18 @@ export function sitemapPlugin(): Plugin {
           } else if (changedInHead.has(relativePath)) {
             date = headCommitDate;
           } else if (manifest[relativePath]) {
-            // Unchanged since the manifest was written: keep its date. Changed
-            // (in a commit we can't see): the deployed commit is the best
-            // available upper bound. Normally unreachable on CI, where history
-            // is fetched above.
-            date = manifest[relativePath].hash === hash ? manifest[relativePath].lastmod : headCommitDate;
+            // No usable history (the CI unshallow failed or was skipped).
+            // Keep the recorded date: re-dating changed files to the deployed
+            // commit would move their lastmod on every deploy, since CI never
+            // commits the manifest back. Keep the old hash too, so the change
+            // is still detected by the next full-history build.
+            date = manifest[relativePath].lastmod;
+            if (manifest[relativePath].hash !== hash) {
+              staleWithoutHistory.push(relativePath);
+              nextManifest[relativePath] = manifest[relativePath];
+              fileDateCache.set(relativePath, date);
+              return date;
+            }
           }
           if (date) nextManifest[relativePath] = { hash, lastmod: date };
           fileDateCache.set(relativePath, date);
@@ -190,6 +198,13 @@ export function sitemapPlugin(): Plugin {
         for (const category of categories) lastmods[`/category/${category}`] = gitLastModified("src/data/blogPostMeta.ts", `/category/${category}`);
         for (const hub of topicHubs) lastmods[`/topic-hubs/${hub}`] = gitLastModified("src/data/topicHubs.ts", `/topic-hubs/${hub}`);
         for (const offer of supportOffers) lastmods[`/support/${offer}`] = gitLastModified("src/data/supportOffers.ts", `/support/${offer}`);
+
+        if (staleWithoutHistory.length > 0) {
+          console.warn(
+            `[sitemap] ${staleWithoutHistory.length} changed file(s) kept their previous lastmod because git history is unavailable ` +
+            `(shallow clone; unshallow skipped or failed). Run a full-history build to refresh: ${staleWithoutHistory.slice(0, 5).join(", ")}${staleWithoutHistory.length > 5 ? ", ..." : ""}`,
+          );
+        }
 
         const xml = generateSitemapXml({
           articles,

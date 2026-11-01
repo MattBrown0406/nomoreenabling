@@ -139,6 +139,17 @@ export const isEmailSuppressed = async (supabase: AnySupabaseClient, email: stri
 };
 
 /**
+ * True when the address has an active subscriber row, i.e. it is confirmed
+ * (double opt-in) and has not opted out since. This is the consent evidence
+ * required to restart a course the reader previously stopped.
+ */
+export const hasActiveSubscription = async (supabase: AnySupabaseClient, email: string): Promise<boolean> => {
+  const { data, error } = await matchEmail(supabase.from("subscribers").select("is_active"), email);
+  if (error) throw error;
+  return ((data ?? []) as Array<{ is_active: boolean }>).some((row) => row.is_active);
+};
+
+/**
  * Mark an address as opted out (all case variants) and record a suppression
  * row when it has no subscriber row yet (e.g. a CRM contact), so later
  * campaigns skip it.

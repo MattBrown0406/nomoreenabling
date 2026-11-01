@@ -1,3 +1,4 @@
+import { COURSE_OPTED_OUT_MESSAGE, COURSE_OPTED_OUT_TITLE } from "@/lib/courseOptOut";
 import { useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/layout/Header";
@@ -46,7 +47,7 @@ const CATEGORIES: { key: LineItem["category"]; title: string; sub: string }[] = 
 
 const fmt = (n: number) => "$" + Math.round(n).toLocaleString("en-US");
 
-type CaptureState = "idle" | "sending" | "done" | "already" | "error";
+type CaptureState = "idle" | "sending" | "done" | "already" | "opted_out" | "error";
 
 /**
  * The Money Plan capture — shown on the calculator results screen, the warmest
@@ -87,7 +88,11 @@ const MoneyPlanCapture = () => {
         setState("error");
         return;
       }
-      const result = (data ?? {}) as { success?: boolean; already_enrolled?: boolean };
+      const result = (data ?? {}) as { success?: boolean; already_enrolled?: boolean; opted_out?: boolean };
+      if (result.opted_out) {
+        setState("opted_out");
+        return;
+      }
       if (result.already_enrolled) {
         setState("already");
         return;
@@ -103,6 +108,15 @@ const MoneyPlanCapture = () => {
       setState("error");
     }
   };
+
+  if (state === "opted_out") {
+    return (
+      <div className="mt-8 rounded-2xl border border-border bg-secondary/30 p-7 text-center" role="status">
+        <h3 className="font-serif text-2xl font-bold text-foreground">{COURSE_OPTED_OUT_TITLE}</h3>
+        <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">{COURSE_OPTED_OUT_MESSAGE}</p>
+      </div>
+    );
+  }
 
   if (state === "done" || state === "already") {
     return (

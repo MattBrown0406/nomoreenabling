@@ -1,7 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { Resend } from "https://esm.sh/resend@2.0.0";
-import { isEmailSuppressed, unsubscribeLinks, withUnsubscribeFooter } from "../_shared/unsubscribe.ts";
+import { hasActiveSubscription, isEmailSuppressed, unsubscribeLinks, withUnsubscribeFooter } from "../_shared/unsubscribe.ts";
 import { enqueueSpineEvent } from "../_shared/spine.ts";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
@@ -288,8 +288,11 @@ serve(async (req) => {
     // single opt-in form. Answer like an existing enrollment and send nothing.
     if (await isEmailSuppressed(supabase, sanitizedEmail)) {
       console.log('Enrollment skipped for unsubscribed address');
+      // `opted_out` lets the page say so honestly instead of "lessons are on
+      // the way"; already_enrolled keeps older cached bundles from claiming a
+      // fresh enrollment.
       return new Response(
-        JSON.stringify({ success: true, already_enrolled: true }),
+        JSON.stringify({ success: true, already_enrolled: true, opted_out: true }),
         { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
@@ -304,13 +307,39 @@ serve(async (req) => {
         next_email_at: nextEmailAt.toISOString(),
       });
 
-    if (error) {
+    let restarted = false;
+    if (error?.code === '23505') {
+      // An enrollment the reader stopped (is_active=false, not completed) is
+      // restarted only with evidence of fresh consent: an active, confirmed
+      // newsletter subscription. Anyone can type an address into this public
+      // single opt-in form, so an opt-out is never undone on that alone.
+      const { data: existing, error: existingError } = await supabase
+        .from('course_enrollments')
+        .select('id, is_active, completed_at')
+        .eq('email', sanitizedEmail)
+        .eq('course_name', course_name)
+        .maybeSingle();
+      if (existingError) throw existingError;
+      if (existing && !existing.is_active && !existing.completed_at
+          && await hasActiveSubscription(supabase, sanitizedEmail)) {
+        const { error: restartError } = await supabase
+          .from('course_enrollments')
+          .update({
+            is_active: true,
+            current_lesson: 0,
+            first_name: sanitizedFirstName,
+            next_email_at: nextEmailAt.toISOString(),
+            last_email_sent_at: null,
+          })
+          .eq('id', existing.id);
+        if (restartError) throw restartError;
+        restarted = true;
+      }
+    }
+
+    if (error && !restarted) {
       if (error.code === '23505') {
-        // This includes enrollments the reader stopped via an unsubscribe link
-        // (is_active=false). Never restart those from this public, single
-        // opt-in form: anyone could re-subscribe someone who opted out.
-        // Assessment signups restart a course only after double opt-in
-        // (finalize_confirmed_newsletter_optin).
+        // Active, completed, or stopped-without-fresh-consent enrollments.
         console.log('Already enrolled:', sanitizedEmail);
         // 200 rather than 409: supabase.functions.invoke() turns non-2xx into
         // an error with data=null, so the client could never read this flag.

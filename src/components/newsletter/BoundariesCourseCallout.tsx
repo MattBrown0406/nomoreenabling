@@ -1,3 +1,4 @@
+import { COURSE_OPTED_OUT_MESSAGE, COURSE_OPTED_OUT_TITLE } from "@/lib/courseOptOut";
 import { useState } from "react";
 import { useEnrollGuard } from "@/lib/enrollGuard";
 import { BookOpen, CheckCircle2, Mail } from "lucide-react";
@@ -61,6 +62,11 @@ const BoundariesCourseCallout = ({ source, headline, subhead, compact = false }:
         },
       });
       if (error) throw error;
+
+      if (data?.opted_out) {
+        toast({ title: COURSE_OPTED_OUT_TITLE, description: COURSE_OPTED_OUT_MESSAGE });
+        return;
+      }
 
       setIsEnrolled(true);
       markSubscribed();
