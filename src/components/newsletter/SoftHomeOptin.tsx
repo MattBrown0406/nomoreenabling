@@ -96,7 +96,7 @@ const SoftHomeOptin = () => {
             </p>
           </div>
           {!done && (
-            <form onSubmit={handleSubmit} onFocusCapture={markStarted} className="flex w-full md:w-auto gap-2">
+            <form onSubmit={handleSubmit} onFocusCapture={markStarted} className="flex w-full flex-wrap gap-2 md:w-auto md:flex-nowrap">
               <div className="absolute left-[-9999px]" aria-hidden="true">
                 <Input
                   type="text"
@@ -121,7 +121,9 @@ const SoftHomeOptin = () => {
               <NewsletterTurnstile
                 resetKey={turnstileResetKey}
                 onTokenChange={setTurnstileToken}
-                className="flex min-h-0 w-full justify-center md:w-auto"
+                // Own line on phones: the Turnstile box is ~300px wide and, sharing
+                // the row, squeezed the email field and overflowed the page.
+                className="flex min-h-0 w-full basis-full justify-center overflow-hidden md:w-auto md:basis-auto"
               />
             </form>
           )}

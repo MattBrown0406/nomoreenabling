@@ -1,5 +1,12 @@
+import { useRef } from "react";
 import { ArrowRight, BookOpenCheck, HeartHandshake, Route, ShieldAlert } from "lucide-react";
 import { Link } from "react-router-dom";
+
+import HeroConversation, {
+  RECOGNITION_PHRASES,
+  recognitionPhraseIndex,
+  useConversationTimeline,
+} from "@/components/home/HeroConversation";
 
 import PhoneCallButton from "@/components/PhoneCallButton";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -37,6 +44,10 @@ const nextSteps = [
 ] as const;
 
 const HeroSection = () => {
+  const sceneRef = useRef<HTMLDivElement>(null);
+  const timeline = useConversationTimeline(sceneRef);
+  const phraseIndex = recognitionPhraseIndex(timeline);
+
   const scrollToNewsletter = () => {
     document.getElementById("newsletter")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -49,16 +60,31 @@ const HeroSection = () => {
           <div className="nme-hero-copy">
             <div className="nme-hero-eyebrow">
               <span className="nme-stop-mark">NO</span>
-              <span>Helping should not cost you your whole life</span>
+              <span>For families who love someone with an addiction</span>
             </div>
 
             <h1 id="nme-hero-title">
-              Break the cycle
-              <span>without abandoning the person you love.</span>
+              It’s 2 a.m., and you’re still holding it all together.
+              <span>You don’t have to do this alone.</span>
             </h1>
 
+            <p className="nme-hero-recognition">
+              <span className="sr-only">
+                Maybe you've {RECOGNITION_PHRASES.join(" Or ")}
+              </span>
+              <span aria-hidden="true">
+                Maybe you’ve{" "}
+                <span key={phraseIndex} className="nme-recognition-phrase">
+                  {RECOGNITION_PHRASES[phraseIndex]}
+                </span>
+              </span>
+            </p>
+
             <p className="nme-hero-lead">
-              Learn where helping ends and enabling begins—then take the next step with boundaries that protect your family and leave room for real change.
+              That’s not weakness. It’s love without a plan. Learn where helping ends and enabling begins, and how to answer the next crisis differently.
+            </p>
+            <p className="nme-hero-credential">
+              Free, practical guidance from Matt Brown, a professional interventionist working with families since 2004.
             </p>
 
             <div className="nme-hero-actions">
@@ -111,54 +137,7 @@ const HeroSection = () => {
             </div>
           </div>
 
-          <div className="nme-cycle-scene" aria-label="An animated cycle of crisis, rescue, relief, and repetition interrupted by a firm boundary">
-            <div className="nme-cycle-ring" aria-hidden="true" />
-            <div className="nme-cycle-current" aria-hidden="true" />
-            <div className="nme-cycle-dot" aria-hidden="true" />
-
-            <div className="nme-cycle-node nme-node-crisis">
-              <small>01</small>
-              <strong>Crisis</strong>
-              <span>Something blows up.</span>
-            </div>
-            <div className="nme-cycle-node nme-node-rescue">
-              <small>02</small>
-              <strong>Rescue</strong>
-              <span>You absorb it.</span>
-            </div>
-            <div className="nme-cycle-node nme-node-relief">
-              <small>03</small>
-              <strong>Relief</strong>
-              <span>The pressure drops.</span>
-            </div>
-            <div className="nme-cycle-node nme-node-repeat">
-              <small>04</small>
-              <strong>Repeat</strong>
-              <span>Nothing changes.</span>
-            </div>
-
-            <div className="nme-cycle-center">
-              <span>THE PATTERN CAN CHANGE</span>
-              <strong>Your part is where<br />change begins.</strong>
-            </div>
-
-            <div className="nme-boundary-gate" aria-hidden="true">
-              <span>SET A BOUNDARY</span>
-            </div>
-
-            <div className="nme-exit-path" aria-hidden="true">
-              <span className="nme-exit-line" />
-              <span className="nme-exit-arrow">→</span>
-            </div>
-
-            <div className="nme-different-response">
-              <small>A DIFFERENT RESPONSE</small>
-              <strong>Care without carrying</strong>
-              <span>Clear boundary</span>
-              <span>Natural consequence</span>
-              <span>Support real recovery</span>
-            </div>
-          </div>
+          <HeroConversation timeline={timeline} sceneRef={sceneRef} />
         </div>
 
         <div className="nme-next-steps" aria-label="Choose your starting point">
