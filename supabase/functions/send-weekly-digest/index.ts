@@ -271,6 +271,8 @@ serve(async (req) => {
     const resendApiKey = Deno.env.get("RESEND_API_KEY");
     if (!resendApiKey) throw new Error("RESEND_API_KEY is not configured");
 
+    // Keyed to the digest window so an overlapping or retried cron run for the
+    // same week is deduplicated by Resend instead of double-sending.
     const { successful, failed, errors } = await sendBulkEmails(
       resendApiKey,
       subscribers.map((subscriber) => ({
@@ -279,6 +281,7 @@ serve(async (req) => {
         subject,
         html: html.replace(/{{first_name}}/g, escapeHtml(subscriber.first_name || "friend")),
       })),
+      `weekly-digest-${new Date(windowEnd).toISOString().slice(0, 10)}-${days}`,
     );
 
     await supabase.from("email_campaigns").insert({

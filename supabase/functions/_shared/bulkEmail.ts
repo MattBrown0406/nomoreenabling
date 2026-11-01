@@ -25,6 +25,10 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 export const sendBulkEmails = async (
   apiKey: string,
   emails: BulkEmail[],
+  // Stable per send; combined with the batch index into an Idempotency-Key so
+  // a retry after a timeout/5xx (where Resend may already have accepted the
+  // batch) can't email the same 100 people twice.
+  sendId: string = crypto.randomUUID(),
 ): Promise<BulkSendResult> => {
   const result: BulkSendResult = { successful: 0, failed: 0, errors: [] };
 
@@ -44,6 +48,7 @@ export const sendBulkEmails = async (
             // Report invalid recipients per message instead of failing the
             // whole batch of 100.
             "x-batch-validation": "permissive",
+            "Idempotency-Key": `${sendId}:${start / BATCH_SIZE}`.slice(0, 256),
           },
           body: JSON.stringify(batch.map((email) => ({ ...email, to: [email.to] }))),
         });

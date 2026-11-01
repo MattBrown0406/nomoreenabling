@@ -1,4 +1,6 @@
 -- 2026-09-05 security / correctness audit fixes.
+-- (2026-11-01: constraints marked NOT VALID so legacy rows can't abort the
+-- whole migration; see 20261101120000_audit_followup_fixes.sql.)
 -- Apply through Lovable (Supabase is Lovable-managed for this project).
 
 -- 1. course_enrollments: anon could INSERT any email directly (bypassing the
@@ -28,26 +30,26 @@ REVOKE INSERT ON public.article_views FROM anon, authenticated;
 GRANT INSERT (article_slug) ON public.article_views TO anon, authenticated;
 ALTER TABLE public.article_views DROP CONSTRAINT IF EXISTS article_views_slug_format;
 ALTER TABLE public.article_views
-  ADD CONSTRAINT article_views_slug_format CHECK (article_slug ~ '^[a-z0-9-]{1,160}$');
+  ADD CONSTRAINT article_views_slug_format CHECK (article_slug ~ '^[a-z0-9-]{1,160}$') NOT VALID;
 
 REVOKE INSERT ON public.ad_clicks FROM anon, authenticated;
 GRANT INSERT (ad_name, page_path, sponsor_campaign_id, placement_key) ON public.ad_clicks TO anon, authenticated;
 ALTER TABLE public.ad_clicks DROP CONSTRAINT IF EXISTS ad_clicks_length_limits;
 ALTER TABLE public.ad_clicks
   ADD CONSTRAINT ad_clicks_length_limits
-  CHECK (length(ad_name) <= 120 AND length(coalesce(page_path, '')) <= 500);
+  CHECK (length(ad_name) <= 120 AND length(coalesce(page_path, '')) <= 500) NOT VALID;
 
 -- 4. funnel_events.metadata: hard cap so a public caller cannot store
 --    multi-megabyte payloads (track-funnel-event also rejects > 4 KB).
 ALTER TABLE public.funnel_events DROP CONSTRAINT IF EXISTS funnel_events_metadata_size;
 ALTER TABLE public.funnel_events
-  ADD CONSTRAINT funnel_events_metadata_size CHECK (pg_column_size(metadata) <= 8192);
+  ADD CONSTRAINT funnel_events_metadata_size CHECK (pg_column_size(metadata) <= 8192) NOT VALID;
 
 -- 5. articles_metadata: DB-side backstop for the slug format the share
 --    preview function expects.
 ALTER TABLE public.articles_metadata DROP CONSTRAINT IF EXISTS articles_metadata_slug_format;
 ALTER TABLE public.articles_metadata
-  ADD CONSTRAINT articles_metadata_slug_format CHECK (slug ~ '^[a-z0-9-]{1,160}$');
+  ADD CONSTRAINT articles_metadata_slug_format CHECK (slug ~ '^[a-z0-9-]{1,160}$') NOT VALID;
 
 -- 6. Boundaries course drip had no scheduler at all: enrollees got the
 --    welcome email and then nothing. send-course-email now accepts the

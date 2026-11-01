@@ -2,6 +2,7 @@ import { Plugin } from "vite";
 import fs from "fs";
 import path from "path";
 import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 
 /**
  * Vite plugin that auto-generates sitemap.xml during build.
@@ -83,26 +84,60 @@ export function sitemapPlugin(): Plugin {
           if (Number.isNaN(parsed.getTime())) return undefined;
           return new Date(Date.UTC(parsed.getFullYear(), parsed.getMonth(), parsed.getDate())).toISOString().slice(0, 10);
         };
-        const gitDateCache = new Map<string, string | undefined>();
-        const gitLastModified = (relativePath: string, routePath: string, fallbackDate?: string) => {
-          if (!gitDateCache.has(relativePath)) {
-            let date: string | undefined;
-            if (gitHistoryUsable) {
-              const dirty = runGit(["status", "--porcelain", "--", relativePath]).out;
-              if (dirty) {
-                date = today;
-              } else {
-                const value = runGit(["log", "-1", "--format=%cs", "--", relativePath]).out;
-                date = isIsoDate(value) ? value : undefined;
-              }
-            }
-            gitDateCache.set(relativePath, date);
+        // Content-hash manifest: lets a shallow clone tell which source files
+        // changed since the manifest was last written (by a full-history build
+        // or a previous build), so edited pages get a fresh lastmod instead of
+        // inheriting the previous sitemap's date forever.
+        const manifestPath = path.resolve(__dirname, "../scripts/sitemap-lastmods.json");
+        let manifest: Record<string, { hash: string; lastmod: string }> = {};
+        try {
+          manifest = JSON.parse(fs.readFileSync(manifestPath, "utf-8"));
+        } catch {
+          /* first run */
+        }
+        const nextManifest: typeof manifest = {};
+        const headCommitDate = (() => {
+          const value = runGit(["log", "-1", "--format=%cs"]).out;
+          return isIsoDate(value) ? value : today;
+        })();
+        // Files touched by the checked-out commit (empty for a depth-1 clone,
+        // whose commit has no parent locally).
+        const changedInHead = new Set(
+          runGit(["diff-tree", "--no-commit-id", "--name-only", "-r", "HEAD"]).out.split("\n").filter(Boolean),
+        );
+        const fileHash = (relativePath: string) =>
+          createHash("sha1").update(fs.readFileSync(path.resolve(repoRoot, relativePath))).digest("hex");
+
+        const fileDateCache = new Map<string, string | undefined>();
+        const fileLastModified = (relativePath: string): string | undefined => {
+          if (fileDateCache.has(relativePath)) return fileDateCache.get(relativePath);
+          const hash = fileHash(relativePath);
+          const dirty = Boolean(runGit(["status", "--porcelain", "--", relativePath]).out);
+          let date: string | undefined;
+          if (dirty) {
+            date = today;
+          } else if (gitHistoryUsable) {
+            const value = runGit(["log", "-1", "--format=%cs", "--", relativePath]).out;
+            date = isIsoDate(value) ? value : undefined;
+          } else if (changedInHead.has(relativePath)) {
+            date = headCommitDate;
+          } else if (manifest[relativePath]) {
+            // Unchanged since the manifest was written: keep its date. Changed:
+            // the change is in (at most) the checked-out commit.
+            date = manifest[relativePath].hash === hash ? manifest[relativePath].lastmod : headCommitDate;
           }
+          if (date) nextManifest[relativePath] = { hash, lastmod: date };
+          fileDateCache.set(relativePath, date);
+          return date;
+        };
+        const gitLastModified = (relativePath: string, routePath: string, fallbackDate?: string) => {
+          const fileDate = fileLastModified(relativePath);
+          if (fileDate) return fileDate;
           const previous = previousLastmods.get(routePath);
-          return gitDateCache.get(relativePath)
-            ?? (isIsoDate(previous) ? previous : undefined)
-            ?? toIsoDate(fallbackDate)
-            ?? today;
+          const resolved = (isIsoDate(previous) ? previous : undefined) ?? toIsoDate(fallbackDate) ?? today;
+          // Seed the manifest so the next build can detect changes to this file.
+          if (!nextManifest[relativePath]) nextManifest[relativePath] = { hash: fileHash(relativePath), lastmod: resolved };
+          return resolved;
         };
 
         const componentFiles = new Map<string, string>();
@@ -146,6 +181,11 @@ export function sitemapPlugin(): Plugin {
         const distPath = path.resolve(__dirname, "../dist/sitemap.xml");
         fs.writeFileSync(distPath, xml, "utf-8");
         fs.writeFileSync(path.resolve(__dirname, "../public/sitemap.xml"), xml, "utf-8");
+        fs.writeFileSync(
+          manifestPath,
+          `${JSON.stringify(Object.fromEntries(Object.entries({ ...manifest, ...nextManifest }).sort(([a], [b]) => a.localeCompare(b))), null, 2)}\n`,
+          "utf-8",
+        );
         console.log(`✅ Sitemap generated with ${articles.length} articles, ${categories.size} categories, ${topicHubs.length} topic hubs, and ${supportOffers.length} support pages`);
       } catch (err) {
         console.error("❌ Failed to generate sitemap:", err);

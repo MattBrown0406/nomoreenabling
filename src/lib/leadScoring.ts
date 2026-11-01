@@ -17,9 +17,10 @@ export interface LeadScoreResult {
 
 // Match terms at the start of a word so "rent" doesn't fire on "parent" or
 // "son" on "person"/"reason"/"lesson" (plurals like "sons" still match).
+// No lookbehind: Safari < 16.4 throws a SyntaxError constructing it.
 const escapeRegExp = (term: string) => term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const includesAny = (value: string, terms: string[]) =>
-  terms.some((term) => new RegExp(`(?<![a-z0-9])${escapeRegExp(term)}`).test(value));
+  terms.some((term) => new RegExp(`(?:^|[^a-z0-9])${escapeRegExp(term)}`).test(value));
 
 export const scoreLead = (input: LeadScoreInput): LeadScoreResult => {
   const haystack = [

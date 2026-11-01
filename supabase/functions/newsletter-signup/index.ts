@@ -171,7 +171,17 @@ const requestMailchimpDoubleOptIn = async (
           method: 'PATCH',
           body: JSON.stringify(subscriberData),
         });
-        if (resubscribe.ok) return { status: 'pending_confirmation', memberId: null };
+        if (resubscribe.ok) {
+          // PATCH ignores `tags`; apply them separately so lead-magnet /
+          // assessment automations still fire for returning members.
+          if (tags.length > 0) {
+            await mailchimpRequest(`${memberUrl}/tags`, apiKey, {
+              method: 'POST',
+              body: JSON.stringify({ tags: tags.map((name) => ({ name, status: 'active' })) }),
+            }).catch(() => undefined);
+          }
+          return { status: 'pending_confirmation', memberId: null };
+        }
       }
       if (member.status === 'subscribed') {
         if (tags.length > 0) {

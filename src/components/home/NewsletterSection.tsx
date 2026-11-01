@@ -101,7 +101,7 @@ const NewsletterSection = () => {
       // which newsletter-signup alone never delivered. Enroll them in it too.
       let courseEnrolled = false;
       if (variant === "B") {
-        const { error: enrollError } = await supabase.functions.invoke('course-enroll', {
+        const { data: enrollData, error: enrollError } = await supabase.functions.invoke('course-enroll', {
           body: {
             email,
             first_name: firstName || null,
@@ -111,7 +111,8 @@ const NewsletterSection = () => {
             form_ms: dwellMs(startedAt.current, 3000),
           },
         });
-        courseEnrolled = !enrollError;
+        // Someone already in the course isn't newly enrolled; don't say so.
+        courseEnrolled = !enrollError && !enrollData?.already_enrolled;
         if (enrollError) console.warn("Boundaries course enrollment failed:", enrollError);
       }
 
@@ -123,7 +124,7 @@ const NewsletterSection = () => {
         toast({
           title: "Already subscribed!",
           description: courseEnrolled
-            ? "This email is already on our list. Lesson 1 of the Boundaries course is on its way."
+            ? "This email is already on our list. You're enrolled in the Boundaries course — check your inbox for the welcome email."
             : "This email is already on our list.",
         });
       } else {
@@ -132,9 +133,9 @@ const NewsletterSection = () => {
           metadata: { variant, placement: "newsletter_hero" },
         });
         toast({
-          title: courseEnrolled ? "Lesson 1 is on its way." : "Check your inbox to confirm.",
+          title: courseEnrolled ? "You're enrolled in the Boundaries course." : "Check your inbox to confirm.",
           description: courseEnrolled
-            ? "Check your inbox for the Boundaries course, and click Mailchimp’s confirmation link to join the newsletter."
+            ? "Your welcome email is on its way and lessons follow weekly. Click Mailchimp’s confirmation link to join the newsletter too."
             : "You will join the list after clicking Mailchimp’s confirmation link.",
         });
         setEmail("");

@@ -80,7 +80,10 @@ const convertMarkdownLikeContentToHtml = (content: string) => {
           inFaqSection = true;
           return `<h2>${formatInlineMarkdown(headingText)}</h2>`;
         }
-        const level = headingMatch?.[1] === "###" || (inFaqSection && headingText.endsWith("?")) ? "h3" : "h2";
+        // Only bold-paragraph questions are FAQ entries; an explicit "## …?"
+        // heading stays a section heading (e.g. a closing call to action).
+        const isFaqQuestion = inFaqSection && Boolean(boldHeading) && headingText.endsWith("?");
+        const level = headingMatch?.[1] === "###" || isFaqQuestion ? "h3" : "h2";
         return `<${level}>${formatInlineMarkdown(headingText)}</${level}>`;
       }
 
@@ -89,13 +92,16 @@ const convertMarkdownLikeContentToHtml = (content: string) => {
       let textLines: string[] = [];
       let listType: "ul" | "ol" | null = null;
       let listItems: string[] = [];
+      let listStart = 1;
       const flushText = () => {
         if (textLines.length) blocks.push(`<p>${textLines.map(formatInlineMarkdown).join("<br />")}</p>`);
         textLines = [];
       };
       const flushList = () => {
         if (listType && listItems.length) {
-          blocks.push(`<${listType}>${listItems.map((item) => `<li>${formatInlineMarkdown(item)}</li>`).join("")}</${listType}>`);
+          // Keep numbering when a numbered list is split by text or a blank line.
+          const startAttr = listType === "ol" && listStart !== 1 ? ` start="${listStart}"` : "";
+          blocks.push(`<${listType}${startAttr}>${listItems.map((item) => `<li>${formatInlineMarkdown(item)}</li>`).join("")}</${listType}>`);
         }
         listType = null;
         listItems = [];
@@ -104,13 +110,14 @@ const convertMarkdownLikeContentToHtml = (content: string) => {
       for (const rawLine of paragraph.split("\n")) {
         const line = rawLine.trim();
         const bullet = line.match(/^[-*]\s+(.+)$/);
-        const numbered = line.match(/^\d+[.)]\s+(.+)$/);
+        const numbered = line.match(/^(\d+)[.)]\s+(.+)$/);
         const itemType = bullet ? "ul" : numbered ? "ol" : null;
         if (itemType) {
           flushText();
           if (listType !== itemType) flushList();
+          if (!listItems.length && numbered) listStart = Number(numbered[1]) || 1;
           listType = itemType;
-          listItems.push((bullet || numbered)![1]);
+          listItems.push(bullet ? bullet[1] : numbered![2]);
         } else if (line) {
           flushList();
           textLines.push(line);
