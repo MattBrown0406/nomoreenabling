@@ -8,6 +8,13 @@
       "when": 1791393874314,
       "tag": "0000_lock_course_enrollments_insert",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1793557882945,
+      "tag": "0001_add_sponsor_inventory_tables",
+      "breakpoints": true
     }
   ]
 }
