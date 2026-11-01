@@ -207,6 +207,19 @@ export interface BlogPostMeta {
 
 export const blogPostsMeta: BlogPostMeta[] = [
   {
+    id: "enabling-an-addicted-parent-adult-children-guide",
+    title: "Enabling an Addicted Parent: How Adult Children Can Recognize It and Start to Change",
+    excerpt: "Enabling an addicted parent often starts as love and duty. Learn the signs, why adult children enable, and how to change without guilt or abandoning them.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Support", "Codependency"],
+    readTime: "9 min read",
+    date: "November 1, 2026",
+    image: enablingAddictedParentImage,
+    slug: "enabling-an-addicted-parent-adult-children-guide",
+    metaTitle: "Enabling an Addicted Parent: Signs & How to Change",
+    metaDescription: "Enabling an addicted parent often starts as love and duty. Learn the signs, why adult children enable, and how to change without guilt or abandoning them.",
+  },
+  {
     id: "going-back-to-rehab",
     title: "Going Back to Rehab: How Families Can Support Another Round of Treatment Without Enabling",
     excerpt: "Is going back to rehab a second chance or more enabling? Learn how families can support repeat addiction treatment with love, clear limits, and a stronger plan.",
