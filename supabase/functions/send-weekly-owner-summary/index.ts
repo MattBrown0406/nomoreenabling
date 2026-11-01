@@ -280,6 +280,15 @@ serve(async (req) => {
 
     if (dueFollowupsResult.error) throw dueFollowupsResult.error;
     if (hotLeadsResult.error) throw hotLeadsResult.error;
+
+    // "Hot leads" is the number of open priority-tier leads, not the length of
+    // the top-8 list below (which also includes nurture/question intakes).
+    const hotLeadCountResult = await supabase
+      .from("consultation_leads")
+      .select("id", { count: "exact", head: true })
+      .in("pipeline_status", ["new", "contacted", "active"])
+      .eq("lead_tier", "priority");
+    if (hotLeadCountResult.error) throw hotLeadCountResult.error;
     if (bookedResult.error) throw bookedResult.error;
     if (closedResult.error) throw closedResult.error;
     if (leadSourceResult.error) throw leadSourceResult.error;
@@ -333,7 +342,7 @@ serve(async (req) => {
       periodEnd,
       periodLabel,
       consultationLeadCount,
-      hotLeadCount: hotLeadsResult.data?.length || 0,
+      hotLeadCount: hotLeadCountResult.count ?? 0,
       bookedLeadCount: bookedResult.count ?? 0,
       closedLeadCount: closedResult.count ?? 0,
       advertiserInquiryCount,

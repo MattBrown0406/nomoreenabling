@@ -1,3 +1,4 @@
+import { dwellMs } from "@/lib/formDwell";
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -445,12 +446,26 @@ export default function FamilySituationAssessment() {
           answers,
           _t: loadedAt.current,
           website: honeypot,
-          form_ms: Date.now() - loadedAt.current,
+          form_ms: dwellMs(loadedAt.current, 3000),
           turnstile_token: turnstileToken,
         },
       });
 
       if (error) throw error;
+
+      // The gate promises "a preset opt-in to the free Boundaries email
+      // course"; newsletter-signup alone never enrolled anyone. Best effort.
+      const { error: enrollError } = await supabase.functions.invoke("course-enroll", {
+        body: {
+          email,
+          first_name: firstName || null,
+          course_name: "boundaries",
+          source: "family_situation_assessment",
+          website: honeypot,
+          form_ms: dwellMs(loadedAt.current, 3000),
+        },
+      });
+      if (enrollError) console.warn("Boundaries course enrollment failed:", enrollError);
 
       setCaptureComplete(true);
       void trackFunnelEvent("email_capture_success", {

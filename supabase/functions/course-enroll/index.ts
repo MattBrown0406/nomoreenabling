@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { Resend } from "https://esm.sh/resend@2.0.0";
+import { unsubscribeLinks, withUnsubscribeFooter } from "../_shared/unsubscribe.ts";
 import { enqueueSpineEvent } from "../_shared/spine.ts";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
@@ -308,11 +309,13 @@ serve(async (req) => {
 
     // Send welcome email
     try {
+      const unsub = await unsubscribeLinks(sanitizedEmail);
       const emailResponse = await resend.emails.send({
         from: "No More Enabling <contact@nomoreenabling.com>",
         to: [sanitizedEmail],
         subject: courseInfo.welcomeSubject,
-        html: courseInfo.welcomeHtml(sanitizedFirstName),
+        html: withUnsubscribeFooter(courseInfo.welcomeHtml(sanitizedFirstName), unsub.footerHtml),
+        headers: unsub.headers,
       });
       if (emailResponse.error) {
         console.error('Welcome email rejected by provider:', emailResponse.error);

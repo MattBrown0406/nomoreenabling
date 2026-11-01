@@ -34,7 +34,7 @@ if (!redirects.includes("/article/:slug /articles/:slug 301") || !redirects.incl
 for (const required of ["/trusted-tools", "/enabling-cost-calculator", "/tools", "/press"]) {
   if (!urls.includes(`${SITE_URL}${required}`)) issues.push(`Sitemap is missing ${required}.`);
 }
-for (const excluded of ["/admin", "/the-mirror/embed", "/split-house", "/divorced-parents"]) {
+for (const excluded of ["/admin", "/the-mirror/embed", "/unsubscribe", "/split-house", "/divorced-parents"]) {
   if (urls.includes(`${SITE_URL}${excluded}`)) issues.push(`Sitemap includes excluded route ${excluded}.`);
 }
 
@@ -114,7 +114,7 @@ const unexpectedFlatHtml = fs.readdirSync(distDir)
   .filter((name) => name.endsWith(".html") && !["index.html", "404.html"].includes(name));
 if (unexpectedFlatHtml.length) issues.push(`Build emitted duplicate flat HTML routes: ${unexpectedFlatHtml.slice(0, 10).join(", ")}`);
 
-for (const route of ["/admin", "/the-mirror/embed", "/404"]) {
+for (const route of ["/admin", "/the-mirror/embed", "/unsubscribe", "/404"]) {
   const file = outputPath(route);
   if (!fs.existsSync(file)) {
     issues.push(`${route}: missing noindex prerender.`);

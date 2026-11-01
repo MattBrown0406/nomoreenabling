@@ -1,6 +1,6 @@
 {
   "src/App.tsx": {
-    "hash": "c4e44fd794479412395bdb6fdd2193304be13dc5",
+    "hash": "6f09391ae84cc5607387928fad521a304f0470ec",
     "lastmod": "2026-11-01"
   },
   "src/data/aeoAnswers.ts": {
@@ -1000,7 +1000,7 @@
     "lastmod": "2026-11-01"
   },
   "src/pages/FamilySituationAssessment.tsx": {
-    "hash": "c31e35e0dd7b950b7551981f2fa36c43191beb45",
+    "hash": "629e24215d0cda713432809fd9dccc9bc8866738",
     "lastmod": "2026-11-01"
   },
   "src/pages/FamilySupportGuide.tsx": {
@@ -1024,8 +1024,8 @@
     "lastmod": "2026-05-02"
   },
   "src/pages/HelpingOrEnabling.tsx": {
-    "hash": "b40ac459dd7e1c5b0172c17d22c3f8dbea2c9938",
-    "lastmod": "2026-08-03"
+    "hash": "fbc36b72b1416a633751ae805702188feb6847be",
+    "lastmod": "2026-11-01"
   },
   "src/pages/Index.tsx": {
     "hash": "893c908151016aadc85df823178b9c29c546ca33",
@@ -1044,8 +1044,8 @@
     "lastmod": "2026-05-02"
   },
   "src/pages/StartHere.tsx": {
-    "hash": "0650254cfa6e30f1700c0407f0b01f8e48e96a24",
-    "lastmod": "2026-08-16"
+    "hash": "23d1e856728b3c90801dfeead0831fbb415dbe59",
+    "lastmod": "2026-11-01"
   },
   "src/pages/TermsOfService.tsx": {
     "hash": "f64099c8bf97cadd5e9ca7512f675e8bd98e5481",

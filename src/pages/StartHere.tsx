@@ -279,6 +279,8 @@ export default function StartHere() {
           {selectedLeadMagnet && (
             <div className="mt-8 max-w-4xl">
               <LeadMagnetCard
+                // Remount per magnet so one path's unlocked state doesn't carry over.
+                key={selectedLeadMagnet.slug}
                 magnet={selectedLeadMagnet}
                 source="start_here"
                 hubSlug={selectedHubSlug}

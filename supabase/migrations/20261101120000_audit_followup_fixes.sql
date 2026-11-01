@@ -249,3 +249,18 @@ END;
 $$;
 
 REVOKE ALL ON FUNCTION public.finalize_confirmed_newsletter_optin(text, text, text) FROM PUBLIC, anon, authenticated;
+
+-- 5. get_article_view_counts is callable by anon and aggregates the whole
+--    article_views table; cap the result size (the site asks for 6).
+CREATE OR REPLACE FUNCTION public.get_article_view_counts(limit_count integer DEFAULT 3)
+RETURNS TABLE(article_slug text, view_count bigint)
+LANGUAGE sql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+  SELECT av.article_slug::text, count(*)::bigint AS view_count
+  FROM public.article_views av
+  GROUP BY av.article_slug
+  ORDER BY count(*) DESC, max(av.viewed_at) DESC
+  LIMIT least(greatest(limit_count, 1), 20);
+$$;

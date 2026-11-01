@@ -85,7 +85,8 @@ const HelpingOrEnabling = () => {
     if (answers.consequenceFilter === "no") helpingScore += 2;
 
     // Pattern check
-    if (answers.patternCheck === "many" && answers.lastingChange === "no") enablingScore += 3;
+    // "Only temporarily" is also no lasting change.
+    if (answers.patternCheck === "many" && (answers.lastingChange === "no" || answers.lastingChange === "temporary")) enablingScore += 3;
     if (answers.patternCheck === "new") helpingScore += 1;
 
     // Cost analysis

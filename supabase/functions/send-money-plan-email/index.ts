@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { Resend } from "https://esm.sh/resend@2.0.0";
+import { unsubscribeLinks, withUnsubscribeFooter } from "../_shared/unsubscribe.ts";
 
 // send-money-plan-email — daily drip for The Money Plan (5-day sequence
 // triggered by the Enabling Cost Calculator).
@@ -184,11 +185,13 @@ serve(async (req) => {
       const lesson = LESSONS[lessonIndex];
 
       try {
+        const unsub = await unsubscribeLinks(enrollment.email);
         const emailResponse = await resend.emails.send({
           from: "No More Enabling <contact@nomoreenabling.com>",
           to: [enrollment.email],
           subject: lesson.subject,
-          html: lesson.html(enrollment.first_name),
+          html: withUnsubscribeFooter(lesson.html(enrollment.first_name), unsub.footerHtml),
+          headers: unsub.headers,
         });
         if (emailResponse.error) throw new Error(JSON.stringify(emailResponse.error));
 

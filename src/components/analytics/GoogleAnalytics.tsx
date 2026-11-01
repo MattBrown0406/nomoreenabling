@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const GA_MEASUREMENT_ID = "G-T8Q605D5GN";
+const UNTRACKED_PATHS = new Set(["/next-step", "/the-mirror/embed", "/admin", "/unsubscribe"]);
 
 declare global {
   interface Window {
@@ -18,6 +19,10 @@ const GoogleAnalytics = () => {
 
   useEffect(() => {
     if (typeof window.gtag !== "function") return;
+    // Mirrors the index.html exclusions (embed promises no tracking; admin
+    // shows lead PII; unsubscribe is a private link).
+    const path = location.pathname.replace(/\/+$/, "").toLowerCase();
+    if (UNTRACKED_PATHS.has(path)) return;
 
     // react-helmet applies the new <title> on an animation frame, after this
     // effect runs; wait for it so page_title isn't the previous page's.

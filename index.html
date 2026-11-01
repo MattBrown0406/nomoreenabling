@@ -12,11 +12,17 @@
     <!-- Never load third-party fonts, analytics or ads on the private guide. All
          links into the guide use full-document navigation for isolation. -->
     <script>
-      if (window.location.pathname.replace(/\/+$/, '').toLowerCase() !== '/next-step') {
+      var nmePath = window.location.pathname.replace(/\/+$/, '').toLowerCase();
+      if (nmePath !== '/next-step') {
       const fonts = document.createElement('link');
       fonts.rel = 'stylesheet';
       fonts.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap';
       document.head.appendChild(fonts);
+      }
+      // No analytics or ads on the private guide, the embeddable Mirror (it
+      // promises embedders no tracking), the admin dashboard (lead PII), or the
+      // unsubscribe page.
+      if (['/next-step', '/the-mirror/embed', '/admin', '/unsubscribe'].indexOf(nmePath) === -1) {
       window.dataLayer = window.dataLayer || [];
       window.gtag = function(){window.dataLayer.push(arguments);};
       window.gtag('js', new Date());

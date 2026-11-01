@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { Resend } from "https://esm.sh/resend@2.0.0";
+import { unsubscribeLinks, withUnsubscribeFooter } from "../_shared/unsubscribe.ts";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -413,11 +414,13 @@ serve(async (req) => {
       const lesson = BOUNDARIES_LESSONS[lessonIndex];
 
       try {
+        const unsub = await unsubscribeLinks(enrollment.email);
         const emailResponse = await resend.emails.send({
           from: "No More Enabling <contact@nomoreenabling.com>",
           to: [enrollment.email],
           subject: lesson.subject,
-          html: lesson.html(enrollment.first_name),
+          html: withUnsubscribeFooter(lesson.html(enrollment.first_name), unsub.footerHtml),
+          headers: unsub.headers,
         });
         if (emailResponse.error) throw new Error(JSON.stringify(emailResponse.error));
 

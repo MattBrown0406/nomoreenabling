@@ -84,6 +84,31 @@ serve(async (req) => {
 
     const form = await req.formData();
     const eventType = cleanValue(form.get('type'), 40);
+
+    // Unsubscribes / cleaned (bounced) addresses must also stop the Resend-sent
+    // digest and newsletter, which read subscribers.is_active. Verify against
+    // Mailchimp before deactivating so a forged event can't unsubscribe anyone.
+    if (eventType === 'unsubscribe' || eventType === 'cleaned') {
+      const listId = cleanValue(form.get('data[list_id]'), 80);
+      const email = cleanValue(form.get('data[email]') || form.get('data[merges][EMAIL]'), 255)?.toLowerCase();
+      if (listId !== audienceId || !email) {
+        return new Response(JSON.stringify({ error: 'invalid_payload' }), { status: 400, headers: jsonHeaders });
+      }
+      const member = await fetchCanonicalMember(apiKey, audienceId, email);
+      if (member.status !== 'unsubscribed' && member.status !== 'cleaned') {
+        return new Response(JSON.stringify({ success: true, ignored: true }), { status: 200, headers: jsonHeaders });
+      }
+      const supabaseUrl = Deno.env.get('SUPABASE_URL');
+      const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+      if (!supabaseUrl || !serviceRoleKey) throw new Error('Supabase service credentials are not configured');
+      const { error } = await createClient(supabaseUrl, serviceRoleKey)
+        .from('subscribers')
+        .update({ is_active: false })
+        .eq('email', email);
+      if (error) throw error;
+      return new Response(JSON.stringify({ success: true, deactivated: true }), { status: 200, headers: jsonHeaders });
+    }
+
     if (eventType !== 'subscribe') {
       return new Response(JSON.stringify({ success: true, ignored: true }), {
         status: 200,

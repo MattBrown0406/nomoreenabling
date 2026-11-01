@@ -2,6 +2,7 @@ import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { fetchAllRows } from "../_shared/paginate.ts";
 import { sendBulkEmails } from "../_shared/bulkEmail.ts";
+import { unsubscribeLinks, withUnsubscribeFooter } from "../_shared/unsubscribe.ts";
 
 
 const escapeHtml = (value: string) =>
@@ -149,14 +150,20 @@ serve(async (req) => {
     // Personalize content; {{first_name}} falls back to "Friend".
     const results = await sendBulkEmails(
       resendApiKey,
-      subscribers.map((subscriber) => ({
-        from: fromAddress,
-        to: subscriber.email,
-        subject,
-        html: safeHtmlContent.replace(
+      await Promise.all(subscribers.map(async (subscriber) => {
+        // Every Resend-sent email needs a working opt-out (link + one-click header).
+        const unsub = await unsubscribeLinks(subscriber.email);
+        const personalized = safeHtmlContent.replace(
           /{{first_name}}/g,
           subscriber.first_name ? escapeHtml(subscriber.first_name) : "Friend",
-        ),
+        );
+        return {
+          from: fromAddress,
+          to: subscriber.email,
+          subject,
+          html: withUnsubscribeFooter(personalized, unsub.footerHtml),
+          headers: unsub.headers,
+        };
       })),
     );
 

@@ -37,6 +37,7 @@ const staticRoutes = [
   "/cookies",
   "/admin",
   "/the-mirror/embed",
+  "/unsubscribe",
   "/404",
 ];
 

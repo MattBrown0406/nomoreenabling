@@ -1,8 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import { Resend } from "https://esm.sh/resend@2.0.0";
+import { sendBulkEmails } from "../_shared/bulkEmail.ts";
 
-const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -54,23 +53,19 @@ serve(async (req) => {
     const inner = isHtml ? body : markdownish(body);
     const html = wrapBranded(inner, subject);
 
-    let sent = 0, failed = 0;
-    const errors: string[] = [];
-    for (const to of recipients) {
-      try {
-        const { error: sendError } = await resend.emails.send({
-          from: "No More Enabling <contact@nomoreenabling.com>",
-          to: [to],
-          subject,
-          html,
-        });
-        if (sendError) throw new Error(sendError.message || JSON.stringify(sendError));
-        sent++;
-      } catch (e) {
-        failed++;
-        errors.push(`${to}: ${e instanceof Error ? e.message : "error"}`);
-      }
-    }
+    // Paced batch sends (one request per recipient tripped Resend's rate limit
+    // and could outlive the function on larger campaigns).
+    const resendApiKey = Deno.env.get("RESEND_API_KEY");
+    if (!resendApiKey) throw new Error("RESEND_API_KEY is not configured");
+    const { successful: sent, failed, errors } = await sendBulkEmails(
+      resendApiKey,
+      recipients.map((to: string) => ({
+        from: "No More Enabling <contact@nomoreenabling.com>",
+        to,
+        subject,
+        html,
+      })),
+    );
 
     await supabase.from("email_campaigns").insert({
       subject, body_html: html, recipients, sent_count: sent, failed_count: failed,

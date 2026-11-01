@@ -1,6 +1,7 @@
 const NOINDEX_ROUTES = new Set([
   "/admin",
   "/the-mirror/embed",
+  "/unsubscribe",
 ]);
 
 const normalizePath = (pathname: string) => {

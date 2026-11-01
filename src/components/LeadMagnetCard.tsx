@@ -171,7 +171,7 @@ const LeadMagnetCard = ({ magnet, source, articleSlug, hubSlug, compact = false 
             <div className="absolute left-[-9999px]" aria-hidden="true">
               <Input
                 type="text"
-                name="company"
+                name="nme_hp_field"
                 tabIndex={-1}
                 autoComplete="off"
                 value={honeypot}

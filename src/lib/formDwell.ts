@@ -12,5 +12,10 @@ export const awaitMinDwell = async (startedAt: number | null, minMs: number) => 
   }
 };
 
+// The edge functions treat form_ms above 6 hours as a bot and return a fake
+// success, so a tab left open overnight silently lost real signups and leads.
+// Report at most just under that ceiling.
+const MAX_REPORTED_DWELL_MS = 6 * 60 * 60 * 1000 - 60 * 1000;
+
 export const dwellMs = (startedAt: number | null, minMs: number) =>
-  Math.max(Date.now() - (startedAt ?? Date.now()), minMs);
+  Math.min(Math.max(Date.now() - (startedAt ?? Date.now()), minMs), MAX_REPORTED_DWELL_MS);

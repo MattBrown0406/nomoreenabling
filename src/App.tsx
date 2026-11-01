@@ -45,6 +45,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import CookiePolicy from "./pages/CookiePolicy";
 import NotFound from "./pages/NotFound";
+import Unsubscribe from "./pages/Unsubscribe";
 import ContactFormWidget from "@/components/ContactFormWidget";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import SocialShareUrlGuard from "@/components/SocialShareUrlGuard";
@@ -132,6 +133,7 @@ export const AppRoutes = () => {
       <Route path="/terms" element={<TermsOfService />} />
       <Route path="/cookies" element={<CookiePolicy />} />
       <Route path="/admin" element={<AdminAnalytics />} />
+      <Route path="/unsubscribe" element={<Unsubscribe />} />
 
       {/* Legacy WordPress 301 Redirects */}
       <Route path="/are-you-an-enabler" element={<Navigate to="/helping-or-enabling" replace />} />

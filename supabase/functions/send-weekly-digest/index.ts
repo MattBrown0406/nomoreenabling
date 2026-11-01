@@ -2,6 +2,7 @@ import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { fetchAllRows } from "../_shared/paginate.ts";
 import { sendBulkEmails } from "../_shared/bulkEmail.ts";
+import { unsubscribeLinks, withUnsubscribeFooter } from "../_shared/unsubscribe.ts";
 
 
 const corsHeaders = {
@@ -275,11 +276,17 @@ serve(async (req) => {
     // same week is deduplicated by Resend instead of double-sending.
     const { successful, failed, errors } = await sendBulkEmails(
       resendApiKey,
-      subscribers.map((subscriber) => ({
-        from: "No More Enabling <contact@nomoreenabling.com>",
-        to: subscriber.email,
-        subject,
-        html: html.replace(/{{first_name}}/g, escapeHtml(subscriber.first_name || "friend")),
+      await Promise.all(subscribers.map(async (subscriber) => {
+        // Every Resend-sent email needs a working opt-out (link + one-click header).
+        const unsub = await unsubscribeLinks(subscriber.email);
+        const personalized = html.replace(/{{first_name}}/g, escapeHtml(subscriber.first_name || "friend"));
+        return {
+          from: "No More Enabling <contact@nomoreenabling.com>",
+          to: subscriber.email,
+          subject,
+          html: withUnsubscribeFooter(personalized, unsub.footerHtml),
+          headers: unsub.headers,
+        };
       })),
       `weekly-digest-${new Date(windowEnd).toISOString().slice(0, 10)}-${days}`,
     );

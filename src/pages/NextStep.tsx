@@ -59,7 +59,17 @@ export default function NextStep() {
   const heading = useRef<HTMLHeadingElement>(null);
   const selected = paths.find((item) => item.id === path);
   const guide = path !== null && choice !== null ? makeGuide(path, choice) : null;
-  useEffect(() => { heading.current?.focus(); setFeedback(""); }, [path, choice]);
+  // Move focus to the guide heading when the reader makes a choice, but not on
+  // first load: focusing then scrolled mobile readers past the urgent-help box.
+  const hasMounted = useRef(false);
+  useEffect(() => {
+    setFeedback("");
+    if (!hasMounted.current) {
+      hasMounted.current = true;
+      return;
+    }
+    heading.current?.focus();
+  }, [path, choice]);
   useEffect(() => {
     const clearGuide = () => {
       setPath(null);

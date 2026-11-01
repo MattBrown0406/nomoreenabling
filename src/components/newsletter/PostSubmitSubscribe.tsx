@@ -1,3 +1,4 @@
+import { dwellMs } from "@/lib/formDwell";
 import { useRef, useState } from "react";
 import { CheckCircle2, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -50,7 +51,7 @@ const PostSubmitSubscribe = ({ source, defaultEmail = "", defaultFirstName = "" 
           source: `post_submit_${source}`,
           _t: startedOrNow(),
           website: "",
-          form_ms: Math.max(Date.now() - startedOrNow(), 3000),
+          form_ms: dwellMs(startedOrNow(), 3000),
           turnstile_token: turnstileToken,
         },
       });
