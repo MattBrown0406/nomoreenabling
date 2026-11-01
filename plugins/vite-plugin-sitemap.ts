@@ -68,14 +68,17 @@ export function sitemapPlugin(): Plugin {
           const shallow = runGit(["rev-parse", "--is-shallow-repository"]);
           if (!shallow.ok) return false;
           if (shallow.out === "false") return true;
-          // Build hosts usually clone with --depth 1. Fetching the commit graph
-          // without file contents is cheap; if it works, real per-file dates
-          // are available. Set SITEMAP_SKIP_UNSHALLOW=1 to disable.
-          if (process.env.SITEMAP_SKIP_UNSHALLOW) return false;
+          // Build hosts usually clone with --depth 1. On CI only (never on a
+          // developer machine, where it would rewrite the clone's config),
+          // fetch the commit graph without file contents so real per-file
+          // dates are available. Set SITEMAP_SKIP_UNSHALLOW=1 to disable.
+          if (!process.env.CI || process.env.SITEMAP_SKIP_UNSHALLOW) return false;
           const result = spawnSync("git", ["fetch", "--quiet", "--unshallow", "--filter=blob:none"], {
             cwd: repoRoot,
             encoding: "utf8",
             timeout: 120_000,
+            // Never stall a build on a credential prompt.
+            env: { ...process.env, GIT_TERMINAL_PROMPT: "0" },
           });
           return result.status === 0 && runGit(["rev-parse", "--is-shallow-repository"]).out === "false";
         })();
@@ -138,10 +141,11 @@ export function sitemapPlugin(): Plugin {
           } else if (changedInHead.has(relativePath)) {
             date = headCommitDate;
           } else if (manifest[relativePath]) {
-            // Without history we can't date an older change; keep the recorded
-            // date rather than re-dating it to whatever commit is deployed
-            // (which churned lastmod on every deploy).
-            date = manifest[relativePath].lastmod;
+            // Unchanged since the manifest was written: keep its date. Changed
+            // (in a commit we can't see): the deployed commit is the best
+            // available upper bound. Normally unreachable on CI, where history
+            // is fetched above.
+            date = manifest[relativePath].hash === hash ? manifest[relativePath].lastmod : headCommitDate;
           }
           if (date) nextManifest[relativePath] = { hash, lastmod: date };
           fileDateCache.set(relativePath, date);

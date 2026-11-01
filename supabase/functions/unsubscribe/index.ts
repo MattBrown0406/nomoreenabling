@@ -1,6 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import { base64UrlDecode, deactivateSubscriber, verifyUnsubscribeToken } from "../_shared/unsubscribe.ts";
+import { base64UrlDecode, deactivateSubscriber, matchEmail, verifyUnsubscribeToken } from "../_shared/unsubscribe.ts";
 
 // Opt-out endpoint for Resend-sent mail (newsletter, weekly digest, course
 // drips). Called by the /unsubscribe page (JSON body) and by mail clients via
@@ -50,11 +50,10 @@ serve(async (req) => {
 
     await deactivateSubscriber(supabase, email);
 
-    const { error: courseError } = await supabase
-      .from("course_enrollments")
-      .update({ is_active: false, next_email_at: null })
-      .ilike("email", email.replace(/[\\%_]/g, (char) => `\\${char}`))
-      .eq("is_active", true);
+    const { error: courseError } = await matchEmail(
+      supabase.from("course_enrollments").update({ is_active: false, next_email_at: null }),
+      email,
+    ).eq("is_active", true);
     if (courseError) throw courseError;
 
     // Mirror the opt-out in Mailchimp so its campaigns stop too. The local

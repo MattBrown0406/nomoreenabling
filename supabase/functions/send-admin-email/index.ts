@@ -46,7 +46,7 @@ serve(async (req) => {
     const { data: roleData } = await supabase.from("user_roles").select("role").eq("user_id", userData.user.id).eq("role", "admin").maybeSingle();
     if (!roleData) return new Response(JSON.stringify({ error: "Forbidden" }), { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } });
 
-    const { subject, body, recipients, isHtml } = await req.json();
+    const { subject, body, recipients, isHtml, mode } = await req.json();
     if (!subject || !body || !Array.isArray(recipients) || recipients.length === 0) {
       return new Response(JSON.stringify({ error: "Missing subject, body, or recipients" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
@@ -61,7 +61,7 @@ serve(async (req) => {
     // Multi-recipient campaigns are marketing mail: skip anyone who has opted
     // out and give everyone else an unsubscribe link + one-click header.
     // A single direct email to one person is sent as-is.
-    const isCampaign = recipients.length > 1;
+    const isCampaign = mode === "campaign" || recipients.length > 1;
     const suppressed = isCampaign ? await fetchSuppressedEmails(supabase) : new Set<string>();
     const deliverable = (recipients as string[]).filter((to) => !suppressed.has(String(to).trim().toLowerCase()));
     const skipped = recipients.length - deliverable.length;
@@ -82,7 +82,7 @@ serve(async (req) => {
 
     await supabase.from("email_campaigns").insert({
       subject, body_html: html, recipients: deliverable, sent_count: sent, failed_count: failed,
-      campaign_type: recipients.length === 1 ? "single" : "campaign",
+      campaign_type: isCampaign ? "campaign" : "single",
       created_by: userData.user.id, sent_at: new Date().toISOString(),
     });
 

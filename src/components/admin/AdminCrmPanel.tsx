@@ -157,7 +157,7 @@ export const AdminCrmPanel = () => {
 
     setSending(true);
     const { data, error } = await supabase.functions.invoke("send-admin-email", {
-      body: { subject, body, recipients },
+      body: { subject, body, recipients, mode },
     });
     setSending(false);
 

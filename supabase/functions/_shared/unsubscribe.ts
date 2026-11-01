@@ -12,7 +12,13 @@ const SITE_URL = "https://nomoreenabling.com";
 // UNSUBSCRIBE_SECRET later doesn't invalidate links signed with the
 // service-role key, and vice versa.
 const signingSecrets = (): string[] => {
-  const secrets = [Deno.env.get("UNSUBSCRIBE_SECRET"), Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")]
+  // To rotate UNSUBSCRIBE_SECRET, move the old value to
+  // UNSUBSCRIBE_SECRET_PREVIOUS for at least 30 days.
+  const secrets = [
+    Deno.env.get("UNSUBSCRIBE_SECRET"),
+    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY"),
+    Deno.env.get("UNSUBSCRIBE_SECRET_PREVIOUS"),
+  ]
     .filter((value): value is string => Boolean(value));
   if (secrets.length === 0) throw new Error("No unsubscribe signing secret is configured");
   return secrets;
@@ -108,40 +114,72 @@ type AnySupabaseClient = any;
 const escapeLikePattern = (value: string) => value.replace(/[\\%_]/g, (char) => `\\${char}`);
 
 /**
- * Mark an address as opted out. Matches case-insensitively (older rows may
- * have mixed-case emails) and records a suppression row when the address has
- * no subscriber row yet (e.g. a CRM contact), so later campaigns skip it.
+ * Case-insensitive email equality for a PostgREST query. Older rows may be
+ * mixed-case. PostgREST turns "*" into a wildcard in (i)like values and it
+ * can't be escaped, so an address containing "*" falls back to exact match.
+ */
+// deno-lint-ignore no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const matchEmail = (query: any, email: string) => {
+  const normalized = email.trim().toLowerCase();
+  return normalized.includes("*")
+    ? query.eq("email", normalized)
+    : query.ilike("email", escapeLikePattern(normalized));
+};
+
+/**
+ * True when the address has opted out: it has subscriber rows and none of
+ * them is active (a confirmed re-signup creates/reactivates an active row).
+ */
+export const isEmailSuppressed = async (supabase: AnySupabaseClient, email: string): Promise<boolean> => {
+  const { data, error } = await matchEmail(supabase.from("subscribers").select("is_active"), email);
+  if (error) throw error;
+  const rows = (data ?? []) as Array<{ is_active: boolean }>;
+  return rows.length > 0 && !rows.some((row) => row.is_active);
+};
+
+/**
+ * Mark an address as opted out (all case variants) and record a suppression
+ * row when it has no subscriber row yet (e.g. a CRM contact), so later
+ * campaigns skip it.
  */
 export const deactivateSubscriber = async (supabase: AnySupabaseClient, email: string) => {
   const normalized = email.trim().toLowerCase();
-  const { data: updated, error } = await supabase
+  const deactivate = async () => {
+    const { data, error } = await matchEmail(supabase.from("subscribers").update({ is_active: false }), normalized)
+      .select("id");
+    if (error) throw error;
+    return (data ?? []).length;
+  };
+  if ((await deactivate()) > 0) return;
+  const { error: insertError } = await supabase
     .from("subscribers")
-    .update({ is_active: false })
-    .ilike("email", escapeLikePattern(normalized))
-    .select("id");
-  if (error) throw error;
-  if (!updated || updated.length === 0) {
-    const { error: insertError } = await supabase
-      .from("subscribers")
-      .insert({ email: normalized, is_active: false });
-    // 23505: a row appeared concurrently; it will be deactivated on retry.
-    if (insertError && insertError.code !== "23505") throw insertError;
-  }
+    .insert({ email: normalized, is_active: false });
+  if (!insertError) return;
+  // 23505: a row was created concurrently (e.g. a finalize); deactivate it.
+  if (insertError.code !== "23505") throw insertError;
+  await deactivate();
 };
 
-/** Lowercased emails that have opted out (subscribers.is_active = false). */
+/**
+ * Lowercased emails that have opted out: every subscriber row for the
+ * address is inactive (an old inactive mixed-case row next to an active
+ * lowercase one doesn't count).
+ */
 export const fetchSuppressedEmails = async (supabase: AnySupabaseClient): Promise<Set<string>> => {
-  const suppressed = new Set<string>();
-  for (let from = 0; from <= 100000; from += 1000) {
+  const hasActive = new Map<string, boolean>();
+  for (let from = 0; from <= 200000; from += 1000) {
     const { data, error } = await supabase
       .from("subscribers")
-      .select("email")
-      .eq("is_active", false)
+      .select("email, is_active")
       .order("id", { ascending: true })
       .range(from, from + 999);
     if (error) throw error;
-    for (const row of data ?? []) suppressed.add(String(row.email).trim().toLowerCase());
+    for (const row of data ?? []) {
+      const key = String(row.email).trim().toLowerCase();
+      hasActive.set(key, Boolean(hasActive.get(key)) || Boolean(row.is_active));
+    }
     if (!data || data.length < 1000) break;
   }
-  return suppressed;
+  return new Set([...hasActive].filter(([, active]) => !active).map(([email]) => email));
 };

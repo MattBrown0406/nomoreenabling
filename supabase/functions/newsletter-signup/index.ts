@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { isEmailSuppressed } from "../_shared/unsubscribe.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -360,11 +361,7 @@ serve(async (req) => {
       // Mailchimp, e.g. if the Mailchimp sync failed. Finalizing here would
       // silently re-activate them on anyone's say-so; require a fresh
       // confirmation instead by moving the member back to pending.
-      const { data: localRows } = await supabase
-        .from('subscribers')
-        .select('is_active')
-        .ilike('email', sanitizedEmail.replace(/[\\%_]/g, (char) => `\\${char}`));
-      if ((localRows ?? []).some((row) => row.is_active === false)) {
+      if (await isEmailSuppressed(supabase, sanitizedEmail)) {
         await requestMailchimpReconfirmation(sanitizedEmail);
         optIn = { status: 'pending_confirmation', memberId: null };
       }
