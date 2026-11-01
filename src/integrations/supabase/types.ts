@@ -911,6 +911,13 @@ export type Database = {
         }
         Returns: Json
       }
+      get_article_view_counts: {
+        Args: { limit_count?: number }
+        Returns: {
+          article_slug: string
+          view_count: number
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
