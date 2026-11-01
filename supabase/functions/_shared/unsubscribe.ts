@@ -172,6 +172,15 @@ export const deactivateSubscriber = async (supabase: AnySupabaseClient, email: s
   await deactivate();
 };
 
+/** Stop every running course drip for the address (all case variants). */
+export const stopCourseEnrollments = async (supabase: AnySupabaseClient, email: string) => {
+  const { error } = await matchEmail(
+    supabase.from("course_enrollments").update({ is_active: false, next_email_at: null }),
+    email,
+  ).eq("is_active", true);
+  if (error) throw error;
+};
+
 /**
  * Lowercased emails that have opted out: every subscriber row for the
  * address is inactive (an old inactive mixed-case row next to an active

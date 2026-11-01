@@ -178,7 +178,9 @@ serve(async (req) => {
         await supabase
           .from("course_enrollments")
           .update({ completed_at: now, is_active: false })
-          .eq("id", enrollment.id);
+          .eq("id", enrollment.id)
+          // Don't resurrect an enrollment stopped (unsubscribe) mid-run.
+          .eq("is_active", true);
         continue;
       }
 
@@ -219,7 +221,9 @@ serve(async (req) => {
             completed_at: isLast ? now : null,
             is_active: !isLast,
           })
-          .eq("id", enrollment.id);
+          .eq("id", enrollment.id)
+          // Don't resurrect an enrollment stopped (unsubscribe) mid-run.
+          .eq("is_active", true);
 
         sent++;
         console.log(`money-plan: sent day ${lessonIndex + 2} to ${enrollment.email}`);

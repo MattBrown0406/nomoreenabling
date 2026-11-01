@@ -1,6 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.3";
-import { deactivateSubscriber } from "../_shared/unsubscribe.ts";
+import { deactivateSubscriber, matchEmail, stopCourseEnrollments } from "../_shared/unsubscribe.ts";
 
 const jsonHeaders = { 'Content-Type': 'application/json' };
 
@@ -102,7 +102,12 @@ serve(async (req) => {
       const supabaseUrl = Deno.env.get('SUPABASE_URL');
       const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
       if (!supabaseUrl || !serviceRoleKey) throw new Error('Supabase service credentials are not configured');
-      await deactivateSubscriber(createClient(supabaseUrl, serviceRoleKey), email);
+      const supabase = createClient(supabaseUrl, serviceRoleKey);
+      await deactivateSubscriber(supabase, email);
+      // An opt-out (or hard bounce) stops course drips too; otherwise the
+      // drips kept mailing an address the rest of the system treats as
+      // unsubscribed.
+      await stopCourseEnrollments(supabase, email);
       return new Response(JSON.stringify({ success: true, deactivated: true }), { status: 200, headers: jsonHeaders });
     }
 
@@ -165,6 +170,15 @@ serve(async (req) => {
 
     const finalized = Boolean(data && typeof data === 'object' && data.finalized === true);
     if (!finalized) {
+      // No pending attempt from our forms (e.g. re-subscribed via Mailchimp's
+      // own page, or confirmed after the 7-day attempt expired). Mailchimp has
+      // verified the member is subscribed, so lift a local opt-out on any
+      // existing rows; no new rows are created without our form's attempt.
+      const { error: reactivateError } = await matchEmail(
+        supabase.from('subscribers').update({ is_active: true }),
+        email,
+      ).eq('is_active', false);
+      if (reactivateError) throw reactivateError;
       console.log('Confirmed Mailchimp member had no active Turnstile-verified opt-in attempt');
     }
 

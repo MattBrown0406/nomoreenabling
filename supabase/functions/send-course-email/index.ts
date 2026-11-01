@@ -407,7 +407,9 @@ serve(async (req) => {
             completed_at: now,
             is_active: false,
           })
-          .eq('id', enrollment.id);
+          .eq('id', enrollment.id)
+          // Don't resurrect an enrollment stopped (unsubscribe) mid-run.
+          .eq('is_active', true);
         continue;
       }
 
@@ -448,7 +450,9 @@ serve(async (req) => {
             completed_at: isLastLesson ? now : null,
             is_active: !isLastLesson,
           })
-          .eq('id', enrollment.id);
+          .eq('id', enrollment.id)
+          // Don't resurrect an enrollment stopped (unsubscribe) mid-run.
+          .eq('is_active', true);
 
         sent++;
         console.log(`Sent lesson ${lessonIndex + 1} to ${enrollment.email}`);
