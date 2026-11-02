@@ -39,7 +39,7 @@ export default `
 <li><strong>Use the "friend test."</strong> Ask yourself: if a close friend described this exact situation about their spouse or child, what would I tell them? We are often much clearer about other people's families than our own.</li>
 <li><strong>Replace "at least" with "and."</strong> Instead of "At least he still has his job," try "He still has his job, and his drinking is hurting our marriage." Both things can be true, and the second half deserves your attention.</li>
 <li><strong>Watch the trend, not the single day.</strong> A good week doesn't cancel out a year of escalation. Look at whether use, consequences, and secrecy are growing over months.</li>
-<li><strong>Say it out loud to one safe person.</strong> A therapist, an <a href="/articles/what-to-expect-at-your-first-al-anon-meeting">Al-Anon meeting</a>, or a trusted friend can hear the whole story without the softening. Saying it plainly often loosens minimizing's grip.</li>
+<li><strong>Say it out loud to one safe person.</strong> A therapist, an <a href="/articles/what-to-expect-first-al-anon-meeting">Al-Anon meeting</a>, or a trusted friend can hear the whole story without the softening. Saying it plainly often loosens minimizing's grip.</li>
 </ol>
 <h2>You Can Love Them and Tell the Truth</h2>
 <p>Minimizing grows out of love and fear, and both of those are understandable. But your loved one doesn't need a family that agrees it's not that bad. They need a family that sees them clearly and still shows up with steady, honest care.</p>
