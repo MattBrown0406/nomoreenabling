@@ -15,7 +15,7 @@
 .article-column :is(a, button).whitespace-nowrap {
   white-space: normal;
   height: auto;
-  min-height: 2.5rem;
+  min-height: 44px;
   max-width: 100%;
   text-align: center;
 }

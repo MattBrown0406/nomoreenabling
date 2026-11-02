@@ -473,7 +473,7 @@ const Index = () => {
             </div>
 
             <div className="grid lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2 space-y-12">
+              <div className="min-w-0 lg:col-span-2 space-y-12">
                 {featuredPost ? (
                   <div>
                     <h2 className="font-serif text-2xl font-bold text-foreground mb-6">
@@ -504,7 +504,7 @@ const Index = () => {
                 </div>
               </div>
 
-              <aside className="lg:col-span-1" aria-label="Related resources">
+              <aside className="min-w-0 lg:col-span-1" aria-label="Related resources">
                 <Sidebar />
               </aside>
             </div>

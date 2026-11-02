@@ -60,7 +60,7 @@ const CoachingInterventionCTA = ({ variant = "wide", articleSlug }: CoachingInte
           If articles are helping but the situation at home is still escalating, you can ask for direct help with family alignment,
           boundaries, treatment refusal, relapse patterns, or deciding whether an intervention makes sense.
         </p>
-        <div className="mt-5 flex flex-col sm:flex-row gap-3">
+        <div className="mt-5 flex flex-col sm:flex-row flex-wrap gap-3 [&>a]:min-h-[44px] [&>a]:min-w-[44px] [&>a]:h-auto [&>a]:whitespace-normal [&>a]:text-center">
           <PhoneCallButton source={`coaching_intervention_cta_${variant}`} variant="coral" />
           <WhatsAppButton source={`coaching_intervention_cta_${variant}`} variant="coral" className="bg-[#25D366] text-white hover:bg-[#128C7E] hover:text-white border-none" label="WhatsApp" />
           <Button asChild>

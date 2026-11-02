@@ -112,7 +112,7 @@ const PersonalizedSuggestions = ({ assessmentScore, assessmentLevel }: Personali
                   onChange={(e) => setSituation(e.target.value)}
                   className="min-h-[100px] text-sm"
                 />
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2 [&>button]:min-h-[44px] [&>button]:h-auto [&>button]:whitespace-normal">
                   <Button
                     onClick={handleGetSuggestions}
                     disabled={isLoading}
@@ -140,7 +140,7 @@ const PersonalizedSuggestions = ({ assessmentScore, assessmentLevel }: Personali
                 </div>
               </div>
             ) : (
-              <div className="flex flex-col sm:flex-row gap-2">
+              <div className="flex flex-wrap gap-2 [&>button]:min-h-[44px] [&>button]:h-auto [&>button]:whitespace-normal">
                 <Button
                   onClick={handleGetSuggestions}
                   disabled={isLoading}

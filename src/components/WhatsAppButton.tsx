@@ -40,7 +40,7 @@ const WhatsAppButton = ({
     <Button
       variant={variant}
       size={size}
-      className={className}
+      className={`min-h-[44px] min-w-[44px] ${className ?? ""}`}
       asChild
       {...rest}
     >

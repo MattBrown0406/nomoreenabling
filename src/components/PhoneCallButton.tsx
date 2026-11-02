@@ -25,7 +25,7 @@ const PhoneCallButton = ({
   };
 
   return (
-    <Button variant={variant} size={size} className={className} asChild {...rest}>
+    <Button variant={variant} size={size} className={`min-h-[44px] min-w-[44px] ${className ?? ""}`} asChild {...rest}>
       <a href={`tel:${PHONE_NUMBER_TEL}`} onClick={handleClick} aria-label={`Call ${PHONE_NUMBER_DISPLAY}`}>
         {showIcon && <Phone className="h-4 w-4" />}
         {label ?? `Call ${PHONE_NUMBER_DISPLAY}`}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -16,6 +16,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -70,7 +71,14 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border" role="banner">
+    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border" role="banner"
+      onKeyDown={(event) => {
+        if (event.key === "Escape" && isMenuOpen) {
+          setIsMenuOpen(false);
+          menuToggleRef.current?.focus();
+        }
+      }}
+    >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
@@ -134,7 +142,10 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="2xl:hidden p-2 text-foreground"
+            ref={menuToggleRef}
+            className="2xl:hidden p-2 min-h-[44px] min-w-[44px] text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -143,7 +154,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="2xl:hidden py-4 border-t border-border animate-fade-in" aria-label="Mobile navigation">
+          <nav id="mobile-navigation" className="2xl:hidden max-h-[calc(100dvh-4rem-1px)] md:max-h-[calc(100dvh-5rem-1px)] overflow-y-auto overscroll-contain py-4 border-t border-border animate-fade-in [&_a]:min-h-[44px] [&_a]:min-w-[44px] [&_a]:flex [&_a]:items-center [&_button]:min-h-[44px]" aria-label="Mobile navigation">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <Link
