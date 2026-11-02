@@ -1,11 +1,9 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { isEmailSuppressed } from "../_shared/unsubscribe.ts";
+import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
+import { acceptsTurnstileResult, type TurnstileValidation } from './turnstile.ts';
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
 
 const MIN_FORM_MS = 2500;
 const MAX_FORM_MS = 6 * 60 * 60 * 1000;
@@ -16,19 +14,12 @@ const looksLikeHumanSubmission = (website: unknown, formMs: unknown): boolean =>
   return formMs >= MIN_FORM_MS && formMs <= MAX_FORM_MS;
 };
 
-type TurnstileValidation = {
-  success: boolean;
-  hostname?: string;
-  action?: string;
-  'error-codes'?: string[];
-};
-
 const verifyTurnstile = async (req: Request, token: unknown): Promise<boolean> => {
   const secret = Deno.env.get('TURNSTILE_SECRET_KEY');
   if (!secret) throw new Error('TURNSTILE_SECRET_KEY is not configured');
   if (typeof token !== 'string' || token.length < 1 || token.length > 2048) return false;
 
-  const body = new FormData();
+  const body = new URLSearchParams();
   body.set('secret', secret);
   body.set('response', token);
   const remoteIp = req.headers.get('CF-Connecting-IP');
@@ -37,6 +28,8 @@ const verifyTurnstile = async (req: Request, token: unknown): Promise<boolean> =
 
   const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
     method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    signal: AbortSignal.timeout(10_000),
     body,
   });
   if (!response.ok) {
@@ -44,17 +37,7 @@ const verifyTurnstile = async (req: Request, token: unknown): Promise<boolean> =
   }
 
   const result = await response.json() as TurnstileValidation;
-  const allowedHostnames = new Set(
-    (Deno.env.get('TURNSTILE_ALLOWED_HOSTNAMES') || 'nomoreenabling.com,www.nomoreenabling.com')
-      .split(',')
-      .map((hostname: string) => hostname.trim().toLowerCase())
-      .filter(Boolean),
-  );
-  const hostnameAllowed = typeof result.hostname === 'string'
-    && allowedHostnames.has(result.hostname.toLowerCase());
-  const actionAllowed = result.action === 'newsletter_signup';
-
-  if (!result.success || !hostnameAllowed || !actionAllowed) {
+  if (!acceptsTurnstileResult(result, Deno.env.get('TURNSTILE_ALLOWED_HOSTNAMES'))) {
     console.log('Turnstile rejected newsletter signup', {
       errors: result['error-codes'] || [],
       hostname: result.hostname || null,

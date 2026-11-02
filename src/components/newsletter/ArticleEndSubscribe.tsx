@@ -94,6 +94,7 @@ const ArticleEndSubscribe = ({ articleSlug, category }: Props) => {
         variant: "destructive",
       });
     } finally {
+      resetTurnstile();
       setIsSubmitting(false);
     }
   };

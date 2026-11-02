@@ -75,6 +75,7 @@ const PostSubmitSubscribe = ({ source, defaultEmail = "", defaultFirstName = "" 
         variant: "destructive",
       });
     } finally {
+      resetTurnstile();
       setIsSubmitting(false);
     }
   };

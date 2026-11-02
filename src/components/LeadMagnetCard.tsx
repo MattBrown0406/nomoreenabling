@@ -136,6 +136,7 @@ const LeadMagnetCard = ({ magnet, source, articleSlug, hubSlug, compact = false 
         variant: "destructive",
       });
     } finally {
+      resetTurnstile();
       setIsSubmitting(false);
     }
   };
