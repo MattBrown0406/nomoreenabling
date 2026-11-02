@@ -190,6 +190,7 @@ import familyRecoveryAgreementImage from "@/assets/family-recovery-agreement-aft
 import waitingForRockBottomImage from "@/assets/waiting-for-rock-bottom.jpg";
 import goingBackToRehabImage from "@/assets/going-back-to-rehab.jpg";
 import enablingAddictedParentImage from "@/assets/enabling-an-addicted-parent-adult-children-guide.jpg";
+import minimizingAddictionImage from "@/assets/minimizing-addiction-its-not-that-bad-enabling.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -206,6 +207,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "minimizing-addiction-its-not-that-bad-enabling",
+    title: "Minimizing Addiction: How \"It's Not That Bad\" Becomes Enabling",
+    excerpt: "Saying \"it's not that bad\" feels like hope, but minimizing addiction quietly keeps it going. Learn why families downplay it and how to see things clearly again.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Support", "Boundaries"],
+    readTime: "8 min read",
+    date: "November 2, 2026",
+    image: minimizingAddictionImage,
+    slug: "minimizing-addiction-its-not-that-bad-enabling",
+    metaTitle: "Minimizing Addiction: How \"It's Not That Bad\" Enables",
+    metaDescription: "Saying \"it's not that bad\" feels like hope, but minimizing addiction quietly keeps it going. Learn why families downplay it and how to see things clearly again.",
+  },
   {
     id: "enabling-an-addicted-parent-adult-children-guide",
     title: "Enabling an Addicted Parent: How Adult Children Can Recognize It and Start to Change",
