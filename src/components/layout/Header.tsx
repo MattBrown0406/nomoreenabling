@@ -79,7 +79,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-7" aria-label="Main navigation">
+          <nav className="hidden 2xl:flex items-center gap-7" aria-label="Main navigation">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -123,7 +123,7 @@ const Header = () => {
           </nav>
 
           {/* CTA Buttons */}
-          <div className="hidden lg:flex items-center gap-2">
+          <div className="hidden 2xl:flex items-center gap-2">
             <PhoneCallButton source="header_desktop" size="sm" />
             <WhatsAppButton source="header_desktop" size="sm" variant="outline" className="border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white" />
             <Button variant="hero-outline" size="sm" onClick={scrollToNewsletter}>
@@ -134,7 +134,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 text-foreground"
+            className="2xl:hidden p-2 text-foreground"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -143,7 +143,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="lg:hidden py-4 border-t border-border animate-fade-in" aria-label="Mobile navigation">
+          <nav className="2xl:hidden py-4 border-t border-border animate-fade-in" aria-label="Mobile navigation">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <Link

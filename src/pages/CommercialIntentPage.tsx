@@ -8,6 +8,7 @@ import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import HowToJsonLd from "@/components/seo/HowToJsonLd";
 import PersonJsonLd from "@/components/seo/PersonJsonLd";
 import ConsultationRequestForm from "@/components/ConsultationRequestForm";
+import PhoneCallButton from "@/components/PhoneCallButton";
 import { Button } from "@/components/ui/button";
 import { getCommercialIntentPage } from "@/data/commercialIntentPages";
 import { getCommercialHowToSteps } from "@/data/aeoAnswers";
@@ -90,6 +91,16 @@ export default function CommercialIntentPage({ pageSlug }: CommercialIntentPageP
       <Header />
 
       <main className="flex-1">
+        {page.slug === "family-addiction-coaching" && (
+          <nav aria-label="Coaching contact options" className="2xl:hidden container mx-auto grid grid-cols-[auto_1fr] gap-2 px-4 pt-4">
+            <PhoneCallButton source="coaching_mobile" label="Call" className="min-h-11" />
+            <Button asChild className="min-h-11 h-auto whitespace-normal text-center">
+              <a href="#consultation-form" onClick={() => trackPageCta(primaryCtaLabel, "#consultation-form")}>
+                {primaryCtaLabel}
+              </a>
+            </Button>
+          </nav>
+        )}
         <section className="container mx-auto px-4 py-14 md:py-20">
           <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
             <div>
@@ -236,7 +247,7 @@ export default function CommercialIntentPage({ pageSlug }: CommercialIntentPageP
           </div>
         </section>
 
-        <section id="consultation-form" className="container mx-auto px-4 pb-16">
+        <section id="consultation-form" className="container mx-auto scroll-mt-24 px-4 pb-16">
           <div className="grid gap-8 lg:grid-cols-[1fr_0.7fr] lg:items-start">
             <ConsultationRequestForm
               source={`commercial-intent:${page.slug}`}
