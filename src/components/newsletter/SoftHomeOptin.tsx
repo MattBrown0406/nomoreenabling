@@ -72,6 +72,7 @@ const SoftHomeOptin = () => {
         variant: "destructive",
       });
     } finally {
+      resetTurnstile();
       setIsSubmitting(false);
     }
   };

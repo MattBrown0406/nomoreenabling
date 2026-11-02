@@ -4,27 +4,17 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 import { sitemapPlugin } from "./plugins/vite-plugin-sitemap";
 
-// Every newsletter / lead-magnet / assessment email form is gated on a
-// Cloudflare Turnstile token. The site key is inlined at build time, so a
-// production build without it ships forms that can never submit. Turnstile
-// keys are not configured for this project yet, so we warn loudly instead of
-// failing the build. Set STRICT_TURNSTILE=1 to make this fatal again once the
-// keys are in place.
-const assertTurnstileConfigured = (mode: string) => {
-  if (mode !== "production") return;
-  const env = loadEnv(mode, __dirname, "");
-  if (env.VITE_TURNSTILE_SITE_KEY || env.ALLOW_MISSING_TURNSTILE) return;
-  const message =
-    "VITE_TURNSTILE_SITE_KEY is not set. Production builds inline this key; without it every email capture form renders \"Security verification is temporarily unavailable\". Add it to the build environment (or .env).";
-  if (env.STRICT_TURNSTILE) throw new Error(message);
-  console.warn(`[turnstile] ${message}`);
-};
+// Public widget identifier, not a secret. Preserve it in every deployment.
+const defaultTurnstileSiteKey = "0x4AAAAAAFvlLEhQU1MnLHYm";
 
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  assertTurnstileConfigured(mode);
+  const env = loadEnv(mode, __dirname, "");
   return {
+  define: {
+    "import.meta.env.VITE_TURNSTILE_SITE_KEY": JSON.stringify(env.VITE_TURNSTILE_SITE_KEY || defaultTurnstileSiteKey),
+  },
   build: {
     manifest: true,
     rollupOptions: {
