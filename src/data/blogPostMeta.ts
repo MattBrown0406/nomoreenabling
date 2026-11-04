@@ -191,6 +191,7 @@ import waitingForRockBottomImage from "@/assets/waiting-for-rock-bottom.jpg";
 import goingBackToRehabImage from "@/assets/going-back-to-rehab.jpg";
 import enablingAddictedParentImage from "@/assets/enabling-an-addicted-parent-adult-children-guide.jpg";
 import minimizingAddictionImage from "@/assets/minimizing-addiction-its-not-that-bad-enabling.jpg";
+import harmReductionVsEnablingImage from "@/assets/harm-reduction-vs-enabling-is-narcan-enabling.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -207,6 +208,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "harm-reduction-vs-enabling-is-narcan-enabling",
+    title: "Harm Reduction vs. Enabling: Is It Enabling to Keep Narcan for a Loved One?",
+    excerpt: "Is keeping Narcan for a loved one with addiction enabling? Learn the difference between harm reduction and enabling, and how to keep them safe without rescuing.",
+    category: "Enabling",
+    categories: ["Enabling", "Family Support", "Boundaries"],
+    readTime: "8 min read",
+    date: "November 4, 2026",
+    image: harmReductionVsEnablingImage,
+    slug: "harm-reduction-vs-enabling-is-narcan-enabling",
+    metaTitle: "Harm Reduction vs. Enabling: Is Keeping Narcan Enabling?",
+    metaDescription: "Is keeping Narcan for a loved one with addiction enabling? Learn the difference between harm reduction and enabling, and how to keep them safe without rescuing.",
+  },
   {
     id: "minimizing-addiction-its-not-that-bad-enabling",
     title: "Minimizing Addiction: How \"It's Not That Bad\" Becomes Enabling",
