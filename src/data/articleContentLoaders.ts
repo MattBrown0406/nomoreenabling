@@ -239,5 +239,6 @@ export const articleContentLoaders: Record<string, () => Promise<ArticleContentM
   "when-recovery-doesnt-look-like-you-expected": () => import("./article-content/when-recovery-doesnt-look-like-you-expected"),
   "enabling-an-addicted-parent-adult-children-guide": () => import("./article-content/enabling-an-addicted-parent-adult-children-guide"),
   "minimizing-addiction-its-not-that-bad-enabling": () => import("./article-content/minimizing-addiction-its-not-that-bad-enabling"),
+  "harm-reduction-vs-enabling-is-narcan-enabling": () => import("./article-content/harm-reduction-vs-enabling-is-narcan-enabling"),
 };
 
