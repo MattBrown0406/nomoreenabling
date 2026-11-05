@@ -1,3 +1,8 @@
+# Article publication
+
+- [x] Prepare the November 5 article and its symbolic illustration.
+- [ ] Verify the rendered article on desktop and mobile, then publish.
+
 # Turnstile completion
 
 - [x] Confirm the existing public key and stored secret without retrieving private values.
