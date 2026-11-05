@@ -192,6 +192,7 @@ import goingBackToRehabImage from "@/assets/going-back-to-rehab.jpg";
 import enablingAddictedParentImage from "@/assets/enabling-an-addicted-parent-adult-children-guide.jpg";
 import minimizingAddictionImage from "@/assets/minimizing-addiction-its-not-that-bad-enabling.jpg";
 import harmReductionVsEnablingImage from "@/assets/harm-reduction-vs-enabling-is-narcan-enabling.jpg";
+import drinkingWithAlcoholicImage from "@/assets/is-drinking-with-an-alcoholic-enabling-family-guide.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -208,6 +209,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "is-drinking-with-an-alcoholic-enabling-family-guide",
+    title: "Is Drinking With an Alcoholic Enabling? An Honest Guide for Families",
+    excerpt: "Is drinking with an alcoholic enabling? Learn how shared drinking normalizes addiction, the warning signs, and kind, practical steps families can take today.",
+    category: "Enabling",
+    categories: ["Enabling", "Relationships", "Boundaries"],
+    readTime: "7 min read",
+    date: "November 5, 2026",
+    image: drinkingWithAlcoholicImage,
+    slug: "is-drinking-with-an-alcoholic-enabling-family-guide",
+    metaTitle: "Is Drinking With an Alcoholic Enabling? A Family Guide",
+    metaDescription: "Is drinking with an alcoholic enabling? Learn how shared drinking normalizes addiction, the warning signs, and kind, practical steps families can take today.",
+  },
   {
     id: "harm-reduction-vs-enabling-is-narcan-enabling",
     title: "Harm Reduction vs. Enabling: Is It Enabling to Keep Narcan for a Loved One?",
