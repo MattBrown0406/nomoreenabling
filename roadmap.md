@@ -2,7 +2,7 @@
 
 - [x] Prepare the November 6 article and its symbolic illustration.
 - [x] Verify the rendered article on desktop and mobile.
-- [ ] Request publication of the verified November 6 article.
+- [x] Request publication of the verified November 6 article.
 
 # Turnstile completion
 
