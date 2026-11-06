@@ -193,6 +193,7 @@ import enablingAddictedParentImage from "@/assets/enabling-an-addicted-parent-ad
 import minimizingAddictionImage from "@/assets/minimizing-addiction-its-not-that-bad-enabling.jpg";
 import harmReductionVsEnablingImage from "@/assets/harm-reduction-vs-enabling-is-narcan-enabling.jpg";
 import drinkingWithAlcoholicImage from "@/assets/is-drinking-with-an-alcoholic-enabling-family-guide.jpg";
+import dramaTriangleImage from "@/assets/drama-triangle-addiction-rescuer-persecutor-victim-family.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -209,6 +210,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "drama-triangle-addiction-rescuer-persecutor-victim-family",
+    title: "The Drama Triangle in Addiction: How Families Get Stuck Rescuing, Blaming, and Hurting (and How to Step Out)",
+    excerpt: "Stuck rescuing, blaming, then feeling hurt? Learn how the drama triangle in addiction keeps families enabling, and how to step out of it with love today.",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Codependency", "Enabling"],
+    readTime: "8 min read",
+    date: "November 6, 2026",
+    image: dramaTriangleImage,
+    slug: "drama-triangle-addiction-rescuer-persecutor-victim-family",
+    metaTitle: "The Drama Triangle in Addiction: How Families Step Out",
+    metaDescription: "Stuck rescuing, blaming, then feeling hurt? Learn how the drama triangle in addiction keeps families enabling, and how to step out of it with love today.",
+  },
   {
     id: "is-drinking-with-an-alcoholic-enabling-family-guide",
     title: "Is Drinking With an Alcoholic Enabling? An Honest Guide for Families",
