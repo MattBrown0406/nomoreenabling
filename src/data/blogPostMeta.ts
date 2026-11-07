@@ -193,6 +193,7 @@ import enablingAddictedParentImage from "@/assets/enabling-an-addicted-parent-ad
 import minimizingAddictionImage from "@/assets/minimizing-addiction-its-not-that-bad-enabling.jpg";
 import harmReductionVsEnablingImage from "@/assets/harm-reduction-vs-enabling-is-narcan-enabling.jpg";
 import drinkingWithAlcoholicImage from "@/assets/is-drinking-with-an-alcoholic-enabling-family-guide.jpg";
+import familyGoBetweenImage from "@/assets/family-go-between-role-addiction-messenger-codependency.jpg";
 import dramaTriangleImage from "@/assets/drama-triangle-addiction-rescuer-persecutor-victim-family.jpg";
 
 export interface BlogPostMeta {
@@ -210,6 +211,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "family-go-between-role-addiction-messenger-codependency",
+    title: "The Family Go-Between Role in Addiction: When You Become Everyone's Messenger",
+    excerpt: "Are you the family messenger for an addicted loved one? Learn how the go-between role develops, why it enables addiction, and how to step out of it with love.",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Codependency", "Enabling"],
+    readTime: "8 min read",
+    date: "November 7, 2026",
+    image: familyGoBetweenImage,
+    slug: "family-go-between-role-addiction-messenger-codependency",
+    metaTitle: "The Family Go-Between Role in Addiction: Stepping Out",
+    metaDescription: "Are you the family messenger for an addicted loved one? Learn how the go-between role develops, why it enables addiction, and how to step out of it with love.",
+  },
   {
     id: "drama-triangle-addiction-rescuer-persecutor-victim-family",
     title: "The Drama Triangle in Addiction: How Families Get Stuck Rescuing, Blaming, and Hurting (and How to Step Out)",
