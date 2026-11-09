@@ -195,6 +195,7 @@ import harmReductionVsEnablingImage from "@/assets/harm-reduction-vs-enabling-is
 import drinkingWithAlcoholicImage from "@/assets/is-drinking-with-an-alcoholic-enabling-family-guide.jpg";
 import familyGoBetweenImage from "@/assets/family-go-between-role-addiction-messenger-codependency.jpg";
 import dramaTriangleImage from "@/assets/drama-triangle-addiction-rescuer-persecutor-victim-family.jpg";
+import overfunctioningUnderfunctioningImage from "@/assets/overfunctioning-underfunctioning-addiction-families-codependency.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -211,6 +212,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "overfunctioning-underfunctioning-addiction-families-codependency",
+    title: "Overfunctioning in Addiction Families: Why Doing More Keeps Them Doing Less",
+    excerpt: "Doing everything while your addicted loved one does less? Learn how overfunctioning in addiction families fuels enabling and how to step back with love.",
+    category: "Family Dynamics",
+    categories: ["Family Dynamics", "Codependency", "Enabling"],
+    readTime: "7 min read",
+    date: "November 8, 2026",
+    image: overfunctioningUnderfunctioningImage,
+    slug: "overfunctioning-underfunctioning-addiction-families-codependency",
+    metaTitle: "Overfunctioning in Addiction Families: Doing More, Getting Less",
+    metaDescription: "Doing everything while your addicted loved one does less? Learn how overfunctioning in addiction families fuels enabling and how to step back with love.",
+  },
   {
     id: "family-go-between-role-addiction-messenger-codependency",
     title: "The Family Go-Between Role in Addiction: When You Become Everyone's Messenger",

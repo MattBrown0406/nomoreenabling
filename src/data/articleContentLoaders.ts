@@ -1,6 +1,7 @@
 export type ArticleContentModule = { default: string };
 
 export const articleContentLoaders: Record<string, () => Promise<ArticleContentModule>> = {
+  "overfunctioning-underfunctioning-addiction-families-codependency": () => import("./article-content/overfunctioning-underfunctioning-addiction-families-codependency"),
   "family-go-between-role-addiction-messenger-codependency": () => import("./article-content/family-go-between-role-addiction-messenger-codependency"),
   "drama-triangle-addiction-rescuer-persecutor-victim-family": () => import("./article-content/drama-triangle-addiction-rescuer-persecutor-victim-family"),
   "is-drinking-with-an-alcoholic-enabling-family-guide": () => import("./article-content/is-drinking-with-an-alcoholic-enabling-family-guide"),
