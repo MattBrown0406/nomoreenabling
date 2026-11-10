@@ -183,7 +183,7 @@ const Advertise = () => {
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
-              <div className="grid lg:grid-cols-[1fr_360px] gap-8 items-start">
+              <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px] gap-8 items-start">
                 <div>
                   <p className="text-sm uppercase tracking-wide text-primary font-medium">Example house placement</p>
                   <h2 className="font-serif text-3xl font-bold text-foreground mt-2">
@@ -193,7 +193,7 @@ const Advertise = () => {
                     The live site currently uses house placements for the No More Enabling ecosystem. Future paid
                     sponsors will be reviewed before launch and kept separate from editorial recommendations.
                   </p>
-                  <div className="mt-8 grid md:grid-cols-2 gap-6">
+                  <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="rounded-xl border border-border bg-card p-6">
                       <div className="flex items-center gap-2 text-primary font-medium">
                         <ShieldCheck className="h-5 w-5" />
@@ -264,7 +264,7 @@ const Advertise = () => {
         {/* Contact */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto grid gap-8 lg:grid-cols-[1fr_0.7fr] items-start">
+            <div className="max-w-5xl mx-auto grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.7fr)] items-start">
               <AdvertiserInquiryForm />
               <div className="rounded-2xl border border-border bg-secondary/40 p-6">
                 <h2 className="font-serif text-3xl font-bold text-foreground">
@@ -275,10 +275,10 @@ const Advertise = () => {
                   We only accept advertisers that fit the site’s family-support mission.
                 </p>
                 <div className="mt-6 flex flex-col gap-3">
-                  <Button variant="hero" size="lg" asChild>
+                  <Button variant="hero" size="lg" className="h-auto min-h-11 whitespace-normal" asChild>
                     <a href="mailto:matt@nomoreenabling.com">
                       <Mail size={18} />
-                      matt@nomoreenabling.com
+                      <span className="min-w-0 [overflow-wrap:anywhere]">matt@nomoreenabling.com</span>
                     </a>
                   </Button>
                   <Button variant="outline" size="lg" asChild>

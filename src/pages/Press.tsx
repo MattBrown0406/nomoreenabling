@@ -144,9 +144,9 @@ const Press = () => {
                 intervention, and how families survive all three.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
-                <Button asChild className="rounded-full px-6 font-bold">
+                <Button asChild className="h-auto min-h-10 max-w-full whitespace-normal rounded-full px-6 font-bold">
                   <a href="mailto:matt@soberhelpline.com?subject=Media%20inquiry">
-                    Media inquiries: matt@soberhelpline.com
+                    <span className="min-w-0 [overflow-wrap:anywhere]">Media inquiries: matt@soberhelpline.com</span>
                   </a>
                 </Button>
                 <Button asChild variant="outline" className="rounded-full border-2 border-primary px-6 font-bold text-primary">

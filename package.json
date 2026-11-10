@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build && node scripts/prerender.mjs",
     "seo:validate": "node scripts/validate-seo-output.mjs",
+    "test:browser": "node scripts/test-browser-regressions.mjs",
     "build:client": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",

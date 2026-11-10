@@ -1,0 +1,15 @@
+{
+  "origin": "https://nomoreenabling.com",
+  "routes": [
+    "/advertise",
+    "/press"
+  ],
+  "widths": [
+    320,
+    390,
+    768,
+    1024,
+    1280
+  ],
+  "requireRawParity": false
+}
