@@ -196,6 +196,7 @@ import drinkingWithAlcoholicImage from "@/assets/is-drinking-with-an-alcoholic-e
 import familyGoBetweenImage from "@/assets/family-go-between-role-addiction-messenger-codependency.jpg";
 import dramaTriangleImage from "@/assets/drama-triangle-addiction-rescuer-persecutor-victim-family.jpg";
 import overfunctioningUnderfunctioningImage from "@/assets/overfunctioning-underfunctioning-addiction-families-codependency.jpg";
+import settingBoundariesSpouseImage from "@/assets/setting-boundaries-with-an-addicted-spouse.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -212,6 +213,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "setting-boundaries-with-an-addicted-spouse",
+    title: "Setting Boundaries With an Addicted Spouse: How to Protect Your Marriage, Your Kids, and Yourself",
+    excerpt: "Setting boundaries with an addicted spouse is harder when you share a home, money, and kids. Learn what limits a marriage needs and how to hold them with love.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Relationships", "Family Dynamics"],
+    readTime: "7 min read",
+    date: "November 16, 2026",
+    image: settingBoundariesSpouseImage,
+    slug: "setting-boundaries-with-an-addicted-spouse",
+    metaTitle: "Setting Boundaries With an Addicted Spouse",
+    metaDescription: "Setting boundaries with an addicted spouse is harder when you share a home, money, and kids. Learn what limits a marriage needs and how to hold them with love.",
+  },
   {
     id: "overfunctioning-underfunctioning-addiction-families-codependency",
     title: "Overfunctioning in Addiction Families: Why Doing More Keeps Them Doing Less",

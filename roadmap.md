@@ -1,8 +1,8 @@
 # Article publication
 
-- [x] Prepare the November 8 article and its symbolic illustration.
+- [x] Prepare the November 16 spouse-boundaries article and its symbolic illustration.
 - [x] Verify the rendered article on desktop and mobile.
-- [x] Request publication of the verified November 8 article.
+- [x] Request publication of the verified November 16 article.
 
 # Turnstile completion
 

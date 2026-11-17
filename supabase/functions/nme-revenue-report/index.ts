@@ -106,7 +106,7 @@ serve(async (req) => {
     let revenueIntent = 0;
     let readiness = 0;
     const eventNames: string[] = [];
-    const pages: string[] = [];
+    const pages: (string | null)[] = [];
     const dests: (string | null)[] = [];
 
     for (const e of events) {
