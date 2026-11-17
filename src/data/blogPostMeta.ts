@@ -197,6 +197,7 @@ import familyGoBetweenImage from "@/assets/family-go-between-role-addiction-mess
 import dramaTriangleImage from "@/assets/drama-triangle-addiction-rescuer-persecutor-victim-family.jpg";
 import overfunctioningUnderfunctioningImage from "@/assets/overfunctioning-underfunctioning-addiction-families-codependency.jpg";
 import settingBoundariesSpouseImage from "@/assets/setting-boundaries-with-an-addicted-spouse.jpg";
+import settingBoundariesAdultChildImage from "@/assets/setting-boundaries-with-an-addicted-adult-child.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -213,6 +214,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "setting-boundaries-with-an-addicted-adult-child",
+    title: "Setting Boundaries with an Addicted Adult Child: A Parent's Guide to Loving Without Enabling",
+    excerpt: "Setting boundaries with an addicted adult child is painful for parents. Learn which limits matter, what to say, and how to stay close without enabling.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Dynamics", "Enabling"],
+    readTime: "8 min read",
+    date: "November 17, 2026",
+    image: settingBoundariesAdultChildImage,
+    slug: "setting-boundaries-with-an-addicted-adult-child",
+    metaTitle: "Setting Boundaries with an Addicted Adult Child",
+    metaDescription: "Setting boundaries with an addicted adult child is painful for parents. Learn which limits matter, what to say, and how to stay close without enabling.",
+  },
   {
     id: "setting-boundaries-with-an-addicted-spouse",
     title: "Setting Boundaries With an Addicted Spouse: How to Protect Your Marriage, Your Kids, and Yourself",
