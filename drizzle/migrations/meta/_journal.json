@@ -29,6 +29,13 @@
       "when": 1793557916286,
       "tag": "0003_audit_followup_fixes",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1794934780373,
+      "tag": "0004_tighten_tracking_insert_policies",
+      "breakpoints": true
     }
   ]
 }
