@@ -28,7 +28,7 @@ import { withOwnedUtm } from "@/lib/ownedLinks";
 import mattHeadshot from "@/assets/matt-brown-headshot.jpeg";
 import freedomLogo from "@/assets/freedom-interventions-logo.jpg";
 const soberHelplineLogo = "/sober-helpline-logo.svg";
-import familyBridgeLogo from "@/assets/family-bridge-logo.png";
+import familyBridgeLogoAsset from "@/assets/familybridge-logo.png.asset.json";
 import partyWreckersLogo from "@/assets/party-wreckers-logo.jpg";
 
 const categories = [
@@ -101,7 +101,7 @@ const guidedPaths = [
 const ecosystemProof = [
   { name: "Freedom Interventions", image: freedomLogo, detail: "Structured intervention guidance" },
   { name: "Sober Helpline", image: soberHelplineLogo, detail: "Family support and live help" },
-  { name: "Family Bridge", image: familyBridgeLogo, detail: "Recovery support technology" },
+  { name: "Family Bridge", image: familyBridgeLogoAsset.url, detail: "Recovery support technology" },
   { name: "Party Wreckers", image: partyWreckersLogo, detail: "Podcast education and reach" },
 ];
 

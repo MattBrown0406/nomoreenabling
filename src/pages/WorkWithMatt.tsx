@@ -12,7 +12,7 @@ import { withOwnedUtm } from "@/lib/ownedLinks";
 import mattHeadshot from "@/assets/matt-brown-headshot.jpeg";
 import freedomLogo from "@/assets/freedom-interventions-logo.jpg";
 const soberHelplineLogo = "/sober-helpline-logo.svg";
-import familyBridgeLogo from "@/assets/family-bridge-logo.png";
+import familyBridgeLogoAsset from "@/assets/familybridge-logo.png.asset.json";
 
 const faqs = [
   {
@@ -106,7 +106,7 @@ const supportLanes = [
     href: familyBridgeHref,
     icon: Route,
     brand: "Family Bridge",
-    image: familyBridgeLogo,
+    image: familyBridgeLogoAsset.url,
     external: true,
     accent: "bg-sky-50 border-sky-200 text-sky-950",
   },

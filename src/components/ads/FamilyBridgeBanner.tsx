@@ -1,5 +1,5 @@
 import type { KeyboardEvent, MouseEvent } from "react";
-import familyBridgeLogo from "@/assets/family-bridge-logo.png";
+import familyBridgeLogoAsset from "@/assets/familybridge-logo.png.asset.json";
 import { Brain, Shield, MessageSquare, TrendingUp, Pill, MapPin, DollarSign, FileText } from "lucide-react";
 import { trackAdClick } from "@/lib/trackAdClick";
 import { withOwnedUtm } from "@/lib/ownedLinks";
@@ -48,7 +48,7 @@ const FamilyBridgeBanner = ({ size = "leaderboard" }: FamilyBridgeBannerProps) =
         <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 p-4 md:p-6">
           {/* Logo */}
           <img
-            src={familyBridgeLogo}
+            src={familyBridgeLogoAsset.url}
             alt="FamilyBridge App"
             className="h-20 md:h-24 w-auto rounded-lg bg-white/95 p-2 shadow-lg flex-shrink-0"
           />
@@ -102,7 +102,7 @@ const FamilyBridgeBanner = ({ size = "leaderboard" }: FamilyBridgeBannerProps) =
         {/* Logo */}
         <div className="flex justify-center mb-4">
           <img
-            src={familyBridgeLogo}
+            src={familyBridgeLogoAsset.url}
             alt="FamilyBridge App"
             className="h-20 w-auto rounded-lg bg-white/95 p-2 shadow-lg"
           />

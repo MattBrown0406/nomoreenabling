@@ -1,3 +1,8 @@
+# FamilyBridge logo replacement
+
+- [x] Replace every FamilyBridge logo placement with the original uploaded image.
+- [x] Verify the new logo on desktop and mobile without changing surrounding layouts.
+
 # Article publication
 
 - [x] Prepare the November 18 sibling-boundaries article and symbolic illustration.
