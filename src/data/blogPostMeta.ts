@@ -198,6 +198,7 @@ import dramaTriangleImage from "@/assets/drama-triangle-addiction-rescuer-persec
 import overfunctioningUnderfunctioningImage from "@/assets/overfunctioning-underfunctioning-addiction-families-codependency.jpg";
 import settingBoundariesSpouseImage from "@/assets/setting-boundaries-with-an-addicted-spouse.jpg";
 import settingBoundariesAdultChildImage from "@/assets/setting-boundaries-with-an-addicted-adult-child.jpg";
+import settingBoundariesSiblingImage from "@/assets/setting-boundaries-with-an-addicted-sibling.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -214,6 +215,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "setting-boundaries-with-an-addicted-sibling",
+    title: "Setting Boundaries with an Addicted Sibling: A Guide for Brothers and Sisters",
+    excerpt: "Setting boundaries with an addicted sibling gets complicated when parents and old family roles are involved. Learn what to say and how to hold your limits.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Family Dynamics", "Enabling"],
+    readTime: "7 min read",
+    date: "November 18, 2026",
+    image: settingBoundariesSiblingImage,
+    slug: "setting-boundaries-with-an-addicted-sibling",
+    metaTitle: "Setting Boundaries with an Addicted Sibling",
+    metaDescription: "Setting boundaries with an addicted sibling gets complicated when parents and old family roles are involved. Learn what to say and how to hold your limits.",
+  },
   {
     id: "setting-boundaries-with-an-addicted-adult-child",
     title: "Setting Boundaries with an Addicted Adult Child: A Parent's Guide to Loving Without Enabling",
