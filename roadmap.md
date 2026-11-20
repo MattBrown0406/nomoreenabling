@@ -5,6 +5,10 @@
 
 # Article publication
 
+- [x] Prepare the November 20 in-law boundaries article and symbolic illustration.
+- [x] Verify the November 20 article on desktop and mobile.
+- [ ] Publish the November 20 article and confirm it on the live site.
+
 - [x] Prepare the November 18 sibling-boundaries article and symbolic illustration.
 - [x] Verify the November 18 article on desktop and mobile and request publication.
 - [x] Prepare the November 16 spouse-boundaries article and its symbolic illustration.

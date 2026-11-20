@@ -199,6 +199,7 @@ import overfunctioningUnderfunctioningImage from "@/assets/overfunctioning-under
 import settingBoundariesSpouseImage from "@/assets/setting-boundaries-with-an-addicted-spouse.jpg";
 import settingBoundariesAdultChildImage from "@/assets/setting-boundaries-with-an-addicted-adult-child.jpg";
 import settingBoundariesSiblingImage from "@/assets/setting-boundaries-with-an-addicted-sibling.jpg";
+import settingBoundariesInLawImage from "@/assets/setting-boundaries-with-an-addicted-in-law.jpg";
 
 export interface BlogPostMeta {
   id: string;
@@ -215,6 +216,19 @@ export interface BlogPostMeta {
 }
 
 export const blogPostsMeta: BlogPostMeta[] = [
+  {
+    id: "setting-boundaries-with-an-addicted-in-law",
+    title: "Setting Boundaries with an Addicted In-Law: A Guide for Families Caught in the Middle",
+    excerpt: "Setting boundaries with an addicted in-law is tricky when your spouse or child is caught in the middle. Learn what you can control and exactly what to say.",
+    category: "Boundaries",
+    categories: ["Boundaries", "Relationships", "Family Dynamics"],
+    readTime: "7 min read",
+    date: "November 20, 2026",
+    image: settingBoundariesInLawImage,
+    slug: "setting-boundaries-with-an-addicted-in-law",
+    metaTitle: "Setting Boundaries with an Addicted In-Law",
+    metaDescription: "Setting boundaries with an addicted in-law is tricky when your spouse or child is caught in the middle. Learn what you can control and exactly what to say.",
+  },
   {
     id: "setting-boundaries-with-an-addicted-sibling",
     title: "Setting Boundaries with an Addicted Sibling: A Guide for Brothers and Sisters",
